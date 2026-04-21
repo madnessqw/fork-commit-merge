@@ -1,0 +1,24 @@
+{
+  "slug": "base64-encoder-pro",
+  "name": "Base64 Encoder/Decoder Pro",
+  "tagline": "Encode and decode Base64 strings with advanced features",
+  "description": "Professional Base64 encoding/decoding tool with file support, URL-safe encoding, multiple output formats, and batch processing capabilities.",
+  "price": 19,
+  "category": "developer-tools",
+  "features": [
+    "Text to Base64 encoding",
+    "Base64 to text decoding",
+    "File to Base64 conversion",
+    "URL-safe Base64 encoding",
+    "Batch processing for multiple strings",
+    "Copy to clipboard with one click",
+    "Character count and byte size display",
+    "Validation and error handling"
+  ],
+  "tech_stack": ["html", "javascript", "vercel"],
+  "pages": ["index", "api/process", "api/health", "api/webhook"],
+  "integrations": ["lemonsqueezy"],
+  "status": "spec_ready",
+  "spec_version": "1.0",
+  "created_at": "2026-04-21T22:00:00Z"
+}
