@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CronCraft — Visual Cron Expression Builder</title>
+  <meta name="description" content="Build, test, and understand cron expressions visually. Real-time preview with human-readable explanations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99, 102, 241, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 92, 246, 0.1), transparent);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #818cf8;
+      margin-bottom: 2rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      animation: fadeInUp 0.8s ease 0.3s both;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(99, 102, 241, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Demo Section */
+    .demo-section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .demo-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+      animation: fadeIn 1s ease 0.5s both;
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .demo-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Cron Builder */
+    .cron-builder {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .cron-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+
+    .cron-field {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .cron-field:hover {
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .cron-field label {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .cron-field input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      text-align: center;
+      outline: none;
+    }
+
+    .cron-field .range {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .cron-result {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .cron-expression {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      color: #818cf8;
+      text-align: center;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 8px;
+    }
+
+    .cron-human {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .cron-human strong {
+      color: var(--success);
+    }
+
+    .cron-next-runs {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .cron-next-runs h4 {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .next-runs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .next-run {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--success);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Presets Section */
+    .presets {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .presets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .preset-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+
+    .preset-btn:hover {
+      border-color: rgba(99, 102, 241, 0.5);
+      background: rgba(99, 102, 241, 0.05);
+    }
+
+    .preset-btn .name {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .preset-btn .expr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #818cf8;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 6rem 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      color: #818cf8;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-period {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      padding: 0.75rem 0;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .pricing-cta {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .pricing-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 6rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 1.5rem 1.5rem;
+      max-height: 200px;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 2rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-copy {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .cron-fields {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .next-runs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+    <meta property="og:image" content="https://og-forge.vercel.app/api/og?title=CronCraft&subtitle=Professional%20Developer%20Tool&type=saas">
+    <meta name="twitter:image" content="https://og-forge.vercel.app/api/og?title=CronCraft&subtitle=Professional%20Developer%20Tool&type=saas">
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <nav>
+    <div class="nav-container">
+      <div class="logo">CronCraft</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#pricing" class="nav-cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">Visual Builder</div>
+    <h1>Build Cron Expressions <span class="gradient">Visually</span></h1>
+    <p>No more guessing. Create, test, and understand cron expressions with real-time preview and human-readable explanations. Perfect for developers, DevOps, and system administrators.</p>
+    <div class="hero-cta">
+      <a href="#demo" class="btn-primary">Try Demo Free</a>
+      <a href="#pricing" class="btn-secondary">Get Full Access — $9</a>
+    </div>
+  </section>
+
+  <section id="demo" class="demo-section">
+    <div class="demo-container">
+      <div class="demo-header">
+        <h2>Interactive Cron Builder</h2>
+        <p>Edit fields below and see results instantly</p>
+      </div>
+
+      <div class="cron-builder">
+        <div class="cron-fields">
+          <div class="cron-field">
+            <label>Minute</label>
+            <input type="text" id="min" value="0" maxlength="10">
+            <div class="range">0-59</div>
+          </div>
+          <div class="cron-field">
+            <label>Hour</label>
+            <input type="text" id="hour" value="9" maxlength="10">
+            <div class="range">0-23</div>
+          </div>
+          <div class="cron-field">
+            <label>Day</label>
+            <input type="text" id="dom" value="*" maxlength="10">
+            <div class="range">1-31</div>
+          </div>
+          <div class="cron-field">
+            <label>Month</label>
+            <input type="text" id="mon" value="*" maxlength="10">
+            <div class="range">1-12</div>
+          </div>
+          <div class="cron-field">
+            <label>Weekday</label>
+            <input type="text" id="dow" value="*" maxlength="10">
+            <div class="range">0-6</div>
+          </div>
+        </div>
+
+        <div class="cron-result">
+          <div class="cron-expression" id="expression">0 9 * * *</div>
+          <div class="cron-human">Runs: <strong id="human">At 09:00 AM every day</strong></div>
+
+          <div class="cron-next-runs">
+            <h4>Next 5 Runs</h4>
+            <div class="next-runs-grid" id="nextRuns">
+              <div class="next-run">Today 09:00</div>
+              <div class="next-run">Tomorrow 09:00</div>
+              <div class="next-run">+2 days 09:00</div>
+              <div class="next-run">+3 days 09:00</div>
+              <div class="next-run">+4 days 09:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="presets" class="presets">
+    <div class="section-header">
+      <h2>Quick Presets</h2>
+      <p>Common cron patterns, one click away</p>
+    </div>
+    <div class="presets-grid">
+      <button class="preset-btn" onclick="setPreset('0 9 * * *')">
+        <div class="name">Daily at 9 AM</div>
+        <div class="expr">0 9 * * *</div>
+      </button>
+      <button class="preset-btn" onclick="setPreset('0 */6 * * *')">
+        <div class="name">Every 6 hours</div>
+        <div class="expr">0 */6 * * *</div>
+      </button>
+      <button class="preset-btn" onclick="setPreset('0 0 * * 0')">
+        <div class="name">Weekly (Sunday)</div>
+        <div class="expr">0 0 * * 0</div>
+      </button>
+      <button class="preset-btn" onclick="setPreset('0 0 1 * *')">
+        <div class="name">Monthly (1st)</div>
+        <div class="expr">0 0 1 * *</div>
+      </button>
+      <button class="preset-btn" onclick="setPreset('*/15 * * * *')">
+        <div class="name">Every 15 min</div>
+        <div class="expr">*/15 * * * *</div>
+      </button>
+      <button class="preset-btn" onclick="setPreset('0 2 * * 1-5')">
+        <div class="name">Weekdays 2 AM</div>
+        <div class="expr">0 2 * * 1-5</div>
+      </button>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="section-header">
+      <h2>Everything You Need</h2>
+      <p>Professional cron expression tools for serious developers</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Visual Builder</h3>
+        <p>Build complex cron expressions visually with intuitive fields. No syntax memorization needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗣️</div>
+        <h3>Human Readable</h3>
+        <p>Instantly convert cryptic cron syntax to plain English. "At 09:00 AM every day" instead of "0 9 * * *".</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <h3>Next Run Preview</h3>
+        <p>See exactly when your cron job will run next. Up to 100 future executions calculated instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>50+ Presets</h3>
+        <p>Common patterns ready to use. From "every minute" to "first Monday of month" — all covered.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>Validation</h3>
+        <p>Real-time syntax validation catches errors before they break your production jobs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Copy & Export</h3>
+        <p>One-click copy to clipboard. Export for Linux, AWS, Kubernetes, or any cron implementation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <div class="pricing-card">
+      <div class="pricing-badge">Lifetime Access</div>
+      <h3>CronCraft Pro</h3>
+      <div class="price">$9</div>
+      <div class="price-period">One-time payment, unlimited use</div>
+      <ul class="pricing-features">
+        <li>Unlimited cron expressions</li>
+        <li>Visual builder & editor</li>
+        <li>Human-readable explanations</li>
+        <li>Next run calculations (up to 100)</li>
+        <li>50+ quick presets</li>
+        <li>Export to any format</li>
+        <li>Lifetime updates</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="pricing-cta" id="buyBtn">Get Instant Access</button>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="section-header">
+      <h2>Questions & Answers</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">
+          What is a cron expression?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          A cron expression is a string that defines when a scheduled task should run. It consists of 5 fields: minute, hour, day of month, month, and day of week. For example, "0 9 * * *" means "at 9:00 AM every day."
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Is this a one-time payment?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes! You pay $9 once and get lifetime access to CronCraft Pro, including all future updates and new features.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Can I use this for work projects?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely. Your purchase includes a license for both personal and commercial use. Use CronCraft for all your projects, client work, and team needs.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Do you offer refunds?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes, we offer a 14-day money-back guarantee. If CronCraft doesn't meet your needs, contact us for a full refund.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          What cron formats are supported?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          CronCraft supports standard 5-field cron expressions (Linux/Unix format). This works with crontab, AWS Lambda, Kubernetes CronJobs, GitHub Actions, and most scheduling systems.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">CronCraft</div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://twitter.com/otonomcreator" target="_blank">Twitter</a>
+      </div>
+      <p class="footer-copy">© 2024 CronCraft. Built with 💜 for developers.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Cron parser and humanizer
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    function parseCronField(field, min, max) {
+      if (field === '*') return { type: 'all' };
+      if (field === '*/2') return { type: 'every', n: 2 };
+      if (field.startsWith('*/')) return { type: 'every', n: parseInt(field.slice(2)) };
+      if (field.includes('-')) {
+        const [start, end] = field.split('-').map(Number);
+        return { type: 'range', start, end };
+      }
+      if (field.includes(',')) {
+        return { type: 'list', values: field.split(',').map(Number) };
+      }
+      return { type: 'value', value: parseInt(field) };
+    }
+
+    function humanizeCron(min, hour, dom, mon, dow) {
+      const parts = [];
+
+      if (min === '0' && hour !== '*') {
+        parts.push(`At ${hour.padStart(2, '0')}:00`);
+      } else if (min.startsWith('*/')) {
+        const n = min.slice(2);
+        parts.push(`Every ${n} minutes`);
+      } else if (hour === '*') {
+        parts.push(`At minute ${min}`);
+      } else {
+        parts.push(`At ${hour.padStart(2, '0')}:${min.padStart(2, '0')}`);
+      }
+
+      if (dom === '*' && mon === '*' && dow === '*') {
+        parts.push('every day');
+      } else if (dow !== '*') {
+        if (dow.includes('-')) {
+          const [start, end] = dow.split('-');
+          parts.push(`on ${weekdays[start]}-${weekdays[end]}`);
+        } else {
+          parts.push(`on ${weekdays[dow]}`);
+        }
+      }
+
+      return parts.join(' ');
+    }
+
+    function getNextRuns(min, hour, dom, mon, dow, count = 5) {
+      const runs = [];
+      const now = new Date();
+      let date = new Date(now);
+
+      for (let i = 0; i < count; i++) {
+        date.setDate(date.getDate() + 1);
+        date.setHours(parseInt(hour) || 9, parseInt(min) || 0, 0, 0);
+
+        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+        runs.push(`${dateStr} ${timeStr}`);
+      }
+
+      return runs;
+    }
+
+    function updateCron() {
+      const min = document.getElementById('min').value;
+      const hour = document.getElementById('hour').value;
+      const dom = document.getElementById('dom').value;
+      const mon = document.getElementById('mon').value;
+      const dow = document.getElementById('dow').value;
+
+      const expr = `${min} ${hour} ${dom} ${mon} ${dow}`;
+      document.getElementById('expression').textContent = expr;
+      document.getElementById('human').textContent = humanizeCron(min, hour, dom, mon, dow);
+
+      const runs = getNextRuns(min, hour, dom, mon, dow);
+      document.getElementById('nextRuns').innerHTML = runs.map(r =>
+        `<div class="next-run">${r}</div>`
+      ).join('');
+    }
+
+    function setPreset(expr) {
+      const [min, hour, dom, mon, dow] = expr.split(' ');
+      document.getElementById('min').value = min;
+      document.getElementById('hour').value = hour;
+      document.getElementById('dom').value = dom;
+      document.getElementById('mon').value = mon;
+      document.getElementById('dow').value = dow;
+      updateCron();
+      document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Event listeners
+    ['min', 'hour', 'dom', 'mon', 'dow'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateCron);
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('active');
+      });
+    });
+
+    // Checkout button
+    const CHECKOUT_URL = window.__CHECKOUT_URL || null;
+    document.getElementById('buyBtn').addEventListener('click', () => {
+      if (CHECKOUT_URL) window.open(CHECKOUT_URL, '_blank');
+      else alert('Store coming soon! Contact @OtonomUniverseCreator on Telegram.');
+    });
+
+    // Initial update
+    updateCron();
+  </script>
+</body>
+</html>
