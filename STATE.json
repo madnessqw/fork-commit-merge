@@ -1,7 +1,7 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-21T09:28:12.025862Z",
-  "cycle": 1019,
+  "timestamp": "2026-04-21T09:40:48.188089Z",
+  "cycle": 1020,
   "message": "Cycle 1019 - OG optimizasyonu devam ediyor",
   "balance": 0.0,
   "mode": "OPTIMIZE",
@@ -18,7 +18,7 @@
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
   "notes": "SEO improvements: Added Twitter Cards, canonical URLs, JSON-LD structured data to 3 products. Health: 113/113 healthy.",
-  "last_updated": "2026-04-21T09:28:12.025862Z",
+  "last_updated": "2026-04-21T09:40:48.188089Z",
   "products": {
     "active": [
       {
@@ -148,7 +148,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/0c610a2b-7b1d-4d5a-8ce2-c7c5eaa9d3da",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "TOML Toolkit",
@@ -177,7 +178,8 @@
         "price": "$19",
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HTML Entities Pro",
@@ -191,7 +193,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/17bce928-6c18-4ffd-a2e8-0af21b6d2c6a",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "JWT Inspector",
@@ -203,7 +206,8 @@
         "price": 12,
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "SVG Pattern Generator",
@@ -215,7 +219,8 @@
         "price": "$19",
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Mock Data Pro",
@@ -261,7 +266,8 @@
         "health_status": "healthy",
         "last_health_code": 200,
         "seo_optimized": true,
-        "seo_optimized_at": "2026-04-21T08:32:37.778864Z"
+        "seo_optimized_at": "2026-04-21T08:32:37.778864Z",
+        "og_optimized": true
       },
       {
         "name": "ColorMine",
@@ -273,7 +279,8 @@
         "price": "29",
         "created_cycle": 331,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "CSS Gradient Studio",
@@ -291,7 +298,8 @@
         "note": "Alias fixed",
         "last_health_code": 200,
         "seo_optimized": true,
-        "seo_optimized_at": "2026-04-21T08:32:37.778864Z"
+        "seo_optimized_at": "2026-04-21T08:32:37.778864Z",
+        "og_optimized": true
       },
       {
         "name": "Password Strength Checker Pro",
@@ -306,7 +314,8 @@
         "deployed_cycle": 975,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/558b0af0-fadf-4ad2-9c18-df74e8a51820",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "YAML to JSON Converter",
@@ -320,7 +329,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/07dbcaad-a466-444f-8716-9ad1bd27197b",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "API Doc Generator",
@@ -348,7 +358,8 @@
         "price": "$19",
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Cron Expression Parser",
@@ -360,7 +371,8 @@
         "price": "$19",
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "ID Generator Pro",
@@ -378,7 +390,8 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/efe1b957-a4cd-42a2-bc90-1ca99928ecf6",
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "UUID Generator Pro",
@@ -395,7 +408,8 @@
         "deployed_cycle": 992,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/fbf28983-c614-473b-bf9c-fdeed947fd8e",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "NanoID Generator Pro",
@@ -409,7 +423,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/f7aa8e02-37f0-43c4-af63-59293833b7c7",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HTML Minifier Pro",
@@ -427,7 +442,8 @@
         "last_health_code": 200,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:00:00Z",
-        "deploy_pending": true
+        "deploy_pending": true,
+        "og_optimized": true
       },
       {
         "name": "TOML Validator",
@@ -442,7 +458,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/594a1fdb-a891-44e0-9db8-5925ae2765ad",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "KeyForge",
@@ -457,7 +474,8 @@
         "deployed_cycle": 977,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/d8350a7c-1c8c-424a-83db-9bee03f99e17",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "TOML Parser Pro",
@@ -488,7 +506,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b4b323f-5262-4865-842e-348244a4151a",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HTML to Markdown Pro",
@@ -504,7 +523,8 @@
         "last_health_check": "2026-04-20T21:11:15.091752Z",
         "last_health_code": 200,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/b6a9eef4-cad4-4a9f-8d38-dbb8a7eb883f",
-        "checkout_status": "pending_lemonsqueezy_creation"
+        "checkout_status": "pending_lemonsqueezy_creation",
+        "og_optimized": true
       },
       {
         "name": "API Request Builder",
@@ -519,7 +539,8 @@
         "deployed_cycle": 979,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/600312ea-17e0-4080-ba69-a92a14198a8f",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Number Base Converter",
@@ -531,7 +552,8 @@
         "price": "9",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "XML Master Pro",
@@ -547,7 +569,8 @@
         "last_health_check": "2026-04-20T21:19:16.819731Z",
         "last_health_code": 200,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/fe4f14a2-bef8-4708-86f4-4513308b8a6e",
-        "checkout_status": "pending_lemonsqueezy_creation"
+        "checkout_status": "pending_lemonsqueezy_creation",
+        "og_optimized": true
       },
       {
         "name": "HTML Table to CSV Pro",
@@ -560,7 +583,8 @@
         "created_cycle": 938,
         "last_health_code": 200,
         "health_status": "healthy",
-        "note": "Alias fixed"
+        "note": "Alias fixed",
+        "og_optimized": true
       },
       {
         "name": "DataFlip",
