@@ -1,0 +1,322 @@
+[
+  {
+    "slug": "webterminal-pro",
+    "name": "WebTerminal Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "toml-toolkit",
+    "name": "TOML Toolkit",
+    "status": "partial"
+  },
+  {
+    "slug": "og-forge",
+    "name": "OG Forge",
+    "status": "partial"
+  },
+  {
+    "slug": "jwtinspector",
+    "name": "JWT Inspector",
+    "status": "partial"
+  },
+  {
+    "slug": "svg-pattern-generator",
+    "name": "SVG Pattern Generator",
+    "status": "partial"
+  },
+  {
+    "slug": "xml-to-json",
+    "name": "XML to JSON",
+    "status": "partial"
+  },
+  {
+    "slug": "css-gradient-studio",
+    "name": "CSS Gradient Studio",
+    "status": "minimal"
+  },
+  {
+    "slug": "docker-compose-validator",
+    "name": "Docker Compose Validator",
+    "status": "partial"
+  },
+  {
+    "slug": "cron-expression-parser",
+    "name": "Cron Expression Parser",
+    "status": "partial"
+  },
+  {
+    "slug": "id-generator-pro",
+    "name": "ID Generator Pro",
+    "status": "minimal"
+  },
+  {
+    "slug": "uuid-generator",
+    "name": "UUID Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "nanoid-generator",
+    "name": "NanoID Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "toml-validator",
+    "name": "TOML Validator",
+    "status": "partial"
+  },
+  {
+    "slug": "keyforge",
+    "name": "KeyForge",
+    "status": "partial"
+  },
+  {
+    "slug": "toml-parser-pro",
+    "name": "TOML Parser Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "nginx-config-generator",
+    "name": "Nginx Config Generator",
+    "status": "partial"
+  },
+  {
+    "slug": "html-to-markdown",
+    "name": "HTML to Markdown Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "number-base-converter",
+    "name": "Number Base Converter",
+    "status": "partial"
+  },
+  {
+    "slug": "xml-master-pro",
+    "name": "XML Master Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "table-to-csv",
+    "name": "HTML Table to CSV Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "jwt-generator",
+    "name": "JWT Generator",
+    "status": "minimal"
+  },
+  {
+    "slug": "hash-generator-pro",
+    "name": "Hash Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "xml-formatter",
+    "name": "XML Formatter & Validator",
+    "status": "minimal"
+  },
+  {
+    "slug": "croncraft",
+    "name": "CronCraft",
+    "status": "minimal"
+  },
+  {
+    "slug": "timestamp-master",
+    "name": "Timestamp Master",
+    "status": "minimal"
+  },
+  {
+    "slug": "html2jsx",
+    "name": "HTML to JSX",
+    "status": "partial"
+  },
+  {
+    "slug": "webhook-tester",
+    "name": "Webhook Tester",
+    "status": "partial"
+  },
+  {
+    "slug": "curl2code",
+    "name": "Curl2Code",
+    "status": "partial"
+  },
+  {
+    "slug": "email-validator-pro",
+    "name": "Email Validator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "mcp-validator",
+    "name": "MCP Server Validator",
+    "status": "minimal"
+  },
+  {
+    "slug": "toml-parser",
+    "name": "TOML Parser Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "techstack",
+    "name": "TechStack Analyzer",
+    "status": "partial"
+  },
+  {
+    "slug": "html2markdown",
+    "name": "HTML2Markdown Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "color-contrast-pro",
+    "name": "Color Contrast Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "markdown-to-pdf",
+    "name": "Markdown to PDF",
+    "status": "partial"
+  },
+  {
+    "slug": "jwt-generator-pro",
+    "name": "JWT Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "http-api-client",
+    "name": "HTTP API Client",
+    "status": "partial"
+  },
+  {
+    "slug": "hmac-generator-pro",
+    "name": "HMAC Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "markdown-table-generator",
+    "name": "Markdown Table Generator",
+    "status": "minimal"
+  },
+  {
+    "slug": "terminal-theme-studio",
+    "name": "Terminal Theme Studio",
+    "status": "minimal"
+  },
+  {
+    "slug": "ip-network-tools",
+    "name": "IP Network Tools",
+    "status": "partial"
+  },
+  {
+    "slug": "favicon-generator-pro",
+    "name": "Favicon Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "markdown-to-html-pro",
+    "name": "Markdown to HTML Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "xml-formatter-pro",
+    "name": "XML Formatter Pro",
+    "status": "minimal"
+  },
+  {
+    "slug": "api-compare",
+    "name": "API Compare",
+    "status": "partial"
+  },
+  {
+    "slug": "html-entity-encoder",
+    "name": "HTML Entity Encoder/Decoder Pro",
+    "status": "minimal"
+  },
+  {
+    "slug": "openapi-validator",
+    "name": "OpenAPI Validator",
+    "status": "minimal"
+  },
+  {
+    "slug": "cron-express",
+    "name": "Cron Express",
+    "status": "minimal"
+  },
+  {
+    "slug": "cronmaster",
+    "name": "CronMaster",
+    "status": "minimal"
+  },
+  {
+    "slug": "graphql-query-builder",
+    "name": "GraphQL Query Builder",
+    "status": "partial"
+  },
+  {
+    "slug": "secretguard",
+    "name": "SecretGuard",
+    "status": "partial"
+  },
+  {
+    "slug": "geoip-lite",
+    "name": "GeoIP Lite",
+    "status": "partial"
+  },
+  {
+    "slug": "jsonpath-tester",
+    "name": "JSONPath Tester",
+    "status": "partial"
+  },
+  {
+    "slug": "text-case-converter",
+    "name": "Text Case Converter Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "email-signature-pro",
+    "name": "Email Signature Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "password-generator-pro",
+    "name": "Password Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "lorem-ipsum-pro",
+    "name": "Lorem Ipsum Pro",
+    "status": "minimal"
+  },
+  {
+    "slug": "color-palette-extractor",
+    "name": "Color Palette Extractor",
+    "status": "partial"
+  },
+  {
+    "slug": "git-command-builder",
+    "name": "Git Command Builder",
+    "status": "partial"
+  },
+  {
+    "slug": "code-snippet-manager",
+    "name": "Code Snippet Manager",
+    "status": "partial"
+  },
+  {
+    "slug": "email-signature",
+    "name": "Email Signature Generator",
+    "status": "partial"
+  },
+  {
+    "slug": "hmac-generator",
+    "name": "HMAC Generator Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "timestamp-converter",
+    "name": "Timestamp Converter Pro",
+    "status": "partial"
+  },
+  {
+    "slug": "html-entity",
+    "name": "HTML Entity Encoder/Decoder",
+    "status": "partial"
+  }
+]

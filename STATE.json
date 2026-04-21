@@ -1,8 +1,8 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-21T10:52:35.464634Z",
-  "cycle": 1024,
-  "message": "Cycle 1024 - OG meta tag optimization for remaining products",
+  "timestamp": "2026-04-21T11:14:45.028554Z",
+  "cycle": 1025,
+  "message": "SEO optimizasyonu devam ediyor. Toplam 31 ürün optimize edildi.",
   "balance": 0.0,
   "mode": "OPTIMIZE",
   "active_count": 113,
@@ -18,7 +18,7 @@
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
   "notes": "CRITICAL: 88 products have missing/invalid local HTML files. Products are LIVE on Vercel (healthy) but local sources are only deploy triggers. SEO optimization requires local HTML files. Options: 1) Sync from Vercel URLs, 2) Recreate products, 3) Use different optimization strategy.",
-  "last_updated": "2026-04-21T10:52:35.464675Z",
+  "last_updated": "2026-04-21T11:14:45.028554Z",
   "products": {
     "active": [
       {
