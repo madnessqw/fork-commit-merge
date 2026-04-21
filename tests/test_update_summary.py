@@ -91,6 +91,28 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["products"][0]["n"], "Compact Spec Tool")
         self.assertEqual(summary["gaps"]["missing_url"], ["compact-spec-tool"])
 
+    def test_legacy_checkout_field_counts_as_checkout(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Legacy Checkout Tool",
+                        "slug": "legacy-checkout-tool",
+                        "status": "live",
+                        "vercel_url": "https://legacy-checkout-tool.vercel.app",
+                        "lemonsqueezy_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/legacy-checkout-tool-001",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["checkout_gap_count"], 0)
+        self.assertEqual(summary["products"][0]["c"], "https://profitbridge.lemonsqueezy.com/checkout/buy/legacy-checkout-tool-001")
+
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
             is_placeholder_product(

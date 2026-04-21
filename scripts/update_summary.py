@@ -10,12 +10,18 @@ product records every time.
 from __future__ import annotations
 
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.checkout_metadata import get_checkout_url
+
+
 STATE_FILE = ROOT / "STATE.json"
 SUMMARY_FILE = ROOT / "STATE_SUMMARY.json"
 
@@ -43,7 +49,7 @@ def normalize_product(product: dict[str, Any]) -> dict[str, Any]:
     normalized["slug"] = _pick(product, "slug", "s")
     normalized["status"] = _pick(product, "status", "st")
     normalized["vercel_url"] = _pick(product, "vercel_url", "v")
-    normalized["checkout_url"] = _pick(product, "checkout_url", "lemon_checkout_url", "lemonsqueezy_checkout_url", "c")
+    normalized["checkout_url"] = get_checkout_url(product)
     return normalized
 
 
@@ -108,7 +114,7 @@ def load_products(state: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dic
 
 
 def has_checkout(product: dict[str, Any]) -> bool:
-    return bool(product.get("checkout_url") or product.get("lemon_checkout_url") or product.get("lemonsqueezy_checkout_url"))
+    return bool(get_checkout_url(product))
 
 
 def health_code(product: dict[str, Any]) -> int | None:
@@ -131,7 +137,7 @@ def compact_product(product: dict[str, Any]) -> dict[str, Any]:
         "s": product.get("slug"),
         "st": product.get("status"),
         "v": product.get("vercel_url"),
-        "c": product.get("checkout_url") or product.get("lemon_checkout_url") or product.get("lemonsqueezy_checkout_url"),
+        "c": get_checkout_url(product),
     }
 
 

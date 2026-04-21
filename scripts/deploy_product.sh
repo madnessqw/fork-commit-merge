@@ -154,16 +154,20 @@ echo ""
 echo "📝 Step 4: Updating product.json..."
 python3 << PYEOF
 import json
-with open('$PRODUCT_JSON', 'r') as f:
+import sys
+sys.path.insert(0, '$BASE_DIR')
+from scripts.checkout_metadata import normalize_checkout_metadata
+with open('$PRODUCT_JSON', 'r', encoding='utf-8') as f:
     data = json.load(f)
-checkout_url = data.get('checkout_url') or data.get('lemon_checkout_url') or data.get('lemonsqueezy_checkout_url')
+data = normalize_checkout_metadata(data, force_canonical_key=True)
+checkout_url = data.get('checkout_url')
 data['vercel_url'] = '$VERCEL_URL'
 data['deployment_url'] = '$DEPLOYMENT_URL'
 data['github_url'] = '$GITHUB_URL'
 data['webhook_url'] = '$WEBHOOK_URL'
 data['status'] = 'live' if checkout_url else 'ready_for_payment'
-with open('$PRODUCT_JSON', 'w') as f:
-    json.dump(data, f, indent=2)
+with open('$PRODUCT_JSON', 'w', encoding='utf-8') as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
 print("  ✅ product.json updated")
 PYEOF
 
@@ -207,9 +211,12 @@ fi
 echo ""
 echo "📊 Step 6: Updating STATE.json..."
 python3 << PYEOF
-import json, os
+import json
+import sys
+sys.path.insert(0, '$BASE_DIR')
+from scripts.checkout_metadata import normalize_checkout_metadata
 state_file = '$BASE_DIR/STATE.json'
-with open(state_file, 'r') as f:
+with open(state_file, 'r', encoding='utf-8') as f:
     state = json.load(f)
 
 # Move from building to active
@@ -220,8 +227,11 @@ product_entry = {
     "vercel_url": "$VERCEL_URL",
     "github_url": "$GITHUB_URL",
     "webhook_url": "$WEBHOOK_URL",
+    "checkout_url": None,
+    "payment_provider": "lemonsqueezy",
     "lemon_product_id": None,
     "lemon_checkout_url": None,
+    "lemonsqueezy_checkout_url": None,
     "revenue": 0,
     "price": "$PRICE"
 }
@@ -232,7 +242,8 @@ if 'products' not in state:
 # Add to active list
 active = state['products'].get('active', [])
 existing_entry = next((p for p in active if p.get('slug') == '$SLUG'), {})
-checkout_url = existing_entry.get('checkout_url') or existing_entry.get('lemon_checkout_url')
+existing_entry = normalize_checkout_metadata(existing_entry, force_canonical_key=True)
+checkout_url = existing_entry.get('checkout_url')
 
 # Remove existing entry for same slug if any
 active = [p for p in active if p.get('slug') != '$SLUG']
@@ -246,9 +257,7 @@ product_entry = {
     "webhook_url": "$WEBHOOK_URL",
     "price": "$PRICE"
 }
-if checkout_url:
-    product_entry["checkout_url"] = checkout_url
-    product_entry["lemon_checkout_url"] = checkout_url
+product_entry = normalize_checkout_metadata(product_entry, force_canonical_key=True)
 
 active.append(product_entry)
 state['products']['active'] = active
@@ -258,8 +267,8 @@ state['products']['active_count'] = len(active)
 if state['products'].get('building', {}).get('slug') == '$SLUG':
     state['products']['building'] = None
 
-with open(state_file, 'w') as f:
-    json.dump(state, f, indent=2)
+with open(state_file, 'w', encoding='utf-8') as f:
+    json.dump(state, f, indent=2, ensure_ascii=False)
 print("  ✅ STATE.json updated")
 PYEOF
 
