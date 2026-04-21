@@ -1,39 +1,41 @@
-# Codex Result — 2026-04-21 23:10 TRT
+# Codex Result — 2026-04-21 23:42 TRT
 
 ## Okunan Kaynaklar
-- `skills/codex_skill.md`: dosya yoktu; bu turda yeniden oluşturuldu.
-- `analysis/codex_task.md`: araştırma/no-code modu söylüyordu; doğrudan insan talimatı kod+commit istediği için production ürüne dokunmadan güvenli altyapı fix'i seçildi.
-- `STATE_SUMMARY.json`, `STATE.json`, `analysis/oneri.md`, `analysis/sorun_analizi.md`, `analysis/cozum_planlama.md`, `analysis/kullanici_gereksinim.md`.
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `analysis/cozum_planlama.md`
+- `analysis/kullanici_gereksinim.md`
+- `scripts/update_summary.py`
+
+## Görev Çatışması
+- `analysis/codex_task.md` 20-21 Nisan 2026 için araştırma/no-code modu söylüyordu.
+- Doğrudan insan talimatı bu turda kod değişikliği + commit istediği için production ürüne dokunmadan güvenli altyapı fix'i seçildi.
+- Seçilen darboğaz: `STATE_SUMMARY.json` üretiminde compact (`n/s/st/v/c`) kayıtların tam alanlara normalize edilmemesi ve aynı slug'lı zayıf kayıtların sayıları şişirmesi.
 
 ## Yapılan Değişiklikler
-- `skills/codex_skill.md` eklendi: Codex uygulayıcı akışı, stale/no-code task çatışma kuralı, secret ve commit güvenliği yazıldı.
-- `scripts/deploy_product.sh` sertleştirildi:
-  - Hardcoded GitHub/Vercel/Telegram credential fallback'leri kaldırıldı.
-  - GitHub auth artık `gh auth` veya env üzerinden çalışıyor; token remote URL'ye yazılmıyor.
-  - Vercel token env'den geliyor; yoksa protection fix atlanıyor.
-  - Telegram bildirimi default kapalı; `SEND_TELEGRAM=1` + env olmadan dış bildirim yok.
-- `scripts/fix_vercel_protection.sh` hardcoded Vercel token'dan arındırıldı; `VERCEL_TOKEN` yoksa güvenli şekilde duruyor.
-- `skills/FACTORY.md`, `skills/build_checklist.md`, `skills/agents/sorun_analizi.md` içindeki tokenlı örnekler env tabanlı hale getirildi.
-- `scripts/update_summary.py` baştan güvenli/hesaplayan hale getirildi; stale counter kopyalamıyor, `STATE.json` ürünlerinden gerçek summary üretiyor.
-- `STATE_SUMMARY.json` yeniden üretildi.
+- `scripts/update_summary.py`
+  - Compact ürün kayıtlarını tam alanlara normalize eden katman eklendi.
+  - Placeholder kayıt filtresi eklendi.
+  - Aynı slug/name ile gelen tekrar kayıtlar için kalite skoru bazlı dedupe eklendi; daha zengin kayıt korunuyor.
+  - Böylece `STATE_SUMMARY.json` artık null ürün satırı üretmiyor ve duplicate slug'ları iki kez saymıyor.
+- `tests/test_update_summary.py`
+  - Placeholder ignore testi eklendi.
+  - Compact kayıt normalize+dedupe testi eklendi.
+  - Alan eşleme testi eklendi.
+- `STATE_SUMMARY.json`
+  - Script yeniden çalıştırıldı ve özet tazelendi.
+  - Güncel snapshot: `active_count=131`, `live_count=113`, `healthy_count=112`, `spec_ready_count=27`, `deploy_missing_or_bad_url=19`.
 
-## Güncel Özet
-- Active: 122
-- Live: 113
-- Healthy live: 112
-- Unhealthy live: 1 (`html-entity-encoder`, HTTP 402)
-- Checkout gap: 0
-- Deploy/missing URL gap: 10 (9 spec_ready URL yok + 1 unhealthy live)
-- Spec-ready toplam benzersiz slug: 18
-
-## Doğrulamalar
-- `python3 -m py_compile scripts/update_summary.py` ✅
-- `bash -n scripts/deploy_product.sh scripts/fix_vercel_protection.sh` ✅
-- Hardcoded token-shaped literal scan (`scripts/`, `skills/`) ✅
+## Geçen Doğrulamalar
+- `python3 -m py_compile scripts/update_summary.py tests/test_update_summary.py` ✅
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py'` ✅
 - `python3 scripts/update_summary.py` ✅
-- Summary assertion checks ✅
+- Sonuç kontrolü: summary içinde null ürün yok, duplicate slug yok, `missing_url` listesinde duplicate yok ✅
 
 ## Kalan Blokajlar
-- `html-entity-encoder` canlı ama HTTP 402 dönüyor; ödeme/hosting/config tarafı incelenmeli.
-- 9 `spec_ready` ürünün URL'si yok; deploy limiti veya deploy kuyruğu çözülmeden canlı sayılmaz.
-- `analysis/codex_task.md` hâlâ araştırma modu diyor; bu turdaki kod değişikliği doğrudan insan talimatı ile yapıldı.
+- `STATE.json` kaynak verisi hâlâ karışık: bazı ürünler compact, bazıları full formatta; aynı slug için duplicate source kayıtları var. Bu turda source dosyayı mutate etmedim, summary katmanını sağlamlaştırdım.
+- `html-entity-encoder` canlı tarafta hâlâ unhealthy (`HTTP 402`).
+- Ödeme/Vercel aksiyonları hâlâ insan müdahalesi istiyor; bu commit onları çözülmüş gibi göstermiyor.

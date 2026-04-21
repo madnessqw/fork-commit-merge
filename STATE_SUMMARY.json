@@ -1,17 +1,17 @@
 {
-  "cycle": 1059,
+  "cycle": 1062,
   "mode": "INNOVATE",
   "balance": 0.0,
-  "active_count": 122,
+  "active_count": 131,
   "live_count": 113,
   "healthy_count": 112,
   "unhealthy_count": 1,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 10,
-  "spec_ready_count": 18,
+  "deploy_missing_or_bad_url": 19,
+  "spec_ready_count": 27,
   "next_action": "prepare_new_products_wait_deploy",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-21T20:08:17.578400Z",
+  "last_updated": "2026-04-21T20:42:25.969921Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -866,6 +866,69 @@
       "st": "spec_ready",
       "v": null,
       "c": null
+    },
+    {
+      "n": "Htpasswd Generator Pro",
+      "s": "htpasswd-generator",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Docker Run Generator",
+      "s": "docker-run-generator",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "SQL to NoSQL Converter",
+      "s": "sql-to-nosql",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Chmod Calculator Pro",
+      "s": "chmod-calculator",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Binary Inspector Pro",
+      "s": "binary-inspector",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "SSL Config Generator Pro",
+      "s": "ssl-config-generator",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Browser Mock Studio",
+      "s": "browser-mock-studio",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Docker Compose Builder",
+      "s": "docker-compose-builder",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "ENV File Manager",
+      "s": "env-file-manager",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
     }
   ],
   "gaps": {
@@ -878,7 +941,16 @@
       "ssl-cipher-analyzer",
       "diff-checker-pro",
       "yaml-validator-pro",
-      "case-converter-pro"
+      "case-converter-pro",
+      "htpasswd-generator",
+      "docker-run-generator",
+      "sql-to-nosql",
+      "chmod-calculator",
+      "binary-inspector",
+      "ssl-config-generator",
+      "browser-mock-studio",
+      "docker-compose-builder",
+      "env-file-manager"
     ],
     "unhealthy_live": [
       {

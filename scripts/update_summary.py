@@ -20,10 +20,77 @@ STATE_FILE = ROOT / "STATE.json"
 SUMMARY_FILE = ROOT / "STATE_SUMMARY.json"
 
 
+PRODUCT_IDENTITY_FIELDS = ("name", "slug", "status", "vercel_url", "checkout_url")
+
+
+def _has_value(value: Any) -> bool:
+    if isinstance(value, str):
+        return bool(value.strip())
+    return value is not None
+
+
+def _pick(product: dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        value = product.get(key)
+        if _has_value(value):
+            return value
+    return None
+
+
+def normalize_product(product: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(product)
+    normalized["name"] = _pick(product, "name", "n")
+    normalized["slug"] = _pick(product, "slug", "s")
+    normalized["status"] = _pick(product, "status", "st")
+    normalized["vercel_url"] = _pick(product, "vercel_url", "v")
+    normalized["checkout_url"] = _pick(product, "checkout_url", "lemon_checkout_url", "lemonsqueezy_checkout_url", "c")
+    return normalized
+
+
+def is_placeholder_product(product: dict[str, Any]) -> bool:
+    return not any(_has_value(product.get(field)) for field in PRODUCT_IDENTITY_FIELDS)
+
+
+def product_key(product: dict[str, Any]) -> str | None:
+    slug = product.get("slug")
+    if _has_value(slug):
+        return f"slug:{slug}"
+    name = product.get("name")
+    if _has_value(name):
+        return f"name:{name}"
+    return None
+
+
+def product_quality_score(product: dict[str, Any]) -> int:
+    return sum(1 for value in product.values() if _has_value(value))
+
+
+def dedupe_products(products: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    deduped: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    anonymous: list[dict[str, Any]] = []
+
+    for product in products:
+        key = product_key(product)
+        if key is None:
+            anonymous.append(product)
+            continue
+        if key not in deduped:
+            deduped[key] = product
+            order.append(key)
+            continue
+        if product_quality_score(product) > product_quality_score(deduped[key]):
+            deduped[key] = product
+
+    return [deduped[key] for key in order] + anonymous
+
+
 def _as_list(value: Any) -> list[dict[str, Any]]:
     if not isinstance(value, list):
         return []
-    return [item for item in value if isinstance(item, dict)]
+    normalized_items = [normalize_product(item) for item in value if isinstance(item, dict)]
+    meaningful_items = [item for item in normalized_items if not is_placeholder_product(item)]
+    return dedupe_products(meaningful_items)
 
 
 def load_products(state: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
