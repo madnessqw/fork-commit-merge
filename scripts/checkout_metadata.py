@@ -60,6 +60,7 @@ def normalize_checkout_metadata(
     *,
     sync_legacy: bool = True,
     force_canonical_key: bool = False,
+    prune_legacy: bool = False,
 ) -> dict[str, Any]:
     normalized = dict(record)
     checkout_url = get_checkout_url(record)
@@ -71,7 +72,10 @@ def normalize_checkout_metadata(
     if payment_provider is not None or PAYMENT_PROVIDER_KEY in normalized:
         normalized[PAYMENT_PROVIDER_KEY] = payment_provider
 
-    if sync_legacy and payment_provider == LEMONSQUEEZY:
+    if prune_legacy:
+        for key in LEGACY_CHECKOUT_URL_KEYS:
+            normalized.pop(key, None)
+    elif sync_legacy and payment_provider == LEMONSQUEEZY:
         for key in LEGACY_CHECKOUT_URL_KEYS:
             normalized[key] = checkout_url
 
@@ -84,16 +88,19 @@ def merge_checkout_metadata(
     *,
     sync_legacy: bool = True,
     force_canonical_key: bool = False,
+    prune_legacy: bool = False,
 ) -> dict[str, Any]:
     normalized = normalize_checkout_metadata(
         record,
         sync_legacy=sync_legacy,
         force_canonical_key=force_canonical_key,
+        prune_legacy=prune_legacy,
     )
     fallback = normalize_checkout_metadata(
         fallback_record,
         sync_legacy=sync_legacy,
         force_canonical_key=force_canonical_key,
+        prune_legacy=prune_legacy,
     )
 
     checkout_url = get_checkout_url(normalized)
@@ -113,4 +120,5 @@ def merge_checkout_metadata(
         normalized,
         sync_legacy=sync_legacy,
         force_canonical_key=force_canonical_key,
+        prune_legacy=prune_legacy,
     )

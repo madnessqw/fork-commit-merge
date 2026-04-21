@@ -159,7 +159,11 @@ sys.path.insert(0, '$BASE_DIR')
 from scripts.checkout_metadata import normalize_checkout_metadata
 with open('$PRODUCT_JSON', 'r', encoding='utf-8') as f:
     data = json.load(f)
-data = normalize_checkout_metadata(data, force_canonical_key=True)
+data = normalize_checkout_metadata(
+    data,
+    force_canonical_key=True,
+    prune_legacy=True,
+)
 checkout_url = data.get('checkout_url')
 data['vercel_url'] = '$VERCEL_URL'
 data['deployment_url'] = '$DEPLOYMENT_URL'
@@ -230,8 +234,6 @@ product_entry = {
     "checkout_url": None,
     "payment_provider": "lemonsqueezy",
     "lemon_product_id": None,
-    "lemon_checkout_url": None,
-    "lemonsqueezy_checkout_url": None,
     "revenue": 0,
     "price": "$PRICE"
 }
@@ -242,7 +244,11 @@ if 'products' not in state:
 # Add to active list
 active = state['products'].get('active', [])
 existing_entry = next((p for p in active if p.get('slug') == '$SLUG'), {})
-existing_entry = normalize_checkout_metadata(existing_entry, force_canonical_key=True)
+existing_entry = normalize_checkout_metadata(
+    existing_entry,
+    force_canonical_key=True,
+    prune_legacy=True,
+)
 
 # Remove existing entry for same slug if any
 active = [p for p in active if p.get('slug') != '$SLUG']
@@ -256,7 +262,12 @@ product_entry = {
     "webhook_url": "$WEBHOOK_URL",
     "price": "$PRICE"
 }
-product_entry = merge_checkout_metadata(product_entry, existing_entry, force_canonical_key=True)
+product_entry = merge_checkout_metadata(
+    product_entry,
+    existing_entry,
+    force_canonical_key=True,
+    prune_legacy=True,
+)
 product_entry["status"] = "live" if get_checkout_url(product_entry) else "ready_for_payment"
 
 active.append(product_entry)

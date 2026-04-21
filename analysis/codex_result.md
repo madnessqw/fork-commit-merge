@@ -6,37 +6,50 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
+- `analysis/kullanici_gereksinim.md`
+- `analysis/cozum_planlama.md`
 - `scripts/checkout_metadata.py`
-- `scripts/deploy_product.sh`
 - `scripts/standardize_checkout_fields.py`
+- `scripts/create_product.sh`
+- `scripts/deploy_product.sh`
 - `tests/test_checkout_metadata.py`
 - `tests/test_update_summary.py`
+- Örnek metadata: `products/html-entities/product.json`, `products/cron-expression-parser/product.json`
 
 ## Seçilen Darboğaz
-- Görev/spec checkout metadata standardizasyonunu istiyordu; canlı darboğazın kalan keskin kısmı `deploy_product.sh` içindeydi.
-- Redeploy sırasında mevcut aktif kayıttaki checkout metadata, null default alanlarla eziliyordu.
-- Sonuç: ürün `live` statüsünde kalabilirdi ama `checkout_url` sessizce düşerdi. Bu tam state drift pisliği.
+- Spec doğruydu: checkout metadata hâlâ tek yazma sözleşmesine sahip değildi.
+- Okuma tarafı legacy alias'ları tolere ediyordu ama yazma tarafı aynı pisliği üretmeye devam ediyordu.
+- Sonuç: yeni `product.json` ve deploy sonrası `STATE.json` kayıtları sürekli `checkout_url` + legacy alias çoğaltıyordu; migration helper da bunları gerçekten temizlemiyordu.
 
 ## Yapılan Değişiklikler
 - `scripts/checkout_metadata.py`
-  - `merge_checkout_metadata()` eklendi.
-  - Overlay kayıt checkout alanlarını boşaltıyorsa fallback kaydın mevcut canonical/legacy checkout bilgisi korunuyor.
-  - Provider da gerektiğinde fallback kayıttan geri kazanılıyor; son adım yine canonical normalizer'dan geçiyor.
+  - `prune_legacy` eklendi.
+  - Canonical okuma korunurken yazma tarafı isterse `lemon_checkout_url` ve `lemonsqueezy_checkout_url` alanlarını tamamen silebiliyor.
+  - `merge_checkout_metadata()` bu modu destekleyecek şekilde güncellendi; mevcut checkout korunurken legacy alias'lar da temizlenebiliyor.
+- `scripts/standardize_checkout_fields.py`
+  - Migration helper artık default olarak legacy checkout alias'larını prune ediyor.
+  - Gerekirse eski davranış için `--keep-legacy` bayrağı eklendi.
+- `scripts/create_product.sh`
+  - Yeni ürün metadata şablonu artık canonical sözleşmeyle başlıyor: `checkout_url` + `payment_provider`.
 - `scripts/deploy_product.sh`
-  - STATE update adımında yeni helper kullanıldı.
-  - Status artık merge sonrası gerçek checkout varlığına göre belirleniyor; önceki kırık merge sırasına göre değil.
+  - Deploy sonrası hem `product.json` hem `STATE.json` kayıtları canonical write moduna geçirildi.
+  - Redeploy merge fix'i korunuyor; checkout kaybı olmadan legacy alanlar da temizleniyor.
 - `tests/test_checkout_metadata.py`
-  - Yeni regresyon testi eklendi: null overlay mevcut LemonSqueezy checkout'unu silemiyor.
+  - Legacy prune davranışı ve merge sonrası canonical-only sonuç için regresyon testleri eklendi.
+- `tests/test_standardize_checkout_fields.py`
+  - Migration helper'ın write modunda alias'ları gerçekten sildiğini doğrulayan test eklendi.
 
 ## Geçen Doğrulamalar
-- `python3 -m py_compile scripts/checkout_metadata.py tests/test_checkout_metadata.py` ✅
+- `python3 -m py_compile scripts/checkout_metadata.py scripts/standardize_checkout_fields.py tests/test_checkout_metadata.py tests/test_standardize_checkout_fields.py` ✅
+- `bash -n scripts/create_product.sh` ✅
 - `bash -n scripts/deploy_product.sh` ✅
 - `python3 -m unittest discover -s tests -p 'test_checkout_metadata.py'` ✅
+- `python3 -m unittest discover -s tests -p 'test_standardize_checkout_fields.py'` ✅
 - `python3 -m unittest discover -s tests -p 'test_update_summary.py'` ✅
 - `python3 scripts/standardize_checkout_fields.py` ✅
   - Dry-run: `would_update=142 scanned=148`
 
 ## Kalan Blokajlar
-- Repo genelinde 142 `product.json` kaydı hâlâ migration bekliyor; bu turda toplu rewrite özellikle yapılmadı.
-- Manual LemonSqueezy/Vercel işleri yine manual; kodla çözülmüş gibi davranılmadı.
-- Workspace çok kirli; commit sadece bu turda dokunduğum dosyalarla sınırlandırılmalı.
+- Repo genelinde 142 `product.json` kaydı hâlâ canonical migration bekliyor; bu turda bilerek toplu rewrite yapmadım.
+- Manual LemonSqueezy/Vercel aksiyonları hâlâ manual; kodla çözülmüş gibi davranılmadı.
+- Workspace kirli; commit sadece bu turda gerçekten dokunduğum dosyalarla sınırlandırılmalı.

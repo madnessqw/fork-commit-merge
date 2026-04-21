@@ -22,9 +22,13 @@ def iter_product_files() -> list[Path]:
     return sorted((ROOT / "products").glob("*/product.json"))
 
 
-def normalize_file(path: Path, *, write: bool) -> bool:
+def normalize_file(path: Path, *, write: bool, keep_legacy: bool = False) -> bool:
     data = json.loads(path.read_text(encoding="utf-8"))
-    normalized = normalize_checkout_metadata(data, force_canonical_key=True)
+    normalized = normalize_checkout_metadata(
+        data,
+        force_canonical_key=True,
+        prune_legacy=not keep_legacy,
+    )
     changed = normalized != data
     if changed and write:
         path.write_text(json.dumps(normalized, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -34,11 +38,16 @@ def normalize_file(path: Path, *, write: bool) -> bool:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true", help="Write normalized metadata back to product.json files.")
+    parser.add_argument(
+        "--keep-legacy",
+        action="store_true",
+        help="Keep legacy checkout aliases instead of pruning them during normalization.",
+    )
     args = parser.parse_args()
 
     changed_paths: list[Path] = []
     for path in iter_product_files():
-        if normalize_file(path, write=args.write):
+        if normalize_file(path, write=args.write, keep_legacy=args.keep_legacy):
             changed_paths.append(path)
 
     mode = "updated" if args.write else "would_update"

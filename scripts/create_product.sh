@@ -41,8 +41,6 @@ cat > "$PRODUCT_DIR/product.json" << EOJSON
   "github_url": null,
   "checkout_url": null,
   "payment_provider": "lemonsqueezy",
-  "lemon_checkout_url": null,
-  "lemonsqueezy_checkout_url": null,
   "lemonsqueezy_product_id": null,
   "webhook_url": null,
   "created_cycle": null,

@@ -37,6 +37,28 @@ class CheckoutMetadataTests(unittest.TestCase):
         self.assertEqual(normalized["checkout_url"], "https://gumroad.com/l/tool")
         self.assertEqual(normalized["lemon_checkout_url"], "https://old.example/ignore-me")
 
+    def test_prune_legacy_drops_duplicate_checkout_aliases(self) -> None:
+        record = {
+            "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+            "payment_provider": "lemonsqueezy",
+            "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+            "lemonsqueezy_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+        }
+
+        normalized = normalize_checkout_metadata(
+            record,
+            force_canonical_key=True,
+            prune_legacy=True,
+        )
+
+        self.assertEqual(
+            normalized["checkout_url"],
+            "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+        )
+        self.assertEqual(normalized["payment_provider"], "lemonsqueezy")
+        self.assertNotIn("lemon_checkout_url", normalized)
+        self.assertNotIn("lemonsqueezy_checkout_url", normalized)
+
     def test_get_checkout_url_reads_compact_and_legacy_keys(self) -> None:
         self.assertEqual(
             get_checkout_url({"c": "https://checkout.example/tool"}),
@@ -61,15 +83,20 @@ class CheckoutMetadataTests(unittest.TestCase):
             "lemonsqueezy_checkout_url": None,
         }
 
-        merged = merge_checkout_metadata(overlay, existing, force_canonical_key=True)
+        merged = merge_checkout_metadata(
+            overlay,
+            existing,
+            force_canonical_key=True,
+            prune_legacy=True,
+        )
 
         self.assertEqual(
             merged["checkout_url"],
             "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
         )
         self.assertEqual(merged["payment_provider"], "lemonsqueezy")
-        self.assertEqual(merged["lemon_checkout_url"], merged["checkout_url"])
-        self.assertEqual(merged["lemonsqueezy_checkout_url"], merged["checkout_url"])
+        self.assertNotIn("lemon_checkout_url", merged)
+        self.assertNotIn("lemonsqueezy_checkout_url", merged)
 
 
 if __name__ == "__main__":
