@@ -1431,7 +1431,10 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/63331f41-075b-4a06-84bf-eae188a5db67",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Chart Studio",
@@ -1501,7 +1504,10 @@
         "created_cycle": 874,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "XML Formatter Pro",
@@ -1532,7 +1538,10 @@
         "created_cycle": 840,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "HTML Entity Encoder/Decoder Pro",
@@ -1580,7 +1589,10 @@
         "created_cycle": 0,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Cron Express",
@@ -1597,7 +1609,10 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Regex Tester Pro",
@@ -1610,7 +1625,10 @@
         "created_cycle": 0,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "CronMaster",
@@ -1640,7 +1658,10 @@
         "created_cycle": 934,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "SecretGuard",
@@ -1686,7 +1707,10 @@
         "created_cycle": null,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Text Case Converter Pro",
@@ -1699,7 +1723,10 @@
         "created_cycle": null,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Lorem Ipsum Generator Pro",
@@ -1712,7 +1739,10 @@
         "created_cycle": null,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Email Signature Pro",
@@ -1728,7 +1758,10 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 404,
         "v": "https://email-signature-arv5m1pzw-madnessqws-projects.vercel.app",
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Password Generator Pro",
@@ -1741,7 +1774,10 @@
         "created_cycle": null,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Text Diff Pro",
@@ -1799,7 +1835,10 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Color Palette Extractor",
@@ -1815,7 +1854,10 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/d10dc99b-7e21-45ca-9460-9230cc3c98da",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Git Command Builder",
@@ -1828,7 +1870,10 @@
         "created_cycle": 908,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Code Snippet Manager",
@@ -1847,7 +1892,10 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Email Signature Generator",
@@ -1866,7 +1914,10 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "HMAC Generator Pro",
@@ -1885,7 +1936,10 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T15:30:00Z",
+        "schema_optimized": true
       },
       {
         "name": "Timestamp Converter Pro",
