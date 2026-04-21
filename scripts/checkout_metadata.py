@@ -76,3 +76,41 @@ def normalize_checkout_metadata(
             normalized[key] = checkout_url
 
     return normalized
+
+
+def merge_checkout_metadata(
+    record: dict[str, Any],
+    fallback_record: dict[str, Any],
+    *,
+    sync_legacy: bool = True,
+    force_canonical_key: bool = False,
+) -> dict[str, Any]:
+    normalized = normalize_checkout_metadata(
+        record,
+        sync_legacy=sync_legacy,
+        force_canonical_key=force_canonical_key,
+    )
+    fallback = normalize_checkout_metadata(
+        fallback_record,
+        sync_legacy=sync_legacy,
+        force_canonical_key=force_canonical_key,
+    )
+
+    checkout_url = get_checkout_url(normalized)
+    if checkout_url is None:
+        fallback_checkout_url = get_checkout_url(fallback)
+        if fallback_checkout_url is not None:
+            normalized["checkout_url"] = fallback_checkout_url
+            checkout_url = fallback_checkout_url
+
+    payment_provider = infer_payment_provider(normalized, checkout_url=checkout_url)
+    if payment_provider is None:
+        payment_provider = infer_payment_provider(fallback, checkout_url=get_checkout_url(fallback))
+        if payment_provider is not None:
+            normalized[PAYMENT_PROVIDER_KEY] = payment_provider
+
+    return normalize_checkout_metadata(
+        normalized,
+        sync_legacy=sync_legacy,
+        force_canonical_key=force_canonical_key,
+    )

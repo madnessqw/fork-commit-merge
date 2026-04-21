@@ -1,6 +1,10 @@
 import unittest
 
-from scripts.checkout_metadata import get_checkout_url, normalize_checkout_metadata
+from scripts.checkout_metadata import (
+    get_checkout_url,
+    merge_checkout_metadata,
+    normalize_checkout_metadata,
+)
 
 
 class CheckoutMetadataTests(unittest.TestCase):
@@ -42,6 +46,30 @@ class CheckoutMetadataTests(unittest.TestCase):
             get_checkout_url({"lemonsqueezy_checkout_url": "https://checkout.example/tool"}),
             "https://checkout.example/tool",
         )
+
+    def test_merge_checkout_metadata_preserves_existing_checkout_when_overlay_clears_it(self) -> None:
+        existing = {
+            "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+            "payment_provider": "lemonsqueezy",
+            "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+            "lemonsqueezy_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+        }
+        overlay = {
+            "checkout_url": None,
+            "payment_provider": "lemonsqueezy",
+            "lemon_checkout_url": None,
+            "lemonsqueezy_checkout_url": None,
+        }
+
+        merged = merge_checkout_metadata(overlay, existing, force_canonical_key=True)
+
+        self.assertEqual(
+            merged["checkout_url"],
+            "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",
+        )
+        self.assertEqual(merged["payment_provider"], "lemonsqueezy")
+        self.assertEqual(merged["lemon_checkout_url"], merged["checkout_url"])
+        self.assertEqual(merged["lemonsqueezy_checkout_url"], merged["checkout_url"])
 
 
 if __name__ == "__main__":

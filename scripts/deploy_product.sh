@@ -214,7 +214,7 @@ python3 << PYEOF
 import json
 import sys
 sys.path.insert(0, '$BASE_DIR')
-from scripts.checkout_metadata import normalize_checkout_metadata
+from scripts.checkout_metadata import get_checkout_url, merge_checkout_metadata, normalize_checkout_metadata
 state_file = '$BASE_DIR/STATE.json'
 with open(state_file, 'r', encoding='utf-8') as f:
     state = json.load(f)
@@ -243,21 +243,21 @@ if 'products' not in state:
 active = state['products'].get('active', [])
 existing_entry = next((p for p in active if p.get('slug') == '$SLUG'), {})
 existing_entry = normalize_checkout_metadata(existing_entry, force_canonical_key=True)
-checkout_url = existing_entry.get('checkout_url')
 
 # Remove existing entry for same slug if any
 active = [p for p in active if p.get('slug') != '$SLUG']
 product_entry = {
     **existing_entry,
     **product_entry,
-    "status": "live" if checkout_url else "ready_for_payment",
+    "status": "ready_for_payment",
     "vercel_url": "$VERCEL_URL",
     "deployment_url": "$DEPLOYMENT_URL",
     "github_url": "$GITHUB_URL",
     "webhook_url": "$WEBHOOK_URL",
     "price": "$PRICE"
 }
-product_entry = normalize_checkout_metadata(product_entry, force_canonical_key=True)
+product_entry = merge_checkout_metadata(product_entry, existing_entry, force_canonical_key=True)
+product_entry["status"] = "live" if get_checkout_url(product_entry) else "ready_for_payment"
 
 active.append(product_entry)
 state['products']['active'] = active
