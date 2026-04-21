@@ -1,7 +1,7 @@
 {
   "status": "ACTIVE",
   "timestamp": "2026-04-21T09:40:48.188089Z",
-  "cycle": 1020,
+  "cycle": 1021,
   "message": "Cycle 1019 - OG optimizasyonu devam ediyor",
   "balance": 0.0,
   "mode": "OPTIMIZE",
@@ -18,7 +18,7 @@
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
   "notes": "SEO improvements: Added Twitter Cards, canonical URLs, JSON-LD structured data to 3 products. Health: 113/113 healthy.",
-  "last_updated": "2026-04-21T09:40:48.188089Z",
+  "last_updated": "2026-04-21T09:53:56.253396Z",
   "products": {
     "active": [
       {
@@ -1104,7 +1104,8 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/e3f7d64b-7e7e-4b43-b792-9de7a6d1895e",
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Color Contrast Pro",
@@ -1121,7 +1122,8 @@
         "ideal_vercel_url": "https://color-contrast-pro.vercel.app",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Markdown to PDF",
@@ -1136,7 +1138,8 @@
         "deployed_cycle": 993,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/b02dc953-26de-4b23-b3d3-0f6e94cd19b4",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "JWT Generator Pro",
@@ -1148,7 +1151,8 @@
         "price": "9",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HTTP API Client",
@@ -1173,7 +1177,8 @@
         "price": "9",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "URL Builder Pro",
@@ -1206,7 +1211,8 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/83e85fd0-ab7a-483c-aa50-9be7bf67c7ff",
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Terminal Theme Studio",
@@ -1223,7 +1229,8 @@
         "ideal_vercel_url": "https://terminal-theme-studio.vercel.app",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/d147e2d1-5c79-46e7-8315-a668d3bd93d4",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "QR Forge",
@@ -1235,7 +1242,8 @@
         "price": "19",
         "created_cycle": 326,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "DiffForge",
@@ -1251,7 +1259,8 @@
         "webhook_url": "https://diffforge.vercel.app/api/webhook",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/1faaada2-30af-4d29-bf65-88d56ccc6fd3",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "AI Cost Dashboard",
@@ -1281,7 +1290,8 @@
         "health_status": "healthy",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/63331f41-075b-4a06-84bf-eae188a5db67",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Chart Studio",
@@ -1346,7 +1356,8 @@
         "price": "$19",
         "created_cycle": 874,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "XML Formatter Pro",
@@ -1374,7 +1385,8 @@
         "price": "$19",
         "created_cycle": 840,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HTML Entity Encoder/Decoder Pro",
@@ -1417,7 +1429,8 @@
         "price": 19,
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Cron Express",
@@ -1433,7 +1446,8 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/2b895dff-3476-48c4-944d-7a9df0bea9c9",
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Regex Tester Pro",
@@ -1445,7 +1459,8 @@
         "price": "9",
         "created_cycle": 0,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "CronMaster",
@@ -1472,7 +1487,8 @@
         "price": "$19",
         "created_cycle": 934,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "SecretGuard",
@@ -1515,7 +1531,8 @@
         "price": "9",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Text Case Converter Pro",
@@ -1527,7 +1544,8 @@
         "price": "$19",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Lorem Ipsum Generator Pro",
@@ -1539,7 +1557,8 @@
         "price": "9",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Email Signature Pro",
@@ -1554,7 +1573,8 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/0e625a81-50e9-44f2-860e-4aaa6f804f03",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 404,
-        "v": "https://email-signature-arv5m1pzw-madnessqws-projects.vercel.app"
+        "v": "https://email-signature-arv5m1pzw-madnessqws-projects.vercel.app",
+        "og_optimized": true
       },
       {
         "name": "Password Generator Pro",
@@ -1566,7 +1586,8 @@
         "price": "$19",
         "created_cycle": null,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Text Diff Pro",
@@ -1586,7 +1607,8 @@
         "last_health_code": 200,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:00:00Z",
-        "deploy_pending": true
+        "deploy_pending": true,
+        "og_optimized": true
       },
       {
         "name": "CSS Shadow Studio",
@@ -1620,7 +1642,8 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/fd4f2e22-7c2e-497f-960b-a0361d453a7b",
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Color Palette Extractor",
@@ -1635,7 +1658,8 @@
         "deployed_cycle": 990,
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/d10dc99b-7e21-45ca-9460-9230cc3c98da",
         "checkout_status": "pending_lemonsqueezy_creation",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Git Command Builder",
@@ -1647,7 +1671,8 @@
         "price": "$19",
         "created_cycle": 908,
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Code Snippet Manager",
@@ -1665,7 +1690,8 @@
         "deployment_url": "https://code-snippet-manager-8t0tcj8vo-madnessqws-projects.vercel.app",
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Email Signature Generator",
@@ -1683,7 +1709,8 @@
         "deployment_url": "https://email-signature-cupz9syqm-madnessqws-projects.vercel.app",
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HMAC Generator Pro",
@@ -1701,7 +1728,8 @@
         "deployment_url": "https://hmac-generator-f65ij9ah3-madnessqws-projects.vercel.app",
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "Timestamp Converter Pro",
@@ -1719,7 +1747,8 @@
         "deployment_url": "https://timestamp-converter-k2cqva0od-madnessqws-projects.vercel.app",
         "checkout_status": "pending_lemonsqueezy_creation",
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "og_optimized": true
       },
       {
         "name": "HTML Entity Encoder/Decoder",
