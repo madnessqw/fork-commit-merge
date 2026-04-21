@@ -86,6 +86,8 @@ touch "$RUNNING_FLAG"
 trap 'rm -f "$RUNNING_FLAG"; echo "[CODEX] Flag temizlendi." | tee -a "$LOG_FILE"' EXIT
 
 cd "$WORK_DIR"
+python3 scripts/update_summary.py | tee -a "$LOG_FILE"
+python3 scripts/refresh_codex_context.py | tee -a "$LOG_FILE"
 PROMPT_CONTENT=$(cat prompts/codex_prompt.txt)
 
 echo "--- codex exec START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"

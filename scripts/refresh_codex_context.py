@@ -1,0 +1,352 @@
+#!/usr/bin/env python3
+"""Refresh Codex context artifacts from live state.
+
+Codex automation was reading stale analysis notes and even a missing root
+`sorun_analizi.md`. This script rebuilds the Codex-facing analysis files from
+the current STATE_SUMMARY snapshot plus unresolved issues, so the next run gets
+fresh context instead of archaeology.
+"""
+
+from __future__ import annotations
+
+import json
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SUMMARY_FILE = ROOT / "STATE_SUMMARY.json"
+ISSUES_FILE = ROOT / "issues" / "issues.jsonl"
+ANALYSIS_DIR = ROOT / "analysis"
+ONERI_FILE = ANALYSIS_DIR / "oneri.md"
+SORUN_FILE = ANALYSIS_DIR / "sorun_analizi.md"
+CODEX_TASK_FILE = ANALYSIS_DIR / "codex_task.md"
+
+RESOLVED_STATUSES = {"resolved", "closed", "done"}
+
+
+@dataclass(frozen=True)
+class Focus:
+    key: str
+    title: str
+    summary: str
+    codex_task_title: str
+    codex_task_body: str
+
+
+def load_summary(path: Path = SUMMARY_FILE) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_unresolved_issues(path: Path = ISSUES_FILE) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+
+    issues: list[dict[str, Any]] = []
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        status = str(item.get("status", "")).strip().lower()
+        if status in RESOLVED_STATUSES:
+            continue
+        issues.append(item)
+    return issues
+
+
+def _health_percent(summary: dict[str, Any]) -> float:
+    live_count = int(summary.get("live_count", 0) or 0)
+    healthy_count = int(summary.get("healthy_count", 0) or 0)
+    if live_count <= 0:
+        return 0.0
+    return healthy_count / live_count * 100
+
+
+def _issue_map(issues: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for issue in issues:
+        issue_type = str(issue.get("issue_type", "unknown")).strip() or "unknown"
+        grouped.setdefault(issue_type, []).append(issue)
+    return grouped
+
+
+def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Focus:
+    grouped = _issue_map(issues)
+    unhealthy_live = list(summary.get("gaps", {}).get("unhealthy_live", []))
+    missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
+    missing_url = list(summary.get("gaps", {}).get("missing_url", []))
+
+    if unhealthy_live:
+        sample = unhealthy_live[0]
+        slug = sample.get("slug") or "unknown"
+        code = sample.get("code")
+        return Focus(
+            key="live_health",
+            title="Canlı sağlık açığı",
+            summary=f"{len(unhealthy_live)} canlı ürün sağlıksız; ilk örnek `{slug}` (HTTP {code}).",
+            codex_task_title="Health/canonical drift düzeltmesi",
+            codex_task_body=(
+                "Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini "
+                "senkron tutan scripti güçlendir. Önce mevcut health pipeline'ını oku, "
+                "sonra yalnız otomasyon tarafını düzelt; manuel Vercel korumasını çözüldü gibi gösterme."
+            ),
+        )
+
+    if missing_checkout:
+        return Focus(
+            key="checkout_gap",
+            title="Checkout kapsam boşluğu",
+            summary=f"{len(missing_checkout)} live/ready_for_payment ürün checkout URL'siz.",
+            codex_task_title="Checkout alan standardizasyonu",
+            codex_task_body=(
+                "Checkout metadata okumayı tek kanala indir. `checkout_url`, "
+                "`lemon_checkout_url` ve `lemonsqueezy_checkout_url` varyantlarını güvenli biçimde "
+                "normalize eden utility/script yaz veya mevcut akışı düzelt. Production checkout URL'lerini uydurma."
+            ),
+        )
+
+    if grouped.get("checkout_field_inconsistency"):
+        return Focus(
+            key="checkout_field_inconsistency",
+            title="Checkout field drift",
+            summary=(
+                "Canlı checkout gap sıfır olsa da metadata hâlâ üç farklı alan adıyla taşınıyor; "
+                "bu state drift'i ve gelecekte yanlış rapor üretir."
+            ),
+            codex_task_title="Checkout metadata standardizasyonu",
+            codex_task_body=(
+                "Product metadata için tek okuma/yazma sözleşmesi oluştur. Küçük ama kalıcı fix hedefle: "
+                "normalizer, migration helper veya doğrulama testi ekle. Live checkout coverage'ı bozma."
+            ),
+        )
+
+    if missing_url:
+        return Focus(
+            key="deploy_backlog",
+            title="Spec-ready deploy backlog",
+            summary=(
+                f"{len(missing_url)} ürünün deploy/canonical URL'si yok. Canlı portföy sağlıklı, "
+                "yani bu bir live outage değil; deploy hazırlık/backlog problemi."
+            ),
+            codex_task_title="Spec-ready deploy hazırlık otomasyonu",
+            codex_task_body=(
+                "Spec-ready ürünler için deploy readiness kontrolünü otomatikleştir. "
+                "Eksik manifest/URL/state alanlarını raporlayan güvenli bir doğrulama katmanı ekle; "
+                "token veya manuel deploy gerektiren adımları sahte tamamlandı göstermeden bırak."
+            ),
+        )
+
+    if grouped.get("state_drift"):
+        return Focus(
+            key="state_drift",
+            title="State drift riski",
+            summary="Canlı portföy iyi görünse de açık issue kaydı state drift'in tekrar ettiğini söylüyor.",
+            codex_task_title="State/summary guard'ı sertleştirme",
+            codex_task_body=(
+                "STATE ve summary katmanlarının birbirini yalanlamasını zorlaştıran test/guard ekle. "
+                "Hardcoded cycle/script drift'lerini temizle, destructive overwrite yapma."
+            ),
+        )
+
+    return Focus(
+        key="context_freshness",
+        title="Context freshness",
+        summary="Canlı portföy stabil; asıl risk stale analiz/prompt dosyalarının yanlış karar üretmesi.",
+        codex_task_title="Kod ajanı context tazeleme otomasyonu",
+        codex_task_body=(
+            "Codex'in okuduğu prompt ve analiz dosyalarını live state'ten otomatik üreten küçük bir pipeline kur. "
+            "Amaç: gelecekte codex eski raporlarla saçmalamasın."
+        ),
+    )
+
+
+def top_issues(issues: list[dict[str, Any]], limit: int = 5) -> list[dict[str, Any]]:
+    severity_rank = {"critical": 0, "high": 1, "medium": 2, "low": 3}
+
+    def sort_key(item: dict[str, Any]) -> tuple[int, str]:
+        severity = str(item.get("severity", "low")).lower()
+        ts = str(item.get("ts", ""))
+        return (severity_rank.get(severity, 9), ts)
+
+    return sorted(issues, key=sort_key)[:limit]
+
+
+def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
+    health_percent = _health_percent(summary)
+    unresolved = top_issues(issues)
+    lines = [
+        f"# Codex Analiz Özeti — {now.strftime('%Y-%m-%d %H:%M')} UTC",
+        "",
+        "## Canlı State",
+        f"- Cycle: **{summary.get('cycle')}**",
+        f"- Mode: **{summary.get('mode')}**",
+        f"- Live sağlık: **{summary.get('healthy_count')}/{summary.get('live_count')}** (%{health_percent:.1f})",
+        f"- Checkout gap: **{summary.get('checkout_gap_count')}**",
+        f"- Deploy/url gap: **{summary.get('deploy_missing_or_bad_url')}**",
+        f"- Spec-ready: **{summary.get('spec_ready_count')}**",
+        f"- Next action: `{summary.get('next_action')}`",
+        "",
+        "## Ana Darboğaz",
+        f"- **{focus.title}:** {focus.summary}",
+        "",
+        "## Kod için Öneri",
+        f"1. **{focus.codex_task_title}**",
+        f"   - {focus.codex_task_body}",
+        "2. Production'da manuel Vercel/LemonSqueezy adımlarını script ile 'çözüldü' gibi göstermeden bırak.",
+        "3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.",
+    ]
+
+    if unresolved:
+        lines.extend(["", "## Açık Issue Sinyalleri"])
+        for issue in unresolved:
+            lines.append(
+                f"- **{issue.get('issue_type')}** [{issue.get('severity')}/{issue.get('status')}] — {issue.get('description')}"
+            )
+
+    missing_url = list(summary.get("gaps", {}).get("missing_url", []))
+    if missing_url:
+        preview = ", ".join(missing_url[:6])
+        if len(missing_url) > 6:
+            preview += ", ..."
+        lines.extend(
+            [
+                "",
+                "## Deploy/URL Gap Preview",
+                f"- {preview}",
+            ]
+        )
+
+    return "\n".join(lines) + "\n"
+
+
+def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
+    unhealthy = list(summary.get("gaps", {}).get("unhealthy_live", []))
+    missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
+    missing_url = list(summary.get("gaps", {}).get("missing_url", []))
+
+    lines = [
+        f"# Sorun Analizi — Cycle {summary.get('cycle')} | {now.strftime('%Y-%m-%d %H:%M')} UTC",
+        "",
+        "## Ana Darboğaz",
+        f"- **{focus.key}** — {focus.summary}",
+        "",
+        "## Summary'den Gelen Gerçekler",
+        f"- Healthy live: {summary.get('healthy_count')}/{summary.get('live_count')}",
+        f"- Checkout gap: {summary.get('checkout_gap_count')}",
+        f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
+        f"- Spec-ready backlog: {summary.get('spec_ready_count')}",
+    ]
+
+    if unhealthy:
+        lines.extend(["", "## Canlı Sağlıksız Ürünler"])
+        for item in unhealthy[:10]:
+            lines.append(
+                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} url={item.get('url')}"
+            )
+
+    if missing_checkout:
+        preview = ", ".join(missing_checkout[:12])
+        if len(missing_checkout) > 12:
+            preview += ", ..."
+        lines.extend(["", "## Checkout Eksikleri", f"- {preview}"])
+
+    if missing_url:
+        preview = ", ".join(missing_url[:12])
+        if len(missing_url) > 12:
+            preview += ", ..."
+        lines.extend(["", "## URL/Deploy Eksikleri", f"- {preview}"])
+
+    if issues:
+        lines.extend(["", "## Açık Issue Kayıtları"])
+        for issue in top_issues(issues, limit=8):
+            lines.append(
+                f"- **{issue.get('issue_type')}** [{issue.get('severity')}/{issue.get('status')}] — {issue.get('description')}"
+            )
+
+    lines.extend(
+        [
+            "",
+            "## Not",
+            "- Bu dosya live `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.",
+            "- Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> str:
+    health_percent = _health_percent(summary)
+    return "\n".join(
+        [
+            f"# Codex Task — Generated {now.strftime('%Y-%m-%d %H:%M')} UTC",
+            "",
+            "## MOD: PRODUCTION SAFE INFRA",
+            "",
+            "Bu görev dosyası live `STATE_SUMMARY.json` üzerinden üretildi. Eski araştırma/no-code talimatı",
+            "stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyileştirmesi seçilir.",
+            "",
+            "## Aktif Görev",
+            f"**{focus.codex_task_title}**",
+            "",
+            focus.codex_task_body,
+            "",
+            "## Canlı State Özeti",
+            f"- Cycle: {summary.get('cycle')}",
+            f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
+            f"- Checkout gap: {summary.get('checkout_gap_count')}",
+            f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
+            f"- Spec-ready count: {summary.get('spec_ready_count')}",
+            f"- Next action: {summary.get('next_action')}",
+            "",
+            "## Guardrails",
+            "- Dosyaları okumadan edit yapma.",
+            "- Production canlı ürün davranışını bozma.",
+            "- Manual Vercel/LemonSqueezy aksiyonlarını çözüldü gibi gösterme.",
+            "- Cerrahi değişiklik + test/verification + `analysis/codex_result.md` + commit.",
+        ]
+    ) + "\n"
+
+
+def write_file(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+
+
+def refresh_context(now: datetime | None = None) -> dict[str, Any]:
+    current_time = now or datetime.now(timezone.utc)
+    summary = load_summary()
+    issues = load_unresolved_issues()
+    focus = determine_focus(summary, issues)
+
+    write_file(ONERI_FILE, render_oneri(summary, issues, focus, current_time))
+    write_file(SORUN_FILE, render_sorun_analizi(summary, issues, focus, current_time))
+    write_file(CODEX_TASK_FILE, render_codex_task(summary, focus, current_time))
+
+    return {
+        "focus": focus,
+        "summary": summary,
+        "issues": issues,
+    }
+
+
+def main() -> int:
+    result = refresh_context()
+    focus: Focus = result["focus"]
+    summary = result["summary"]
+    print(
+        "Codex context refreshed: "
+        f"cycle={summary.get('cycle')} focus={focus.key} "
+        f"live={summary.get('live_count')} healthy={summary.get('healthy_count')} "
+        f"checkout_gap={summary.get('checkout_gap_count')} deploy_gap={summary.get('deploy_missing_or_bad_url')}"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

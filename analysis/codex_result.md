@@ -1,41 +1,53 @@
-# Codex Result — 2026-04-21 23:42 TRT
+# Codex Result — 2026-04-22
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
-- `analysis/codex_task.md`
+- `analysis/codex_task.md` (eski research-mode sürümü + yeni üretilen sürüm)
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `analysis/cozum_planlama.md`
 - `analysis/kullanici_gereksinim.md`
-- `scripts/update_summary.py`
+- `scripts/codex_loop.sh`
+- `prompts/codex_prompt.txt`
+- `issues/issues.jsonl`
 
 ## Görev Çatışması
-- `analysis/codex_task.md` 20-21 Nisan 2026 için araştırma/no-code modu söylüyordu.
-- Doğrudan insan talimatı bu turda kod değişikliği + commit istediği için production ürüne dokunmadan güvenli altyapı fix'i seçildi.
-- Seçilen darboğaz: `STATE_SUMMARY.json` üretiminde compact (`n/s/st/v/c`) kayıtların tam alanlara normalize edilmemesi ve aynı slug'lı zayıf kayıtların sayıları şişirmesi.
+- Başlangıçtaki `analysis/codex_task.md` araştırma/no-code diyordu.
+- Doğrudan insan talimatı ise kod değişikliği + `analysis/codex_result.md` + commit istedi.
+- Skill’in çatışma kuralını uyguladım: production ürüne dokunmadan güvenli altyapı/context fix seçtim.
+
+## Seçilen Darboğaz
+- Codex otomasyonu stale context okuyordu:
+  - prompt hâlâ `oneri.md` / `sorun_analizi.md` kök yolunu söylüyordu,
+  - kökte `sorun_analizi.md` yok,
+  - `analysis/codex_task.md` eski research mode’da kalmıştı,
+  - `analysis/oneri.md` ve `analysis/sorun_analizi.md` canlı state’ten kopmuştu.
+- Bu saçmalık karar kalitesini düşürüyor; canlı portföy 113/113 healthy iken ajan hâlâ eski kriz raporlarına bakıyordu.
 
 ## Yapılan Değişiklikler
-- `scripts/update_summary.py`
-  - Compact ürün kayıtlarını tam alanlara normalize eden katman eklendi.
-  - Placeholder kayıt filtresi eklendi.
-  - Aynı slug/name ile gelen tekrar kayıtlar için kalite skoru bazlı dedupe eklendi; daha zengin kayıt korunuyor.
-  - Böylece `STATE_SUMMARY.json` artık null ürün satırı üretmiyor ve duplicate slug'ları iki kez saymıyor.
-- `tests/test_update_summary.py`
-  - Placeholder ignore testi eklendi.
-  - Compact kayıt normalize+dedupe testi eklendi.
-  - Alan eşleme testi eklendi.
-- `STATE_SUMMARY.json`
-  - Script yeniden çalıştırıldı ve özet tazelendi.
-  - Güncel snapshot: `active_count=131`, `live_count=113`, `healthy_count=112`, `spec_ready_count=27`, `deploy_missing_or_bad_url=19`.
+- `scripts/refresh_codex_context.py`
+  - Live `STATE_SUMMARY.json` + unresolved `issues/issues.jsonl` verisinden Codex context artefaktlarını üreten yeni script eklendi.
+  - `analysis/oneri.md`, `analysis/sorun_analizi.md` ve `analysis/codex_task.md` artık tek komutla tazelenebiliyor.
+  - Darboğaz seçimi deterministic hale getirildi: unhealthy live > checkout gap > checkout field drift > deploy backlog > state drift > context freshness.
+- `scripts/codex_loop.sh`
+  - Codex çalışmadan hemen önce `scripts/update_summary.py` ve yeni context refresh script’i otomatik çalışacak şekilde bağlandı.
+- `prompts/codex_prompt.txt`
+  - Stale kök dosya yolları yerine `analysis/oneri.md` ve `analysis/sorun_analizi.md` kullanacak şekilde düzeltildi.
+- `tests/test_refresh_codex_context.py`
+  - Focus seçim ve task render davranışı için regresyon testleri eklendi.
+- `analysis/oneri.md`, `analysis/sorun_analizi.md`, `analysis/codex_task.md`
+  - Yeni script ile canlı state’ten yeniden üretildi.
+  - Güncel focus artık: `checkout_field_inconsistency`.
 
 ## Geçen Doğrulamalar
-- `python3 -m py_compile scripts/update_summary.py tests/test_update_summary.py` ✅
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'` ✅
-- `python3 scripts/update_summary.py` ✅
-- Sonuç kontrolü: summary içinde null ürün yok, duplicate slug yok, `missing_url` listesinde duplicate yok ✅
+- `python3 -m py_compile scripts/refresh_codex_context.py tests/test_refresh_codex_context.py` ✅
+- `python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py'` ✅
+- `bash -n scripts/codex_loop.sh` ✅
+- `python3 scripts/refresh_codex_context.py` ✅
+  - Çıktı: `cycle=1063 focus=checkout_field_inconsistency live=113 healthy=113 checkout_gap=0 deploy_gap=18`
 
 ## Kalan Blokajlar
-- `STATE.json` kaynak verisi hâlâ karışık: bazı ürünler compact, bazıları full formatta; aynı slug için duplicate source kayıtları var. Bu turda source dosyayı mutate etmedim, summary katmanını sağlamlaştırdım.
-- `html-entity-encoder` canlı tarafta hâlâ unhealthy (`HTTP 402`).
-- Ödeme/Vercel aksiyonları hâlâ insan müdahalesi istiyor; bu commit onları çözülmüş gibi göstermiyor.
+- `checkout_field_inconsistency` gerçek issue olarak hâlâ açık; bu tur sadece Codex’in bunu doğru görmesini garanti altına aldım.
+- `deploy_missing_or_bad_url=18` canlı outage değil; spec-ready backlog.
+- Repo genelinde çok sayıda unrelated dirty/untracked dosya var. Bu commit’te yalnız hedeflenen context/otomasyon dosyaları stage edilmeli.
