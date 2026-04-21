@@ -1,8 +1,8 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-21T11:21:38.242565Z",
-  "cycle": 1026,
-  "message": "SEO optimizasyonu: 16 ürün meta tag güncellendi (Vercel limiti nedeniyle deploy yarın)",
+  "timestamp": "2026-04-21T11:58:30.775740Z",
+  "cycle": 1029,
+  "message": "SEO optimizasyonu: 15 ürün meta tag güncellendi",
   "balance": 0.0,
   "mode": "OPTIMIZE",
   "active_count": 113,
@@ -18,7 +18,7 @@
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
   "notes": "CRITICAL: 88 products have missing/invalid local HTML files. Products are LIVE on Vercel (healthy) but local sources are only deploy triggers. SEO optimization requires local HTML files. Options: 1) Sync from Vercel URLs, 2) Recreate products, 3) Use different optimization strategy.",
-  "last_updated": "2026-04-21T11:21:38.242565Z",
+  "last_updated": "2026-04-21T11:58:30.775740Z",
   "products": {
     "active": [
       {
@@ -1053,7 +1053,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/0978ea71-ce15-430a-80d6-8f64d412887a",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319893Z"
       },
       {
         "name": "HTML to JSX",
@@ -1069,7 +1071,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/ebfac0d1-9da0-4b82-bbc9-9d4a3b099a11",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319921Z"
       },
       {
         "name": "CSV to JSON Pro",
@@ -1129,7 +1133,9 @@
         "created_cycle": 517,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319926Z"
       },
       {
         "name": "Email Validator Pro",
@@ -1164,7 +1170,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/9ca651a8-c263-48ef-812c-6820fa1049cb",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319928Z"
       },
       {
         "name": "TOML Parser Pro",
@@ -1181,7 +1189,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/96f78563-2606-499e-905f-9fbf7bbd2fcb",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319930Z"
       },
       {
         "name": "TechStack Analyzer",
@@ -1194,7 +1204,9 @@
         "created_cycle": 0,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319932Z"
       },
       {
         "name": "HTML2Markdown Pro",
@@ -1211,7 +1223,9 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319934Z"
       },
       {
         "name": "Color Contrast Pro",
@@ -1229,7 +1243,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319935Z"
       },
       {
         "name": "Markdown to PDF",
@@ -1245,7 +1261,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/b02dc953-26de-4b23-b3d3-0f6e94cd19b4",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319937Z"
       },
       {
         "name": "JWT Generator Pro",
@@ -1258,7 +1276,9 @@
         "created_cycle": null,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319939Z"
       },
       {
         "name": "HTTP API Client",
@@ -1286,7 +1306,9 @@
         "created_cycle": null,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319941Z"
       },
       {
         "name": "URL Builder Pro",
@@ -1320,7 +1342,9 @@
         "checkout_status": "pending_lemonsqueezy_creation",
         "note": "Alias fixed",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319943Z"
       },
       {
         "name": "Terminal Theme Studio",
@@ -1338,7 +1362,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/d147e2d1-5c79-46e7-8315-a668d3bd93d4",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319945Z"
       },
       {
         "name": "QR Forge",
@@ -1351,7 +1377,9 @@
         "created_cycle": 326,
         "health_status": "healthy",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319947Z"
       },
       {
         "name": "DiffForge",
@@ -1368,7 +1396,9 @@
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/1faaada2-30af-4d29-bf65-88d56ccc6fd3",
         "checkout_status": "pending_lemonsqueezy_creation",
         "last_health_code": 200,
-        "og_optimized": true
+        "og_optimized": true,
+        "seo_optimized": true,
+        "seo_optimized_at": "2026-04-21T11:35:34.319949Z"
       },
       {
         "name": "AI Cost Dashboard",
@@ -1927,5 +1957,27 @@
     "success_rate": 82.9
   },
   "needs_deploy_count": 9,
-  "pending_deploys": []
+  "pending_deploys": [],
+  "seo_progress": {
+    "optimized": 85,
+    "remaining": 28,
+    "last_batch": 15,
+    "last_products": [
+      "jwtinspector",
+      "table-to-csv",
+      "jwt-generator",
+      "hash-generator-pro",
+      "pdf-forge",
+      "text-transformer-pro",
+      "xml-formatter",
+      "markdown-previewer",
+      "envguard-pro",
+      "base64-pro",
+      "css-grid-gen",
+      "http-pulse",
+      "dockerfile-generator",
+      "timestamp-master",
+      "api-spec-validator"
+    ]
+  }
 }

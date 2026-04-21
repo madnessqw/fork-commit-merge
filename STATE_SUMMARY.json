@@ -1,17 +1,16 @@
 {
-  "cycle": 1028,
+  "cycle": 1029,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 113,
-  "live_count": 99,
-  "healthy_count": 113,
+  "live_count": 113,
+  "healthy_count": 112,
   "next_action": "continue_seo_optimization",
-  "vercel_auth_issue": false,
-  "last_updated": "2026-04-21T15:05:00.000Z",
+  "last_updated": "2026-04-21T11:58:30.775740Z",
   "seo_progress": {
     "total_products": 113,
-    "optimized": 70,
-    "remaining": 43,
-    "last_batch": 24
+    "optimized": 85,
+    "remaining": 28,
+    "last_batch": 15
   }
 }
