@@ -6,50 +6,57 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `analysis/kullanici_gereksinim.md`
 - `analysis/cozum_planlama.md`
-- `scripts/checkout_metadata.py`
-- `scripts/standardize_checkout_fields.py`
-- `scripts/create_product.sh`
+- `analysis/kullanici_gereksinim.md`
+- `scripts/update_summary.py`
+- `scripts/health_check.py`
 - `scripts/deploy_product.sh`
-- `tests/test_checkout_metadata.py`
+- `scripts/checkout_metadata.py`
+- Örnek drift kayıtları: `STATE.json` + `products/*/product.json` (`ssl-cert-checker`, `security-headers-checker`, `subdomain-finder`, `table-to-csv`, `keyforge`)
 - `tests/test_update_summary.py`
-- Örnek metadata: `products/html-entities/product.json`, `products/cron-expression-parser/product.json`
 
 ## Seçilen Darboğaz
-- Spec doğruydu: checkout metadata hâlâ tek yazma sözleşmesine sahip değildi.
-- Okuma tarafı legacy alias'ları tolere ediyordu ama yazma tarafı aynı pisliği üretmeye devam ediyordu.
-- Sonuç: yeni `product.json` ve deploy sonrası `STATE.json` kayıtları sürekli `checkout_url` + legacy alias çoğaltıyordu; migration helper da bunları gerçekten temizlemiyordu.
+- Asıl sorun health check’in tek başına bozuk olması değildi; `STATE.json` active cache’i ile `products/*/product.json` manifestleri birbirini yalanlıyordu.
+- Sonuç: summary 120 live / 7 checkout gap / 31 spec-ready diyordu ama diskteki gerçek manifestlerle bu rakamlar şişmişti.
+- Manuel Vercel/LemonSqueezy işlerini “çözdüm” diye yalan söylemek yerine, otomasyon katmanını manifest gerçeğine hizaladım.
 
 ## Yapılan Değişiklikler
-- `scripts/checkout_metadata.py`
-  - `prune_legacy` eklendi.
-  - Canonical okuma korunurken yazma tarafı isterse `lemon_checkout_url` ve `lemonsqueezy_checkout_url` alanlarını tamamen silebiliyor.
-  - `merge_checkout_metadata()` bu modu destekleyecek şekilde güncellendi; mevcut checkout korunurken legacy alias'lar da temizlenebiliyor.
-- `scripts/standardize_checkout_fields.py`
-  - Migration helper artık default olarak legacy checkout alias'larını prune ediyor.
-  - Gerekirse eski davranış için `--keep-legacy` bayrağı eklendi.
-- `scripts/create_product.sh`
-  - Yeni ürün metadata şablonu artık canonical sözleşmeyle başlıyor: `checkout_url` + `payment_provider`.
-- `scripts/deploy_product.sh`
-  - Deploy sonrası hem `product.json` hem `STATE.json` kayıtları canonical write moduna geçirildi.
-  - Redeploy merge fix'i korunuyor; checkout kaybı olmadan legacy alanlar da temizleniyor.
-- `tests/test_checkout_metadata.py`
-  - Legacy prune davranışı ve merge sonrası canonical-only sonuç için regresyon testleri eklendi.
-- `tests/test_standardize_checkout_fields.py`
-  - Migration helper'ın write modunda alias'ları gerçekten sildiğini doğrulayan test eklendi.
+- `scripts/product_state_sync.py` **yeni**
+  - STATE active kayıtlarını `product.json` manifestleriyle uzlaştıran ortak helper eklendi.
+  - Kural: manifest status öncelikli; pre-deploy statülerde stale state URL/checkout taşınmıyor.
+  - Live/ready ürünlerde state’teki canonical `slug.vercel.app` URL, manifestteki hash preview URL’ye ezdirilmiyor.
+- `scripts/update_summary.py`
+  - Summary üretimi artık sadece STATE cache’ine kör bakmıyor; product manifest catalog ile aktif kayıtları senkronlayıp sonra sayaçları hesaplıyor.
+  - Bu sayede stale live ürünler summary’de canlıymış gibi sayılmıyor.
+- `scripts/health_check.py`
+  - Health pipeline artık check öncesi STATE active kayıtlarını aynı manifest-sync helper ile normalize ediyor.
+  - Script çalıştırıldığında stale `status` / `vercel_url` değerlerini health check öncesi düzeltecek hale geldi.
+- `tests/test_update_summary.py`
+  - Stale live → spec_ready reclassification ve live üründe canonical state URL’nin korunması için regresyon testleri eklendi.
+- `tests/test_product_state_sync.py` **yeni**
+  - Manifest status önceliği, stale URL temizliği ve canonical alias tercih kuralı test edildi.
+
+## Sonuç / Etki
+- Aynı `STATE.json` için eski sayaçlar vs yeni sayaçlar:
+  - **Önce:** live=120, healthy=113, checkout_gap=7, deploy_gap=29, spec_ready=31
+  - **Sonra:** live=77, healthy=76, checkout_gap=1, deploy_gap=29, spec_ready=37
+- Yani summary artık cache fantezisi değil, diskteki ürün manifestlerine daha yakın bir operasyonel gerçeklik veriyor.
+- `analysis/oneri.md`, `analysis/sorun_analizi.md`, `analysis/codex_task.md` refresh edildi; yeni odak hâlâ health/canonical drift ama artık tek canlı sağlık açığı görünüyor.
 
 ## Geçen Doğrulamalar
-- `python3 -m py_compile scripts/checkout_metadata.py scripts/standardize_checkout_fields.py tests/test_checkout_metadata.py tests/test_standardize_checkout_fields.py` ✅
-- `bash -n scripts/create_product.sh` ✅
-- `bash -n scripts/deploy_product.sh` ✅
-- `python3 -m unittest discover -s tests -p 'test_checkout_metadata.py'` ✅
-- `python3 -m unittest discover -s tests -p 'test_standardize_checkout_fields.py'` ✅
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'` ✅
-- `python3 scripts/standardize_checkout_fields.py` ✅
-  - Dry-run: `would_update=142 scanned=148`
+- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_update_summary.py tests/test_product_state_sync.py` ✅
+- `PYTHONPATH=. python3 tests/test_update_summary.py` ✅
+- `PYTHONPATH=. python3 tests/test_product_state_sync.py` ✅
+- `python3 scripts/update_summary.py` ✅
+- `python3 scripts/refresh_codex_context.py` ✅
+- Summary assertion check ✅
+  - `live_count == 77`
+  - `healthy_count == 76`
+  - `checkout_gap_count == 1`
+  - `deploy_missing_or_bad_url == 29`
+  - `spec_ready_count == 37`
 
 ## Kalan Blokajlar
-- Repo genelinde 142 `product.json` kaydı hâlâ canonical migration bekliyor; bu turda bilerek toplu rewrite yapmadım.
-- Manual LemonSqueezy/Vercel aksiyonları hâlâ manual; kodla çözülmüş gibi davranılmadı.
-- Workspace kirli; commit sadece bu turda gerçekten dokunduğum dosyalarla sınırlandırılmalı.
+- `ssl-cert-checker` hâlâ tek canlı health gap olarak görünüyor; bu commit health pipeline’ı düzeltiyor, canlı health verisini zorla uydurmuyor.
+- `STATE.json` cache dosyası repo içinde zaten kirli; bu turda geniş state migration yapmadım.
+- Manual Vercel alias/protection veya LemonSqueezy aksiyonları hâlâ manual; kodla çözülmüş gibi gösterilmedi.

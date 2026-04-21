@@ -1,24 +1,24 @@
 {
-  "cycle": 1062,
-  "mode": "INNOVATE",
+  "cycle": 1070,
+  "mode": "DEPLOY_WAIT",
   "balance": 0.0,
-  "active_count": 131,
-  "live_count": 113,
-  "healthy_count": 112,
+  "active_count": 142,
+  "live_count": 77,
+  "healthy_count": 76,
   "unhealthy_count": 1,
-  "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 19,
-  "spec_ready_count": 27,
-  "next_action": "prepare_new_products_wait_deploy",
+  "checkout_gap_count": 1,
+  "deploy_missing_or_bad_url": 29,
+  "spec_ready_count": 37,
+  "next_action": "continue_spec_preparation",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-21T20:42:25.969921Z",
+  "last_updated": "2026-04-21T23:08:29.677260Z",
   "products": [
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator-pro",
-      "st": "live",
-      "v": "https://uuid-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/87fd590f-48b7-48de-9555-0d59faeb8e21"
+      "st": "ready_to_deploy",
+      "v": null,
+      "c": null
     },
     {
       "n": "URL Forge",
@@ -30,9 +30,9 @@
     {
       "n": "WebTerminal Pro",
       "s": "webterminal-pro",
-      "st": "live",
-      "v": "https://webterminal-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/dd35b180-4fea-4d11-bf65-3cf9fc963a44"
+      "st": "ready_to_deploy",
+      "v": null,
+      "c": null
     },
     {
       "n": "Timestamp Converter Pro",
@@ -72,16 +72,16 @@
     {
       "n": "Cron Expression Builder",
       "s": "cron-expression-builder",
-      "st": "live",
-      "v": "https://cron-expression-builder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0c610a2b-7b1d-4d5a-8ce2-c7c5eaa9d3da"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "TOML Toolkit",
       "s": "toml-toolkit",
-      "st": "live",
-      "v": "https://toml-toolkit.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/9b15894e-e4c7-457c-aaa2-0c36752972aa"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "OG Forge",
@@ -93,9 +93,9 @@
     {
       "n": "HTML Entities Pro",
       "s": "html-entities",
-      "st": "live",
-      "v": "https://html-entities.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/17bce928-6c18-4ffd-a2e8-0af21b6d2c6a"
+      "st": "ready_to_deploy",
+      "v": null,
+      "c": null
     },
     {
       "n": "JWT Inspector",
@@ -142,9 +142,9 @@
     {
       "n": "CSS Gradient Studio",
       "s": "css-gradient-studio",
-      "st": "live",
-      "v": "https://css-gradient-studio.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3371230d-fa48-4654-ad09-f14b64481e93"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Password Strength Checker Pro",
@@ -156,9 +156,9 @@
     {
       "n": "YAML to JSON Converter",
       "s": "yaml-json-converter",
-      "st": "live",
-      "v": "https://yaml-json-converter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/07dbcaad-a466-444f-8716-9ad1bd27197b"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "API Doc Generator",
@@ -198,16 +198,16 @@
     {
       "n": "NanoID Generator Pro",
       "s": "nanoid-generator",
-      "st": "live",
-      "v": "https://nanoid-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f7aa8e02-37f0-43c4-af63-59293833b7c7"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "HTML Minifier Pro",
       "s": "html-minifier-pro",
-      "st": "live",
-      "v": "https://html-minifier-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8c0fbdc4-a3b6-4c8c-8a08-d97faf218248"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "TOML Validator",
@@ -324,7 +324,7 @@
     {
       "n": "CronCraft",
       "s": "croncraft",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://croncraft-zeta.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202"
     },
@@ -352,9 +352,9 @@
     {
       "n": "CSS Grid Generator",
       "s": "css-grid-gen",
-      "st": "live",
-      "v": "https://css-grid-gen.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/a6a8ded7-c7b8-41b3-b5c1-25f0c9710e9f"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "HTTP Pulse",
@@ -366,9 +366,9 @@
     {
       "n": "Dockerfile Generator",
       "s": "dockerfile-generator",
-      "st": "live",
-      "v": "https://dockerfile-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/2ddacf43-6235-4ed0-9463-b612d146dcdc"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Timestamp Master",
@@ -394,16 +394,16 @@
     {
       "n": "Markdown Previewer Pro",
       "s": "markdown-previewer-pro",
-      "st": "live",
-      "v": "https://markdown-previewer-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/24eaaa4d-b88b-4649-b4d1-9deb0c12dafd"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "HTTP Load Tester Pro",
       "s": "http-load-tester-pro",
-      "st": "live",
-      "v": "https://http-load-tester-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7a8166bc-0876-40c4-89f3-6b79d6331443"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "CarbonLite",
@@ -422,16 +422,16 @@
     {
       "n": "Cron Master",
       "s": "cron-master",
-      "st": "live",
-      "v": "https://cron-master.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/abeb5738-c1c5-4ea8-aa9d-250629a52ec4"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Image Compressor Pro",
       "s": "image-compressor-pro",
-      "st": "live",
-      "v": "https://image-compressor-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/5a9b1afe-c19f-4ad0-a54f-151e581a2475"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "TOML Converter Pro",
@@ -471,30 +471,30 @@
     {
       "n": "Curl2Code",
       "s": "curl2code",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://curl2code.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7cfaca5-7db7-4525-8146-a49df5bb37f7"
     },
     {
       "n": "Email Validator Pro",
       "s": "email-validator-pro",
-      "st": "live",
-      "v": "https://email-validator-9lzkyqh95-madnessqws-projects.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e893ef31-0a20-458e-a07c-4d9f34d2a16d"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "MCP Server Validator",
       "s": "mcp-validator",
-      "st": "live",
-      "v": "https://mcp-validator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/9ca651a8-c263-48ef-812c-6820fa1049cb"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "TOML Parser Pro",
       "s": "toml-parser",
-      "st": "live",
-      "v": "https://toml-parser.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/96f78563-2606-499e-905f-9fbf7bbd2fcb"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "TechStack Analyzer",
@@ -506,23 +506,23 @@
     {
       "n": "HTML2Markdown Pro",
       "s": "html2markdown",
-      "st": "live",
-      "v": "https://html2markdown.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e3f7d64b-7e7e-4b43-b792-9de7a6d1895e"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Color Contrast Pro",
       "s": "color-contrast-pro",
-      "st": "live",
+      "st": "ready_to_deploy",
       "v": "https://color-contrast-pro.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08"
     },
     {
       "n": "Markdown to PDF",
       "s": "markdown-to-pdf",
-      "st": "live",
-      "v": "https://markdown-to-pdf.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/b02dc953-26de-4b23-b3d3-0f6e94cd19b4"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "JWT Generator Pro",
@@ -555,16 +555,16 @@
     {
       "n": "Markdown Table Generator",
       "s": "markdown-table-generator",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://markdown-table-generator.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/83e85fd0-ab7a-483c-aa50-9be7bf67c7ff"
     },
     {
       "n": "Terminal Theme Studio",
       "s": "terminal-theme-studio",
-      "st": "live",
-      "v": "https://terminal-theme-studio.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d147e2d1-5c79-46e7-8315-a668d3bd93d4"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "QR Forge",
@@ -576,7 +576,7 @@
     {
       "n": "DiffForge",
       "s": "diffforge",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://diffforge.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1faaada2-30af-4d29-bf65-88d56ccc6fd3"
     },
@@ -597,7 +597,7 @@
     {
       "n": "Chart Studio",
       "s": "chart-studio",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://chart-studio.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/9e45edef-4cd7-4852-9fe9-42d22aa325b6"
     },
@@ -605,15 +605,15 @@
       "n": "DiffMaster Pro",
       "s": "diffmaster",
       "st": "live",
-      "v": "https://diffmaster-rose.vercel.app",
+      "v": "https://diffmaster.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/diffmaster-pro-001"
     },
     {
       "n": "Favicon Generator Pro",
       "s": "favicon-generator-pro",
-      "st": "live",
-      "v": "https://favicon-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/daf53d54-3421-432f-a173-67b8b5d0ceef"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Markdown to HTML Pro",
@@ -640,7 +640,7 @@
       "n": "HTML Entity Encoder/Decoder Pro",
       "s": "html-entity-encoder",
       "st": "live",
-      "v": "https://html-entity-encoder.vercel.app",
+      "v": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/632f8e76-192a-432d-8e3f-d464cd865253"
     },
     {
@@ -660,9 +660,9 @@
     {
       "n": "Cron Express",
       "s": "cron-express",
-      "st": "live",
-      "v": "https://cron-express.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/2b895dff-3476-48c4-944d-7a9df0bea9c9"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Regex Tester Pro",
@@ -709,7 +709,7 @@
     {
       "n": "Text Case Converter Pro",
       "s": "text-case-converter",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://text-case-converter.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f"
     },
@@ -737,9 +737,9 @@
     {
       "n": "Text Diff Pro",
       "s": "text-diff-pro",
-      "st": "live",
-      "v": "https://text-diff-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/02ac3a3b-a1d4-49c0-97ac-599e9cf29a2f"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "CSS Shadow Studio",
@@ -751,16 +751,16 @@
     {
       "n": "Lorem Ipsum Pro",
       "s": "lorem-ipsum-pro",
-      "st": "live",
-      "v": "https://lorem-ipsum-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fd4f2e22-7c2e-497f-960b-a0361d453a7b"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Color Palette Extractor",
       "s": "color-palette-extractor",
-      "st": "live",
-      "v": "https://color-palette-extractor.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d10dc99b-7e21-45ca-9460-9230cc3c98da"
+      "st": "building",
+      "v": null,
+      "c": null
     },
     {
       "n": "Git Command Builder",
@@ -772,28 +772,28 @@
     {
       "n": "Code Snippet Manager",
       "s": "code-snippet-manager",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://code-snippet-manager.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0a52f7e1-e18b-46fe-b914-e2626f4396f1"
     },
     {
       "n": "Email Signature Generator",
       "s": "email-signature",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://email-signature.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/486d8fed-a718-4e6e-9f1b-7e1dcacb2316"
     },
     {
       "n": "HMAC Generator Pro",
       "s": "hmac-generator",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://hmac-generator.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e0f03a74-d73c-485f-a47b-4e33c6f4122a"
     },
     {
       "n": "HTML Entity Encoder/Decoder",
       "s": "html-entity",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://html-entity.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/2bd2d28c-eab1-485f-98da-5237a2df4041"
     },
@@ -807,8 +807,8 @@
     {
       "n": "SSL Cert Checker",
       "s": "ssl-cert-checker",
-      "st": "spec_ready",
-      "v": null,
+      "st": "live",
+      "v": "https://ssl-cert-checker.vercel.app",
       "c": null
     },
     {
@@ -929,11 +929,87 @@
       "st": "spec_ready",
       "v": null,
       "c": null
+    },
+    {
+      "n": "Git Diff Visualizer",
+      "s": "git-diff-visualizer",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Code Screenshot Beautifier",
+      "s": "code-screenshot-beautifier",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "JSON Schema to TypeScript",
+      "s": "json-schema-to-ts",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "MCP Inspector Pro",
+      "s": "mcp-inspector-pro",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "API Security Scanner",
+      "s": "api-security-scanner",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Docker Command Builder",
+      "s": "docker-command-builder",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "MCP Server Scaffolder",
+      "s": "mcp-server-scaffolder",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Browser Use Studio",
+      "s": "browser-use-studio",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Agent Prompt Engineer",
+      "s": "agent-prompt-engineer",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "API Mock Server",
+      "s": "api-mock-server",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "JWT Debugger Pro",
+      "s": "jwt-debugger-pro",
+      "st": "spec_ready",
+      "v": null,
+      "c": null
     }
   ],
   "gaps": {
     "missing_url": [
-      "ssl-cert-checker",
       "security-headers-checker",
       "subdomain-finder",
       "htaccess-generator",
@@ -950,16 +1026,29 @@
       "ssl-config-generator",
       "browser-mock-studio",
       "docker-compose-builder",
-      "env-file-manager"
+      "env-file-manager",
+      "git-diff-visualizer",
+      "code-screenshot-beautifier",
+      "json-schema-to-ts",
+      "mcp-inspector-pro",
+      "api-security-scanner",
+      "docker-command-builder",
+      "mcp-server-scaffolder",
+      "browser-use-studio",
+      "agent-prompt-engineer",
+      "api-mock-server",
+      "jwt-debugger-pro"
     ],
     "unhealthy_live": [
       {
-        "slug": "html-entity-encoder",
-        "url": "https://html-entity-encoder.vercel.app",
-        "code": 402,
-        "health_status": "vercel_402_error"
+        "slug": "ssl-cert-checker",
+        "url": "https://ssl-cert-checker.vercel.app",
+        "code": null,
+        "health_status": null
       }
     ],
-    "missing_checkout": []
+    "missing_checkout": [
+      "ssl-cert-checker"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-21 21:06 UTC
+# Codex Task — Generated 2026-04-21 23:08 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -6,17 +6,17 @@ Bu görev dosyası live `STATE_SUMMARY.json` üzerinden üretildi. Eski araştı
 stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyileştirmesi seçilir.
 
 ## Aktif Görev
-**Checkout metadata standardizasyonu**
+**Health/canonical drift düzeltmesi**
 
-Product metadata için tek okuma/yazma sözleşmesi oluştur. Küçük ama kalıcı fix hedefle: normalizer, migration helper veya doğrulama testi ekle. Live checkout coverage'ı bozma.
+Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt; manuel Vercel korumasını çözüldü gibi gösterme.
 
 ## Canlı State Özeti
-- Cycle: 1063
-- Live sağlık: 113/113 (%100.0)
-- Checkout gap: 0
-- Deploy/url gap: 18
-- Spec-ready count: 27
-- Next action: prepare_new_products_wait_deploy
+- Cycle: 1070
+- Live sağlık: 76/77 (%98.7)
+- Checkout gap: 1
+- Deploy/url gap: 29
+- Spec-ready count: 37
+- Next action: continue_spec_preparation
 
 ## Guardrails
 - Dosyaları okumadan edit yapma.

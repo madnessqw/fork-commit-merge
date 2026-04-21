@@ -1,16 +1,22 @@
-# Sorun Analizi — Cycle 1063 | 2026-04-21 21:06 UTC
+# Sorun Analizi — Cycle 1070 | 2026-04-21 23:08 UTC
 
 ## Ana Darboğaz
-- **checkout_field_inconsistency** — Canlı checkout gap sıfır olsa da metadata hâlâ üç farklı alan adıyla taşınıyor; bu state drift'i ve gelecekte yanlış rapor üretir.
+- **live_health** — 1 canlı ürün sağlıksız; ilk örnek `ssl-cert-checker` (HTTP None).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 113/113
-- Checkout gap: 0
-- Deploy/url gap: 18
-- Spec-ready backlog: 27
+- Healthy live: 76/77
+- Checkout gap: 1
+- Deploy/url gap: 29
+- Spec-ready backlog: 37
+
+## Canlı Sağlıksız Ürünler
+- `ssl-cert-checker` — code=None status=None url=https://ssl-cert-checker.vercel.app
+
+## Checkout Eksikleri
+- ssl-cert-checker
 
 ## URL/Deploy Eksikleri
-- ssl-cert-checker, security-headers-checker, subdomain-finder, htaccess-generator, nginx-config-tester, ssl-cipher-analyzer, diff-checker-pro, yaml-validator-pro, case-converter-pro, htpasswd-generator, docker-run-generator, sql-to-nosql, ...
+- security-headers-checker, subdomain-finder, htaccess-generator, nginx-config-tester, ssl-cipher-analyzer, diff-checker-pro, yaml-validator-pro, case-converter-pro, htpasswd-generator, docker-run-generator, sql-to-nosql, chmod-calculator, ...
 
 ## Açık Issue Kayıtları
 - **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift

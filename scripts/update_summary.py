@@ -20,6 +20,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.checkout_metadata import get_checkout_url
+from scripts.product_state_sync import load_product_catalog, sync_state_products
 
 
 STATE_FILE = ROOT / "STATE.json"
@@ -91,21 +92,32 @@ def dedupe_products(products: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [deduped[key] for key in order] + anonymous
 
 
-def _as_list(value: Any) -> list[dict[str, Any]]:
+def _as_list(
+    value: Any,
+    *,
+    product_catalog: dict[str, dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
     if not isinstance(value, list):
         return []
     normalized_items = [normalize_product(item) for item in value if isinstance(item, dict)]
     meaningful_items = [item for item in normalized_items if not is_placeholder_product(item)]
-    return dedupe_products(meaningful_items)
+    deduped = dedupe_products(meaningful_items)
+    if not product_catalog:
+        return deduped
+    return sync_state_products(deduped, product_catalog)
 
 
-def load_products(state: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def load_products(
+    state: dict[str, Any],
+    *,
+    product_catalog: dict[str, dict[str, Any]] | None = None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     products = state.get("products", {})
     if isinstance(products, dict):
-        active = _as_list(products.get("active"))
-        spec_ready = _as_list(products.get("spec_ready"))
+        active = _as_list(products.get("active"), product_catalog=product_catalog)
+        spec_ready = _as_list(products.get("spec_ready"), product_catalog=product_catalog)
     elif isinstance(products, list):
-        active = _as_list(products)
+        active = _as_list(products, product_catalog=product_catalog)
         spec_ready = []
     else:
         active = []
@@ -141,8 +153,12 @@ def compact_product(product: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_summary(state: dict[str, Any]) -> dict[str, Any]:
-    active, external_spec_ready = load_products(state)
+def build_summary(
+    state: dict[str, Any],
+    *,
+    product_catalog: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    active, external_spec_ready = load_products(state, product_catalog=product_catalog)
     live = [p for p in active if p.get("status") == "live"]
     spec_ready_inside_active = [p for p in active if p.get("status") == "spec_ready"]
     ready_for_payment = [p for p in active if p.get("status") == "ready_for_payment"]
@@ -185,7 +201,7 @@ def build_summary(state: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> int:
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    summary = build_summary(state)
+    summary = build_summary(state, product_catalog=load_product_catalog())
     SUMMARY_FILE.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         "STATE_SUMMARY.json updated: "

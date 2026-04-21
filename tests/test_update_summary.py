@@ -113,6 +113,67 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["checkout_gap_count"], 0)
         self.assertEqual(summary["products"][0]["c"], "https://profitbridge.lemonsqueezy.com/checkout/buy/legacy-checkout-tool-001")
 
+    def test_product_catalog_reclassifies_stale_live_records(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "SSL Cert Checker",
+                        "slug": "ssl-cert-checker",
+                        "status": "live",
+                        "vercel_url": "https://ssl-cert-checker.vercel.app",
+                    }
+                ]
+            }
+        }
+        product_catalog = {
+            "ssl-cert-checker": {
+                "name": "SSL Cert Checker",
+                "slug": "ssl-cert-checker",
+                "status": "spec_ready",
+                "vercel_url": None,
+            }
+        }
+
+        summary = build_summary(state, product_catalog=product_catalog)
+
+        self.assertEqual(summary["live_count"], 0)
+        self.assertEqual(summary["spec_ready_count"], 1)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 1)
+        self.assertEqual(summary["gaps"]["missing_url"], ["ssl-cert-checker"])
+        self.assertEqual(summary["gaps"]["unhealthy_live"], [])
+
+    def test_product_catalog_keeps_canonical_state_url_for_live_products(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Table to CSV",
+                        "slug": "table-to-csv",
+                        "status": "live",
+                        "vercel_url": "https://table-to-csv.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+        product_catalog = {
+            "table-to-csv": {
+                "name": "Table to CSV",
+                "slug": "table-to-csv",
+                "status": "live",
+                "vercel_url": None,
+            }
+        }
+
+        summary = build_summary(state, product_catalog=product_catalog)
+
+        self.assertEqual(summary["live_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
+        self.assertEqual(summary["products"][0]["v"], "https://table-to-csv.vercel.app")
+
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
             is_placeholder_product(

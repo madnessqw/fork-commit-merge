@@ -1,20 +1,20 @@
-# Codex Analiz Özeti — 2026-04-21 21:06 UTC
+# Codex Analiz Özeti — 2026-04-21 23:08 UTC
 
 ## Canlı State
-- Cycle: **1063**
-- Mode: **INNOVATE**
-- Live sağlık: **113/113** (%100.0)
-- Checkout gap: **0**
-- Deploy/url gap: **18**
-- Spec-ready: **27**
-- Next action: `prepare_new_products_wait_deploy`
+- Cycle: **1070**
+- Mode: **DEPLOY_WAIT**
+- Live sağlık: **76/77** (%98.7)
+- Checkout gap: **1**
+- Deploy/url gap: **29**
+- Spec-ready: **37**
+- Next action: `continue_spec_preparation`
 
 ## Ana Darboğaz
-- **Checkout field drift:** Canlı checkout gap sıfır olsa da metadata hâlâ üç farklı alan adıyla taşınıyor; bu state drift'i ve gelecekte yanlış rapor üretir.
+- **Canlı sağlık açığı:** 1 canlı ürün sağlıksız; ilk örnek `ssl-cert-checker` (HTTP None).
 
 ## Kod için Öneri
-1. **Checkout metadata standardizasyonu**
-   - Product metadata için tek okuma/yazma sözleşmesi oluştur. Küçük ama kalıcı fix hedefle: normalizer, migration helper veya doğrulama testi ekle. Live checkout coverage'ı bozma.
+1. **Health/canonical drift düzeltmesi**
+   - Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt; manuel Vercel korumasını çözüldü gibi gösterme.
 2. Production'da manuel Vercel/LemonSqueezy adımlarını script ile 'çözüldü' gibi göstermeden bırak.
 3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.
 
@@ -24,4 +24,4 @@
 - **checkout_field_inconsistency** [medium/open] — Multiple checkout_url field names (checkout_url, lemon_checkout_url, lemonsqueezy_checkout_url)
 
 ## Deploy/URL Gap Preview
-- ssl-cert-checker, security-headers-checker, subdomain-finder, htaccess-generator, nginx-config-tester, ssl-cipher-analyzer, ...
+- security-headers-checker, subdomain-finder, htaccess-generator, nginx-config-tester, ssl-cipher-analyzer, diff-checker-pro, ...
