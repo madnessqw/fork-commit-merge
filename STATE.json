@@ -1,8 +1,8 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-21T13:33:42.246065Z",
-  "cycle": 1035,
-  "message": "Cycle 1035: SEO optimization completed for remaining 2 products. Deploy issues detected with email-validator-pro (404) and timestamp-converter (451).",
+  "timestamp": "2026-04-21T14:12:58.572368Z",
+  "cycle": 1037,
+  "message": "SEO optimization - 17 products meta tags updated",
   "balance": 0.0,
   "mode": "OPTIMIZE",
   "active_count": 113,
@@ -14,11 +14,11 @@
   "vercel_blocked": 0,
   "deploy_missing_or_bad_url": 6,
   "canonical_url_drift": 0,
-  "next_action": "optimize_products",
+  "next_action": "wait_for_vercel_limit_then_redeploy",
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
   "notes": "CRITICAL: 88 products have missing/invalid local HTML files. Products are LIVE on Vercel (healthy) but local sources are only deploy triggers. SEO optimization requires local HTML files. Options: 1) Sync from Vercel URLs, 2) Recreate products, 3) Use different optimization strategy.",
-  "last_updated": "2026-04-21T17:05:00Z",
+  "last_updated": "2026-04-21T14:12:58.572368Z",
   "products": {
     "active": [
       {
@@ -685,14 +685,15 @@
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/7d9338a5-9478-4b88-bf65-08b173d46fe6",
         "price": "9",
         "created_cycle": null,
-        "health_status": "needs_redeploy",
+        "health_status": "error_500",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/7d9338a5-9478-4b88-bf65-08b173d46fe6",
         "checkout_status": "active",
         "last_health_code": 500,
         "og_optimized": true,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:17:22.307092Z",
-        "notes": "Vercel deploy limit - waiting for 24h"
+        "notes": "Vercel deploy limit - waiting for 24h",
+        "updated": "2026-04-21T17:10:00Z"
       },
       {
         "name": "Hash Generator Pro",
@@ -722,11 +723,12 @@
         "health_status": "error_500",
         "note": "Vercel Protection aktif - auth gerekli",
         "ideal_vercel_url": "https://pdf-forge.vercel.app",
-        "last_health_code": 0,
+        "last_health_code": 500,
         "og_optimized": true,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:58:58.755364Z",
-        "checkout_status": "active"
+        "checkout_status": "active",
+        "updated": "2026-04-21T17:10:00Z"
       },
       {
         "name": "Text Transformer Pro",
@@ -1188,7 +1190,8 @@
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T17:05:00Z",
         "schema_optimized": true,
-        "notes": "Deploy OK but 404 error - needs investigation"
+        "notes": "Deploy OK but 404 error - needs investigation",
+        "updated": "2026-04-21T17:10:00Z"
       },
       {
         "name": "MCP Server Validator",
@@ -1502,20 +1505,22 @@
         "name": "DiffMaster Pro",
         "slug": "diffmaster",
         "status": "live",
-        "vercel_url": "https://diffmaster.vercel.app",
+        "vercel_url": "https://diffmaster-rose.vercel.app",
         "github_url": "https://github.com/universe7creator/diffmaster",
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/diffmaster-pro-001",
         "price": "19",
         "created_cycle": 948,
-        "health_status": "unauthorized",
+        "health_status": "healthy",
         "note": "Vercel Protection aktif - auth gerekli",
         "ideal_vercel_url": "https://diffmaster.vercel.app",
-        "last_health_code": 401,
+        "last_health_code": 200,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T09:35:00Z",
         "deploy_pending": true,
         "og_optimized": true,
-        "checkout_status": "active"
+        "checkout_status": "active",
+        "protection_fixed": true,
+        "updated": "2026-04-21T17:10:00Z"
       },
       {
         "name": "Favicon Generator Pro",
@@ -1601,10 +1606,11 @@
         "health_status": "error_402",
         "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/632f8e76-192a-432d-8e3f-d464cd865253",
         "checkout_status": "active",
-        "last_health_code": 0,
+        "last_health_code": 402,
         "og_optimized": true,
         "seo_optimized": true,
-        "seo_optimized_at": "2026-04-21T10:17:22.304744Z"
+        "seo_optimized_at": "2026-04-21T10:17:22.304744Z",
+        "updated": "2026-04-21T17:10:00Z"
       },
       {
         "name": "OpenAPI Validator",
@@ -2019,7 +2025,8 @@
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T17:05:00Z",
         "schema_optimized": true,
-        "notes": "Deploy OK but 451 error - needs investigation"
+        "notes": "Deploy OK but 451 error - needs investigation",
+        "updated": "2026-04-21T17:10:00Z"
       },
       {
         "name": "HTML Entity Encoder/Decoder",
@@ -2078,5 +2085,12 @@
     "optimized": 113,
     "remaining": 0,
     "last_batch": 2
-  }
+  },
+  "pending_aliases": [
+    {
+      "slug": "diffmaster",
+      "from": "diffmaster-rose.vercel.app",
+      "to": "diffmaster.vercel.app"
+    }
+  ]
 }
