@@ -1,0 +1,13 @@
+  "demo_sections": [
+    "code-input",
+    "metrics-dashboard",
+    "complexity-chart",
+    "recommendations"
+  ],
+  "spec_ready": true,
+  "batch": 18,
+  "estimated_build_time": "35min",
+  "priority": "medium",
+  "dependencies": [],
+  "notes": "Cyclomatic complexity, cognitive complexity, maintainability index hesaplar. JavaScript/TypeScript/Python desteği."
+}
