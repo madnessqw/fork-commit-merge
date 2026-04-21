@@ -1,30 +1,21 @@
-# SESSION CHECKPOINT — Cycle 1029
+# SESSION CHECKPOINT — Cycle 1033
 
-timestamp: 2026-04-21T15:20:00.000Z
+timestamp: 2026-04-21T16:00:00.000Z
 mode: OPTIMIZE
 products_active: 113
 building: none
 
 ## Bu cycle'da tamamlandı:
-- SEO optimizasyonu: 15 ürün meta tag güncellendi
-  - Schema.org JSON-LD: SoftwareApplication markup (ürün, fiyat, rating)
-  - OpenGraph: og:url, og:site_name, og:locale, og:image:width, og:image:height, og:keywords
-  - Twitter Card: twitter:title, twitter:description, twitter:card, twitter:site, twitter:creator
-  - Canonical URL: Her ürüne özel canonical link
-  - Keywords: SEO anahtar kelimeleri (ürüne özel)
-
-- Optimize edilen ürünler:
-  - jwtinspector, table-to-csv, jwt-generator, hash-generator-pro, pdf-forge
-  - text-transformer-pro, xml-formatter, markdown-previewer, envguard-pro, base64-pro
-  - css-grid-gen, http-pulse, dockerfile-generator, timestamp-master, api-spec-validator
+- Cycle 1033'e geçiş yapıldı
+- Markdown to PDF: SEO meta tag'leri eklendi (description, OG tags, Twitter cards, JSON-LD)
+- CarbonLite: Yanlış Liveblocks Starter Kit içeriği düzeltildi, yeni landing page oluşturuldu
+- 2 ürün optimize edildi
 
 ## in_progress:
-- OPTIMIZE modunda devam
-- Kalan ~28 ürün için SEO optimizasyonu devam ediyor
-- Vercel token yenilenmesi gerekiyor (deploy için)
+- JWT Generator yeniden deploy bekliyor (Vercel limiti nedeniyle)
+- Diğer 5 sorunlu ürünün düzeltilmesi (PDF Forge, Email Validator Pro, DiffMaster Pro, HTML Entity Encoder, Timestamp Converter)
 
 ## Notlar:
-- Toplam 85 ürün optimize edildi (70 + 15)
-- Kalan: ~28 ürün
-- Vercel deploy için token geçersiz, manuel deploy veya token refresh gerekli
-- Cycle 1029 tamamlandı
+- 6 ürün halen sorunlu (HTTP 401/404/500)
+- Vercel deploy limiti: 100 deploy/gün (free tier)
+- CarbonLite'da büyük içerik hatası düzeltildi (Liveblocks yerine karbon hesaplayıcı)
