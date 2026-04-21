@@ -6,11 +6,19 @@
 #   ./fix_vercel_protection.sh --all     → tüm projeleri düzelt
 #   ./fix_vercel_protection.sh <slug>    → tek projeyi düzelt
 
-VERCEL_TOKEN="${VERCEL_TOKEN:-vcp_258G92BEBEcaDuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg}"
-TEAM_ID="team_dvJDRExvJITRGWh3cWs5L44m"
+set -euo pipefail
+
+VERCEL_TOKEN="${VERCEL_TOKEN:-}"
+TEAM_ID="${VERCEL_TEAM_ID:-team_dvJDRExvJITRGWh3cWs5L44m}"
 LOG="/home/gokhan/UniverseCreator/logs/vercel_protection_fix.log"
 
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG"; }
+
+if [ -z "$VERCEL_TOKEN" ]; then
+  echo "❌ VERCEL_TOKEN env değişkeni yok. Token'ı dosyaya yazma; şöyle çalıştır:"
+  echo "   VERCEL_TOKEN=... $0 ${1:-}"
+  exit 1
+fi
 
 disable_protection() {
   local slug="$1"

@@ -1,26 +1,38 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # deploy_product.sh — Deploy a product to GitHub + Vercel + send Telegram notification
 # Usage: ./scripts/deploy_product.sh <slug>
 # Example: ./scripts/deploy_product.sh codesnap
 
-set -e
+set -euo pipefail
 
-SLUG="$1"
+SLUG="${1:-}"
 BASE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 PRODUCT_DIR="$BASE_DIR/products/$SLUG"
 PRODUCT_JSON="$PRODUCT_DIR/product.json"
 
-# Telegram config
-BOT_TOKEN="7590893298:AAGUHxxOCuWCi4NItlQP8Wr6sNGGVaImXII"
-CHAT_ID="7941453284"
-
-# GitHub config
-GH_USER="universe7creator"
-export GH_TOKEN="${GH_TOKEN:-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}"
-export GITHUB_TOKEN="$GH_TOKEN"
+# Runtime config: never hardcode credentials in this file.
+GH_USER="${GH_USER:-universe7creator}"
+VERCEL_TEAM_ID="${VERCEL_TEAM_ID:-team_dvJDRExvJITRGWh3cWs5L44m}"
+VERCEL_SCOPE="${VERCEL_SCOPE:-}"
+SEND_TELEGRAM="${SEND_TELEGRAM:-0}"
 
 if [ -z "$SLUG" ]; then
   echo "❌ Usage: $0 <slug>"
+  exit 1
+fi
+
+for cmd in git gh vercel curl python3; do
+  command -v "$cmd" >/dev/null 2>&1 || {
+    echo "❌ Required command not found: $cmd"
+    exit 1
+  }
+done
+
+if [ -n "${GH_TOKEN:-}" ]; then
+  export GH_TOKEN
+  export GITHUB_TOKEN="${GITHUB_TOKEN:-$GH_TOKEN}"
+elif ! gh auth status >/dev/null 2>&1; then
+  echo "❌ GitHub auth missing. Run gh auth login or export GH_TOKEN."
   exit 1
 fi
 
@@ -70,8 +82,8 @@ if ! gh repo view "$GH_USER/$SLUG" &>/dev/null 2>&1; then
   gh repo create "$GH_USER/$SLUG" --public --description "$TAGLINE" --source=. --push
 else
   echo "  Repo exists. Pushing updates..."
-  git remote set-url origin "https://$GH_TOKEN@github.com/$GH_USER/$SLUG.git" 2>/dev/null || \
-    git remote add origin "https://$GH_TOKEN@github.com/$GH_USER/$SLUG.git" 2>/dev/null || true
+  git remote set-url origin "https://github.com/$GH_USER/$SLUG.git" 2>/dev/null || \
+    git remote add origin "https://github.com/$GH_USER/$SLUG.git" 2>/dev/null || true
   git add -A
   git commit -m "Deploy: $NAME" 2>/dev/null || echo "  Nothing to commit"
   git push -u origin main --force 2>/dev/null || git push -u origin main 2>/dev/null
@@ -84,7 +96,14 @@ echo "  ✅ GitHub: $GITHUB_URL"
 echo ""
 echo "🌐 Step 2: Vercel Deploy..."
 cd "$PRODUCT_DIR"
-VERCEL_OUTPUT=$(vercel --yes --prod --token "${VERCEL_TOKEN:-vcp_258G92BEBEcaDuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg}" 2>&1) || true
+VERCEL_CMD=(vercel --yes --prod)
+if [ -n "${VERCEL_TOKEN:-}" ]; then
+  VERCEL_CMD+=(--token "$VERCEL_TOKEN")
+fi
+if [ -n "$VERCEL_SCOPE" ]; then
+  VERCEL_CMD+=(--scope "$VERCEL_SCOPE")
+fi
+VERCEL_OUTPUT=$("${VERCEL_CMD[@]}" 2>&1) || true
 DEPLOYMENT_URL=$(echo "$VERCEL_OUTPUT" | grep -oP 'https://[^\s]+\.vercel\.app' | head -1)
 
 if [ -z "$DEPLOYMENT_URL" ]; then
@@ -122,7 +141,13 @@ WEBHOOK_URL="$VERCEL_URL/api/webhook"
 # Step 3.5: Disable SSO/Deployment Protection (otomatik)
 echo ""
 echo "🔓 Step 3.5: Disabling SSO Protection..."
-bash "$BASE_DIR/scripts/fix_vercel_protection.sh" "$SLUG" 2>/dev/null && echo "  ✅ Protection disabled" || echo "  ⚠️ Protection fix failed (non-critical)"
+if [ -n "${VERCEL_TOKEN:-}" ]; then
+  VERCEL_TOKEN="$VERCEL_TOKEN" VERCEL_TEAM_ID="$VERCEL_TEAM_ID" \
+    bash "$BASE_DIR/scripts/fix_vercel_protection.sh" "$SLUG" 2>/dev/null && \
+    echo "  ✅ Protection disabled" || echo "  ⚠️ Protection fix failed (non-critical)"
+else
+  echo "  ⏭️  Skipped: VERCEL_TOKEN not set"
+fi
 
 # Step 4: Update product.json
 echo ""
@@ -144,7 +169,7 @@ PYEOF
 
 # Step 5: Telegram Notification
 echo ""
-echo "📱 Step 5: Sending Telegram notification..."
+echo "📱 Step 5: Telegram notification..."
 MSG="🚀 YENİ ÜRÜN HAZIR — LemonSqueezy'e ekle!
 
 📦 Ürün: $NAME
@@ -165,11 +190,18 @@ MSG="🚀 YENİ ÜRÜN HAZIR — LemonSqueezy'e ekle!
 
 ✅ Sistem hazır, müşteri bekliyor."
 
-curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
-  -d "chat_id=${CHAT_ID}" \
-  --data-urlencode "text=${MSG}" > /dev/null 2>&1
-
-echo "  ✅ Telegram notification sent"
+if [ "$SEND_TELEGRAM" = "1" ]; then
+  if [ -z "${TELEGRAM_BOT_TOKEN:-}" ] || [ -z "${TELEGRAM_CHAT_ID:-}" ]; then
+    echo "  ⚠️ SEND_TELEGRAM=1 but TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID missing; skipped"
+  else
+    curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+      -d "chat_id=${TELEGRAM_CHAT_ID}" \
+      --data-urlencode "text=${MSG}" > /dev/null 2>&1
+    echo "  ✅ Telegram notification sent"
+  fi
+else
+  echo "  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify"
+fi
 
 # Step 6: Update STATE.json
 echo ""

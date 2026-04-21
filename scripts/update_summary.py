@@ -1,34 +1,127 @@
 #!/usr/bin/env python3
-"""STATE.json'dan STATE_SUMMARY.json oluşturur (context tasarrufu için)"""
+"""Build a compact, fresh STATE_SUMMARY.json from STATE.json.
+
+The old version copied stale counter fields from STATE.json. That made the
+summary lie whenever products were promoted or spec-ready items were mixed into
+the active list. This script recomputes the operational counters from the
+product records every time.
+"""
+
+from __future__ import annotations
+
 import json
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
 
-with open('STATE.json') as f:
-    state = json.load(f)
 
-# Özet oluştur
-summary = {
-    "cycle": state.get("cycle"),
-    "mode": state.get("mode"),
-    "balance": state.get("balance"),
-    "active_count": state.get("active_count"),
-    "live_count": state.get("live_count"),
-    "healthy_count": state.get("healthy_count"),
-    "next_action": state.get("next_action"),
-    "vercel_auth_issue": state.get("vercel_auth_issue"),
-    "last_updated": state.get("last_updated"),
-    "products": [
-        {
-            "n": p.get("name"),
-            "s": p.get("slug"),
-            "st": p.get("status"),
-            "v": p.get("vercel_url"),
-            "c": p.get("checkout_url")
-        }
-        for p in state.get("products", {}).get("active", [])
-    ]
-}
+ROOT = Path(__file__).resolve().parents[1]
+STATE_FILE = ROOT / "STATE.json"
+SUMMARY_FILE = ROOT / "STATE_SUMMARY.json"
 
-with open('STATE_SUMMARY.json', 'w') as f:
-    json.dump(summary, f, indent=2)
 
-print(f"STATE_SUMMARY.json updated: cycle {summary['cycle']}")
+def _as_list(value: Any) -> list[dict[str, Any]]:
+    if not isinstance(value, list):
+        return []
+    return [item for item in value if isinstance(item, dict)]
+
+
+def load_products(state: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    products = state.get("products", {})
+    if isinstance(products, dict):
+        active = _as_list(products.get("active"))
+        spec_ready = _as_list(products.get("spec_ready"))
+    elif isinstance(products, list):
+        active = _as_list(products)
+        spec_ready = []
+    else:
+        active = []
+        spec_ready = []
+    return active, spec_ready
+
+
+def has_checkout(product: dict[str, Any]) -> bool:
+    return bool(product.get("checkout_url") or product.get("lemon_checkout_url") or product.get("lemonsqueezy_checkout_url"))
+
+
+def health_code(product: dict[str, Any]) -> int | None:
+    raw = product.get("last_health_code")
+    if raw is None:
+        return None
+    try:
+        return int(raw)
+    except (TypeError, ValueError):
+        return None
+
+
+def is_healthy(product: dict[str, Any]) -> bool:
+    return product.get("health_status") == "healthy" or health_code(product) == 200
+
+
+def compact_product(product: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "n": product.get("name"),
+        "s": product.get("slug"),
+        "st": product.get("status"),
+        "v": product.get("vercel_url"),
+        "c": product.get("checkout_url") or product.get("lemon_checkout_url") or product.get("lemonsqueezy_checkout_url"),
+    }
+
+
+def build_summary(state: dict[str, Any]) -> dict[str, Any]:
+    active, external_spec_ready = load_products(state)
+    live = [p for p in active if p.get("status") == "live"]
+    spec_ready_inside_active = [p for p in active if p.get("status") == "spec_ready"]
+    ready_for_payment = [p for p in active if p.get("status") == "ready_for_payment"]
+
+    products_without_url = [p for p in active if p.get("status") in {"live", "ready_for_payment", "spec_ready"} and not p.get("vercel_url")]
+    unhealthy_live = [p for p in live if not is_healthy(p)]
+    checkout_gap_live = [p for p in live + ready_for_payment if not has_checkout(p)]
+    spec_ready_total = len({p.get("slug") for p in [*external_spec_ready, *spec_ready_inside_active] if p.get("slug")})
+
+    return {
+        "cycle": state.get("cycle"),
+        "mode": state.get("mode"),
+        "balance": state.get("balance"),
+        "active_count": len(active),
+        "live_count": len(live),
+        "healthy_count": sum(1 for p in live if is_healthy(p)),
+        "unhealthy_count": len(unhealthy_live),
+        "checkout_gap_count": len(checkout_gap_live),
+        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live),
+        "spec_ready_count": spec_ready_total,
+        "next_action": state.get("next_action"),
+        "vercel_auth_issue": state.get("vercel_auth_issue"),
+        "last_updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "products": [compact_product(p) for p in active],
+        "gaps": {
+            "missing_url": [p.get("slug") for p in products_without_url],
+            "unhealthy_live": [
+                {
+                    "slug": p.get("slug"),
+                    "url": p.get("vercel_url"),
+                    "code": health_code(p),
+                    "health_status": p.get("health_status"),
+                }
+                for p in unhealthy_live
+            ],
+            "missing_checkout": [p.get("slug") for p in checkout_gap_live],
+        },
+    }
+
+
+def main() -> int:
+    state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    summary = build_summary(state)
+    SUMMARY_FILE.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(
+        "STATE_SUMMARY.json updated: "
+        f"active={summary['active_count']} live={summary['live_count']} "
+        f"healthy={summary['healthy_count']} checkout_gaps={summary['checkout_gap_count']} "
+        f"deploy_gaps={summary['deploy_missing_or_bad_url']}"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
