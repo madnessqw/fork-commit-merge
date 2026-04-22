@@ -1,18 +1,18 @@
 {
-  "cycle": 1088,
+  "cycle": 1090,
   "mode": "BUILD",
   "balance": 0.0,
-  "active_count": 143,
-  "live_count": 81,
-  "healthy_count": 79,
-  "unhealthy_count": 2,
+  "active_count": 144,
+  "live_count": 82,
+  "healthy_count": 78,
+  "unhealthy_count": 4,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 7,
+  "deploy_missing_or_bad_url": 9,
   "canonical_url_drift": 0,
   "spec_ready_count": 14,
   "next_action": "wait_for_vercel_limit_reset",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T09:06:39.283194Z",
+  "last_updated": "2026-04-22T09:43:36.701623Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1014,6 +1014,13 @@
       "st": "ready_for_payment",
       "v": "https://yaml-json-converter.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/07dbcaad-a466-444f-8716-9ad1bd27197b"
+    },
+    {
+      "n": "API Mock Generator",
+      "s": "api-mock-generator",
+      "st": "live",
+      "v": "https://api-mock-generator.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
     }
   ],
   "gaps": {
@@ -1025,6 +1032,13 @@
       "agent-prompt-engineer"
     ],
     "unhealthy_live": [
+      {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator.vercel.app",
+        "code": 0,
+        "health_status": "timeout",
+        "probe_url": "https://jwt-generator.vercel.app"
+      },
       {
         "slug": "pdf-forge",
         "url": "https://pdf-forge.vercel.app",
@@ -1038,6 +1052,13 @@
         "code": 401,
         "health_status": "unauthorized",
         "probe_url": "https://diffmaster.vercel.app"
+      },
+      {
+        "slug": "html-entity-encoder",
+        "url": "https://html-entity-encoder.vercel.app",
+        "code": 0,
+        "health_status": "timeout",
+        "probe_url": "https://html-entity-encoder.vercel.app"
       }
     ],
     "missing_checkout": [],

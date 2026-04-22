@@ -115,6 +115,20 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["v"], "https://uuid-generator-pro.vercel.app")
         self.assertEqual(health_check_url(merged), "https://uuid-generator-pro.vercel.app")
 
+    def test_live_preview_alias_without_health_promotes_canonical_slug(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "api-mock-generator",
+                "status": "live",
+                "vercel_url": "https://api-mock-generator-m7lonmii3-madnessqws-projects.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://api-mock-generator.vercel.app")
+        self.assertEqual(merged["v"], "https://api-mock-generator.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://api-mock-generator.vercel.app")
+
     def test_state_canonical_alias_beats_manifest_preview_hash(self) -> None:
         merged = merge_product_record(
             {

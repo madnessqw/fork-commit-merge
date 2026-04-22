@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +72,28 @@ def normalize_url(value: Any) -> str | None:
     if url is None:
         return None
     return url.rstrip("/")
+
+
+def _url_hostname(value: Any) -> str | None:
+    url = normalize_url(value)
+    if url is None:
+        return None
+    hostname = urlparse(url).hostname
+    if hostname is None:
+        return None
+    return hostname.lower()
+
+
+def _is_vercel_preview_alias(url: Any, slug: str | None) -> bool:
+    host = _url_hostname(url)
+    if host is None or not host.endswith(".vercel.app"):
+        return False
+
+    canonical_host = _url_hostname(canonical_vercel_url(slug))
+    if canonical_host is None:
+        return False
+
+    return host != canonical_host
 
 
 def _record_key(record: dict[str, Any]) -> str | None:
@@ -258,6 +281,20 @@ def choose_public_vercel_url(
 
     if normalized_status == "live":
         original_state_status = _clean_text(state_status)
+        if canonical_url is not None and normalized_health_url is None:
+            for candidate in (normalized_state_url, normalized_deployment_url, normalized_manifest_url):
+                if candidate is None:
+                    continue
+                candidate_host = _url_hostname(candidate)
+                if candidate_host is None:
+                    continue
+                if not candidate_host.endswith(".vercel.app"):
+                    return candidate
+            if any(
+                _is_vercel_preview_alias(candidate, slug)
+                for candidate in (normalized_state_url, normalized_deployment_url, normalized_manifest_url)
+            ):
+                return canonical_url
         if (
             canonical_url is not None
             and original_state_status in PRE_DEPLOY_STATUSES
