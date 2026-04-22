@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.product_state_sync import health_check_url, merge_product_record
+from scripts.product_state_sync import health_check_url, merge_product_record, sync_state_snapshot
 
 
 class ProductStateSyncTests(unittest.TestCase):
@@ -241,6 +241,33 @@ class ProductStateSyncTests(unittest.TestCase):
             ),
             "https://webhook-tester.vercel.app",
         )
+
+    def test_sync_state_snapshot_reconciles_stale_compact_public_url(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Webhook Tester",
+                        "slug": "webhook-tester",
+                        "status": "live",
+                        "vercel_url": "https://webhook-tester.vercel.app",
+                        "v": "https://webhook-tester-beryl.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://webhook-tester-beryl.vercel.app",
+                    }
+                ],
+                "spec_ready": [],
+            }
+        }
+
+        synced = sync_state_snapshot(state)
+        product = synced["products"]["active"][0]
+
+        self.assertEqual(product["vercel_url"], "https://webhook-tester.vercel.app")
+        self.assertEqual(product["v"], "https://webhook-tester.vercel.app")
+        self.assertEqual(product["last_health_url"], "https://webhook-tester-beryl.vercel.app")
+        self.assertEqual(product["health_status"], "alternate_healthy")
 
 
 if __name__ == "__main__":

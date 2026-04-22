@@ -358,6 +358,25 @@ def sync_state_products(
     return synced
 
 
+def sync_state_snapshot(
+    state: dict[str, Any],
+    product_catalog: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Return a normalized copy of STATE with synced product records."""
+    synced_state = dict(state)
+    products = state.get("products")
+
+    if isinstance(products, dict):
+        synced_products = dict(products)
+        synced_products["active"] = sync_state_products(products.get("active", []), product_catalog)
+        synced_products["spec_ready"] = sync_state_products(products.get("spec_ready", []), product_catalog)
+        synced_state["products"] = synced_products
+    elif isinstance(products, list):
+        synced_state["products"] = sync_state_products(products, product_catalog)
+
+    return synced_state
+
+
 def health_check_url(product: dict[str, Any]) -> str | None:
     status = _clean_text(_pick(product, "status", "st"))
     if status not in HEALTH_CHECKABLE_STATUSES:

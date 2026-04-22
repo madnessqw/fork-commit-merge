@@ -1,5 +1,5 @@
 {
-  "cycle": 1085,
+  "cycle": 1086,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 143,
@@ -7,12 +7,12 @@
   "healthy_count": 79,
   "unhealthy_count": 3,
   "checkout_gap_count": 1,
-  "deploy_missing_or_bad_url": 11,
+  "deploy_missing_or_bad_url": 9,
   "canonical_url_drift": 0,
-  "spec_ready_count": 17,
+  "spec_ready_count": 15,
   "next_action": "wait_for_vercel_limit_reset_then_deploy",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T07:43:13.391321Z",
+  "last_updated": "2026-04-22T08:12:23.866161Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -899,7 +899,7 @@
     {
       "n": "Docker Compose Builder",
       "s": "docker-compose-builder",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -941,7 +941,7 @@
     {
       "n": "API Security Scanner",
       "s": "api-security-scanner",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -1018,11 +1018,9 @@
   ],
   "gaps": {
     "missing_url": [
-      "docker-compose-builder",
       "code-screenshot-beautifier",
       "json-schema-to-ts",
       "mcp-inspector-pro",
-      "api-security-scanner",
       "mcp-server-scaffolder",
       "browser-use-studio",
       "agent-prompt-engineer"

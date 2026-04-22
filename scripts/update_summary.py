@@ -24,6 +24,7 @@ from scripts.product_state_sync import (
     canonical_target_vercel_url,
     display_vercel_url,
     load_product_catalog,
+    sync_state_snapshot,
     sync_state_products,
 )
 
@@ -33,6 +34,20 @@ SUMMARY_FILE = ROOT / "STATE_SUMMARY.json"
 
 
 PRODUCT_IDENTITY_FIELDS = ("name", "slug", "status", "vercel_url", "checkout_url")
+SUMMARY_STATE_FIELDS = (
+    "active_count",
+    "live_count",
+    "healthy_count",
+    "unhealthy_count",
+    "checkout_gap_count",
+    "missing_checkout",
+    "deploy_missing_or_bad_url",
+    "canonical_url_drift",
+    "canonical_url_drift_products",
+    "spec_ready_count",
+    "needs_fix_count",
+    "last_updated",
+)
 
 
 def _has_value(value: Any) -> bool:
@@ -181,6 +196,17 @@ def compact_product(product: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def apply_summary_fields(state: dict[str, Any], summary: dict[str, Any]) -> dict[str, Any]:
+    for field in SUMMARY_STATE_FIELDS:
+        if field == "missing_checkout":
+            state[field] = summary["checkout_gap_count"]
+        elif field == "needs_fix_count":
+            state[field] = summary["unhealthy_count"]
+        else:
+            state[field] = summary[field]
+    return state
+
+
 def build_summary(
     state: dict[str, Any],
     *,
@@ -248,13 +274,19 @@ def build_summary(
     }
 
 
-def persist_summary(summary: dict[str, Any], *, summary_file: Path = SUMMARY_FILE) -> None:
+def persist_summary(summary: dict[str, Any], *, summary_file: Path | None = None) -> None:
+    if summary_file is None:
+        summary_file = SUMMARY_FILE
     summary_file.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def main() -> int:
+    product_catalog = load_product_catalog()
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    summary = build_summary(state, product_catalog=load_product_catalog())
+    state = sync_state_snapshot(state, product_catalog=product_catalog)
+    summary = build_summary(state, product_catalog=product_catalog)
+    state = apply_summary_fields(state, summary)
+    STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     persist_summary(summary)
     print(
         "STATE_SUMMARY.json updated: "

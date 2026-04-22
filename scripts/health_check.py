@@ -16,7 +16,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.product_state_sync import health_check_url, load_product_catalog, sync_state_products
-from scripts.update_summary import build_summary, persist_summary
+from scripts.product_state_sync import sync_state_snapshot
+from scripts.update_summary import apply_summary_fields, build_summary, persist_summary
 
 
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
@@ -163,23 +164,12 @@ def main():
             if p.get('slug') == result['slug'] or p.get('s') == result['slug']:
                 apply_health_result(p, result)
 
-    summary = build_summary(state, product_catalog=load_product_catalog())
+    product_catalog = load_product_catalog()
+    state = sync_state_snapshot(state, product_catalog=product_catalog)
+    summary = build_summary(state, product_catalog=product_catalog)
 
     # Save state
-    state['active_count'] = summary['active_count']
-    state['live_count'] = summary['live_count']
-    state['healthy_count'] = summary['healthy_count']
-    state['unhealthy_count'] = summary['unhealthy_count']
-    state['checkout_gap_count'] = summary['checkout_gap_count']
-    state['missing_checkout'] = summary['checkout_gap_count']
-    state['deploy_missing_or_bad_url'] = summary['deploy_missing_or_bad_url']
-    state['canonical_url_drift'] = summary['canonical_url_drift']
-    state['canonical_url_drift_products'] = summary['canonical_url_drift_products']
-    state['spec_ready_count'] = summary['spec_ready_count']
-    # `build_summary()` now treats canonical drift as part of live health, so the
-    # fix count is the unhealthy live set. No double-counting the same drift twice.
-    state['needs_fix_count'] = summary['unhealthy_count']
-    state['last_updated'] = summary['last_updated']
+    state = apply_summary_fields(state, summary)
 
     with open('STATE.json', 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2, ensure_ascii=False)

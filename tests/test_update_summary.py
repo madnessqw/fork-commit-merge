@@ -2,7 +2,9 @@ import json
 import tempfile
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
+from scripts import update_summary
 from scripts.update_summary import build_summary, is_placeholder_product, normalize_product, persist_summary
 
 
@@ -261,6 +263,54 @@ class UpdateSummaryTests(unittest.TestCase):
 
         self.assertEqual(summary["products"][0]["st"], "ready_to_deploy")
         self.assertIsNone(summary["products"][0]["v"])
+
+    def test_main_persists_normalized_state_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            state_file = tmp_path / "STATE.json"
+            summary_file = tmp_path / "STATE_SUMMARY.json"
+            state_file.write_text(
+                json.dumps(
+                    {
+                        "cycle": 999,
+                        "mode": "BUILD",
+                        "balance": 0,
+                        "products": {
+                            "active": [
+                                {
+                                    "name": "Temporary Tool",
+                                    "slug": "temporary-tool",
+                                    "status": "live",
+                                    "vercel_url": "https://temporary-tool.vercel.app",
+                                    "v": "https://temporary-tool-preview.vercel.app",
+                                    "health_status": "alternate_healthy",
+                                    "last_health_code": 200,
+                                    "last_health_url": "https://temporary-tool-preview.vercel.app",
+                                }
+                            ],
+                            "spec_ready": [],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with patch.object(update_summary, "STATE_FILE", state_file), patch.object(
+                update_summary, "SUMMARY_FILE", summary_file
+            ), patch.object(update_summary, "load_product_catalog", return_value={}):
+                exit_code = update_summary.main()
+
+            self.assertEqual(exit_code, 0)
+
+            synced_state = json.loads(state_file.read_text(encoding="utf-8"))
+            synced_summary = json.loads(summary_file.read_text(encoding="utf-8"))
+
+            self.assertEqual(synced_state["canonical_url_drift"], 0)
+            self.assertEqual(synced_state["canonical_url_drift_products"], [])
+            self.assertEqual(synced_state["products"]["active"][0]["vercel_url"], "https://temporary-tool.vercel.app")
+            self.assertEqual(synced_state["products"]["active"][0]["v"], "https://temporary-tool.vercel.app")
+            self.assertEqual(synced_summary["canonical_url_drift"], 0)
+            self.assertEqual(synced_summary["products"][0]["v"], "https://temporary-tool.vercel.app")
 
     def test_canonical_url_drift_is_reported_from_ideal_url(self) -> None:
         state = {
