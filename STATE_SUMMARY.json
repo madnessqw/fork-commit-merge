@@ -7,12 +7,12 @@
   "healthy_count": 78,
   "unhealthy_count": 4,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 9,
+  "deploy_missing_or_bad_url": 8,
   "canonical_url_drift": 0,
-  "spec_ready_count": 14,
+  "spec_ready_count": 13,
   "next_action": "wait_for_vercel_limit_reset",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T09:43:36.701623Z",
+  "last_updated": "2026-04-22T10:07:00.259396Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -920,9 +920,9 @@
     {
       "n": "Code Screenshot Beautifier",
       "s": "code-screenshot-beautifier",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/code-screenshot-beautifier"
     },
     {
       "n": "JSON Schema to TypeScript",
@@ -1025,7 +1025,6 @@
   ],
   "gaps": {
     "missing_url": [
-      "code-screenshot-beautifier",
       "json-schema-to-ts",
       "mcp-server-scaffolder",
       "browser-use-studio",

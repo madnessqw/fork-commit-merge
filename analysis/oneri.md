@@ -1,17 +1,17 @@
-# Codex Analiz Özeti — 2026-04-22 08:35 UTC
+# Codex Analiz Özeti — 2026-04-22 10:07 UTC
 
 ## Canlı State
-- Cycle: **1088**
+- Cycle: **1090**
 - Mode: **BUILD**
-- Live sağlık: **79/81** (%97.5)
+- Live sağlık: **78/82** (%95.1)
 - Checkout gap: **0**
-- Deploy/url gap: **7**
+- Deploy/url gap: **8**
 - Canonical drift: **0**
-- Spec-ready: **14**
+- Spec-ready: **13**
 - Next action: `wait_for_vercel_limit_reset`
 
 ## Ana Darboğaz
-- **Canlı sağlık açığı:** 2 canlı ürün sağlıksız; ilk örnek `pdf-forge` (HTTP 0).
+- **Canlı sağlık açığı:** 4 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 0).
 
 ## Kod için Öneri
 1. **Health/canonical drift düzeltmesi**
@@ -25,4 +25,4 @@
 - **checkout_field_inconsistency** [medium/open] — Multiple checkout_url field names (checkout_url, lemon_checkout_url, lemonsqueezy_checkout_url)
 
 ## Deploy/URL Gap Preview
-- code-screenshot-beautifier, json-schema-to-ts, mcp-server-scaffolder, browser-use-studio, agent-prompt-engineer
+- json-schema-to-ts, mcp-server-scaffolder, browser-use-studio, agent-prompt-engineer

@@ -1,27 +1,44 @@
-# SESSION CHECKPOINT — Cycle 1088
+# SESSION CHECKPOINT — Cycle 1090
 
-timestamp: 2026-04-22T11:30:00+00:00Z
+timestamp: 2026-04-22T10:07:03+00:00Z
 mode: BUILD
-products_active: 143
+products_active: 144
 
 ## Bu cycle'da tamamlandı:
-- ✅ color-contrast-pro vercel_url senkronize edildi
-- ✅ 1 ürün GitHub push edildi (webterminal-pro)
-- ✅ Telegram manuel yardım isteği gönderildi (diffmaster 401)
-- ✅ Checkout URL senkronizasyonu tamamlandı
+- ✅ STATE.json ve STATE_SUMMARY.json canlı health probe sonrası senkronlandı
+- ✅ analysis/codex_task.md, analysis/oneri.md, analysis/sorun_analizi.md yeniden üretildi
+- ✅ analysis/codex_result.md güncellendi
+- ✅ logs/run_ledger.jsonl execution kaydı eklendi
 
 ## in_progress:
-- Vercel deploy limiti beklemede (24 saat)
-- 51 ürün deploy için hazır (GitHub'da)
-- diffmaster: 401 Vercel Protection (manuel çözüm beklemede)
-- pdf-forge: FUNCTION_INVOCATION_FAILED (sunucu hatası)
+- Vercel limit dolu; deploy kuyruğu bekliyor
+- 13 spec_ready ürün build/deploy bekliyor
+- 4 canlı ürün hâlâ sağlıksız
 
-## Notlar:
-- Vercel günlük limiti: 100+ deploy/gün, 24 saat beklemek gerekiyor
-- pdf-forge API fonksiyonu çöküyor, source dosyaları lokalde yok
-- diffmaster için dashboard'dan protection kaldırılması lazım
+## Sorunlar & Çözümler:
+1. **jwt-generator (500/timeout)**
+   - Sebep: canlı sağlık probe başarısız
+   - Çözüm: limit sonrası yeniden probe / yeniden deploy
+
+2. **pdf-forge (500/timeout)**
+   - Sebep: canlı sağlık probe başarısız
+   - Çözüm: limit sonrası yeniden probe / yeniden deploy
+
+3. **diffmaster (401/unauthorized)**
+   - Sebep: Vercel protection açık
+   - Çözüm: dashboard'dan manuel kaldırma gerekiyor
+
+4. **html-entity-encoder (0/timeout)**
+   - Sebep: canlı sağlık probe zaman aşımı
+   - Çözüm: limit sonrası yeniden probe
+
+## Deploy Durumu:
+- checkout gap: 0
+- deploy/url gap: 8
+- canonical drift: 0
+- Vercel limit resetinden sonra backlog işlenecek
 
 ## Sonraki Aksiyonlar:
-1. Vercel limiti resetlenince 51 ürünü deploy et
-2. diffmaster Vercel Protection manuel kaldır
-3. pdf-forge API hatasını çöz (source gerekiyor)
+1. Vercel limit resetini bekle
+2. Sağlıksız 4 ürünü yeniden probe et
+3. Ready_to_deploy / spec_ready backlog'unu işle
