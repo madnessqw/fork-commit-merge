@@ -269,6 +269,31 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(product["last_health_url"], "https://webhook-tester-beryl.vercel.app")
         self.assertEqual(product["health_status"], "alternate_healthy")
 
+    def test_sync_state_snapshot_without_manifest_promotes_canonical_health_url(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Orphan Tool",
+                        "slug": "orphan-tool",
+                        "status": "live",
+                        "vercel_url": "https://orphan-tool-rose.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://orphan-tool.vercel.app",
+                    }
+                ],
+                "spec_ready": [],
+            }
+        }
+
+        synced = sync_state_snapshot(state, product_catalog={})
+        product = synced["products"]["active"][0]
+
+        self.assertEqual(product["vercel_url"], "https://orphan-tool.vercel.app")
+        self.assertEqual(product["v"], "https://orphan-tool.vercel.app")
+        self.assertEqual(product["last_health_url"], "https://orphan-tool.vercel.app")
+
 
 if __name__ == "__main__":
     unittest.main()

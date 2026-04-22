@@ -179,6 +179,32 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
         self.assertEqual(summary["products"][0]["v"], "https://table-to-csv.vercel.app")
 
+    def test_missing_product_catalog_still_promotes_canonical_health_url(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Orphan Tool",
+                        "slug": "orphan-tool",
+                        "status": "live",
+                        "vercel_url": "https://orphan-tool-rose.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://orphan-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state, product_catalog={})
+
+        self.assertEqual(summary["live_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://orphan-tool.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+
     def test_product_catalog_preview_hash_without_state_url_uses_canonical_display(self) -> None:
         state = {
             "products": {

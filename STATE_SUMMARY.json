@@ -1,18 +1,18 @@
 {
-  "cycle": 1086,
+  "cycle": 1088,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 143,
-  "live_count": 82,
+  "live_count": 81,
   "healthy_count": 79,
-  "unhealthy_count": 3,
-  "checkout_gap_count": 1,
-  "deploy_missing_or_bad_url": 9,
+  "unhealthy_count": 2,
+  "checkout_gap_count": 0,
+  "deploy_missing_or_bad_url": 7,
   "canonical_url_drift": 0,
-  "spec_ready_count": 15,
-  "next_action": "wait_for_vercel_limit_reset_then_deploy",
+  "spec_ready_count": 14,
+  "next_action": "wait_for_vercel_limit_reset",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T08:12:23.866161Z",
+  "last_updated": "2026-04-22T08:35:01.550754Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -913,9 +913,9 @@
     {
       "n": "Git Diff Visualizer",
       "s": "git-diff-visualizer",
-      "st": "live",
+      "st": "ready_for_payment",
       "v": "https://git-diff-visualizer.vercel.app",
-      "c": null
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/git-diff-viz-001"
     },
     {
       "n": "Code Screenshot Beautifier",
@@ -934,7 +934,7 @@
     {
       "n": "MCP Inspector Pro",
       "s": "mcp-inspector-pro",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -1020,7 +1020,6 @@
     "missing_url": [
       "code-screenshot-beautifier",
       "json-schema-to-ts",
-      "mcp-inspector-pro",
       "mcp-server-scaffolder",
       "browser-use-studio",
       "agent-prompt-engineer"
@@ -1039,17 +1038,9 @@
         "code": 401,
         "health_status": "unauthorized",
         "probe_url": "https://diffmaster.vercel.app"
-      },
-      {
-        "slug": "git-diff-visualizer",
-        "url": "https://git-diff-visualizer.vercel.app",
-        "code": null,
-        "health_status": null
       }
     ],
-    "missing_checkout": [
-      "git-diff-visualizer"
-    ],
+    "missing_checkout": [],
     "canonical_url_drift": []
   },
   "canonical_url_drift_products": []

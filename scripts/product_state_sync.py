@@ -141,28 +141,17 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
 
 def resolved_public_vercel_url(record: dict[str, Any]) -> str | None:
-    status = _clean_text(_pick(record, "status", "st"))
-    if status in PRE_DEPLOY_STATUSES:
-        return None
-    current_url = normalize_url(_pick(record, "vercel_url", "v"))
-    deployment_url = normalize_url(_pick(record, "deployment_url"))
-    manifest_url = normalize_url(_pick(record, "ideal_vercel_url"))
-
-    if status != "live":
-        return current_url or deployment_url or manifest_url
-
-    health_url = successful_health_url(record)
-    canonical_url = canonical_target_vercel_url(record)
-    candidates = (
-        current_url,
-        deployment_url,
-        health_url,
+    return choose_public_vercel_url(
+        slug=_pick(record, "slug", "s"),
+        state_status=_pick(record, "status", "st"),
+        state_url=_pick(record, "vercel_url", "v"),
+        manifest_url=None,
+        deployment_url=_pick(record, "deployment_url"),
+        status=_pick(record, "status", "st"),
+        health_status=_pick(record, "health_status"),
+        last_health_code=_pick(record, "last_health_code"),
+        health_url=successful_health_url(record),
     )
-
-    if canonical_url is not None and canonical_url in candidates:
-        return canonical_url
-
-    return current_url or deployment_url or health_url or canonical_url
 
 
 def display_vercel_url(record: dict[str, Any]) -> str | None:
