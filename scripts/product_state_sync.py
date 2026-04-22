@@ -206,4 +206,8 @@ def sync_state_products(
 
 
 def health_check_url(product: dict[str, Any]) -> str | None:
+    status = _clean_text(_pick(product, "status", "st"))
+    ideal_url = normalize_url(_pick(product, "ideal_vercel_url"))
+    if status in HEALTH_CHECKABLE_STATUSES and ideal_url is not None:
+        return ideal_url
     return normalize_url(_pick(product, "vercel_url", "v", "deployment_url"))

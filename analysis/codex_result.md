@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 01:09 UTC
+# Codex Result — 2026-04-22 04:39 Europe/Istanbul
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -7,48 +7,34 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
+- `scripts/product_state_sync.py`
 - `scripts/health_check.py`
 - `scripts/update_summary.py`
-- `scripts/refresh_codex_context.py`
 - `tests/test_health_check.py`
-- `tests/test_update_summary.py`
 - `tests/test_product_state_sync.py`
-- `tests/test_refresh_codex_context.py`
+- `tests/test_update_summary.py`
 
 ## Seçilen Darboğaz
-- Asıl bug, health check’in fallback URL 200 verdiğinde ürünü `healthy` sayıp public canonical URL drift’ini maskelemesiydi.
-- Bu, canonical/public URL kırıkken alias çalışıyorsa sistemi “iyiymiş” gibi gösteriyordu. Aptalca ama düzeltildi.
+- Sağlık kontrolü, explicit `ideal_vercel_url` varken bile mevcut `vercel_url`/alias üzerinden probe atabiliyordu.
+- Bu da canonical hedefi olan ürünü stale URL ile “sağlıklı” gibi gösterebilirdi. Kısacası maskeleme vardı.
 
 ## Yapılan Değişiklikler
-- `scripts/health_check.py`
-  - Primary URL 200 ise `healthy`, fallback URL 200 ise `alternate_healthy` döndürüyor.
-  - Healthy branch public `vercel_url`’ı koruyor; fallback probe artık public URL’yi overwrite etmiyor.
-  - `last_health_url` kaydediliyor.
-  - Konsol çıktısı fallback başarılarını warning olarak işaretliyor.
-- `scripts/update_summary.py`
-  - Health sayımı artık `health_status == healthy` **ve** `last_health_code == 200` istiyor.
-  - Unhealthy gap satırları `probe_url` ile zenginleştirildi.
-- `scripts/refresh_codex_context.py`
-  - `probe_url` varsa `analysis/sorun_analizi.md` içinde görünür oldu.
-- Testler
-  - Yeni `tests/test_health_check.py` eklendi.
-  - `tests/test_update_summary.py`’e fallback-healthy drift testi eklendi.
+- `scripts/product_state_sync.py`
+  - `health_check_url()` artık `live` / `ready_for_payment` ürünlerde önce `ideal_vercel_url` kullanıyor.
+  - Böylece health check canonical hedefi probe ediyor; alias sadece fallback oluyor.
+- `tests/test_health_check.py`
+  - Yeni regresyon testi eklendi: ideal URL, stale alias’tan önce probe ediliyor.
+  - Test, probe sırasını URL seviyesinde doğruluyor.
 
 ## Sonuç / Etki
-- Public URL ile health probe URL’sini birbirine karıştıran maskeleme kapandı.
-- Current live state’te fallback-healthy örneği çıkmadı; halen sadece `pdf-forge` (HTTP 500) ve `diffmaster` (HTTP 401) unhealthy.
-- `STATE_SUMMARY.json` güncellendi ve live özet yine `75/77` healthy kaldı.
-- `STATE.json` artık health probe provenance için `last_health_url` taşıyor.
+- `health_check.py` artık explicit canonical hedefi varsa onu önce yokluyor.
+- Sağlık sonucu başarılıysa state de canonical URL’ye doğru senkronlanıyor; fallback alias artık canonical’ı gölgelemiyor.
+- Mevcut canlı blokajlar değişmedi: `pdf-forge` hâlâ HTTP 500, `diffmaster` hâlâ HTTP 401.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/health_check.py scripts/update_summary.py scripts/refresh_codex_context.py tests/test_health_check.py tests/test_update_summary.py`
-- `PYTHONPATH=. python3 -m unittest discover -s tests -p 'test_health_check.py'`
-- `PYTHONPATH=. python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- `PYTHONPATH=. python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
-- `PYTHONPATH=. python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py'`
-- `python3 scripts/health_check.py` → 86 healthy / 2 unhealthy probeable item, exit 1 beklenen
-- `python3 scripts/update_summary.py`
-- `python3 scripts/refresh_codex_context.py`
+- `python3 -m py_compile scripts/product_state_sync.py scripts/health_check.py tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_checkout_metadata.py`
+- `PYTHONPATH=. python3 -m pytest -q tests/test_product_state_sync.py tests/test_health_check.py tests/test_update_summary.py tests/test_checkout_metadata.py`
+- Sonuç: `22 passed`
 
 ## Kalan Blokajlar
 - `pdf-forge` canonical URL `https://pdf-forge.vercel.app` HTTP 500 dönüyor.
