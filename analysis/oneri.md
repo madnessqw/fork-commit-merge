@@ -1,17 +1,17 @@
-# Codex Analiz Özeti — 2026-04-22 03:42 UTC
+# Codex Analiz Özeti — 2026-04-22 04:06 UTC
 
 ## Canlı State
 - Cycle: **1077**
 - Mode: **BUILD**
-- Live sağlık: **73/79** (%92.4)
-- Checkout gap: **1**
-- Deploy/url gap: **20**
+- Live sağlık: **78/80** (%97.5)
+- Checkout gap: **0**
+- Deploy/url gap: **18**
 - Canonical drift: **4**
-- Spec-ready: **23**
+- Spec-ready: **21**
 - Next action: `vercel_limit_wait_deploy_pending`
 
 ## Ana Darboğaz
-- **Canlı sağlık açığı:** 6 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 200).
+- **Canlı sağlık açığı:** 2 canlı ürün sağlıksız; ilk örnek `pdf-forge` (HTTP 0).
 
 ## Kod için Öneri
 1. **Health/canonical drift düzeltmesi**

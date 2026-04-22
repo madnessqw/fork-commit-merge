@@ -151,13 +151,11 @@ def health_code(product: dict[str, Any]) -> int | None:
 
 
 def is_healthy(product: dict[str, Any]) -> bool:
-    # A live product is only healthy when the last probe was 200 *and* the public URL
-    # already matches canonical reality. Preview-alias-only records stay in the "needs fix"
-    # bucket so summary numbers do not lie about canonical drift.
-    return (
-        product.get("health_status") == "healthy"
-        and health_code(product) == 200
-        and canonical_url_drift_entry(product) is None
+    # Healthy means the last HTTP probe returned 200. Canonical drift is still tracked
+    # separately so URL misalignment does not get smuggled into the outage count.
+    status = _pick(product, "health_status")
+    return health_code(product) == 200 and (
+        status is None or status in {"healthy", "alternate_healthy"}
     )
 
 
@@ -217,7 +215,9 @@ def build_summary(
         "healthy_count": sum(1 for p in live if is_healthy(p)),
         "unhealthy_count": len(unhealthy_live),
         "checkout_gap_count": len(checkout_gap_live),
-        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live),
+        # Deploy/URL gaps include live outage records plus canonical drift so we keep
+        # the canonical target visible without inflating the outage bucket itself.
+        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live) + len(canonical_drift_live),
         "canonical_url_drift": len(canonical_drift_live),
         "spec_ready_count": spec_ready_total,
         "next_action": state.get("next_action"),

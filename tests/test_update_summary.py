@@ -219,21 +219,12 @@ class UpdateSummaryTests(unittest.TestCase):
 
         summary = build_summary(state)
 
-        self.assertEqual(summary["healthy_count"], 0)
-        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 1)
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["diffmaster"])
-        self.assertEqual(
-            summary["gaps"]["unhealthy_live"],
-            [
-                {
-                    "slug": "diffmaster",
-                    "url": "https://diffmaster-rose.vercel.app",
-                    "code": 200,
-                    "health_status": "healthy",
-                }
-            ],
-        )
+        self.assertEqual(summary["gaps"]["unhealthy_live"], [])
         self.assertEqual(
             summary["gaps"]["canonical_url_drift"],
             [
@@ -263,21 +254,12 @@ class UpdateSummaryTests(unittest.TestCase):
 
         summary = build_summary(state)
 
-        self.assertEqual(summary["healthy_count"], 0)
-        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 1)
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["webhook-tester"])
-        self.assertEqual(
-            summary["gaps"]["unhealthy_live"],
-            [
-                {
-                    "slug": "webhook-tester",
-                    "url": "https://webhook-tester-beryl.vercel.app",
-                    "code": 200,
-                    "health_status": "healthy",
-                }
-            ],
-        )
+        self.assertEqual(summary["gaps"]["unhealthy_live"], [])
         self.assertEqual(
             summary["gaps"]["canonical_url_drift"],
             [
@@ -289,7 +271,7 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
-    def test_alternate_healthy_counts_as_unhealthy_and_keeps_probe_url(self) -> None:
+    def test_alternate_healthy_counts_as_healthy_when_public_url_is_canonical(self) -> None:
         state = {
             "products": {
                 "active": [
@@ -308,20 +290,10 @@ class UpdateSummaryTests(unittest.TestCase):
 
         summary = build_summary(state)
 
-        self.assertEqual(summary["healthy_count"], 0)
-        self.assertEqual(summary["unhealthy_count"], 1)
-        self.assertEqual(
-            summary["gaps"]["unhealthy_live"],
-            [
-                {
-                    "slug": "fallback-tool",
-                    "url": "https://fallback-tool.vercel.app",
-                    "code": 200,
-                    "health_status": "alternate_healthy",
-                    "probe_url": "https://fallback-tool-preview.vercel.app",
-                }
-            ],
-        )
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
+        self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
