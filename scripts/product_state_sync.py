@@ -190,6 +190,7 @@ def load_product_catalog(products_dir: Path = PRODUCTS_DIR) -> dict[str, dict[st
 def choose_public_vercel_url(
     *,
     slug: str | None,
+    state_status: str | None = None,
     state_url: Any,
     manifest_url: Any,
     deployment_url: Any = None,
@@ -229,6 +230,14 @@ def choose_public_vercel_url(
                 return canonical_url
 
     if normalized_status == "live":
+        original_state_status = _clean_text(state_status)
+        if (
+            canonical_url is not None
+            and original_state_status in PRE_DEPLOY_STATUSES
+            and normalized_health_url is None
+            and normalized_state_url is None
+        ):
+            return canonical_url
         return (
             normalized_state_url
             or normalized_deployment_url
@@ -244,8 +253,10 @@ def merge_product_record(
     state_record: dict[str, Any],
     manifest_record: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    source_state = normalize_record(state_record)
+    source_state_status = source_state.get("status")
     merged = normalize_checkout_metadata(
-        normalize_record(state_record),
+        source_state,
         force_canonical_key=True,
         prune_legacy=True,
     )
@@ -288,6 +299,7 @@ def merge_product_record(
         merged["last_health_url"] = manifest_last_health_url
     merged["vercel_url"] = choose_public_vercel_url(
         slug=merged.get("slug"),
+        state_status=source_state_status,
         state_url=merged.get("vercel_url"),
         manifest_url=manifest.get("vercel_url"),
         deployment_url=merged.get("deployment_url"),

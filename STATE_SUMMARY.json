@@ -1,24 +1,24 @@
 {
-  "cycle": 1083,
+  "cycle": 1085,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 143,
-  "live_count": 81,
+  "live_count": 82,
   "healthy_count": 79,
-  "unhealthy_count": 2,
-  "checkout_gap_count": 0,
+  "unhealthy_count": 3,
+  "checkout_gap_count": 1,
   "deploy_missing_or_bad_url": 11,
-  "canonical_url_drift": 1,
-  "spec_ready_count": 18,
-  "next_action": "continue_deployment_after_limit_reset",
+  "canonical_url_drift": 0,
+  "spec_ready_count": 17,
+  "next_action": "wait_for_vercel_limit_reset_then_deploy",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T06:42:01.386360Z",
+  "last_updated": "2026-04-22T07:43:13.391321Z",
   "products": [
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator-pro",
       "st": "live",
-      "v": "https://uuid-generator-glm6h3i1l-madnessqws-projects.vercel.app",
+      "v": "https://uuid-generator-pro.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/87fd590f-48b7-48de-9555-0d59faeb8e21"
     },
     {
@@ -913,8 +913,8 @@
     {
       "n": "Git Diff Visualizer",
       "s": "git-diff-visualizer",
-      "st": "spec_ready",
-      "v": null,
+      "st": "live",
+      "v": "https://git-diff-visualizer.vercel.app",
       "c": null
     },
     {
@@ -1019,7 +1019,6 @@
   "gaps": {
     "missing_url": [
       "docker-compose-builder",
-      "git-diff-visualizer",
       "code-screenshot-beautifier",
       "json-schema-to-ts",
       "mcp-inspector-pro",
@@ -1042,18 +1041,18 @@
         "code": 401,
         "health_status": "unauthorized",
         "probe_url": "https://diffmaster.vercel.app"
+      },
+      {
+        "slug": "git-diff-visualizer",
+        "url": "https://git-diff-visualizer.vercel.app",
+        "code": null,
+        "health_status": null
       }
     ],
-    "missing_checkout": [],
-    "canonical_url_drift": [
-      {
-        "slug": "uuid-generator-pro",
-        "url": "https://uuid-generator-glm6h3i1l-madnessqws-projects.vercel.app",
-        "ideal_url": "https://uuid-generator-pro.vercel.app"
-      }
-    ]
+    "missing_checkout": [
+      "git-diff-visualizer"
+    ],
+    "canonical_url_drift": []
   },
-  "canonical_url_drift_products": [
-    "uuid-generator-pro"
-  ]
+  "canonical_url_drift_products": []
 }

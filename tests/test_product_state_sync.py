@@ -94,6 +94,27 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["vercel_url"], "https://table-to-csv.vercel.app")
         self.assertEqual(health_check_url(merged), "https://table-to-csv.vercel.app")
 
+    def test_live_manifest_preview_hash_without_state_url_promotes_canonical_slug(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "uuid-generator-pro",
+                "status": "ready_to_deploy",
+                "vercel_url": None,
+                "health_status": "healthy",
+                "last_health_code": 200,
+            },
+            {
+                "slug": "uuid-generator-pro",
+                "status": "live",
+                "vercel_url": "https://uuid-generator-glm6h3i1l-madnessqws-projects.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["status"], "live")
+        self.assertEqual(merged["vercel_url"], "https://uuid-generator-pro.vercel.app")
+        self.assertEqual(merged["v"], "https://uuid-generator-pro.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://uuid-generator-pro.vercel.app")
+
     def test_state_canonical_alias_beats_manifest_preview_hash(self) -> None:
         merged = merge_product_record(
             {

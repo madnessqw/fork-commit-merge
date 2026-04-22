@@ -177,6 +177,39 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
         self.assertEqual(summary["products"][0]["v"], "https://table-to-csv.vercel.app")
 
+    def test_product_catalog_preview_hash_without_state_url_uses_canonical_display(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "UUID Generator Pro",
+                        "slug": "uuid-generator-pro",
+                        "status": "ready_to_deploy",
+                        "vercel_url": None,
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+        product_catalog = {
+            "uuid-generator-pro": {
+                "name": "UUID Generator Pro",
+                "slug": "uuid-generator-pro",
+                "status": "live",
+                "vercel_url": "https://uuid-generator-glm6h3i1l-madnessqws-projects.vercel.app",
+            }
+        }
+
+        summary = build_summary(state, product_catalog=product_catalog)
+
+        self.assertEqual(summary["live_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://uuid-generator-pro.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+
     def test_live_product_without_explicit_url_uses_slug_canonical_display(self) -> None:
         state = {
             "products": {

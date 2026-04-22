@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 10:04 +03
+# Codex Result — 2026-04-22 10:49 +03
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -7,50 +7,38 @@
 - `STATE.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `scripts/codex_loop.sh`
-- `scripts/codex_auth_manager.py`
-- `scripts/qa_dispatch.py`
-- `scripts/telegram_send.sh`
-- `tests/test_codex_auth_manager.py`
-- `tests/test_qa_dispatch.py`
-- `skills/FACTORY.md`
+- `CODEBASE_MAP.md`
+- `scripts/product_state_sync.py`
+- `scripts/health_check.py`
+- `scripts/update_summary.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
+- `tests/test_health_check.py`
 
 ## Seçilen Darboğaz
-- Codex döngüsündeki auth fallback hâlâ sabit sıralamaya yaslanıyordu; QA handoff ve cycle bildirimleri de tek bir deterministic akışa bağlı değildi.
+- Canlı ürünlerin canonical/public URL seçimi, state cache + product manifest arasında drift yapıyordu; özellikle `uuid-generator-pro` için stale hash URL summary’de canonical drift gibi görünüyordu.
 
 ## Yapılan Değişiklikler
-- `scripts/codex_loop.sh`
-  - Hesap seçimi artık `.signals/codex_auth_state.json` üzerinden state-driven.
-  - İlk tercih kaydedilmiş hesabı deniyor, auth/limit sinyali gelirse fallback'e geçiyor.
-  - Son çalışan hesap ve switch sonucu kaydediliyor.
-- `scripts/codex_auth_manager.py`
-  - `choose / record / classify` yardımcıları eklendi.
-  - Bir sonraki cycle için tercih edilen hesabı taşıyor.
-- `tests/test_codex_auth_manager.py`
-  - choose/record/classify akışları için regresyon testleri eklendi.
-- `scripts/qa_dispatch.py`
-  - `.signals/qa_pending` → `qa-tester` + `team-lead` inbox dispatch eklendi.
-  - QA sonucu gelince pending sinyali temizleniyor ve team status geri çekiliyor.
-- `tests/test_qa_dispatch.py`
-  - dispatch, idempotency ve completion-reconcile senaryoları test edildi.
-- `scripts/telegram_send.sh`
-  - Ortak Telegram mesaj gönderici eklendi; cycle/help-request akışları bunu kullanıyor.
+- `scripts/product_state_sync.py`
+  - Live ürünlerde state cache hâlâ predeploy iken ve manifest yalnızca stale hash URL taşıyorken canonical slug URL’yi tercih eden kural eklendi.
+  - Bu kural explicit state/deployment/public URL’leri ezmiyor; sadece state tarafı henüz public URL taşımıyorsa devreye giriyor.
+- `tests/test_product_state_sync.py`
+  - Manifest hash + predeploy state için canonical slug’a promotion regresyon testi eklendi.
+- `tests/test_update_summary.py`
+  - Summary tarafında aynı senaryonun canonical display ve drift=0 verdiği test eklendi.
+- `STATE_SUMMARY.json`
+  - Summary yeniden üretildi; `uuid-generator-pro` artık canonical `https://uuid-generator-pro.vercel.app` ile gösteriliyor ve canonical drift `0`.
 
 ## Doğrulamalar
-- `bash -n scripts/codex_loop.sh`
-- `bash -n scripts/telegram_send.sh`
-- `python3 -m py_compile scripts/codex_auth_manager.py scripts/qa_dispatch.py tests/test_codex_auth_manager.py tests/test_qa_dispatch.py`
-- `python3 -m unittest discover -s tests -p 'test_codex_auth_manager.py'`
-- `python3 -m unittest discover -s tests -p 'test_qa_dispatch.py'`
-- `python3 -m json.tool` benzeri doğrulama ile `STATE.json`, `STATE_SUMMARY.json` ve değişen product manifestleri parse edildi
-- Targeted secret scan: code/state dosyalarında sızıntı yok
+- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_update_summary.py`
+- `python3 scripts/update_summary.py`
+- Secret scan: değişen kod dosyalarında `sk_`, `pk_`, `ghp_`, `api_key` bulunmadı
 
 ## Sonuç / Etki
-- Auth fallback artık state-driven; aynı hesap sabitlenmiyor.
-- QA handoff prompt-only olmaktan çıktı, signal + inbox tabanlı hale geldi.
-- Telegram bildirimleri için ortak script var; cycle raporu tek noktadan çıkabiliyor.
-- Current snapshot: cycle **1084**, live **79/81**, deploy gap **11**, canonical drift **1**.
+- Preview hash kaynaklı canonical drift false-positive’i temizlendi.
+- `STATE_SUMMARY.json` artık `uuid-generator-pro` için canonical URL’yi gösteriyor.
+- Health pipeline canonical URL’yi probe etmeye devam ediyor; manuel Vercel/alias işini “çözüldü” diye boyamıyor.
 
 ## Kalan Blokerler
-- `pdf-forge` timeout ve `diffmaster` 401 hâlâ gerçek canlı problemler.
-- Deploy/url gap ve tek canonical drift ürünü manuel kapama bekliyor.
+- `pdf-forge` timeout, `diffmaster` 401 ve `git-diff-visualizer` checkout eksikliği hâlâ canlı backlog.
