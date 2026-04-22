@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 13:40 +03
+# Codex Result — 2026-04-22 11:25 +03
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -9,33 +9,38 @@
 - `CODEBASE_MAP.md`
 - `scripts/health_check.py`
 - `scripts/product_state_sync.py`
-- `scripts/update_summary.py`
+- `tests/test_health_check.py`
 - `tests/test_product_state_sync.py`
-- `tests/test_update_summary.py`
 
 ## Ne Değişti
+- `scripts/health_check.py`
+  - Health probe komutu `curl -4 -L -sS ...` kullandı; IPv6/DNS saçmalığı ve redirect kaynaklı false negative riski azaldı.
+  - Sayısal HTTP failure kodları artık korunuyor; `451` gibi kodlar `timeout`a ezilmiyor.
+  - Her probe sonucu `checked_at` taşıyor.
+  - `apply_health_result` artık `last_health_check` ve `health_checked_at` alanlarını birlikte yazıyor.
 - `scripts/product_state_sync.py`
-  - `alternate_healthy` sonucu dönen fallback URL, canlı kayıtta hâlâ canonical state URL yazsa bile artık gerçek public URL olarak korunuyor.
-  - Böylece state, sağlık probe’unun bulduğu gerçek reachable URL’yi saklıyor; canonical URL arkasına saklanmıyor.
+  - Live health snapshot’larında `last_health_check` ve `health_checked_at` tek bir timestamp’e eşleniyor.
+  - Timestamp’lerden biri eksikse diğeriyle dolduruluyor; ikisi de varsa en yeni olan seçiliyor.
+  - Predeploy kayıtlar için mevcut temizleme davranışı bozulmadı.
+- `tests/test_health_check.py`
+  - IPv4/redirect curl flags için regresyon testi eklendi.
+  - Sayısal failure code koruma testi eklendi.
+  - `alternate_healthy` akışında timestamp sync doğrulandı.
 - `tests/test_product_state_sync.py`
-  - Canonical state URL + `alternate_healthy` fallback senaryosu için yeni test eklendi.
-  - `sync_state_snapshot` artık fallback URL’yi koruyor diye bekleyen test güncellendi.
-- `tests/test_update_summary.py`
-  - `alternate_healthy` canlı ürünlerin public display’inin fallback URL olması bekleniyor.
-  - Canonical drift sayımı artık bu fallback URL’leri de görüyor.
-  - Snapshot persistence testi de aynı davranışı doğrulayacak şekilde güncellendi.
+  - Health timestamp eşleme için regresyon testi eklendi.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_update_summary.py`
+- `python3 -m py_compile scripts/health_check.py scripts/product_state_sync.py tests/test_health_check.py tests/test_product_state_sync.py`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py'`
 - `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- Secret scan: değiştirilmiş Python dosyalarında `sk_`, `pk_`, `ghp_`, `api_key` eşleşmesi yok.
+- `python3 -m unittest discover -s tests -p 'test_*.py'` → 61 test geçti
+- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` eşleşmesi yok.
 
 ## Sonuç
-- `alternate_healthy` ürünlerde state artık gerçek çalışan fallback URL’yi tutuyor.
-- Summary/canonical drift hesabı bu URL’yi artık gizlemiyor.
-- Health pipeline canonical probe’u yine ilk sırada deniyor; yani drift tespiti bozulmadı.
+- Health pipeline artık gerçek HTTP kodlarını daha doğru taşıyor.
+- Health timestamps birbirinden kopmuyor.
+- Canonical / fallback URL davranışı bozulmadı; manual Vercel sorunları kodla çözüldü diye yansıtılmadı.
 
 ## Kalan Blokerler
-- Canlı `STATE.json` / `STATE_SUMMARY.json` bu turda yeniden üretilmedi; fix kodda ve testte doğrulandı.
-- Bir sonraki health/update cycle bu davranışı canlı state’e yansıtacak.
+- Kod tarafında yok.
+- Canlı Vercel sorunları ve gerçek canonical drift, dış sistem tarafında kalmaya devam ediyor.

@@ -77,6 +77,25 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["last_health_url"])
         self.assertIsNone(health_check_url(merged))
 
+    def test_live_health_snapshot_mirrors_timestamp_fields(self) -> None:
+        merged = merge_product_record(
+            {
+                "name": "Timestamp Sync Tool",
+                "slug": "timestamp-sync-tool",
+                "status": "live",
+                "vercel_url": "https://timestamp-sync-tool.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://timestamp-sync-tool.vercel.app",
+                "last_health_check": "2026-04-22T10:00:00Z",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["last_health_check"], "2026-04-22T10:00:00Z")
+        self.assertEqual(merged["health_checked_at"], "2026-04-22T10:00:00Z")
+        self.assertEqual(health_check_url(merged), "https://timestamp-sync-tool.vercel.app")
+
     def test_live_manifest_with_missing_url_keeps_state_canonical_url(self) -> None:
         merged = merge_product_record(
             {

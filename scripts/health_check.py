@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -24,6 +25,20 @@ HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
 SYNCED_HEALTH_STATUSES = {"healthy", "alternate_healthy"}
 
 
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _coerce_http_code(value):
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str):
+        text = value.strip()
+        if text.isdigit():
+            return int(text)
+    return None
+
+
 def _normalize_url(value):
     if value is None:
         return None
@@ -37,6 +52,8 @@ def is_synced_health_result(result):
 
 def apply_health_result(product, result):
     """Write a probe result back to a product record."""
+    checked_at = result.get("checked_at") or _utc_now_iso()
+
     if result.get("url"):
         product["last_health_url"] = result["url"]
 
@@ -49,13 +66,16 @@ def apply_health_result(product, result):
         product["v"] = result["url"]
 
     product["health_status"] = result["status"]
-    product["last_health_code"] = result["code"] if isinstance(result["code"], int) else 0
+    product["last_health_code"] = _coerce_http_code(result.get("code")) or 0
+    product["last_health_check"] = checked_at
+    product["health_checked_at"] = checked_at
 
 
 def check_product_health(product):
     """Check health of a single product"""
     name = product.get('name', product.get('n', 'Unknown'))
     slug = product.get('slug', product.get('s', 'unknown'))
+    checked_at = _utc_now_iso()
     candidates = []
     primary_url = _normalize_url(health_check_url(product))
     if primary_url:
@@ -66,34 +86,37 @@ def check_product_health(product):
             candidates.append(candidate)
 
     if not candidates:
-        return {'name': name, 'slug': slug, 'status': 'no_url', 'code': None}
+        return {'name': name, 'slug': slug, 'status': 'no_url', 'code': None, 'checked_at': checked_at}
 
     first_failure = None
     try:
         for url in candidates:
             result = subprocess.run(
-                ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', url],
+                ['curl', '-4', '-L', '-sS', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', url],
                 capture_output=True, text=True, timeout=15
             )
             code = result.stdout.strip()
+            http_code = _coerce_http_code(code)
 
-            if code == '200':
+            if http_code == 200:
                 status = 'healthy' if url == candidates[0] else 'alternate_healthy'
-                return {'name': name, 'slug': slug, 'status': status, 'code': 200, 'url': url}
+                return {'name': name, 'slug': slug, 'status': status, 'code': 200, 'url': url, 'checked_at': checked_at}
 
             if first_failure is None:
-                if code == '404':
-                    first_failure = {'name': name, 'slug': slug, 'status': 'not_found', 'code': 404, 'url': url}
-                elif code == '401':
-                    first_failure = {'name': name, 'slug': slug, 'status': 'unauthorized', 'code': 401, 'url': url}
-                elif code == '000':
-                    first_failure = {'name': name, 'slug': slug, 'status': 'timeout', 'code': 0, 'url': url}
+                if http_code == 404:
+                    first_failure = {'name': name, 'slug': slug, 'status': 'not_found', 'code': 404, 'url': url, 'checked_at': checked_at}
+                elif http_code == 401:
+                    first_failure = {'name': name, 'slug': slug, 'status': 'unauthorized', 'code': 401, 'url': url, 'checked_at': checked_at}
+                elif http_code == 0 or code == '000':
+                    first_failure = {'name': name, 'slug': slug, 'status': 'timeout', 'code': 0, 'url': url, 'checked_at': checked_at}
+                elif http_code is not None:
+                    first_failure = {'name': name, 'slug': slug, 'status': f'error_{http_code}', 'code': http_code, 'url': url, 'checked_at': checked_at}
                 else:
-                    first_failure = {'name': name, 'slug': slug, 'status': f'error_{code}', 'code': code, 'url': url}
+                    first_failure = {'name': name, 'slug': slug, 'status': f'error_{code}', 'code': code, 'url': url, 'checked_at': checked_at}
 
-        return first_failure or {'name': name, 'slug': slug, 'status': 'error', 'code': 'unknown', 'url': candidates[0]}
+        return first_failure or {'name': name, 'slug': slug, 'status': 'error', 'code': 'unknown', 'url': candidates[0], 'checked_at': checked_at}
     except Exception as e:
-        return {'name': name, 'slug': slug, 'status': 'error', 'code': str(e), 'url': candidates[0] if candidates else None}
+        return {'name': name, 'slug': slug, 'status': 'error', 'code': str(e), 'url': candidates[0] if candidates else None, 'checked_at': checked_at}
 
 def main():
     # Load state

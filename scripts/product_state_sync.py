@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 from typing import Any
@@ -141,6 +142,47 @@ def _clear_health_metadata(record: dict[str, Any]) -> dict[str, Any]:
     return cleared
 
 
+def _parse_timestamp(value: Any) -> datetime | None:
+    text = _clean_text(value)
+    if text is None:
+        return None
+    try:
+        return datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def _format_timestamp(value: datetime) -> str:
+    return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _sync_health_timestamps(record: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(record)
+    last_health_check = _clean_text(_pick(record, "last_health_check"))
+    health_checked_at = _clean_text(_pick(record, "health_checked_at"))
+
+    if last_health_check is None and health_checked_at is None:
+        normalized["last_health_check"] = None
+        normalized["health_checked_at"] = None
+        return normalized
+
+    parsed_last = _parse_timestamp(last_health_check)
+    parsed_checked = _parse_timestamp(health_checked_at)
+
+    if parsed_last is not None and parsed_checked is not None:
+        chosen = _format_timestamp(max(parsed_last, parsed_checked))
+    elif parsed_last is not None:
+        chosen = _format_timestamp(parsed_last)
+    elif parsed_checked is not None:
+        chosen = _format_timestamp(parsed_checked)
+    else:
+        chosen = last_health_check or health_checked_at
+
+    normalized["last_health_check"] = chosen
+    normalized["health_checked_at"] = chosen
+    return normalized
+
+
 def canonical_vercel_url(slug: str | None) -> str | None:
     clean_slug = _clean_text(slug)
     if clean_slug is None:
@@ -182,6 +224,8 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     status = _clean_text(_pick(record, "status", "st"))
     if status not in HEALTH_CHECKABLE_STATUSES:
         return _clear_health_metadata(normalized)
+
+    normalized = _sync_health_timestamps(normalized)
 
     raw_code = _pick(record, "last_health_code")
     try:

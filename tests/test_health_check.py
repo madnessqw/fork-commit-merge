@@ -24,6 +24,24 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 1)
 
     @patch("scripts.health_check.subprocess.run")
+    def test_health_probe_uses_ipv4_and_follows_redirects(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="200")
+
+        check_product_health(
+            {
+                "name": "Redirect Tool",
+                "slug": "redirect-tool",
+                "status": "live",
+                "vercel_url": "https://redirect-tool.vercel.app",
+            }
+        )
+
+        command = run_mock.call_args[0][0]
+        self.assertIn("-4", command)
+        self.assertIn("-L", command)
+        self.assertIn("-sS", command)
+
+    @patch("scripts.health_check.subprocess.run")
     def test_ideal_url_is_probed_before_stale_alias(self, run_mock) -> None:
         seen_urls = []
 
@@ -68,6 +86,23 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(run_mock.call_count, 2)
 
+    @patch("scripts.health_check.subprocess.run")
+    def test_non_standard_http_failure_code_is_preserved(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="451")
+
+        result = check_product_health(
+            {
+                "name": "Failure Tool",
+                "slug": "failure-tool",
+                "status": "live",
+                "vercel_url": "https://failure-tool.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "error_451")
+        self.assertEqual(result["code"], 451)
+        self.assertIn("checked_at", result)
+
     def test_alternate_healthy_result_syncs_public_url(self) -> None:
         product = {
             "name": "Fallback Tool",
@@ -83,12 +118,15 @@ class HealthCheckTests(unittest.TestCase):
                 "status": "alternate_healthy",
                 "code": 200,
                 "url": "https://fallback-tool-preview.vercel.app",
+                "checked_at": "2026-04-22T10:00:00Z",
             },
         )
 
         self.assertEqual(product["health_status"], "alternate_healthy")
         self.assertEqual(product["last_health_code"], 200)
         self.assertEqual(product["last_health_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["last_health_check"], "2026-04-22T10:00:00Z")
+        self.assertEqual(product["health_checked_at"], "2026-04-22T10:00:00Z")
         self.assertEqual(product["ideal_vercel_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
