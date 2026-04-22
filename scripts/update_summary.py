@@ -206,11 +206,41 @@ def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
     current_url = _normalize_url(display_vercel_url(product))
     if ideal_url is None or current_url is None or ideal_url == current_url:
         return None
-    return {
+    entry = {
         "slug": product.get("slug"),
         "url": current_url,
         "ideal_url": ideal_url,
     }
+
+    health_status = _pick(product, "health_status")
+    if health_status is not None:
+        entry["health_status"] = health_status
+
+    health_code_value = health_code(product)
+    if health_code_value is not None:
+        entry["health_code"] = health_code_value
+
+    probe_url = _pick(product, "health_probe_url", "last_health_url")
+    if probe_url is not None:
+        entry["probe_url"] = probe_url
+
+    effective_url = _pick(product, "effective_health_url", "last_health_url")
+    if effective_url is not None and effective_url != probe_url:
+        entry["effective_url"] = effective_url
+
+    canonical_url = _pick(product, "canonical_health_url") or ideal_url
+    if canonical_url is not None:
+        entry["canonical_url"] = canonical_url
+
+    canonical_code = canonical_health_code(product)
+    if canonical_code is not None:
+        entry["canonical_code"] = canonical_code
+
+    canonical_status = _pick(product, "canonical_health_status")
+    if canonical_status is not None:
+        entry["canonical_status"] = canonical_status
+
+    return entry
 
 
 def compact_product(product: dict[str, Any]) -> dict[str, Any]:

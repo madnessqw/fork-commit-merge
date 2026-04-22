@@ -542,6 +542,7 @@ class UpdateSummaryTests(unittest.TestCase):
                     "slug": "webhook-tester",
                     "url": "https://webhook-tester.example.com",
                     "ideal_url": "https://webhook-tester.vercel.app",
+                    "canonical_url": "https://webhook-tester.vercel.app",
                 }
             ],
         )
@@ -643,6 +644,10 @@ class UpdateSummaryTests(unittest.TestCase):
                     "slug": "fallback-tool",
                     "url": "https://fallback-tool-preview.vercel.app",
                     "ideal_url": "https://fallback-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://fallback-tool-preview.vercel.app",
+                    "canonical_url": "https://fallback-tool.vercel.app",
                 }
             ],
         )
@@ -684,6 +689,12 @@ class UpdateSummaryTests(unittest.TestCase):
                     "slug": "fallback-stale-error",
                     "url": "https://fallback-stale-error-preview.vercel.app",
                     "ideal_url": "https://fallback-stale-error.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://fallback-stale-error-preview.vercel.app",
+                    "canonical_url": "https://fallback-stale-error.vercel.app",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
                 }
             ],
         )

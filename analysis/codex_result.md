@@ -1,3 +1,41 @@
+# Codex Result — 2026-04-22 23:37 +03
+
+## Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/update_summary.py`
+- `scripts/refresh_codex_context.py`
+- `tests/test_update_summary.py`
+- `tests/test_refresh_codex_context.py`
+
+## Ne Değişti
+- `scripts/update_summary.py`
+  - Canonical drift kayıtları artık yalnızca current/ideal URL’yi değil, health durumu ve probe kanıtını da taşıyor.
+  - Alternate-healthy alias kayıtları summary’de sağlıksız gibi şişmeden, ama gerçek public URL + canonical hedef + probe ayrımıyla raporlanıyor.
+- `scripts/refresh_codex_context.py`
+  - Canonical drift bölümleri health/probe/canonical detaylarını görünür kılıyor.
+  - Böylece Codex context, alias-only canlı ürünleri “çözüldü” diye yutmak yerine gerçek URL durumuyla görüyor.
+- `tests/test_update_summary.py`
+  - Canonical drift entry’lerinin yeni health metadata alanlarıyla döndüğü kilitlendi.
+- `tests/test_refresh_codex_context.py`
+  - Canonical drift satırlarının health/probe/canonical detaylarıyla render edildiği regresyon testi eklendi.
+
+## Doğrulamalar
+- `python3 -m py_compile scripts/update_summary.py scripts/refresh_codex_context.py tests/test_update_summary.py tests/test_refresh_codex_context.py`
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
+- Secret scan: değiştirilen dosyalarda secret-like marker eşleşmesi yok.
+
+## Kalan Blokerler
+- Kod tarafında açık blokaj yok.
+- `STATE_SUMMARY.json` artık canonical drift’i health kanıtıyla daha dürüst taşıyor; Vercel tarafında gerçekten kırık olan ürünler hâlâ manuel fix bekliyor.
+
 # Codex Result — 2026-04-22 22:39 +03
 
 ## Okunanlar

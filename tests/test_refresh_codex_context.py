@@ -356,6 +356,51 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "canonical_url_drift")
         self.assertIn("diffmaster", focus.summary)
 
+    def test_rendered_sorun_analizi_shows_canonical_drift_health_details(self) -> None:
+        summary = {
+            "cycle": 1111,
+            "live_count": 1,
+            "healthy_count": 1,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 0,
+            "deploy_readiness_count": 0,
+            "spec_ready_count": 0,
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "fallback-tool",
+                        "url": "https://fallback-tool-preview.vercel.app",
+                        "ideal_url": "https://fallback-tool.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "health_code": 200,
+                        "probe_url": "https://fallback-tool-preview.vercel.app",
+                        "canonical_url": "https://fallback-tool.vercel.app",
+                        "canonical_code": 404,
+                        "canonical_status": "not_found",
+                    }
+                ],
+                "deploy_readiness": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+        rendered = render_sorun_analizi(
+            summary,
+            [],
+            focus,
+            datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertIn("health=alternate_healthy", rendered)
+        self.assertIn("code=200", rendered)
+        self.assertIn("canonical_code=404", rendered)
+        self.assertIn("canonical_status=not_found", rendered)
+
     def test_rendered_codex_task_mentions_generated_guardrails(self) -> None:
         summary = {
             "cycle": 1063,

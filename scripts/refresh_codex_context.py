@@ -352,8 +352,34 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     if canonical_drift:
         lines.extend(["", "## Canonical Drift Ürünleri"])
         for item in canonical_drift[:10]:
+            drift_bits: list[str] = []
+            health_status = item.get("health_status")
+            if health_status:
+                drift_bits.append(f"health={health_status}")
+
+            health_code = item.get("health_code")
+            if health_code is not None:
+                drift_bits.append(f"code={health_code}")
+
+            probe_url = item.get("probe_url")
+            if probe_url and probe_url != item.get("url"):
+                drift_bits.append(f"probe={probe_url}")
+
+            effective_url = item.get("effective_url")
+            if effective_url and effective_url not in {item.get("url"), probe_url}:
+                drift_bits.append(f"effective={effective_url}")
+
+            canonical_code = item.get("canonical_code")
+            if canonical_code is not None:
+                drift_bits.append(f"canonical_code={canonical_code}")
+
+            canonical_status = item.get("canonical_status")
+            if canonical_status:
+                drift_bits.append(f"canonical_status={canonical_status}")
+
+            drift_suffix = f" {' '.join(drift_bits)}" if drift_bits else ""
             lines.append(
-                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}"
+                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
             )
 
     if pending_health:
@@ -483,8 +509,34 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     if canonical_drift:
         lines.extend(["", "## Canonical Drift Ürünleri"])
         for item in canonical_drift[:10]:
+            drift_bits: list[str] = []
+            health_status = item.get("health_status")
+            if health_status:
+                drift_bits.append(f"health={health_status}")
+
+            health_code = item.get("health_code")
+            if health_code is not None:
+                drift_bits.append(f"code={health_code}")
+
+            probe_url = item.get("probe_url")
+            if probe_url and probe_url != item.get("url"):
+                drift_bits.append(f"probe={probe_url}")
+
+            effective_url = item.get("effective_url")
+            if effective_url and effective_url not in {item.get("url"), probe_url}:
+                drift_bits.append(f"effective={effective_url}")
+
+            canonical_code = item.get("canonical_code")
+            if canonical_code is not None:
+                drift_bits.append(f"canonical_code={canonical_code}")
+
+            canonical_status = item.get("canonical_status")
+            if canonical_status:
+                drift_bits.append(f"canonical_status={canonical_status}")
+
+            drift_suffix = f" {' '.join(drift_bits)}" if drift_bits else ""
             lines.append(
-                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}"
+                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
             )
 
     if deploy_readiness:
