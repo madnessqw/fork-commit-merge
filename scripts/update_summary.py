@@ -20,7 +20,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.checkout_metadata import get_checkout_url
-from scripts.product_state_sync import load_product_catalog, sync_state_products
+from scripts.product_state_sync import (
+    canonical_target_vercel_url,
+    display_vercel_url,
+    load_product_catalog,
+    sync_state_products,
+)
 
 
 STATE_FILE = ROOT / "STATE.json"
@@ -151,8 +156,8 @@ def is_healthy(product: dict[str, Any]) -> bool:
 
 
 def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
-    ideal_url = _normalize_url(_pick(product, "ideal_vercel_url"))
-    current_url = _normalize_url(product.get("vercel_url"))
+    ideal_url = canonical_target_vercel_url(product)
+    current_url = _normalize_url(_pick(product, "vercel_url", "v"))
     if ideal_url is None or current_url is None or ideal_url == current_url:
         return None
     return {
@@ -167,7 +172,7 @@ def compact_product(product: dict[str, Any]) -> dict[str, Any]:
         "n": product.get("name"),
         "s": product.get("slug"),
         "st": product.get("status"),
-        "v": product.get("vercel_url"),
+        "v": display_vercel_url(product),
         "c": get_checkout_url(product),
     }
 
@@ -187,7 +192,12 @@ def build_summary(
         if (drift := canonical_url_drift_entry(p)) is not None
     ]
 
-    products_without_url = [p for p in active if p.get("status") in {"live", "ready_for_payment", "spec_ready"} and not p.get("vercel_url")]
+    products_without_url = [
+        p
+        for p in active
+        if p.get("status") in {"live", "ready_for_payment", "spec_ready"}
+        and not display_vercel_url(p)
+    ]
     unhealthy_live = [p for p in live if not is_healthy(p)]
     checkout_gap_live = [p for p in live + ready_for_payment if not has_checkout(p)]
     spec_ready_total = len({p.get("slug") for p in [*external_spec_ready, *spec_ready_inside_active] if p.get("slug")})

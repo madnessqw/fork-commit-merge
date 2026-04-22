@@ -1,18 +1,18 @@
 {
-  "cycle": 1074,
-  "mode": "DEPLOY_WAIT",
+  "cycle": 1075,
+  "mode": "BUILD",
   "balance": 0.0,
   "active_count": 142,
-  "live_count": 77,
-  "healthy_count": 75,
+  "live_count": 78,
+  "healthy_count": 76,
   "unhealthy_count": 2,
   "checkout_gap_count": 0,
   "deploy_missing_or_bad_url": 20,
-  "canonical_url_drift": 0,
-  "spec_ready_count": 45,
+  "canonical_url_drift": 8,
+  "spec_ready_count": 27,
   "next_action": "spec_prep_complete_continue_building",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T01:46:46.678394Z",
+  "last_updated": "2026-04-22T02:05:58.345468Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -73,9 +73,9 @@
     {
       "n": "Cron Expression Builder",
       "s": "cron-expression-builder",
-      "st": "building",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://cron-expression-builder-seven.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0c610a2b-7b1d-4d5a-8ce2-c7c5eaa9d3da"
     },
     {
       "n": "TOML Toolkit",
@@ -904,7 +904,7 @@
       "c": null
     },
     {
-      "n": "SSL Config Generator Pro",
+      "n": "SSL Config Generator",
       "s": "ssl-config-generator",
       "st": "spec_ready",
       "v": null,
@@ -1047,7 +1047,57 @@
       }
     ],
     "missing_checkout": [],
-    "canonical_url_drift": []
+    "canonical_url_drift": [
+      {
+        "slug": "cron-expression-builder",
+        "url": "https://cron-expression-builder-seven.vercel.app",
+        "ideal_url": "https://cron-expression-builder.vercel.app"
+      },
+      {
+        "slug": "unit-test-generator",
+        "url": "https://unit-test-generator-six.vercel.app",
+        "ideal_url": "https://unit-test-generator.vercel.app"
+      },
+      {
+        "slug": "api-request-builder",
+        "url": "https://api-request-builder-alpha.vercel.app",
+        "ideal_url": "https://api-request-builder.vercel.app"
+      },
+      {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
+        "ideal_url": "https://jwt-generator.vercel.app"
+      },
+      {
+        "slug": "text-transformer-pro",
+        "url": "https://text-transformer-pro-theta.vercel.app",
+        "ideal_url": "https://text-transformer-pro.vercel.app"
+      },
+      {
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_url": "https://webhook-tester.vercel.app"
+      },
+      {
+        "slug": "html-entity-encoder",
+        "url": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
+        "ideal_url": "https://html-entity-encoder.vercel.app"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
+        "ideal_url": "https://timestamp-converter.vercel.app"
+      }
+    ]
   },
-  "canonical_url_drift_products": []
+  "canonical_url_drift_products": [
+    "cron-expression-builder",
+    "unit-test-generator",
+    "api-request-builder",
+    "jwt-generator",
+    "text-transformer-pro",
+    "webhook-tester",
+    "html-entity-encoder",
+    "timestamp-converter"
+  ]
 }

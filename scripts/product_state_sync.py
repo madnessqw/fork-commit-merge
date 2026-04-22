@@ -67,6 +67,27 @@ def canonical_vercel_url(slug: str | None) -> str | None:
     return f"https://{clean_slug}.vercel.app"
 
 
+def canonical_target_vercel_url(record: dict[str, Any]) -> str | None:
+    status = _clean_text(_pick(record, "status", "st"))
+    if status not in HEALTH_CHECKABLE_STATUSES:
+        return normalize_url(_pick(record, "ideal_vercel_url"))
+
+    slug = _clean_text(_pick(record, "slug", "s"))
+    canonical_url = canonical_vercel_url(slug)
+    if canonical_url is not None:
+        return canonical_url
+    return normalize_url(_pick(record, "ideal_vercel_url"))
+
+
+def display_vercel_url(record: dict[str, Any]) -> str | None:
+    current_url = normalize_url(_pick(record, "vercel_url", "v"))
+    if current_url is not None:
+        return current_url
+    if _clean_text(_pick(record, "status", "st")) in HEALTH_CHECKABLE_STATUSES:
+        return canonical_target_vercel_url(record)
+    return None
+
+
 def load_product_catalog(products_dir: Path = PRODUCTS_DIR) -> dict[str, dict[str, Any]]:
     catalog: dict[str, dict[str, Any]] = {}
 
@@ -206,8 +227,7 @@ def sync_state_products(
 
 
 def health_check_url(product: dict[str, Any]) -> str | None:
-    status = _clean_text(_pick(product, "status", "st"))
-    ideal_url = normalize_url(_pick(product, "ideal_vercel_url"))
-    if status in HEALTH_CHECKABLE_STATUSES and ideal_url is not None:
-        return ideal_url
+    target_url = canonical_target_vercel_url(product)
+    if target_url is not None:
+        return target_url
     return normalize_url(_pick(product, "vercel_url", "v", "deployment_url"))

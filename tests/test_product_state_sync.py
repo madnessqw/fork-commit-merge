@@ -100,6 +100,29 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["ideal_vercel_url"], "https://pdf-forge.vercel.app")
         self.assertEqual(health_check_url(merged), "https://pdf-forge.vercel.app")
 
+    def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
+        self.assertEqual(
+            health_check_url(
+                {
+                    "slug": "ideal-only-tool",
+                    "status": "live",
+                }
+            ),
+            "https://ideal-only-tool.vercel.app",
+        )
+
+    def test_live_preview_alias_still_probes_slug_canonical_first(self) -> None:
+        self.assertEqual(
+            health_check_url(
+                {
+                    "slug": "webhook-tester",
+                    "status": "live",
+                    "vercel_url": "https://webhook-tester-beryl.vercel.app",
+                }
+            ),
+            "https://webhook-tester.vercel.app",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
