@@ -462,6 +462,32 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_url"], "https://html-entity-encoder.vercel.app")
         self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
 
+    def test_newer_canonical_success_overrides_stale_canonical_failure(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "redirect-tool",
+                "status": "live",
+                "vercel_url": "https://redirect-tool.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://redirect-tool.vercel.app",
+                "last_health_check": "2026-04-23T10:05:00Z",
+                "canonical_health_status": "not_found",
+                "canonical_health_code": 404,
+                "canonical_health_url": "https://redirect-tool.vercel.app",
+                "canonical_health_checked_at": "2026-04-23T10:00:00Z",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "healthy")
+        self.assertEqual(merged["vercel_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(merged["canonical_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(merged["canonical_health_checked_at"], "2026-04-23T10:05:00Z")
+
     def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
         self.assertEqual(
             health_check_url(

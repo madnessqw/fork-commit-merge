@@ -274,9 +274,14 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         normalized["ideal_vercel_url"] = canonical_target
         normalized["canonical_health_url"] = canonical_target
 
+    public_checked_text = _clean_text(_pick(normalized, "health_checked_at", "last_health_check"))
+    public_checked_at = _parse_timestamp(public_checked_text)
+
     canonical_checked_at = _clean_text(_pick(record, "canonical_health_checked_at"))
+    canonical_checked_dt = _parse_timestamp(canonical_checked_at)
     if canonical_checked_at is None:
-        canonical_checked_at = normalized.get("health_checked_at") or normalized.get("last_health_check")
+        canonical_checked_at = public_checked_text
+        canonical_checked_dt = public_checked_at
     normalized["canonical_health_checked_at"] = canonical_checked_at
 
     raw_canonical_code = _pick(record, "canonical_health_code")
@@ -314,6 +319,29 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
             normalized["effective_health_url"] = successful_snapshot_url
         current_health_status = "alternate_healthy"
 
+    canonical_success_is_newer_than_stale_failure = (
+        public_code == 200
+        and canonical_target is not None
+        and successful_snapshot_url == canonical_target
+        and canonical_code not in (None, 200)
+        and (
+            canonical_checked_dt is None
+            or public_checked_at is None
+            or public_checked_at >= canonical_checked_dt
+        )
+    )
+    if canonical_success_is_newer_than_stale_failure:
+        normalized["canonical_health_code"] = 200
+        normalized["canonical_health_status"] = "healthy"
+        normalized["canonical_health_url"] = canonical_target
+        normalized["canonical_health_checked_at"] = public_checked_text or canonical_checked_at
+        normalized["health_status"] = "healthy"
+        normalized["last_health_url"] = canonical_target
+        if normalized.get("effective_health_url") is None:
+            normalized["effective_health_url"] = canonical_target
+        current_health_status = "healthy"
+        canonical_code = 200
+
     canonical_snapshot_code = canonical_code
     if public_code is not None and current_health_status != "alternate_healthy":
         if public_code == 200 and canonical_code not in (None, 200):
@@ -336,16 +364,19 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
     effective_canonical_code = normalized.get("canonical_health_code")
     if effective_canonical_code == 200:
+        final_canonical_checked_at = _clean_text(
+            _pick(normalized, "canonical_health_checked_at", "health_checked_at", "last_health_check")
+        ) or canonical_checked_at
         normalized["ideal_vercel_url"] = canonical_target
         normalized["canonical_health_url"] = canonical_target
-        normalized["canonical_health_checked_at"] = canonical_checked_at
+        normalized["canonical_health_checked_at"] = final_canonical_checked_at
         normalized["canonical_health_code"] = 200
         normalized["canonical_health_status"] = "healthy"
         normalized["health_status"] = "healthy"
         normalized["last_health_code"] = 200
         normalized["last_health_url"] = canonical_target
-        normalized["last_health_check"] = canonical_checked_at
-        normalized["health_checked_at"] = canonical_checked_at
+        normalized["last_health_check"] = final_canonical_checked_at
+        normalized["health_checked_at"] = final_canonical_checked_at
         if canonical_target is not None:
             normalized["vercel_url"] = canonical_target
         return normalized

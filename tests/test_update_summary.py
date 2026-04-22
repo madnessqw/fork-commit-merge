@@ -742,6 +742,36 @@ class UpdateSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
+    def test_newer_canonical_success_drops_stale_drift_record(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Redirect Tool",
+                        "slug": "redirect-tool",
+                        "status": "live",
+                        "vercel_url": "https://redirect-tool.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://redirect-tool.vercel.app",
+                        "last_health_check": "2026-04-23T10:05:00Z",
+                        "canonical_health_status": "not_found",
+                        "canonical_health_code": 404,
+                        "canonical_health_url": "https://redirect-tool.vercel.app",
+                        "canonical_health_checked_at": "2026-04-23T10:00:00Z",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["fallback_healthy_count"], 0)
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+
     def test_stale_failure_with_successful_fallback_records_actual_fallback_url(self) -> None:
         state = {
             "products": {

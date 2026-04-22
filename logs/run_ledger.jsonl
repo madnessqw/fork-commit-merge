@@ -25,3 +25,4 @@
 {"run_id": "codex-20260423-0008", "mode": "EXECUTION", "task": "preserve fallback canonical drift", "status": "done", "slug": "health-canonical-drift", "duration_min": 32, "cost_est": 0.08, "cycle": 1108, "ts": "2026-04-22T21:08:59Z"}
 {"run_id": "codex-20260423-0041", "mode": "EXECUTION", "task": "preserve compact fallback drift", "status": "done", "slug": "health-canonical-drift", "duration_min": 34, "cost_est": 0.08, "cycle": 1108, "ts": "2026-04-22T21:41:05Z"}
 {"run_id": "codex-20260423-0107", "mode": "EXECUTION", "task": "surface fallback healthy metrics", "status": "done", "slug": "health-canonical-drift", "duration_min": 27, "cost_est": 0.07, "cycle": 1108, "ts": "2026-04-22T22:07:24Z"}
+{"run_id":"codex-20260422-2239","mode":"EXECUTION","task":"refresh stale canonical health failures when newer canonical 200 exists","status":"done","slug":"health-pipeline","duration_min":26,"cost_est":0.0,"cycle":1108}
