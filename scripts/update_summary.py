@@ -128,7 +128,7 @@ def _as_list(
     normalized_items = [normalize_product(item) for item in value if isinstance(item, dict)]
     meaningful_items = [item for item in normalized_items if not is_placeholder_product(item)]
     deduped = dedupe_products(meaningful_items)
-    if not product_catalog:
+    if product_catalog is None:
         return deduped
     return sync_state_products(deduped, product_catalog)
 

@@ -205,6 +205,32 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["canonical_url_drift_products"], [])
         self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
 
+    def test_healthy_alias_record_is_canonicalized_before_summary_counts_drift(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Drift Tool",
+                        "slug": "drift-tool",
+                        "status": "live",
+                        "vercel_url": "https://drift-tool-rose.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://drift-tool-rose.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state, product_catalog={})
+
+        self.assertEqual(summary["live_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://drift-tool.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+
     def test_product_catalog_preview_hash_without_state_url_uses_canonical_display(self) -> None:
         state = {
             "products": {

@@ -290,6 +290,26 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://stale-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://stale-tool.vercel.app")
 
+    def test_healthy_live_records_without_canonical_health_code_get_promoted_to_canonical(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "drift-tool",
+                "status": "live",
+                "vercel_url": "https://drift-tool-rose.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://drift-tool-rose.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://drift-tool.vercel.app")
+        self.assertEqual(merged["v"], "https://drift-tool.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://drift-tool.vercel.app")
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(health_check_url(merged), "https://drift-tool.vercel.app")
+
     def test_failure_codes_normalize_stale_healthy_health_status(self) -> None:
         merged = merge_product_record(
             {
