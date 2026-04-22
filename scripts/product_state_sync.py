@@ -39,6 +39,10 @@ HEALTH_METADATA_FIELDS = (
     "last_health_url",
     "last_health_check",
     "health_checked_at",
+    "canonical_health_status",
+    "canonical_health_code",
+    "canonical_health_url",
+    "canonical_health_checked_at",
 )
 
 
@@ -183,6 +187,12 @@ def _sync_health_timestamps(record: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
+def _health_status_for_code(code: int) -> str:
+    if code == 200:
+        return "healthy"
+    return FAILURE_HEALTH_STATUS_BY_CODE.get(code, f"error_{code}")
+
+
 def canonical_vercel_url(slug: str | None) -> str | None:
     clean_slug = _clean_text(slug)
     if clean_slug is None:
@@ -226,6 +236,40 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         return _clear_health_metadata(normalized)
 
     normalized = _sync_health_timestamps(normalized)
+
+    canonical_target = canonical_target_vercel_url(normalized)
+    if canonical_target is not None:
+        normalized["ideal_vercel_url"] = canonical_target
+        normalized["canonical_health_url"] = canonical_target
+
+    canonical_checked_at = _clean_text(_pick(record, "canonical_health_checked_at"))
+    if canonical_checked_at is None:
+        canonical_checked_at = normalized.get("health_checked_at") or normalized.get("last_health_check")
+    normalized["canonical_health_checked_at"] = canonical_checked_at
+
+    raw_canonical_code = _pick(record, "canonical_health_code")
+    try:
+        canonical_code = int(raw_canonical_code) if raw_canonical_code is not None else None
+    except (TypeError, ValueError):
+        canonical_code = None
+
+    raw_canonical_status = _clean_text(_pick(record, "canonical_health_status"))
+    current_health_status = _clean_text(_pick(record, "health_status"))
+    raw_code = _pick(record, "last_health_code")
+    try:
+        public_code = int(raw_code) if raw_code is not None else None
+    except (TypeError, ValueError):
+        public_code = None
+
+    if canonical_code is not None:
+        normalized["canonical_health_code"] = canonical_code
+        normalized["canonical_health_status"] = raw_canonical_status or _health_status_for_code(canonical_code)
+    elif current_health_status != "alternate_healthy" and public_code is not None:
+        normalized["canonical_health_code"] = public_code
+        normalized["canonical_health_status"] = raw_canonical_status or _health_status_for_code(public_code)
+    else:
+        normalized["canonical_health_code"] = canonical_code
+        normalized["canonical_health_status"] = raw_canonical_status
 
     raw_code = _pick(record, "last_health_code")
     try:

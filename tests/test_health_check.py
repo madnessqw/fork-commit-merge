@@ -84,6 +84,9 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["canonical_status"], "error_500")
+        self.assertEqual(result["canonical_code"], 500)
+        self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(run_mock.call_count, 2)
 
     @patch("scripts.health_check.subprocess.run")
@@ -119,6 +122,9 @@ class HealthCheckTests(unittest.TestCase):
                 "code": 200,
                 "url": "https://fallback-tool-preview.vercel.app",
                 "checked_at": "2026-04-22T10:00:00Z",
+                "canonical_status": "not_found",
+                "canonical_code": 404,
+                "canonical_url": "https://fallback-tool.vercel.app",
             },
         )
 
@@ -127,6 +133,10 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["last_health_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["last_health_check"], "2026-04-22T10:00:00Z")
         self.assertEqual(product["health_checked_at"], "2026-04-22T10:00:00Z")
+        self.assertEqual(product["canonical_health_status"], "not_found")
+        self.assertEqual(product["canonical_health_code"], 404)
+        self.assertEqual(product["canonical_health_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(product["canonical_health_checked_at"], "2026-04-22T10:00:00Z")
         self.assertEqual(product["ideal_vercel_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")

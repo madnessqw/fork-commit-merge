@@ -53,6 +53,10 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["last_health_url"])
         self.assertIsNone(merged["last_health_check"])
         self.assertIsNone(merged["health_checked_at"])
+        self.assertIsNone(merged["canonical_health_status"])
+        self.assertIsNone(merged["canonical_health_code"])
+        self.assertIsNone(merged["canonical_health_url"])
+        self.assertIsNone(merged["canonical_health_checked_at"])
         self.assertIsNone(health_check_url(merged))
 
     def test_predeploy_state_without_manifest_still_clears_public_and_health_metadata(self) -> None:
@@ -75,6 +79,10 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["health_status"])
         self.assertIsNone(merged["last_health_code"])
         self.assertIsNone(merged["last_health_url"])
+        self.assertIsNone(merged["canonical_health_status"])
+        self.assertIsNone(merged["canonical_health_code"])
+        self.assertIsNone(merged["canonical_health_url"])
+        self.assertIsNone(merged["canonical_health_checked_at"])
         self.assertIsNone(health_check_url(merged))
 
     def test_live_health_snapshot_mirrors_timestamp_fields(self) -> None:
@@ -94,6 +102,11 @@ class ProductStateSyncTests(unittest.TestCase):
 
         self.assertEqual(merged["last_health_check"], "2026-04-22T10:00:00Z")
         self.assertEqual(merged["health_checked_at"], "2026-04-22T10:00:00Z")
+        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_url"], "https://timestamp-sync-tool.vercel.app")
+        self.assertEqual(merged["canonical_health_checked_at"], "2026-04-22T10:00:00Z")
+        self.assertEqual(merged["ideal_vercel_url"], "https://timestamp-sync-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://timestamp-sync-tool.vercel.app")
 
     def test_live_manifest_with_missing_url_keeps_state_canonical_url(self) -> None:
@@ -146,6 +159,8 @@ class ProductStateSyncTests(unittest.TestCase):
 
         self.assertEqual(merged["vercel_url"], "https://api-mock-generator.vercel.app")
         self.assertEqual(merged["v"], "https://api-mock-generator.vercel.app")
+        self.assertEqual(merged["ideal_vercel_url"], "https://api-mock-generator.vercel.app")
+        self.assertEqual(merged["canonical_health_url"], "https://api-mock-generator.vercel.app")
         self.assertEqual(health_check_url(merged), "https://api-mock-generator.vercel.app")
 
     def test_state_canonical_alias_beats_manifest_preview_hash(self) -> None:

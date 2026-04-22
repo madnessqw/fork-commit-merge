@@ -46,6 +46,32 @@ def _normalize_url(value):
     return text or None
 
 
+def _status_for_http_code(code):
+    http_code = _coerce_http_code(code)
+    if http_code == 200:
+        return "healthy"
+    if http_code == 401:
+        return "unauthorized"
+    if http_code == 404:
+        return "not_found"
+    if http_code == 0:
+        return "timeout"
+    if http_code is not None:
+        return f"error_{http_code}"
+    return f"error_{code}"
+
+
+def _build_probe_result(name, slug, url, code, checked_at):
+    return {
+        "name": name,
+        "slug": slug,
+        "url": url,
+        "status": _status_for_http_code(code),
+        "code": _coerce_http_code(code) or 0,
+        "checked_at": checked_at,
+    }
+
+
 def is_synced_health_result(result):
     return result.get("status") in SYNCED_HEALTH_STATUSES
 
@@ -53,13 +79,28 @@ def is_synced_health_result(result):
 def apply_health_result(product, result):
     """Write a probe result back to a product record."""
     checked_at = result.get("checked_at") or _utc_now_iso()
+    slug = product.get("slug", product.get("s"))
+    canonical_url = result.get("canonical_url")
+    if canonical_url is None and slug:
+        canonical_url = f"https://{slug}.vercel.app"
 
     if result.get("url"):
         product["last_health_url"] = result["url"]
 
-    slug = product.get("slug", product.get("s"))
     if slug:
-        product["ideal_vercel_url"] = f"https://{slug}.vercel.app"
+        product["ideal_vercel_url"] = canonical_url or f"https://{slug}.vercel.app"
+
+    product["canonical_health_url"] = canonical_url
+
+    product["canonical_health_status"] = result.get("canonical_status") or (
+        result["status"] if result["status"] != "alternate_healthy" else None
+    )
+    product["canonical_health_code"] = _coerce_http_code(
+        result.get("canonical_code") if result.get("canonical_code") is not None else (
+            result.get("code") if result["status"] != "alternate_healthy" else None
+        )
+    )
+    product["canonical_health_checked_at"] = checked_at
 
     if result["status"] in SYNCED_HEALTH_STATUSES and result.get("url"):
         product["vercel_url"] = result["url"]
@@ -88,9 +129,9 @@ def check_product_health(product):
     if not candidates:
         return {'name': name, 'slug': slug, 'status': 'no_url', 'code': None, 'checked_at': checked_at}
 
-    first_failure = None
+    canonical_failure = None
     try:
-        for url in candidates:
+        for idx, url in enumerate(candidates):
             result = subprocess.run(
                 ['curl', '-4', '-L', '-sS', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', url],
                 capture_output=True, text=True, timeout=15
@@ -99,22 +140,43 @@ def check_product_health(product):
             http_code = _coerce_http_code(code)
 
             if http_code == 200:
-                status = 'healthy' if url == candidates[0] else 'alternate_healthy'
-                return {'name': name, 'slug': slug, 'status': status, 'code': 200, 'url': url, 'checked_at': checked_at}
+                if idx == 0:
+                    return {
+                        'name': name,
+                        'slug': slug,
+                        'status': 'healthy',
+                        'code': 200,
+                        'url': url,
+                        'canonical_url': url,
+                        'canonical_status': 'healthy',
+                        'canonical_code': 200,
+                        'checked_at': checked_at,
+                    }
 
-            if first_failure is None:
-                if http_code == 404:
-                    first_failure = {'name': name, 'slug': slug, 'status': 'not_found', 'code': 404, 'url': url, 'checked_at': checked_at}
-                elif http_code == 401:
-                    first_failure = {'name': name, 'slug': slug, 'status': 'unauthorized', 'code': 401, 'url': url, 'checked_at': checked_at}
-                elif http_code == 0 or code == '000':
-                    first_failure = {'name': name, 'slug': slug, 'status': 'timeout', 'code': 0, 'url': url, 'checked_at': checked_at}
-                elif http_code is not None:
-                    first_failure = {'name': name, 'slug': slug, 'status': f'error_{http_code}', 'code': http_code, 'url': url, 'checked_at': checked_at}
-                else:
-                    first_failure = {'name': name, 'slug': slug, 'status': f'error_{code}', 'code': code, 'url': url, 'checked_at': checked_at}
+                canonical_probe = canonical_failure or _build_probe_result(
+                    name,
+                    slug,
+                    candidates[0],
+                    code,
+                    checked_at,
+                )
+                return {
+                    'name': name,
+                    'slug': slug,
+                    'status': 'alternate_healthy',
+                    'code': 200,
+                    'url': url,
+                    'canonical_url': candidates[0],
+                    'canonical_status': canonical_probe['status'],
+                    'canonical_code': canonical_probe['code'],
+                    'checked_at': checked_at,
+                }
 
-        return first_failure or {'name': name, 'slug': slug, 'status': 'error', 'code': 'unknown', 'url': candidates[0], 'checked_at': checked_at}
+            failure = _build_probe_result(name, slug, url, code, checked_at)
+            if idx == 0:
+                canonical_failure = failure
+
+        return canonical_failure or _build_probe_result(name, slug, candidates[0], 'unknown', checked_at)
     except Exception as e:
         return {'name': name, 'slug': slug, 'status': 'error', 'code': str(e), 'url': candidates[0] if candidates else None, 'checked_at': checked_at}
 
