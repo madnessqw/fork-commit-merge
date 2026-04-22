@@ -1,17 +1,17 @@
-# Codex Analiz Özeti — 2026-04-22 00:14 UTC
+# Codex Analiz Özeti — 2026-04-22 00:43 UTC
 
 ## Canlı State
 - Cycle: **1072**
 - Mode: **DEPLOY_WAIT**
-- Live sağlık: **76/77** (%98.7)
+- Live sağlık: **75/77** (%97.4)
 - Checkout gap: **0**
-- Deploy/url gap: **25**
-- Canonical drift: **2**
-- Spec-ready: **33**
+- Deploy/url gap: **20**
+- Canonical drift: **0**
+- Spec-ready: **27**
 - Next action: `continue_spec_preparation`
 
 ## Ana Darboğaz
-- **Canlı sağlık açığı:** 1 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 0).
+- **Canlı sağlık açığı:** 2 canlı ürün sağlıksız; ilk örnek `pdf-forge` (HTTP 0).
 
 ## Kod için Öneri
 1. **Health/canonical drift düzeltmesi**
@@ -24,9 +24,5 @@
 - **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
 - **checkout_field_inconsistency** [medium/open] — Multiple checkout_url field names (checkout_url, lemon_checkout_url, lemonsqueezy_checkout_url)
 
-## Canonical Drift Ürünleri
-- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
-- `diffmaster` — current=https://diffmaster-rose.vercel.app ideal=https://diffmaster.vercel.app
-
 ## Deploy/URL Gap Preview
-- security-headers-checker, subdomain-finder, nginx-config-tester, ssl-cipher-analyzer, htpasswd-generator, docker-run-generator, ...
+- sql-to-nosql, chmod-calculator, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, ...

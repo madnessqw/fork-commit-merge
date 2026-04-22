@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-22 00:14 UTC
+# Codex Task — Generated 2026-04-22 00:43 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -12,11 +12,11 @@ Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senk
 
 ## Canlı State Özeti
 - Cycle: 1072
-- Live sağlık: 76/77 (%98.7)
+- Live sağlık: 75/77 (%97.4)
 - Checkout gap: 0
-- Deploy/url gap: 25
-- Canonical drift: 2
-- Spec-ready count: 33
+- Deploy/url gap: 20
+- Canonical drift: 0
+- Spec-ready count: 27
 - Next action: continue_spec_preparation
 
 ## Guardrails

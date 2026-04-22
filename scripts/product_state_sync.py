@@ -97,9 +97,22 @@ def choose_public_vercel_url(
     normalized_manifest_url = normalize_url(manifest_url)
     normalized_deployment_url = normalize_url(deployment_url)
     normalized_status = _clean_text(status)
+    canonical_url = canonical_vercel_url(slug)
 
     if normalized_status in PRE_DEPLOY_STATUSES and normalized_manifest_url is None:
         return None
+
+    # Live products should publish the canonical slug URL whenever the state or
+    # manifest already knows it. Stale preview aliases belong in history, not in
+    # the public URL field.
+    if canonical_url is not None:
+        for candidate in (
+            normalized_state_url,
+            normalized_deployment_url,
+            normalized_manifest_url,
+        ):
+            if candidate == canonical_url:
+                return canonical_url
 
     if normalized_status in HEALTH_CHECKABLE_STATUSES:
         return normalized_state_url or normalized_deployment_url or normalized_manifest_url
@@ -163,7 +176,14 @@ def merge_product_record(
         merged["last_health_code"] = manifest_health_code
 
     return normalize_checkout_metadata(
-        merged,
+        {
+            **merged,
+            "n": merged.get("name"),
+            "s": merged.get("slug"),
+            "st": merged.get("status"),
+            "v": merged.get("vercel_url"),
+            "c": get_checkout_url(merged),
+        },
         force_canonical_key=True,
         prune_legacy=True,
     )

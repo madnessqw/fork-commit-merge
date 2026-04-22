@@ -4,15 +4,15 @@
   "balance": 0.0,
   "active_count": 142,
   "live_count": 77,
-  "healthy_count": 76,
-  "unhealthy_count": 1,
+  "healthy_count": 75,
+  "unhealthy_count": 2,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 25,
-  "canonical_url_drift": 2,
-  "spec_ready_count": 33,
+  "deploy_missing_or_bad_url": 20,
+  "canonical_url_drift": 0,
+  "spec_ready_count": 27,
   "next_action": "continue_spec_preparation",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T00:15:01.239087Z",
+  "last_updated": "2026-04-22T00:43:06.805762Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -284,7 +284,7 @@
       "n": "JWT Generator",
       "s": "jwt-generator",
       "st": "live",
-      "v": "https://jwt-generator.vercel.app",
+      "v": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7d9338a5-9478-4b88-bf65-08b173d46fe6"
     },
     {
@@ -298,7 +298,7 @@
       "n": "PDF Forge",
       "s": "pdf-forge",
       "st": "live",
-      "v": "https://pdf-forge-five.vercel.app",
+      "v": "https://pdf-forge.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514"
     },
     {
@@ -606,7 +606,7 @@
       "n": "DiffMaster Pro",
       "s": "diffmaster",
       "st": "live",
-      "v": "https://diffmaster-rose.vercel.app",
+      "v": "https://diffmaster.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/diffmaster-pro-001"
     },
     {
@@ -815,14 +815,14 @@
     {
       "n": "Security Headers Checker",
       "s": "security-headers-checker",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Subdomain Finder",
       "s": "subdomain-finder",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -836,14 +836,14 @@
     {
       "n": "Nginx Config Tester",
       "s": "nginx-config-tester",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "SSL Cipher Analyzer",
       "s": "ssl-cipher-analyzer",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -871,14 +871,14 @@
     {
       "n": "Htpasswd Generator Pro",
       "s": "htpasswd-generator",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Docker Run Generator",
       "s": "docker-run-generator",
-      "st": "spec_ready",
+      "st": "building",
       "v": null,
       "c": null
     },
@@ -1011,12 +1011,6 @@
   ],
   "gaps": {
     "missing_url": [
-      "security-headers-checker",
-      "subdomain-finder",
-      "nginx-config-tester",
-      "ssl-cipher-analyzer",
-      "htpasswd-generator",
-      "docker-run-generator",
       "sql-to-nosql",
       "chmod-calculator",
       "binary-inspector",
@@ -1038,28 +1032,20 @@
     ],
     "unhealthy_live": [
       {
-        "slug": "jwt-generator",
-        "url": "https://jwt-generator.vercel.app",
+        "slug": "pdf-forge",
+        "url": "https://pdf-forge.vercel.app",
         "code": 0,
         "health_status": "error_500"
-      }
-    ],
-    "missing_checkout": [],
-    "canonical_url_drift": [
-      {
-        "slug": "pdf-forge",
-        "url": "https://pdf-forge-five.vercel.app",
-        "ideal_url": "https://pdf-forge.vercel.app"
       },
       {
         "slug": "diffmaster",
-        "url": "https://diffmaster-rose.vercel.app",
-        "ideal_url": "https://diffmaster.vercel.app"
+        "url": "https://diffmaster.vercel.app",
+        "code": 401,
+        "health_status": "unauthorized"
       }
-    ]
+    ],
+    "missing_checkout": [],
+    "canonical_url_drift": []
   },
-  "canonical_url_drift_products": [
-    "pdf-forge",
-    "diffmaster"
-  ]
+  "canonical_url_drift_products": []
 }

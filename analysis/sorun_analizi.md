@@ -1,24 +1,21 @@
-# Sorun Analizi — Cycle 1072 | 2026-04-22 00:14 UTC
+# Sorun Analizi — Cycle 1072 | 2026-04-22 00:43 UTC
 
 ## Ana Darboğaz
-- **live_health** — 1 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 0).
+- **live_health** — 2 canlı ürün sağlıksız; ilk örnek `pdf-forge` (HTTP 0).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 76/77
+- Healthy live: 75/77
 - Checkout gap: 0
-- Deploy/url gap: 25
-- Canonical drift: 2
-- Spec-ready backlog: 33
+- Deploy/url gap: 20
+- Canonical drift: 0
+- Spec-ready backlog: 27
 
 ## Canlı Sağlıksız Ürünler
-- `jwt-generator` — code=0 status=error_500 url=https://jwt-generator.vercel.app
+- `pdf-forge` — code=0 status=error_500 url=https://pdf-forge.vercel.app
+- `diffmaster` — code=401 status=unauthorized url=https://diffmaster.vercel.app
 
 ## URL/Deploy Eksikleri
-- security-headers-checker, subdomain-finder, nginx-config-tester, ssl-cipher-analyzer, htpasswd-generator, docker-run-generator, sql-to-nosql, chmod-calculator, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, ...
-
-## Canonical Drift Ürünleri
-- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
-- `diffmaster` — current=https://diffmaster-rose.vercel.app ideal=https://diffmaster.vercel.app
+- sql-to-nosql, chmod-calculator, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, mcp-inspector-pro, api-security-scanner, ...
 
 ## Açık Issue Kayıtları
 - **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift

@@ -56,9 +56,10 @@ class ProductStateSyncTests(unittest.TestCase):
         )
 
         self.assertEqual(merged["vercel_url"], "https://keyforge.vercel.app")
+        self.assertEqual(merged["v"], "https://keyforge.vercel.app")
         self.assertEqual(health_check_url(merged), "https://keyforge.vercel.app")
 
-    def test_live_state_alias_is_preserved_over_manifest_canonical_url(self) -> None:
+    def test_live_manifest_canonical_url_beats_stale_state_alias(self) -> None:
         merged = merge_product_record(
             {
                 "slug": "diffmaster",
@@ -73,9 +74,31 @@ class ProductStateSyncTests(unittest.TestCase):
             },
         )
 
-        self.assertEqual(merged["vercel_url"], "https://diffmaster-rose.vercel.app")
+        self.assertEqual(merged["vercel_url"], "https://diffmaster.vercel.app")
+        self.assertEqual(merged["v"], "https://diffmaster.vercel.app")
         self.assertEqual(merged["ideal_vercel_url"], "https://diffmaster.vercel.app")
-        self.assertEqual(health_check_url(merged), "https://diffmaster-rose.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://diffmaster.vercel.app")
+
+    def test_live_deployment_url_canonical_beats_stale_state_alias(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "pdf-forge",
+                "status": "live",
+                "vercel_url": "https://pdf-forge-five.vercel.app",
+                "ideal_vercel_url": "https://pdf-forge.vercel.app",
+            },
+            {
+                "slug": "pdf-forge",
+                "status": "live",
+                "vercel_url": "https://pdf-forge-five.vercel.app",
+                "deployment_url": "https://pdf-forge.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://pdf-forge.vercel.app")
+        self.assertEqual(merged["v"], "https://pdf-forge.vercel.app")
+        self.assertEqual(merged["ideal_vercel_url"], "https://pdf-forge.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://pdf-forge.vercel.app")
 
 
 if __name__ == "__main__":
