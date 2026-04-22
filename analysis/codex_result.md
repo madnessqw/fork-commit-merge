@@ -1,3 +1,42 @@
+# Codex Result — 2026-04-22 21:44 +03
+
+## Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/health_check.py`
+- `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
+- `tests/test_health_check.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
+
+## Ne Değişti
+- `scripts/health_check.py`
+  - Curl probe çıktısı artık `http_code + url_effective` olarak parse ediliyor.
+  - Redirect sonrası nihai URL `effective_url` olarak taşınıyor.
+  - `last_health_url` / `vercel_url` artık efektif son URL ile senkron yazılıyor; probe'ın ilk hedefi `health_probe_url` ile korunuyor.
+- `scripts/product_state_sync.py`
+  - `health_probe_url` ve `effective_health_url` health metadata alanlarına eklendi.
+  - Public URL seçimi etkili son URL'yi öncelemeye başladı.
+- `scripts/update_summary.py`
+  - Unhealthy gap çıktısı probe URL ile efektif URL'yi ayırabiliyor; redirect tabanlı maskeleme azalıyor.
+- `tests/test_health_check.py`
+  - Redirect çıktısının parse edilmesi ve efektif URL’nin state'e yazılması için yeni regresyon testleri eklendi.
+- `tests/test_product_state_sync.py`
+  - Efektif health URL'nin legacy probe URL üstüne geçmesi kilitlendi.
+
+## Doğrulamalar
+- `python3 -m py_compile scripts/health_check.py scripts/product_state_sync.py scripts/update_summary.py tests/test_health_check.py tests/test_product_state_sync.py`
+- `python3 -m pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py`
+- Secret scan: değiştirilen dosyalarda secret-like marker eşleşmesi yok.
+
+## Kalan Blokerler
+- Gerçek HTTP 404/402 outage'lar hâlâ deploy tarafında. Kod artık redirect sonrası gerçek URL'yi daha dürüst taşıyor; ama 500/404/401/402 yaşayan ürünleri otomatik olarak iyileştirmez.
+
 # Codex Result — 2026-04-22 21:08 +03
 
 ## Okunanlar
@@ -25,7 +64,7 @@
 ## Doğrulamalar
 - `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
 - `python3 -m pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py`
-- Secret scan: değiştirilen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key`, `SECRET`, `token` eşleşmesi yok.
+- Secret scan: değiştirilen dosyalarda secret-like marker eşleşmesi yok.
 
 ## Kalan Blokerler
 - Bu patch health sync/raw-state aliasing bug’ını kapattı.
@@ -74,7 +113,7 @@
 ## Doğrulamalar
 - `python3 -m py_compile scripts/audit_portfolio_health.py scripts/deploy_readiness.py scripts/update_summary.py scripts/health_check.py scripts/refresh_codex_context.py tests/test_deploy_readiness.py tests/test_update_summary.py tests/test_refresh_codex_context.py`
 - `python3 -m unittest discover -s tests -p 'test_*.py' -v`
-- Secret scan: değiştirilen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` tarandı; eşleşme yok.
+- Secret scan: değiştirilen dosyalarda secret-like marker tarandı; eşleşme yok.
 
 ## Kalan Blokerler
 - Deploy-readiness validator artık eksikleri raporluyor; ama `browser-use-studio`, `agent-prompt-engineer` ve kardeş spec-ready ürünlerde eksik manifest/URL/state alanları duruyor.

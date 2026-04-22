@@ -38,6 +38,8 @@ HEALTH_METADATA_FIELDS = (
     "health_status",
     "last_health_code",
     "last_health_url",
+    "health_probe_url",
+    "effective_health_url",
     "last_health_check",
     "health_checked_at",
     "canonical_health_status",
@@ -227,7 +229,7 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     if code != 200:
         return None
 
-    return normalize_url(_pick(record, "last_health_url", "health_probe_url"))
+    return normalize_url(_pick(record, "effective_health_url", "last_health_url", "health_probe_url"))
 
 
 def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:

@@ -333,6 +333,27 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://stale-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://stale-tool.vercel.app")
 
+    def test_effective_health_url_wins_over_legacy_probe_url(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "redirect-tool",
+                "status": "live",
+                "vercel_url": "https://redirect-tool-rose.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://redirect-tool-rose.vercel.app",
+                "health_probe_url": "https://redirect-tool-rose.vercel.app",
+                "effective_health_url": "https://redirect-tool.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(merged["v"], "https://redirect-tool.vercel.app")
+        self.assertEqual(merged["effective_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(merged["health_probe_url"], "https://redirect-tool-rose.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://redirect-tool.vercel.app")
+
     def test_healthy_live_records_without_canonical_health_code_get_promoted_to_canonical(self) -> None:
         merged = merge_product_record(
             {

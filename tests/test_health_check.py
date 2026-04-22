@@ -45,6 +45,26 @@ class HealthCheckTests(unittest.TestCase):
         self.assertIn("-4", command)
         self.assertIn("-L", command)
         self.assertIn("-sS", command)
+        self.assertTrue(any("%{url_effective}" in part for part in command))
+
+    @patch("scripts.health_check.subprocess.run")
+    def test_health_probe_captures_effective_url_from_redirects(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="200 https://redirect-tool.vercel.app")
+
+        result = check_product_health(
+            {
+                "name": "Redirect Tool",
+                "slug": "redirect-tool",
+                "status": "live",
+                "vercel_url": "https://redirect-tool-rose.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "healthy")
+        self.assertEqual(result["code"], 200)
+        self.assertEqual(result["url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(result["effective_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(run_mock.call_count, 1)
 
     @patch("scripts.health_check.subprocess.run")
     def test_ideal_url_is_probed_before_stale_alias(self, run_mock) -> None:
@@ -163,6 +183,34 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["ideal_vercel_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
+
+    def test_effective_health_url_is_preserved_for_redirected_successes(self) -> None:
+        product = {
+            "name": "Redirect Tool",
+            "slug": "redirect-tool",
+            "status": "live",
+            "vercel_url": "https://redirect-tool-rose.vercel.app",
+        }
+
+        apply_health_result(
+            product,
+            {
+                "status": "healthy",
+                "code": 200,
+                "url": "https://redirect-tool-rose.vercel.app",
+                "effective_url": "https://redirect-tool.vercel.app",
+                "checked_at": "2026-04-22T11:00:00Z",
+                "canonical_status": "healthy",
+                "canonical_code": 200,
+                "canonical_url": "https://redirect-tool.vercel.app",
+            },
+        )
+
+        self.assertEqual(product["health_probe_url"], "https://redirect-tool-rose.vercel.app")
+        self.assertEqual(product["effective_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(product["last_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(product["vercel_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(product["v"], "https://redirect-tool.vercel.app")
 
     def test_synced_health_results_include_alternate_healthy(self) -> None:
         self.assertTrue(is_synced_health_result({"status": "healthy"}))

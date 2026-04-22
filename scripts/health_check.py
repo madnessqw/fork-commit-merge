@@ -40,6 +40,17 @@ def _coerce_http_code(value):
     return None
 
 
+def _parse_probe_stdout(stdout):
+    text = (stdout or "").strip()
+    if not text:
+        return None, None
+
+    code_text, _, effective_text = text.partition(" ")
+    code = _coerce_http_code(code_text)
+    effective_url = _normalize_url(effective_text) if effective_text else None
+    return code, effective_url
+
+
 def _normalize_url(value):
     if value is None:
         return None
@@ -64,11 +75,12 @@ def _status_for_http_code(code):
     return f"error_{code}"
 
 
-def _build_probe_result(name, slug, url, code, checked_at):
+def _build_probe_result(name, slug, url, code, checked_at, effective_url=None):
     return {
         "name": name,
         "slug": slug,
         "url": url,
+        "effective_url": effective_url or url,
         "status": _status_for_http_code(code),
         "code": _coerce_http_code(code) or 0,
         "checked_at": checked_at,
@@ -84,11 +96,16 @@ def apply_health_result(product, result):
     checked_at = result.get("checked_at") or _utc_now_iso()
     slug = product.get("slug", product.get("s"))
     canonical_url = result.get("canonical_url")
+    probe_url = result.get("url")
+    effective_url = _normalize_url(result.get("effective_url")) or _normalize_url(probe_url)
     if canonical_url is None and slug:
         canonical_url = f"https://{slug}.vercel.app"
 
-    if result.get("url"):
-        product["last_health_url"] = result["url"]
+    if probe_url:
+        product["health_probe_url"] = probe_url
+    if effective_url:
+        product["effective_health_url"] = effective_url
+        product["last_health_url"] = effective_url
 
     if slug:
         product["ideal_vercel_url"] = canonical_url or f"https://{slug}.vercel.app"
@@ -105,9 +122,9 @@ def apply_health_result(product, result):
     )
     product["canonical_health_checked_at"] = checked_at
 
-    if result["status"] in SYNCED_HEALTH_STATUSES and result.get("url"):
-        product["vercel_url"] = result["url"]
-        product["v"] = result["url"]
+    if result["status"] in SYNCED_HEALTH_STATUSES and effective_url:
+        product["vercel_url"] = effective_url
+        product["v"] = effective_url
 
     product["health_status"] = result["status"]
     product["last_health_code"] = _coerce_http_code(result.get("code")) or 0
@@ -136,10 +153,10 @@ def check_product_health(product):
     try:
         for idx, url in enumerate(candidates):
             result = subprocess.run(
-                ['curl', '-4', '-L', '-sS', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', url],
+                ['curl', '-4', '-L', '-sS', '-o', '/dev/null', '-w', '%{http_code} %{url_effective}', '--max-time', '10', url],
                 capture_output=True, text=True, timeout=15
             )
-            code = result.stdout.strip()
+            code, effective_url = _parse_probe_stdout(result.stdout)
             http_code = _coerce_http_code(code)
 
             if http_code == 200:
@@ -150,6 +167,7 @@ def check_product_health(product):
                         'status': 'healthy',
                         'code': 200,
                         'url': url,
+                        'effective_url': effective_url or url,
                         'canonical_url': url,
                         'canonical_status': 'healthy',
                         'canonical_code': 200,
@@ -169,19 +187,28 @@ def check_product_health(product):
                     'status': 'alternate_healthy',
                     'code': 200,
                     'url': url,
+                    'effective_url': effective_url or url,
                     'canonical_url': candidates[0],
                     'canonical_status': canonical_probe['status'],
                     'canonical_code': canonical_probe['code'],
                     'checked_at': checked_at,
                 }
 
-            failure = _build_probe_result(name, slug, url, code, checked_at)
+            failure = _build_probe_result(name, slug, url, code, checked_at, effective_url=effective_url)
             if idx == 0:
                 canonical_failure = failure
 
         return canonical_failure or _build_probe_result(name, slug, candidates[0], 'unknown', checked_at)
     except Exception as e:
-        return {'name': name, 'slug': slug, 'status': 'error', 'code': str(e), 'url': candidates[0] if candidates else None, 'checked_at': checked_at}
+        return {
+            'name': name,
+            'slug': slug,
+            'status': 'error',
+            'code': str(e),
+            'url': candidates[0] if candidates else None,
+            'effective_url': candidates[0] if candidates else None,
+            'checked_at': checked_at,
+        }
 
 def main():
     # Load state

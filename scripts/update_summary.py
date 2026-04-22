@@ -289,7 +289,19 @@ def build_summary(
                     "health_status": p.get("health_status"),
                     **(
                         {"probe_url": probe_url}
-                        if (probe_url := _pick(p, "last_health_url", "health_probe_url")) is not None
+                        if (
+                            probe_url := _pick(p, "health_probe_url", "last_health_url", "effective_health_url")
+                        )
+                        is not None
+                        else {}
+                    ),
+                    **(
+                        {"effective_url": effective_url}
+                        if (
+                            effective_url := _pick(p, "effective_health_url", "last_health_url")
+                        )
+                        is not None
+                        and effective_url != _pick(p, "health_probe_url", "last_health_url")
                         else {}
                     ),
                 }
