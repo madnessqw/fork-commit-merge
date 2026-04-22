@@ -256,3 +256,33 @@
 ### Kalan Blokerler
 - Checkout metadata tarafında açık blokaj kalmadı.
 - Worktree’de bu task’ten bağımsız preexisting değişiklikler duruyor; onlara dokunmadım.
+
+
+## Codex Result — 2026-04-22 23:05 +03
+
+### Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `scripts/health_check.py`
+- `tests/test_health_check.py`
+
+### Ne Değişti
+- `scripts/health_check.py`
+  - Direct healthy probe sonuçlarında `canonical_url` artık final `effective_url` değerini kaydediyor.
+  - Redirect eden bir preview alias, canonical metadata içinde artık yanlışlıkla sabitlenmiyor.
+- `tests/test_health_check.py`
+  - Redirect-success senaryosu için `canonical_url` regresyon testi eklendi.
+
+### Doğrulamalar
+- `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py' -v`
+- Secret scan: `grep -r 'sk_\|pk_\|ghp_\|api_key' scripts/health_check.py tests/test_health_check.py` → temiz
+
+### Kalan Blokerler
+- 3 live ürün hâlâ fallback alias ile ayakta; bu turda kod onları düzeltmiş gibi göstermedi.
+- Vercel tarafındaki gerçek canonical kırıkları ayrı mesele; automation sadece onları doğru raporlar.

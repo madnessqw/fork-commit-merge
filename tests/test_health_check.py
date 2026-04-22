@@ -64,6 +64,7 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://redirect-tool.vercel.app")
         self.assertEqual(result["effective_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(result["canonical_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(run_mock.call_count, 1)
 
     @patch("scripts.health_check.subprocess.run")

@@ -168,7 +168,10 @@ def check_product_health(product):
                         'code': 200,
                         'url': url,
                         'effective_url': effective_url or url,
-                        'canonical_url': url,
+                        # For a direct success, the final effective URL is the
+                        # truthful canonical record. This avoids freezing a
+                        # redirected preview alias into canonical metadata.
+                        'canonical_url': effective_url or url,
                         'canonical_status': 'healthy',
                         'canonical_code': 200,
                         'checked_at': checked_at,
