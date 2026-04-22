@@ -221,6 +221,28 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://canonical-failure-tool-preview.vercel.app")
         self.assertEqual(health_check_url(merged), "https://canonical-failure-tool.vercel.app")
 
+    def test_stale_failure_with_successful_fallback_stays_alternate_healthy(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "fallback-stale-error",
+                "status": "live",
+                "vercel_url": "https://fallback-stale-error.vercel.app",
+                "health_status": "error_404",
+                "last_health_code": 200,
+                "last_health_url": "https://fallback-stale-error-preview.vercel.app",
+                "canonical_health_code": 404,
+                "canonical_health_status": "not_found",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://fallback-stale-error-preview.vercel.app")
+        self.assertEqual(merged["v"], "https://fallback-stale-error-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://fallback-stale-error-preview.vercel.app")
+        self.assertEqual(merged["canonical_health_code"], 404)
+        self.assertEqual(merged["canonical_health_status"], "not_found")
+
     def test_canonical_success_promotes_stale_fallback_state_back_to_canonical(self) -> None:
         merged = merge_product_record(
             {

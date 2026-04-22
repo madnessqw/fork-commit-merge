@@ -606,6 +606,47 @@ class UpdateSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
+    def test_stale_failure_with_successful_fallback_records_actual_fallback_url(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Fallback Tool",
+                        "slug": "fallback-stale-error",
+                        "status": "live",
+                        "vercel_url": "https://fallback-stale-error.vercel.app",
+                        "checkout_url": "https://checkout.example/fallback-stale-error",
+                        "health_status": "error_404",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-stale-error-preview.vercel.app",
+                        "canonical_health_code": 404,
+                        "canonical_health_status": "not_found",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state, product_catalog={})
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["checkout_gap_count"], 0)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
+        self.assertEqual(summary["products"][0]["v"], "https://fallback-stale-error-preview.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["fallback-stale-error"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "fallback-stale-error",
+                    "url": "https://fallback-stale-error-preview.vercel.app",
+                    "ideal_url": "https://fallback-stale-error.vercel.app",
+                }
+            ],
+        )
+        self.assertEqual(summary["gaps"]["unhealthy_live"], [])
+
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
             is_placeholder_product(

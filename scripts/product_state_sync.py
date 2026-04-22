@@ -305,7 +305,11 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
     normalized["last_health_code"] = code
 
-    current_health_status = _clean_text(_pick(record, "health_status"))
+    # Preserve any earlier alternate_healthy promotion instead of re-reading the
+    # stale raw record. Otherwise a live 200 fallback paired with a broken
+    # canonical URL gets rewritten back to "healthy" and the reachable URL gets
+    # hidden behind the dead canonical alias.
+    current_health_status = _clean_text(normalized.get("health_status"))
     if code == 200:
         if current_health_status not in HEALTHY_URL_STATUSES:
             normalized["health_status"] = "healthy"
