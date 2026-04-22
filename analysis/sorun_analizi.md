@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1077 | 2026-04-22 04:06 UTC
+# Sorun Analizi — Cycle 1079 | 2026-04-22 04:40 UTC
 
 ## Ana Darboğaz
 - **live_health** — 2 canlı ürün sağlıksız; ilk örnek `pdf-forge` (HTTP 0).
@@ -6,7 +6,7 @@
 ## Summary'den Gelen Gerçekler
 - Healthy live: 78/80
 - Checkout gap: 0
-- Deploy/url gap: 18
+- Deploy/url gap: 14
 - Canonical drift: 4
 - Spec-ready backlog: 21
 

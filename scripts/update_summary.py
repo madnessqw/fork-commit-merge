@@ -215,9 +215,10 @@ def build_summary(
         "healthy_count": sum(1 for p in live if is_healthy(p)),
         "unhealthy_count": len(unhealthy_live),
         "checkout_gap_count": len(checkout_gap_live),
-        # Deploy/URL gaps include live outage records plus canonical drift so we keep
-        # the canonical target visible without inflating the outage bucket itself.
-        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live) + len(canonical_drift_live),
+        # Deploy/URL gaps cover missing URLs plus broken live records. Canonical
+        # drift stays separate so alias-only products do not inflate the deploy
+        # backlog.
+        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live),
         "canonical_url_drift": len(canonical_drift_live),
         "spec_ready_count": spec_ready_total,
         "next_action": state.get("next_action"),

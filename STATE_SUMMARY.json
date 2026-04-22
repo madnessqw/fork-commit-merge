@@ -1,5 +1,5 @@
 {
-  "cycle": 1077,
+  "cycle": 1079,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 143,
@@ -7,12 +7,12 @@
   "healthy_count": 78,
   "unhealthy_count": 2,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 18,
+  "deploy_missing_or_bad_url": 14,
   "canonical_url_drift": 4,
   "spec_ready_count": 21,
   "next_action": "vercel_limit_wait_deploy_pending",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T04:06:04.437141Z",
+  "last_updated": "2026-04-22T04:40:31.016895Z",
   "products": [
     {
       "n": "UUID Generator Pro",
