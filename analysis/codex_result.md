@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 23:04 UTC
+# Codex Result — 2026-04-23
 
 ## Okunan Dosyalar
 - `skills/codex_skill.md`
@@ -7,32 +7,25 @@
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `CODEBASE_MAP.md`
+- `scripts/health_check.py`
 - `scripts/product_state_sync.py`
 - `scripts/update_summary.py`
+- `tests/test_health_check.py`
 - `tests/test_product_state_sync.py`
 - `tests/test_update_summary.py`
-- `tests/test_refresh_codex_context.py`
 
-## Yapılan Değişiklik
-- `scripts/product_state_sync.py` içinde manifest-backed kayıtlar için health normalizasyonundan **sonra** `vercel_url` tekrar çözümleniyor.
-- Böylece canonical probe patlakken fallback alias 200 dönüyorsa kayıt `alternate_healthy` kalırken public `vercel_url` da gerçekten çalışan alias'a dönüyor.
-- Önceki davranış dümdüz yalandı: manifest canonical URL'yi geri basıyor, state ise `alternate_healthy` yazıp ölü canonical adresi göstermeye devam ediyordu.
-- Regression testi eklendi: `tests/test_product_state_sync.py::test_manifest_backed_fallback_keeps_reachable_alias_as_public_url`.
+## Ne Değişti
+- `scripts/product_state_sync.py`: live ürünlerde canonical public URL korunurken state/manifest içindeki preview alias artık `deployment_url` fallback probe adayı olarak saklanıyor. Böylece health check canonical probe başarısız olursa gerçek fallback URL'yi ikinci aday olarak deneyebiliyor.
+- `tests/test_product_state_sync.py`: manifest preview alias'ın public URL'yi kirletmeden probe fallback olarak tutulduğunu doğrulayan regression testi eklendi; mevcut canonical tercih testi de bu alanı assert ediyor.
+- `tests/test_health_check.py`: canonical URL `402` dönerken preview alias `200` verirse sonucun `alternate_healthy` olarak yazıldığını doğrulayan regression testi eklendi.
 
-## Doğrulama
-- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_refresh_codex_context.py`
-- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- `python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py'`
-- `python3 scripts/update_summary.py`
-- `python3 scripts/refresh_codex_context.py`
-- Secret scan: değişen dosyalarda token-shaped regex taraması geçti.
-
-## Sonuç
-- Fallback alias ile yaşayan canlı ürünlerde state artık health alanı ile public URL konusunda birbiriyle çelişmiyor.
-- Refresh sonrası özet hâlâ dürüst: live sağlık `84/88`, fallback healthy `3`, canonical drift `3`, needs fix `7`.
+## Doğrulamalar
+- `grep -nE 'sk_|pk_|ghp_|api_key' scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_health_check.py` → temiz
+- `python3 -m py_compile scripts/product_state_sync.py scripts/health_check.py scripts/update_summary.py tests/test_product_state_sync.py tests/test_health_check.py tests/test_update_summary.py` → geçti
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'` → 29 test geçti
+- `python3 -m unittest discover -s tests -p 'test_health_check.py'` → 12 test geçti
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py'` → 24 test geçti
 
 ## Kalan Blokajlar
-- `pdf-forge`, `webhook-tester`, `email-validator-pro` hâlâ gerçek canonical drift; kod bunları çözülmüş gibi göstermiyor.
-- `jwt-generator` (500), `diffmaster` (401), `html-entity-encoder` (402), `timestamp-converter` (451) hâlâ canlı sorun.
-- `html-entity-encoder` için manuel Vercel dashboard kontrolü hâlâ sıradaki aksiyon.
+- Manuel Vercel/auth problemleri hâlâ manuel: bu değişiklik onları çözüldü diye göstermiyor.
+- `html-entity-encoder` gibi ürünlerde preview alias gerçekten 200 veriyorsa bir sonraki gerçek `health_check.py` çalışmasında drift olarak görünür; vermezse ürün haklı olarak sağlıksız kalır.

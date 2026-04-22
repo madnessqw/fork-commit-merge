@@ -116,6 +116,28 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 2)
 
     @patch("scripts.health_check.subprocess.run")
+    def test_manifest_preview_alias_probe_success_is_marked_as_alternate_healthy(self, run_mock) -> None:
+        run_mock.side_effect = [Mock(stdout="402"), Mock(stdout="200")]
+
+        result = check_product_health(
+            {
+                "name": "HTML Entity Encoder",
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder.vercel.app",
+                "deployment_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "alternate_healthy")
+        self.assertEqual(result["code"], 200)
+        self.assertEqual(result["url"], "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app")
+        self.assertEqual(result["canonical_status"], "deployment_disabled")
+        self.assertEqual(result["canonical_code"], 402)
+        self.assertEqual(result["canonical_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(run_mock.call_count, 2)
+
+    @patch("scripts.health_check.subprocess.run")
     def test_non_standard_http_failure_code_is_preserved(self, run_mock) -> None:
         run_mock.return_value = Mock(stdout="451")
 

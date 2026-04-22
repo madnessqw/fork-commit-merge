@@ -180,6 +180,26 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["vercel_url"], "https://keyforge.vercel.app")
         self.assertEqual(merged["v"], "https://keyforge.vercel.app")
         self.assertEqual(health_check_url(merged), "https://keyforge.vercel.app")
+        self.assertEqual(merged["deployment_url"], "https://keyforge-3lj8zc033-madnessqws-projects.vercel.app")
+
+    def test_live_manifest_preview_alias_is_retained_as_probe_fallback(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder.vercel.app",
+            },
+            {
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(merged["v"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(merged["deployment_url"], "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
 
     def test_alternate_healthy_fallback_url_beats_stale_canonical_state_url(self) -> None:
         merged = merge_product_record(

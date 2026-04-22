@@ -104,6 +104,15 @@ def _is_vercel_preview_alias(url: Any, slug: str | None) -> bool:
     return host != canonical_host
 
 
+def _preview_probe_candidate(url: Any, slug: str | None) -> str | None:
+    normalized = normalize_url(url)
+    if normalized is None:
+        return None
+    if not _is_vercel_preview_alias(normalized, slug):
+        return None
+    return normalized
+
+
 def _record_key(record: dict[str, Any]) -> str | None:
     slug = _clean_text(_pick(record, "slug", "s"))
     if slug is not None:
@@ -568,7 +577,18 @@ def merge_product_record(
             merged[field] = manifest_value
 
     effective_status = merged.get("status")
-    merged["deployment_url"] = normalize_url(manifest.get("deployment_url")) or normalize_url(merged.get("deployment_url"))
+    merged["deployment_url"] = (
+        normalize_url(manifest.get("deployment_url")) or normalize_url(merged.get("deployment_url"))
+    )
+    if merged.get("deployment_url") is None and effective_status in HEALTH_CHECKABLE_STATUSES:
+        fallback_probe_url = (
+            _preview_probe_candidate(source_state.get("deployment_url"), merged.get("slug"))
+            or _preview_probe_candidate(source_state.get("vercel_url"), merged.get("slug"))
+            or _preview_probe_candidate(manifest.get("deployment_url"), merged.get("slug"))
+            or _preview_probe_candidate(manifest.get("vercel_url"), merged.get("slug"))
+        )
+        if fallback_probe_url is not None:
+            merged["deployment_url"] = fallback_probe_url
     manifest_last_health_url = normalize_url(manifest.get("last_health_url"))
     if merged.get("last_health_url") is None and manifest_last_health_url is not None:
         merged["last_health_url"] = manifest_last_health_url
