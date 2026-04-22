@@ -322,6 +322,72 @@ for fpath in glob.glob('.team/*_task.json'):
 
 ---
 
+## 📡 Researcher Prompt Cadence
+
+Claude ana session her 10dk'da 1 cycle çalışır. Her **3. cycle'da** (≈30dk) researcher teammate'e prompt gönderir.
+
+**Cycle sayacı:** `analysis/team_status.md` içinde `cycle_count` alanı. Her cycle +1. 3'e bölünebiliyorsa researcher prompt gönder.
+
+**Researcher prompt şablonu:**
+```
+Yeni araştırma yap. derin-arastirma skill'ini kullan.
+Hedef: developer/maker araçları, $9-29 one-time, Vercel serverless.
+STATE_SUMMARY.json oku — mevcut portföyü tekrarlama.
+research/YYYY-MM-DD.md dosyasına yeni bölüm ekle.
+.signals/researcher_done yaz.
+```
+
+**Context anti-bloat (kritik):**
+- `analysis/team_status.md` içinde her teammate için `prompt_count` tut
+- `prompt_count[researcher] >= 2` → teammate kapat → yeniden aç → `prompt_count = 0`
+- Bu kural TÜM teammate'ler için geçerli (researcher, strategist, planner, builder, qa-tester)
+
+---
+
+## 📋 Team Status Format (analysis/team_status.md)
+
+Claude her cycle `analysis/team_status.md`'yi aşağıdaki formatta günceller:
+
+```json
+{
+  "cycle_count": 1073,
+  "last_updated": "2024-01-15T14:30:00Z",
+  "teammates": {
+    "researcher": {
+      "status": "idle|active|reset",
+      "prompt_count": 1,
+      "last_prompt": "2024-01-15T14:00:00Z",
+      "last_done": "2024-01-15T14:25:00Z"
+    },
+    "strategist": {
+      "status": "idle",
+      "prompt_count": 0,
+      "last_prompt": null
+    },
+    "planner": {
+      "status": "idle",
+      "prompt_count": 0
+    },
+    "builder": {
+      "status": "idle",
+      "prompt_count": 0
+    },
+    "qa-tester": {
+      "status": "idle",
+      "prompt_count": 0
+    }
+  },
+  "signals": {
+    "researcher_done": false,
+    "codex_strategy_ready": false,
+    "qa_pending": false,
+    "deploy_ready": false
+  }
+}
+```
+
+---
+
 ## 🏗 PHASE 1 — INNOVATE (Yeni Ürün Araştır)
 
 Bu mod: STATE.json'da building=null ve active listesi boş veya küçük.
