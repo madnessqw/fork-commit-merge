@@ -312,7 +312,17 @@ class UpdateSummaryTests(unittest.TestCase):
                                     "health_status": "alternate_healthy",
                                     "last_health_code": 200,
                                     "last_health_url": "https://temporary-tool-preview.vercel.app",
-                                }
+                                },
+                                {
+                                    "name": "Temporary Tool",
+                                    "slug": "temporary-tool",
+                                    "status": "live",
+                                    "vercel_url": "https://temporary-tool.vercel.app",
+                                    "v": "https://temporary-tool-preview.vercel.app",
+                                    "health_status": "alternate_healthy",
+                                    "last_health_code": 200,
+                                    "last_health_url": "https://temporary-tool-preview.vercel.app",
+                                },
                             ],
                             "spec_ready": [],
                         },
@@ -333,6 +343,7 @@ class UpdateSummaryTests(unittest.TestCase):
 
             self.assertEqual(synced_state["canonical_url_drift"], 0)
             self.assertEqual(synced_state["canonical_url_drift_products"], [])
+            self.assertEqual(len(synced_state["products"]["active"]), 1)
             self.assertEqual(synced_state["products"]["active"][0]["vercel_url"], "https://temporary-tool.vercel.app")
             self.assertEqual(synced_state["products"]["active"][0]["v"], "https://temporary-tool.vercel.app")
             self.assertEqual(synced_summary["canonical_url_drift"], 0)

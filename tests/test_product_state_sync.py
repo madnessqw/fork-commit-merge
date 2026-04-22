@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.product_state_sync import health_check_url, merge_product_record, sync_state_snapshot
+from scripts.product_state_sync import health_check_url, merge_product_record, sync_state_products, sync_state_snapshot
 
 
 class ProductStateSyncTests(unittest.TestCase):
@@ -293,6 +293,32 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(product["vercel_url"], "https://orphan-tool.vercel.app")
         self.assertEqual(product["v"], "https://orphan-tool.vercel.app")
         self.assertEqual(product["last_health_url"], "https://orphan-tool.vercel.app")
+
+    def test_sync_state_products_deduplicates_duplicate_slugs(self) -> None:
+        products = [
+            {
+                "name": "Duplicate Tool",
+                "slug": "duplicate-tool",
+                "status": "live",
+                "vercel_url": "https://duplicate-tool.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+            },
+            {
+                "name": "Duplicate Tool",
+                "slug": "duplicate-tool",
+                "status": "live",
+                "vercel_url": "https://duplicate-tool.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+            },
+        ]
+
+        synced = sync_state_products(products)
+
+        self.assertEqual(len(synced), 1)
+        self.assertEqual(synced[0]["slug"], "duplicate-tool")
+        self.assertEqual(synced[0]["vercel_url"], "https://duplicate-tool.vercel.app")
 
 
 if __name__ == "__main__":

@@ -1,9 +1,8 @@
-# Codex Result — 2026-04-22 11:41 +0300
+# Codex Result — 2026-04-22 09:06 +0300
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
 - `analysis/codex_task.md`
-- `STATE.json`
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
@@ -16,26 +15,31 @@
 - `tests/test_health_check.py`
 
 ## Seçilen Darboğaz
-- No-manifest path'te public URL çözümü, başarılı health probe kanıtını yeterince sıkı kullanmıyordu. Bu yüzden canonical health URL geri kazanılırken bile stale alias davranışı riskli kalıyordu.
+- Health/canonical state sync sadece summary tarafında temizleniyordu; raw `STATE.json` içinde aynı slug’ın duplicate kayıtları kalıyordu. Bu, cached state ile summary arasında gereksiz drift üretiyordu.
 
 ## Yapılan Değişiklikler
 - `scripts/product_state_sync.py`
-  - `resolved_public_vercel_url()` artık public URL kararını tek bir yol üzerinden veriyor ve yalnızca başarılı health probe URL'sini canonical geri kazanımı için kullanıyor.
-  - `ideal_vercel_url` tek başına public URL'i zorlamıyor; böylece ideal hedef ile fiili public URL drift'i saklanmıyor.
+  - Sync edilen product listeleri artık slug/name bazında dedupe ediliyor.
+  - Aynı slug için daha dolu kayıt korunuyor, boş/anonim kayıtlar sıra bozmadan bırakılıyor.
 - `tests/test_product_state_sync.py`
-  - Manifest olmayan bir kayıtta başarılı canonical health URL'nin public URL'i canonical'a çektiğini doğrulayan regression testi eklendi.
+  - Duplicate slug’ların tek kayda düştüğünü doğrulayan regression testi eklendi.
 - `tests/test_update_summary.py`
-  - `build_summary()` için aynı no-manifest canonical-health regression testi eklendi.
+  - `update_summary.main()` çalışınca duplicate state kayıtlarının da tekilleştiğini doğrulayan regression testi eklendi.
+- `STATE.json`
+  - Duplicate active kayıtlar temizlendi; active liste 152’den 143 unique kayda düştü.
+- `STATE_SUMMARY.json`
+  - Aynı run içinde yeniden üretildi; summary ile state artık aynı unique snapshot’ı gösteriyor.
 
 ## Doğrulamalar
 - `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
-- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q` → `37 passed`
+- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q` → `38 passed`
+- `python3 scripts/update_summary.py` → `STATE_SUMMARY.json updated: active=143 live=81 healthy=79 checkout_gaps=0 deploy_gaps=7 canonical_drift=0`
 
 ## Sonuç / Etki
-- Canonical health kanıtı varsa alias artık public state'i kirletmiyor.
-- Sadece ideal hedef URL taşıyan kayıtlar yanlışlıkla düzelmiş sayılmıyor.
-- `STATE_SUMMARY.json` current snapshot ile uyumlu kaldı; core counts değişmedi.
+- Raw state ile summary arasındaki duplicate-slug drift kapandı.
+- Health pipeline artık aynı ürünü iki kere taşımıyor; canonical/health snapshot daha temiz.
+- Canlı blokajlar değişmedi: `pdf-forge` timeout, `diffmaster` unauthorized; bunlar manuel Vercel tarafı çözüm bekliyor.
 
 ## Kalan Blokerler
-- Vercel limit reseti bekleniyor.
-- `diffmaster` ve `pdf-forge` hâlâ ürün/vercel kaynaklı manuel veya kaynak-düzeyi iş gerektiriyor.
+- `wait_for_vercel_limit_reset`
+- `pdf-forge` ve `diffmaster` canlı health sorunları

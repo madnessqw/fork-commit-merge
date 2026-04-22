@@ -73,6 +73,44 @@ def normalize_url(value: Any) -> str | None:
     return url.rstrip("/")
 
 
+def _record_key(record: dict[str, Any]) -> str | None:
+    slug = _clean_text(_pick(record, "slug", "s"))
+    if slug is not None:
+        return f"slug:{slug}"
+
+    name = _clean_text(_pick(record, "name", "n"))
+    if name is not None:
+        return f"name:{name}"
+
+    return None
+
+
+def _record_quality_score(record: dict[str, Any]) -> int:
+    return sum(1 for value in record.values() if has_value(value))
+
+
+def _dedupe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    deduped: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    anonymous: list[dict[str, Any]] = []
+
+    for record in records:
+        key = _record_key(record)
+        if key is None:
+            anonymous.append(record)
+            continue
+
+        if key not in deduped:
+            deduped[key] = record
+            order.append(key)
+            continue
+
+        if _record_quality_score(record) > _record_quality_score(deduped[key]):
+            deduped[key] = record
+
+    return [deduped[key] for key in order] + anonymous
+
+
 def _clear_health_metadata(record: dict[str, Any]) -> dict[str, Any]:
     cleared = dict(record)
     for field in HEALTH_METADATA_FIELDS:
@@ -344,7 +382,7 @@ def sync_state_products(
         manifest = catalog.get(slug) if slug else None
         synced.append(merge_product_record(product, manifest))
 
-    return synced
+    return _dedupe_records(synced)
 
 
 def sync_state_snapshot(
