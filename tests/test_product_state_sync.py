@@ -58,6 +58,25 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["vercel_url"], "https://keyforge.vercel.app")
         self.assertEqual(health_check_url(merged), "https://keyforge.vercel.app")
 
+    def test_live_state_alias_is_preserved_over_manifest_canonical_url(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "diffmaster",
+                "status": "live",
+                "vercel_url": "https://diffmaster-rose.vercel.app",
+                "ideal_vercel_url": "https://diffmaster.vercel.app",
+            },
+            {
+                "slug": "diffmaster",
+                "status": "live",
+                "vercel_url": "https://diffmaster.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://diffmaster-rose.vercel.app")
+        self.assertEqual(merged["ideal_vercel_url"], "https://diffmaster.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://diffmaster-rose.vercel.app")
+
 
 if __name__ == "__main__":
     unittest.main()

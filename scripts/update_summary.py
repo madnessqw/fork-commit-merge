@@ -44,6 +44,12 @@ def _pick(product: dict[str, Any], *keys: str) -> Any:
     return None
 
 
+def _normalize_url(value: Any) -> str | None:
+    if not _has_value(value):
+        return None
+    return str(value).strip().rstrip("/")
+
+
 def normalize_product(product: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(product)
     normalized["name"] = _pick(product, "name", "n")
@@ -143,6 +149,18 @@ def is_healthy(product: dict[str, Any]) -> bool:
     return product.get("health_status") == "healthy" or health_code(product) == 200
 
 
+def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
+    ideal_url = _normalize_url(_pick(product, "ideal_vercel_url"))
+    current_url = _normalize_url(product.get("vercel_url"))
+    if ideal_url is None or current_url is None or ideal_url == current_url:
+        return None
+    return {
+        "slug": product.get("slug"),
+        "url": current_url,
+        "ideal_url": ideal_url,
+    }
+
+
 def compact_product(product: dict[str, Any]) -> dict[str, Any]:
     return {
         "n": product.get("name"),
@@ -162,6 +180,11 @@ def build_summary(
     live = [p for p in active if p.get("status") == "live"]
     spec_ready_inside_active = [p for p in active if p.get("status") == "spec_ready"]
     ready_for_payment = [p for p in active if p.get("status") == "ready_for_payment"]
+    canonical_drift_live = [
+        drift
+        for p in live
+        if (drift := canonical_url_drift_entry(p)) is not None
+    ]
 
     products_without_url = [p for p in active if p.get("status") in {"live", "ready_for_payment", "spec_ready"} and not p.get("vercel_url")]
     unhealthy_live = [p for p in live if not is_healthy(p)]
@@ -178,6 +201,7 @@ def build_summary(
         "unhealthy_count": len(unhealthy_live),
         "checkout_gap_count": len(checkout_gap_live),
         "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live),
+        "canonical_url_drift": len(canonical_drift_live),
         "spec_ready_count": spec_ready_total,
         "next_action": state.get("next_action"),
         "vercel_auth_issue": state.get("vercel_auth_issue"),
@@ -195,7 +219,9 @@ def build_summary(
                 for p in unhealthy_live
             ],
             "missing_checkout": [p.get("slug") for p in checkout_gap_live],
+            "canonical_url_drift": canonical_drift_live,
         },
+        "canonical_url_drift_products": [item.get("slug") for item in canonical_drift_live if item.get("slug")],
     }
 
 
@@ -207,7 +233,7 @@ def main() -> int:
         "STATE_SUMMARY.json updated: "
         f"active={summary['active_count']} live={summary['live_count']} "
         f"healthy={summary['healthy_count']} checkout_gaps={summary['checkout_gap_count']} "
-        f"deploy_gaps={summary['deploy_missing_or_bad_url']}"
+        f"deploy_gaps={summary['deploy_missing_or_bad_url']} canonical_drift={summary['canonical_url_drift']}"
     )
     return 0
 

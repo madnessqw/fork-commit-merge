@@ -97,19 +97,14 @@ def choose_public_vercel_url(
     normalized_manifest_url = normalize_url(manifest_url)
     normalized_deployment_url = normalize_url(deployment_url)
     normalized_status = _clean_text(status)
-    canonical_url = canonical_vercel_url(slug)
 
     if normalized_status in PRE_DEPLOY_STATUSES and normalized_manifest_url is None:
         return None
 
-    for candidate in (normalized_state_url, normalized_manifest_url, normalized_deployment_url):
-        if candidate is not None and candidate == canonical_url:
-            return candidate
-
     if normalized_status in HEALTH_CHECKABLE_STATUSES:
-        return normalized_state_url or normalized_manifest_url or normalized_deployment_url
+        return normalized_state_url or normalized_deployment_url or normalized_manifest_url
 
-    return normalized_manifest_url or normalized_state_url or normalized_deployment_url
+    return normalized_state_url or normalized_deployment_url or normalized_manifest_url
 
 
 def merge_product_record(

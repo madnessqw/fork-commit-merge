@@ -14,10 +14,19 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.product_state_sync import load_product_catalog
+from scripts.update_summary import build_summary
+
+
 SUMMARY_FILE = ROOT / "STATE_SUMMARY.json"
+STATE_FILE = ROOT / "STATE.json"
 ISSUES_FILE = ROOT / "issues" / "issues.jsonl"
 ANALYSIS_DIR = ROOT / "analysis"
 ONERI_FILE = ANALYSIS_DIR / "oneri.md"
@@ -36,8 +45,15 @@ class Focus:
     codex_task_body: str
 
 
-def load_summary(path: Path = SUMMARY_FILE) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+def _write_summary(summary: dict[str, Any], path: Path = SUMMARY_FILE) -> None:
+    path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def load_summary() -> dict[str, Any]:
+    state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    summary = build_summary(state, product_catalog=load_product_catalog())
+    _write_summary(summary)
+    return summary
 
 
 def load_unresolved_issues(path: Path = ISSUES_FILE) -> list[dict[str, Any]]:
@@ -81,6 +97,7 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
     unhealthy_live = list(summary.get("gaps", {}).get("unhealthy_live", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
+    canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
 
     if unhealthy_live:
         sample = unhealthy_live[0]
@@ -108,6 +125,26 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
                 "Checkout metadata okumayı tek kanala indir. `checkout_url`, "
                 "`lemon_checkout_url` ve `lemonsqueezy_checkout_url` varyantlarını güvenli biçimde "
                 "normalize eden utility/script yaz veya mevcut akışı düzelt. Production checkout URL'lerini uydurma."
+            ),
+        )
+
+    if canonical_drift:
+        sample = canonical_drift[0]
+        slug = sample.get("slug") or "unknown"
+        current_url = sample.get("url") or sample.get("current_url") or "unknown"
+        ideal_url = sample.get("ideal_url") or sample.get("canonical_url") or "unknown"
+        return Focus(
+            key="canonical_url_drift",
+            title="Canonical URL drift",
+            summary=(
+                f"{len(canonical_drift)} live ürün canonical URL'den sapmış; "
+                f"ilk örnek `{slug}` ({current_url} → {ideal_url})."
+            ),
+            codex_task_title="Canonical URL drift düzeltmesi",
+            codex_task_body=(
+                "Live ürünlerin public URL'si ile ideal canonical URL'sini aynı tut. "
+                "Önce health pipeline'ını ve summary sync'ini doğrula; "
+                "alias/redirect farkını manuel Vercel fix gibi saklamaya çalışma."
             ),
         )
 
@@ -180,6 +217,7 @@ def top_issues(issues: list[dict[str, Any]], limit: int = 5) -> list[dict[str, A
 def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
     health_percent = _health_percent(summary)
     unresolved = top_issues(issues)
+    canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
     lines = [
         f"# Codex Analiz Özeti — {now.strftime('%Y-%m-%d %H:%M')} UTC",
         "",
@@ -189,6 +227,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         f"- Live sağlık: **{summary.get('healthy_count')}/{summary.get('live_count')}** (%{health_percent:.1f})",
         f"- Checkout gap: **{summary.get('checkout_gap_count')}**",
         f"- Deploy/url gap: **{summary.get('deploy_missing_or_bad_url')}**",
+        f"- Canonical drift: **{summary.get('canonical_url_drift', 0)}**",
         f"- Spec-ready: **{summary.get('spec_ready_count')}**",
         f"- Next action: `{summary.get('next_action')}`",
         "",
@@ -207,6 +246,13 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         for issue in unresolved:
             lines.append(
                 f"- **{issue.get('issue_type')}** [{issue.get('severity')}/{issue.get('status')}] — {issue.get('description')}"
+            )
+
+    if canonical_drift:
+        lines.extend(["", "## Canonical Drift Ürünleri"])
+        for item in canonical_drift[:10]:
+            lines.append(
+                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}"
             )
 
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
@@ -229,6 +275,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     unhealthy = list(summary.get("gaps", {}).get("unhealthy_live", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
+    canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
 
     lines = [
         f"# Sorun Analizi — Cycle {summary.get('cycle')} | {now.strftime('%Y-%m-%d %H:%M')} UTC",
@@ -240,6 +287,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
         f"- Healthy live: {summary.get('healthy_count')}/{summary.get('live_count')}",
         f"- Checkout gap: {summary.get('checkout_gap_count')}",
         f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
+        f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
         f"- Spec-ready backlog: {summary.get('spec_ready_count')}",
     ]
 
@@ -262,6 +310,13 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
             preview += ", ..."
         lines.extend(["", "## URL/Deploy Eksikleri", f"- {preview}"])
 
+    if canonical_drift:
+        lines.extend(["", "## Canonical Drift Ürünleri"])
+        for item in canonical_drift[:10]:
+            lines.append(
+                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}"
+            )
+
     if issues:
         lines.extend(["", "## Açık Issue Kayıtları"])
         for issue in top_issues(issues, limit=8):
@@ -273,7 +328,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
         [
             "",
             "## Not",
-            "- Bu dosya live `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.",
+            "- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.",
             "- Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.",
         ]
     )
@@ -288,7 +343,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             "",
             "## MOD: PRODUCTION SAFE INFRA",
             "",
-            "Bu görev dosyası live `STATE_SUMMARY.json` üzerinden üretildi. Eski araştırma/no-code talimatı",
+            "Bu görev dosyası live `STATE.json` → `STATE_SUMMARY.json` üzerinden üretildi. Eski araştırma/no-code talimatı",
             "stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyileştirmesi seçilir.",
             "",
             "## Aktif Görev",
@@ -301,6 +356,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
             f"- Checkout gap: {summary.get('checkout_gap_count')}",
             f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
+            f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
             f"- Spec-ready count: {summary.get('spec_ready_count')}",
             f"- Next action: {summary.get('next_action')}",
             "",
@@ -343,7 +399,8 @@ def main() -> int:
         "Codex context refreshed: "
         f"cycle={summary.get('cycle')} focus={focus.key} "
         f"live={summary.get('live_count')} healthy={summary.get('healthy_count')} "
-        f"checkout_gap={summary.get('checkout_gap_count')} deploy_gap={summary.get('deploy_missing_or_bad_url')}"
+        f"checkout_gap={summary.get('checkout_gap_count')} deploy_gap={summary.get('deploy_missing_or_bad_url')} "
+        f"canonical_drift={summary.get('canonical_url_drift', 0)}"
     )
     return 0
 

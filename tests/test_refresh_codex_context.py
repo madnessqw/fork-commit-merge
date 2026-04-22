@@ -64,6 +64,32 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "checkout_field_inconsistency")
         self.assertIn("metadata", focus.summary)
 
+    def test_focus_prefers_canonical_drift_when_health_is_clean(self) -> None:
+        summary = {
+            "live_count": 77,
+            "healthy_count": 77,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 24,
+            "canonical_url_drift": 1,
+            "gaps": {
+                "unhealthy_live": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "diffmaster",
+                        "url": "https://diffmaster-rose.vercel.app",
+                        "ideal_url": "https://diffmaster.vercel.app",
+                    }
+                ],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "canonical_url_drift")
+        self.assertIn("diffmaster", focus.summary)
+
     def test_rendered_codex_task_mentions_generated_guardrails(self) -> None:
         summary = {
             "cycle": 1063,
@@ -89,6 +115,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         rendered = render_codex_task(summary, focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc))
 
         self.assertIn("Generated 2026-04-22 12:00 UTC", rendered)
+        self.assertIn("Canonical drift: 0", rendered)
         self.assertIn("Manual Vercel/LemonSqueezy", rendered)
         self.assertIn("analysis/codex_result.md", rendered)
 

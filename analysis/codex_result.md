@@ -1,62 +1,60 @@
-# Codex Result — 2026-04-22
+# Codex Result — 2026-04-22 00:15 UTC
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
 - `analysis/codex_task.md`
+- `STATE.json`
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `analysis/cozum_planlama.md`
 - `analysis/kullanici_gereksinim.md`
-- `scripts/update_summary.py`
+- `analysis/vercel_canonical_fix_manual.md`
+- `scripts/product_state_sync.py`
 - `scripts/health_check.py`
-- `scripts/deploy_product.sh`
-- `scripts/checkout_metadata.py`
-- Örnek drift kayıtları: `STATE.json` + `products/*/product.json` (`ssl-cert-checker`, `security-headers-checker`, `subdomain-finder`, `table-to-csv`, `keyforge`)
+- `scripts/update_summary.py`
+- `scripts/refresh_codex_context.py`
 - `tests/test_update_summary.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_refresh_codex_context.py`
 
 ## Seçilen Darboğaz
-- Asıl sorun health check’in tek başına bozuk olması değildi; `STATE.json` active cache’i ile `products/*/product.json` manifestleri birbirini yalanlıyordu.
-- Sonuç: summary 120 live / 7 checkout gap / 31 spec-ready diyordu ama diskteki gerçek manifestlerle bu rakamlar şişmişti.
-- Manuel Vercel/LemonSqueezy işlerini “çözdüm” diye yalan söylemek yerine, otomasyon katmanını manifest gerçeğine hizaladım.
+- Asıl sorun health pipeline’ın tek başına bozuk olması değildi; otomasyon, çalışan deployment alias’larını görmezden gelip kırık canonical URL’lere yaslanıyordu.
+- Ayrıca analiz dosyaları ve summary stale kalıyordu; canlı state ile rapor birbirini yalanlıyordu.
+- `analysis/codex_task.md` stale bir araştırma/no-code tonu taşısa da bu turda doğrudan insan kod+commit istediği için güvenli altyapı düzeltmesini seçtim.
 
 ## Yapılan Değişiklikler
-- `scripts/product_state_sync.py` **yeni**
-  - STATE active kayıtlarını `product.json` manifestleriyle uzlaştıran ortak helper eklendi.
-  - Kural: manifest status öncelikli; pre-deploy statülerde stale state URL/checkout taşınmıyor.
-  - Live/ready ürünlerde state’teki canonical `slug.vercel.app` URL, manifestteki hash preview URL’ye ezdirilmiyor.
-- `scripts/update_summary.py`
-  - Summary üretimi artık sadece STATE cache’ine kör bakmıyor; product manifest catalog ile aktif kayıtları senkronlayıp sonra sayaçları hesaplıyor.
-  - Bu sayede stale live ürünler summary’de canlıymış gibi sayılmıyor.
+- `scripts/product_state_sync.py`
+  - `choose_public_vercel_url()` artık canonical URL’ye körlemesine dönmüyor.
+  - Canlı ürünlerde çalışan `state_url` / `deployment_url` / `manifest_url` sırası korunuyor.
 - `scripts/health_check.py`
-  - Health pipeline artık check öncesi STATE active kayıtlarını aynı manifest-sync helper ile normalize ediyor.
-  - Script çalıştırıldığında stale `status` / `vercel_url` değerlerini health check öncesi düzeltecek hale geldi.
-- `tests/test_update_summary.py`
-  - Stale live → spec_ready reclassification ve live üründe canonical state URL’nin korunması için regresyon testleri eklendi.
-- `tests/test_product_state_sync.py` **yeni**
-  - Manifest status önceliği, stale URL temizliği ve canonical alias tercih kuralı test edildi.
+  - Health kontrolü birden fazla aday URL’yi probe ediyor.
+  - İlk `200` dönen URL’yi kabul edip state’e geri yazıyor.
+  - Health sonrası summary alanları canonical drift’i de kapsayacak şekilde güncelleniyor.
+- `scripts/update_summary.py`
+  - `canonical_url_drift` sayısı ve ürün listesi hesaplanıyor.
+  - Drift için detaylı gap girdisi üretiliyor.
+- `scripts/refresh_codex_context.py`
+  - `STATE_SUMMARY.json` artık her çalışmada `STATE.json` üzerinden yeniden kuruluyor.
+  - Health temizse sonraki odakta canonical drift öne alınıyor.
+- Testler
+  - `tests/test_update_summary.py`: canonical drift raporlama testi eklendi.
+  - `tests/test_product_state_sync.py`: canlı alias’ın manifest canonical URL’ye ezdirilmemesi testi eklendi.
+  - `tests/test_refresh_codex_context.py`: canonical drift odak önceliği testi eklendi.
+- State/analysis artefact’leri
+  - `STATE.json`, `STATE_SUMMARY.json`, `analysis/codex_task.md`, `analysis/oneri.md`, `analysis/sorun_analizi.md` güncellendi.
 
 ## Sonuç / Etki
-- Aynı `STATE.json` için eski sayaçlar vs yeni sayaçlar:
-  - **Önce:** live=120, healthy=113, checkout_gap=7, deploy_gap=29, spec_ready=31
-  - **Sonra:** live=77, healthy=76, checkout_gap=1, deploy_gap=29, spec_ready=37
-- Yani summary artık cache fantezisi değil, diskteki ürün manifestlerine daha yakın bir operasyonel gerçeklik veriyor.
-- `analysis/oneri.md`, `analysis/sorun_analizi.md`, `analysis/codex_task.md` refresh edildi; yeni odak hâlâ health/canonical drift ama artık tek canlı sağlık açığı görünüyor.
+- `diffmaster`, `pdf-forge` ve `timestamp-converter` artık çalışan deployment alias’larıyla sağlıklı görünüyor; canonical URL varsayımı yüzünden bozulmuş sağlık kaydı kalmadı.
+- Summary artık `live=77`, `healthy=76`, `canonical_drift=2` diye gerçek durumu söylüyor.
+- Kalan tek canlı sağlık bloğu `jwt-generator` için HTTP 500; bu gerçek ürün problemi, otomasyonla yalanlanmadı.
 
-## Geçen Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_update_summary.py tests/test_product_state_sync.py` ✅
-- `PYTHONPATH=. python3 tests/test_update_summary.py` ✅
-- `PYTHONPATH=. python3 tests/test_product_state_sync.py` ✅
-- `python3 scripts/update_summary.py` ✅
-- `python3 scripts/refresh_codex_context.py` ✅
-- Summary assertion check ✅
-  - `live_count == 77`
-  - `healthy_count == 76`
-  - `checkout_gap_count == 1`
-  - `deploy_missing_or_bad_url == 29`
-  - `spec_ready_count == 37`
+## Doğrulamalar
+- `python3 -m py_compile scripts/refresh_codex_context.py scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_update_summary.py tests/test_product_state_sync.py tests/test_refresh_codex_context.py`
+- `python3 scripts/refresh_codex_context.py`
+- `python3 scripts/update_summary.py`
+- `PYTHONPATH=. python3 -m unittest discover -s tests -p 'test_*.py'`
 
 ## Kalan Blokajlar
-- `ssl-cert-checker` hâlâ tek canlı health gap olarak görünüyor; bu commit health pipeline’ı düzeltiyor, canlı health verisini zorla uydurmuyor.
-- `STATE.json` cache dosyası repo içinde zaten kirli; bu turda geniş state migration yapmadım.
-- Manual Vercel alias/protection veya LemonSqueezy aksiyonları hâlâ manual; kodla çözülmüş gibi gösterilmedi.
+- `jwt-generator` canlı health hatası sürüyor.
+- Manuel Vercel / auth aksiyonları kodla çözülmüş gibi gösterilmedi.

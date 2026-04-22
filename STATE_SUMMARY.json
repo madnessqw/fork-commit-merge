@@ -1,17 +1,18 @@
 {
-  "cycle": 1070,
+  "cycle": 1072,
   "mode": "DEPLOY_WAIT",
   "balance": 0.0,
   "active_count": 142,
   "live_count": 77,
   "healthy_count": 76,
   "unhealthy_count": 1,
-  "checkout_gap_count": 1,
-  "deploy_missing_or_bad_url": 29,
-  "spec_ready_count": 37,
+  "checkout_gap_count": 0,
+  "deploy_missing_or_bad_url": 25,
+  "canonical_url_drift": 2,
+  "spec_ready_count": 33,
   "next_action": "continue_spec_preparation",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-21T23:08:29.677260Z",
+  "last_updated": "2026-04-22T00:15:01.239087Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -297,7 +298,7 @@
       "n": "PDF Forge",
       "s": "pdf-forge",
       "st": "live",
-      "v": "https://pdf-forge.vercel.app",
+      "v": "https://pdf-forge-five.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514"
     },
     {
@@ -605,7 +606,7 @@
       "n": "DiffMaster Pro",
       "s": "diffmaster",
       "st": "live",
-      "v": "https://diffmaster.vercel.app",
+      "v": "https://diffmaster-rose.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/diffmaster-pro-001"
     },
     {
@@ -801,7 +802,7 @@
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter",
       "st": "live",
-      "v": "https://timestamp-converter.vercel.app",
+      "v": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9"
     },
     {
@@ -809,7 +810,7 @@
       "s": "ssl-cert-checker",
       "st": "live",
       "v": "https://ssl-cert-checker.vercel.app",
-      "c": null
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ssl-cert-checker-001"
     },
     {
       "n": "Security Headers Checker",
@@ -828,7 +829,7 @@
     {
       "n": "Htaccess Generator Pro",
       "s": "htaccess-generator",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -849,21 +850,21 @@
     {
       "n": "Diff Checker Pro",
       "s": "diff-checker-pro",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "YAML Validator Pro",
       "s": "yaml-validator-pro",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Case Converter Pro",
       "s": "case-converter-pro",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -1012,12 +1013,8 @@
     "missing_url": [
       "security-headers-checker",
       "subdomain-finder",
-      "htaccess-generator",
       "nginx-config-tester",
       "ssl-cipher-analyzer",
-      "diff-checker-pro",
-      "yaml-validator-pro",
-      "case-converter-pro",
       "htpasswd-generator",
       "docker-run-generator",
       "sql-to-nosql",
@@ -1041,14 +1038,28 @@
     ],
     "unhealthy_live": [
       {
-        "slug": "ssl-cert-checker",
-        "url": "https://ssl-cert-checker.vercel.app",
-        "code": null,
-        "health_status": null
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator.vercel.app",
+        "code": 0,
+        "health_status": "error_500"
       }
     ],
-    "missing_checkout": [
-      "ssl-cert-checker"
+    "missing_checkout": [],
+    "canonical_url_drift": [
+      {
+        "slug": "pdf-forge",
+        "url": "https://pdf-forge-five.vercel.app",
+        "ideal_url": "https://pdf-forge.vercel.app"
+      },
+      {
+        "slug": "diffmaster",
+        "url": "https://diffmaster-rose.vercel.app",
+        "ideal_url": "https://diffmaster.vercel.app"
+      }
     ]
-  }
+  },
+  "canonical_url_drift_products": [
+    "pdf-forge",
+    "diffmaster"
+  ]
 }

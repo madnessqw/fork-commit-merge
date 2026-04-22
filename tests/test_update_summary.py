@@ -174,6 +174,38 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
         self.assertEqual(summary["products"][0]["v"], "https://table-to-csv.vercel.app")
 
+    def test_canonical_url_drift_is_reported_from_ideal_url(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "DiffMaster Pro",
+                        "slug": "diffmaster",
+                        "status": "live",
+                        "vercel_url": "https://diffmaster-rose.vercel.app",
+                        "ideal_vercel_url": "https://diffmaster.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["diffmaster"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "diffmaster",
+                    "url": "https://diffmaster-rose.vercel.app",
+                    "ideal_url": "https://diffmaster.vercel.app",
+                }
+            ],
+        )
+
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
             is_placeholder_product(

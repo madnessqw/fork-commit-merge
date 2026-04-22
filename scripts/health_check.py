@@ -17,38 +17,60 @@ if str(ROOT) not in sys.path:
 
 from scripts.checkout_metadata import get_checkout_url
 from scripts.product_state_sync import health_check_url, load_product_catalog, sync_state_products
+from scripts.update_summary import build_summary
 
 
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
+
+
+def _normalize_url(value):
+    if value is None:
+        return None
+    text = str(value).strip().rstrip("/")
+    return text or None
+
 
 def check_product_health(product):
     """Check health of a single product"""
     name = product.get('name', product.get('n', 'Unknown'))
     slug = product.get('slug', product.get('s', 'unknown'))
-    url = health_check_url(product)
+    candidates = []
+    primary_url = _normalize_url(health_check_url(product))
+    if primary_url:
+        candidates.append(primary_url)
+    for key in ("deployment_url", "vercel_url", "v"):
+        candidate = _normalize_url(product.get(key))
+        if candidate and candidate not in candidates:
+            candidates.append(candidate)
 
-    if not url:
+    if not candidates:
         return {'name': name, 'slug': slug, 'status': 'no_url', 'code': None}
 
+    first_failure = None
     try:
-        result = subprocess.run(
-            ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', url],
-            capture_output=True, text=True, timeout=15
-        )
-        code = result.stdout.strip()
+        for url in candidates:
+            result = subprocess.run(
+                ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10', url],
+                capture_output=True, text=True, timeout=15
+            )
+            code = result.stdout.strip()
 
-        if code == '200':
-            return {'name': name, 'slug': slug, 'status': 'healthy', 'code': 200}
-        elif code == '404':
-            return {'name': name, 'slug': slug, 'status': 'not_found', 'code': 404}
-        elif code == '401':
-            return {'name': name, 'slug': slug, 'status': 'unauthorized', 'code': 401}
-        elif code == '000':
-            return {'name': name, 'slug': slug, 'status': 'timeout', 'code': 0}
-        else:
-            return {'name': name, 'slug': slug, 'status': f'error_{code}', 'code': code}
+            if code == '200':
+                return {'name': name, 'slug': slug, 'status': 'healthy', 'code': 200, 'url': url}
+
+            if first_failure is None:
+                if code == '404':
+                    first_failure = {'name': name, 'slug': slug, 'status': 'not_found', 'code': 404, 'url': url}
+                elif code == '401':
+                    first_failure = {'name': name, 'slug': slug, 'status': 'unauthorized', 'code': 401, 'url': url}
+                elif code == '000':
+                    first_failure = {'name': name, 'slug': slug, 'status': 'timeout', 'code': 0, 'url': url}
+                else:
+                    first_failure = {'name': name, 'slug': slug, 'status': f'error_{code}', 'code': code, 'url': url}
+
+        return first_failure or {'name': name, 'slug': slug, 'status': 'error', 'code': 'unknown', 'url': candidates[0]}
     except Exception as e:
-        return {'name': name, 'slug': slug, 'status': 'error', 'code': str(e)}
+        return {'name': name, 'slug': slug, 'status': 'error', 'code': str(e), 'url': candidates[0] if candidates else None}
 
 def main():
     # Load state
@@ -121,26 +143,42 @@ def main():
                 if result['status'] == 'healthy':
                     p['health_status'] = 'healthy'
                     p['last_health_code'] = 200
+                    if result.get('url'):
+                        p['vercel_url'] = result['url']
+                        p['v'] = result['url']
                 else:
                     p['health_status'] = result['status']
                     p['last_health_code'] = result['code'] if isinstance(result['code'], int) else 0
 
+    summary = build_summary(state, product_catalog=load_product_catalog())
+
     # Save state
-    state['healthy_count'] = len(healthy)
-    state['unhealthy_count'] = len(unhealthy)
-    state['deploy_missing_or_bad_url'] = len(unhealthy) + len(no_url)
+    state['active_count'] = summary['active_count']
+    state['live_count'] = summary['live_count']
+    state['healthy_count'] = summary['healthy_count']
+    state['unhealthy_count'] = summary['unhealthy_count']
+    state['missing_checkout'] = summary['checkout_gap_count']
+    state['deploy_missing_or_bad_url'] = summary['deploy_missing_or_bad_url']
+    state['canonical_url_drift'] = summary['canonical_url_drift']
+    state['canonical_url_drift_products'] = summary['canonical_url_drift_products']
+    state['needs_fix_count'] = summary['unhealthy_count'] + summary['canonical_url_drift']
+    state['last_updated'] = summary['last_updated']
 
     with open('STATE.json', 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
 
-    print("STATE.json updated with health status")
+    print(
+        "STATE.json updated with health status "
+        f"(healthy={summary['healthy_count']} live={summary['live_count']} "
+        f"canonical_drift={summary['canonical_url_drift']})"
+    )
 
     # Return summary for further processing
     return {
-        'healthy': len(healthy),
-        'unhealthy': len(unhealthy),
+        'healthy': summary['healthy_count'],
+        'unhealthy': summary['unhealthy_count'],
         'no_url': len(no_url),
-        'total': len(live_products)
+        'total': summary['live_count']
     }
 
 if __name__ == '__main__':
