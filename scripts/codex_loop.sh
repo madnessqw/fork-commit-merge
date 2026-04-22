@@ -63,21 +63,46 @@ WORK_DIR="/home/gokhan/UniverseCreator"
 LOG_FILE="$WORK_DIR/logs/codex_loop.log"
 CODEX_BIN="/home/gokhan/.local/bin/codex"
 CMA_BIN="$HOME/bin/cma"
+AUTH_STATE_FILE="$WORK_DIR/.signals/codex_auth_state.json"
 RUNNING_FLAG="/tmp/codex_research_running.flag"
+AUTH_SWITCH_PATTERNS='usage limit|high demand|Reconnecting|429|rate limit'
 
 run_codex() {
     local account="$1"
-    CMA_DISABLE_KEYRING=1 "$CMA_BIN" activate "$account" 2>&1 | tee -a "$LOG_FILE"
+    local activate_output activate_exit
+    set +e
+    activate_output=$(CMA_DISABLE_KEYRING=1 "$CMA_BIN" activate "$account" 2>&1)
+    activate_exit=$?
+    set -e
+    echo "$activate_output" | tee -a "$LOG_FILE"
+    if (( activate_exit != 0 )); then
+        LAST_RUN_ERROR="activate_exit=$activate_exit"
+        LAST_RUN_KIND="activate_failed"
+        return 3
+    fi
     sleep 1
     local output
+    local exit_code
+    set +e
     output=$("$CODEX_BIN" exec \
         --config "approval_policy=never" \
         --config "sandbox_mode=danger-full-access" \
         "$PROMPT_CONTENT" 2>&1)
+    exit_code=$?
+    set -e
     echo "$output" | tee -a "$LOG_FILE"
-    if echo "$output" | grep -qE "usage limit|high demand|Reconnecting"; then
+    if echo "$output" | grep -qiE "$AUTH_SWITCH_PATTERNS"; then
+        LAST_RUN_ERROR="$(echo "$output" | tail -3 | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g')"
+        LAST_RUN_KIND="auth_switch"
         return 1
     fi
+    if (( exit_code != 0 )); then
+        LAST_RUN_ERROR="exit_code=$exit_code"
+        LAST_RUN_KIND="exec_failed"
+        return "$exit_code"
+    fi
+    LAST_RUN_ERROR=""
+    LAST_RUN_KIND="success"
     return 0
 }
 
@@ -92,18 +117,67 @@ PROMPT_CONTENT=$(cat prompts/codex_prompt.txt)
 
 echo "--- codex exec START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
 
-# Hesap 1 dene, limit/hata alırsa hesap 2'ye geç
-if ! run_codex 1; then
-    echo "[CODEX] hesap1 başarısız (usage limit / high demand) — hesap2 deneniyor..." | tee -a "$LOG_FILE"
-    if ! run_codex 2; then
-        echo "[CODEX] Her iki hesap da başarısız — bir sonraki cycle'a ertelendi." | tee -a "$LOG_FILE"
-        EXIT_CODE=1
-    else
-        EXIT_CODE=0
-    fi
-else
+AUTH_INFO=$(python3 "$WORK_DIR/scripts/codex_auth_manager.py" choose --state-file "$AUTH_STATE_FILE" --format shell)
+read -r PRIMARY_ACCOUNT FALLBACK_ACCOUNT <<< "$AUTH_INFO"
+echo "[CODEX] Auth preference: first=$PRIMARY_ACCOUNT fallback=$FALLBACK_ACCOUNT state=$AUTH_STATE_FILE" | tee -a "$LOG_FILE"
+
+AUTH_ATTEMPTS=()
+AUTH_OUTCOME="failure"
+AUTH_ACTIVE_ACCOUNT="$PRIMARY_ACCOUNT"
+AUTH_ERROR=""
+EXIT_CODE=0
+
+if run_codex "$PRIMARY_ACCOUNT"; then
+    AUTH_ATTEMPTS=("$PRIMARY_ACCOUNT")
+    AUTH_OUTCOME="success"
+    AUTH_ACTIVE_ACCOUNT="$PRIMARY_ACCOUNT"
     EXIT_CODE=0
+else
+    PRIMARY_RC=$?
+    AUTH_ATTEMPTS=("$PRIMARY_ACCOUNT")
+    AUTH_ERROR="$LAST_RUN_ERROR"
+
+    if (( PRIMARY_RC == 1 )); then
+        echo "[CODEX] account $PRIMARY_ACCOUNT auth/limit issue — switching to $FALLBACK_ACCOUNT" | tee -a "$LOG_FILE"
+        AUTH_ATTEMPTS=("$PRIMARY_ACCOUNT" "$FALLBACK_ACCOUNT")
+        if run_codex "$FALLBACK_ACCOUNT"; then
+            AUTH_OUTCOME="auth_switch_success"
+            AUTH_ACTIVE_ACCOUNT="$FALLBACK_ACCOUNT"
+            EXIT_CODE=0
+            AUTH_ERROR="${AUTH_ERROR:-$LAST_RUN_ERROR}"
+        else
+            SECONDARY_RC=$?
+            SECONDARY_ERROR="$LAST_RUN_ERROR"
+            AUTH_OUTCOME="auth_switch_failure"
+            AUTH_ACTIVE_ACCOUNT="$FALLBACK_ACCOUNT"
+            AUTH_ERROR="${AUTH_ERROR:-$SECONDARY_ERROR}"
+            AUTH_ERROR="$AUTH_ERROR | fallback=$SECONDARY_ERROR"
+            if (( SECONDARY_RC == 1 )); then
+                EXIT_CODE=1
+                echo "[CODEX] both accounts hit auth/limit signals — next cycle will start from $FALLBACK_ACCOUNT" | tee -a "$LOG_FILE"
+            else
+                EXIT_CODE=$SECONDARY_RC
+                echo "[CODEX] fallback account $FALLBACK_ACCOUNT failed with exit=$SECONDARY_RC — auth state still rotated" | tee -a "$LOG_FILE"
+            fi
+        fi
+    else
+        AUTH_OUTCOME="failure"
+        AUTH_ACTIVE_ACCOUNT="$PRIMARY_ACCOUNT"
+        EXIT_CODE=$PRIMARY_RC
+        echo "[CODEX] account $PRIMARY_ACCOUNT failed without auth signature — no account switch" | tee -a "$LOG_FILE"
+    fi
 fi
+
+python3 "$WORK_DIR/scripts/codex_auth_manager.py" record \
+    --state-file "$AUTH_STATE_FILE" \
+    --preferred-account "$PRIMARY_ACCOUNT" \
+    --active-account "$AUTH_ACTIVE_ACCOUNT" \
+    --outcome "$AUTH_OUTCOME" \
+    --cycle "$N" \
+    --exit-code "$EXIT_CODE" \
+    --last-error "$AUTH_ERROR" \
+    --attempted-accounts "${AUTH_ATTEMPTS[@]}" \
+    | tee -a "$LOG_FILE"
 
 echo "--- codex exec END $(date '+%Y-%m-%d %H:%M:%S') exit=$EXIT_CODE ---" | tee -a "$LOG_FILE"
 RUNEOF

@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 09:43 +03
+# Codex Result — 2026-04-22 10:04 +03
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -7,41 +7,50 @@
 - `STATE.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `CODEBASE_MAP.md`
-- `scripts/product_state_sync.py`
-- `scripts/health_check.py`
-- `scripts/update_summary.py`
-- `tests/test_product_state_sync.py`
-- `tests/test_update_summary.py`
-- `tests/test_health_check.py`
+- `scripts/codex_loop.sh`
+- `scripts/codex_auth_manager.py`
+- `scripts/qa_dispatch.py`
+- `scripts/telegram_send.sh`
+- `tests/test_codex_auth_manager.py`
+- `tests/test_qa_dispatch.py`
+- `skills/FACTORY.md`
 
 ## Seçilen Darboğaz
-- Pre-deploy ürünler stale `vercel_url` ve health metadata taşıyabiliyordu.
-- Bu da sync katmanında “hazır değil” ürünlerin public URL varmış gibi görünmesine yol açıyordu.
+- Codex döngüsündeki auth fallback hâlâ sabit sıralamaya yaslanıyordu; QA handoff ve cycle bildirimleri de tek bir deterministic akışa bağlı değildi.
 
 ## Yapılan Değişiklikler
-- `scripts/product_state_sync.py`
-  - Pre-deploy statüler için public URL artık zorla `None`.
-  - Pre-deploy ürünlerde `health_status`, `last_health_code`, `last_health_url`, `last_health_check`, `health_checked_at` temizleniyor.
-  - `health_check_url()` sadece health-checkable statüler için probe döndürüyor.
-- `scripts/health_check.py`
-  - State sync basamağı artık sadece kısmi alanları değil, synced kaydın tamamını taşıyor; böylece temizlenen health/public URL alanları STATE’e de yazılıyor.
-- `tests/test_product_state_sync.py`
-  - Pre-deploy manifest/state senaryoları için URL + health metadata temizleme testi eklendi.
-- `tests/test_update_summary.py`
-  - Pre-deploy ürünlerin summary’de public URL taşımadığı doğrulandı.
+- `scripts/codex_loop.sh`
+  - Hesap seçimi artık `.signals/codex_auth_state.json` üzerinden state-driven.
+  - İlk tercih kaydedilmiş hesabı deniyor, auth/limit sinyali gelirse fallback'e geçiyor.
+  - Son çalışan hesap ve switch sonucu kaydediliyor.
+- `scripts/codex_auth_manager.py`
+  - `choose / record / classify` yardımcıları eklendi.
+  - Bir sonraki cycle için tercih edilen hesabı taşıyor.
+- `tests/test_codex_auth_manager.py`
+  - choose/record/classify akışları için regresyon testleri eklendi.
+- `scripts/qa_dispatch.py`
+  - `.signals/qa_pending` → `qa-tester` + `team-lead` inbox dispatch eklendi.
+  - QA sonucu gelince pending sinyali temizleniyor ve team status geri çekiliyor.
+- `tests/test_qa_dispatch.py`
+  - dispatch, idempotency ve completion-reconcile senaryoları test edildi.
+- `scripts/telegram_send.sh`
+  - Ortak Telegram mesaj gönderici eklendi; cycle/help-request akışları bunu kullanıyor.
 
 ## Doğrulamalar
-- `python3 -m unittest discover -s tests -p 'test_*.py'`
-- `python3 -m py_compile scripts/product_state_sync.py scripts/health_check.py scripts/update_summary.py tests/test_product_state_sync.py tests/test_update_summary.py`
-- `python3 scripts/update_summary.py`
-- Secret scan: değişen dosyalarda `sk_ / pk_ / ghp_ / api_key` izi yok.
+- `bash -n scripts/codex_loop.sh`
+- `bash -n scripts/telegram_send.sh`
+- `python3 -m py_compile scripts/codex_auth_manager.py scripts/qa_dispatch.py tests/test_codex_auth_manager.py tests/test_qa_dispatch.py`
+- `python3 -m unittest discover -s tests -p 'test_codex_auth_manager.py'`
+- `python3 -m unittest discover -s tests -p 'test_qa_dispatch.py'`
+- `python3 -m json.tool` benzeri doğrulama ile `STATE.json`, `STATE_SUMMARY.json` ve değişen product manifestleri parse edildi
+- Targeted secret scan: code/state dosyalarında sızıntı yok
 
 ## Sonuç / Etki
-- Pre-deploy ürünler artık stale public URL ve health state taşımıyor.
-- Summary tarafı ready-to-deploy ürünlerde sahte public URL göstermiyor.
-- `STATE_SUMMARY.json` yeni sync kurallarıyla yeniden üretildi.
-- Health sync pipeline, state’e daha temiz ve daha gerçekçi kayıt yazıyor.
+- Auth fallback artık state-driven; aynı hesap sabitlenmiyor.
+- QA handoff prompt-only olmaktan çıktı, signal + inbox tabanlı hale geldi.
+- Telegram bildirimleri için ortak script var; cycle raporu tek noktadan çıkabiliyor.
+- Current snapshot: cycle **1084**, live **79/81**, deploy gap **11**, canonical drift **1**.
 
 ## Kalan Blokerler
-- `pdf-forge` timeout ve `diffmaster` 401 gerçek canlı problemler; otomasyon bunları doğru raporluyor ama çözmüyor.
+- `pdf-forge` timeout ve `diffmaster` 401 hâlâ gerçek canlı problemler.
+- Deploy/url gap ve tek canonical drift ürünü manuel kapama bekliyor.
