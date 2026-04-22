@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from scripts.health_check import apply_health_result, check_product_health
+from scripts.health_check import apply_health_result, check_product_health, is_synced_health_result
 
 
 class HealthCheckTests(unittest.TestCase):
@@ -92,6 +92,11 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["ideal_vercel_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
+
+    def test_synced_health_results_include_alternate_healthy(self) -> None:
+        self.assertTrue(is_synced_health_result({"status": "healthy"}))
+        self.assertTrue(is_synced_health_result({"status": "alternate_healthy"}))
+        self.assertFalse(is_synced_health_result({"status": "not_found"}))
 
 
 if __name__ == "__main__":

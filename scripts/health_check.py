@@ -31,6 +31,10 @@ def _normalize_url(value):
     return text or None
 
 
+def is_synced_health_result(result):
+    return result.get("status") in SYNCED_HEALTH_STATUSES
+
+
 def apply_health_result(product, result):
     """Write a probe result back to a product record."""
     if result.get("url"):
@@ -128,6 +132,7 @@ def main():
     print()
 
     healthy = []
+    fallback_healthy = []
     unhealthy = []
     no_url = []
 
@@ -137,9 +142,13 @@ def main():
 
         for future in as_completed(futures):
             result = future.result()
-            if result['status'] == 'healthy':
+            if is_synced_health_result(result):
                 healthy.append(result)
-                print(f"✅ {result['name']}: HTTP {result['code']}")
+                if result['status'] == 'alternate_healthy':
+                    fallback_healthy.append(result)
+                    print(f"⚠️  {result['name']}: ALTERNATE HEALTHY (HTTP {result['code']})")
+                else:
+                    print(f"✅ {result['name']}: HTTP {result['code']}")
             elif result['status'] == 'no_url':
                 no_url.append(result)
                 print(f"⚠️  {result['name']}: NO URL")
@@ -153,6 +162,8 @@ def main():
     print(f"✅ Healthy: {len(healthy)}")
     print(f"❌ Unhealthy: {len(unhealthy)}")
     print(f"⚠️  No URL: {len(no_url)}")
+    if fallback_healthy:
+        print(f"⚠️  Canonical drift but healthy via fallback: {len(fallback_healthy)}")
     success_rate = (len(healthy) / len(live_products) * 100) if live_products else 0.0
     print(f"Success rate: {success_rate:.1f}%")
 
@@ -195,6 +206,7 @@ def main():
         'healthy': summary['healthy_count'],
         'unhealthy': summary['unhealthy_count'],
         'no_url': len(no_url),
+        'fallback_healthy': len(fallback_healthy),
         'total': summary['live_count']
     }
 
