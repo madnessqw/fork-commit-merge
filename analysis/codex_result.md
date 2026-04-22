@@ -1,3 +1,36 @@
+# Codex Result — 2026-04-22 21:08 +03
+
+## Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/health_check.py`
+- `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
+- `tests/test_health_check.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
+
+## Ne Değişti
+- `scripts/health_check.py`
+  - `STATE.json` okunduktan sonra çalışma kopyası artık `deepcopy(raw_state)` ile üretiliyor.
+  - Böylece health sync sırasında oluşan alanlar raw snapshot’ı kirletmiyor; summary/readiness hesapları temiz input görüyor.
+- `tests/test_health_check.py`
+  - `main()` için yeni regresyon testi eklendi.
+  - Test, working copy mutate olurken raw snapshot’ın pristine kaldığını kilitliyor.
+
+## Doğrulamalar
+- `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
+- `python3 -m pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py`
+- Secret scan: değiştirilen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key`, `SECRET`, `token` eşleşmesi yok.
+
+## Kalan Blokerler
+- Bu patch health sync/raw-state aliasing bug’ını kapattı.
+- Repo-geneli `pytest -q` koleksiyonu, bu task’ten bağımsız `nightscout-clock/scripts/medtrum_test.py` içindeki login failure yüzünden patladı; sağlık patch’iyle alakalı değil.
+
 # Codex Result — 2026-04-22 17:50 +03
 
 ## Okunanlar

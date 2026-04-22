@@ -1,6 +1,11 @@
+import json
+import os
 import unittest
+from pathlib import Path
+import tempfile
 from unittest.mock import Mock, patch
 
+from scripts import health_check
 from scripts.health_check import apply_health_result, check_product_health, is_synced_health_result
 
 
@@ -163,6 +168,77 @@ class HealthCheckTests(unittest.TestCase):
         self.assertTrue(is_synced_health_result({"status": "healthy"}))
         self.assertTrue(is_synced_health_result({"status": "alternate_healthy"}))
         self.assertFalse(is_synced_health_result({"status": "not_found"}))
+
+    def test_main_keeps_raw_state_pristine_while_mutating_working_copy(self) -> None:
+        original_cwd = os.getcwd()
+        captured = {}
+
+        def fake_build_summary(state, product_catalog=None, raw_state=None):
+            captured["state"] = state
+            captured["raw_state"] = raw_state
+            return {
+                "healthy_count": 1,
+                "unhealthy_count": 0,
+                "live_count": 1,
+                "canonical_url_drift": 0,
+            }
+
+        def identity_apply_summary_fields(state, summary):
+            return state
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            tmp_path.joinpath("STATE.json").write_text(
+                json.dumps(
+                    {
+                        "cycle": 1,
+                        "mode": "OPTIMIZE",
+                        "products": {
+                            "active": [
+                                {
+                                    "name": "Raw State Tool",
+                                    "slug": "raw-state-tool",
+                                    "status": "live",
+                                    "vercel_url": "https://raw-state-tool.vercel.app",
+                                }
+                            ],
+                            "spec_ready": [],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            try:
+                os.chdir(tmpdir)
+                with patch.object(health_check, "check_product_health", return_value={
+                    "name": "Raw State Tool",
+                    "slug": "raw-state-tool",
+                    "status": "healthy",
+                    "code": 200,
+                    "url": "https://raw-state-tool.vercel.app",
+                    "canonical_url": "https://raw-state-tool.vercel.app",
+                    "canonical_status": "healthy",
+                    "canonical_code": 200,
+                    "checked_at": "2026-04-22T10:00:00Z",
+                }), patch.object(health_check, "load_product_catalog", return_value={}), patch.object(
+                    health_check, "build_summary", side_effect=fake_build_summary
+                ), patch.object(health_check, "apply_summary_fields", side_effect=identity_apply_summary_fields), patch.object(
+                    health_check, "persist_summary"
+                ):
+                    result = health_check.main()
+            finally:
+                os.chdir(original_cwd)
+
+        self.assertEqual(result["unhealthy"], 0)
+        self.assertEqual(captured["raw_state"]["products"]["active"][0], {
+            "name": "Raw State Tool",
+            "slug": "raw-state-tool",
+            "status": "live",
+            "vercel_url": "https://raw-state-tool.vercel.app",
+        })
+        self.assertIn("ideal_vercel_url", captured["state"]["products"]["active"][0])
+        self.assertIn("health_status", captured["state"]["products"]["active"][0])
 
 
 if __name__ == "__main__":

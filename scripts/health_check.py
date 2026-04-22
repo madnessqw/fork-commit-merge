@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+from copy import deepcopy
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -187,7 +188,10 @@ def main():
     with open('STATE.json', encoding='utf-8') as f:
         raw_state = json.load(f)
 
-    state = raw_state
+    # Keep the file-backed snapshot pristine; the working copy is what we mutate
+    # while health results are applied. Otherwise the "raw" state fed into
+    # summary/readiness checks gets polluted by sync side effects.
+    state = deepcopy(raw_state)
     products = state.get('products', {}).get('active', [])
     synced_products = sync_state_products(products, load_product_catalog())
     synced_by_slug = {
