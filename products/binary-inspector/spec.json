@@ -1,0 +1,35 @@
+{
+  "slug": "binary-inspector",
+  "name": "Binary Inspector Pro",
+  "tagline": "Analyze and inspect binary files, hex dumps, and encoded data",
+  "description": "Advanced binary file analyzer with hex viewer, encoding detection, and structure analysis. Inspect file headers, detect encodings, and decode binary data formats.",
+  "price": "$19",
+  "category": "Security & Analysis",
+  "tech_stack": ["Vercel", "Node.js", "WebAssembly"],
+  "features": [
+    "Hex dump viewer with ASCII overlay",
+    "File signature/magic number detection",
+    "Base64/Hex/Binary decoder",
+    "Endianness detection and conversion",
+    "Binary diff comparison",
+    "File entropy analysis",
+    "Structure template matching",
+    "Export to multiple formats"
+  ],
+  "use_cases": [
+    "Malware analysis and reverse engineering",
+    "File format verification",
+    "Data recovery and corruption detection",
+    "Protocol analysis"
+  ],
+  "target_audience": "Security researchers, reverse engineers, forensic analysts, low-level developers",
+  "seo_keywords": ["hex viewer", "binary analyzer", "file inspector", "hex dump", "binary analysis tool"],
+  "demo": {
+    "hex_example": "89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52",
+    "ascii_example": "‰PNG....IHDR",
+    "detected_format": "PNG Image"
+  },
+  "status": "spec_ready",
+  "created_cycle": 1072,
+  "priority": "medium"
+}

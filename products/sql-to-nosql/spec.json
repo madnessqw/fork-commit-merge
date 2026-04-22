@@ -1,0 +1,34 @@
+{
+  "slug": "sql-to-nosql",
+  "name": "SQL to NoSQL Converter",
+  "tagline": "Convert SQL queries to NoSQL commands instantly",
+  "description": "Transform SQL queries into MongoDB, DynamoDB, Firebase, and other NoSQL database commands. Supports SELECT, INSERT, UPDATE, DELETE conversions with smart schema mapping.",
+  "price": "$19",
+  "category": "Database Tools",
+  "tech_stack": ["Vercel", "Node.js"],
+  "features": [
+    "SQL to MongoDB query conversion",
+    "SQL to DynamoDB command generator",
+    "Schema-aware conversion with type mapping",
+    "Support for JOIN operations (denormalization hints)",
+    "Bulk operation conversion",
+    "Syntax validation and error highlighting",
+    "Export to multiple NoSQL formats",
+    "Query optimization suggestions"
+  ],
+  "use_cases": [
+    "Migrating from SQL to NoSQL databases",
+    "Learning NoSQL syntax from SQL knowledge",
+    "Generating boilerplate NoSQL queries",
+    "Database modernization projects"
+  ],
+  "target_audience": "Backend developers, database administrators, DevOps engineers",
+  "seo_keywords": ["sql to mongodb", "sql converter", "nosql query generator", "database migration tool"],
+  "demo": {
+    "input_example": "SELECT name, email FROM users WHERE age > 25 ORDER BY created_at DESC LIMIT 10",
+    "output_example": "db.users.find({age: {$gt: 25}}, {name: 1, email: 1}).sort({created_at: -1}).limit(10)"
+  },
+  "status": "spec_ready",
+  "created_cycle": 1072,
+  "priority": "high"
+}

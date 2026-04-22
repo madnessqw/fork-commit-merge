@@ -1,0 +1,35 @@
+{
+  "slug": "browser-mock-studio",
+  "name": "Browser Mock Studio",
+  "tagline": "Generate beautiful browser mockups for screenshots and presentations",
+  "description": "Create stunning browser window mockups with customizable themes, shadows, and backgrounds. Perfect for showcasing web designs, portfolio pieces, and marketing materials.",
+  "price": "$19",
+  "category": "Design Tools",
+  "tech_stack": ["Vercel", "Canvas API", "HTML5"],
+  "features": [
+    "Chrome, Safari, Firefox browser frames",
+    "Dark and light mode themes",
+    "Customizable window controls",
+    "Shadow and gradient backgrounds",
+    "Export to PNG, JPG, WebP",
+    "Batch mockup generation",
+    "Device frame options (desktop, tablet, mobile)",
+    "Annotation and highlight tools"
+  ],
+  "use_cases": [
+    "Portfolio presentations",
+    "Marketing materials",
+    "Social media graphics",
+    "Documentation screenshots"
+  ],
+  "target_audience": "UI/UX designers, web developers, marketers, content creators",
+  "seo_keywords": ["browser mockup", "screenshot mockup", "browser frame", "portfolio mockup"],
+  "demo": {
+    "browser": "Chrome",
+    "theme": "Dark",
+    "background": "Gradient Purple"
+  },
+  "status": "spec_ready",
+  "created_cycle": 1072,
+  "priority": "medium"
+}

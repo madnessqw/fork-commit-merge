@@ -1,0 +1,35 @@
+{
+  "slug": "env-file-manager",
+  "name": "ENV File Manager",
+  "tagline": "Secure environment variable management and validator",
+  "description": "Manage, validate, and sync environment variables across projects. Detect secrets, validate syntax, and generate .env files with team collaboration features.",
+  "price": "$19",
+  "category": "Developer Tools",
+  "tech_stack": ["Vercel", "Node.js", "Encryption"],
+  "features": [
+    "ENV file syntax validator",
+    "Secret detection and masking",
+    "Multi-environment management (dev/staging/prod)",
+    "Variable type inference",
+    "Encrypted sharing links",
+    "Team collaboration workspace",
+    "Change tracking and diff view",
+    "CI/CD integration helpers"
+  ],
+  "use_cases": [
+    "Environment variable organization",
+    "Secret management",
+    "Team onboarding",
+    "Configuration migration"
+  ],
+  "target_audience": "Development teams, DevOps engineers, project managers",
+  "seo_keywords": ["env file manager", "environment variables", "secret manager", "dotenv tool"],
+  "demo": {
+    "validation": "Syntax check passed",
+    "secrets_detected": 2,
+    "environments": ["development", "staging", "production"]
+  },
+  "status": "spec_ready",
+  "created_cycle": 1072,
+  "priority": "medium"
+}
