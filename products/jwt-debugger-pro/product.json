@@ -1,0 +1,19 @@
+{
+  "name": "JWT Debugger Pro",
+  "slug": "jwt-debugger-pro",
+  "tagline": "Advanced JWT token analysis and debugging",
+  "description": "Decode, verify, and debug JWT tokens with signature validation, header analysis, and security checks.",
+  "price": "19",
+  "features": [
+    "Token decoding",
+    "Signature verification",
+    "Header analysis",
+    "Security checks",
+    "JWKS support",
+    "Token generation"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "security_tools",
+  "spec_version": "1.0"
+}

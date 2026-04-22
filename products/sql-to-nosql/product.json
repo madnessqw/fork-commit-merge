@@ -1,0 +1,19 @@
+{
+  "name": "SQL to NoSQL Converter",
+  "slug": "sql-to-nosql",
+  "tagline": "Convert SQL queries to MongoDB, DynamoDB, and Firestore",
+  "description": "Transform SQL queries into NoSQL equivalents for MongoDB, DynamoDB, and Firestore. Supports SELECT, INSERT, UPDATE, DELETE conversions with schema mapping.",
+  "price": "19",
+  "features": [
+    "SQL to MongoDB conversion",
+    "SQL to DynamoDB conversion", 
+    "SQL to Firestore conversion",
+    "Schema mapping suggestions",
+    "Query optimization tips",
+    "Bulk conversion support"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

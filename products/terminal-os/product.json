@@ -1,0 +1,17 @@
+{
+  "name": "Terminal OS",
+  "slug": "terminal-os",
+  "tagline": "Web-based terminal emulator with xterm.js for developers",
+  "description": "Web-based terminal emulator with xterm.js for developers",
+  "price": "9",
+  "features": [],
+  "tech_stack": "Vercel + Node.js",
+  "status": "building",
+  "vercel_url": null,
+  "github_url": null,
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": null,
+  "created_cycle": null,
+  "deployed_cycle": null
+}

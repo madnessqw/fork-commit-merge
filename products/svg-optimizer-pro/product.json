@@ -1,0 +1,21 @@
+{
+  "name": "SVG Optimizer Pro",
+  "slug": "svg-optimizer-pro",
+  "tagline": "Compress and optimize SVG files instantly with precision controls",
+  "description": "Advanced SVG optimization tool that reduces file size while preserving quality. Features precision control, batch processing, and visual comparison.",
+  "price": "19",
+  "features": [
+    "Smart SVG compression",
+    "Precision level control",
+    "Batch processing",
+    "Before/after comparison",
+    "CSS class preservation",
+    "Path simplification",
+    "Metadata removal",
+    "ViewBox optimization"
+  ],
+  "tech_stack": "Vanilla HTML + Tailwind CDN",
+  "status": "spec_ready",
+  "created_cycle": 1052,
+  "seo_optimized": false
+}

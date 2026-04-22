@@ -1,0 +1,19 @@
+{
+  "name": "Text Diff Pro",
+  "slug": "text-diff-pro",
+  "tagline": "Compare two texts and see differences instantly with syntax highlighting",
+  "description": "Compare two texts and see differences instantly with syntax highlighting",
+  "price": "9",
+  "features": [],
+  "tech_stack": "Vercel + Node.js",
+  "status": "building",
+  "vercel_url": null,
+  "github_url": null,
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": null,
+  "created_cycle": null,
+  "deployed_cycle": null,
+  "seo_optimized": true,
+  "seo_optimized_at": "2026-04-21T17:48:00Z"
+}

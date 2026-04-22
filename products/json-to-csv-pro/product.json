@@ -1,0 +1,34 @@
+{
+  "slug": "json-to-csv-pro",
+  "name": "JSON to CSV Pro",
+  "tagline": "Convert JSON data to CSV format effortlessly",
+  "description": "Transform complex nested JSON into clean, flat CSV files. Handles arrays, nested objects, and provides column customization options.",
+  "price": "$19",
+  "status": "spec_ready",
+  "category": "developer-tools",
+  "features": [
+    "Paste JSON or upload file",
+    "Flatten nested objects automatically",
+    "Handle arrays with multiple strategies",
+    "Custom delimiter selection (comma, semicolon, tab)",
+    "Include/exclude specific fields",
+    "Column reordering",
+    "Preview with pagination",
+    "Download CSV or copy to clipboard"
+  ],
+  "tech_stack": {
+    "frontend": "HTML5 + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "processing": "Client-side JSON transformation"
+  },
+  "target_audience": "Data analysts, developers, QA engineers, data scientists",
+  "use_cases": [
+    "Export API responses to spreadsheet",
+    "Convert JSON logs to CSV for analysis",
+    "Prepare data for Excel/Numbers",
+    "Flatten nested API data"
+  ],
+  "seo_keywords": ["json to csv", "json converter", "csv export", "json flatten", "data conversion"],
+  "competitors": ["convertcsv.com", "json-csv.com", "konklone.io"],
+  "differentiation": "Handles deeply nested JSON, multiple array strategies, clean modern UI"
+}

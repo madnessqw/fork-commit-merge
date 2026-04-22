@@ -1,0 +1,19 @@
+{
+  "name": "API Mock Server",
+  "slug": "api-mock-server",
+  "tagline": "Generate mock APIs for testing",
+  "description": "Create mock REST and GraphQL APIs for testing and development. Dynamic responses, request matching, and proxy support.",
+  "price": "19",
+  "features": [
+    "REST mock endpoints",
+    "GraphQL mock schema",
+    "Dynamic responses",
+    "Request matching",
+    "Proxy to real API",
+    "Response delays"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

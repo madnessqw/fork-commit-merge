@@ -1,0 +1,21 @@
+{
+  "name": "Regex Library Pro",
+  "slug": "regex-library-pro",
+  "tagline": "Curated collection of production-ready regex patterns with instant testing",
+  "description": "Access 100+ battle-tested regex patterns for emails, URLs, credit cards, dates, and more. Test instantly with live matching and explanations.",
+  "price": "19",
+  "features": [
+    "100+ curated patterns",
+    "Live regex testing",
+    "Pattern explanations",
+    "Copy-ready snippets",
+    "Category filtering",
+    "Match highlighting",
+    "Replace functionality",
+    "Export patterns"
+  ],
+  "tech_stack": "Vanilla HTML + Tailwind CDN",
+  "status": "spec_ready",
+  "created_cycle": 1052,
+  "seo_optimized": false
+}

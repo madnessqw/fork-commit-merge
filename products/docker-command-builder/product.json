@@ -1,0 +1,19 @@
+{
+  "name": "Docker Command Builder",
+  "slug": "docker-command-builder",
+  "tagline": "Visual Docker CLI command generator",
+  "description": "Build Docker commands visually with a guided interface. Includes templates for common operations and best practices.",
+  "price": "19",
+  "features": [
+    "Visual command builder",
+    "Run command wizard",
+    "Dockerfile generator",
+    "Network commands",
+    "Volume management",
+    "Command history"
+  ],
+  "tech_stack": "Vercel + Vanilla JS",
+  "status": "spec_ready",
+  "category": "devops_tools",
+  "spec_version": "1.0"
+}

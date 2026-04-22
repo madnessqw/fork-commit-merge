@@ -1,0 +1,19 @@
+{
+  "name": "Binary Inspector Pro",
+  "slug": "binary-inspector",
+  "tagline": "Analyze binary files and data structures",
+  "description": "Inspect binary files, view hex dumps, analyze headers, and decode binary data structures. Support for multiple encodings and byte orders.",
+  "price": "19",
+  "features": [
+    "Hex dump viewer",
+    "Binary structure analysis",
+    "Multiple encoding support",
+    "Byte order conversion",
+    "File signature detection",
+    "Export to multiple formats"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

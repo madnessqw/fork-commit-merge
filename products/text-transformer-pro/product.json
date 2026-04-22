@@ -1,0 +1,23 @@
+{
+  "name": "Text Transformer Pro",
+  "slug": "text-transformer-pro",
+  "tagline": "All-in-one text formatting tool: case conversion, slug generation, word/char counting, and more",
+  "description": "All-in-one text formatting tool: case conversion, slug generation, word/char counting, and more",
+  "price": "9",
+  "features": [],
+  "tech_stack": "Vercel + Node.js",
+  "status": "live",
+  "vercel_url": "https://text-transformer-pro-theta.vercel.app",
+  "github_url": "https://github.com/universe7creator/text-transformer-pro",
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": "https://text-transformer-pro-theta.vercel.app/api/webhook",
+  "created_cycle": null,
+  "deployed_cycle": 989,
+  "deployed_at": "2026-04-20T23:29:27.256694+00:00",
+  "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/a4d9d9f4-219f-4d8b-8a81-250a35afa9a9",
+  "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/a4d9d9f4-219f-4d8b-8a81-250a35afa9a9",
+  "checkout_status": "pending_lemonsqueezy_creation",
+  "seo_optimized": true,
+  "seo_optimized_at": "2026-04-21T17:45:00Z"
+}

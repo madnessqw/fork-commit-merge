@@ -1,0 +1,19 @@
+{
+  "name": "ENV File Manager",
+  "slug": "env-file-manager",
+  "tagline": "Visual environment variable editor",
+  "description": "Manage .env files with a visual editor. Parse, validate, edit, and sync environment variables across multiple environments.",
+  "price": "19",
+  "features": [
+    "Visual .env editor",
+    "Environment comparison",
+    "Variable validation",
+    "Secret detection",
+    "Export to multiple formats",
+    "Bulk operations"
+  ],
+  "tech_stack": "Vercel + Vanilla JS",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

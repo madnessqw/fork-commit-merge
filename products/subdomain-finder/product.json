@@ -1,0 +1,29 @@
+{
+  "name": "Subdomain Finder",
+  "slug": "subdomain-finder",
+  "description": "Discover subdomains for any domain. Security reconnaissance tool for penetration testers and security researchers.",
+  "price": 19,
+  "category": "security",
+  "tags": [
+    "subdomain",
+    "reconnaissance",
+    "security",
+    "pentest",
+    "discovery",
+    "enumeration"
+  ],
+  "status": "ready_to_deploy",
+  "version": "1.0.0",
+  "features": [
+    "Subdomain enumeration via DNS queries",
+    "Common subdomain wordlist scanning",
+    "Wildcard detection",
+    "HTTP response status checking",
+    "IP address resolution",
+    "Export results to TXT/JSON",
+    "Fast multi-threaded scanning",
+    "Discover hidden services and endpoints"
+  ],
+  "created_at": "2026-04-21T22:30:00Z",
+  "updated_at": "2026-04-21T22:30:00Z"
+}

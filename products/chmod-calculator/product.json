@@ -1,0 +1,19 @@
+{
+  "name": "Chmod Calculator Pro",
+  "slug": "chmod-calculator",
+  "tagline": "Visual permission calculator for Linux/macOS",
+  "description": "Calculate and visualize Linux file permissions with octal, symbolic, and checkbox interfaces. Generate chmod commands instantly.",
+  "price": "19",
+  "features": [
+    "Octal to symbolic conversion",
+    "Visual permission grid",
+    "Special permissions (SUID, SGID, sticky)",
+    "chmod command generator",
+    "Common presets library",
+    "Permission explanation tooltips"
+  ],
+  "tech_stack": "Vercel + Vanilla JS",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

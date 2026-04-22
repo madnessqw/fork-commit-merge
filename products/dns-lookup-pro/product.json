@@ -1,0 +1,22 @@
+{
+  "name": "DNS Lookup Pro",
+  "slug": "dns-lookup-pro",
+  "description": "Professional DNS lookup tool with multiple record types, propagation check, and DNS health analysis",
+  "price": "$19",
+  "category": "developer-tools",
+  "status": "spec_ready",
+  "features": [
+    "Multiple record types: A, AAAA, MX, TXT, CNAME, NS, SOA, PTR",
+    "DNS propagation check across global resolvers",
+    "Nameserver hierarchy visualization",
+    "SPF, DKIM, DMARC record validation",
+    "DNSSEC verification status",
+    "Reverse DNS (rDNS) lookup",
+    "DNS response time analysis",
+    "Export results as JSON/CSV"
+  ],
+  "tech_stack": ["vanilla-js", "tailwind-css", "vercel-serverless", "dns-over-https"],
+  "estimated_build_time": "55 min",
+  "batch": 23,
+  "created_at": "2026-04-21T22:15:00Z"
+}

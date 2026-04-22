@@ -1,0 +1,22 @@
+{
+  "name": "HTML Validator Pro",
+  "slug": "html-validator-pro",
+  "description": "Comprehensive HTML validation with W3C standards, accessibility checks, and SEO analysis",
+  "price": "$19",
+  "category": "developer-tools",
+  "status": "spec_ready",
+  "features": [
+    "W3C HTML5 standard compliance check",
+    "Accessibility audit (WCAG 2.1 guidelines)",
+    "Missing alt tags detection for images",
+    "Semantic HTML structure analysis",
+    "Form accessibility validation",
+    "Meta tags and SEO best practices",
+    "Broken internal link detection",
+    "Performance-friendly markup suggestions"
+  ],
+  "tech_stack": ["vanilla-js", "tailwind-css", "vercel-serverless"],
+  "estimated_build_time": "50 min",
+  "batch": 23,
+  "created_at": "2026-04-21T22:15:00Z"
+}

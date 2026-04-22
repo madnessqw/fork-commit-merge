@@ -1,0 +1,19 @@
+{
+  "name": "MCP Inspector Pro",
+  "slug": "mcp-inspector-pro",
+  "tagline": "Debug and test MCP servers",
+  "description": "Inspect, debug, and test Model Context Protocol (MCP) servers. View tools, resources, and test calls interactively.",
+  "price": "19",
+  "features": [
+    "MCP server connection",
+    "Tool discovery",
+    "Resource inspection",
+    "Interactive testing",
+    "Request/response viewer",
+    "Error diagnostics"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

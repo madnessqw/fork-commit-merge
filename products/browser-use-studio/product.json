@@ -1,0 +1,19 @@
+{
+  "name": "Browser Use Studio",
+  "slug": "browser-use-studio",
+  "tagline": "Test browser automation scripts",
+  "description": "Test and debug browser-use and Playwright automation scripts with live preview and step execution.",
+  "price": "19",
+  "features": [
+    "Script editor",
+    "Step-by-step execution",
+    "Live preview",
+    "Screenshot capture",
+    "Variable inspection",
+    "Export scripts"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

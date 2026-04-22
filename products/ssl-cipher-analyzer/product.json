@@ -1,0 +1,36 @@
+{
+  "name": "SSL Cipher Analyzer",
+  "slug": "ssl-cipher-analyzer",
+  "description": "Analyze SSL/TLS cipher suites, check protocol versions, and get security recommendations for your HTTPS configuration",
+  "tagline": "Deep analysis of your SSL/TLS security posture",
+  "price": "$19",
+  "category": "security",
+  "tags": [
+    "ssl",
+    "tls",
+    "cipher",
+    "security",
+    "https",
+    "certificate"
+  ],
+  "features": [
+    "Cipher suite strength analysis",
+    "Protocol version detection (TLS 1.0/1.1/1.2/1.3)",
+    "Grade scoring (A+ to F)",
+    "Weak cipher identification",
+    "Certificate chain validation",
+    "HSTS and security header checks",
+    "Industry compliance checking (PCI DSS, HIPAA)",
+    "Remediation recommendations"
+  ],
+  "status": "ready_to_deploy",
+  "created_cycle": 1058,
+  "target_audience": "Security engineers, DevOps professionals, compliance officers",
+  "seo_keywords": [
+    "ssl analyzer",
+    "tls checker",
+    "cipher suite",
+    "ssl security scan",
+    "certificate analyzer"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Code Screenshot Beautifier",
+  "slug": "code-screenshot-beautifier",
+  "tagline": "Turn code into beautiful shareable images",
+  "description": "Transform your code into stunning screenshots with customizable themes, backgrounds, and formatting. Perfect for social media sharing.",
+  "price": "19",
+  "features": [
+    "20+ code themes",
+    "Gradient backgrounds",
+    "Window mockup styles",
+    "Syntax highlighting",
+    "Export PNG/SVG",
+    "Social media presets"
+  ],
+  "tech_stack": "Vercel + Canvas API",
+  "status": "spec_ready",
+  "category": "design_tools",
+  "spec_version": "1.0"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "HTML Entity Encoder Pro",
+  "slug": "html-entity-pro",
+  "tagline": "Convert special characters to HTML entities and back. Perfect for web developers and content creators.",
+  "description": "Convert special characters to HTML entities and back. Perfect for web developers and content creators.",
+  "price": "$19",
+  "features": [],
+  "tech_stack": "Vercel + Node.js",
+  "status": "building",
+  "vercel_url": null,
+  "github_url": null,
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": null,
+  "created_cycle": null,
+  "deployed_cycle": null
+}

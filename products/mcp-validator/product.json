@@ -1,0 +1,19 @@
+{
+  "name": "MCP Server Validator",
+  "slug": "mcp-validator",
+  "tagline": "Validate MCP server manifests, test tool endpoints, and debug Model Context Protocol implementations instantly",
+  "description": "Validate MCP server manifests, test tool endpoints, and debug Model Context Protocol implementations instantly",
+  "price": "9",
+  "features": [],
+  "tech_stack": "Vercel + Node.js",
+  "status": "building",
+  "vercel_url": null,
+  "github_url": null,
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": null,
+  "created_cycle": null,
+  "deployed_cycle": null,
+  "seo_optimized": true,
+  "seo_optimized_at": "2026-04-21T17:47:00Z"
+}

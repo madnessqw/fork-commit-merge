@@ -1,0 +1,34 @@
+{
+  "slug": "csv-to-sql-pro",
+  "name": "CSV to SQL Pro",
+  "tagline": "Convert CSV data to SQL INSERT statements instantly",
+  "description": "Transform CSV files into ready-to-execute SQL INSERT statements with support for multiple database dialects including MySQL, PostgreSQL, SQLite, and SQL Server.",
+  "price": "$19",
+  "status": "spec_ready",
+  "category": "developer-tools",
+  "features": [
+    "Drag & drop CSV upload",
+    "Auto-detect column types",
+    "Custom table name input",
+    "Multiple SQL dialects (MySQL, PostgreSQL, SQLite, SQL Server)",
+    "Batch INSERT optimization",
+    "Preview before download",
+    "Copy to clipboard",
+    "Download .sql file"
+  ],
+  "tech_stack": {
+    "frontend": "HTML5 + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "processing": "Client-side CSV parsing"
+  },
+  "target_audience": "Database administrators, backend developers, data engineers",
+  "use_cases": [
+    "Migrate CSV data to SQL databases",
+    "Generate seed data from spreadsheets",
+    "Quick data imports for testing",
+    "Convert export data to SQL format"
+  ],
+  "seo_keywords": ["csv to sql", "csv converter", "sql insert generator", "csv import", "database migration"],
+  "competitors": ["csv2sql.com", "convertcsv.com", "sqlizer.io"],
+  "differentiation": "Clean UI, instant client-side processing, multiple dialect support"
+}

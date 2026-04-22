@@ -1,0 +1,19 @@
+{
+  "name": "Git Diff Visualizer",
+  "slug": "git-diff-visualizer",
+  "tagline": "Beautiful diff visualization with syntax highlighting",
+  "description": "Visualize git diffs with side-by-side and inline views. Syntax highlighting, word-level diff, and export options.",
+  "price": "19",
+  "features": [
+    "Side-by-side diff view",
+    "Inline diff mode",
+    "Syntax highlighting",
+    "Word-level diff",
+    "Patch export",
+    "GitHub integration"
+  ],
+  "tech_stack": "Vercel + Vanilla JS",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

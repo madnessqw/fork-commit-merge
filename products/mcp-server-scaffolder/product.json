@@ -1,0 +1,19 @@
+{
+  "name": "MCP Server Scaffolder",
+  "slug": "mcp-server-scaffolder",
+  "tagline": "Generate MCP server boilerplate",
+  "description": "Quickly scaffold new Model Context Protocol servers with templates for TypeScript, Python, and other languages.",
+  "price": "19",
+  "features": [
+    "TypeScript template",
+    "Python template",
+    "Tool scaffolding",
+    "Resource setup",
+    "Package.json generator",
+    "README generator"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0"
+}

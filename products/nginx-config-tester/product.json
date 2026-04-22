@@ -1,0 +1,35 @@
+{
+  "name": "Nginx Config Tester",
+  "slug": "nginx-config-tester",
+  "description": "Validate and test Nginx configuration files with syntax checking, best practice analysis, and security recommendations",
+  "tagline": "Validate Nginx configs before they break production",
+  "price": "$19",
+  "category": "devops",
+  "tags": [
+    "nginx",
+    "config",
+    "validator",
+    "syntax-check",
+    "server",
+    "devops"
+  ],
+  "features": [
+    "Syntax validation with detailed error messages",
+    "Security best practice analysis",
+    "Performance optimization suggestions",
+    "SSL/TLS configuration checker",
+    "Reverse proxy setup validator",
+    "Location block conflict detection",
+    "Rate limiting and caching recommendations",
+    "Configuration explanation and tips"
+  ],
+  "status": "ready_to_deploy",
+  "created_cycle": 1058,
+  "target_audience": "DevOps engineers, system administrators, backend developers",
+  "seo_keywords": [
+    "nginx config tester",
+    "nginx validator",
+    "nginx syntax check",
+    "nginx configuration"
+  ]
+}

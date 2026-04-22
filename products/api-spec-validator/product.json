@@ -1,0 +1,26 @@
+{
+  "name": "API Spec Validator",
+  "slug": "api-spec-validator",
+  "tagline": "Validate OpenAPI specs instantly. Find errors before they hit production.",
+  "description": "Upload your OpenAPI/Swagger spec and get instant validation, linting, and best practice suggestions. Perfect for API-first development teams.",
+  "price": "$19",
+  "category": "developer-tools",
+  "features": [
+    "OpenAPI 3.0/3.1 validation",
+    "Swagger 2.0 support",
+    "Error highlighting with line numbers",
+    "Best practice suggestions",
+    "Security scheme validation",
+    "Schema validation"
+  ],
+  "target_audience": "API developers, backend engineers, DevOps teams",
+  "problem": "OpenAPI specs often have subtle errors that break client generation and documentation",
+  "solution": "Instant validation with clear error messages and actionable fixes",
+  "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/41b9518d-9146-4054-b3a7-775ac91324fe",
+  "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/41b9518d-9146-4054-b3a7-775ac91324fe",
+  "checkout_status": "pending_lemonsqueezy_creation",
+  "vercel_url": "https://api-spec-validator.vercel.app",
+  "status": "live",
+  "seo_optimized": true,
+  "seo_optimized_at": "2026-04-21T17:47:00Z"
+}

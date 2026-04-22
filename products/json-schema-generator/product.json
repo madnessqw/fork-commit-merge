@@ -1,0 +1,21 @@
+{
+  "name": "JSON Schema Generator",
+  "slug": "json-schema-generator",
+  "tagline": "Generate JSON Schema from sample JSON instantly",
+  "description": "Convert any JSON into valid JSON Schema with inferred types, validation rules, and customizable depth. Supports Draft 7, 2019-09, and 2020-12.",
+  "price": "19",
+  "features": [
+    "Infer schema from JSON",
+    "Draft 7/2019-09/2020-12 support",
+    "Customizable inference depth",
+    "Required fields detection",
+    "Enum value extraction",
+    "Pattern recognition",
+    "Export to multiple formats",
+    "Validate against schema"
+  ],
+  "tech_stack": "Vanilla HTML + Tailwind CDN",
+  "status": "spec_ready",
+  "created_cycle": 1052,
+  "seo_optimized": false
+}

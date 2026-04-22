@@ -1,0 +1,35 @@
+{
+  "slug": "url-parser-pro",
+  "name": "URL Parser Pro",
+  "tagline": "Parse and analyze any URL with detailed component breakdown",
+  "description": "Extract every component from any URL including protocol, host, pathname, query parameters, hash fragments, and more. Generate ready-to-use code snippets in multiple languages.",
+  "price": "$19",
+  "status": "spec_ready",
+  "category": "developer-tools",
+  "features": [
+    "Paste any URL for instant parsing",
+    "Component breakdown (protocol, host, port, path, query, hash)",
+    "Query parameter key-value table",
+    "URL encoding/decoding tools",
+    "Code snippets (JavaScript, Python, PHP, Go)",
+    "Copy individual components",
+    "Validate URL format",
+    "Compare two URLs"
+  ],
+  "tech_stack": {
+    "frontend": "HTML5 + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "processing": "Native URL API (browser)"
+  },
+  "target_audience": "Web developers, API developers, security researchers, SEO specialists",
+  "use_cases": [
+    "Debug URL routing issues",
+    "Extract query parameters for API testing",
+    "Analyze redirect chains",
+    "Generate URL parsing code",
+    "Validate URL structure"
+  ],
+  "seo_keywords": ["url parser", "url analyzer", "query string parser", "url components", "url decoder"],
+  "competitors": ["urldecoder.org", "urlencoder.io", "freeformatter.com"],
+  "differentiation": "Code snippet generation, component-by-component copy, URL comparison feature"
+}

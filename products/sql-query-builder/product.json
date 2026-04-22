@@ -1,0 +1,19 @@
+{
+  "name": "SQL Query Builder Pro",
+  "slug": "sql-query-builder",
+  "description": "Visual SQL query builder with drag-and-drop interface. Build complex queries without writing SQL.",
+  "price": 19,
+  "status": "building",
+  "category": "developer_tools",
+  "features": [
+    "Visual drag-and-drop query builder",
+    "Support for SELECT, INSERT, UPDATE, DELETE",
+    "JOIN operations with visual representation",
+    "WHERE clause builder with conditions",
+    "GROUP BY and ORDER BY support",
+    "Export to SQL, JSON, or CSV"
+  ],
+  "tech_stack": ["vanilla-js", "vercel", "serverless"],
+  "created_at": "2026-04-21",
+  "target_audience": "Developers, database administrators, data analysts"
+}

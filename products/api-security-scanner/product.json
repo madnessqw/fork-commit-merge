@@ -1,0 +1,19 @@
+{
+  "name": "API Security Scanner",
+  "slug": "api-security-scanner",
+  "tagline": "Scan APIs for security vulnerabilities",
+  "description": "Automated security scanning for REST and GraphQL APIs. Detect common vulnerabilities, misconfigurations, and security headers.",
+  "price": "19",
+  "features": [
+    "OWASP Top 10 scanning",
+    "Security headers check",
+    "CORS configuration test",
+    "Rate limiting detection",
+    "Authentication testing",
+    "Detailed reports"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "security_tools",
+  "spec_version": "1.0"
+}

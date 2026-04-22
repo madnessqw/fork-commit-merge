@@ -1,0 +1,19 @@
+{
+  "name": "Docker Compose Builder",
+  "slug": "docker-compose-builder",
+  "tagline": "Visual Docker Compose file generator",
+  "description": "Build Docker Compose files visually with drag-and-drop services. Includes templates for popular stacks like LAMP, MEAN, and microservices.",
+  "price": "19",
+  "features": [
+    "Visual service builder",
+    "Pre-built templates",
+    "Network configuration",
+    "Volume management",
+    "Environment variables",
+    "YAML validation"
+  ],
+  "tech_stack": "Vercel + React",
+  "status": "spec_ready",
+  "category": "devops_tools",
+  "spec_version": "1.0"
+}

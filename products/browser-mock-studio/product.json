@@ -1,0 +1,19 @@
+{
+  "name": "Browser Mock Studio",
+  "slug": "browser-mock-studio",
+  "tagline": "Create beautiful browser mockups for screenshots",
+  "description": "Generate professional browser mockups with your screenshots. Chrome, Safari, Firefox styles with dark/light modes and custom backgrounds.",
+  "price": "19",
+  "features": [
+    "Chrome mockup style",
+    "Safari mockup style",
+    "Firefox mockup style",
+    "Dark and light modes",
+    "Custom backgrounds",
+    "Export as PNG/SVG"
+  ],
+  "tech_stack": "Vercel + Canvas API",
+  "status": "spec_ready",
+  "category": "design_tools",
+  "spec_version": "1.0"
+}

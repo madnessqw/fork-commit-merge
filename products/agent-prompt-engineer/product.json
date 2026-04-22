@@ -1,0 +1,19 @@
+{
+  "name": "Agent Prompt Engineer",
+  "slug": "agent-prompt-engineer",
+  "tagline": "Optimize prompts for AI agents",
+  "description": "Engineer and optimize prompts for AI agents. Includes templates, testing, and performance analysis for Claude, GPT, and other models.",
+  "price": "19",
+  "features": [
+    "Prompt templates",
+    "A/B testing",
+    "Token counter",
+    "Performance metrics",
+    "Multi-model support",
+    "Export prompts"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "ai_tools",
+  "spec_version": "1.0"
+}

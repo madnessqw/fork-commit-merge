@@ -1,0 +1,19 @@
+{
+  "name": "Code Formatter Universal",
+  "slug": "code-formatter-universal",
+  "description": "Universal code formatter supporting 50+ languages. Auto-format your code with customizable rules.",
+  "price": 19,
+  "status": "building",
+  "category": "developer_tools",
+  "features": [
+    "Support for 50+ programming languages",
+    "Customizable formatting rules",
+    "Real-time preview",
+    "Batch file processing",
+    "Integration with popular linters",
+    "Export formatted code"
+  ],
+  "tech_stack": ["vanilla-js", "vercel", "serverless"],
+  "created_at": "2026-04-21",
+  "target_audience": "Developers, code reviewers, students"
+}
