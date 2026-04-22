@@ -36,6 +36,10 @@ def apply_health_result(product, result):
     if result.get("url"):
         product["last_health_url"] = result["url"]
 
+    slug = product.get("slug", product.get("s"))
+    if slug:
+        product["ideal_vercel_url"] = f"https://{slug}.vercel.app"
+
     if result["status"] in SYNCED_HEALTH_STATUSES and result.get("url"):
         product["vercel_url"] = result["url"]
         product["v"] = result["url"]

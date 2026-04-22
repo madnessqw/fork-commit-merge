@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1076 | 2026-04-22 03:07 UTC
+# Sorun Analizi — Cycle 1077 | 2026-04-22 03:42 UTC
 
 ## Ana Darboğaz
 - **live_health** — 6 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 200).
@@ -6,9 +6,9 @@
 ## Summary'den Gelen Gerçekler
 - Healthy live: 73/79
 - Checkout gap: 1
-- Deploy/url gap: 22
+- Deploy/url gap: 20
 - Canonical drift: 4
-- Spec-ready backlog: 25
+- Spec-ready backlog: 23
 
 ## Canlı Sağlıksız Ürünler
 - `jwt-generator` — code=200 status=alternate_healthy url=https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app
@@ -22,7 +22,7 @@
 - binary-inspector
 
 ## URL/Deploy Eksikleri
-- sql-to-nosql, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, mcp-inspector-pro, api-security-scanner, docker-command-builder, mcp-server-scaffolder, ...
+- sql-to-nosql, browser-mock-studio, docker-compose-builder, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, mcp-inspector-pro, api-security-scanner, docker-command-builder, mcp-server-scaffolder, browser-use-studio, agent-prompt-engineer, ...
 
 ## Canonical Drift Ürünleri
 - `jwt-generator` — current=https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app ideal=https://jwt-generator.vercel.app

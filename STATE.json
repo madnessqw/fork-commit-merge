@@ -1,7 +1,7 @@
 {
   "status": "ACTIVE",
   "timestamp": "2026-04-22T03:04:02.005520Z",
-  "cycle": 1076,
+  "cycle": 1077,
   "message": "Cycle 1076: Vercel limit dolu. JSON Diff Pro build edildi. 23 building, 21 ready_to_deploy, 79 live.",
   "balance": 0.0,
   "mode": "BUILD",
@@ -12,7 +12,7 @@
   "unhealthy_count": 6,
   "missing_checkout": 1,
   "vercel_blocked": 0,
-  "deploy_missing_or_bad_url": 22,
+  "deploy_missing_or_bad_url": 20,
   "canonical_url_drift": 4,
   "next_action": "vercel_limit_wait_deploy_pending",
   "canonical_url_drift_products": [
@@ -23,7 +23,7 @@
   ],
   "vercel_auth_blocked_products": [],
   "notes": "CRITICAL: 88 products have missing/invalid local HTML files. Products are LIVE on Vercel (healthy) but local sources are only deploy triggers. SEO optimization requires local HTML files. Options: 1) Sync from Vercel URLs, 2) Recreate products, 3) Use different optimization strategy.",
-  "last_updated": "2026-04-22T03:07:31.726506Z",
+  "last_updated": "2026-04-22T03:42:28.435136Z",
   "products": {
     "active": [
       {
@@ -46,7 +46,8 @@
         "schema_optimized": true,
         "st": "ready_to_deploy",
         "v": null,
-        "c": null
+        "c": null,
+        "deployed_cycle": 1077
       },
       {
         "name": "URL Forge",
@@ -67,7 +68,8 @@
         "st": "live",
         "v": "https://url-forge.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/cb25ef0c-bab7-4a5e-aa8c-e3c8378cd902",
-        "last_health_url": "https://url-forge.vercel.app"
+        "last_health_url": "https://url-forge.vercel.app",
+        "ideal_vercel_url": "https://url-forge.vercel.app"
       },
       {
         "name": "WebTerminal Pro",
@@ -107,7 +109,8 @@
         "st": "live",
         "v": "https://timestamp-converter-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/09838336-f26a-43fe-9205-0324f93406cd",
-        "last_health_url": "https://timestamp-converter-pro.vercel.app"
+        "last_health_url": "https://timestamp-converter-pro.vercel.app",
+        "ideal_vercel_url": "https://timestamp-converter-pro.vercel.app"
       },
       {
         "name": "CSS to Tailwind",
@@ -127,7 +130,8 @@
         "st": "live",
         "v": "https://css-to-tailwind.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4",
-        "last_health_url": "https://css-to-tailwind.vercel.app"
+        "last_health_url": "https://css-to-tailwind.vercel.app",
+        "ideal_vercel_url": "https://css-to-tailwind.vercel.app"
       },
       {
         "name": "URL Encoder/Decoder Pro",
@@ -147,7 +151,8 @@
         "st": "live",
         "v": "https://url-encoder-decoder.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc",
-        "last_health_url": "https://url-encoder-decoder.vercel.app"
+        "last_health_url": "https://url-encoder-decoder.vercel.app",
+        "ideal_vercel_url": "https://url-encoder-decoder.vercel.app"
       },
       {
         "name": "HTML Beautifier Pro",
@@ -167,7 +172,8 @@
         "st": "live",
         "v": "https://html-beautifier.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-beautifier-pro-001",
-        "last_health_url": "https://html-beautifier.vercel.app"
+        "last_health_url": "https://html-beautifier.vercel.app",
+        "ideal_vercel_url": "https://html-beautifier.vercel.app"
       },
       {
         "name": "SQL Query Formatter",
@@ -187,7 +193,8 @@
         "st": "live",
         "v": "https://sql-query-formatter.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/737af03e-3f84-4a5b-adbe-02a3f5e1c672",
-        "last_health_url": "https://sql-query-formatter.vercel.app"
+        "last_health_url": "https://sql-query-formatter.vercel.app",
+        "ideal_vercel_url": "https://sql-query-formatter.vercel.app"
       },
       {
         "name": "Cron Expression Builder",
@@ -209,7 +216,8 @@
         "v": "https://cron-expression-builder.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0c610a2b-7b1d-4d5a-8ce2-c7c5eaa9d3da",
         "s": "live",
-        "last_health_url": "https://cron-expression-builder.vercel.app"
+        "last_health_url": "https://cron-expression-builder.vercel.app",
+        "ideal_vercel_url": "https://cron-expression-builder.vercel.app"
       },
       {
         "name": "TOML Toolkit",
@@ -250,7 +258,8 @@
         "st": "live",
         "v": "https://og-forge.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/09838336-f26a-43fe-9205-0324f93406cd",
-        "last_health_url": "https://og-forge.vercel.app"
+        "last_health_url": "https://og-forge.vercel.app",
+        "ideal_vercel_url": "https://og-forge.vercel.app"
       },
       {
         "name": "HTML Entities Pro",
@@ -290,7 +299,8 @@
         "st": "live",
         "v": "https://jwtinspector.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7abe093-4c74-4bb0-abe0-765d0217e864",
-        "last_health_url": "https://jwtinspector.vercel.app"
+        "last_health_url": "https://jwtinspector.vercel.app",
+        "ideal_vercel_url": "https://jwtinspector.vercel.app"
       },
       {
         "name": "SVG Pattern Generator",
@@ -310,7 +320,8 @@
         "st": "live",
         "v": "https://svg-pattern-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8cddeabf-17fe-4067-a833-c32154e78bac",
-        "last_health_url": "https://svg-pattern-generator.vercel.app"
+        "last_health_url": "https://svg-pattern-generator.vercel.app",
+        "ideal_vercel_url": "https://svg-pattern-generator.vercel.app"
       },
       {
         "name": "Mock Data Pro",
@@ -331,7 +342,8 @@
         "st": "live",
         "v": "https://mock-data-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/mock-data-pro-001",
-        "last_health_url": "https://mock-data-pro.vercel.app"
+        "last_health_url": "https://mock-data-pro.vercel.app",
+        "ideal_vercel_url": "https://mock-data-pro.vercel.app"
       },
       {
         "name": "Unit Test Generator",
@@ -352,7 +364,8 @@
         "st": "live",
         "v": "https://unit-test-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/unit-test-generator-001",
-        "last_health_url": "https://unit-test-generator.vercel.app"
+        "last_health_url": "https://unit-test-generator.vercel.app",
+        "ideal_vercel_url": "https://unit-test-generator.vercel.app"
       },
       {
         "name": "XML to JSON",
@@ -372,7 +385,8 @@
         "st": "live",
         "v": "https://xml-to-json.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e5c0e72b-2b88-4d3f-8a32-4d9d5cd2a3fc",
-        "last_health_url": "https://xml-to-json.vercel.app"
+        "last_health_url": "https://xml-to-json.vercel.app",
+        "ideal_vercel_url": "https://xml-to-json.vercel.app"
       },
       {
         "name": "ColorMine",
@@ -392,7 +406,8 @@
         "st": "live",
         "v": "https://colormine.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0",
-        "last_health_url": "https://colormine.vercel.app"
+        "last_health_url": "https://colormine.vercel.app",
+        "ideal_vercel_url": "https://colormine.vercel.app"
       },
       {
         "name": "Password Strength Checker Pro",
@@ -414,7 +429,8 @@
         "st": "live",
         "v": "https://password-strength-checker.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/558b0af0-fadf-4ad2-9c18-df74e8a51820",
-        "last_health_url": "https://password-strength-checker.vercel.app"
+        "last_health_url": "https://password-strength-checker.vercel.app",
+        "ideal_vercel_url": "https://password-strength-checker.vercel.app"
       },
       {
         "name": "YAML to JSON Converter",
@@ -455,7 +471,8 @@
         "st": "live",
         "v": "https://api-doc-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514",
-        "last_health_url": "https://api-doc-generator.vercel.app"
+        "last_health_url": "https://api-doc-generator.vercel.app",
+        "ideal_vercel_url": "https://api-doc-generator.vercel.app"
       },
       {
         "name": "Docker Compose Validator",
@@ -475,7 +492,8 @@
         "st": "live",
         "v": "https://docker-compose-validator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e5c0e72b-2b88-4d3f-8a32-4d9d5cd2a3fc",
-        "last_health_url": "https://docker-compose-validator.vercel.app"
+        "last_health_url": "https://docker-compose-validator.vercel.app",
+        "ideal_vercel_url": "https://docker-compose-validator.vercel.app"
       },
       {
         "name": "Cron Expression Parser",
@@ -495,7 +513,8 @@
         "st": "live",
         "v": "https://cron-expression-parser.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8958f3b5-a4bb-40de-b5df-31932317fb01",
-        "last_health_url": "https://cron-expression-parser.vercel.app"
+        "last_health_url": "https://cron-expression-parser.vercel.app",
+        "ideal_vercel_url": "https://cron-expression-parser.vercel.app"
       },
       {
         "name": "ID Generator Pro",
@@ -518,7 +537,8 @@
         "seo_optimized": true,
         "seo_updated_at": "{\"updated\": true}",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/efe1b957-a4cd-42a2-bc90-1ca99928ecf6",
-        "last_health_url": "https://id-generator-pro.vercel.app"
+        "last_health_url": "https://id-generator-pro.vercel.app",
+        "ideal_vercel_url": "https://id-generator-pro.vercel.app"
       },
       {
         "name": "UUID Generator Pro",
@@ -540,7 +560,8 @@
         "seo_optimized": true,
         "seo_updated_at": "{\"updated\": true}",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fbf28983-c614-473b-bf9c-fdeed947fd8e",
-        "last_health_url": "https://uuid-generator.vercel.app"
+        "last_health_url": "https://uuid-generator.vercel.app",
+        "ideal_vercel_url": "https://uuid-generator.vercel.app"
       },
       {
         "name": "HTML Minifier Pro",
@@ -584,7 +605,8 @@
         "st": "live",
         "v": "https://toml-validator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/594a1fdb-a891-44e0-9db8-5925ae2765ad",
-        "last_health_url": "https://toml-validator.vercel.app"
+        "last_health_url": "https://toml-validator.vercel.app",
+        "ideal_vercel_url": "https://toml-validator.vercel.app"
       },
       {
         "name": "KeyForge",
@@ -606,7 +628,8 @@
         "st": "live",
         "v": "https://keyforge.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d8350a7c-1c8c-424a-83db-9bee03f99e17",
-        "last_health_url": "https://keyforge.vercel.app"
+        "last_health_url": "https://keyforge.vercel.app",
+        "ideal_vercel_url": "https://keyforge.vercel.app"
       },
       {
         "name": "TOML Parser Pro",
@@ -628,7 +651,8 @@
         "st": "live",
         "v": "https://toml-parser-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7e9d4b61-9f17-407e-a3fc-b7f8a6978bab",
-        "last_health_url": "https://toml-parser-pro.vercel.app"
+        "last_health_url": "https://toml-parser-pro.vercel.app",
+        "ideal_vercel_url": "https://toml-parser-pro.vercel.app"
       },
       {
         "name": "Nginx Config Generator",
@@ -650,7 +674,8 @@
         "st": "live",
         "v": "https://nginx-config-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b4b323f-5262-4865-842e-348244a4151a",
-        "last_health_url": "https://nginx-config-generator.vercel.app"
+        "last_health_url": "https://nginx-config-generator.vercel.app",
+        "ideal_vercel_url": "https://nginx-config-generator.vercel.app"
       },
       {
         "name": "HTML to Markdown Pro",
@@ -673,7 +698,8 @@
         "st": "live",
         "v": "https://html-to-markdown.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/b6a9eef4-cad4-4a9f-8d38-dbb8a7eb883f",
-        "last_health_url": "https://html-to-markdown.vercel.app"
+        "last_health_url": "https://html-to-markdown.vercel.app",
+        "ideal_vercel_url": "https://html-to-markdown.vercel.app"
       },
       {
         "name": "API Request Builder",
@@ -695,7 +721,8 @@
         "st": "live",
         "v": "https://api-request-builder.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/600312ea-17e0-4080-ba69-a92a14198a8f",
-        "last_health_url": "https://api-request-builder.vercel.app"
+        "last_health_url": "https://api-request-builder.vercel.app",
+        "ideal_vercel_url": "https://api-request-builder.vercel.app"
       },
       {
         "name": "Number Base Converter",
@@ -715,7 +742,8 @@
         "st": "live",
         "v": "https://number-base-converter.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/cb25ef0c-bab7-4a5e-aa8c-e3c8378cd902",
-        "last_health_url": "https://number-base-converter.vercel.app"
+        "last_health_url": "https://number-base-converter.vercel.app",
+        "ideal_vercel_url": "https://number-base-converter.vercel.app"
       },
       {
         "name": "XML Master Pro",
@@ -738,7 +766,8 @@
         "st": "live",
         "v": "https://xml-master-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fe4f14a2-bef8-4708-86f4-4513308b8a6e",
-        "last_health_url": "https://xml-master-pro.vercel.app"
+        "last_health_url": "https://xml-master-pro.vercel.app",
+        "ideal_vercel_url": "https://xml-master-pro.vercel.app"
       },
       {
         "name": "HTML Table to CSV Pro",
@@ -759,7 +788,8 @@
         "st": "live",
         "v": "https://table-to-csv.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0",
-        "last_health_url": "https://table-to-csv.vercel.app"
+        "last_health_url": "https://table-to-csv.vercel.app",
+        "ideal_vercel_url": "https://table-to-csv.vercel.app"
       },
       {
         "name": "DataFlip",
@@ -780,7 +810,8 @@
         "v": "https://dataflip.vercel.app",
         "deployment_url": "https://dataflip-43r9mku65-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8958f3b5-a4bb-40de-b5df-31932317fb01",
-        "last_health_url": "https://dataflip.vercel.app"
+        "last_health_url": "https://dataflip.vercel.app",
+        "ideal_vercel_url": "https://dataflip.vercel.app"
       },
       {
         "name": "JWT Generator",
@@ -804,7 +835,8 @@
         "st": "live",
         "v": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7d9338a5-9478-4b88-bf65-08b173d46fe6",
-        "last_health_url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app"
+        "last_health_url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
+        "ideal_vercel_url": "https://jwt-generator.vercel.app"
       },
       {
         "name": "Hash Generator Pro",
@@ -825,7 +857,8 @@
         "v": "https://hash-generator-pro.vercel.app",
         "deployment_url": "https://hash-generator-af87mmxk5-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/73633660-cd30-4599-adb1-61700d9505cd",
-        "last_health_url": "https://hash-generator-pro.vercel.app"
+        "last_health_url": "https://hash-generator-pro.vercel.app",
+        "ideal_vercel_url": "https://hash-generator-pro.vercel.app"
       },
       {
         "name": "PDF Forge",
@@ -872,7 +905,8 @@
         "st": "live",
         "v": "https://text-transformer-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/a4d9d9f4-219f-4d8b-8a81-250a35afa9a9",
-        "last_health_url": "https://text-transformer-pro.vercel.app"
+        "last_health_url": "https://text-transformer-pro.vercel.app",
+        "ideal_vercel_url": "https://text-transformer-pro.vercel.app"
       },
       {
         "name": "XML Formatter & Validator",
@@ -895,7 +929,8 @@
         "st": "live",
         "v": "https://xml-formatter.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/545408a7-b1ac-4eac-99a0-b1b5e6095808",
-        "last_health_url": "https://xml-formatter.vercel.app"
+        "last_health_url": "https://xml-formatter.vercel.app",
+        "ideal_vercel_url": "https://xml-formatter.vercel.app"
       },
       {
         "name": "Markdown Previewer Pro",
@@ -917,7 +952,8 @@
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:58:58.756301Z",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/11076aee-8e3c-44c0-9515-5f9bffee4684",
-        "last_health_url": "https://markdown-previewer.vercel.app"
+        "last_health_url": "https://markdown-previewer.vercel.app",
+        "ideal_vercel_url": "https://markdown-previewer.vercel.app"
       },
       {
         "name": "CronCraft",
@@ -940,7 +976,8 @@
         "st": "ready_for_payment",
         "v": "https://croncraft-zeta.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202",
-        "last_health_url": "https://croncraft-zeta.vercel.app"
+        "last_health_url": "https://croncraft-zeta.vercel.app",
+        "ideal_vercel_url": "https://croncraft.vercel.app"
       },
       {
         "name": "EnvGuard Pro",
@@ -963,7 +1000,8 @@
         "st": "live",
         "v": "https://envguard-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/4f105b4f-2c70-46e5-8a0f-80802550d304",
-        "last_health_url": "https://envguard-pro.vercel.app"
+        "last_health_url": "https://envguard-pro.vercel.app",
+        "ideal_vercel_url": "https://envguard-pro.vercel.app"
       },
       {
         "name": "Base64 Pro",
@@ -983,7 +1021,8 @@
         "st": "live",
         "v": "https://base64-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8a2f9c3e-4b5d-6e7f-8g9h-0i1j2k3l4m5n",
-        "last_health_url": "https://base64-pro.vercel.app"
+        "last_health_url": "https://base64-pro.vercel.app",
+        "ideal_vercel_url": "https://base64-pro.vercel.app"
       },
       {
         "name": "LLM TokenLens",
@@ -1003,7 +1042,8 @@
         "st": "live",
         "v": "https://llm-token-lens.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3f9a0d5b-2c4e-6f7g-9b0c-2d3e4f5g6h7i",
-        "last_health_url": "https://llm-token-lens.vercel.app"
+        "last_health_url": "https://llm-token-lens.vercel.app",
+        "ideal_vercel_url": "https://llm-token-lens.vercel.app"
       },
       {
         "name": "CSS Grid Generator",
@@ -1046,7 +1086,8 @@
         "v": "https://http-pulse.vercel.app",
         "deployment_url": "https://http-pulse-87b1zahur-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/73633660-cd30-4599-adb1-61700d9505cd",
-        "last_health_url": "https://http-pulse.vercel.app"
+        "last_health_url": "https://http-pulse.vercel.app",
+        "ideal_vercel_url": "https://http-pulse.vercel.app"
       },
       {
         "name": "Dockerfile Generator",
@@ -1091,7 +1132,8 @@
         "st": "live",
         "v": "https://timestamp-master.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/dd014c5e-f735-4355-affa-f3c9640c66b0",
-        "last_health_url": "https://timestamp-master.vercel.app"
+        "last_health_url": "https://timestamp-master.vercel.app",
+        "ideal_vercel_url": "https://timestamp-master.vercel.app"
       },
       {
         "name": "HTML to Markdown Pro",
@@ -1111,7 +1153,8 @@
         "st": "live",
         "v": "https://html-to-markdown-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4",
-        "last_health_url": "https://html-to-markdown-pro.vercel.app"
+        "last_health_url": "https://html-to-markdown-pro.vercel.app",
+        "ideal_vercel_url": "https://html-to-markdown-pro.vercel.app"
       },
       {
         "name": "API Spec Validator",
@@ -1132,7 +1175,8 @@
         "st": "live",
         "v": "https://api-spec-validator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/41b9518d-9146-4054-b3a7-775ac91324fe",
-        "last_health_url": "https://api-spec-validator.vercel.app"
+        "last_health_url": "https://api-spec-validator.vercel.app",
+        "ideal_vercel_url": "https://api-spec-validator.vercel.app"
       },
       {
         "name": "Markdown Previewer Pro",
@@ -1195,7 +1239,8 @@
         "st": "live",
         "v": "https://carbonlite.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "last_health_url": "https://carbonlite.vercel.app"
+        "last_health_url": "https://carbonlite.vercel.app",
+        "ideal_vercel_url": "https://carbonlite.vercel.app"
       },
       {
         "name": "Code Minifier Pro",
@@ -1216,7 +1261,8 @@
         "v": "https://code-minifier-pro.vercel.app",
         "deployment_url": "https://code-minifier-o0v5tty26-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3d2bd184-9988-4050-b2d7-dbf6845b0b8e",
-        "last_health_url": "https://code-minifier-pro.vercel.app"
+        "last_health_url": "https://code-minifier-pro.vercel.app",
+        "ideal_vercel_url": "https://code-minifier-pro.vercel.app"
       },
       {
         "name": "Cron Master",
@@ -1280,7 +1326,8 @@
         "st": "live",
         "v": "https://toml-converter-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0978ea71-ce15-430a-80d6-8f64d412887a",
-        "last_health_url": "https://toml-converter-pro.vercel.app"
+        "last_health_url": "https://toml-converter-pro.vercel.app",
+        "ideal_vercel_url": "https://toml-converter-pro.vercel.app"
       },
       {
         "name": "HTML to JSX",
@@ -1302,7 +1349,8 @@
         "st": "live",
         "v": "https://html2jsx.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ebfac0d1-9da0-4b82-bbc9-9d4a3b099a11",
-        "last_health_url": "https://html2jsx.vercel.app"
+        "last_health_url": "https://html2jsx.vercel.app",
+        "ideal_vercel_url": "https://html2jsx.vercel.app"
       },
       {
         "name": "CSV to JSON Pro",
@@ -1324,7 +1372,8 @@
         "st": "live",
         "v": "https://csv-to-json-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8958f3b5-a4bb-40de-b5df-31932317fb01",
-        "last_health_url": "https://csv-to-json-pro.vercel.app"
+        "last_health_url": "https://csv-to-json-pro.vercel.app",
+        "ideal_vercel_url": "https://csv-to-json-pro.vercel.app"
       },
       {
         "name": "Webhook Tester",
@@ -1345,7 +1394,8 @@
         "v": "https://webhook-tester-beryl.vercel.app",
         "deployment_url": "https://webhook-tester-beryl.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74",
-        "last_health_url": "https://webhook-tester-beryl.vercel.app"
+        "last_health_url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_vercel_url": "https://webhook-tester.vercel.app"
       },
       {
         "name": "YAML Converter Pro",
@@ -1365,7 +1415,8 @@
         "st": "live",
         "v": "https://yaml-converter-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f52e1510-75cd-4b47-8f42-c53c48486719",
-        "last_health_url": "https://yaml-converter-pro.vercel.app"
+        "last_health_url": "https://yaml-converter-pro.vercel.app",
+        "ideal_vercel_url": "https://yaml-converter-pro.vercel.app"
       },
       {
         "name": "Curl2Code",
@@ -1385,7 +1436,8 @@
         "st": "ready_for_payment",
         "v": "https://curl2code.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7cfaca5-7db7-4525-8146-a49df5bb37f7",
-        "last_health_url": "https://curl2code.vercel.app"
+        "last_health_url": "https://curl2code.vercel.app",
+        "ideal_vercel_url": "https://curl2code.vercel.app"
       },
       {
         "name": "Email Validator Pro",
@@ -1476,7 +1528,8 @@
         "st": "live",
         "v": "https://techstack.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8cddeabf-17fe-4067-a833-c32154e78bac",
-        "last_health_url": "https://techstack.vercel.app"
+        "last_health_url": "https://techstack.vercel.app",
+        "ideal_vercel_url": "https://techstack.vercel.app"
       },
       {
         "name": "HTML2Markdown Pro",
@@ -1562,7 +1615,8 @@
         "st": "live",
         "v": "https://jwt-generator-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/657c71c4-5608-4224-84de-075a8938610f",
-        "last_health_url": "https://jwt-generator-pro.vercel.app"
+        "last_health_url": "https://jwt-generator-pro.vercel.app",
+        "ideal_vercel_url": "https://jwt-generator-pro.vercel.app"
       },
       {
         "name": "HTTP API Client",
@@ -1583,7 +1637,8 @@
         "v": "https://http-api-client.vercel.app",
         "deployment_url": "https://http-api-client-8zjlvpgrt-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fcc5aeb3-b93c-4b65-9eb5-0e6a1deb2fcf",
-        "last_health_url": "https://http-api-client.vercel.app"
+        "last_health_url": "https://http-api-client.vercel.app",
+        "ideal_vercel_url": "https://http-api-client.vercel.app"
       },
       {
         "name": "HMAC Generator Pro",
@@ -1603,7 +1658,8 @@
         "st": "live",
         "v": "https://hmac-generator-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7cfaca5-7db7-4525-8146-a49df5bb37f7",
-        "last_health_url": "https://hmac-generator-pro.vercel.app"
+        "last_health_url": "https://hmac-generator-pro.vercel.app",
+        "ideal_vercel_url": "https://hmac-generator-pro.vercel.app"
       },
       {
         "name": "URL Builder Pro",
@@ -1624,7 +1680,8 @@
         "st": "live",
         "v": "https://url-builder-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f",
-        "last_health_url": "https://url-builder-pro.vercel.app"
+        "last_health_url": "https://url-builder-pro.vercel.app",
+        "ideal_vercel_url": "https://url-builder-pro.vercel.app"
       },
       {
         "name": "Markdown Table Generator",
@@ -1648,7 +1705,8 @@
         "st": "ready_for_payment",
         "v": "https://markdown-table-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/83e85fd0-ab7a-483c-aa50-9be7bf67c7ff",
-        "last_health_url": "https://markdown-table-generator.vercel.app"
+        "last_health_url": "https://markdown-table-generator.vercel.app",
+        "ideal_vercel_url": "https://markdown-table-generator.vercel.app"
       },
       {
         "name": "Terminal Theme Studio",
@@ -1691,7 +1749,8 @@
         "st": "live",
         "v": "https://qr-forge.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f52e1510-75cd-4b47-8f42-c53c48486719",
-        "last_health_url": "https://qr-forge.vercel.app"
+        "last_health_url": "https://qr-forge.vercel.app",
+        "ideal_vercel_url": "https://qr-forge.vercel.app"
       },
       {
         "name": "DiffForge",
@@ -1714,7 +1773,8 @@
         "st": "ready_for_payment",
         "v": "https://diffforge.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1faaada2-30af-4d29-bf65-88d56ccc6fd3",
-        "last_health_url": "https://diffforge.vercel.app"
+        "last_health_url": "https://diffforge.vercel.app",
+        "ideal_vercel_url": "https://diffforge.vercel.app"
       },
       {
         "name": "AI Cost Dashboard",
@@ -1738,7 +1798,8 @@
         "v": "https://ai-cost-dashboard.vercel.app",
         "deployment_url": "https://ai-cost-dashboard-ctvy6wkzz-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ai-cost-dashboard-001",
-        "last_health_url": "https://ai-cost-dashboard.vercel.app"
+        "last_health_url": "https://ai-cost-dashboard.vercel.app",
+        "ideal_vercel_url": "https://ai-cost-dashboard.vercel.app"
       },
       {
         "name": "IP Network Tools",
@@ -1760,7 +1821,8 @@
         "st": "live",
         "v": "https://ip-network-tools.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/63331f41-075b-4a06-84bf-eae188a5db67",
-        "last_health_url": "https://ip-network-tools.vercel.app"
+        "last_health_url": "https://ip-network-tools.vercel.app",
+        "ideal_vercel_url": "https://ip-network-tools.vercel.app"
       },
       {
         "name": "Chart Studio",
@@ -1783,7 +1845,8 @@
         "st": "ready_for_payment",
         "v": "https://chart-studio.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/9e45edef-4cd7-4852-9fe9-42d22aa325b6",
-        "last_health_url": "https://chart-studio.vercel.app"
+        "last_health_url": "https://chart-studio.vercel.app",
+        "ideal_vercel_url": "https://chart-studio.vercel.app"
       },
       {
         "name": "DiffMaster Pro",
@@ -1853,7 +1916,8 @@
         "v": "https://markdown-to-html-pro.vercel.app",
         "deployment_url": "https://markdown-to-html-fpcye6zyx-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "last_health_url": "https://markdown-to-html-pro.vercel.app"
+        "last_health_url": "https://markdown-to-html-pro.vercel.app",
+        "ideal_vercel_url": "https://markdown-to-html-pro.vercel.app"
       },
       {
         "name": "XML Formatter Pro",
@@ -1875,7 +1939,8 @@
         "st": "live",
         "v": "https://xml-formatter-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0ab8c94f-1597-41ef-abc9-36cda2f46fd5",
-        "last_health_url": "https://xml-formatter-pro.vercel.app"
+        "last_health_url": "https://xml-formatter-pro.vercel.app",
+        "ideal_vercel_url": "https://xml-formatter-pro.vercel.app"
       },
       {
         "name": "API Compare",
@@ -1896,7 +1961,8 @@
         "st": "live",
         "v": "https://api-compare.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0",
-        "last_health_url": "https://api-compare.vercel.app"
+        "last_health_url": "https://api-compare.vercel.app",
+        "ideal_vercel_url": "https://api-compare.vercel.app"
       },
       {
         "name": "HTML Entity Encoder/Decoder Pro",
@@ -1921,7 +1987,8 @@
         "st": "live",
         "v": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/632f8e76-192a-432d-8e3f-d464cd865253",
-        "last_health_url": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app"
+        "last_health_url": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
+        "ideal_vercel_url": "https://html-entity-encoder.vercel.app"
       },
       {
         "name": "OpenAPI Validator",
@@ -1943,7 +2010,8 @@
         "st": "live",
         "v": "https://openapi-validator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/b8c2c5d6-3129-432a-b720-2ecd49e99e69",
-        "last_health_url": "https://openapi-validator.vercel.app"
+        "last_health_url": "https://openapi-validator.vercel.app",
+        "ideal_vercel_url": "https://openapi-validator.vercel.app"
       },
       {
         "name": "CodeSnap",
@@ -1964,7 +2032,8 @@
         "st": "live",
         "v": "https://codesnap.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4",
-        "last_health_url": "https://codesnap.vercel.app"
+        "last_health_url": "https://codesnap.vercel.app",
+        "ideal_vercel_url": "https://codesnap.vercel.app"
       },
       {
         "name": "Cron Express",
@@ -2009,7 +2078,8 @@
         "v": "https://regex-tester-pro.vercel.app",
         "deployment_url": "https://regex-tester-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f",
-        "last_health_url": "https://regex-tester-pro.vercel.app"
+        "last_health_url": "https://regex-tester-pro.vercel.app",
+        "ideal_vercel_url": "https://regex-tester-pro.vercel.app"
       },
       {
         "name": "CronMaster",
@@ -2030,7 +2100,8 @@
         "st": "live",
         "v": "https://cronmaster.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/c060a64e-bc84-47be-94d8-8e8f6788c92c",
-        "last_health_url": "https://cronmaster.vercel.app"
+        "last_health_url": "https://cronmaster.vercel.app",
+        "ideal_vercel_url": "https://cronmaster.vercel.app"
       },
       {
         "name": "GraphQL Query Builder",
@@ -2051,7 +2122,8 @@
         "st": "live",
         "v": "https://graphql-query-builder.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "last_health_url": "https://graphql-query-builder.vercel.app"
+        "last_health_url": "https://graphql-query-builder.vercel.app",
+        "ideal_vercel_url": "https://graphql-query-builder.vercel.app"
       },
       {
         "name": "SecretGuard",
@@ -2094,7 +2166,8 @@
         "st": "live",
         "v": "https://geoip-lite.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc",
-        "last_health_url": "https://geoip-lite.vercel.app"
+        "last_health_url": "https://geoip-lite.vercel.app",
+        "ideal_vercel_url": "https://geoip-lite.vercel.app"
       },
       {
         "name": "JSONPath Tester",
@@ -2115,7 +2188,8 @@
         "st": "live",
         "v": "https://jsonpath-tester.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/775314ac-9d0a-49df-bf91-c706cd35e377",
-        "last_health_url": "https://jsonpath-tester.vercel.app"
+        "last_health_url": "https://jsonpath-tester.vercel.app",
+        "ideal_vercel_url": "https://jsonpath-tester.vercel.app"
       },
       {
         "name": "Text Case Converter Pro",
@@ -2137,7 +2211,8 @@
         "v": "https://text-case-converter.vercel.app",
         "deployment_url": "https://text-case-converter-9gpdfie6l-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f",
-        "last_health_url": "https://text-case-converter.vercel.app"
+        "last_health_url": "https://text-case-converter.vercel.app",
+        "ideal_vercel_url": "https://text-case-converter.vercel.app"
       },
       {
         "name": "Lorem Ipsum Generator Pro",
@@ -2158,7 +2233,8 @@
         "st": "live",
         "v": "https://lorem-ipsum-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d84f690f-29cd-40c9-bffc-af4c122846ea",
-        "last_health_url": "https://lorem-ipsum-generator.vercel.app"
+        "last_health_url": "https://lorem-ipsum-generator.vercel.app",
+        "ideal_vercel_url": "https://lorem-ipsum-generator.vercel.app"
       },
       {
         "name": "Email Signature Pro",
@@ -2181,7 +2257,8 @@
         "last_health_check": "2026-04-21T12:30:00Z",
         "st": "live",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0e625a81-50e9-44f2-860e-4aaa6f804f03",
-        "last_health_url": "https://email-signature-pro.vercel.app"
+        "last_health_url": "https://email-signature-pro.vercel.app",
+        "ideal_vercel_url": "https://email-signature-pro.vercel.app"
       },
       {
         "name": "Password Generator Pro",
@@ -2202,7 +2279,8 @@
         "st": "live",
         "v": "https://password-generator-pro.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7abe093-4c74-4bb0-abe0-765d0217e864",
-        "last_health_url": "https://password-generator-pro.vercel.app"
+        "last_health_url": "https://password-generator-pro.vercel.app",
+        "ideal_vercel_url": "https://password-generator-pro.vercel.app"
       },
       {
         "name": "Text Diff Pro",
@@ -2250,7 +2328,8 @@
         "st": "live",
         "v": "https://css-shadow-studio.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e8816f80-75f7-40a8-9287-2a58afec8ac5",
-        "last_health_url": "https://css-shadow-studio.vercel.app"
+        "last_health_url": "https://css-shadow-studio.vercel.app",
+        "ideal_vercel_url": "https://css-shadow-studio.vercel.app"
       },
       {
         "name": "Lorem Ipsum Pro",
@@ -2317,7 +2396,8 @@
         "v": "https://git-command-builder.vercel.app",
         "deployment_url": "https://git-command-builder-iyhed8myl-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74",
-        "last_health_url": "https://git-command-builder.vercel.app"
+        "last_health_url": "https://git-command-builder.vercel.app",
+        "ideal_vercel_url": "https://git-command-builder.vercel.app"
       },
       {
         "name": "Code Snippet Manager",
@@ -2343,7 +2423,8 @@
         "st": "ready_for_payment",
         "v": "https://code-snippet-manager.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0a52f7e1-e18b-46fe-b914-e2626f4396f1",
-        "last_health_url": "https://code-snippet-manager.vercel.app"
+        "last_health_url": "https://code-snippet-manager.vercel.app",
+        "ideal_vercel_url": "https://code-snippet-manager.vercel.app"
       },
       {
         "name": "Email Signature Generator",
@@ -2369,7 +2450,8 @@
         "st": "ready_for_payment",
         "v": "https://email-signature.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/486d8fed-a718-4e6e-9f1b-7e1dcacb2316",
-        "last_health_url": "https://email-signature.vercel.app"
+        "last_health_url": "https://email-signature.vercel.app",
+        "ideal_vercel_url": "https://email-signature.vercel.app"
       },
       {
         "name": "HMAC Generator Pro",
@@ -2395,7 +2477,8 @@
         "st": "ready_for_payment",
         "v": "https://hmac-generator.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e0f03a74-d73c-485f-a47b-4e33c6f4122a",
-        "last_health_url": "https://hmac-generator.vercel.app"
+        "last_health_url": "https://hmac-generator.vercel.app",
+        "ideal_vercel_url": "https://hmac-generator.vercel.app"
       },
       {
         "name": "HTML Entity Encoder/Decoder",
@@ -2420,7 +2503,8 @@
         "st": "ready_for_payment",
         "v": "https://html-entity.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/2bd2d28c-eab1-485f-98da-5237a2df4041",
-        "last_health_url": "https://html-entity.vercel.app"
+        "last_health_url": "https://html-entity.vercel.app",
+        "ideal_vercel_url": "https://html-entity.vercel.app"
       },
       {
         "name": "Timestamp Converter Pro",
@@ -2449,7 +2533,8 @@
         "st": "live",
         "v": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9",
-        "last_health_url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app"
+        "last_health_url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
+        "ideal_vercel_url": "https://timestamp-converter.vercel.app"
       },
       {
         "name": "SSL Cert Checker",
@@ -2467,7 +2552,8 @@
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ssl-cert-checker-001",
         "health_status": "healthy",
         "last_health_code": 200,
-        "last_health_url": "https://ssl-cert-checker.vercel.app"
+        "last_health_url": "https://ssl-cert-checker.vercel.app",
+        "ideal_vercel_url": "https://ssl-cert-checker.vercel.app"
       },
       {
         "name": "Security Headers Checker",
@@ -2625,7 +2711,8 @@
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/ssl-cert-checker-001",
         "health_status": "healthy",
         "last_health_code": 200,
-        "last_health_url": "https://ssl-cert-checker.vercel.app"
+        "last_health_url": "https://ssl-cert-checker.vercel.app",
+        "ideal_vercel_url": "https://ssl-cert-checker.vercel.app"
       },
       {
         "n": "Security Headers Checker",
@@ -2728,15 +2815,16 @@
         "checkout_url": null,
         "last_health_url": "https://binary-inspector.vercel.app",
         "health_status": "healthy",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "ideal_vercel_url": "https://binary-inspector.vercel.app"
       },
       {
         "n": "SSL Config Generator Pro",
         "s": "ssl-config-generator",
-        "st": "spec_ready",
+        "st": "building",
         "v": null,
         "c": null,
-        "status": "spec_ready",
+        "status": "building",
         "vercel_url": null,
         "checkout_url": null
       },
@@ -2771,16 +2859,17 @@
       {
         "name": "ENV File Manager",
         "slug": "env-file-manager",
-        "status": "spec_ready",
+        "status": "building",
         "vercel_url": null,
         "checkout_url": null,
         "lemon_checkout_url": null,
         "created_at": "2026-04-21T20:39:38.509831Z",
         "health_status": "pending",
         "optimization_needed": [],
-        "st": "spec_ready",
+        "st": "building",
         "v": null,
-        "c": null
+        "c": null,
+        "build_started": "2026-04-22T06:15:00Z"
       },
       {
         "slug": "git-diff-visualizer",
@@ -2929,7 +3018,8 @@
         "lemon_product_id": null,
         "revenue": 0,
         "deployment_url": "https://css-gradient-studio-bl5pydcwl-madnessqws-projects.vercel.app",
-        "last_health_url": "https://css-gradient-studio.vercel.app"
+        "last_health_url": "https://css-gradient-studio.vercel.app",
+        "ideal_vercel_url": "https://css-gradient-studio.vercel.app"
       },
       {
         "name": "NanoID Generator Pro",
@@ -2954,7 +3044,8 @@
         "lemon_product_id": null,
         "revenue": 0,
         "deployment_url": "https://nanoid-generator-iw4gvtii5-madnessqws-projects.vercel.app",
-        "last_health_url": "https://nanoid-generator.vercel.app"
+        "last_health_url": "https://nanoid-generator.vercel.app",
+        "ideal_vercel_url": "https://nanoid-generator.vercel.app"
       },
       {
         "name": "JSON Diff Pro",
@@ -3113,6 +3204,6 @@
     "specs/ascii-art-generator.md",
     "specs/flowchart-generator.md"
   ],
-  "spec_ready_count": 25,
+  "spec_ready_count": 23,
   "checkout_gap_count": 1
 }

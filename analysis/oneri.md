@@ -1,13 +1,13 @@
-# Codex Analiz Özeti — 2026-04-22 03:07 UTC
+# Codex Analiz Özeti — 2026-04-22 03:42 UTC
 
 ## Canlı State
-- Cycle: **1076**
+- Cycle: **1077**
 - Mode: **BUILD**
 - Live sağlık: **73/79** (%92.4)
 - Checkout gap: **1**
-- Deploy/url gap: **22**
+- Deploy/url gap: **20**
 - Canonical drift: **4**
-- Spec-ready: **25**
+- Spec-ready: **23**
 - Next action: `vercel_limit_wait_deploy_pending`
 
 ## Ana Darboğaz
@@ -31,4 +31,4 @@
 - `timestamp-converter` — current=https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Deploy/URL Gap Preview
-- sql-to-nosql, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, ...
+- sql-to-nosql, browser-mock-studio, docker-compose-builder, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, ...

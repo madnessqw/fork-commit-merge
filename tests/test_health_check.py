@@ -89,6 +89,7 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["health_status"], "alternate_healthy")
         self.assertEqual(product["last_health_code"], 200)
         self.assertEqual(product["last_health_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["ideal_vercel_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
 
