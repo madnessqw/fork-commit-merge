@@ -602,6 +602,7 @@ def merge_product_record(
         merged["last_health_code"] = manifest_health_code
 
     merged = normalize_health_snapshot(merged)
+    merged["vercel_url"] = resolved_public_vercel_url(merged)
 
     return normalize_checkout_metadata(
         {

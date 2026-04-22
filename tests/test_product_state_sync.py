@@ -221,6 +221,31 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://canonical-failure-tool-preview.vercel.app")
         self.assertEqual(health_check_url(merged), "https://canonical-failure-tool.vercel.app")
 
+    def test_manifest_backed_fallback_keeps_reachable_alias_as_public_url(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "manifest-fallback-tool",
+                "status": "live",
+                "vercel_url": "https://manifest-fallback-tool.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://manifest-fallback-tool-preview.vercel.app",
+                "canonical_health_code": 404,
+                "canonical_health_status": "not_found",
+            },
+            {
+                "slug": "manifest-fallback-tool",
+                "status": "live",
+                "vercel_url": "https://manifest-fallback-tool.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://manifest-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["v"], "https://manifest-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://manifest-fallback-tool-preview.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://manifest-fallback-tool.vercel.app")
+
     def test_stale_failure_with_successful_fallback_stays_alternate_healthy(self) -> None:
         merged = merge_product_record(
             {
