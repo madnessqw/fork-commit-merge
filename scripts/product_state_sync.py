@@ -232,6 +232,29 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     return normalize_url(_pick(record, "effective_health_url", "last_health_url", "health_probe_url"))
 
 
+def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
+    raw_code = _pick(record, "last_health_code")
+    try:
+        code = int(raw_code) if raw_code is not None else None
+    except (TypeError, ValueError):
+        return None
+
+    if code != 200:
+        return None
+
+    return normalize_url(
+        _pick(
+            record,
+            "effective_health_url",
+            "last_health_url",
+            "health_probe_url",
+            "vercel_url",
+            "v",
+            "deployment_url",
+        )
+    )
+
+
 def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(record)
     status = _clean_text(_pick(record, "status", "st"))
@@ -264,6 +287,27 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     except (TypeError, ValueError):
         public_code = None
 
+    successful_snapshot_url = _successful_snapshot_url(record)
+    has_successful_preview_snapshot = (
+        public_code == 200
+        and canonical_code is None
+        and canonical_target is not None
+        and successful_snapshot_url is not None
+        and successful_snapshot_url != canonical_target
+        and _is_vercel_preview_alias(successful_snapshot_url, _pick(record, "slug", "s"))
+    )
+    if has_successful_preview_snapshot:
+        # A preview/alias URL answering 200 is useful, but it is not proof that
+        # the canonical slug URL is fixed. Keep the fallback visible until the
+        # canonical probe records its own 200.
+        normalized["health_status"] = "alternate_healthy"
+        normalized["canonical_health_code"] = None
+        normalized["canonical_health_status"] = raw_canonical_status or "pending"
+        normalized["last_health_url"] = successful_snapshot_url
+        if normalized.get("effective_health_url") is None:
+            normalized["effective_health_url"] = successful_snapshot_url
+        current_health_status = "alternate_healthy"
+
     canonical_snapshot_code = canonical_code
     if public_code is not None and current_health_status != "alternate_healthy":
         if public_code == 200 and canonical_code not in (None, 200):
@@ -276,7 +320,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         normalized["canonical_health_status"] = _health_status_for_code(canonical_snapshot_code)
     else:
         normalized["canonical_health_code"] = None
-        normalized["canonical_health_status"] = raw_canonical_status
+        normalized["canonical_health_status"] = raw_canonical_status or normalized.get("canonical_health_status")
 
     if public_code == 200 and canonical_code not in (None, 200):
         # Canonical failed but the live fallback still answers 200. Keep the

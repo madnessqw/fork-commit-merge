@@ -6,19 +6,23 @@
   "balance": 0.0,
   "mode": "OPTIMIZE",
   "active_count": 144,
-  "live_count": 91,
+  "live_count": 88,
   "healthy_count": 84,
   "needs_fix_count": 7,
-  "unhealthy_count": 7,
+  "unhealthy_count": 4,
   "missing_checkout": 0,
   "vercel_blocked": 0,
-  "deploy_missing_or_bad_url": 9,
-  "canonical_url_drift": 0,
+  "deploy_missing_or_bad_url": 21,
+  "canonical_url_drift": 3,
   "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
-  "canonical_url_drift_products": [],
+  "canonical_url_drift_products": [
+    "pdf-forge",
+    "webhook-tester",
+    "email-validator-pro"
+  ],
   "vercel_auth_blocked_products": [],
   "notes": "CRITICAL: 88 products have missing/invalid local HTML files. Products are LIVE on Vercel (healthy) but local sources are only deploy triggers. SEO optimization requires local HTML files. Options: 1) Sync from Vercel URLs, 2) Recreate products, 3) Use different optimization strategy.",
-  "last_updated": "2026-04-22T17:49:49.011468Z",
+  "last_updated": "2026-04-22T21:07:36.651404Z",
   "products": {
     "active": [
       {
@@ -48,12 +52,14 @@
         "s": "uuid-generator-pro",
         "last_health_url": "https://uuid-generator-pro.vercel.app",
         "ideal_vercel_url": "https://uuid-generator-pro.vercel.app",
-        "last_health_check": "2026-04-22T17:49:44.550381Z",
-        "health_checked_at": "2026-04-22T17:49:44.550381Z",
+        "last_health_check": "2026-04-22T21:07:32.028171Z",
+        "health_checked_at": "2026-04-22T21:07:32.028171Z",
         "canonical_health_url": "https://uuid-generator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.550381Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.028171Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://uuid-generator-pro.vercel.app",
+        "effective_health_url": "https://uuid-generator-pro.vercel.app"
       },
       {
         "name": "URL Forge",
@@ -80,12 +86,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "URL Forge",
         "s": "url-forge",
-        "last_health_check": "2026-04-22T17:49:44.551323Z",
-        "health_checked_at": "2026-04-22T17:49:44.551323Z",
+        "last_health_check": "2026-04-22T21:07:32.028609Z",
+        "health_checked_at": "2026-04-22T21:07:32.028609Z",
         "canonical_health_url": "https://url-forge.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.551323Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.028609Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://url-forge.vercel.app",
+        "effective_health_url": "https://url-forge.vercel.app"
       },
       {
         "name": "WebTerminal Pro",
@@ -107,16 +115,18 @@
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/webterminal-pro-001",
         "deployment_url": null,
         "last_health_url": "https://webterminal-pro.vercel.app",
-        "last_health_check": "2026-04-22T17:49:44.552017Z",
-        "health_checked_at": "2026-04-22T17:49:44.552017Z",
+        "last_health_check": "2026-04-22T21:07:32.028955Z",
+        "health_checked_at": "2026-04-22T21:07:32.028955Z",
         "n": "WebTerminal Pro",
         "s": "webterminal-pro",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://webterminal-pro.vercel.app",
         "canonical_health_url": "https://webterminal-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.552017Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.028955Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://webterminal-pro.vercel.app",
+        "effective_health_url": "https://webterminal-pro.vercel.app"
       },
       {
         "name": "Timestamp Converter Pro",
@@ -142,12 +152,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Timestamp Converter Pro",
         "s": "timestamp-converter-pro",
-        "last_health_check": "2026-04-22T17:49:44.552580Z",
-        "health_checked_at": "2026-04-22T17:49:44.552580Z",
+        "last_health_check": "2026-04-22T21:07:32.030237Z",
+        "health_checked_at": "2026-04-22T21:07:32.030237Z",
         "canonical_health_url": "https://timestamp-converter-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.552580Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.030237Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://timestamp-converter-pro.vercel.app",
+        "effective_health_url": "https://timestamp-converter-pro.vercel.app"
       },
       {
         "name": "CSS to Tailwind",
@@ -174,12 +186,14 @@
         "category": "developer-tools",
         "n": "CSS to Tailwind",
         "s": "css-to-tailwind",
-        "last_health_check": "2026-04-22T17:49:44.553289Z",
-        "health_checked_at": "2026-04-22T17:49:44.553289Z",
+        "last_health_check": "2026-04-22T21:07:32.030598Z",
+        "health_checked_at": "2026-04-22T21:07:32.030598Z",
         "canonical_health_url": "https://css-to-tailwind.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.553289Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.030598Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://css-to-tailwind.vercel.app",
+        "effective_health_url": "https://css-to-tailwind.vercel.app"
       },
       {
         "name": "URL Encoder/Decoder Pro",
@@ -205,12 +219,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "URL Encoder/Decoder Pro",
         "s": "url-encoder-decoder",
-        "last_health_check": "2026-04-22T17:49:44.554228Z",
-        "health_checked_at": "2026-04-22T17:49:44.554228Z",
+        "last_health_check": "2026-04-22T21:07:32.031558Z",
+        "health_checked_at": "2026-04-22T21:07:32.031558Z",
         "canonical_health_url": "https://url-encoder-decoder.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.554228Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.031558Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://url-encoder-decoder.vercel.app",
+        "effective_health_url": "https://url-encoder-decoder.vercel.app"
       },
       {
         "name": "HTML Beautifier Pro",
@@ -236,12 +252,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTML Beautifier Pro",
         "s": "html-beautifier",
-        "last_health_check": "2026-04-22T17:49:44.554667Z",
-        "health_checked_at": "2026-04-22T17:49:44.554667Z",
+        "last_health_check": "2026-04-22T21:07:32.032546Z",
+        "health_checked_at": "2026-04-22T21:07:32.032546Z",
         "canonical_health_url": "https://html-beautifier.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.554667Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.032546Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html-beautifier.vercel.app",
+        "effective_health_url": "https://html-beautifier.vercel.app"
       },
       {
         "name": "SQL Query Formatter",
@@ -267,12 +285,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "SQL Query Formatter",
         "s": "sql-query-formatter",
-        "last_health_check": "2026-04-22T17:49:44.555235Z",
-        "health_checked_at": "2026-04-22T17:49:44.555235Z",
+        "last_health_check": "2026-04-22T21:07:32.033748Z",
+        "health_checked_at": "2026-04-22T21:07:32.033748Z",
         "canonical_health_url": "https://sql-query-formatter.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.555235Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.033748Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://sql-query-formatter.vercel.app",
+        "effective_health_url": "https://sql-query-formatter.vercel.app"
       },
       {
         "name": "Cron Expression Builder",
@@ -298,12 +318,14 @@
         "deployment_url": null,
         "payment_provider": "lemonsqueezy",
         "n": "Cron Expression Builder",
-        "last_health_check": "2026-04-22T17:49:44.555860Z",
-        "health_checked_at": "2026-04-22T17:49:44.555860Z",
+        "last_health_check": "2026-04-22T21:07:32.035232Z",
+        "health_checked_at": "2026-04-22T21:07:32.035232Z",
         "canonical_health_url": "https://cron-expression-builder.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.555860Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.035232Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://cron-expression-builder.vercel.app",
+        "effective_health_url": "https://cron-expression-builder.vercel.app"
       },
       {
         "name": "TOML Toolkit",
@@ -329,12 +351,14 @@
         "deployment_url": null,
         "payment_provider": "lemonsqueezy",
         "n": "TOML Toolkit",
-        "last_health_check": "2026-04-22T17:49:44.558460Z",
-        "health_checked_at": "2026-04-22T17:49:44.558460Z",
+        "last_health_check": "2026-04-22T21:07:32.044358Z",
+        "health_checked_at": "2026-04-22T21:07:32.044358Z",
         "canonical_health_url": "https://toml-toolkit.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.558460Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.044358Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://toml-toolkit.vercel.app",
+        "effective_health_url": "https://toml-toolkit.vercel.app"
       },
       {
         "name": "OG Forge",
@@ -360,12 +384,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "OG Forge",
         "s": "og-forge",
-        "last_health_check": "2026-04-22T17:49:44.842660Z",
-        "health_checked_at": "2026-04-22T17:49:44.842660Z",
+        "last_health_check": "2026-04-22T21:07:32.252567Z",
+        "health_checked_at": "2026-04-22T21:07:32.252567Z",
         "canonical_health_url": "https://og-forge.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.842660Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.252567Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://og-forge.vercel.app",
+        "effective_health_url": "https://og-forge.vercel.app"
       },
       {
         "name": "HTML Entities Pro",
@@ -387,16 +413,18 @@
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-entities-pro-001",
         "deployment_url": null,
         "last_health_url": "https://html-entities.vercel.app",
-        "last_health_check": "2026-04-22T17:49:44.862165Z",
-        "health_checked_at": "2026-04-22T17:49:44.862165Z",
+        "last_health_check": "2026-04-22T21:07:32.257151Z",
+        "health_checked_at": "2026-04-22T21:07:32.257151Z",
         "n": "HTML Entities Pro",
         "s": "html-entities",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://html-entities.vercel.app",
         "canonical_health_url": "https://html-entities.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.862165Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.257151Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html-entities.vercel.app",
+        "effective_health_url": "https://html-entities.vercel.app"
       },
       {
         "name": "JWT Inspector",
@@ -423,12 +451,14 @@
         "category": "Developer Tools",
         "n": "JWT Inspector",
         "s": "jwtinspector",
-        "last_health_check": "2026-04-22T17:49:44.875247Z",
-        "health_checked_at": "2026-04-22T17:49:44.875247Z",
+        "last_health_check": "2026-04-22T21:07:32.290808Z",
+        "health_checked_at": "2026-04-22T21:07:32.290808Z",
         "canonical_health_url": "https://jwtinspector.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.875247Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.290808Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://jwtinspector.vercel.app",
+        "effective_health_url": "https://jwtinspector.vercel.app"
       },
       {
         "name": "SVG Pattern Generator",
@@ -454,12 +484,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "SVG Pattern Generator",
         "s": "svg-pattern-generator",
-        "last_health_check": "2026-04-22T17:49:44.896403Z",
-        "health_checked_at": "2026-04-22T17:49:44.896403Z",
+        "last_health_check": "2026-04-22T21:07:32.298760Z",
+        "health_checked_at": "2026-04-22T21:07:32.298760Z",
         "canonical_health_url": "https://svg-pattern-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.896403Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.298760Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://svg-pattern-generator.vercel.app",
+        "effective_health_url": "https://svg-pattern-generator.vercel.app"
       },
       {
         "name": "Mock Data Pro",
@@ -486,12 +518,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Mock Data Pro",
         "s": "mock-data-pro",
-        "last_health_check": "2026-04-22T17:49:44.920566Z",
-        "health_checked_at": "2026-04-22T17:49:44.920566Z",
+        "last_health_check": "2026-04-22T21:07:32.310092Z",
+        "health_checked_at": "2026-04-22T21:07:32.310092Z",
         "canonical_health_url": "https://mock-data-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.920566Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.310092Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://mock-data-pro.vercel.app",
+        "effective_health_url": "https://mock-data-pro.vercel.app"
       },
       {
         "name": "Unit Test Generator",
@@ -518,12 +552,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Unit Test Generator",
         "s": "unit-test-generator",
-        "last_health_check": "2026-04-22T17:49:44.926182Z",
-        "health_checked_at": "2026-04-22T17:49:44.926182Z",
+        "last_health_check": "2026-04-22T21:07:32.314870Z",
+        "health_checked_at": "2026-04-22T21:07:32.314870Z",
         "canonical_health_url": "https://unit-test-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.926182Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.314870Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://unit-test-generator.vercel.app",
+        "effective_health_url": "https://unit-test-generator.vercel.app"
       },
       {
         "name": "XML to JSON",
@@ -549,12 +585,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "XML to JSON",
         "s": "xml-to-json",
-        "last_health_check": "2026-04-22T17:49:44.972889Z",
-        "health_checked_at": "2026-04-22T17:49:44.972889Z",
+        "last_health_check": "2026-04-22T21:07:32.321496Z",
+        "health_checked_at": "2026-04-22T21:07:32.321496Z",
         "canonical_health_url": "https://xml-to-json.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.972889Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.321496Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://xml-to-json.vercel.app",
+        "effective_health_url": "https://xml-to-json.vercel.app"
       },
       {
         "name": "ColorMine",
@@ -580,12 +618,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "ColorMine",
         "s": "colormine",
-        "last_health_check": "2026-04-22T17:49:44.985891Z",
-        "health_checked_at": "2026-04-22T17:49:44.985891Z",
+        "last_health_check": "2026-04-22T21:07:32.322202Z",
+        "health_checked_at": "2026-04-22T21:07:32.322202Z",
         "canonical_health_url": "https://colormine.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:44.985891Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.322202Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://colormine.vercel.app",
+        "effective_health_url": "https://colormine.vercel.app"
       },
       {
         "name": "Password Strength Checker Pro",
@@ -612,12 +652,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Password Strength Checker Pro",
         "s": "password-strength-checker",
-        "last_health_check": "2026-04-22T17:49:45.012450Z",
-        "health_checked_at": "2026-04-22T17:49:45.012450Z",
+        "last_health_check": "2026-04-22T21:07:32.328720Z",
+        "health_checked_at": "2026-04-22T21:07:32.328720Z",
         "canonical_health_url": "https://password-strength-checker.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.012450Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.328720Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://password-strength-checker.vercel.app",
+        "effective_health_url": "https://password-strength-checker.vercel.app"
       },
       {
         "name": "API Doc Generator",
@@ -644,12 +686,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "API Doc Generator",
         "s": "api-doc-generator",
-        "last_health_check": "2026-04-22T17:49:45.089947Z",
-        "health_checked_at": "2026-04-22T17:49:45.089947Z",
+        "last_health_check": "2026-04-22T21:07:32.340551Z",
+        "health_checked_at": "2026-04-22T21:07:32.340551Z",
         "canonical_health_url": "https://api-doc-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.089947Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.340551Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://api-doc-generator.vercel.app",
+        "effective_health_url": "https://api-doc-generator.vercel.app"
       },
       {
         "name": "Docker Compose Validator",
@@ -675,12 +719,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Docker Compose Validator",
         "s": "docker-compose-validator",
-        "last_health_check": "2026-04-22T17:49:45.124597Z",
-        "health_checked_at": "2026-04-22T17:49:45.124597Z",
+        "last_health_check": "2026-04-22T21:07:32.509750Z",
+        "health_checked_at": "2026-04-22T21:07:32.509750Z",
         "canonical_health_url": "https://docker-compose-validator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.124597Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.509750Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://docker-compose-validator.vercel.app",
+        "effective_health_url": "https://docker-compose-validator.vercel.app"
       },
       {
         "name": "Cron Expression Parser",
@@ -706,12 +752,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Cron Expression Parser",
         "s": "cron-expression-parser",
-        "last_health_check": "2026-04-22T17:49:45.138428Z",
-        "health_checked_at": "2026-04-22T17:49:45.138428Z",
+        "last_health_check": "2026-04-22T21:07:32.535464Z",
+        "health_checked_at": "2026-04-22T21:07:32.535464Z",
         "canonical_health_url": "https://cron-expression-parser.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.138428Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.535464Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://cron-expression-parser.vercel.app",
+        "effective_health_url": "https://cron-expression-parser.vercel.app"
       },
       {
         "name": "ID Generator Pro",
@@ -739,12 +787,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "ID Generator Pro",
         "s": "id-generator-pro",
-        "last_health_check": "2026-04-22T17:49:45.148874Z",
-        "health_checked_at": "2026-04-22T17:49:45.148874Z",
+        "last_health_check": "2026-04-22T21:07:32.539554Z",
+        "health_checked_at": "2026-04-22T21:07:32.539554Z",
         "canonical_health_url": "https://id-generator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.148874Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.539554Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://id-generator-pro.vercel.app",
+        "effective_health_url": "https://id-generator-pro.vercel.app"
       },
       {
         "name": "UUID Generator Pro",
@@ -771,12 +821,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "UUID Generator Pro",
         "s": "uuid-generator",
-        "last_health_check": "2026-04-22T17:49:45.160475Z",
-        "health_checked_at": "2026-04-22T17:49:45.160475Z",
+        "last_health_check": "2026-04-22T21:07:32.554286Z",
+        "health_checked_at": "2026-04-22T21:07:32.554286Z",
         "canonical_health_url": "https://uuid-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.160475Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.554286Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://uuid-generator.vercel.app",
+        "effective_health_url": "https://uuid-generator.vercel.app"
       },
       {
         "name": "HTML Minifier Pro",
@@ -801,16 +853,18 @@
         "building_complete": true,
         "deployment_url": null,
         "last_health_url": "https://html-minifier-pro.vercel.app",
-        "last_health_check": "2026-04-22T17:49:45.193398Z",
-        "health_checked_at": "2026-04-22T17:49:45.193398Z",
+        "last_health_check": "2026-04-22T21:07:32.564851Z",
+        "health_checked_at": "2026-04-22T21:07:32.564851Z",
         "n": "HTML Minifier Pro",
         "s": "html-minifier-pro",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://html-minifier-pro.vercel.app",
         "canonical_health_url": "https://html-minifier-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.193398Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.564851Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html-minifier-pro.vercel.app",
+        "effective_health_url": "https://html-minifier-pro.vercel.app"
       },
       {
         "name": "TOML Validator",
@@ -837,12 +891,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "TOML Validator",
         "s": "toml-validator",
-        "last_health_check": "2026-04-22T17:49:45.219095Z",
-        "health_checked_at": "2026-04-22T17:49:45.219095Z",
+        "last_health_check": "2026-04-22T21:07:32.578707Z",
+        "health_checked_at": "2026-04-22T21:07:32.578707Z",
         "canonical_health_url": "https://toml-validator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.219095Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.578707Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://toml-validator.vercel.app",
+        "effective_health_url": "https://toml-validator.vercel.app"
       },
       {
         "name": "KeyForge",
@@ -869,12 +925,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "KeyForge",
         "s": "keyforge",
-        "last_health_check": "2026-04-22T17:49:45.230190Z",
-        "health_checked_at": "2026-04-22T17:49:45.230190Z",
+        "last_health_check": "2026-04-22T21:07:32.579080Z",
+        "health_checked_at": "2026-04-22T21:07:32.579080Z",
         "canonical_health_url": "https://keyforge.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.230190Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.579080Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://keyforge.vercel.app",
+        "effective_health_url": "https://keyforge.vercel.app"
       },
       {
         "name": "TOML Parser Pro",
@@ -902,12 +960,14 @@
         "category": "developer-tools",
         "n": "TOML Parser Pro",
         "s": "toml-parser-pro",
-        "last_health_check": "2026-04-22T17:49:45.364341Z",
-        "health_checked_at": "2026-04-22T17:49:45.364341Z",
+        "last_health_check": "2026-04-22T21:07:32.587425Z",
+        "health_checked_at": "2026-04-22T21:07:32.587425Z",
         "canonical_health_url": "https://toml-parser-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.364341Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.587425Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://toml-parser-pro.vercel.app",
+        "effective_health_url": "https://toml-parser-pro.vercel.app"
       },
       {
         "name": "Nginx Config Generator",
@@ -934,12 +994,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Nginx Config Generator",
         "s": "nginx-config-generator",
-        "last_health_check": "2026-04-22T17:49:45.373678Z",
-        "health_checked_at": "2026-04-22T17:49:45.373678Z",
+        "last_health_check": "2026-04-22T21:07:32.598823Z",
+        "health_checked_at": "2026-04-22T21:07:32.598823Z",
         "canonical_health_url": "https://nginx-config-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.373678Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.598823Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://nginx-config-generator.vercel.app",
+        "effective_health_url": "https://nginx-config-generator.vercel.app"
       },
       {
         "name": "HTML to Markdown Pro",
@@ -952,7 +1014,7 @@
         "created_cycle": null,
         "health_status": "healthy",
         "deployed_cycle": 981,
-        "last_health_check": "2026-04-22T17:49:45.374295Z",
+        "last_health_check": "2026-04-22T21:07:32.738707Z",
         "last_health_code": 200,
         "checkout_status": "active",
         "og_optimized": true,
@@ -967,11 +1029,13 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTML to Markdown Pro",
         "s": "html-to-markdown",
-        "health_checked_at": "2026-04-22T17:49:45.374295Z",
+        "health_checked_at": "2026-04-22T21:07:32.738707Z",
         "canonical_health_url": "https://html-to-markdown.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.374295Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.738707Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html-to-markdown.vercel.app",
+        "effective_health_url": "https://html-to-markdown.vercel.app"
       },
       {
         "name": "API Request Builder",
@@ -998,12 +1062,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "API Request Builder",
         "s": "api-request-builder",
-        "last_health_check": "2026-04-22T17:49:45.381409Z",
-        "health_checked_at": "2026-04-22T17:49:45.381409Z",
+        "last_health_check": "2026-04-22T21:07:32.757612Z",
+        "health_checked_at": "2026-04-22T21:07:32.757612Z",
         "canonical_health_url": "https://api-request-builder.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.381409Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.757612Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://api-request-builder.vercel.app",
+        "effective_health_url": "https://api-request-builder.vercel.app"
       },
       {
         "name": "Number Base Converter",
@@ -1029,12 +1095,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Number Base Converter",
         "s": "number-base-converter",
-        "last_health_check": "2026-04-22T17:49:45.447489Z",
-        "health_checked_at": "2026-04-22T17:49:45.447489Z",
+        "last_health_check": "2026-04-22T21:07:32.768358Z",
+        "health_checked_at": "2026-04-22T21:07:32.768358Z",
         "canonical_health_url": "https://number-base-converter.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.447489Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.768358Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://number-base-converter.vercel.app",
+        "effective_health_url": "https://number-base-converter.vercel.app"
       },
       {
         "name": "XML Master Pro",
@@ -1047,7 +1115,7 @@
         "created_cycle": null,
         "health_status": "healthy",
         "deployed_cycle": 982,
-        "last_health_check": "2026-04-22T17:49:45.451021Z",
+        "last_health_check": "2026-04-22T21:07:32.792163Z",
         "last_health_code": 200,
         "checkout_status": "active",
         "og_optimized": true,
@@ -1062,11 +1130,13 @@
         "payment_provider": "lemonsqueezy",
         "n": "XML Master Pro",
         "s": "xml-master-pro",
-        "health_checked_at": "2026-04-22T17:49:45.451021Z",
+        "health_checked_at": "2026-04-22T21:07:32.792163Z",
         "canonical_health_url": "https://xml-master-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.451021Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.792163Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://xml-master-pro.vercel.app",
+        "effective_health_url": "https://xml-master-pro.vercel.app"
       },
       {
         "name": "HTML Table to CSV Pro",
@@ -1093,12 +1163,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTML Table to CSV Pro",
         "s": "table-to-csv",
-        "last_health_check": "2026-04-22T17:49:45.455707Z",
-        "health_checked_at": "2026-04-22T17:49:45.455707Z",
+        "last_health_check": "2026-04-22T21:07:32.793786Z",
+        "health_checked_at": "2026-04-22T21:07:32.793786Z",
         "canonical_health_url": "https://table-to-csv.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.455707Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.793786Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://table-to-csv.vercel.app",
+        "effective_health_url": "https://table-to-csv.vercel.app"
       },
       {
         "name": "DataFlip",
@@ -1124,12 +1196,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "DataFlip",
         "s": "dataflip",
-        "last_health_check": "2026-04-22T17:49:45.551426Z",
-        "health_checked_at": "2026-04-22T17:49:45.551426Z",
+        "last_health_check": "2026-04-22T21:07:32.809929Z",
+        "health_checked_at": "2026-04-22T21:07:32.809929Z",
         "canonical_health_url": "https://dataflip.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.551426Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.809929Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://dataflip.vercel.app",
+        "effective_health_url": "https://dataflip.vercel.app"
       },
       {
         "name": "JWT Generator",
@@ -1155,16 +1229,18 @@
         "last_health_url": "https://jwt-generator.vercel.app",
         "ideal_vercel_url": "https://jwt-generator.vercel.app",
         "note": "Canonical URL drift - working on alternate URL",
-        "deployment_url": null,
+        "deployment_url": "https://jwt-generator-rho.vercel.app",
         "payment_provider": "lemonsqueezy",
         "n": "JWT Generator",
         "s": "jwt-generator",
-        "last_health_check": "2026-04-22T17:49:45.596532Z",
-        "health_checked_at": "2026-04-22T17:49:45.596532Z",
+        "last_health_check": "2026-04-22T21:07:32.821422Z",
+        "health_checked_at": "2026-04-22T21:07:32.821422Z",
         "canonical_health_url": "https://jwt-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.596532Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.821422Z",
         "canonical_health_code": 500,
-        "canonical_health_status": "error_500"
+        "canonical_health_status": "error_500",
+        "health_probe_url": "https://jwt-generator.vercel.app",
+        "effective_health_url": "https://jwt-generator.vercel.app"
       },
       {
         "name": "Hash Generator Pro",
@@ -1190,18 +1266,20 @@
         "payment_provider": "lemonsqueezy",
         "n": "Hash Generator Pro",
         "s": "hash-generator-pro",
-        "last_health_check": "2026-04-22T17:49:45.602262Z",
-        "health_checked_at": "2026-04-22T17:49:45.602262Z",
+        "last_health_check": "2026-04-22T21:07:32.837267Z",
+        "health_checked_at": "2026-04-22T21:07:32.837267Z",
         "canonical_health_url": "https://hash-generator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.602262Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.837267Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://hash-generator-pro.vercel.app",
+        "effective_health_url": "https://hash-generator-pro.vercel.app"
       },
       {
         "name": "PDF Forge",
         "slug": "pdf-forge",
         "status": "live",
-        "vercel_url": "https://pdf-forge.vercel.app",
+        "vercel_url": "https://pdf-forge-five.vercel.app",
         "github_url": "https://github.com/universe7creator/pdf-forge",
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514",
         "price": "19",
@@ -1214,21 +1292,23 @@
         "updated": "2026-04-21T17:10:00Z",
         "last_check": "2026-04-21T15:44:14.049666Z",
         "st": "live",
-        "v": "https://pdf-forge.vercel.app",
-        "deployment_url": "https://pdf-forge.vercel.app",
+        "v": "https://pdf-forge-five.vercel.app",
+        "deployment_url": "https://pdf-forge-five.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514",
-        "health_status": "error_500",
-        "last_health_code": 500,
-        "last_health_url": "https://pdf-forge.vercel.app",
-        "last_health_check": "2026-04-22T17:49:45.607619Z",
+        "health_status": "alternate_healthy",
+        "last_health_code": 200,
+        "last_health_url": "https://pdf-forge-five.vercel.app",
+        "last_health_check": "2026-04-22T21:07:32.851116Z",
         "payment_provider": "lemonsqueezy",
         "n": "PDF Forge",
         "s": "pdf-forge",
-        "health_checked_at": "2026-04-22T17:49:45.607619Z",
+        "health_checked_at": "2026-04-22T21:07:32.851116Z",
         "canonical_health_url": "https://pdf-forge.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.607619Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.851116Z",
         "canonical_health_code": 500,
-        "canonical_health_status": "error_500"
+        "canonical_health_status": "error_500",
+        "health_probe_url": "https://pdf-forge-five.vercel.app",
+        "effective_health_url": "https://pdf-forge-five.vercel.app"
       },
       {
         "name": "Text Transformer Pro",
@@ -1256,12 +1336,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Text Transformer Pro",
         "s": "text-transformer-pro",
-        "last_health_check": "2026-04-22T17:49:45.620543Z",
-        "health_checked_at": "2026-04-22T17:49:45.620543Z",
+        "last_health_check": "2026-04-22T21:07:32.976423Z",
+        "health_checked_at": "2026-04-22T21:07:32.976423Z",
         "canonical_health_url": "https://text-transformer-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.620543Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.976423Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://text-transformer-pro.vercel.app",
+        "effective_health_url": "https://text-transformer-pro.vercel.app"
       },
       {
         "name": "XML Formatter & Validator",
@@ -1274,7 +1356,7 @@
         "created_cycle": null,
         "health_status": "healthy",
         "deployed_cycle": 991,
-        "last_health_check": "2026-04-22T17:49:45.661963Z",
+        "last_health_check": "2026-04-22T21:07:32.994979Z",
         "last_health_code": 200,
         "checkout_status": "active",
         "og_optimized": true,
@@ -1289,11 +1371,13 @@
         "payment_provider": "lemonsqueezy",
         "n": "XML Formatter & Validator",
         "s": "xml-formatter",
-        "health_checked_at": "2026-04-22T17:49:45.661963Z",
+        "health_checked_at": "2026-04-22T21:07:32.994979Z",
         "canonical_health_url": "https://xml-formatter.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.661963Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:32.994979Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://xml-formatter.vercel.app",
+        "effective_health_url": "https://xml-formatter.vercel.app"
       },
       {
         "name": "Markdown Previewer Pro",
@@ -1320,12 +1404,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Markdown Previewer Pro",
         "s": "markdown-previewer",
-        "last_health_check": "2026-04-22T17:49:45.685728Z",
-        "health_checked_at": "2026-04-22T17:49:45.685728Z",
+        "last_health_check": "2026-04-22T21:07:33.012466Z",
+        "health_checked_at": "2026-04-22T21:07:33.012466Z",
         "canonical_health_url": "https://markdown-previewer.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.685728Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.012466Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://markdown-previewer.vercel.app",
+        "effective_health_url": "https://markdown-previewer.vercel.app"
       },
       {
         "name": "CronCraft",
@@ -1354,12 +1440,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "CronCraft",
         "s": "croncraft",
-        "last_health_check": "2026-04-22T17:49:45.687686Z",
-        "health_checked_at": "2026-04-22T17:49:45.687686Z",
+        "last_health_check": "2026-04-22T21:07:33.033515Z",
+        "health_checked_at": "2026-04-22T21:07:33.033515Z",
         "canonical_health_url": "https://croncraft.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.687686Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.033515Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://croncraft.vercel.app",
+        "effective_health_url": "https://quickcron.vercel.app"
       },
       {
         "name": "EnvGuard Pro",
@@ -1387,12 +1475,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "EnvGuard Pro",
         "s": "envguard-pro",
-        "last_health_check": "2026-04-22T17:49:45.765388Z",
-        "health_checked_at": "2026-04-22T17:49:45.765388Z",
+        "last_health_check": "2026-04-22T21:07:33.040709Z",
+        "health_checked_at": "2026-04-22T21:07:33.040709Z",
         "canonical_health_url": "https://envguard-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.765388Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.040709Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://envguard-pro.vercel.app",
+        "effective_health_url": "https://envguard-pro.vercel.app"
       },
       {
         "name": "Base64 Pro",
@@ -1418,12 +1508,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Base64 Pro",
         "s": "base64-pro",
-        "last_health_check": "2026-04-22T17:49:45.823654Z",
-        "health_checked_at": "2026-04-22T17:49:45.823654Z",
+        "last_health_check": "2026-04-22T21:07:33.042303Z",
+        "health_checked_at": "2026-04-22T21:07:33.042303Z",
         "canonical_health_url": "https://base64-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.823654Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.042303Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://base64-pro.vercel.app",
+        "effective_health_url": "https://base64-pro.vercel.app"
       },
       {
         "name": "LLM TokenLens",
@@ -1449,12 +1541,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "LLM TokenLens",
         "s": "llm-token-lens",
-        "last_health_check": "2026-04-22T17:49:45.833462Z",
-        "health_checked_at": "2026-04-22T17:49:45.833462Z",
+        "last_health_check": "2026-04-22T21:07:33.094891Z",
+        "health_checked_at": "2026-04-22T21:07:33.094891Z",
         "canonical_health_url": "https://llm-token-lens.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.833462Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.094891Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://llm-token-lens.vercel.app",
+        "effective_health_url": "https://llm-token-lens.vercel.app"
       },
       {
         "name": "CSS Grid Generator",
@@ -1467,7 +1561,7 @@
         "created_cycle": null,
         "health_status": "healthy",
         "deployed_cycle": 987,
-        "last_health_check": "2026-04-22T17:49:45.885407Z",
+        "last_health_check": "2026-04-22T21:07:33.172202Z",
         "last_health_code": 200,
         "checkout_status": "pending_setup",
         "og_optimized": true,
@@ -1479,15 +1573,17 @@
         "deploy_pending": true,
         "deployment_url": null,
         "last_health_url": "https://css-grid-gen.vercel.app",
-        "health_checked_at": "2026-04-22T17:49:45.885407Z",
+        "health_checked_at": "2026-04-22T21:07:33.172202Z",
         "n": "CSS Grid Generator",
         "s": "css-grid-gen",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://css-grid-gen.vercel.app",
         "canonical_health_url": "https://css-grid-gen.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.885407Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.172202Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://css-grid-gen.vercel.app",
+        "effective_health_url": "https://css-grid-gen.vercel.app"
       },
       {
         "name": "HTTP Pulse",
@@ -1513,12 +1609,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTTP Pulse",
         "s": "http-pulse",
-        "last_health_check": "2026-04-22T17:49:45.894630Z",
-        "health_checked_at": "2026-04-22T17:49:45.894630Z",
+        "last_health_check": "2026-04-22T21:07:33.222111Z",
+        "health_checked_at": "2026-04-22T21:07:33.222111Z",
         "canonical_health_url": "https://http-pulse.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.894630Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.222111Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://http-pulse.vercel.app",
+        "effective_health_url": "https://http-pulse.vercel.app"
       },
       {
         "name": "Dockerfile Generator",
@@ -1543,15 +1641,17 @@
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/dockerfile-gen-001",
         "deployment_url": null,
         "last_health_url": "https://dockerfile-generator.vercel.app",
-        "last_health_check": "2026-04-22T17:49:45.953951Z",
-        "health_checked_at": "2026-04-22T17:49:45.953951Z",
+        "last_health_check": "2026-04-22T21:07:33.230193Z",
+        "health_checked_at": "2026-04-22T21:07:33.230193Z",
         "n": "Dockerfile Generator",
         "s": "dockerfile-generator",
         "payment_provider": "lemonsqueezy",
         "canonical_health_url": "https://dockerfile-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.953951Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.230193Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://dockerfile-generator.vercel.app",
+        "effective_health_url": "https://dockerfile-generator.vercel.app"
       },
       {
         "name": "Timestamp Master",
@@ -1578,12 +1678,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Timestamp Master",
         "s": "timestamp-master",
-        "last_health_check": "2026-04-22T17:49:45.978588Z",
-        "health_checked_at": "2026-04-22T17:49:45.978588Z",
+        "last_health_check": "2026-04-22T21:07:33.237582Z",
+        "health_checked_at": "2026-04-22T21:07:33.237582Z",
         "canonical_health_url": "https://timestamp-master.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.978588Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.237582Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://timestamp-master.vercel.app",
+        "effective_health_url": "https://timestamp-master.vercel.app"
       },
       {
         "name": "HTML to Markdown Pro",
@@ -1609,12 +1711,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTML to Markdown Pro",
         "s": "html-to-markdown-pro",
-        "last_health_check": "2026-04-22T17:49:45.984824Z",
-        "health_checked_at": "2026-04-22T17:49:45.984824Z",
+        "last_health_check": "2026-04-22T21:07:33.279570Z",
+        "health_checked_at": "2026-04-22T21:07:33.279570Z",
         "canonical_health_url": "https://html-to-markdown-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:45.984824Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.279570Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html-to-markdown-pro.vercel.app",
+        "effective_health_url": "https://html-to-markdown-pro.vercel.app"
       },
       {
         "name": "API Spec Validator",
@@ -1641,12 +1745,14 @@
         "category": "developer-tools",
         "n": "API Spec Validator",
         "s": "api-spec-validator",
-        "last_health_check": "2026-04-22T17:49:46.089850Z",
-        "health_checked_at": "2026-04-22T17:49:46.089850Z",
+        "last_health_check": "2026-04-22T21:07:33.330512Z",
+        "health_checked_at": "2026-04-22T21:07:33.330512Z",
         "canonical_health_url": "https://api-spec-validator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.089850Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.330512Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://api-spec-validator.vercel.app",
+        "effective_health_url": "https://api-spec-validator.vercel.app"
       },
       {
         "name": "Markdown Previewer Pro",
@@ -1670,16 +1776,18 @@
         "building_complete": true,
         "deployment_url": null,
         "last_health_url": "https://markdown-previewer-pro.vercel.app",
-        "last_health_check": "2026-04-22T17:49:46.101865Z",
-        "health_checked_at": "2026-04-22T17:49:46.101865Z",
+        "last_health_check": "2026-04-22T21:07:33.389970Z",
+        "health_checked_at": "2026-04-22T21:07:33.389970Z",
         "n": "Markdown Previewer Pro",
         "s": "markdown-previewer-pro",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://markdown-previewer-pro.vercel.app",
         "canonical_health_url": "https://markdown-previewer-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.101865Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.389970Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://markdown-previewer-pro.vercel.app",
+        "effective_health_url": "https://markdown-previewer-pro.vercel.app"
       },
       {
         "name": "HTTP Load Tester Pro",
@@ -1711,7 +1819,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "CarbonLite",
@@ -1738,12 +1848,14 @@
         "category": "Utilities",
         "n": "CarbonLite",
         "s": "carbonlite",
-        "last_health_check": "2026-04-22T17:49:46.165596Z",
-        "health_checked_at": "2026-04-22T17:49:46.165596Z",
+        "last_health_check": "2026-04-22T21:07:33.420709Z",
+        "health_checked_at": "2026-04-22T21:07:33.420709Z",
         "canonical_health_url": "https://carbonlite.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.165596Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.420709Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://carbonlite.vercel.app",
+        "effective_health_url": "https://carbonlite.vercel.app"
       },
       {
         "name": "Code Minifier Pro",
@@ -1769,12 +1881,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Code Minifier Pro",
         "s": "code-minifier-pro",
-        "last_health_check": "2026-04-22T17:49:46.196221Z",
-        "health_checked_at": "2026-04-22T17:49:46.196221Z",
+        "last_health_check": "2026-04-22T21:07:33.475308Z",
+        "health_checked_at": "2026-04-22T21:07:33.475308Z",
         "canonical_health_url": "https://code-minifier-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.196221Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.475308Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://code-minifier-pro.vercel.app",
+        "effective_health_url": "https://code-minifier-pro.vercel.app"
       },
       {
         "name": "Cron Master",
@@ -1804,7 +1918,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Image Compressor Pro",
@@ -1827,16 +1943,18 @@
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/img-compressor-pro-001",
         "deployment_url": null,
         "last_health_url": "https://image-compressor-pro.vercel.app",
-        "last_health_check": "2026-04-22T17:49:46.283178Z",
-        "health_checked_at": "2026-04-22T17:49:46.283178Z",
+        "last_health_check": "2026-04-22T21:07:33.487360Z",
+        "health_checked_at": "2026-04-22T21:07:33.487360Z",
         "n": "Image Compressor Pro",
         "s": "image-compressor-pro",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://image-compressor-pro.vercel.app",
         "canonical_health_url": "https://image-compressor-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.283178Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.487360Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://image-compressor-pro.vercel.app",
+        "effective_health_url": "https://image-compressor-pro.vercel.app"
       },
       {
         "name": "TOML Converter Pro",
@@ -1863,12 +1981,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "TOML Converter Pro",
         "s": "toml-converter-pro",
-        "last_health_check": "2026-04-22T17:49:46.300380Z",
-        "health_checked_at": "2026-04-22T17:49:46.300380Z",
+        "last_health_check": "2026-04-22T21:07:33.494597Z",
+        "health_checked_at": "2026-04-22T21:07:33.494597Z",
         "canonical_health_url": "https://toml-converter-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.300380Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.494597Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://toml-converter-pro.vercel.app",
+        "effective_health_url": "https://toml-converter-pro.vercel.app"
       },
       {
         "name": "HTML to JSX",
@@ -1895,12 +2015,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTML to JSX",
         "s": "html2jsx",
-        "last_health_check": "2026-04-22T17:49:46.302674Z",
-        "health_checked_at": "2026-04-22T17:49:46.302674Z",
+        "last_health_check": "2026-04-22T21:07:33.534752Z",
+        "health_checked_at": "2026-04-22T21:07:33.534752Z",
         "canonical_health_url": "https://html2jsx.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.302674Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.534752Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html2jsx.vercel.app",
+        "effective_health_url": "https://html2jsx.vercel.app"
       },
       {
         "name": "CSV to JSON Pro",
@@ -1928,45 +2050,49 @@
         "payment_provider": "lemonsqueezy",
         "n": "CSV to JSON Pro",
         "s": "csv-to-json-pro",
-        "last_health_check": "2026-04-22T17:49:46.333614Z",
-        "health_checked_at": "2026-04-22T17:49:46.333614Z",
+        "last_health_check": "2026-04-22T21:07:33.587260Z",
+        "health_checked_at": "2026-04-22T21:07:33.587260Z",
         "canonical_health_url": "https://csv-to-json-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.333614Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.587260Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://csv-to-json-pro.vercel.app",
+        "effective_health_url": "https://csv-to-json-pro.vercel.app"
       },
       {
         "name": "Webhook Tester",
         "slug": "webhook-tester",
         "status": "live",
-        "vercel_url": "https://webhook-tester.vercel.app",
+        "vercel_url": "https://webhook-tester-beryl.vercel.app",
         "github_url": "https://github.com/universe7creator/webhook-tester",
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74",
         "price": "14",
         "created_cycle": 421,
-        "health_status": "not_found",
-        "last_health_code": 404,
+        "health_status": "alternate_healthy",
+        "last_health_code": 200,
         "og_optimized": true,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:17:22.304691Z",
         "checkout_status": "active",
         "st": "live",
-        "v": "https://webhook-tester.vercel.app",
-        "deployment_url": "https://webhook-tester.vercel.app",
+        "v": "https://webhook-tester-beryl.vercel.app",
+        "deployment_url": "https://webhook-tester-beryl.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74",
-        "last_health_url": "https://webhook-tester.vercel.app",
+        "last_health_url": "https://webhook-tester-beryl.vercel.app",
         "ideal_vercel_url": "https://webhook-tester.vercel.app",
         "note": "Canonical URL drift - working on alternate URL",
         "payment_provider": "lemonsqueezy",
         "n": "Webhook Tester",
         "s": "webhook-tester",
-        "last_health_check": "2026-04-22T17:49:46.372087Z",
-        "health_checked_at": "2026-04-22T17:49:46.372087Z",
+        "last_health_check": "2026-04-22T21:07:33.588111Z",
+        "health_checked_at": "2026-04-22T21:07:33.588111Z",
         "canonical_health_url": "https://webhook-tester.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.372087Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.588111Z",
         "canonical_health_code": 404,
         "canonical_health_status": "not_found",
-        "canonical_url": "https://webhook-tester.vercel.app"
+        "canonical_url": "https://webhook-tester.vercel.app",
+        "health_probe_url": "https://webhook-tester-beryl.vercel.app",
+        "effective_health_url": "https://webhook-tester-beryl.vercel.app"
       },
       {
         "name": "YAML Converter Pro",
@@ -1993,12 +2119,14 @@
         "category": "developer-tools",
         "n": "YAML Converter Pro",
         "s": "yaml-converter-pro",
-        "last_health_check": "2026-04-22T17:49:46.413699Z",
-        "health_checked_at": "2026-04-22T17:49:46.413699Z",
+        "last_health_check": "2026-04-22T21:07:33.615328Z",
+        "health_checked_at": "2026-04-22T21:07:33.615328Z",
         "canonical_health_url": "https://yaml-converter-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.413699Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.615328Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://yaml-converter-pro.vercel.app",
+        "effective_health_url": "https://yaml-converter-pro.vercel.app"
       },
       {
         "name": "Curl2Code",
@@ -2024,55 +2152,59 @@
         "payment_provider": "lemonsqueezy",
         "n": "Curl2Code",
         "s": "curl2code",
-        "last_health_check": "2026-04-22T17:49:46.519300Z",
-        "health_checked_at": "2026-04-22T17:49:46.519300Z",
+        "last_health_check": "2026-04-22T21:07:33.693240Z",
+        "health_checked_at": "2026-04-22T21:07:33.693240Z",
         "canonical_health_url": "https://curl2code.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.519300Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.693240Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://curl2code.vercel.app",
+        "effective_health_url": "https://curl2code.vercel.app"
       },
       {
         "name": "Email Validator Pro",
         "slug": "email-validator-pro",
         "status": "live",
-        "vercel_url": "https://email-validator-pro.vercel.app",
+        "vercel_url": "https://email-validator-pro-smoky.vercel.app",
         "github_url": "https://github.com/universe7creator/email-validator-pro",
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/email-validator-pro-001",
         "price": "9",
         "created_cycle": null,
-        "health_status": "not_found",
+        "health_status": "alternate_healthy",
         "note": "Vercel Protection aktif - auth gerekli",
         "deployed_cycle": 990,
         "checkout_status": "pending_setup",
-        "last_health_code": 404,
+        "last_health_code": 200,
         "og_optimized": true,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T17:05:00Z",
         "schema_optimized": true,
         "notes": "Deploy OK but 404 error - needs investigation",
         "updated": "2026-04-21T17:10:00Z",
-        "last_health_check": "2026-04-22T17:49:46.521813Z",
+        "last_health_check": "2026-04-22T21:07:33.707393Z",
         "st": "live",
-        "v": "https://email-validator-pro.vercel.app",
+        "v": "https://email-validator-pro-smoky.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/email-validator-pro-001",
         "deploy_pending": true,
         "building_complete": true,
-        "deployment_url": null,
-        "last_health_url": "https://email-validator-pro.vercel.app",
-        "health_checked_at": "2026-04-22T17:49:46.521813Z",
+        "deployment_url": "https://email-validator-pro-smoky.vercel.app",
+        "last_health_url": "https://email-validator-pro-smoky.vercel.app",
+        "health_checked_at": "2026-04-22T21:07:33.707393Z",
         "n": "Email Validator Pro",
         "s": "email-validator-pro",
         "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://email-validator-pro.vercel.app",
         "canonical_health_url": "https://email-validator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.521813Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.707393Z",
         "canonical_health_code": 404,
-        "canonical_health_status": "not_found"
+        "canonical_health_status": "not_found",
+        "health_probe_url": "https://email-validator-pro-smoky.vercel.app",
+        "effective_health_url": "https://email-validator-pro-smoky.vercel.app"
       },
       {
         "name": "MCP Server Validator",
         "slug": "mcp-validator",
-        "status": "ready_to_deploy",
+        "status": "building",
         "vercel_url": null,
         "github_url": "https://github.com/universe7creator/mcp-validator",
         "checkout_url": null,
@@ -2087,7 +2219,7 @@
         "og_optimized": true,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T11:35:34.319928Z",
-        "st": "ready_to_deploy",
+        "st": "building",
         "v": null,
         "c": null,
         "deployment_url": null,
@@ -2099,7 +2231,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "TOML Parser Pro",
@@ -2130,7 +2264,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "TechStack Analyzer",
@@ -2157,12 +2293,14 @@
         "category": "Developer Tools",
         "n": "TechStack Analyzer",
         "s": "techstack",
-        "last_health_check": "2026-04-22T17:49:46.542722Z",
-        "health_checked_at": "2026-04-22T17:49:46.542722Z",
+        "last_health_check": "2026-04-22T21:07:33.732102Z",
+        "health_checked_at": "2026-04-22T21:07:33.732102Z",
         "canonical_health_url": "https://techstack.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.542722Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.732102Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://techstack.vercel.app",
+        "effective_health_url": "https://techstack.vercel.app"
       },
       {
         "name": "HTML2Markdown Pro",
@@ -2193,7 +2331,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Color Contrast Pro",
@@ -2227,7 +2367,9 @@
         "canonical_health_code": null,
         "canonical_health_url": null,
         "canonical_health_checked_at": null,
-        "deploy_pending": false
+        "deploy_pending": false,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Markdown to PDF",
@@ -2257,7 +2399,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "JWT Generator Pro",
@@ -2283,12 +2427,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "JWT Generator Pro",
         "s": "jwt-generator-pro",
-        "last_health_check": "2026-04-22T17:49:46.593874Z",
-        "health_checked_at": "2026-04-22T17:49:46.593874Z",
+        "last_health_check": "2026-04-22T21:07:33.795143Z",
+        "health_checked_at": "2026-04-22T21:07:33.795143Z",
         "canonical_health_url": "https://jwt-generator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.593874Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.795143Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://jwt-generator-pro.vercel.app",
+        "effective_health_url": "https://jwt-generator-pro.vercel.app"
       },
       {
         "name": "HTTP API Client",
@@ -2314,12 +2460,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTTP API Client",
         "s": "http-api-client",
-        "last_health_check": "2026-04-22T17:49:46.647892Z",
-        "health_checked_at": "2026-04-22T17:49:46.647892Z",
+        "last_health_check": "2026-04-22T21:07:33.811605Z",
+        "health_checked_at": "2026-04-22T21:07:33.811605Z",
         "canonical_health_url": "https://http-api-client.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.647892Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.811605Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://http-api-client.vercel.app",
+        "effective_health_url": "https://http-api-client.vercel.app"
       },
       {
         "name": "HMAC Generator Pro",
@@ -2345,12 +2493,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HMAC Generator Pro",
         "s": "hmac-generator-pro",
-        "last_health_check": "2026-04-22T17:49:46.666013Z",
-        "health_checked_at": "2026-04-22T17:49:46.666013Z",
+        "last_health_check": "2026-04-22T21:07:33.872392Z",
+        "health_checked_at": "2026-04-22T21:07:33.872392Z",
         "canonical_health_url": "https://hmac-generator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.666013Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.872392Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://hmac-generator-pro.vercel.app",
+        "effective_health_url": "https://hmac-generator-pro.vercel.app"
       },
       {
         "name": "URL Builder Pro",
@@ -2377,12 +2527,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "URL Builder Pro",
         "s": "url-builder-pro",
-        "last_health_check": "2026-04-22T17:49:46.676954Z",
-        "health_checked_at": "2026-04-22T17:49:46.676954Z",
+        "last_health_check": "2026-04-22T21:07:33.949215Z",
+        "health_checked_at": "2026-04-22T21:07:33.949215Z",
         "canonical_health_url": "https://url-builder-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.676954Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.949215Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://url-builder-pro.vercel.app",
+        "effective_health_url": "https://url-builder-pro.vercel.app"
       },
       {
         "name": "Markdown Table Generator",
@@ -2411,45 +2563,49 @@
         "payment_provider": "lemonsqueezy",
         "n": "Markdown Table Generator",
         "s": "markdown-table-generator",
-        "last_health_check": "2026-04-22T17:49:46.747887Z",
-        "health_checked_at": "2026-04-22T17:49:46.747887Z",
+        "last_health_check": "2026-04-22T21:07:33.962556Z",
+        "health_checked_at": "2026-04-22T21:07:33.962556Z",
         "canonical_health_url": "https://markdown-table-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.747887Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:33.962556Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://markdown-table-generator.vercel.app",
+        "effective_health_url": "https://markdown-table-generator.vercel.app"
       },
       {
         "name": "Terminal Theme Studio",
         "slug": "terminal-theme-studio",
-        "status": "live",
-        "vercel_url": "https://terminal-theme-studio.vercel.app",
+        "status": "building",
+        "vercel_url": null,
         "github_url": "https://github.com/universe7creator/terminal-theme-studio",
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/terminal-theme-pro-001",
         "price": "9",
         "created_cycle": null,
-        "health_status": "healthy",
+        "health_status": null,
         "note": "Alias fixed",
         "deployed_cycle": 990,
         "ideal_vercel_url": "https://terminal-theme-studio.vercel.app",
         "checkout_status": "pending_setup",
-        "last_health_code": 200,
+        "last_health_code": null,
         "og_optimized": true,
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T11:35:34.319945Z",
-        "st": "live",
-        "v": "https://terminal-theme-studio.vercel.app",
+        "st": "building",
+        "v": null,
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/terminal-theme-pro-001",
         "deployment_url": null,
-        "last_health_url": "https://terminal-theme-studio.vercel.app",
-        "last_health_check": "2026-04-22T17:49:46.763233Z",
-        "health_checked_at": "2026-04-22T17:49:46.763233Z",
+        "last_health_url": null,
+        "last_health_check": null,
+        "health_checked_at": null,
         "n": "Terminal Theme Studio",
         "s": "terminal-theme-studio",
-        "payment_provider": "lemonsqueezy",
-        "canonical_health_url": "https://terminal-theme-studio.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.763233Z",
-        "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_url": null,
+        "canonical_health_checked_at": null,
+        "canonical_health_code": null,
+        "canonical_health_status": null,
+        "health_probe_url": null,
+        "effective_health_url": null,
+        "payment_provider": "lemonsqueezy"
       },
       {
         "name": "QR Forge",
@@ -2475,12 +2631,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "QR Forge",
         "s": "qr-forge",
-        "last_health_check": "2026-04-22T17:49:46.773678Z",
-        "health_checked_at": "2026-04-22T17:49:46.773678Z",
+        "last_health_check": "2026-04-22T21:07:34.032554Z",
+        "health_checked_at": "2026-04-22T21:07:34.032554Z",
         "canonical_health_url": "https://qr-forge.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.773678Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.032554Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://qr-forge.vercel.app",
+        "effective_health_url": "https://qr-forge.vercel.app"
       },
       {
         "name": "DiffForge",
@@ -2508,12 +2666,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "DiffForge",
         "s": "diffforge",
-        "last_health_check": "2026-04-22T17:49:46.876936Z",
-        "health_checked_at": "2026-04-22T17:49:46.876936Z",
+        "last_health_check": "2026-04-22T21:07:34.041147Z",
+        "health_checked_at": "2026-04-22T21:07:34.041147Z",
         "canonical_health_url": "https://diffforge.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.876936Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.041147Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://diffforge.vercel.app",
+        "effective_health_url": "https://diffforge.vercel.app"
       },
       {
         "name": "AI Cost Dashboard",
@@ -2541,12 +2701,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "AI Cost Dashboard",
         "s": "ai-cost-dashboard",
-        "last_health_check": "2026-04-22T17:49:46.886961Z",
-        "health_checked_at": "2026-04-22T17:49:46.886961Z",
+        "last_health_check": "2026-04-22T21:07:34.086134Z",
+        "health_checked_at": "2026-04-22T21:07:34.086134Z",
         "canonical_health_url": "https://ai-cost-dashboard.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.886961Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.086134Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://ai-cost-dashboard.vercel.app",
+        "effective_health_url": "https://ai-cost-dashboard.vercel.app"
       },
       {
         "name": "IP Network Tools",
@@ -2573,12 +2735,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "IP Network Tools",
         "s": "ip-network-tools",
-        "last_health_check": "2026-04-22T17:49:46.902441Z",
-        "health_checked_at": "2026-04-22T17:49:46.902441Z",
+        "last_health_check": "2026-04-22T21:07:34.132433Z",
+        "health_checked_at": "2026-04-22T21:07:34.132433Z",
         "canonical_health_url": "https://ip-network-tools.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.902441Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.132433Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://ip-network-tools.vercel.app",
+        "effective_health_url": "https://ip-network-tools.vercel.app"
       },
       {
         "name": "Chart Studio",
@@ -2606,12 +2770,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Chart Studio",
         "s": "chart-studio",
-        "last_health_check": "2026-04-22T17:49:46.918890Z",
-        "health_checked_at": "2026-04-22T17:49:46.918890Z",
+        "last_health_check": "2026-04-22T21:07:34.164901Z",
+        "health_checked_at": "2026-04-22T21:07:34.164901Z",
         "canonical_health_url": "https://chart-studio.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.918890Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.164901Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://chart-studio.vercel.app",
+        "effective_health_url": "https://chart-studio.vercel.app"
       },
       {
         "name": "DiffMaster Pro",
@@ -2637,15 +2803,17 @@
         "health_status": "unauthorized",
         "last_health_code": 401,
         "last_health_url": "https://diffmaster.vercel.app",
-        "last_health_check": "2026-04-22T17:49:46.965696Z",
+        "last_health_check": "2026-04-22T21:07:34.182744Z",
         "payment_provider": "lemonsqueezy",
         "n": "DiffMaster Pro",
         "s": "diffmaster",
-        "health_checked_at": "2026-04-22T17:49:46.965696Z",
+        "health_checked_at": "2026-04-22T21:07:34.182744Z",
         "canonical_health_url": "https://diffmaster.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:46.965696Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.182744Z",
         "canonical_health_code": 401,
-        "canonical_health_status": "unauthorized"
+        "canonical_health_status": "unauthorized",
+        "health_probe_url": "https://diffmaster.vercel.app",
+        "effective_health_url": "https://diffmaster.vercel.app"
       },
       {
         "name": "Favicon Generator Pro",
@@ -2676,7 +2844,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Markdown to HTML Pro",
@@ -2703,12 +2873,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Markdown to HTML Pro",
         "s": "markdown-to-html-pro",
-        "last_health_check": "2026-04-22T17:49:47.025408Z",
-        "health_checked_at": "2026-04-22T17:49:47.025408Z",
+        "last_health_check": "2026-04-22T21:07:34.195344Z",
+        "health_checked_at": "2026-04-22T21:07:34.195344Z",
         "canonical_health_url": "https://markdown-to-html-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.025408Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.195344Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://markdown-to-html-pro.vercel.app",
+        "effective_health_url": "https://markdown-to-html-pro.vercel.app"
       },
       {
         "name": "XML Formatter Pro",
@@ -2736,12 +2908,14 @@
         "category": "developer_tools",
         "n": "XML Formatter Pro",
         "s": "xml-formatter-pro",
-        "last_health_check": "2026-04-22T17:49:47.101767Z",
-        "health_checked_at": "2026-04-22T17:49:47.101767Z",
+        "last_health_check": "2026-04-22T21:07:34.259206Z",
+        "health_checked_at": "2026-04-22T21:07:34.259206Z",
         "canonical_health_url": "https://xml-formatter-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.101767Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.259206Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://xml-formatter-pro.vercel.app",
+        "effective_health_url": "https://xml-formatter-pro.vercel.app"
       },
       {
         "name": "API Compare",
@@ -2768,12 +2942,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "API Compare",
         "s": "api-compare",
-        "last_health_check": "2026-04-22T17:49:47.119469Z",
-        "health_checked_at": "2026-04-22T17:49:47.119469Z",
+        "last_health_check": "2026-04-22T21:07:34.272618Z",
+        "health_checked_at": "2026-04-22T21:07:34.272618Z",
         "canonical_health_url": "https://api-compare.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.119469Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.272618Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://api-compare.vercel.app",
+        "effective_health_url": "https://api-compare.vercel.app"
       },
       {
         "name": "HTML Entity Encoder/Decoder Pro",
@@ -2791,8 +2967,8 @@
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T10:17:22.304744Z",
         "updated": "2026-04-21T17:10:00Z",
-        "last_health_check": "2026-04-22T17:49:47.123260Z",
-        "health_checked_at": "2026-04-22T17:49:47.123260Z",
+        "last_health_check": "2026-04-22T21:07:34.288112Z",
+        "health_checked_at": "2026-04-22T21:07:34.288112Z",
         "note": "Canonical URL drift - working on alternate URL",
         "st": "live",
         "v": "https://html-entity-encoder.vercel.app",
@@ -2804,9 +2980,11 @@
         "n": "HTML Entity Encoder/Decoder Pro",
         "s": "html-entity-encoder",
         "canonical_health_url": "https://html-entity-encoder.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.123260Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.288112Z",
         "canonical_health_code": 402,
-        "canonical_health_status": "deployment_disabled"
+        "canonical_health_status": "deployment_disabled",
+        "health_probe_url": "https://html-entity-encoder.vercel.app",
+        "effective_health_url": "https://html-entity-encoder.vercel.app"
       },
       {
         "name": "OpenAPI Validator",
@@ -2833,12 +3011,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "OpenAPI Validator",
         "s": "openapi-validator",
-        "last_health_check": "2026-04-22T17:49:47.134899Z",
-        "health_checked_at": "2026-04-22T17:49:47.134899Z",
+        "last_health_check": "2026-04-22T21:07:34.315756Z",
+        "health_checked_at": "2026-04-22T21:07:34.315756Z",
         "canonical_health_url": "https://openapi-validator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.134899Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.315756Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://openapi-validator.vercel.app",
+        "effective_health_url": "https://openapi-validator.vercel.app"
       },
       {
         "name": "CodeSnap",
@@ -2866,12 +3046,14 @@
         "category": "Developer Tools",
         "n": "CodeSnap",
         "s": "codesnap",
-        "last_health_check": "2026-04-22T17:49:47.233029Z",
-        "health_checked_at": "2026-04-22T17:49:47.233029Z",
+        "last_health_check": "2026-04-22T21:07:34.366137Z",
+        "health_checked_at": "2026-04-22T21:07:34.366137Z",
         "canonical_health_url": "https://codesnap.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.233029Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.366137Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://codesnap.vercel.app",
+        "effective_health_url": "https://codesnap.vercel.app"
       },
       {
         "name": "Cron Express",
@@ -2903,7 +3085,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Regex Tester Pro",
@@ -2930,12 +3114,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Regex Tester Pro",
         "s": "regex-tester-pro",
-        "last_health_check": "2026-04-22T17:49:47.318150Z",
-        "health_checked_at": "2026-04-22T17:49:47.318150Z",
+        "last_health_check": "2026-04-22T21:07:34.391553Z",
+        "health_checked_at": "2026-04-22T21:07:34.391553Z",
         "canonical_health_url": "https://regex-tester-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.318150Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.391553Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://regex-tester-pro.vercel.app",
+        "effective_health_url": "https://regex-tester-pro.vercel.app"
       },
       {
         "name": "CronMaster",
@@ -2961,12 +3147,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "CronMaster",
         "s": "cronmaster",
-        "last_health_check": "2026-04-22T17:49:47.340520Z",
-        "health_checked_at": "2026-04-22T17:49:47.340520Z",
+        "last_health_check": "2026-04-22T21:07:34.429610Z",
+        "health_checked_at": "2026-04-22T21:07:34.429610Z",
         "canonical_health_url": "https://cronmaster.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.340520Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.429610Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://cronmaster.vercel.app",
+        "effective_health_url": "https://cronmaster.vercel.app"
       },
       {
         "name": "GraphQL Query Builder",
@@ -2993,12 +3181,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "GraphQL Query Builder",
         "s": "graphql-query-builder",
-        "last_health_check": "2026-04-22T17:49:47.348749Z",
-        "health_checked_at": "2026-04-22T17:49:47.348749Z",
+        "last_health_check": "2026-04-22T21:07:34.484188Z",
+        "health_checked_at": "2026-04-22T21:07:34.484188Z",
         "canonical_health_url": "https://graphql-query-builder.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.348749Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.484188Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://graphql-query-builder.vercel.app",
+        "effective_health_url": "https://graphql-query-builder.vercel.app"
       },
       {
         "name": "SecretGuard",
@@ -3026,12 +3216,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "SecretGuard",
         "s": "secretguard",
-        "last_health_check": "2026-04-22T17:49:47.372000Z",
-        "health_checked_at": "2026-04-22T17:49:47.372000Z",
+        "last_health_check": "2026-04-22T21:07:34.485118Z",
+        "health_checked_at": "2026-04-22T21:07:34.485118Z",
         "canonical_health_url": "https://secretguard.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.372000Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.485118Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://secretguard.vercel.app",
+        "effective_health_url": "https://secretguard.vercel.app"
       },
       {
         "name": "GeoIP Lite",
@@ -3058,12 +3250,14 @@
         "category": "API Services",
         "n": "GeoIP Lite",
         "s": "geoip-lite",
-        "last_health_check": "2026-04-22T17:49:47.398510Z",
-        "health_checked_at": "2026-04-22T17:49:47.398510Z",
+        "last_health_check": "2026-04-22T21:07:34.498198Z",
+        "health_checked_at": "2026-04-22T21:07:34.498198Z",
         "canonical_health_url": "https://geoip-lite.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.398510Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.498198Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://geoip-lite.vercel.app",
+        "effective_health_url": "https://geoip-lite.vercel.app"
       },
       {
         "name": "JSONPath Tester",
@@ -3090,12 +3284,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "JSONPath Tester",
         "s": "jsonpath-tester",
-        "last_health_check": "2026-04-22T17:49:47.419626Z",
-        "health_checked_at": "2026-04-22T17:49:47.419626Z",
+        "last_health_check": "2026-04-22T21:07:34.517731Z",
+        "health_checked_at": "2026-04-22T21:07:34.517731Z",
         "canonical_health_url": "https://jsonpath-tester.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.419626Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.517731Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://jsonpath-tester.vercel.app",
+        "effective_health_url": "https://jsonpath-tester.vercel.app"
       },
       {
         "name": "Text Case Converter Pro",
@@ -3122,12 +3318,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Text Case Converter Pro",
         "s": "text-case-converter",
-        "last_health_check": "2026-04-22T17:49:47.444793Z",
-        "health_checked_at": "2026-04-22T17:49:47.444793Z",
+        "last_health_check": "2026-04-22T21:07:34.540424Z",
+        "health_checked_at": "2026-04-22T21:07:34.540424Z",
         "canonical_health_url": "https://text-case-converter.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.444793Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.540424Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://text-case-converter.vercel.app",
+        "effective_health_url": "https://text-case-converter.vercel.app"
       },
       {
         "name": "Lorem Ipsum Generator Pro",
@@ -3154,12 +3352,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Lorem Ipsum Generator Pro",
         "s": "lorem-ipsum-generator",
-        "last_health_check": "2026-04-22T17:49:47.485883Z",
-        "health_checked_at": "2026-04-22T17:49:47.485883Z",
+        "last_health_check": "2026-04-22T21:07:34.589708Z",
+        "health_checked_at": "2026-04-22T21:07:34.589708Z",
         "canonical_health_url": "https://lorem-ipsum-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.485883Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.589708Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://lorem-ipsum-generator.vercel.app",
+        "effective_health_url": "https://lorem-ipsum-generator.vercel.app"
       },
       {
         "name": "Email Signature Pro",
@@ -3178,7 +3378,7 @@
         "seo_optimized": true,
         "seo_optimized_at": "2026-04-21T15:30:00Z",
         "schema_optimized": true,
-        "last_health_check": "2026-04-22T17:49:47.536413Z",
+        "last_health_check": "2026-04-22T21:07:34.606888Z",
         "st": "live",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0e625a81-50e9-44f2-860e-4aaa6f804f03",
         "last_health_url": "https://email-signature-pro.vercel.app",
@@ -3187,11 +3387,13 @@
         "payment_provider": "lemonsqueezy",
         "n": "Email Signature Pro",
         "s": "email-signature-pro",
-        "health_checked_at": "2026-04-22T17:49:47.536413Z",
+        "health_checked_at": "2026-04-22T21:07:34.606888Z",
         "canonical_health_url": "https://email-signature-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.536413Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.606888Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://email-signature-pro.vercel.app",
+        "effective_health_url": "https://email-signature-pro.vercel.app"
       },
       {
         "name": "Password Generator Pro",
@@ -3218,17 +3420,19 @@
         "payment_provider": "lemonsqueezy",
         "n": "Password Generator Pro",
         "s": "password-generator-pro",
-        "last_health_check": "2026-04-22T17:49:47.567484Z",
-        "health_checked_at": "2026-04-22T17:49:47.567484Z",
+        "last_health_check": "2026-04-22T21:07:34.647477Z",
+        "health_checked_at": "2026-04-22T21:07:34.647477Z",
         "canonical_health_url": "https://password-generator-pro.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.567484Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.647477Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://password-generator-pro.vercel.app",
+        "effective_health_url": "https://password-generator-pro.vercel.app"
       },
       {
         "name": "Text Diff Pro",
         "slug": "text-diff-pro",
-        "status": "ready_to_deploy",
+        "status": "building",
         "vercel_url": null,
         "github_url": "https://github.com/universe7creator/text-diff-pro",
         "checkout_url": null,
@@ -3244,7 +3448,7 @@
         "seo_optimized_at": "2026-04-21T10:00:00Z",
         "deploy_pending": true,
         "og_optimized": true,
-        "st": "ready_to_deploy",
+        "st": "building",
         "v": null,
         "c": null,
         "deployment_url": null,
@@ -3256,7 +3460,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "CSS Shadow Studio",
@@ -3269,7 +3475,7 @@
         "created_cycle": 0,
         "deployed_cycle": 990,
         "health_status": "healthy",
-        "last_health_check": "2026-04-22T17:49:47.584546Z",
+        "last_health_check": "2026-04-22T21:07:34.699211Z",
         "last_health_code": 200,
         "checkout_status": "active",
         "note": "Alias fixed",
@@ -3285,11 +3491,13 @@
         "payment_provider": "lemonsqueezy",
         "n": "CSS Shadow Studio",
         "s": "css-shadow-studio",
-        "health_checked_at": "2026-04-22T17:49:47.584546Z",
+        "health_checked_at": "2026-04-22T21:07:34.699211Z",
         "canonical_health_url": "https://css-shadow-studio.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.584546Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.699211Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://css-shadow-studio.vercel.app",
+        "effective_health_url": "https://css-shadow-studio.vercel.app"
       },
       {
         "name": "Lorem Ipsum Pro",
@@ -3321,7 +3529,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Color Palette Extractor",
@@ -3352,7 +3562,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Git Command Builder",
@@ -3379,12 +3591,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Git Command Builder",
         "s": "git-command-builder",
-        "last_health_check": "2026-04-22T17:49:47.603572Z",
-        "health_checked_at": "2026-04-22T17:49:47.603572Z",
+        "last_health_check": "2026-04-22T21:07:34.714431Z",
+        "health_checked_at": "2026-04-22T21:07:34.714431Z",
         "canonical_health_url": "https://git-command-builder.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.603572Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.714431Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://git-command-builder.vercel.app",
+        "effective_health_url": "https://git-command-builder.vercel.app"
       },
       {
         "name": "Code Snippet Manager",
@@ -3414,12 +3628,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Code Snippet Manager",
         "s": "code-snippet-manager",
-        "last_health_check": "2026-04-22T17:49:47.630948Z",
-        "health_checked_at": "2026-04-22T17:49:47.630948Z",
+        "last_health_check": "2026-04-22T21:07:34.747724Z",
+        "health_checked_at": "2026-04-22T21:07:34.747724Z",
         "canonical_health_url": "https://code-snippet-manager.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.630948Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.747724Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://code-snippet-manager.vercel.app",
+        "effective_health_url": "https://code-snippet-manager.vercel.app"
       },
       {
         "name": "Email Signature Generator",
@@ -3449,12 +3665,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Email Signature Generator",
         "s": "email-signature",
-        "last_health_check": "2026-04-22T17:49:47.651002Z",
-        "health_checked_at": "2026-04-22T17:49:47.651002Z",
+        "last_health_check": "2026-04-22T21:07:34.823838Z",
+        "health_checked_at": "2026-04-22T21:07:34.823838Z",
         "canonical_health_url": "https://email-signature.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.651002Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.823838Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://email-signature.vercel.app",
+        "effective_health_url": "https://email-signature.vercel.app"
       },
       {
         "name": "HMAC Generator Pro",
@@ -3484,12 +3702,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HMAC Generator Pro",
         "s": "hmac-generator",
-        "last_health_check": "2026-04-22T17:49:47.662854Z",
-        "health_checked_at": "2026-04-22T17:49:47.662854Z",
+        "last_health_check": "2026-04-22T21:07:34.831195Z",
+        "health_checked_at": "2026-04-22T21:07:34.831195Z",
         "canonical_health_url": "https://hmac-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.662854Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.831195Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://hmac-generator.vercel.app",
+        "effective_health_url": "https://hmac-generator.vercel.app"
       },
       {
         "name": "HTML Entity Encoder/Decoder",
@@ -3518,12 +3738,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "HTML Entity Encoder/Decoder",
         "s": "html-entity",
-        "last_health_check": "2026-04-22T17:49:47.728324Z",
-        "health_checked_at": "2026-04-22T17:49:47.728324Z",
+        "last_health_check": "2026-04-22T21:07:34.871878Z",
+        "health_checked_at": "2026-04-22T21:07:34.871878Z",
         "canonical_health_url": "https://html-entity.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.728324Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.871878Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://html-entity.vercel.app",
+        "effective_health_url": "https://html-entity.vercel.app"
       },
       {
         "name": "Timestamp Converter Pro",
@@ -3547,7 +3769,7 @@
         "schema_optimized": true,
         "notes": "Deploy OK but 451 error - needs investigation",
         "updated": "2026-04-21T17:10:00Z",
-        "last_health_check": "2026-04-22T17:49:47.785716Z",
+        "last_health_check": "2026-04-22T21:07:34.908939Z",
         "st": "live",
         "v": "https://timestamp-converter.vercel.app",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9",
@@ -3557,12 +3779,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "Timestamp Converter Pro",
         "s": "timestamp-converter",
-        "health_checked_at": "2026-04-22T17:49:47.785716Z",
+        "health_checked_at": "2026-04-22T21:07:34.908939Z",
         "canonical_health_url": "https://timestamp-converter.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.785716Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.908939Z",
         "canonical_health_code": 451,
         "canonical_health_status": "error_451",
-        "canonical_url": "https://timestamp-converter.vercel.app"
+        "canonical_url": "https://timestamp-converter.vercel.app",
+        "health_probe_url": "https://timestamp-converter.vercel.app",
+        "effective_health_url": "https://timestamp-converter.vercel.app"
       },
       {
         "name": "SSL Cert Checker",
@@ -3586,12 +3810,14 @@
         "payment_provider": "lemonsqueezy",
         "n": "SSL Cert Checker",
         "s": "ssl-cert-checker",
-        "last_health_check": "2026-04-22T17:49:47.805039Z",
-        "health_checked_at": "2026-04-22T17:49:47.805039Z",
+        "last_health_check": "2026-04-22T21:07:34.955181Z",
+        "health_checked_at": "2026-04-22T21:07:34.955181Z",
         "canonical_health_url": "https://ssl-cert-checker.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.805039Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.955181Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://ssl-cert-checker.vercel.app",
+        "effective_health_url": "https://ssl-cert-checker.vercel.app"
       },
       {
         "name": "Security Headers Checker",
@@ -3618,7 +3844,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Subdomain Finder",
@@ -3645,7 +3873,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Htaccess Generator Pro",
@@ -3671,7 +3901,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Nginx Config Tester",
@@ -3697,7 +3929,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "SSL Cipher Analyzer",
@@ -3723,7 +3957,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Diff Checker Pro",
@@ -3748,7 +3984,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "YAML Validator Pro",
@@ -3773,7 +4011,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Case Converter Pro",
@@ -3798,7 +4038,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "n": "Htpasswd Generator Pro",
@@ -3822,7 +4064,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "n": "Docker Run Generator",
@@ -3846,7 +4090,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "n": "SQL to NoSQL Converter",
@@ -3868,21 +4114,23 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "n": "Chmod Calculator Pro",
         "s": "chmod-calculator",
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "checkout_url": null,
         "name": "Chmod Calculator Pro",
         "slug": "chmod-calculator",
         "deployment_url": null,
-        "price": "9",
+        "price": "19",
         "github_url": "https://github.com/universe7creator/chmod-calculator",
         "health_status": null,
         "last_health_code": null,
@@ -3892,41 +4140,46 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "category": "developer_tools",
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "n": "Binary Inspector Pro",
         "s": "binary-inspector",
-        "st": "live",
-        "v": "https://binary-inspector.vercel.app",
+        "st": "spec_ready",
+        "v": null,
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "status": "live",
-        "vercel_url": "https://binary-inspector.vercel.app",
+        "status": "spec_ready",
+        "vercel_url": null,
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "last_health_url": "https://binary-inspector.vercel.app",
-        "health_status": "healthy",
-        "last_health_code": 200,
+        "last_health_url": null,
+        "health_status": null,
+        "last_health_code": null,
         "ideal_vercel_url": "https://binary-inspector.vercel.app",
         "name": "Binary Inspector Pro",
         "slug": "binary-inspector",
         "deployment_url": null,
-        "payment_provider": "lemonsqueezy",
         "category": "developer_tools",
         "price": "19",
-        "last_health_check": "2026-04-22T17:49:47.815841Z",
-        "health_checked_at": "2026-04-22T17:49:47.815841Z",
-        "canonical_health_url": "https://binary-inspector.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.815841Z",
-        "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "last_health_check": null,
+        "health_checked_at": null,
+        "canonical_health_url": null,
+        "canonical_health_checked_at": null,
+        "canonical_health_code": null,
+        "canonical_health_status": null,
+        "health_probe_url": null,
+        "effective_health_url": null,
+        "payment_provider": "lemonsqueezy"
       },
       {
         "n": "SSL Config Generator",
         "s": "ssl-config-generator",
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "checkout_url": null,
         "name": "SSL Config Generator",
@@ -3943,18 +4196,20 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Browser Mock Studio",
         "slug": "browser-mock-studio",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "checkout_url": null,
         "created_at": "2026-04-21T20:39:38.509746Z",
         "health_status": null,
         "optimization_needed": [],
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
         "s": "browser-mock-studio",
@@ -3969,23 +4224,25 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Docker Compose Builder",
         "slug": "docker-compose-builder",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "checkout_url": null,
         "created_at": "2026-04-21T20:39:38.509818Z",
         "health_status": null,
         "optimization_needed": [],
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
         "updated_at": "2026-04-22T07:02:17.460200+00:00",
         "deployment_url": null,
-        "category": "devops-tools",
+        "category": "devops_tools",
         "price": "19",
         "last_health_code": null,
         "last_health_url": null,
@@ -3996,18 +4253,20 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "ENV File Manager",
         "slug": "env-file-manager",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "checkout_url": null,
         "created_at": "2026-04-21T20:39:38.509831Z",
         "health_status": null,
         "optimization_needed": [],
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
         "build_started": "2026-04-22T06:15:00Z",
@@ -4023,44 +4282,48 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "git-diff-visualizer",
         "name": "Git Diff Visualizer",
-        "status": "ready_for_payment",
+        "status": "spec_ready",
         "price": "19",
         "category": "developer_tools",
         "created_cycle": 1064,
-        "st": "ready_for_payment",
-        "vercel_url": "https://git-diff-visualizer.vercel.app",
-        "v": "https://git-diff-visualizer.vercel.app",
+        "st": "spec_ready",
+        "vercel_url": null,
+        "v": null,
         "deployment_url": null,
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/git-diff-viz-001",
         "github_url": "https://github.com/universe7creator/git-diff-visualizer",
         "n": "Git Diff Visualizer",
         "s": "git-diff-visualizer",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/git-diff-viz-001",
-        "payment_provider": "lemonsqueezy",
-        "last_health_url": "https://git-diff-visualizer.vercel.app",
+        "last_health_url": null,
         "ideal_vercel_url": "https://git-diff-visualizer.vercel.app",
-        "health_status": "healthy",
-        "last_health_code": 200,
-        "last_health_check": "2026-04-22T17:49:47.853790Z",
-        "health_checked_at": "2026-04-22T17:49:47.853790Z",
-        "canonical_health_url": "https://git-diff-visualizer.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.853790Z",
-        "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "health_status": null,
+        "last_health_code": null,
+        "last_health_check": null,
+        "health_checked_at": null,
+        "canonical_health_url": null,
+        "canonical_health_checked_at": null,
+        "canonical_health_code": null,
+        "canonical_health_status": null,
+        "health_probe_url": null,
+        "effective_health_url": null,
+        "payment_provider": "lemonsqueezy"
       },
       {
         "slug": "code-screenshot-beautifier",
         "name": "Code Screenshot Beautifier",
-        "status": "ready_to_deploy",
-        "price": "$19",
-        "category": "developer-tools",
+        "status": "spec_ready",
+        "price": "19",
+        "category": "design_tools",
         "created_cycle": 1064,
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "vercel_url": null,
         "v": null,
         "updated_at": "2026-04-22T07:03:10.940966+00:00",
@@ -4074,20 +4337,22 @@
         "n": "Code Screenshot Beautifier",
         "s": "code-screenshot-beautifier",
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/code-screenshot-beautifier",
-        "payment_provider": "lemonsqueezy",
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null,
+        "payment_provider": "lemonsqueezy"
       },
       {
         "slug": "json-schema-to-ts",
         "name": "JSON Schema to TypeScript",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "price": "19",
         "category": "developer_tools",
         "created_cycle": 1064,
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "vercel_url": null,
         "v": null,
         "deployment_url": null,
@@ -4104,23 +4369,25 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "MCP Inspector Pro",
         "slug": "mcp-inspector-pro",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "github_url": "https://github.com/universe7creator/mcp-inspector-pro",
         "checkout_url": null,
         "price": "19",
         "health_status": null,
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
         "last_updated": "2026-04-22T07:23:26.655151Z",
         "deployment_url": null,
-        "category": "developer-tools",
+        "category": "developer_tools",
         "last_health_code": null,
         "last_health_url": null,
         "last_health_check": null,
@@ -4130,18 +4397,20 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "API Security Scanner",
         "slug": "api-security-scanner",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "github_url": "https://github.com/universe7creator/api-security-scanner",
         "checkout_url": null,
         "price": "19",
         "health_status": null,
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
         "built_at": "2026-04-22T08:01:58.752099Z",
@@ -4156,18 +4425,20 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "Docker Command Builder",
         "slug": "docker-command-builder",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "vercel_url": null,
         "github_url": null,
         "checkout_url": null,
         "price": "19",
         "health_status": null,
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "v": null,
         "c": null,
         "s": "docker-command-builder",
@@ -4181,15 +4452,17 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "mcp-server-scaffolder",
         "name": "MCP Server Scaffolder",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "price": "19",
         "created_at": "2026-04-22T13:00:00Z",
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "vercel_url": null,
         "v": null,
         "deployment_url": null,
@@ -4208,7 +4481,9 @@
         "canonical_health_url": null,
         "canonical_health_checked_at": null,
         "github_url": "https://github.com/universe7creator/mcp-server-scaffolder",
-        "deployed_at": "2026-04-22T13:09:58.929639Z"
+        "deployed_at": "2026-04-22T13:09:58.929639Z",
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "browser-use-studio",
@@ -4233,7 +4508,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "agent-prompt-engineer",
@@ -4258,15 +4535,17 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "api-mock-server",
         "name": "API Mock Server",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "batch": 27,
         "added_at": "2026-04-21T22:22:41.412382+00:00Z",
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "vercel_url": null,
         "v": null,
         "deployment_url": null,
@@ -4284,15 +4563,17 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "jwt-debugger-pro",
         "name": "JWT Debugger Pro",
-        "status": "ready_to_deploy",
+        "status": "spec_ready",
         "batch": 27,
         "added_at": "2026-04-21T22:22:41.412429+00:00Z",
-        "st": "ready_to_deploy",
+        "st": "spec_ready",
         "vercel_url": null,
         "v": null,
         "deployment_url": null,
@@ -4312,7 +4593,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "CSS Gradient Studio",
@@ -4343,12 +4626,14 @@
         "ideal_vercel_url": "https://css-gradient-studio.vercel.app",
         "n": "CSS Gradient Studio",
         "s": "css-gradient-studio",
-        "last_health_check": "2026-04-22T17:49:47.864722Z",
-        "health_checked_at": "2026-04-22T17:49:47.864722Z",
+        "last_health_check": "2026-04-22T21:07:34.975987Z",
+        "health_checked_at": "2026-04-22T21:07:34.975987Z",
         "canonical_health_url": "https://css-gradient-studio.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.864722Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.975987Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://css-gradient-studio.vercel.app",
+        "effective_health_url": "https://css-gradient-studio.vercel.app"
       },
       {
         "name": "NanoID Generator Pro",
@@ -4377,12 +4662,14 @@
         "ideal_vercel_url": "https://nanoid-generator.vercel.app",
         "n": "NanoID Generator Pro",
         "s": "nanoid-generator",
-        "last_health_check": "2026-04-22T17:49:47.891565Z",
-        "health_checked_at": "2026-04-22T17:49:47.891565Z",
+        "last_health_check": "2026-04-22T21:07:34.993859Z",
+        "health_checked_at": "2026-04-22T21:07:34.993859Z",
         "canonical_health_url": "https://nanoid-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:47.891565Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.993859Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://nanoid-generator.vercel.app",
+        "effective_health_url": "https://nanoid-generator.vercel.app"
       },
       {
         "name": "JSON Diff Pro",
@@ -4408,7 +4695,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "name": "YAML to JSON Converter",
@@ -4439,40 +4728,44 @@
         "ideal_vercel_url": "https://yaml-json-converter.vercel.app",
         "n": "YAML to JSON Converter",
         "s": "yaml-json-converter",
-        "last_health_check": "2026-04-22T17:49:48.002470Z",
-        "health_checked_at": "2026-04-22T17:49:48.002470Z",
+        "last_health_check": "2026-04-22T21:07:34.994640Z",
+        "health_checked_at": "2026-04-22T21:07:34.994640Z",
         "canonical_health_url": "https://yaml-json-converter.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:48.002470Z",
+        "canonical_health_checked_at": "2026-04-22T21:07:34.994640Z",
         "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_status": "healthy",
+        "health_probe_url": "https://yaml-json-converter.vercel.app",
+        "effective_health_url": "https://yaml-json-converter.vercel.app"
       },
       {
         "name": "API Mock Generator",
         "slug": "api-mock-generator",
-        "status": "live",
+        "status": "ready_to_deploy",
         "category": "developer_tools",
         "price": 19,
         "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "vercel_url": "https://api-mock-generator.vercel.app",
-        "health_status": "healthy",
-        "last_health_code": 200,
+        "vercel_url": null,
+        "health_status": null,
+        "last_health_code": null,
         "created_at": "2026-04-22",
         "updated_at": "2026-04-22",
         "deployment_url": null,
-        "last_health_url": "https://api-mock-generator.vercel.app",
-        "last_health_check": "2026-04-22T17:49:48.017898Z",
-        "health_checked_at": "2026-04-22T17:49:48.017898Z",
+        "last_health_url": null,
+        "last_health_check": null,
+        "health_checked_at": null,
         "n": "API Mock Generator",
         "s": "api-mock-generator",
-        "st": "live",
-        "v": "https://api-mock-generator.vercel.app",
+        "st": "ready_to_deploy",
+        "v": null,
         "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b",
-        "payment_provider": "lemonsqueezy",
         "ideal_vercel_url": "https://api-mock-generator.vercel.app",
-        "canonical_health_url": "https://api-mock-generator.vercel.app",
-        "canonical_health_checked_at": "2026-04-22T17:49:48.017898Z",
-        "canonical_health_code": 200,
-        "canonical_health_status": "healthy"
+        "canonical_health_url": null,
+        "canonical_health_checked_at": null,
+        "canonical_health_code": null,
+        "canonical_health_status": null,
+        "health_probe_url": null,
+        "effective_health_url": null,
+        "payment_provider": "lemonsqueezy"
       }
     ],
     "active_count": 152,
@@ -4530,7 +4823,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "graphql-schema-validator",
@@ -4555,7 +4850,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "code-complexity-analyzer",
@@ -4580,7 +4877,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "csv-to-sql-pro",
@@ -4607,7 +4906,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "json-to-csv-pro",
@@ -4634,7 +4935,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "url-parser-pro",
@@ -4661,7 +4964,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "base64-encoder-pro",
@@ -4686,7 +4991,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "jwt-decoder-pro",
@@ -4711,7 +5018,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       },
       {
         "slug": "regex-visualizer-pro",
@@ -4736,7 +5045,9 @@
         "canonical_health_status": null,
         "canonical_health_code": null,
         "canonical_health_url": null,
-        "canonical_health_checked_at": null
+        "canonical_health_checked_at": null,
+        "health_probe_url": null,
+        "effective_health_url": null
       }
     ]
   },
@@ -4784,13 +5095,13 @@
     "specs/ascii-art-generator.md",
     "specs/flowchart-generator.md"
   ],
-  "spec_ready_count": 11,
+  "spec_ready_count": 26,
   "checkout_gap_count": 0,
   "last_deploy_time": 1776826287,
   "pending_health_count": 0,
   "building": null,
-  "deploy_readiness_count": 5,
+  "deploy_readiness_count": 20,
   "deploy_readiness_manifest_gap_count": 3,
-  "deploy_readiness_url_gap_count": 5,
-  "deploy_readiness_state_gap_count": 5
+  "deploy_readiness_url_gap_count": 20,
+  "deploy_readiness_state_gap_count": 20
 }

@@ -354,7 +354,27 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["health_probe_url"], "https://redirect-tool-rose.vercel.app")
         self.assertEqual(health_check_url(merged), "https://redirect-tool.vercel.app")
 
-    def test_healthy_live_records_without_canonical_health_code_get_promoted_to_canonical(self) -> None:
+    def test_healthy_canonical_records_without_canonical_health_code_get_promoted_to_canonical(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "drift-tool",
+                "status": "live",
+                "vercel_url": "https://drift-tool.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://drift-tool.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://drift-tool.vercel.app")
+        self.assertEqual(merged["v"], "https://drift-tool.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://drift-tool.vercel.app")
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(health_check_url(merged), "https://drift-tool.vercel.app")
+
+    def test_healthy_preview_alias_without_canonical_probe_stays_alternate_healthy(self) -> None:
         merged = merge_product_record(
             {
                 "slug": "drift-tool",
@@ -367,11 +387,12 @@ class ProductStateSyncTests(unittest.TestCase):
             None,
         )
 
-        self.assertEqual(merged["vercel_url"], "https://drift-tool.vercel.app")
-        self.assertEqual(merged["v"], "https://drift-tool.vercel.app")
-        self.assertEqual(merged["last_health_url"], "https://drift-tool.vercel.app")
-        self.assertEqual(merged["canonical_health_code"], 200)
-        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://drift-tool-rose.vercel.app")
+        self.assertEqual(merged["v"], "https://drift-tool-rose.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://drift-tool-rose.vercel.app")
+        self.assertIsNone(merged["canonical_health_code"])
+        self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://drift-tool.vercel.app")
 
     def test_failure_codes_normalize_stale_healthy_health_status(self) -> None:

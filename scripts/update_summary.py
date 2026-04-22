@@ -134,9 +134,7 @@ def _as_list(
     normalized_items = [normalize_product(item) for item in value if isinstance(item, dict)]
     meaningful_items = [item for item in normalized_items if not is_placeholder_product(item)]
     deduped = dedupe_products(meaningful_items)
-    if product_catalog is None:
-        return deduped
-    return sync_state_products(deduped, product_catalog)
+    return sync_state_products(deduped, product_catalog or {})
 
 
 def load_products(
@@ -348,7 +346,10 @@ def build_summary(
         "deploy_readiness_manifest_gap_count": readiness["manifest_gap_count"],
         "deploy_readiness_url_gap_count": readiness["url_gap_count"],
         "deploy_readiness_state_gap_count": readiness["state_gap_count"],
-        "needs_fix_count": len(unhealthy_live) + len(pending_health_live),
+        # Canonical drift is not an outage, but it is still unresolved work:
+        # fallback aliases should stay visible until the canonical URL itself
+        # probes cleanly.
+        "needs_fix_count": len(unhealthy_live) + len(pending_health_live) + len(canonical_drift_live),
         "next_action": state.get("next_action"),
         "vercel_auth_issue": state.get("vercel_auth_issue"),
         "last_updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),

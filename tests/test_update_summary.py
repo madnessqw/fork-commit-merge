@@ -205,7 +205,7 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["canonical_url_drift_products"], [])
         self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
 
-    def test_healthy_alias_record_is_canonicalized_before_summary_counts_drift(self) -> None:
+    def test_healthy_alias_record_without_canonical_probe_counts_drift(self) -> None:
         state = {
             "products": {
                 "active": [
@@ -226,10 +226,24 @@ class UpdateSummaryTests(unittest.TestCase):
 
         self.assertEqual(summary["live_count"], 1)
         self.assertEqual(summary["healthy_count"], 1)
-        self.assertEqual(summary["products"][0]["v"], "https://drift-tool.vercel.app")
-        self.assertEqual(summary["canonical_url_drift"], 0)
-        self.assertEqual(summary["canonical_url_drift_products"], [])
-        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+        self.assertEqual(summary["products"][0]["v"], "https://drift-tool-rose.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["drift-tool"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "drift-tool",
+                    "url": "https://drift-tool-rose.vercel.app",
+                    "ideal_url": "https://drift-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://drift-tool-rose.vercel.app",
+                    "canonical_url": "https://drift-tool.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
 
     def test_pending_health_records_are_reported_separately(self) -> None:
         state = {
@@ -474,7 +488,7 @@ class UpdateSummaryTests(unittest.TestCase):
                 "https://temporary-tool-preview.vercel.app",
             )
 
-    def test_live_preview_alias_without_health_promotes_canonical_display(self) -> None:
+    def test_live_preview_alias_without_canonical_probe_stays_visible(self) -> None:
         state = {
             "products": {
                 "active": [
@@ -496,10 +510,25 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["healthy_count"], 1)
         self.assertEqual(summary["unhealthy_count"], 0)
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
-        self.assertEqual(summary["canonical_url_drift"], 0)
-        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["products"][0]["v"], "https://diffmaster-rose.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["diffmaster"])
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
-        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "diffmaster",
+                    "url": "https://diffmaster-rose.vercel.app",
+                    "ideal_url": "https://diffmaster.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://diffmaster-rose.vercel.app",
+                    "canonical_url": "https://diffmaster.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
 
     def test_custom_domain_without_health_still_reports_drift(self) -> None:
         state = {
@@ -586,7 +615,7 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
-    def test_live_preview_alias_without_last_health_url_promotes_canonical_display(self) -> None:
+    def test_live_preview_alias_without_last_health_url_stays_visible(self) -> None:
         state = {
             "products": {
                 "active": [
@@ -607,10 +636,25 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["healthy_count"], 1)
         self.assertEqual(summary["unhealthy_count"], 0)
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
-        self.assertEqual(summary["canonical_url_drift"], 0)
-        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["products"][0]["v"], "https://webhook-tester-beryl.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["webhook-tester"])
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
-        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "webhook-tester",
+                    "url": "https://webhook-tester-beryl.vercel.app",
+                    "ideal_url": "https://webhook-tester.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://webhook-tester-beryl.vercel.app",
+                    "canonical_url": "https://webhook-tester.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
 
     def test_alternate_healthy_records_actual_fallback_url_as_public_display(self) -> None:
         state = {
@@ -634,6 +678,7 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["healthy_count"], 1)
         self.assertEqual(summary["unhealthy_count"], 0)
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
+        self.assertEqual(summary["needs_fix_count"], 1)
         self.assertEqual(summary["products"][0]["v"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["fallback-tool"])
@@ -648,6 +693,7 @@ class UpdateSummaryTests(unittest.TestCase):
                     "health_code": 200,
                     "probe_url": "https://fallback-tool-preview.vercel.app",
                     "canonical_url": "https://fallback-tool.vercel.app",
+                    "canonical_status": "pending",
                 }
             ],
         )

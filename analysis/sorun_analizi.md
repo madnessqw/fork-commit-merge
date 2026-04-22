@@ -1,36 +1,43 @@
-# Sorun Analizi — Cycle 1108 | 2026-04-22 17:49 UTC
+# Sorun Analizi — Cycle 1108 | 2026-04-22 21:07 UTC
 
 ## Ana Darboğaz
-- **live_health** — 7 canlı ürün gerçekten sağlıksız. İlk örnek `jwt-generator` (HTTP 500).
+- **live_health** — 4 canlı ürün gerçekten sağlıksız. Ayrıca 3 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 84/91
+- Healthy live: 84/88
 - Health pending: 0
 - Checkout gap: 0
-- Deploy readiness gap: 5
-- Deploy/url gap: 9
-- Canonical drift: 0
-- Spec-ready backlog: 11
+- Deploy readiness gap: 20
+- Deploy/url gap: 21
+- Canonical drift: 3
+- Spec-ready backlog: 26
 
 ## Canlı Sağlıksız Ürünler
 - `jwt-generator` — code=500 status=error_500 url=https://jwt-generator.vercel.app
-- `pdf-forge` — code=500 status=error_500 url=https://pdf-forge.vercel.app
-- `webhook-tester` — code=404 status=not_found url=https://webhook-tester.vercel.app
-- `email-validator-pro` — code=404 status=not_found url=https://email-validator-pro.vercel.app
 - `diffmaster` — code=401 status=unauthorized url=https://diffmaster.vercel.app
 - `html-entity-encoder` — code=402 status=deployment_disabled url=https://html-entity-encoder.vercel.app
 - `timestamp-converter` — code=451 status=error_451 url=https://timestamp-converter.vercel.app
 
 ## URL/Deploy Eksikleri
-- browser-use-studio, agent-prompt-engineer
+- chmod-calculator, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, mcp-inspector-pro, api-security-scanner, docker-command-builder, ...
+
+## Canonical Drift Ürünleri
+- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
+- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 
 ## Deploy Readiness Issues
-- Count: 5 | Manifest gaps: 3 | URL gaps: 5 | State gaps: 5
+- Count: 20 | Manifest gaps: 3 | URL gaps: 20 | State gaps: 20
 - `csv-to-sql-pro` — manifest=spec_version; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
 - `json-to-csv-pro` — manifest=spec_version; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
 - `url-parser-pro` — manifest=spec_version; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
 - `agent-prompt-engineer` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
+- `api-mock-server` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
+- `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
 - `browser-use-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
+- `docker-command-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
+- `docker-compose-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
+- `env-file-manager` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
 
 ## Açık Issue Kayıtları
 - **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
