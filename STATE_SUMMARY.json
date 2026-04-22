@@ -5,6 +5,7 @@
   "active_count": 144,
   "live_count": 88,
   "healthy_count": 84,
+  "fallback_healthy_count": 3,
   "unhealthy_count": 4,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
@@ -18,7 +19,7 @@
   "needs_fix_count": 7,
   "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T21:40:06.730774Z",
+  "last_updated": "2026-04-22T22:06:25.493954Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1521,6 +1522,11 @@
     ]
   },
   "canonical_url_drift_products": [
+    "pdf-forge",
+    "webhook-tester",
+    "email-validator-pro"
+  ],
+  "fallback_healthy_products": [
     "pdf-forge",
     "webhook-tester",
     "email-validator-pro"

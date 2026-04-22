@@ -219,6 +219,7 @@ class RefreshCodexContextTests(unittest.TestCase):
             "live_count": 113,
             "healthy_count": 113,
             "pending_health_count": 0,
+            "fallback_healthy_count": 3,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 18,
             "gaps": {
@@ -407,6 +408,7 @@ class RefreshCodexContextTests(unittest.TestCase):
             "live_count": 113,
             "healthy_count": 113,
             "pending_health_count": 0,
+            "fallback_healthy_count": 3,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 18,
             "spec_ready_count": 27,
@@ -431,6 +433,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("Manual Vercel/LemonSqueezy", rendered)
         self.assertIn("analysis/codex_result.md", rendered)
         self.assertIn("Health pending: 0", rendered)
+        self.assertIn("Fallback healthy: 3", rendered)
 
     def test_load_summary_refreshes_live_health_before_rebuilding_context(self) -> None:
         summary = {

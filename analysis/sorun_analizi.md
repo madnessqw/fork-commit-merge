@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1108 | 2026-04-22 21:40 UTC
+# Sorun Analizi — Cycle 1108 | 2026-04-22 22:06 UTC
 
 ## Ana Darboğaz
 - **live_health** — 4 canlı ürün gerçekten sağlıksız. Ayrıca 3 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
@@ -6,6 +6,7 @@
 ## Summary'den Gelen Gerçekler
 - Healthy live: 84/88
 - Health pending: 0
+- Fallback healthy: 3
 - Checkout gap: 0
 - Deploy readiness gap: 20
 - Deploy/url gap: 21

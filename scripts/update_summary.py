@@ -39,6 +39,7 @@ SUMMARY_STATE_FIELDS = (
     "active_count",
     "live_count",
     "healthy_count",
+    "fallback_healthy_count",
     "unhealthy_count",
     "pending_health_count",
     "checkout_gap_count",
@@ -46,6 +47,7 @@ SUMMARY_STATE_FIELDS = (
     "deploy_missing_or_bad_url",
     "canonical_url_drift",
     "canonical_url_drift_products",
+    "fallback_healthy_products",
     "spec_ready_count",
     "deploy_readiness_count",
     "deploy_readiness_manifest_gap_count",
@@ -188,6 +190,10 @@ def is_healthy(product: dict[str, Any]) -> bool:
     )
 
 
+def is_fallback_healthy(product: dict[str, Any]) -> bool:
+    return health_code(product) == 200 and _pick(product, "health_status") == "alternate_healthy"
+
+
 def is_pending_health(product: dict[str, Any]) -> bool:
     """Return True when a live record has no health snapshot yet."""
     if health_code(product) is not None:
@@ -277,6 +283,7 @@ def build_summary(
         for p in live
         if (drift := canonical_url_drift_entry(p)) is not None
     ]
+    fallback_healthy_live = [p for p in live if is_fallback_healthy(p)]
     pending_health_live = [p for p in live if is_pending_health(p)]
     readiness_source = raw_state or state
     readiness = collect_spec_ready_deploy_readiness(readiness_source)
@@ -332,6 +339,7 @@ def build_summary(
         "active_count": len(active),
         "live_count": len(live),
         "healthy_count": sum(1 for p in live if is_healthy(p)),
+        "fallback_healthy_count": len(fallback_healthy_live),
         "unhealthy_count": len(unhealthy_live),
         "pending_health_count": len(pending_health_live),
         "checkout_gap_count": len(checkout_gap_live),
@@ -374,6 +382,7 @@ def build_summary(
             "deploy_readiness": readiness["issues"],
         },
         "canonical_url_drift_products": [item.get("slug") for item in canonical_drift_live if item.get("slug")],
+        "fallback_healthy_products": [p.get("slug") for p in fallback_healthy_live if p.get("slug")],
     }
 
 

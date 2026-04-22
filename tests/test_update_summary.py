@@ -508,6 +508,7 @@ class UpdateSummaryTests(unittest.TestCase):
         summary = build_summary(state)
 
         self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
         self.assertEqual(summary["unhealthy_count"], 0)
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
         self.assertEqual(summary["products"][0]["v"], "https://diffmaster-rose.vercel.app")
@@ -723,6 +724,7 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["products"][0]["v"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["fallback-tool"])
+        self.assertEqual(summary["fallback_healthy_products"], ["fallback-tool"])
         self.assertEqual(
             summary["gaps"]["canonical_url_drift"],
             [
