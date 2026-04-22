@@ -122,6 +122,29 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://stale-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://stale-tool.vercel.app")
 
+    def test_failure_codes_normalize_stale_healthy_health_status(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "broken-tool",
+                "status": "live",
+                "vercel_url": "https://broken-tool-rose.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 401,
+                "last_health_url": "https://broken-tool.vercel.app",
+            },
+            {
+                "slug": "broken-tool",
+                "status": "live",
+                "vercel_url": "https://broken-tool.vercel.app",
+                "deployment_url": "https://broken-tool.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["health_status"], "unauthorized")
+        self.assertEqual(merged["last_health_code"], 401)
+        self.assertEqual(merged["vercel_url"], "https://broken-tool.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://broken-tool.vercel.app")
+
     def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
         self.assertEqual(
             health_check_url(

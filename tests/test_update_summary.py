@@ -262,6 +262,42 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["products"][0]["v"], "https://stale-tool.vercel.app")
         self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
 
+    def test_unhealthy_live_gap_uses_resolved_public_url_and_failure_status(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Broken Tool",
+                        "slug": "broken-tool",
+                        "status": "live",
+                        "vercel_url": "https://broken-tool-rose.vercel.app",
+                        "deployment_url": "https://broken-tool.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 401,
+                        "last_health_url": "https://broken-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state, product_catalog={"dummy": {"slug": "dummy"}})
+
+        self.assertEqual(summary["healthy_count"], 0)
+        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://broken-tool.vercel.app")
+        self.assertEqual(
+            summary["gaps"]["unhealthy_live"],
+            [
+                {
+                    "slug": "broken-tool",
+                    "url": "https://broken-tool.vercel.app",
+                    "code": 401,
+                    "health_status": "unauthorized",
+                    "probe_url": "https://broken-tool.vercel.app",
+                }
+            ],
+        )
+
     def test_canonical_url_drift_is_reported_from_slug_when_ideal_missing(self) -> None:
         state = {
             "products": {

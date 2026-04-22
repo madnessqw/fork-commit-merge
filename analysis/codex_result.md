@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 08:39 +03
+# Codex Result — 2026-04-22 09:11 +03
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -11,39 +11,39 @@
 - `scripts/product_state_sync.py`
 - `scripts/update_summary.py`
 - `scripts/health_check.py`
-- `scripts/audit_portfolio_health.py`
 - `tests/test_product_state_sync.py`
 - `tests/test_update_summary.py`
 - `tests/test_health_check.py`
 
 ## Seçilen Darboğaz
-- Health pipeline'da `alternate_healthy` sonuçları pratikte sağlıklı sayılması gerekirken console/özet tarafında hâlâ sert sağlık dışı gibi görünüyordu.
-- Ayrıca eski doküman ve otomasyonların referans verdiği `scripts/audit_portfolio_health.py` entrypoint'i repo içinde yoktu.
+- Canlı health snapshot’lar stale kalıyordu: non-200 probe sonuçlarında `health_status` bazen hâlâ `healthy` görünüyordu.
+- Unhealthy gap çıktıları da public/resolved URL yerine raw alias alanını basıyordu.
 
 ## Yapılan Değişiklikler
-- `scripts/health_check.py`
-  - Ortak yardımcı `is_synced_health_result()` eklendi.
-  - `alternate_healthy` sonuçları artık healthy bucket'a giriyor.
-  - Canonical drift fallback'leri ayrı uyarı olarak gösteriliyor; sağlık yüzdesi ve özet sayılar artık bununla tutarlı.
-- `scripts/audit_portfolio_health.py`
-  - Geriye dönük uyumluluk için yeni wrapper eklendi.
-  - Eski isim artık gerçek health pipeline'a delege ediyor.
-- `tests/test_health_check.py`
-  - `alternate_healthy`'nin sağlıklı bucket'a dahil olduğunu doğrulayan test eklendi.
+- `scripts/product_state_sync.py`
+  - `normalize_health_snapshot()` eklendi.
+  - Live / ready-for-payment ürünlerde `last_health_code` int’e çevriliyor.
+  - `401 / 404 / 0` gibi failure kodları sırasıyla `unauthorized / not_found / timeout` olarak normalize ediliyor.
+  - Manifest yokken de health normalizasyonu ve public URL çözümü çalışıyor; eski healthy label artık failure code üstüne yazamıyor.
+- `scripts/update_summary.py`
+  - `gaps.unhealthy_live[].url` artık `display_vercel_url()` kullanıyor.
+  - Böylece gap listesi raw alias değil, public/resolved URL ile hizalanıyor.
+- `tests/test_product_state_sync.py`
+  - Stale healthy health_status’ın failure code ile normalize edildiğini doğrulayan test eklendi.
+- `tests/test_update_summary.py`
+  - Unhealthy gap satırının resolved URL + normalize health_status ile çıktığını doğrulayan test eklendi.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/health_check.py scripts/audit_portfolio_health.py tests/test_health_check.py`
-- `python3 -m unittest discover -s tests -p 'test_health_check.py'`
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
+- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py tests/test_product_state_sync.py tests/test_update_summary.py`
 - `python3 -m unittest discover -s tests -p 'test_*.py'`
-- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` paterni bulunmadı.
+- `python3 scripts/update_summary.py`
+- Secret scan: değişen kod dosyalarında gizli anahtar izi yok.
 
 ## Sonuç / Etki
-- Health check artık fallback URL ile canlı kalan ürünü gereksiz yere "unhealthy" gibi göstermiyor.
-- Canonical drift hâlâ ayrı uyarı olarak görünür kalıyor; yani sorun gizlenmiyor, sadece yanlış sınıflandırma düzeltiliyor.
-- Eski `audit_portfolio_health.py` yolu artık boşa düşmüyor.
+- Live health state artık non-200 probe’larda sahte `healthy` etiketi taşımıyor.
+- Summary ve gap raporu public URL gerçeğiyle hizalandı.
+- `STATE_SUMMARY.json` yerelde yeniden üretildi; güncel snapshot `80 live / 78 healthy / 2 unhealthy` gösteriyor.
 
-## Kalan Blokerlar
-- Live state'teki canonical drift ürünleri hâlâ gerçek drift olabilir; bu run yalnızca sınıflandırma ve giriş noktası uyumluluğunu düzeltti.
-- `pdf-forge` ve `diffmaster` gibi gerçek broken canlılar ayrı problem olarak kalıyor.
+## Kalan Blokerler
+- `pdf-forge` timeout ve `diffmaster` 401 gerçek canlı problemler; otomasyon artık bunları doğru raporluyor ama çözmüyor.
+- Manuel Vercel/deploy müdahalesi hâlâ insan gerektiriyor.

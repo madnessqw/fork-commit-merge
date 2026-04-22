@@ -26,6 +26,11 @@ PRODUCTS_DIR = ROOT / "products"
 PRE_DEPLOY_STATUSES = {"building", "spec_ready", "ready_to_deploy"}
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
 HEALTHY_URL_STATUSES = {"healthy", "alternate_healthy"}
+FAILURE_HEALTH_STATUS_BY_CODE = {
+    0: "timeout",
+    401: "unauthorized",
+    404: "not_found",
+}
 
 
 def _clean_text(value: Any) -> str | None:
@@ -95,6 +100,30 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
         return None
 
     return normalize_url(_pick(record, "last_health_url", "health_probe_url"))
+
+
+def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(record)
+    status = _clean_text(_pick(record, "status", "st"))
+    if status not in HEALTH_CHECKABLE_STATUSES:
+        return normalized
+
+    raw_code = _pick(record, "last_health_code")
+    try:
+        code = int(raw_code)
+    except (TypeError, ValueError):
+        return normalized
+
+    normalized["last_health_code"] = code
+
+    current_health_status = _clean_text(_pick(record, "health_status"))
+    if code == 200:
+        if current_health_status not in HEALTHY_URL_STATUSES:
+            normalized["health_status"] = "healthy"
+        return normalized
+
+    normalized["health_status"] = FAILURE_HEALTH_STATUS_BY_CODE.get(code, f"error_{code}")
+    return normalized
 
 
 def resolved_public_vercel_url(record: dict[str, Any]) -> str | None:
@@ -216,7 +245,20 @@ def merge_product_record(
     )
 
     if manifest is None:
-        return merged
+        merged = normalize_health_snapshot(merged)
+        merged["vercel_url"] = resolved_public_vercel_url(merged)
+        return normalize_checkout_metadata(
+            {
+                **merged,
+                "n": merged.get("name"),
+                "s": merged.get("slug"),
+                "st": merged.get("status"),
+                "v": merged.get("vercel_url"),
+                "c": get_checkout_url(merged),
+            },
+            force_canonical_key=True,
+            prune_legacy=True,
+        )
 
     for field in ("name", "slug", "status", "category", "price", "github_url"):
         manifest_value = manifest.get(field)
@@ -255,6 +297,8 @@ def merge_product_record(
         merged["health_status"] = manifest_health_status
     if merged.get("last_health_code") is None and has_value(manifest_health_code):
         merged["last_health_code"] = manifest_health_code
+
+    merged = normalize_health_snapshot(merged)
 
     return normalize_checkout_metadata(
         {

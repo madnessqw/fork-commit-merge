@@ -230,7 +230,7 @@ def build_summary(
             "unhealthy_live": [
                 {
                     "slug": p.get("slug"),
-                    "url": p.get("vercel_url"),
+                    "url": display_vercel_url(p),
                     "code": health_code(p),
                     "health_status": p.get("health_status"),
                     **(
