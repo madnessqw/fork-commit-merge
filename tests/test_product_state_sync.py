@@ -100,6 +100,28 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["ideal_vercel_url"], "https://pdf-forge.vercel.app")
         self.assertEqual(health_check_url(merged), "https://pdf-forge.vercel.app")
 
+    def test_last_successful_health_url_can_promote_stale_state_alias_back_to_canonical(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "stale-tool",
+                "status": "live",
+                "vercel_url": "https://stale-tool-rose.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://stale-tool.vercel.app",
+            },
+            {
+                "slug": "stale-tool",
+                "status": "live",
+                "vercel_url": "https://stale-tool-rose.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://stale-tool.vercel.app")
+        self.assertEqual(merged["v"], "https://stale-tool.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://stale-tool.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://stale-tool.vercel.app")
+
     def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
         self.assertEqual(
             health_check_url(

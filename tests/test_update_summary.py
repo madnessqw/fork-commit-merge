@@ -236,6 +236,32 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_last_successful_health_url_can_clear_stale_alias_drift(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Stale Tool",
+                        "slug": "stale-tool",
+                        "status": "live",
+                        "vercel_url": "https://stale-tool-rose.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://stale-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["products"][0]["v"], "https://stale-tool.vercel.app")
+        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+
     def test_canonical_url_drift_is_reported_from_slug_when_ideal_missing(self) -> None:
         state = {
             "products": {

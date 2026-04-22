@@ -161,7 +161,7 @@ def is_healthy(product: dict[str, Any]) -> bool:
 
 def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
     ideal_url = canonical_target_vercel_url(product)
-    current_url = _normalize_url(_pick(product, "vercel_url", "v"))
+    current_url = _normalize_url(display_vercel_url(product))
     if ideal_url is None or current_url is None or ideal_url == current_url:
         return None
     return {

@@ -25,6 +25,7 @@ PRODUCTS_DIR = ROOT / "products"
 
 PRE_DEPLOY_STATUSES = {"building", "spec_ready", "ready_to_deploy"}
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
+HEALTHY_URL_STATUSES = {"healthy", "alternate_healthy"}
 
 
 def _clean_text(value: Any) -> str | None:
@@ -79,13 +80,48 @@ def canonical_target_vercel_url(record: dict[str, Any]) -> str | None:
     return normalize_url(_pick(record, "ideal_vercel_url"))
 
 
-def display_vercel_url(record: dict[str, Any]) -> str | None:
+def successful_health_url(record: dict[str, Any]) -> str | None:
+    status = _clean_text(_pick(record, "health_status"))
+    if status not in HEALTHY_URL_STATUSES:
+        return None
+
+    raw_code = _pick(record, "last_health_code")
+    try:
+        code = int(raw_code)
+    except (TypeError, ValueError):
+        return None
+
+    if code != 200:
+        return None
+
+    return normalize_url(_pick(record, "last_health_url", "health_probe_url"))
+
+
+def resolved_public_vercel_url(record: dict[str, Any]) -> str | None:
+    status = _clean_text(_pick(record, "status", "st"))
     current_url = normalize_url(_pick(record, "vercel_url", "v"))
-    if current_url is not None:
-        return current_url
-    if _clean_text(_pick(record, "status", "st")) in HEALTH_CHECKABLE_STATUSES:
-        return canonical_target_vercel_url(record)
-    return None
+    deployment_url = normalize_url(_pick(record, "deployment_url"))
+    manifest_url = normalize_url(_pick(record, "ideal_vercel_url"))
+
+    if status != "live":
+        return current_url or deployment_url or manifest_url
+
+    health_url = successful_health_url(record)
+    canonical_url = canonical_target_vercel_url(record)
+    candidates = (
+        current_url,
+        deployment_url,
+        health_url,
+    )
+
+    if canonical_url is not None and canonical_url in candidates:
+        return canonical_url
+
+    return current_url or deployment_url or health_url or canonical_url
+
+
+def display_vercel_url(record: dict[str, Any]) -> str | None:
+    return resolved_public_vercel_url(record)
 
 
 def load_product_catalog(products_dir: Path = PRODUCTS_DIR) -> dict[str, dict[str, Any]]:
@@ -113,30 +149,48 @@ def choose_public_vercel_url(
     manifest_url: Any,
     deployment_url: Any = None,
     status: str | None = None,
+    health_status: str | None = None,
+    last_health_code: Any = None,
+    health_url: Any = None,
 ) -> str | None:
-    normalized_state_url = normalize_url(state_url)
-    normalized_manifest_url = normalize_url(manifest_url)
-    normalized_deployment_url = normalize_url(deployment_url)
     normalized_status = _clean_text(status)
-    canonical_url = canonical_vercel_url(slug)
-
+    normalized_manifest_url = normalize_url(manifest_url)
     if normalized_status in PRE_DEPLOY_STATUSES and normalized_manifest_url is None:
         return None
 
-    # Live products should publish the canonical slug URL whenever the state or
-    # manifest already knows it. Stale preview aliases belong in history, not in
-    # the public URL field.
+    normalized_state_url = normalize_url(state_url)
+    normalized_deployment_url = normalize_url(deployment_url)
+    normalized_health_url = (
+        normalize_url(health_url)
+        if _clean_text(health_status) in HEALTHY_URL_STATUSES
+        else None
+    )
+    if normalized_health_url is not None:
+        try:
+            if int(last_health_code) != 200:
+                normalized_health_url = None
+        except (TypeError, ValueError):
+            normalized_health_url = None
+
+    canonical_url = canonical_vercel_url(slug)
     if canonical_url is not None:
         for candidate in (
             normalized_state_url,
             normalized_deployment_url,
             normalized_manifest_url,
+            normalized_health_url,
         ):
             if candidate == canonical_url:
                 return canonical_url
 
-    if normalized_status in HEALTH_CHECKABLE_STATUSES:
-        return normalized_state_url or normalized_deployment_url or normalized_manifest_url
+    if normalized_status == "live":
+        return (
+            normalized_state_url
+            or normalized_deployment_url
+            or normalized_health_url
+            or normalized_manifest_url
+            or canonical_url
+        )
 
     return normalized_state_url or normalized_deployment_url or normalized_manifest_url
 
@@ -171,12 +225,18 @@ def merge_product_record(
 
     effective_status = merged.get("status")
     merged["deployment_url"] = normalize_url(manifest.get("deployment_url")) or normalize_url(merged.get("deployment_url"))
+    manifest_last_health_url = normalize_url(manifest.get("last_health_url"))
+    if merged.get("last_health_url") is None and manifest_last_health_url is not None:
+        merged["last_health_url"] = manifest_last_health_url
     merged["vercel_url"] = choose_public_vercel_url(
         slug=merged.get("slug"),
         state_url=merged.get("vercel_url"),
         manifest_url=manifest.get("vercel_url"),
         deployment_url=merged.get("deployment_url"),
         status=effective_status,
+        health_status=merged.get("health_status"),
+        last_health_code=merged.get("last_health_code"),
+        health_url=merged.get("last_health_url"),
     )
 
     manifest_checkout_url = get_checkout_url(manifest)
