@@ -11,3 +11,5 @@
 {"run_id": "codex-20260422-0907", "mode": "EXECUTION", "task": "dedupe synced state snapshots", "status": "done", "slug": "health-canonical-drift", "duration_min": 32, "cost_est": 0.11, "cycle": 1088, "ts": "2026-04-22T09:07:00Z"}
 {"run_id":"codex-20260422-1004","mode":"EXECUTION","task":"refresh live health/state sync","status":"done","slug":"health-canonical-drift","duration_min":18,"cost_est":0.06,"cycle":1090,"ts":"2026-04-22T10:04:46Z"}
 {"run_id": "codex-20260422-1340", "mode": "EXECUTION", "task": "preserve fallback health URLs in synced state", "status": "done", "slug": "health-canonical-drift", "duration_min": 22, "cost_est": 0.07, "cycle": 1090, "ts": "2026-04-22T10:40:52Z"}
+{"run_id": "codex-20260422-1510", "mode": "EXECUTION", "task": "canonical health recovery", "status": "done", "slug": "canonical-health-recovery", "duration_min": 26, "cost_est": 0.07, "cycle": 1093}
+{"run_id": "codex-20260422-1243", "mode": "EXECUTION", "task": "surface canonical drift in Codex context", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1094, "ts": "2026-04-22T12:43:11Z"}

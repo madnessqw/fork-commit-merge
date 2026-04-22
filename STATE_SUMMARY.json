@@ -1,18 +1,18 @@
 {
-  "cycle": 1090,
+  "cycle": 1094,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 144,
-  "live_count": 82,
-  "healthy_count": 78,
-  "unhealthy_count": 4,
+  "live_count": 91,
+  "healthy_count": 79,
+  "unhealthy_count": 12,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 8,
-  "canonical_url_drift": 0,
-  "spec_ready_count": 13,
+  "deploy_missing_or_bad_url": 14,
+  "canonical_url_drift": 2,
+  "spec_ready_count": 11,
   "next_action": "wait_for_vercel_limit_reset",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T10:07:00.259396Z",
+  "last_updated": "2026-04-22T12:42:26.533550Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -31,9 +31,9 @@
     {
       "n": "WebTerminal Pro",
       "s": "webterminal-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://webterminal-pro.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/webterminal-pro-001"
     },
     {
       "n": "Timestamp Converter Pro",
@@ -94,9 +94,9 @@
     {
       "n": "HTML Entities Pro",
       "s": "html-entities",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://html-entities.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-entities-pro-001"
     },
     {
       "n": "JWT Inspector",
@@ -185,9 +185,9 @@
     {
       "n": "HTML Minifier Pro",
       "s": "html-minifier-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://html-minifier-pro.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-minifier-pro-001"
     },
     {
       "n": "TOML Validator",
@@ -332,9 +332,9 @@
     {
       "n": "CSS Grid Generator",
       "s": "css-grid-gen",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://css-grid-gen.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/css-grid-gen-001"
     },
     {
       "n": "HTTP Pulse",
@@ -346,9 +346,9 @@
     {
       "n": "Dockerfile Generator",
       "s": "dockerfile-generator",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://dockerfile-generator.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/dockerfile-gen-001"
     },
     {
       "n": "Timestamp Master",
@@ -374,9 +374,9 @@
     {
       "n": "Markdown Previewer Pro",
       "s": "markdown-previewer-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://markdown-previewer-pro.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/md-previewer-pro-001"
     },
     {
       "n": "HTTP Load Tester Pro",
@@ -409,9 +409,9 @@
     {
       "n": "Image Compressor Pro",
       "s": "image-compressor-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://image-compressor-pro.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/img-compressor-pro-001"
     },
     {
       "n": "TOML Converter Pro",
@@ -438,7 +438,7 @@
       "n": "Webhook Tester",
       "s": "webhook-tester",
       "st": "live",
-      "v": "https://webhook-tester.vercel.app",
+      "v": "https://webhook-tester-beryl.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74"
     },
     {
@@ -458,9 +458,9 @@
     {
       "n": "Email Validator Pro",
       "s": "email-validator-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://email-validator-pro.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/email-validator-pro-001"
     },
     {
       "n": "MCP Server Validator",
@@ -542,9 +542,9 @@
     {
       "n": "Terminal Theme Studio",
       "s": "terminal-theme-studio",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://terminal-theme-studio.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/terminal-theme-pro-001"
     },
     {
       "n": "QR Forge",
@@ -781,7 +781,7 @@
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter",
       "st": "live",
-      "v": "https://timestamp-converter.vercel.app",
+      "v": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9"
     },
     {
@@ -927,7 +927,7 @@
     {
       "n": "JSON Schema to TypeScript",
       "s": "json-schema-to-ts",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -955,7 +955,7 @@
     {
       "n": "MCP Server Scaffolder",
       "s": "mcp-server-scaffolder",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -1025,12 +1025,28 @@
   ],
   "gaps": {
     "missing_url": [
-      "json-schema-to-ts",
-      "mcp-server-scaffolder",
       "browser-use-studio",
       "agent-prompt-engineer"
     ],
     "unhealthy_live": [
+      {
+        "slug": "webterminal-pro",
+        "url": "https://webterminal-pro.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "html-entities",
+        "url": "https://html-entities.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "html-minifier-pro",
+        "url": "https://html-minifier-pro.vercel.app",
+        "code": null,
+        "health_status": null
+      },
       {
         "slug": "jwt-generator",
         "url": "https://jwt-generator.vercel.app",
@@ -1046,11 +1062,40 @@
         "probe_url": "https://pdf-forge.vercel.app"
       },
       {
-        "slug": "diffmaster",
-        "url": "https://diffmaster.vercel.app",
-        "code": 401,
-        "health_status": "unauthorized",
-        "probe_url": "https://diffmaster.vercel.app"
+        "slug": "css-grid-gen",
+        "url": "https://css-grid-gen.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "dockerfile-generator",
+        "url": "https://dockerfile-generator.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "markdown-previewer-pro",
+        "url": "https://markdown-previewer-pro.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "image-compressor-pro",
+        "url": "https://image-compressor-pro.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "email-validator-pro",
+        "url": "https://email-validator-pro.vercel.app",
+        "code": null,
+        "health_status": null
+      },
+      {
+        "slug": "terminal-theme-studio",
+        "url": "https://terminal-theme-studio.vercel.app",
+        "code": null,
+        "health_status": null
       },
       {
         "slug": "html-entity-encoder",
@@ -1061,7 +1106,21 @@
       }
     ],
     "missing_checkout": [],
-    "canonical_url_drift": []
+    "canonical_url_drift": [
+      {
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_url": "https://webhook-tester.vercel.app"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
+        "ideal_url": "https://timestamp-converter.vercel.app"
+      }
+    ]
   },
-  "canonical_url_drift_products": []
+  "canonical_url_drift_products": [
+    "webhook-tester",
+    "timestamp-converter"
+  ]
 }

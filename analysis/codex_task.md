@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-22 10:07 UTC
+# Codex Task — Generated 2026-04-22 12:42 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -8,15 +8,15 @@ stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyile
 ## Aktif Görev
 **Health/canonical drift düzeltmesi**
 
-Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt; manuel Vercel korumasını çözüldü gibi gösterme.
+Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 2 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
 
 ## Canlı State Özeti
-- Cycle: 1090
-- Live sağlık: 78/82 (%95.1)
+- Cycle: 1094
+- Live sağlık: 79/91 (%86.8)
 - Checkout gap: 0
-- Deploy/url gap: 8
-- Canonical drift: 0
-- Spec-ready count: 13
+- Deploy/url gap: 14
+- Canonical drift: 2
+- Spec-ready count: 11
 - Next action: wait_for_vercel_limit_reset
 
 ## Guardrails

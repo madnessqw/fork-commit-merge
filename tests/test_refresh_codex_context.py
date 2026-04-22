@@ -38,6 +38,39 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "live_health")
         self.assertIn("broken-live-tool", focus.summary)
 
+    def test_focus_live_health_mentions_canonical_drift_when_present(self) -> None:
+        summary = {
+            "live_count": 10,
+            "healthy_count": 8,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 2,
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "broken-live-tool",
+                        "code": 500,
+                        "health_status": "error_500",
+                        "url": "https://broken-live-tool.vercel.app",
+                    }
+                ],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "fallback-tool",
+                        "url": "https://fallback-tool-preview.vercel.app",
+                        "ideal_url": "https://fallback-tool.vercel.app",
+                    }
+                ],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "live_health")
+        self.assertIn("fallback alias", focus.summary)
+        self.assertIn("fallback alias", focus.codex_task_body)
+
     def test_focus_uses_checkout_field_issue_when_live_portfolio_is_healthy(self) -> None:
         summary = {
             "live_count": 113,
