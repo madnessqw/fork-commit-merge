@@ -200,6 +200,35 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["gaps"]["missing_url"], [])
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
 
+    def test_predeploy_product_hides_public_url_even_when_state_keeps_one(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Color Contrast Pro",
+                        "slug": "color-contrast-pro",
+                        "status": "ready_to_deploy",
+                        "vercel_url": "https://color-contrast-pro.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+        product_catalog = {
+            "color-contrast-pro": {
+                "name": "Color Contrast Pro",
+                "slug": "color-contrast-pro",
+                "status": "ready_to_deploy",
+                "vercel_url": "https://color-contrast-pro.vercel.app",
+            }
+        }
+
+        summary = build_summary(state, product_catalog=product_catalog)
+
+        self.assertEqual(summary["products"][0]["st"], "ready_to_deploy")
+        self.assertIsNone(summary["products"][0]["v"])
+
     def test_canonical_url_drift_is_reported_from_ideal_url(self) -> None:
         state = {
             "products": {

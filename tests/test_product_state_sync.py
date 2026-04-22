@@ -24,6 +24,59 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["vercel_url"])
         self.assertIsNone(health_check_url(merged))
 
+    def test_predeploy_manifest_clears_stale_public_and_health_metadata(self) -> None:
+        merged = merge_product_record(
+            {
+                "name": "Color Contrast Pro",
+                "slug": "color-contrast-pro",
+                "status": "ready_to_deploy",
+                "vercel_url": "https://color-contrast-pro.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://color-contrast-pro.vercel.app",
+                "last_health_check": "2026-04-21T00:00:00Z",
+                "health_checked_at": "2026-04-21T00:00:00Z",
+            },
+            {
+                "name": "Color Contrast Pro",
+                "slug": "color-contrast-pro",
+                "status": "ready_to_deploy",
+                "vercel_url": "https://color-contrast-pro.vercel.app",
+            },
+        )
+
+        self.assertEqual(merged["status"], "ready_to_deploy")
+        self.assertIsNone(merged["vercel_url"])
+        self.assertIsNone(merged["v"])
+        self.assertIsNone(merged["health_status"])
+        self.assertIsNone(merged["last_health_code"])
+        self.assertIsNone(merged["last_health_url"])
+        self.assertIsNone(merged["last_health_check"])
+        self.assertIsNone(merged["health_checked_at"])
+        self.assertIsNone(health_check_url(merged))
+
+    def test_predeploy_state_without_manifest_still_clears_public_and_health_metadata(self) -> None:
+        merged = merge_product_record(
+            {
+                "name": "HTML Minifier Pro",
+                "slug": "html-minifier-pro",
+                "status": "ready_to_deploy",
+                "vercel_url": "https://html-minifier-pro.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://html-minifier-pro.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["status"], "ready_to_deploy")
+        self.assertIsNone(merged["vercel_url"])
+        self.assertIsNone(merged["v"])
+        self.assertIsNone(merged["health_status"])
+        self.assertIsNone(merged["last_health_code"])
+        self.assertIsNone(merged["last_health_url"])
+        self.assertIsNone(health_check_url(merged))
+
     def test_live_manifest_with_missing_url_keeps_state_canonical_url(self) -> None:
         merged = merge_product_record(
             {

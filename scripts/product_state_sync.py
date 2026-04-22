@@ -31,6 +31,13 @@ FAILURE_HEALTH_STATUS_BY_CODE = {
     401: "unauthorized",
     404: "not_found",
 }
+HEALTH_METADATA_FIELDS = (
+    "health_status",
+    "last_health_code",
+    "last_health_url",
+    "last_health_check",
+    "health_checked_at",
+)
 
 
 def _clean_text(value: Any) -> str | None:
@@ -64,6 +71,13 @@ def normalize_url(value: Any) -> str | None:
     if url is None:
         return None
     return url.rstrip("/")
+
+
+def _clear_health_metadata(record: dict[str, Any]) -> dict[str, Any]:
+    cleared = dict(record)
+    for field in HEALTH_METADATA_FIELDS:
+        cleared[field] = None
+    return cleared
 
 
 def canonical_vercel_url(slug: str | None) -> str | None:
@@ -106,7 +120,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(record)
     status = _clean_text(_pick(record, "status", "st"))
     if status not in HEALTH_CHECKABLE_STATUSES:
-        return normalized
+        return _clear_health_metadata(normalized)
 
     raw_code = _pick(record, "last_health_code")
     try:
@@ -128,6 +142,8 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
 def resolved_public_vercel_url(record: dict[str, Any]) -> str | None:
     status = _clean_text(_pick(record, "status", "st"))
+    if status in PRE_DEPLOY_STATUSES:
+        return None
     current_url = normalize_url(_pick(record, "vercel_url", "v"))
     deployment_url = normalize_url(_pick(record, "deployment_url"))
     manifest_url = normalize_url(_pick(record, "ideal_vercel_url"))
@@ -184,7 +200,7 @@ def choose_public_vercel_url(
 ) -> str | None:
     normalized_status = _clean_text(status)
     normalized_manifest_url = normalize_url(manifest_url)
-    if normalized_status in PRE_DEPLOY_STATUSES and normalized_manifest_url is None:
+    if normalized_status in PRE_DEPLOY_STATUSES:
         return None
 
     normalized_state_url = normalize_url(state_url)
@@ -331,6 +347,9 @@ def sync_state_products(
 
 
 def health_check_url(product: dict[str, Any]) -> str | None:
+    status = _clean_text(_pick(product, "status", "st"))
+    if status not in HEALTH_CHECKABLE_STATUSES:
+        return None
     target_url = canonical_target_vercel_url(product)
     if target_url is not None:
         return target_url

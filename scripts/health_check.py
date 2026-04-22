@@ -15,7 +15,6 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.checkout_metadata import get_checkout_url
 from scripts.product_state_sync import health_check_url, load_product_catalog, sync_state_products
 from scripts.update_summary import build_summary, persist_summary
 
@@ -113,16 +112,7 @@ def main():
         synced = synced_by_slug.get(slug)
         if not synced:
             continue
-        product['status'] = synced.get('status')
-        product['st'] = synced.get('status')
-        product['vercel_url'] = synced.get('vercel_url')
-        product['v'] = synced.get('vercel_url')
-        if synced.get('deployment_url') is not None or 'deployment_url' in product:
-            product['deployment_url'] = synced.get('deployment_url')
-        checkout_url = get_checkout_url(synced)
-        if checkout_url is not None or 'checkout_url' in product or 'c' in product:
-            product['checkout_url'] = checkout_url
-            product['c'] = checkout_url
+        product.update(synced)
 
     live_products = [p for p in synced_products if p.get('status') in HEALTH_CHECKABLE_STATUSES]
 

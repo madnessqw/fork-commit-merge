@@ -1,25 +1,25 @@
 {
-  "cycle": 1079,
+  "cycle": 1083,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 143,
-  "live_count": 80,
-  "healthy_count": 78,
+  "live_count": 81,
+  "healthy_count": 79,
   "unhealthy_count": 2,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 14,
-  "canonical_url_drift": 4,
-  "spec_ready_count": 21,
-  "next_action": "vercel_limit_wait_deploy_pending",
+  "deploy_missing_or_bad_url": 11,
+  "canonical_url_drift": 1,
+  "spec_ready_count": 18,
+  "next_action": "continue_deployment_after_limit_reset",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T04:40:31.016895Z",
+  "last_updated": "2026-04-22T06:42:01.386360Z",
   "products": [
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "live",
+      "v": "https://uuid-generator-glm6h3i1l-madnessqws-projects.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/87fd590f-48b7-48de-9555-0d59faeb8e21"
     },
     {
       "n": "URL Forge",
@@ -148,13 +148,6 @@
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/558b0af0-fadf-4ad2-9c18-df74e8a51820"
     },
     {
-      "n": "YAML to JSON Converter",
-      "s": "yaml-json-converter",
-      "st": "building",
-      "v": null,
-      "c": null
-    },
-    {
       "n": "API Doc Generator",
       "s": "api-doc-generator",
       "st": "live",
@@ -192,7 +185,7 @@
     {
       "n": "HTML Minifier Pro",
       "s": "html-minifier-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -270,7 +263,7 @@
       "n": "JWT Generator",
       "s": "jwt-generator",
       "st": "live",
-      "v": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
+      "v": "https://jwt-generator.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7d9338a5-9478-4b88-bf65-08b173d46fe6"
     },
     {
@@ -339,7 +332,7 @@
     {
       "n": "CSS Grid Generator",
       "s": "css-grid-gen",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -353,7 +346,7 @@
     {
       "n": "Dockerfile Generator",
       "s": "dockerfile-generator",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -381,14 +374,14 @@
     {
       "n": "Markdown Previewer Pro",
       "s": "markdown-previewer-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "HTTP Load Tester Pro",
       "s": "http-load-tester-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -409,14 +402,14 @@
     {
       "n": "Cron Master",
       "s": "cron-master",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Image Compressor Pro",
       "s": "image-compressor-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -445,7 +438,7 @@
       "n": "Webhook Tester",
       "s": "webhook-tester",
       "st": "live",
-      "v": "https://webhook-tester-beryl.vercel.app",
+      "v": "https://webhook-tester.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74"
     },
     {
@@ -465,21 +458,21 @@
     {
       "n": "Email Validator Pro",
       "s": "email-validator-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "MCP Server Validator",
       "s": "mcp-validator",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "TOML Parser Pro",
       "s": "toml-parser",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -493,7 +486,7 @@
     {
       "n": "HTML2Markdown Pro",
       "s": "html2markdown",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -501,13 +494,13 @@
       "n": "Color Contrast Pro",
       "s": "color-contrast-pro",
       "st": "ready_to_deploy",
-      "v": "https://color-contrast-pro.vercel.app",
+      "v": null,
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08"
     },
     {
       "n": "Markdown to PDF",
       "s": "markdown-to-pdf",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -549,7 +542,7 @@
     {
       "n": "Terminal Theme Studio",
       "s": "terminal-theme-studio",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -598,7 +591,7 @@
     {
       "n": "Favicon Generator Pro",
       "s": "favicon-generator-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -627,7 +620,7 @@
       "n": "HTML Entity Encoder/Decoder Pro",
       "s": "html-entity-encoder",
       "st": "live",
-      "v": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
+      "v": "https://html-entity-encoder.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/632f8e76-192a-432d-8e3f-d464cd865253"
     },
     {
@@ -647,7 +640,7 @@
     {
       "n": "Cron Express",
       "s": "cron-express",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -724,7 +717,7 @@
     {
       "n": "Text Diff Pro",
       "s": "text-diff-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -738,14 +731,14 @@
     {
       "n": "Lorem Ipsum Pro",
       "s": "lorem-ipsum-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Color Palette Extractor",
       "s": "color-palette-extractor",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -788,7 +781,7 @@
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter",
       "st": "live",
-      "v": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
+      "v": "https://timestamp-converter.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9"
     },
     {
@@ -864,21 +857,21 @@
     {
       "n": "Docker Run Generator",
       "s": "docker-run-generator",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "SQL to NoSQL Converter",
-      "s": "sql-to-nosql",
-      "st": "spec_ready",
+      "s": "ready_to_deploy",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Chmod Calculator Pro",
       "s": "chmod-calculator",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -892,14 +885,14 @@
     {
       "n": "SSL Config Generator",
       "s": "ssl-config-generator",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "Browser Mock Studio",
       "s": "browser-mock-studio",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -913,7 +906,7 @@
     {
       "n": "ENV File Manager",
       "s": "env-file-manager",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -955,7 +948,7 @@
     {
       "n": "Docker Command Builder",
       "s": "docker-command-builder",
-      "st": "spec_ready",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -983,14 +976,14 @@
     {
       "n": "API Mock Server",
       "s": "api-mock-server",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
     {
       "n": "JWT Debugger Pro",
       "s": "jwt-debugger-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
     },
@@ -1011,22 +1004,26 @@
     {
       "n": "JSON Diff Pro",
       "s": "json-diff-pro",
-      "st": "building",
+      "st": "ready_to_deploy",
       "v": null,
       "c": null
+    },
+    {
+      "n": "YAML to JSON Converter",
+      "s": "yaml-json-converter",
+      "st": "ready_for_payment",
+      "v": "https://yaml-json-converter.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/07dbcaad-a466-444f-8716-9ad1bd27197b"
     }
   ],
   "gaps": {
     "missing_url": [
-      "sql-to-nosql",
-      "browser-mock-studio",
       "docker-compose-builder",
       "git-diff-visualizer",
       "code-screenshot-beautifier",
       "json-schema-to-ts",
       "mcp-inspector-pro",
       "api-security-scanner",
-      "docker-command-builder",
       "mcp-server-scaffolder",
       "browser-use-studio",
       "agent-prompt-engineer"
@@ -1036,7 +1033,7 @@
         "slug": "pdf-forge",
         "url": "https://pdf-forge.vercel.app",
         "code": 0,
-        "health_status": "error_500",
+        "health_status": "timeout",
         "probe_url": "https://pdf-forge.vercel.app"
       },
       {
@@ -1050,31 +1047,13 @@
     "missing_checkout": [],
     "canonical_url_drift": [
       {
-        "slug": "jwt-generator",
-        "url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
-        "ideal_url": "https://jwt-generator.vercel.app"
-      },
-      {
-        "slug": "webhook-tester",
-        "url": "https://webhook-tester-beryl.vercel.app",
-        "ideal_url": "https://webhook-tester.vercel.app"
-      },
-      {
-        "slug": "html-entity-encoder",
-        "url": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
-        "ideal_url": "https://html-entity-encoder.vercel.app"
-      },
-      {
-        "slug": "timestamp-converter",
-        "url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
-        "ideal_url": "https://timestamp-converter.vercel.app"
+        "slug": "uuid-generator-pro",
+        "url": "https://uuid-generator-glm6h3i1l-madnessqws-projects.vercel.app",
+        "ideal_url": "https://uuid-generator-pro.vercel.app"
       }
     ]
   },
   "canonical_url_drift_products": [
-    "jwt-generator",
-    "webhook-tester",
-    "html-entity-encoder",
-    "timestamp-converter"
+    "uuid-generator-pro"
   ]
 }
