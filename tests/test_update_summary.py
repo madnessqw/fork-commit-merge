@@ -656,6 +656,47 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_compact_preview_alias_without_last_health_url_stays_visible(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Webhook Tester",
+                        "slug": "webhook-tester",
+                        "status": "live",
+                        "vercel_url": "https://webhook-tester.vercel.app",
+                        "v": "https://webhook-tester-beryl.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
+        self.assertEqual(summary["products"][0]["v"], "https://webhook-tester-beryl.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["webhook-tester"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "webhook-tester",
+                    "url": "https://webhook-tester-beryl.vercel.app",
+                    "ideal_url": "https://webhook-tester.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://webhook-tester-beryl.vercel.app",
+                    "canonical_url": "https://webhook-tester.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
+
     def test_alternate_healthy_records_actual_fallback_url_as_public_display(self) -> None:
         state = {
             "products": {

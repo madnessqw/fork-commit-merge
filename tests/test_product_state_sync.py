@@ -395,6 +395,27 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://drift-tool.vercel.app")
 
+    def test_compact_preview_alias_without_health_url_stays_alternate_healthy(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "webhook-tester",
+                "status": "live",
+                "vercel_url": "https://webhook-tester.vercel.app",
+                "v": "https://webhook-tester-beryl.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://webhook-tester-beryl.vercel.app")
+        self.assertEqual(merged["v"], "https://webhook-tester-beryl.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://webhook-tester-beryl.vercel.app")
+        self.assertIsNone(merged["canonical_health_code"])
+        self.assertEqual(merged["canonical_health_status"], "pending")
+        self.assertEqual(health_check_url(merged), "https://webhook-tester.vercel.app")
+
     def test_failure_codes_normalize_stale_healthy_health_status(self) -> None:
         merged = merge_product_record(
             {

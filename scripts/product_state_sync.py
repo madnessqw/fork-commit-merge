@@ -242,17 +242,23 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
     if code != 200:
         return None
 
-    return normalize_url(
-        _pick(
-            record,
-            "effective_health_url",
-            "last_health_url",
-            "health_probe_url",
-            "vercel_url",
-            "v",
-            "deployment_url",
-        )
+    explicit_health_url = normalize_url(
+        _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
+    if explicit_health_url is not None:
+        return explicit_health_url
+
+    slug = _pick(record, "slug", "s")
+    compact_url = normalize_url(_pick(record, "v"))
+    if compact_url is not None and _is_vercel_preview_alias(compact_url, slug):
+        # Older summary/state snapshots sometimes kept the reachable fallback
+        # alias only in compact `v` while verbose `vercel_url` had already been
+        # normalized back to the canonical slug. With no explicit probe URL, the
+        # conservative move is to preserve that fallback instead of declaring the
+        # canonical URL healthy without proof.
+        return compact_url
+
+    return normalize_url(_pick(record, "vercel_url", "v", "deployment_url"))
 
 
 def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
