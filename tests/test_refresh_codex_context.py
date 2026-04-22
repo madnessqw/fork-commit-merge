@@ -1,6 +1,11 @@
+import json
+import tempfile
 import unittest
 from datetime import datetime, timezone
+from pathlib import Path
+from unittest.mock import Mock, patch
 
+from scripts import refresh_codex_context
 from scripts.refresh_codex_context import determine_focus, render_codex_task
 
 
@@ -261,6 +266,54 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("Manual Vercel/LemonSqueezy", rendered)
         self.assertIn("analysis/codex_result.md", rendered)
         self.assertIn("Health pending: 0", rendered)
+
+    def test_load_summary_refreshes_live_health_before_rebuilding_context(self) -> None:
+        summary = {
+            "cycle": 1103,
+            "live_count": 1,
+            "healthy_count": 1,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 0,
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            state_file = tmp_path / "STATE.json"
+            summary_file = tmp_path / "STATE_SUMMARY.json"
+            state_file.write_text(
+                json.dumps(
+                    {
+                        "cycle": 1103,
+                        "mode": "OPTIMIZE",
+                        "balance": 0,
+                        "products": {"active": [], "spec_ready": []},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with patch.object(refresh_codex_context, "STATE_FILE", state_file), patch.object(
+                refresh_codex_context, "SUMMARY_FILE", summary_file
+            ), patch.object(refresh_codex_context, "load_product_catalog", return_value={}), patch.object(
+                refresh_codex_context, "build_summary", return_value=summary
+            ) as build_mock, patch.object(refresh_codex_context.subprocess, "run", return_value=Mock(returncode=1)) as run_mock:
+                loaded = refresh_codex_context.load_summary()
+
+            self.assertEqual(loaded, summary)
+            build_mock.assert_called_once()
+            self.assertTrue(run_mock.called)
+            audit_args = run_mock.call_args[0][0]
+            self.assertIn("audit_portfolio_health.py", audit_args[1])
+            self.assertEqual(run_mock.call_args.kwargs["cwd"], refresh_codex_context.ROOT)
+            self.assertEqual(json.loads(summary_file.read_text(encoding="utf-8")), summary)
 
 
 if __name__ == "__main__":

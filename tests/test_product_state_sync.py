@@ -354,6 +354,29 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["vercel_url"], "https://broken-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://broken-tool.vercel.app")
 
+    def test_stale_canonical_failure_refreshed_from_current_live_outage(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder.vercel.app",
+                "health_status": "error_402",
+                "last_health_code": 402,
+                "last_health_url": "https://html-entity-encoder.vercel.app",
+                "canonical_health_code": 0,
+                "canonical_health_status": "timeout",
+                "canonical_health_url": "https://html-entity-encoder.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "error_402")
+        self.assertEqual(merged["last_health_code"], 402)
+        self.assertEqual(merged["canonical_health_code"], 402)
+        self.assertEqual(merged["canonical_health_status"], "error_402")
+        self.assertEqual(merged["canonical_health_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
+
     def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
         self.assertEqual(
             health_check_url(

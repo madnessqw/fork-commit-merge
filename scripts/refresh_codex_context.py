@@ -10,11 +10,12 @@ fresh context instead of archaeology.
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,11 +46,23 @@ class Focus:
     codex_task_body: str
 
 
-def _write_summary(summary: dict[str, Any], path: Path = SUMMARY_FILE) -> None:
+def _write_summary(summary: dict[str, Any], path: Path | None = None) -> None:
+    if path is None:
+        path = SUMMARY_FILE
     path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def refresh_live_health() -> None:
+    """Run the live health audit before rebuilding Codex context."""
+    audit_script = ROOT / "scripts" / "audit_portfolio_health.py"
+    try:
+        subprocess.run([sys.executable, str(audit_script)], cwd=ROOT, check=False)
+    except OSError as exc:
+        print(f"[refresh_codex_context] health audit skipped: {exc}", file=sys.stderr)
+
+
 def load_summary() -> dict[str, Any]:
+    refresh_live_health()
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     summary = build_summary(state, product_catalog=load_product_catalog())
     _write_summary(summary)

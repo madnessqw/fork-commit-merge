@@ -261,14 +261,18 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     except (TypeError, ValueError):
         public_code = None
 
-    if canonical_code is not None:
-        normalized["canonical_health_code"] = canonical_code
-        normalized["canonical_health_status"] = raw_canonical_status or _health_status_for_code(canonical_code)
-    elif current_health_status != "alternate_healthy" and public_code is not None:
-        normalized["canonical_health_code"] = public_code
-        normalized["canonical_health_status"] = raw_canonical_status or _health_status_for_code(public_code)
+    canonical_snapshot_code = canonical_code
+    if public_code is not None and current_health_status != "alternate_healthy":
+        if public_code == 200 and canonical_code not in (None, 200):
+            canonical_snapshot_code = canonical_code
+        else:
+            canonical_snapshot_code = public_code
+
+    if canonical_snapshot_code is not None:
+        normalized["canonical_health_code"] = canonical_snapshot_code
+        normalized["canonical_health_status"] = _health_status_for_code(canonical_snapshot_code)
     else:
-        normalized["canonical_health_code"] = canonical_code
+        normalized["canonical_health_code"] = None
         normalized["canonical_health_status"] = raw_canonical_status
 
     if public_code == 200 and canonical_code not in (None, 200):
