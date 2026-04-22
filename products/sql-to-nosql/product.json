@@ -6,7 +6,7 @@
   "price": "19",
   "features": [
     "SQL to MongoDB conversion",
-    "SQL to DynamoDB conversion", 
+    "SQL to DynamoDB conversion",
     "SQL to Firestore conversion",
     "Schema mapping suggestions",
     "Query optimization tips",
@@ -15,5 +15,6 @@
   "tech_stack": "Vercel + Node.js",
   "status": "spec_ready",
   "category": "developer_tools",
-  "spec_version": "1.0"
+  "spec_version": "1.0",
+  "checkout_url": null
 }

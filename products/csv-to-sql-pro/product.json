@@ -28,7 +28,18 @@
     "Quick data imports for testing",
     "Convert export data to SQL format"
   ],
-  "seo_keywords": ["csv to sql", "csv converter", "sql insert generator", "csv import", "database migration"],
-  "competitors": ["csv2sql.com", "convertcsv.com", "sqlizer.io"],
-  "differentiation": "Clean UI, instant client-side processing, multiple dialect support"
+  "seo_keywords": [
+    "csv to sql",
+    "csv converter",
+    "sql insert generator",
+    "csv import",
+    "database migration"
+  ],
+  "competitors": [
+    "csv2sql.com",
+    "convertcsv.com",
+    "sqlizer.io"
+  ],
+  "differentiation": "Clean UI, instant client-side processing, multiple dialect support",
+  "checkout_url": null
 }

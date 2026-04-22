@@ -9,15 +9,14 @@
   "status": "ready_for_payment",
   "vercel_url": "https://markdown-table-generator-hmp70qdla-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/markdown-table-generator",
-  "lemonsqueezy_checkout_url": null,
   "lemonsqueezy_product_id": null,
   "webhook_url": "https://markdown-table-generator-hmp70qdla-madnessqws-projects.vercel.app/api/webhook",
   "created_cycle": null,
   "deployed_cycle": 989,
   "deployed_at": "2026-04-21T02:08:00+00:00",
   "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/83e85fd0-ab7a-483c-aa50-9be7bf67c7ff",
-  "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/83e85fd0-ab7a-483c-aa50-9be7bf67c7ff",
   "checkout_status": "pending_lemonsqueezy_creation",
   "seo_optimized": true,
-  "seo_optimized_at": "2026-04-21T17:48:00Z"
+  "seo_optimized_at": "2026-04-21T17:48:00Z",
+  "payment_provider": "lemonsqueezy"
 }

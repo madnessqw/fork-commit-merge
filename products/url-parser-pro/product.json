@@ -29,7 +29,18 @@
     "Generate URL parsing code",
     "Validate URL structure"
   ],
-  "seo_keywords": ["url parser", "url analyzer", "query string parser", "url components", "url decoder"],
-  "competitors": ["urldecoder.org", "urlencoder.io", "freeformatter.com"],
-  "differentiation": "Code snippet generation, component-by-component copy, URL comparison feature"
+  "seo_keywords": [
+    "url parser",
+    "url analyzer",
+    "query string parser",
+    "url components",
+    "url decoder"
+  ],
+  "competitors": [
+    "urldecoder.org",
+    "urlencoder.io",
+    "freeformatter.com"
+  ],
+  "differentiation": "Code snippet generation, component-by-component copy, URL comparison feature",
+  "checkout_url": null
 }

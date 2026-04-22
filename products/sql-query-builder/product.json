@@ -13,7 +13,12 @@
     "GROUP BY and ORDER BY support",
     "Export to SQL, JSON, or CSV"
   ],
-  "tech_stack": ["vanilla-js", "vercel", "serverless"],
+  "tech_stack": [
+    "vanilla-js",
+    "vercel",
+    "serverless"
+  ],
   "created_at": "2026-04-21",
-  "target_audience": "Developers, database administrators, data analysts"
+  "target_audience": "Developers, database administrators, data analysts",
+  "checkout_url": null
 }

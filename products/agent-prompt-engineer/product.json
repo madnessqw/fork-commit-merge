@@ -15,5 +15,6 @@
   "tech_stack": "Vercel + Node.js",
   "status": "spec_ready",
   "category": "ai_tools",
-  "spec_version": "1.0"
+  "spec_version": "1.0",
+  "checkout_url": null
 }

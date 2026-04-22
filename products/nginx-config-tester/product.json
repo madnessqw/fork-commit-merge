@@ -31,5 +31,6 @@
     "nginx validator",
     "nginx syntax check",
     "nginx configuration"
-  ]
+  ],
+  "checkout_url": null
 }

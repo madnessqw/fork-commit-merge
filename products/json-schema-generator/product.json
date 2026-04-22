@@ -17,5 +17,6 @@
   "tech_stack": "Vanilla HTML + Tailwind CDN",
   "status": "spec_ready",
   "created_cycle": 1052,
-  "seo_optimized": false
+  "seo_optimized": false,
+  "checkout_url": null
 }

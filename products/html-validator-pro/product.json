@@ -15,8 +15,13 @@
     "Broken internal link detection",
     "Performance-friendly markup suggestions"
   ],
-  "tech_stack": ["vanilla-js", "tailwind-css", "vercel-serverless"],
+  "tech_stack": [
+    "vanilla-js",
+    "tailwind-css",
+    "vercel-serverless"
+  ],
   "estimated_build_time": "50 min",
   "batch": 23,
-  "created_at": "2026-04-21T22:15:00Z"
+  "created_at": "2026-04-21T22:15:00Z",
+  "checkout_url": null
 }

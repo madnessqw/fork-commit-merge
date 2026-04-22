@@ -25,5 +25,6 @@
     "Discover hidden services and endpoints"
   ],
   "created_at": "2026-04-21T22:30:00Z",
-  "updated_at": "2026-04-21T22:30:00Z"
+  "updated_at": "2026-04-21T22:30:00Z",
+  "checkout_url": null
 }

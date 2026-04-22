@@ -32,5 +32,6 @@
     "cipher suite",
     "ssl security scan",
     "certificate analyzer"
-  ]
+  ],
+  "checkout_url": null
 }

@@ -13,8 +13,13 @@
     "Status code simulation",
     "Latency simulation"
   ],
-  "tech_stack": ["vanilla-js", "vercel", "serverless"],
+  "tech_stack": [
+    "vanilla-js",
+    "vercel",
+    "serverless"
+  ],
   "created_at": "2026-04-21",
   "updated_at": "2026-04-22",
-  "target_audience": "Frontend developers, QA engineers, API developers"
+  "target_audience": "Frontend developers, QA engineers, API developers",
+  "checkout_url": null
 }

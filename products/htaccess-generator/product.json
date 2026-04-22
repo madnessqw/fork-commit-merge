@@ -31,5 +31,6 @@
     "apache config",
     "rewrite rules",
     "htaccess security"
-  ]
+  ],
+  "checkout_url": null
 }

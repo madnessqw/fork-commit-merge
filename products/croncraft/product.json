@@ -9,15 +9,14 @@
   "status": "ready_for_payment",
   "vercel_url": "https://croncraft-zeta.vercel.app",
   "github_url": "https://github.com/universe7creator/croncraft",
-  "lemonsqueezy_checkout_url": null,
   "lemonsqueezy_product_id": null,
   "webhook_url": "https://croncraft-zeta.vercel.app/api/webhook",
   "created_cycle": null,
   "deployed_cycle": 989,
   "deployed_at": "2026-04-20T23:26:32.124443+00:00",
   "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202",
-  "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202",
   "checkout_status": "pending_lemonsqueezy_creation",
   "seo_optimized": true,
-  "seo_optimized_at": "2026-04-21T17:45:00Z"
+  "seo_optimized_at": "2026-04-21T17:45:00Z",
+  "payment_provider": "lemonsqueezy"
 }

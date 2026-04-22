@@ -28,7 +28,18 @@
     "Prepare data for Excel/Numbers",
     "Flatten nested API data"
   ],
-  "seo_keywords": ["json to csv", "json converter", "csv export", "json flatten", "data conversion"],
-  "competitors": ["convertcsv.com", "json-csv.com", "konklone.io"],
-  "differentiation": "Handles deeply nested JSON, multiple array strategies, clean modern UI"
+  "seo_keywords": [
+    "json to csv",
+    "json converter",
+    "csv export",
+    "json flatten",
+    "data conversion"
+  ],
+  "competitors": [
+    "convertcsv.com",
+    "json-csv.com",
+    "konklone.io"
+  ],
+  "differentiation": "Handles deeply nested JSON, multiple array strategies, clean modern UI",
+  "checkout_url": null
 }
