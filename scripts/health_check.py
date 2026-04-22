@@ -165,7 +165,9 @@ def main():
     state['deploy_missing_or_bad_url'] = summary['deploy_missing_or_bad_url']
     state['canonical_url_drift'] = summary['canonical_url_drift']
     state['canonical_url_drift_products'] = summary['canonical_url_drift_products']
-    state['needs_fix_count'] = summary['unhealthy_count'] + summary['canonical_url_drift']
+    # `build_summary()` now treats canonical drift as part of live health, so the
+    # fix count is the unhealthy live set. No double-counting the same drift twice.
+    state['needs_fix_count'] = summary['unhealthy_count']
     state['last_updated'] = summary['last_updated']
 
     with open('STATE.json', 'w', encoding='utf-8') as f:

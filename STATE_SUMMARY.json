@@ -4,15 +4,15 @@
   "balance": 0.0,
   "active_count": 142,
   "live_count": 78,
-  "healthy_count": 76,
-  "unhealthy_count": 2,
+  "healthy_count": 72,
+  "unhealthy_count": 6,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 20,
-  "canonical_url_drift": 8,
-  "spec_ready_count": 27,
+  "deploy_missing_or_bad_url": 23,
+  "canonical_url_drift": 4,
+  "spec_ready_count": 26,
   "next_action": "spec_prep_complete_continue_building",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T02:05:58.345468Z",
+  "last_updated": "2026-04-22T02:44:00.283923Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -74,7 +74,7 @@
       "n": "Cron Expression Builder",
       "s": "cron-expression-builder",
       "st": "live",
-      "v": "https://cron-expression-builder-seven.vercel.app",
+      "v": "https://cron-expression-builder.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0c610a2b-7b1d-4d5a-8ce2-c7c5eaa9d3da"
     },
     {
@@ -123,7 +123,7 @@
       "n": "Unit Test Generator",
       "s": "unit-test-generator",
       "st": "live",
-      "v": "https://unit-test-generator-six.vercel.app",
+      "v": "https://unit-test-generator.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/unit-test-generator-001"
     },
     {
@@ -139,13 +139,6 @@
       "st": "live",
       "v": "https://colormine.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0"
-    },
-    {
-      "n": "CSS Gradient Studio",
-      "s": "css-gradient-studio",
-      "st": "building",
-      "v": null,
-      "c": null
     },
     {
       "n": "Password Strength Checker Pro",
@@ -197,13 +190,6 @@
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fbf28983-c614-473b-bf9c-fdeed947fd8e"
     },
     {
-      "n": "NanoID Generator Pro",
-      "s": "nanoid-generator",
-      "st": "building",
-      "v": null,
-      "c": null
-    },
-    {
       "n": "HTML Minifier Pro",
       "s": "html-minifier-pro",
       "st": "building",
@@ -249,7 +235,7 @@
       "n": "API Request Builder",
       "s": "api-request-builder",
       "st": "live",
-      "v": "https://api-request-builder-alpha.vercel.app",
+      "v": "https://api-request-builder.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/600312ea-17e0-4080-ba69-a92a14198a8f"
     },
     {
@@ -305,7 +291,7 @@
       "n": "Text Transformer Pro",
       "s": "text-transformer-pro",
       "st": "live",
-      "v": "https://text-transformer-pro-theta.vercel.app",
+      "v": "https://text-transformer-pro.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/a4d9d9f4-219f-4d8b-8a81-250a35afa9a9"
     },
     {
@@ -892,7 +878,7 @@
     {
       "n": "Chmod Calculator Pro",
       "s": "chmod-calculator",
-      "st": "spec_ready",
+      "st": "building",
       "v": null,
       "c": null
     },
@@ -1007,12 +993,25 @@
       "st": "spec_ready",
       "v": null,
       "c": null
+    },
+    {
+      "n": "CSS Gradient Studio",
+      "s": "css-gradient-studio",
+      "st": "ready_for_payment",
+      "v": "https://css-gradient-studio.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3371230d-fa48-4654-ad09-f14b64481e93"
+    },
+    {
+      "n": "NanoID Generator Pro",
+      "s": "nanoid-generator",
+      "st": "ready_for_payment",
+      "v": "https://nanoid-generator.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f7aa8e02-37f0-43c4-af63-59293833b7c7"
     }
   ],
   "gaps": {
     "missing_url": [
       "sql-to-nosql",
-      "chmod-calculator",
       "binary-inspector",
       "ssl-config-generator",
       "browser-mock-studio",
@@ -1032,6 +1031,13 @@
     ],
     "unhealthy_live": [
       {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
+        "code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app"
+      },
+      {
         "slug": "pdf-forge",
         "url": "https://pdf-forge.vercel.app",
         "code": 0,
@@ -1039,39 +1045,40 @@
         "probe_url": "https://pdf-forge.vercel.app"
       },
       {
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://webhook-tester-beryl.vercel.app"
+      },
+      {
         "slug": "diffmaster",
         "url": "https://diffmaster.vercel.app",
         "code": 401,
         "health_status": "unauthorized",
         "probe_url": "https://diffmaster.vercel.app"
+      },
+      {
+        "slug": "html-entity-encoder",
+        "url": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app",
+        "code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
+        "code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app"
       }
     ],
     "missing_checkout": [],
     "canonical_url_drift": [
       {
-        "slug": "cron-expression-builder",
-        "url": "https://cron-expression-builder-seven.vercel.app",
-        "ideal_url": "https://cron-expression-builder.vercel.app"
-      },
-      {
-        "slug": "unit-test-generator",
-        "url": "https://unit-test-generator-six.vercel.app",
-        "ideal_url": "https://unit-test-generator.vercel.app"
-      },
-      {
-        "slug": "api-request-builder",
-        "url": "https://api-request-builder-alpha.vercel.app",
-        "ideal_url": "https://api-request-builder.vercel.app"
-      },
-      {
         "slug": "jwt-generator",
         "url": "https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app",
         "ideal_url": "https://jwt-generator.vercel.app"
-      },
-      {
-        "slug": "text-transformer-pro",
-        "url": "https://text-transformer-pro-theta.vercel.app",
-        "ideal_url": "https://text-transformer-pro.vercel.app"
       },
       {
         "slug": "webhook-tester",
@@ -1091,11 +1098,7 @@
     ]
   },
   "canonical_url_drift_products": [
-    "cron-expression-builder",
-    "unit-test-generator",
-    "api-request-builder",
     "jwt-generator",
-    "text-transformer-pro",
     "webhook-tester",
     "html-entity-encoder",
     "timestamp-converter"

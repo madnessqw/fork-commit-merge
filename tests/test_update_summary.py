@@ -216,8 +216,21 @@ class UpdateSummaryTests(unittest.TestCase):
 
         summary = build_summary(state)
 
+        self.assertEqual(summary["healthy_count"], 0)
+        self.assertEqual(summary["unhealthy_count"], 1)
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["diffmaster"])
+        self.assertEqual(
+            summary["gaps"]["unhealthy_live"],
+            [
+                {
+                    "slug": "diffmaster",
+                    "url": "https://diffmaster-rose.vercel.app",
+                    "code": 200,
+                    "health_status": "healthy",
+                }
+            ],
+        )
         self.assertEqual(
             summary["gaps"]["canonical_url_drift"],
             [
@@ -247,8 +260,21 @@ class UpdateSummaryTests(unittest.TestCase):
 
         summary = build_summary(state)
 
+        self.assertEqual(summary["healthy_count"], 0)
+        self.assertEqual(summary["unhealthy_count"], 1)
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["webhook-tester"])
+        self.assertEqual(
+            summary["gaps"]["unhealthy_live"],
+            [
+                {
+                    "slug": "webhook-tester",
+                    "url": "https://webhook-tester-beryl.vercel.app",
+                    "code": 200,
+                    "health_status": "healthy",
+                }
+            ],
+        )
         self.assertEqual(
             summary["gaps"]["canonical_url_drift"],
             [

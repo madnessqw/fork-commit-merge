@@ -1,0 +1,4 @@
+{"run_id": "ledger-init-20260422", "mode": "INIT", "task": "Run Ledger v1 aktifleştirildi", "status": "done", "slug": null, "duration_min": 0, "cost_est": 0, "cycle": 1073, "ts": "2026-04-22T04:22:00Z"}
+{"run_id": "codex-20260422-0140", "mode": "EXECUTION", "task": "health/canonical drift fix", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.08, "cycle": 1073, "ts": "2026-04-22T01:40:24Z"}
+{"run_id": "codex-20260422-0506", "mode": "EXECUTION", "task": "slug canonical drift hardening", "status": "done", "slug": "health-canonical-drift", "duration_min": 24, "cost_est": 0.09, "cycle": 1075, "ts": "2026-04-22T02:07:05Z"}
+{"run_id": "codex-20260422-0244", "mode": "EXECUTION", "task": "canonical drift-aware health sync", "status": "done", "slug": "health-canonical-drift", "duration_min": 33, "cost_est": 0.11, "cycle": 1075, "ts": "2026-04-22T02:44:42Z"}

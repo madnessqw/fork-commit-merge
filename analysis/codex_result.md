@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 05:06 Europe/Istanbul
+# Codex Result — 2026-04-22 02:44 UTC
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -7,43 +7,47 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `scripts/product_state_sync.py`
-- `scripts/health_check.py`
 - `scripts/update_summary.py`
+- `scripts/health_check.py`
+- `scripts/product_state_sync.py`
 - `tests/test_product_state_sync.py`
 - `tests/test_health_check.py`
 - `tests/test_update_summary.py`
 
 ## Seçilen Darboğaz
-- Health check ve summary, sadece `ideal_vercel_url` olan ürünlerde değil, slug’dan türeyen canonical URL’si preview alias’ın arkasına saklanan canlı ürünlerde de drift’i görmeli.
-- Mevcut akış preview alias’ı “iyiymiş” gibi gösterebiliyordu; bu yüzden canonical gerçeklik ile state kaydı ayrı düşüyordu.
+- Live ürünlerin bir kısmı canonical slug URL yerine preview alias üzerinde sağlıklı görünüyordu.
+- Bu, `healthy_count`'ı şişiriyordu; canonical drift ayrı raporlansa da sağlık sayacı gerçeği tam yansıtmıyordu.
 
 ## Yapılan Değişiklikler
-- `scripts/product_state_sync.py`
-  - `canonical_target_vercel_url()` eklendi: canlı / ready_for_payment ürünlerde canonical hedefi slug’dan türetiyor, ideal URL’yi sadece slug yoksa fallback olarak kullanıyor.
-  - `display_vercel_url()` eklendi: canlı ürünlerde URL boşsa canonical hedefi gösteriyor.
-  - `health_check_url()` artık canonical hedefi önce probe ediyor.
 - `scripts/update_summary.py`
-  - `canonical_url_drift_entry()` slug-tabanlı canonical hedefi kullanacak şekilde güncellendi.
-  - `compact_product()` canlı ürünlerde boş URL yerine canonical display URL gösterecek şekilde güncellendi.
-  - `products_without_url` hesabı canonical hedefi olan canlı ürünleri yanlışlıkla missing saymayacak şekilde düzeltildi.
-- Testler
-  - `tests/test_product_state_sync.py`: canonical-first health probe ve live URL’siz canonical fallback regresyonları eklendi.
-  - `tests/test_update_summary.py`: slug bazlı canonical drift ve live URL’siz display regression’ları eklendi.
-- `STATE_SUMMARY.json`
-  - Yeni kurala göre yeniden üretildi; artık slug canonical drift’i görünür durumda.
+  - `is_healthy()` canonical drift-aware hale getirildi.
+  - Live ürün artık sadece `health_status=healthy` ve `200` döndüğü için değil, public URL canonical reality ile de uyumluysa sağlıklı sayılıyor.
+- `scripts/health_check.py`
+  - `needs_fix_count` çift sayımı kaldırıldı; canonical drift artık health sayısına dahil olduğu için fix sayacı `unhealthy_count` ile uyumlu.
+- `tests/test_update_summary.py`
+  - Canonical drift'li live ürünlerin sağlıklı sayılmaması için regresyon testleri güncellendi.
+- Üretilen dosyalar yenilendi:
+  - `STATE_SUMMARY.json`
+  - `STATE.json`
+  - `analysis/oneri.md`
+  - `analysis/sorun_analizi.md`
+  - `analysis/codex_task.md`
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py scripts/health_check.py scripts/update_summary.py tests/test_product_state_sync.py tests/test_health_check.py tests/test_update_summary.py`
+- `python3 -m py_compile scripts/update_summary.py scripts/health_check.py tests/test_update_summary.py`
 - `PYTHONPATH=. python3 -m pytest -q tests/test_product_state_sync.py tests/test_health_check.py tests/test_update_summary.py`
+- `python3 scripts/health_check.py`
 - `python3 scripts/update_summary.py`
+- `python3 scripts/refresh_codex_context.py`
 - Sonuç: `21 passed`
 
 ## Sonuç / Etki
-- Canlı ürünlerde canonical URL, preview alias’ın arkasına saklanmıyor.
-- Summary artık live preview alias’ları canonical drift olarak işaretliyor.
-- Güncel `STATE_SUMMARY.json` canonical drift sayısı: 8.
+- `STATE_SUMMARY.json` artık canonical drift'i sağlık sayısına yediriyor.
+- Güncel özet: `72/78` healthy, `6` unhealthy, `4` canonical drift.
+- Canonical drift ürünleri şu an: `jwt-generator`, `webhook-tester`, `html-entity-encoder`, `timestamp-converter`.
+- `pdf-forge` ve `diffmaster` hâlâ gerçek canlı outage / auth problemi olarak kalıyor.
 
 ## Kalan Blokajlar
-- `pdf-forge` ve `diffmaster` hâlâ unhealthy.
-- Bu ikisi kodla “çözüldü” diye yazılmadı; manuel/Vercel tarafı hâlâ ayrı mesele.
+- `pdf-forge` HTTP 500
+- `diffmaster` HTTP 401
+- Bunlar kodla “çözüldü” diye yazılmadı; manuel/Vercel tarafı ayrı.

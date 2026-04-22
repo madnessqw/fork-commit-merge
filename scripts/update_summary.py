@@ -151,8 +151,14 @@ def health_code(product: dict[str, Any]) -> int | None:
 
 
 def is_healthy(product: dict[str, Any]) -> bool:
-    # Health is only trustworthy when the last probe said "healthy" and actually returned 200.
-    return product.get("health_status") == "healthy" and health_code(product) == 200
+    # A live product is only healthy when the last probe was 200 *and* the public URL
+    # already matches canonical reality. Preview-alias-only records stay in the "needs fix"
+    # bucket so summary numbers do not lie about canonical drift.
+    return (
+        product.get("health_status") == "healthy"
+        and health_code(product) == 200
+        and canonical_url_drift_entry(product) is None
+    )
 
 
 def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
