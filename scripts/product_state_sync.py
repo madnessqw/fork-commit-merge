@@ -271,6 +271,12 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         normalized["canonical_health_code"] = canonical_code
         normalized["canonical_health_status"] = raw_canonical_status
 
+    if public_code == 200 and canonical_code not in (None, 200):
+        # Canonical failed but the live fallback still answers 200. Keep the
+        # record honest so stale canonical state does not hide the reachable URL.
+        normalized["health_status"] = "alternate_healthy"
+        current_health_status = "alternate_healthy"
+
     effective_canonical_code = normalized.get("canonical_health_code")
     if effective_canonical_code == 200:
         normalized["ideal_vercel_url"] = canonical_target
