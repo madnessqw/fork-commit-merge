@@ -294,8 +294,14 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     if unhealthy:
         lines.extend(["", "## Canlı Sağlıksız Ürünler"])
         for item in unhealthy[:10]:
+            probe_url = item.get("probe_url")
+            probe_suffix = (
+                f" probe_url={probe_url}"
+                if probe_url and probe_url != item.get("url")
+                else ""
+            )
             lines.append(
-                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} url={item.get('url')}"
+                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} url={item.get('url')}{probe_suffix}"
             )
 
     if missing_checkout:

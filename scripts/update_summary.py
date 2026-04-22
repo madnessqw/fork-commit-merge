@@ -146,7 +146,8 @@ def health_code(product: dict[str, Any]) -> int | None:
 
 
 def is_healthy(product: dict[str, Any]) -> bool:
-    return product.get("health_status") == "healthy" or health_code(product) == 200
+    # Health is only trustworthy when the last probe said "healthy" and actually returned 200.
+    return product.get("health_status") == "healthy" and health_code(product) == 200
 
 
 def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
@@ -215,6 +216,11 @@ def build_summary(
                     "url": p.get("vercel_url"),
                     "code": health_code(p),
                     "health_status": p.get("health_status"),
+                    **(
+                        {"probe_url": probe_url}
+                        if (probe_url := _pick(p, "last_health_url", "health_probe_url")) is not None
+                        else {}
+                    ),
                 }
                 for p in unhealthy_live
             ],

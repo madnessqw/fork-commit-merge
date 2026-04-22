@@ -56,7 +56,8 @@ def check_product_health(product):
             code = result.stdout.strip()
 
             if code == '200':
-                return {'name': name, 'slug': slug, 'status': 'healthy', 'code': 200, 'url': url}
+                status = 'healthy' if url == candidates[0] else 'alternate_healthy'
+                return {'name': name, 'slug': slug, 'status': status, 'code': 200, 'url': url}
 
             if first_failure is None:
                 if code == '404':
@@ -126,7 +127,8 @@ def main():
                 print(f"⚠️  {result['name']}: NO URL")
             else:
                 unhealthy.append(result)
-                print(f"❌ {result['name']}: {result['status'].upper()} (HTTP {result['code']})")
+                icon = "⚠️" if result['status'] == 'alternate_healthy' else "❌"
+                print(f"{icon} {result['name']}: {result['status'].upper()} (HTTP {result['code']})")
 
     print()
     print("=== SUMMARY ===")
@@ -140,6 +142,8 @@ def main():
     for result in healthy + unhealthy + no_url:
         for p in products:
             if p.get('slug') == result['slug'] or p.get('s') == result['slug']:
+                if result.get('url'):
+                    p['last_health_url'] = result['url']
                 if result['status'] == 'healthy':
                     p['health_status'] = 'healthy'
                     p['last_health_code'] = 200

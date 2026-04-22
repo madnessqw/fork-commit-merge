@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-22 00:43 UTC
+# Codex Task — Generated 2026-04-22 01:08 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -11,7 +11,7 @@ stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyile
 Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt; manuel Vercel korumasını çözüldü gibi gösterme.
 
 ## Canlı State Özeti
-- Cycle: 1072
+- Cycle: 1073
 - Live sağlık: 75/77 (%97.4)
 - Checkout gap: 0
 - Deploy/url gap: 20

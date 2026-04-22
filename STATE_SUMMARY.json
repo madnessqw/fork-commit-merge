@@ -1,5 +1,5 @@
 {
-  "cycle": 1072,
+  "cycle": 1073,
   "mode": "DEPLOY_WAIT",
   "balance": 0.0,
   "active_count": 142,
@@ -12,7 +12,7 @@
   "spec_ready_count": 27,
   "next_action": "continue_spec_preparation",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T00:43:06.805762Z",
+  "last_updated": "2026-04-22T01:08:27.199355Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1035,13 +1035,15 @@
         "slug": "pdf-forge",
         "url": "https://pdf-forge.vercel.app",
         "code": 0,
-        "health_status": "error_500"
+        "health_status": "error_500",
+        "probe_url": "https://pdf-forge.vercel.app"
       },
       {
         "slug": "diffmaster",
         "url": "https://diffmaster.vercel.app",
         "code": 401,
-        "health_status": "unauthorized"
+        "health_status": "unauthorized",
+        "probe_url": "https://diffmaster.vercel.app"
       }
     ],
     "missing_checkout": [],

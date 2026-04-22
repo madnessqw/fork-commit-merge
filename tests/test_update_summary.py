@@ -206,6 +206,40 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_alternate_healthy_counts_as_unhealthy_and_keeps_probe_url(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Fallback Tool",
+                        "slug": "fallback-tool",
+                        "status": "live",
+                        "vercel_url": "https://fallback-tool.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-tool-preview.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 0)
+        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(
+            summary["gaps"]["unhealthy_live"],
+            [
+                {
+                    "slug": "fallback-tool",
+                    "url": "https://fallback-tool.vercel.app",
+                    "code": 200,
+                    "health_status": "alternate_healthy",
+                    "probe_url": "https://fallback-tool-preview.vercel.app",
+                }
+            ],
+        )
+
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
             is_placeholder_product(
