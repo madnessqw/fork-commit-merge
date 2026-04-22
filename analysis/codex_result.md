@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 14:45 +03
+# Codex Result — 2026-04-22 15:10 +03
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -9,37 +9,32 @@
 - `CODEBASE_MAP.md`
 - `scripts/health_check.py`
 - `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
 - `tests/test_health_check.py`
 - `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
 
 ## Ne Değişti
-- `scripts/health_check.py`
-  - Health probe artık sadece public sonucu değil, canonical probe sonucunu da taşıyor.
-  - `alternate_healthy` akışında canonical URL, canonical status ve canonical HTTP code ayrı alanlara yazılıyor.
-  - `apply_health_result` canonical target URL'yi, ideal canonical URL'yi ve canonical health timestamp'ini state'e bağlıyor.
 - `scripts/product_state_sync.py`
-  - Live / ready_for_payment kayıtları için `ideal_vercel_url` canonical slug URL'ye backfill ediliyor.
-  - Canonical health metadata (`canonical_health_*`) sync ve predeploy cleanup akışına eklendi.
-  - Predeploy kayıtlar canonical health alanlarını da temizliyor; stale canonical probe verisi sızmıyor.
-- `tests/test_health_check.py`
-  - Fallback healthy probe için canonical probe metadata regresyon testi eklendi.
-  - `apply_health_result` canonical metadata yazımı doğrulandı.
+  - `canonical_health_code == 200` olan live kayıtlar artık stale fallback/alias taşımıyorsa canonical sağlıklı kabul ediliyor.
+  - Bu durumda `health_status`, `vercel_url`, `last_health_url`, `ideal_vercel_url` ve canonical health alanları canonical slug URL’ye geri çekiliyor.
+  - Böylece eski fallback/alias state’i canonical başarıyla çelişiyorsa state artık çöp bilgi taşımıyor.
 - `tests/test_product_state_sync.py`
-  - Live preview-alias kayıtlarında canonical target backfill testi eklendi.
-  - Predeploy cleanup için canonical health alanları da doğrulandı.
+  - Stale `alternate_healthy` kaydının canonical 200 ile tekrar canonical URL’ye yükseltildiğini doğrulayan regresyon testi eklendi.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/health_check.py scripts/product_state_sync.py tests/test_health_check.py tests/test_product_state_sync.py`
-- `python3 -m unittest discover -s tests -p 'test_health_check.py'`
-- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- `python3 -m unittest discover -s tests -p 'test_*.py'` → 61 test geçti
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `python3 -m unittest discover -s tests -p 'test_*.py'` → 62 test geçti
+- Secret scan: değişen dosyalarda `sk_ / pk_ / ghp_ / api_key` yok
 
 ## Sonuç
-- Live ürünlerde public sağlık ile canonical gerçeklik artık ayrı ama birlikte saklanıyor.
-- `alternate_healthy` artık canonical failure bilgisini kaybetmiyor.
-- Live state, canonical URL hedefini health refresh beklemeden de taşıyor.
+- Health sync artık canonical URL tekrar sağlıklı olduğunda fallback alias’a yapışıp kalmıyor.
+- `health_check.py` ve `update_summary.py` bu düzeltmeyi `sync_state_snapshot()` üzerinden otomatik miras alıyor.
+- Canonical/vercel state drift’i daha az çöp veri üretir hale geldi.
 
 ## Kalan Blokerler
 - Kod tarafında yok.
-- Vercel tarafındaki gerçek canonical 404/451 sorunları hâlâ dış sistem meselesi; script bunları sihirle çözmez.
+- Canlı prod state’teki mevcut sağlık / Vercel limit sorunları dış sistem meselesi; bu patch onları çözmüyor, sadece sync’i dürüst tutuyor.

@@ -261,6 +261,21 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     except (TypeError, ValueError):
         public_code = None
 
+    if canonical_code == 200:
+        normalized["ideal_vercel_url"] = canonical_target
+        normalized["canonical_health_url"] = canonical_target
+        normalized["canonical_health_checked_at"] = canonical_checked_at
+        normalized["canonical_health_code"] = 200
+        normalized["canonical_health_status"] = "healthy"
+        normalized["health_status"] = "healthy"
+        normalized["last_health_code"] = 200
+        normalized["last_health_url"] = canonical_target
+        normalized["last_health_check"] = canonical_checked_at
+        normalized["health_checked_at"] = canonical_checked_at
+        if canonical_target is not None:
+            normalized["vercel_url"] = canonical_target
+        return normalized
+
     if canonical_code is not None:
         normalized["canonical_health_code"] = canonical_code
         normalized["canonical_health_status"] = raw_canonical_status or _health_status_for_code(canonical_code)
