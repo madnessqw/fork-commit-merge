@@ -52,6 +52,8 @@ def _status_for_http_code(code):
         return "healthy"
     if http_code == 401:
         return "unauthorized"
+    if http_code == 402:
+        return "deployment_disabled"
     if http_code == 404:
         return "not_found"
     if http_code == 0:

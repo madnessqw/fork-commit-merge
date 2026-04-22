@@ -106,6 +106,24 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["code"], 451)
         self.assertIn("checked_at", result)
 
+    @patch("scripts.health_check.subprocess.run")
+    def test_deployment_disabled_http_402_is_reported_explicitly(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="402")
+
+        result = check_product_health(
+            {
+                "name": "Blocked Tool",
+                "slug": "blocked-tool",
+                "status": "live",
+                "vercel_url": "https://blocked-tool.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "deployment_disabled")
+        self.assertEqual(result["code"], 402)
+        self.assertEqual(result["url"], "https://blocked-tool.vercel.app")
+        self.assertEqual(run_mock.call_count, 1)
+
     def test_alternate_healthy_result_syncs_public_url(self) -> None:
         product = {
             "name": "Fallback Tool",

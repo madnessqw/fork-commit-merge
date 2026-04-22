@@ -31,6 +31,7 @@ HEALTHY_URL_STATUSES = {"healthy", "alternate_healthy"}
 FAILURE_HEALTH_STATUS_BY_CODE = {
     0: "timeout",
     401: "unauthorized",
+    402: "deployment_disabled",
     404: "not_found",
 }
 HEALTH_METADATA_FIELDS = (

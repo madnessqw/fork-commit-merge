@@ -14,3 +14,5 @@
 {"run_id": "codex-20260422-1510", "mode": "EXECUTION", "task": "canonical health recovery", "status": "done", "slug": "canonical-health-recovery", "duration_min": 26, "cost_est": 0.07, "cycle": 1093}
 {"run_id": "codex-20260422-1243", "mode": "EXECUTION", "task": "surface canonical drift in Codex context", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1094, "ts": "2026-04-22T12:43:11Z"}
 {"run_id":"codex-20260422-1444","mode":"EXECUTION","task":"outage-focused codex context","status":"done","slug":"health-canonical-drift","duration_min":12,"cost_est":0.04,"cycle":1102,"ts":"2026-04-22T14:44:58Z"}
+{"run_id":"codex-20260422-1840","mode":"EXECUTION","task":"preserve alternate healthy fallback","status":"done","slug":"health-canonical-drift","duration_min":18,"cost_est":0.05,"cycle":1105,"ts":"2026-04-22T15:40:06Z"}
+{"run_id": "codex-20260422-1909", "mode": "EXECUTION", "task": "classify live 402 as deployment_disabled", "status": "done", "slug": "html-entity-encoder", "duration_min": 28, "cost_est": 0.08, "cycle": 1107, "ts": "2026-04-22T16:09:58Z"}

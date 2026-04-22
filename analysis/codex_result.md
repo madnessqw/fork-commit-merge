@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 18:39 +03
+# Codex Result — 2026-04-22 16:10 +03
 
 ## Okunanlar
 - `skills/codex_skill.md`
@@ -7,31 +7,28 @@
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `CODEBASE_MAP.md`
-- `scripts/product_state_sync.py`
-- `scripts/update_summary.py`
 - `scripts/health_check.py`
-- `tests/test_product_state_sync.py`
-- `tests/test_update_summary.py`
+- `scripts/product_state_sync.py`
 - `tests/test_health_check.py`
+- `tests/test_product_state_sync.py`
 
 ## Ne Değişti
+- `scripts/health_check.py`
+  - HTTP `402` artık boş bir `error_402` değil, `deployment_disabled` olarak raporlanıyor.
 - `scripts/product_state_sync.py`
-  - Stale bir failure kaydı, canlı 200 fallback ile eşleştiğinde artık `alternate_healthy` durumu ezilmiyor.
-  - Final 200 branch’i raw kaydı tekrar okuyup fallback durumunu bozmak yerine normalize edilmiş durumu koruyor.
-  - Bu yüzden gerçek reachable fallback URL artık canonical alias’ın arkasına gizlenmiyor.
+  - Aynı `402 -> deployment_disabled` eşlemesi state/summary senkron tarafına da eklendi.
+- `tests/test_health_check.py`
+  - `402` için açık regresyon testi eklendi.
 - `tests/test_product_state_sync.py`
-  - `error_404 + 200 fallback` senaryosu için regresyon testi eklendi.
-  - Beklenti: `health_status=alternate_healthy`, `vercel_url=v=last_health_url=fallback URL`.
-- `tests/test_update_summary.py`
-  - Aynı stale failure + başarılı fallback senaryosu summary seviyesinde kilitlendi.
-  - Beklenti: `healthy_count=1`, `canonical_url_drift=1`, public `v` fallback URL.
+  - `html-entity-encoder` 402 senaryosu yeni health status ile kilitlendi.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
+- `python3 -m py_compile scripts/health_check.py scripts/product_state_sync.py tests/test_health_check.py tests/test_product_state_sync.py`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
 - `python3 -m unittest discover -s tests -p 'test_*.py' -v`
-- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` eşleşmesi yok
-- `git diff --check`
+- Dry-run kontrolü: current `STATE.json` üzerinden `build_summary(...)` artık `html-entity-encoder` için `health_status=deployment_disabled` üretiyor.
 
 ## Kalan Blokerler
-- `html-entity-encoder` için gerçek canlı outage hâlâ var: HTTP `402`.
-- Kod artık bu tür reachable fallback kayıtlarını yanlışlıkla `healthy` diye gizlemiyor; ama 402’yi çözmek için hâlâ manuel Vercel tarafı işi gerekiyor.
+- `html-entity-encoder` canlı deployment hâlâ Vercel tarafında `HTTP 402` / `DEPLOYMENT_DISABLED` dönüyor.
+- Bu turda kod, bu blokajı daha doğru isimlendirdi; ama Vercel tarafı manuel düzeltme olmadan ürün yine healthy olamaz.

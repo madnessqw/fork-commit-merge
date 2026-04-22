@@ -382,7 +382,7 @@ class ProductStateSyncTests(unittest.TestCase):
                 "slug": "html-entity-encoder",
                 "status": "live",
                 "vercel_url": "https://html-entity-encoder.vercel.app",
-                "health_status": "error_402",
+                "health_status": "deployment_disabled",
                 "last_health_code": 402,
                 "last_health_url": "https://html-entity-encoder.vercel.app",
                 "canonical_health_code": 0,
@@ -392,10 +392,10 @@ class ProductStateSyncTests(unittest.TestCase):
             None,
         )
 
-        self.assertEqual(merged["health_status"], "error_402")
+        self.assertEqual(merged["health_status"], "deployment_disabled")
         self.assertEqual(merged["last_health_code"], 402)
         self.assertEqual(merged["canonical_health_code"], 402)
-        self.assertEqual(merged["canonical_health_status"], "error_402")
+        self.assertEqual(merged["canonical_health_status"], "deployment_disabled")
         self.assertEqual(merged["canonical_health_url"], "https://html-entity-encoder.vercel.app")
         self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
 
