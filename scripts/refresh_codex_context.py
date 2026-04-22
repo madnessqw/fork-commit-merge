@@ -428,10 +428,16 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
             if probe_url and probe_url != item.get("url")
             else ""
         )
+        effective_url = item.get("effective_url")
+        effective_suffix = (
+            f" effective_url={effective_url}"
+            if effective_url and effective_url not in {item.get("url"), probe_url}
+            else ""
+        )
         canonical_suffix = f" {' '.join(canonical_bits)}" if canonical_bits else ""
         return (
             f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} "
-            f"url={item.get('url')}{probe_suffix}{canonical_suffix}"
+            f"url={item.get('url')}{probe_suffix}{effective_suffix}{canonical_suffix}"
         )
 
     lines = [

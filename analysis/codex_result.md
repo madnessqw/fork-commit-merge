@@ -1,3 +1,34 @@
+# Codex Result — 2026-04-22 22:39 +03
+
+## Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/refresh_codex_context.py`
+- `tests/test_refresh_codex_context.py`
+
+## Ne Değişti
+- `scripts/refresh_codex_context.py`
+  - Canlı sağlıksız ürünlerin render çıktısına `effective_url` bilgisi eklendi.
+  - Böylece redirect zinciri yaşayan outage kayıtlarında gerçek probe hedefi ile final effective URL aynı satırda görünüyor.
+- `tests/test_refresh_codex_context.py`
+  - `render_sorun_analizi` için `effective_url` regresyon testi eklendi.
+
+## Doğrulamalar
+- `python3 -m py_compile scripts/refresh_codex_context.py tests/test_refresh_codex_context.py`
+- `python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py' -v`
+- Secret scan: değiştirilen dosyalarda secret-like marker eşleşmesi yok.
+
+## Kalan Blokerler
+- Kod tarafında açık blokaj yok.
+- Live outage'lar hâlâ Vercel tarafında gerçek outage; otomasyon bunları sadece doğru raporlar.
+
 # Codex Result — 2026-04-22 22:07 +03
 
 ## Okunanlar

@@ -302,6 +302,7 @@ class RefreshCodexContextTests(unittest.TestCase):
                         "health_status": "unauthorized",
                         "url": "https://fallback-stale-error-preview.vercel.app",
                         "probe_url": "https://fallback-stale-error.vercel.app",
+                        "effective_url": "https://fallback-stale-error-final.vercel.app",
                         "canonical_url": "https://fallback-stale-error.vercel.app",
                         "canonical_code": 404,
                         "canonical_status": "not_found",
@@ -324,6 +325,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         )
 
         self.assertIn("canonical_url=https://fallback-stale-error.vercel.app", rendered)
+        self.assertIn("effective_url=https://fallback-stale-error-final.vercel.app", rendered)
         self.assertIn("canonical_code=404", rendered)
         self.assertIn("canonical_status=not_found", rendered)
 
