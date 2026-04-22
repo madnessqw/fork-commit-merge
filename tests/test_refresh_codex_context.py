@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 from scripts import refresh_codex_context
-from scripts.refresh_codex_context import determine_focus, render_codex_task
+from scripts.refresh_codex_context import determine_focus, render_codex_task, render_oneri
 
 
 class RefreshCodexContextTests(unittest.TestCase):
@@ -120,6 +120,38 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "health_pending")
         self.assertIn("health snapshot bekliyor", focus.summary)
 
+    def test_focus_prefers_deploy_readiness_over_generic_url_gaps(self) -> None:
+        summary = {
+            "live_count": 10,
+            "healthy_count": 10,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 0,
+            "deploy_readiness_count": 1,
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": ["agent-prompt-engineer"],
+                "canonical_url_drift": [],
+                "deploy_readiness": [
+                    {
+                        "slug": "agent-prompt-engineer",
+                        "manifest_problem": "missing",
+                        "missing_manifest_fields": ["tagline", "description"],
+                        "missing_url_fields": ["vercel_url", "checkout_url"],
+                        "missing_state_fields": ["payment_provider"],
+                    }
+                ],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "deploy_readiness")
+        self.assertIn("manifest=missing", focus.summary)
+        self.assertIn("Eksik manifest/URL/state alanlarını raporla", focus.codex_task_body)
+
     def test_focus_live_health_mentions_canonical_drift_when_present(self) -> None:
         summary = {
             "live_count": 10,
@@ -208,6 +240,49 @@ class RefreshCodexContextTests(unittest.TestCase):
 
         self.assertEqual(focus.key, "checkout_field_inconsistency")
         self.assertIn("metadata", focus.summary)
+
+    def test_rendered_deploy_readiness_sections_include_missing_fields(self) -> None:
+        summary = {
+            "cycle": 1108,
+            "mode": "OPTIMIZE",
+            "live_count": 10,
+            "healthy_count": 10,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 0,
+            "deploy_readiness_count": 1,
+            "deploy_readiness_manifest_gap_count": 1,
+            "deploy_readiness_url_gap_count": 1,
+            "deploy_readiness_state_gap_count": 1,
+            "spec_ready_count": 11,
+            "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+                "deploy_readiness": [
+                    {
+                        "slug": "agent-prompt-engineer",
+                        "manifest_problem": "missing",
+                        "missing_manifest_fields": ["tagline", "description"],
+                        "missing_url_fields": ["vercel_url", "checkout_url"],
+                        "missing_state_fields": ["payment_provider"],
+                    }
+                ],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+        rendered_oneri = render_oneri(summary, [], focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc))
+        rendered_task = render_codex_task(summary, focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc))
+
+        self.assertIn("Deploy readiness gap", rendered_oneri)
+        self.assertIn("Deploy Readiness Issues", rendered_oneri)
+        self.assertIn("agent-prompt-engineer", rendered_oneri)
+        self.assertIn("Deploy readiness gap", rendered_task)
+        self.assertIn("manifest/URL/state", rendered_task)
 
     def test_focus_prefers_canonical_drift_when_health_is_clean(self) -> None:
         summary = {
@@ -299,16 +374,17 @@ class RefreshCodexContextTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            summary_file.write_text(json.dumps(summary), encoding="utf-8")
 
             with patch.object(refresh_codex_context, "STATE_FILE", state_file), patch.object(
                 refresh_codex_context, "SUMMARY_FILE", summary_file
-            ), patch.object(refresh_codex_context, "load_product_catalog", return_value={}), patch.object(
-                refresh_codex_context, "build_summary", return_value=summary
-            ) as build_mock, patch.object(refresh_codex_context.subprocess, "run", return_value=Mock(returncode=1)) as run_mock:
+            ), patch.object(refresh_codex_context.subprocess, "run", return_value=Mock(returncode=1)) as run_mock, patch.object(
+                refresh_codex_context, "build_summary"
+            ) as build_mock:
                 loaded = refresh_codex_context.load_summary()
 
             self.assertEqual(loaded, summary)
-            build_mock.assert_called_once()
+            build_mock.assert_not_called()
             self.assertTrue(run_mock.called)
             audit_args = run_mock.call_args[0][0]
             self.assertIn("audit_portfolio_health.py", audit_args[1])

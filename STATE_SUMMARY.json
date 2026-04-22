@@ -1,20 +1,24 @@
 {
-  "cycle": 1102,
+  "cycle": 1108,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 144,
   "live_count": 91,
-  "healthy_count": 90,
-  "unhealthy_count": 1,
+  "healthy_count": 84,
+  "unhealthy_count": 7,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 3,
+  "deploy_missing_or_bad_url": 9,
   "canonical_url_drift": 0,
   "spec_ready_count": 11,
-  "needs_fix_count": 1,
-  "next_action": "Vercel limit reseti bekle (~12 saat) veya manuel dashboard kontrolü yap",
+  "deploy_readiness_count": 5,
+  "deploy_readiness_manifest_gap_count": 3,
+  "deploy_readiness_url_gap_count": 5,
+  "deploy_readiness_state_gap_count": 5,
+  "needs_fix_count": 7,
+  "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T14:44:56.027111Z",
+  "last_updated": "2026-04-22T17:49:49.011468Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -307,7 +311,7 @@
       "n": "CronCraft",
       "s": "croncraft",
       "st": "ready_for_payment",
-      "v": "https://croncraft-zeta.vercel.app",
+      "v": "https://croncraft.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202"
     },
     {
@@ -1032,16 +1036,166 @@
     ],
     "unhealthy_live": [
       {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator.vercel.app",
+        "code": 500,
+        "health_status": "error_500",
+        "probe_url": "https://jwt-generator.vercel.app"
+      },
+      {
+        "slug": "pdf-forge",
+        "url": "https://pdf-forge.vercel.app",
+        "code": 500,
+        "health_status": "error_500",
+        "probe_url": "https://pdf-forge.vercel.app"
+      },
+      {
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester.vercel.app",
+        "code": 404,
+        "health_status": "not_found",
+        "probe_url": "https://webhook-tester.vercel.app"
+      },
+      {
+        "slug": "email-validator-pro",
+        "url": "https://email-validator-pro.vercel.app",
+        "code": 404,
+        "health_status": "not_found",
+        "probe_url": "https://email-validator-pro.vercel.app"
+      },
+      {
+        "slug": "diffmaster",
+        "url": "https://diffmaster.vercel.app",
+        "code": 401,
+        "health_status": "unauthorized",
+        "probe_url": "https://diffmaster.vercel.app"
+      },
+      {
         "slug": "html-entity-encoder",
         "url": "https://html-entity-encoder.vercel.app",
         "code": 402,
-        "health_status": "error_402",
+        "health_status": "deployment_disabled",
         "probe_url": "https://html-entity-encoder.vercel.app"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter.vercel.app",
+        "code": 451,
+        "health_status": "error_451",
+        "probe_url": "https://timestamp-converter.vercel.app"
       }
     ],
     "pending_health": [],
     "missing_checkout": [],
-    "canonical_url_drift": []
+    "canonical_url_drift": [],
+    "deploy_readiness": [
+      {
+        "slug": "csv-to-sql-pro",
+        "name": "CSV to SQL Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/csv-to-sql-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "spec_version"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle",
+          "lemonsqueezy_product_id"
+        ]
+      },
+      {
+        "slug": "json-to-csv-pro",
+        "name": "JSON to CSV Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/json-to-csv-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "spec_version"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle",
+          "lemonsqueezy_product_id"
+        ]
+      },
+      {
+        "slug": "url-parser-pro",
+        "name": "URL Parser Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/url-parser-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "spec_version"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle",
+          "lemonsqueezy_product_id"
+        ]
+      },
+      {
+        "slug": "agent-prompt-engineer",
+        "name": "Agent Prompt Engineer",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/agent-prompt-engineer/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle",
+          "lemonsqueezy_product_id"
+        ]
+      },
+      {
+        "slug": "browser-use-studio",
+        "name": "Browser Use Studio",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/browser-use-studio/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle",
+          "lemonsqueezy_product_id"
+        ]
+      }
+    ]
   },
   "canonical_url_drift_products": []
 }

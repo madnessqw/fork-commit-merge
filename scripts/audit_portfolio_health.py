@@ -9,6 +9,11 @@ doesn't rot into another broken breadcrumb.
 from __future__ import annotations
 
 import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts.health_check import main as health_check_main
 

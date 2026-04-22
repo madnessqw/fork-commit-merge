@@ -315,6 +315,45 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["canonical_url_drift_products"], [])
         self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
 
+    def test_deploy_readiness_report_is_included_in_summary(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Agent Prompt Engineer",
+                        "slug": "agent-prompt-engineer",
+                        "status": "spec_ready",
+                    }
+                ]
+            }
+        }
+        readiness = {
+            "count": 1,
+            "manifest_gap_count": 1,
+            "url_gap_count": 1,
+            "state_gap_count": 1,
+            "issues": [
+                {
+                    "slug": "agent-prompt-engineer",
+                    "name": "Agent Prompt Engineer",
+                    "manifest_problem": "missing",
+                    "missing_manifest_fields": ["tagline"],
+                    "missing_url_fields": ["vercel_url"],
+                    "missing_state_fields": ["payment_provider"],
+                }
+            ],
+        }
+
+        with patch.object(update_summary, "collect_spec_ready_deploy_readiness", return_value=readiness) as readiness_mock:
+            summary = build_summary(state)
+
+        readiness_mock.assert_called_once()
+        self.assertEqual(summary["deploy_readiness_count"], 1)
+        self.assertEqual(summary["deploy_readiness_manifest_gap_count"], 1)
+        self.assertEqual(summary["deploy_readiness_url_gap_count"], 1)
+        self.assertEqual(summary["deploy_readiness_state_gap_count"], 1)
+        self.assertEqual(summary["gaps"]["deploy_readiness"], readiness["issues"])
+
     def test_live_product_without_explicit_url_uses_slug_canonical_display(self) -> None:
         state = {
             "products": {

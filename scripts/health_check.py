@@ -185,8 +185,9 @@ def check_product_health(product):
 def main():
     # Load state
     with open('STATE.json', encoding='utf-8') as f:
-        state = json.load(f)
+        raw_state = json.load(f)
 
+    state = raw_state
     products = state.get('products', {}).get('active', [])
     synced_products = sync_state_products(products, load_product_catalog())
     synced_by_slug = {
@@ -253,7 +254,7 @@ def main():
 
     product_catalog = load_product_catalog()
     state = sync_state_snapshot(state, product_catalog=product_catalog)
-    summary = build_summary(state, product_catalog=product_catalog)
+    summary = build_summary(state, product_catalog=product_catalog, raw_state=raw_state)
 
     # Save state
     state = apply_summary_fields(state, summary)

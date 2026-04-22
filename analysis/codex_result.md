@@ -1,3 +1,54 @@
+# Codex Result — 2026-04-22 17:50 +03
+
+## Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE.json`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/audit_portfolio_health.py`
+- `scripts/deploy_readiness.py`
+- `scripts/update_summary.py`
+- `scripts/health_check.py`
+- `scripts/refresh_codex_context.py`
+- `tests/test_deploy_readiness.py`
+- `tests/test_update_summary.py`
+- `tests/test_refresh_codex_context.py`
+
+## Ne Değişti
+- `scripts/deploy_readiness.py`
+  - Spec-ready ürünler için read-only deploy readiness validator eklendi.
+  - Manifest, URL ve raw state eksikleri ayrı ayrı raporlanıyor.
+- `scripts/update_summary.py`
+  - Summary artık deploy-readiness metriklerini ve issue listesini üretiyor.
+  - `STATE.json` içindeki spec-ready backlog için gerçek eksik alanlar görünür oldu.
+- `scripts/health_check.py`
+  - Summary üretirken deploy-readiness sinyalini koruyacak şekilde raw state akışı eklendi.
+- `scripts/refresh_codex_context.py`
+  - Canlı summary dosyasını fast-path ile okuyor.
+  - `analysis/oneri.md`, `analysis/sorun_analizi.md` ve `analysis/codex_task.md` içinde deploy-readiness bölümü artık context'e giriyor.
+- `scripts/audit_portfolio_health.py`
+  - `scripts.health_check` import’u için root path düzeltildi; traceback bitti.
+- `tests/test_deploy_readiness.py`
+  - Yeni validator için missing manifest ve mevcut manifest senaryoları kilitlendi.
+- `tests/test_update_summary.py`
+  - Deploy-readiness raporunun summary'ye girdiği test edildi.
+- `tests/test_refresh_codex_context.py`
+  - Deploy-readiness focus ve rendered analysis section'ları için regresyon testleri eklendi.
+
+## Doğrulamalar
+- `python3 -m py_compile scripts/audit_portfolio_health.py scripts/deploy_readiness.py scripts/update_summary.py scripts/health_check.py scripts/refresh_codex_context.py tests/test_deploy_readiness.py tests/test_update_summary.py tests/test_refresh_codex_context.py`
+- `python3 -m unittest discover -s tests -p 'test_*.py' -v`
+- Secret scan: değiştirilen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` tarandı; eşleşme yok.
+
+## Kalan Blokerler
+- Deploy-readiness validator artık eksikleri raporluyor; ama `browser-use-studio`, `agent-prompt-engineer` ve kardeş spec-ready ürünlerde eksik manifest/URL/state alanları duruyor.
+- Health check sonrası canlı portföyde 7 gerçek outage var; generated Codex task şu anda live_health'e döndü.
+- Manuel Vercel/LemonSqueezy aksiyonları kodla "çözülmüş" gibi yazılmadı; sadece açıkça raporlandı.
+
+
 # Codex Result — 2026-04-22 16:10 +03
 
 ## Okunanlar

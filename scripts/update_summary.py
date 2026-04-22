@@ -20,6 +20,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.checkout_metadata import get_checkout_url
+from scripts.deploy_readiness import collect_spec_ready_deploy_readiness
 from scripts.product_state_sync import (
     canonical_target_vercel_url,
     display_vercel_url,
@@ -46,6 +47,10 @@ SUMMARY_STATE_FIELDS = (
     "canonical_url_drift",
     "canonical_url_drift_products",
     "spec_ready_count",
+    "deploy_readiness_count",
+    "deploy_readiness_manifest_gap_count",
+    "deploy_readiness_url_gap_count",
+    "deploy_readiness_state_gap_count",
     "needs_fix_count",
     "last_updated",
 )
@@ -223,6 +228,7 @@ def build_summary(
     state: dict[str, Any],
     *,
     product_catalog: dict[str, dict[str, Any]] | None = None,
+    raw_state: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     active, external_spec_ready = load_products(state, product_catalog=product_catalog)
     live = [p for p in active if p.get("status") == "live"]
@@ -234,6 +240,8 @@ def build_summary(
         if (drift := canonical_url_drift_entry(p)) is not None
     ]
     pending_health_live = [p for p in live if is_pending_health(p)]
+    readiness_source = raw_state or state
+    readiness = collect_spec_ready_deploy_readiness(readiness_source)
 
     products_without_url = [
         p
@@ -262,6 +270,10 @@ def build_summary(
         "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live) + len(pending_health_live),
         "canonical_url_drift": len(canonical_drift_live),
         "spec_ready_count": spec_ready_total,
+        "deploy_readiness_count": readiness["count"],
+        "deploy_readiness_manifest_gap_count": readiness["manifest_gap_count"],
+        "deploy_readiness_url_gap_count": readiness["url_gap_count"],
+        "deploy_readiness_state_gap_count": readiness["state_gap_count"],
         "needs_fix_count": len(unhealthy_live) + len(pending_health_live),
         "next_action": state.get("next_action"),
         "vercel_auth_issue": state.get("vercel_auth_issue"),
@@ -294,6 +306,7 @@ def build_summary(
             ],
             "missing_checkout": [p.get("slug") for p in checkout_gap_live],
             "canonical_url_drift": canonical_drift_live,
+            "deploy_readiness": readiness["issues"],
         },
         "canonical_url_drift_products": [item.get("slug") for item in canonical_drift_live if item.get("slug")],
     }
@@ -307,9 +320,9 @@ def persist_summary(summary: dict[str, Any], *, summary_file: Path | None = None
 
 def main() -> int:
     product_catalog = load_product_catalog()
-    state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    state = sync_state_snapshot(state, product_catalog=product_catalog)
-    summary = build_summary(state, product_catalog=product_catalog)
+    raw_state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    state = sync_state_snapshot(raw_state, product_catalog=product_catalog)
+    summary = build_summary(state, product_catalog=product_catalog, raw_state=raw_state)
     state = apply_summary_fields(state, summary)
     STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     persist_summary(summary)

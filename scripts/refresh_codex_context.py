@@ -63,8 +63,16 @@ def refresh_live_health() -> None:
 
 def load_summary() -> dict[str, Any]:
     refresh_live_health()
+    if SUMMARY_FILE.exists():
+        try:
+            summary = json.loads(SUMMARY_FILE.read_text(encoding="utf-8"))
+            if isinstance(summary, dict):
+                return summary
+        except json.JSONDecodeError:
+            pass
+
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    summary = build_summary(state, product_catalog=load_product_catalog())
+    summary = build_summary(state, product_catalog=load_product_catalog(), raw_state=state)
     _write_summary(summary)
     return summary
 
@@ -112,6 +120,7 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
     if unhealthy_live:
         sample = unhealthy_live[0]
@@ -207,6 +216,35 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
             ),
         )
 
+    if deploy_readiness:
+        sample = deploy_readiness[0]
+        slug = sample.get("slug") or "unknown"
+        manifest_problem = sample.get("manifest_problem")
+        manifest_missing = ", ".join(sample.get("missing_manifest_fields", [])) or "none"
+        url_missing = ", ".join(sample.get("missing_url_fields", [])) or "none"
+        state_missing = ", ".join(sample.get("missing_state_fields", [])) or "none"
+        manifest_clause = (
+            f" manifest={manifest_problem}"
+            if manifest_problem
+            else f" manifest eksikleri: {manifest_missing}"
+        )
+        return Focus(
+            key="deploy_readiness",
+            title="Spec-ready deploy readiness gap",
+            summary=(
+                f"{len(deploy_readiness)} spec-ready ürün hâlâ deploy-ready değil; "
+                f"ilk örnek `{slug}`{manifest_clause}."
+            ),
+            codex_task_title="Spec-ready deploy readiness doğrulaması",
+            codex_task_body=(
+                "Spec-ready ürünleri deploy-ready saymadan önce read-only bir validator ile tara. "
+                "Eksik manifest/URL/state alanlarını raporla; manuel Vercel/LemonSqueezy adımlarını "
+                "çözülmüş gibi yazma. "
+                f"İlk örnekte manifest eksikleri: {manifest_missing}; URL eksikleri: {url_missing}; "
+                f"state eksikleri: {state_missing}."
+            ),
+        )
+
     if grouped.get("checkout_field_inconsistency"):
         return Focus(
             key="checkout_field_inconsistency",
@@ -278,6 +316,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     unresolved = top_issues(issues)
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
+    deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
     lines = [
         f"# Codex Analiz Özeti — {now.strftime('%Y-%m-%d %H:%M')} UTC",
         "",
@@ -287,6 +326,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         f"- Live sağlık: **{summary.get('healthy_count')}/{summary.get('live_count')}** (%{health_percent:.1f})",
         f"- Health pending: **{summary.get('pending_health_count', 0)}**",
         f"- Checkout gap: **{summary.get('checkout_gap_count')}**",
+        f"- Deploy readiness gap: **{summary.get('deploy_readiness_count', 0)}**",
         f"- Deploy/url gap: **{summary.get('deploy_missing_or_bad_url')}**",
         f"- Canonical drift: **{summary.get('canonical_url_drift', 0)}**",
         f"- Spec-ready: **{summary.get('spec_ready_count')}**",
@@ -323,6 +363,25 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                 f"- `{item.get('slug')}` — status={item.get('health_status')} url={item.get('url')}"
             )
 
+    if deploy_readiness:
+        lines.extend(["", "## Deploy Readiness Issues"])
+        lines.append(
+            f"- Count: **{summary.get('deploy_readiness_count', len(deploy_readiness))}** "
+            f"| Manifest gaps: **{summary.get('deploy_readiness_manifest_gap_count', 0)}** "
+            f"| URL gaps: **{summary.get('deploy_readiness_url_gap_count', 0)}** "
+            f"| State gaps: **{summary.get('deploy_readiness_state_gap_count', 0)}**"
+        )
+        for item in deploy_readiness[:10]:
+            manifest_problem = item.get("manifest_problem")
+            manifest_missing = ", ".join(item.get("missing_manifest_fields", [])) or "none"
+            url_missing = ", ".join(item.get("missing_url_fields", [])) or "none"
+            state_missing = ", ".join(item.get("missing_state_fields", [])) or "none"
+            manifest_suffix = f" manifest={manifest_problem}" if manifest_problem else ""
+            lines.append(
+                f"- `{item.get('slug')}`{manifest_suffix} — manifest={manifest_missing}; "
+                f"url={url_missing}; state={state_missing}"
+            )
+
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     if missing_url:
         preview = ", ".join(missing_url[:6])
@@ -345,6 +404,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
     lines = [
         f"# Sorun Analizi — Cycle {summary.get('cycle')} | {now.strftime('%Y-%m-%d %H:%M')} UTC",
@@ -356,6 +416,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
         f"- Healthy live: {summary.get('healthy_count')}/{summary.get('live_count')}",
         f"- Health pending: {summary.get('pending_health_count', 0)}",
         f"- Checkout gap: {summary.get('checkout_gap_count')}",
+        f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
         f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
         f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
         f"- Spec-ready backlog: {summary.get('spec_ready_count')}",
@@ -400,6 +461,25 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
                 f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}"
             )
 
+    if deploy_readiness:
+        lines.extend(["", "## Deploy Readiness Issues"])
+        lines.append(
+            f"- Count: {summary.get('deploy_readiness_count', len(deploy_readiness))} "
+            f"| Manifest gaps: {summary.get('deploy_readiness_manifest_gap_count', 0)} "
+            f"| URL gaps: {summary.get('deploy_readiness_url_gap_count', 0)} "
+            f"| State gaps: {summary.get('deploy_readiness_state_gap_count', 0)}"
+        )
+        for item in deploy_readiness[:10]:
+            manifest_problem = item.get("manifest_problem")
+            manifest_missing = ", ".join(item.get("missing_manifest_fields", [])) or "none"
+            url_missing = ", ".join(item.get("missing_url_fields", [])) or "none"
+            state_missing = ", ".join(item.get("missing_state_fields", [])) or "none"
+            manifest_suffix = f" manifest={manifest_problem}" if manifest_problem else ""
+            lines.append(
+                f"- `{item.get('slug')}`{manifest_suffix} — manifest={manifest_missing}; "
+                f"url={url_missing}; state={state_missing}"
+            )
+
     if issues:
         lines.extend(["", "## Açık Issue Kayıtları"])
         for issue in top_issues(issues, limit=8):
@@ -439,6 +519,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
             f"- Health pending: {summary.get('pending_health_count', 0)}",
             f"- Checkout gap: {summary.get('checkout_gap_count')}",
+            f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
             f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
             f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
             f"- Spec-ready count: {summary.get('spec_ready_count')}",
