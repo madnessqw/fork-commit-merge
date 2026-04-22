@@ -231,6 +231,57 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["canonical_url_drift_products"], [])
         self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
 
+    def test_pending_health_records_are_reported_separately(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Healthy Tool",
+                        "slug": "healthy-tool",
+                        "status": "live",
+                        "vercel_url": "https://healthy-tool.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    },
+                    {
+                        "name": "Pending Tool",
+                        "slug": "pending-tool",
+                        "status": "live",
+                        "vercel_url": "https://pending-tool.vercel.app",
+                    },
+                    {
+                        "name": "Broken Tool",
+                        "slug": "broken-tool",
+                        "status": "live",
+                        "vercel_url": "https://broken-tool.vercel.app",
+                        "health_status": "timeout",
+                        "last_health_code": 0,
+                        "last_health_url": "https://broken-tool.vercel.app",
+                    },
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["pending_health_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(summary["needs_fix_count"], 2)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 2)
+        self.assertEqual(
+            summary["gaps"]["pending_health"],
+            [
+                {
+                    "slug": "pending-tool",
+                    "url": "https://pending-tool.vercel.app",
+                    "code": None,
+                    "health_status": "pending",
+                }
+            ],
+        )
+        self.assertEqual(summary["gaps"]["unhealthy_live"][0]["slug"], "broken-tool")
+
     def test_product_catalog_preview_hash_without_state_url_uses_canonical_display(self) -> None:
         state = {
             "products": {
@@ -428,10 +479,23 @@ class UpdateSummaryTests(unittest.TestCase):
         summary = build_summary(state)
 
         self.assertEqual(summary["healthy_count"], 0)
-        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(summary["pending_health_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["deploy_missing_or_bad_url"], 1)
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["webhook-tester"])
         self.assertEqual(summary["products"][0]["v"], "https://webhook-tester.example.com")
+        self.assertEqual(
+            summary["gaps"]["pending_health"],
+            [
+                {
+                    "slug": "webhook-tester",
+                    "url": "https://webhook-tester.example.com",
+                    "code": None,
+                    "health_status": "pending",
+                }
+            ],
+        )
         self.assertEqual(
             summary["gaps"]["canonical_url_drift"],
             [

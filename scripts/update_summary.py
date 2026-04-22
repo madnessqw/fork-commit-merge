@@ -39,6 +39,7 @@ SUMMARY_STATE_FIELDS = (
     "live_count",
     "healthy_count",
     "unhealthy_count",
+    "pending_health_count",
     "checkout_gap_count",
     "missing_checkout",
     "deploy_missing_or_bad_url",
@@ -174,6 +175,17 @@ def is_healthy(product: dict[str, Any]) -> bool:
     )
 
 
+def is_pending_health(product: dict[str, Any]) -> bool:
+    """Return True when a live record has no health snapshot yet."""
+    if health_code(product) is not None:
+        return False
+
+    status = _pick(product, "health_status")
+    if isinstance(status, str):
+        status = status.strip() or None
+    return status is None or status == "pending"
+
+
 def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
     ideal_url = canonical_target_vercel_url(product)
     current_url = _normalize_url(display_vercel_url(product))
@@ -201,7 +213,7 @@ def apply_summary_fields(state: dict[str, Any], summary: dict[str, Any]) -> dict
         if field == "missing_checkout":
             state[field] = summary["checkout_gap_count"]
         elif field == "needs_fix_count":
-            state[field] = summary["unhealthy_count"]
+            state[field] = summary["needs_fix_count"]
         else:
             state[field] = summary[field]
     return state
@@ -221,6 +233,7 @@ def build_summary(
         for p in live
         if (drift := canonical_url_drift_entry(p)) is not None
     ]
+    pending_health_live = [p for p in live if is_pending_health(p)]
 
     products_without_url = [
         p
@@ -228,7 +241,7 @@ def build_summary(
         if p.get("status") in {"live", "ready_for_payment", "spec_ready"}
         and not display_vercel_url(p)
     ]
-    unhealthy_live = [p for p in live if not is_healthy(p)]
+    unhealthy_live = [p for p in live if not is_healthy(p) and not is_pending_health(p)]
     checkout_gap_live = [p for p in live + ready_for_payment if not has_checkout(p)]
     spec_ready_total = len({p.get("slug") for p in [*external_spec_ready, *spec_ready_inside_active] if p.get("slug")})
 
@@ -240,13 +253,16 @@ def build_summary(
         "live_count": len(live),
         "healthy_count": sum(1 for p in live if is_healthy(p)),
         "unhealthy_count": len(unhealthy_live),
+        "pending_health_count": len(pending_health_live),
         "checkout_gap_count": len(checkout_gap_live),
         # Deploy/URL gaps cover missing URLs plus broken live records. Canonical
         # drift stays separate so alias-only products do not inflate the deploy
-        # backlog.
-        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live),
+        # backlog. Pending health snapshots are also counted here so stale live
+        # records do not disappear from the operational attention score.
+        "deploy_missing_or_bad_url": len(products_without_url) + len(unhealthy_live) + len(pending_health_live),
         "canonical_url_drift": len(canonical_drift_live),
         "spec_ready_count": spec_ready_total,
+        "needs_fix_count": len(unhealthy_live) + len(pending_health_live),
         "next_action": state.get("next_action"),
         "vercel_auth_issue": state.get("vercel_auth_issue"),
         "last_updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
@@ -266,6 +282,15 @@ def build_summary(
                     ),
                 }
                 for p in unhealthy_live
+            ],
+            "pending_health": [
+                {
+                    "slug": p.get("slug"),
+                    "url": display_vercel_url(p),
+                    "code": health_code(p),
+                    "health_status": "pending",
+                }
+                for p in pending_health_live
             ],
             "missing_checkout": [p.get("slug") for p in checkout_gap_live],
             "canonical_url_drift": canonical_drift_live,

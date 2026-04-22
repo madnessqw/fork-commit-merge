@@ -9,6 +9,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         summary = {
             "live_count": 10,
             "healthy_count": 9,
+            "pending_health_count": 0,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 1,
             "gaps": {
@@ -38,10 +39,87 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "live_health")
         self.assertIn("broken-live-tool", focus.summary)
 
+    def test_focus_live_health_mentions_pending_health_when_present(self) -> None:
+        summary = {
+            "live_count": 10,
+            "healthy_count": 8,
+            "pending_health_count": 2,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 2,
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "broken-live-tool",
+                        "code": 401,
+                        "health_status": "unauthorized",
+                        "url": "https://broken-live-tool.vercel.app",
+                    }
+                ],
+                "pending_health": [
+                    {
+                        "slug": "pending-tool-a",
+                        "code": None,
+                        "health_status": "pending",
+                        "url": "https://pending-tool-a.vercel.app",
+                    },
+                    {
+                        "slug": "pending-tool-b",
+                        "code": None,
+                        "health_status": "pending",
+                        "url": "https://pending-tool-b.vercel.app",
+                    },
+                ],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "live_health")
+        self.assertIn("2 canlı ürün health snapshot bekliyor", focus.summary)
+        self.assertIn("health snapshot bekliyor", focus.codex_task_body)
+
+    def test_focus_uses_pending_health_when_no_outages_exist(self) -> None:
+        summary = {
+            "live_count": 10,
+            "healthy_count": 8,
+            "pending_health_count": 2,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 2,
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [
+                    {
+                        "slug": "pending-tool-a",
+                        "code": None,
+                        "health_status": "pending",
+                        "url": "https://pending-tool-a.vercel.app",
+                    },
+                    {
+                        "slug": "pending-tool-b",
+                        "code": None,
+                        "health_status": "pending",
+                        "url": "https://pending-tool-b.vercel.app",
+                    },
+                ],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "health_pending")
+        self.assertIn("health snapshot bekliyor", focus.summary)
+
     def test_focus_live_health_mentions_canonical_drift_when_present(self) -> None:
         summary = {
             "live_count": 10,
             "healthy_count": 8,
+            "pending_health_count": 0,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 2,
             "gaps": {
@@ -75,6 +153,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         summary = {
             "live_count": 113,
             "healthy_count": 113,
+            "pending_health_count": 0,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 18,
             "gaps": {
@@ -101,6 +180,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         summary = {
             "live_count": 77,
             "healthy_count": 77,
+            "pending_health_count": 0,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 24,
             "canonical_url_drift": 1,
@@ -128,6 +208,7 @@ class RefreshCodexContextTests(unittest.TestCase):
             "cycle": 1063,
             "live_count": 113,
             "healthy_count": 113,
+            "pending_health_count": 0,
             "checkout_gap_count": 0,
             "deploy_missing_or_bad_url": 18,
             "spec_ready_count": 27,
@@ -151,6 +232,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("Canonical drift: 0", rendered)
         self.assertIn("Manual Vercel/LemonSqueezy", rendered)
         self.assertIn("analysis/codex_result.md", rendered)
+        self.assertIn("Health pending: 0", rendered)
 
 
 if __name__ == "__main__":

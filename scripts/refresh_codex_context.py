@@ -95,6 +95,7 @@ def _issue_map(issues: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
 def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Focus:
     grouped = _issue_map(issues)
     unhealthy_live = list(summary.get("gaps", {}).get("unhealthy_live", []))
+    pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
@@ -104,6 +105,16 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
         slug = sample.get("slug") or "unknown"
         code = sample.get("code")
         drift_count = len(canonical_drift)
+        pending_clause = (
+            f" Ayrıca {len(pending_health)} canlı ürün health snapshot bekliyor."
+            if pending_health
+            else ""
+        )
+        pending_body = (
+            f" {len(pending_health)} ürün health snapshot bekliyor; onları outage diye sayma."
+            if pending_health
+            else ""
+        )
         drift_clause = (
             f" Ayrıca {drift_count} canlı ürün fallback alias ile ayakta."
             if drift_count
@@ -118,13 +129,31 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
         return Focus(
             key="live_health",
             title="Canlı sağlık açığı",
-            summary=f"{len(unhealthy_live)} canlı ürün sağlıksız.{drift_clause} İlk örnek `{slug}` (HTTP {code}).",
+            summary=(
+                f"{len(unhealthy_live)} canlı ürün gerçekten sağlıksız.{pending_clause}"
+                f"{drift_clause} İlk örnek `{slug}` (HTTP {code})."
+            ),
             codex_task_title="Health/canonical drift düzeltmesi",
             codex_task_body=(
                 "Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini "
                 "senkron tutan scripti güçlendir."
+                f"{pending_body}"
                 f"{drift_body} Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon "
                 "tarafını düzelt."
+            ),
+        )
+
+    if pending_health:
+        sample = pending_health[0]
+        slug = sample.get("slug") or "unknown"
+        return Focus(
+            key="health_pending",
+            title="Health metadata bekliyor",
+            summary=f"{len(pending_health)} canlı ürün health snapshot bekliyor; ilk örnek `{slug}`.",
+            codex_task_title="Health snapshot senkronizasyonu",
+            codex_task_body=(
+                "Canlı ürünlerin health snapshot'ını summary/state tarafında ayrı takip et. "
+                "Eksik health metadata'yı outage diye sayma; önce health pipeline'ını çalıştırıp sonuçları geri yaz."
             ),
         )
 
@@ -231,6 +260,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     health_percent = _health_percent(summary)
     unresolved = top_issues(issues)
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     lines = [
         f"# Codex Analiz Özeti — {now.strftime('%Y-%m-%d %H:%M')} UTC",
         "",
@@ -238,6 +268,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         f"- Cycle: **{summary.get('cycle')}**",
         f"- Mode: **{summary.get('mode')}**",
         f"- Live sağlık: **{summary.get('healthy_count')}/{summary.get('live_count')}** (%{health_percent:.1f})",
+        f"- Health pending: **{summary.get('pending_health_count', 0)}**",
         f"- Checkout gap: **{summary.get('checkout_gap_count')}**",
         f"- Deploy/url gap: **{summary.get('deploy_missing_or_bad_url')}**",
         f"- Canonical drift: **{summary.get('canonical_url_drift', 0)}**",
@@ -268,6 +299,13 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                 f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}"
             )
 
+    if pending_health:
+        lines.extend(["", "## Health Bekleyen Ürünler"])
+        for item in pending_health[:10]:
+            lines.append(
+                f"- `{item.get('slug')}` — status={item.get('health_status')} url={item.get('url')}"
+            )
+
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     if missing_url:
         preview = ", ".join(missing_url[:6])
@@ -286,6 +324,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
 
 def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
     unhealthy = list(summary.get("gaps", {}).get("unhealthy_live", []))
+    pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
@@ -298,6 +337,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
         "",
         "## Summary'den Gelen Gerçekler",
         f"- Healthy live: {summary.get('healthy_count')}/{summary.get('live_count')}",
+        f"- Health pending: {summary.get('pending_health_count', 0)}",
         f"- Checkout gap: {summary.get('checkout_gap_count')}",
         f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
         f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
@@ -315,6 +355,13 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
             )
             lines.append(
                 f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} url={item.get('url')}{probe_suffix}"
+            )
+
+    if pending_health:
+        lines.extend(["", "## Health Bekleyen Ürünler"])
+        for item in pending_health[:10]:
+            lines.append(
+                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} url={item.get('url')}"
             )
 
     if missing_checkout:
@@ -373,6 +420,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             "## Canlı State Özeti",
             f"- Cycle: {summary.get('cycle')}",
             f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
+            f"- Health pending: {summary.get('pending_health_count', 0)}",
             f"- Checkout gap: {summary.get('checkout_gap_count')}",
             f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
             f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",

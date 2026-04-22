@@ -1,18 +1,20 @@
 {
-  "cycle": 1094,
+  "cycle": 1100,
   "mode": "BUILD",
   "balance": 0.0,
   "active_count": 144,
   "live_count": 91,
-  "healthy_count": 79,
-  "unhealthy_count": 12,
+  "healthy_count": 89,
+  "unhealthy_count": 2,
+  "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 14,
-  "canonical_url_drift": 2,
+  "deploy_missing_or_bad_url": 4,
+  "canonical_url_drift": 0,
   "spec_ready_count": 11,
+  "needs_fix_count": 2,
   "next_action": "wait_for_vercel_limit_reset",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T12:42:26.533550Z",
+  "last_updated": "2026-04-22T14:08:39.800584Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -438,7 +440,7 @@
       "n": "Webhook Tester",
       "s": "webhook-tester",
       "st": "live",
-      "v": "https://webhook-tester-beryl.vercel.app",
+      "v": "https://webhook-tester.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74"
     },
     {
@@ -781,7 +783,7 @@
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter",
       "st": "live",
-      "v": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
+      "v": "https://timestamp-converter.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9"
     },
     {
@@ -1030,97 +1032,22 @@
     ],
     "unhealthy_live": [
       {
-        "slug": "webterminal-pro",
-        "url": "https://webterminal-pro.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "html-entities",
-        "url": "https://html-entities.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "html-minifier-pro",
-        "url": "https://html-minifier-pro.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "jwt-generator",
-        "url": "https://jwt-generator.vercel.app",
-        "code": 0,
-        "health_status": "timeout",
-        "probe_url": "https://jwt-generator.vercel.app"
-      },
-      {
-        "slug": "pdf-forge",
-        "url": "https://pdf-forge.vercel.app",
-        "code": 0,
-        "health_status": "timeout",
-        "probe_url": "https://pdf-forge.vercel.app"
-      },
-      {
-        "slug": "css-grid-gen",
-        "url": "https://css-grid-gen.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "dockerfile-generator",
-        "url": "https://dockerfile-generator.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "markdown-previewer-pro",
-        "url": "https://markdown-previewer-pro.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "image-compressor-pro",
-        "url": "https://image-compressor-pro.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
         "slug": "email-validator-pro",
         "url": "https://email-validator-pro.vercel.app",
-        "code": null,
-        "health_status": null
-      },
-      {
-        "slug": "terminal-theme-studio",
-        "url": "https://terminal-theme-studio.vercel.app",
-        "code": null,
-        "health_status": null
+        "code": 404,
+        "health_status": "not_found"
       },
       {
         "slug": "html-entity-encoder",
         "url": "https://html-entity-encoder.vercel.app",
-        "code": 0,
-        "health_status": "timeout",
+        "code": 402,
+        "health_status": "error_402",
         "probe_url": "https://html-entity-encoder.vercel.app"
       }
     ],
+    "pending_health": [],
     "missing_checkout": [],
-    "canonical_url_drift": [
-      {
-        "slug": "webhook-tester",
-        "url": "https://webhook-tester-beryl.vercel.app",
-        "ideal_url": "https://webhook-tester.vercel.app"
-      },
-      {
-        "slug": "timestamp-converter",
-        "url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app",
-        "ideal_url": "https://timestamp-converter.vercel.app"
-      }
-    ]
+    "canonical_url_drift": []
   },
-  "canonical_url_drift_products": [
-    "webhook-tester",
-    "timestamp-converter"
-  ]
+  "canonical_url_drift_products": []
 }
