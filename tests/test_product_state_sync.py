@@ -147,6 +147,25 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["v"], "https://keyforge.vercel.app")
         self.assertEqual(health_check_url(merged), "https://keyforge.vercel.app")
 
+    def test_alternate_healthy_fallback_url_beats_stale_canonical_state_url(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "temporary-tool",
+                "status": "live",
+                "vercel_url": "https://temporary-tool.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://temporary-tool-preview.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://temporary-tool-preview.vercel.app")
+        self.assertEqual(merged["v"], "https://temporary-tool-preview.vercel.app")
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["last_health_url"], "https://temporary-tool-preview.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://temporary-tool.vercel.app")
+
     def test_live_manifest_canonical_url_beats_stale_state_alias(self) -> None:
         merged = merge_product_record(
             {
@@ -256,7 +275,7 @@ class ProductStateSyncTests(unittest.TestCase):
             "https://webhook-tester.vercel.app",
         )
 
-    def test_sync_state_snapshot_reconciles_stale_compact_public_url(self) -> None:
+    def test_sync_state_snapshot_reconciles_alternate_health_fallback_url(self) -> None:
         state = {
             "products": {
                 "active": [
@@ -278,8 +297,8 @@ class ProductStateSyncTests(unittest.TestCase):
         synced = sync_state_snapshot(state)
         product = synced["products"]["active"][0]
 
-        self.assertEqual(product["vercel_url"], "https://webhook-tester.vercel.app")
-        self.assertEqual(product["v"], "https://webhook-tester.vercel.app")
+        self.assertEqual(product["vercel_url"], "https://webhook-tester-beryl.vercel.app")
+        self.assertEqual(product["v"], "https://webhook-tester-beryl.vercel.app")
         self.assertEqual(product["last_health_url"], "https://webhook-tester-beryl.vercel.app")
         self.assertEqual(product["health_status"], "alternate_healthy")
 

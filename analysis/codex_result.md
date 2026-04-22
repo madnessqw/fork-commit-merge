@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-22 13:07 +0300
+# Codex Result — 2026-04-22 13:40 +03
 
 ## Okunan Kaynaklar
 - `skills/codex_skill.md`
@@ -8,36 +8,34 @@
 - `analysis/sorun_analizi.md`
 - `CODEBASE_MAP.md`
 - `scripts/health_check.py`
-- `scripts/update_summary.py`
-- `scripts/refresh_codex_context.py`
 - `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
 - `tests/test_product_state_sync.py`
 - `tests/test_update_summary.py`
 
-## Bu Turda Ne Oldu
-- Source-code tarafında yeni bir delta çıkmadı; canonical/live alias sertleştirmesi zaten HEAD'de mevcut.
-- Canlı health yeniden probe edildi, summary yeniden hesaplandı ve Codex context dosyaları live state'e göre tazelendi.
-
-## Güncel Sonuç
-- `STATE.json` ve `STATE_SUMMARY.json` canlı probe sonrası senkronlandı.
-- `analysis/codex_task.md`, `analysis/oneri.md` ve `analysis/sorun_analizi.md` güncel summary ile yeniden üretildi.
-- `logs/run_ledger.jsonl`'a bu execution için yeni kayıt eklendi.
-- `SESSION.md` checkpoint'i yeni cycle'a çekildi.
+## Ne Değişti
+- `scripts/product_state_sync.py`
+  - `alternate_healthy` sonucu dönen fallback URL, canlı kayıtta hâlâ canonical state URL yazsa bile artık gerçek public URL olarak korunuyor.
+  - Böylece state, sağlık probe’unun bulduğu gerçek reachable URL’yi saklıyor; canonical URL arkasına saklanmıyor.
+- `tests/test_product_state_sync.py`
+  - Canonical state URL + `alternate_healthy` fallback senaryosu için yeni test eklendi.
+  - `sync_state_snapshot` artık fallback URL’yi koruyor diye bekleyen test güncellendi.
+- `tests/test_update_summary.py`
+  - `alternate_healthy` canlı ürünlerin public display’inin fallback URL olması bekleniyor.
+  - Canonical drift sayımı artık bu fallback URL’leri de görüyor.
+  - Snapshot persistence testi de aynı davranışı doğrulayacak şekilde güncellendi.
 
 ## Doğrulamalar
-- `python3 scripts/health_check.py` — state updated; non-zero exit beklenen şekilde 4 canlı outage kaldığı için döndü.
-- `python3 scripts/update_summary.py`
-- `python3 scripts/refresh_codex_context.py`
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_update_summary.py`
 - `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
 - `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
+- Secret scan: değiştirilmiş Python dosyalarında `sk_`, `pk_`, `ghp_`, `api_key` eşleşmesi yok.
 
-## Son Durum
-- Health özeti şu an: `live=82`, `healthy=78`, `unhealthy=4`, `checkout_gap=0`, `deploy_gap=8`, `canonical_drift=0`.
-- `api-mock-generator` artık blocker değil; current live blockers dört tane: `jwt-generator`, `pdf-forge`, `diffmaster`, `html-entity-encoder`.
+## Sonuç
+- `alternate_healthy` ürünlerde state artık gerçek çalışan fallback URL’yi tutuyor.
+- Summary/canonical drift hesabı bu URL’yi artık gizlemiyor.
+- Health pipeline canonical probe’u yine ilk sırada deniyor; yani drift tespiti bozulmadı.
 
 ## Kalan Blokerler
-- `jwt-generator` timeout / HTTP 500
-- `pdf-forge` timeout / HTTP 500
-- `diffmaster` unauthorized / HTTP 401
-- `html-entity-encoder` timeout / HTTP 0
-- `next_action`: `wait_for_vercel_limit_reset`
+- Canlı `STATE.json` / `STATE_SUMMARY.json` bu turda yeniden üretilmedi; fix kodda ve testte doğrulandı.
+- Bir sonraki health/update cycle bu davranışı canlı state’e yansıtacak.

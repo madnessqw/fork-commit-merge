@@ -269,6 +269,15 @@ def choose_public_vercel_url(
             normalized_health_url = None
 
     canonical_url = canonical_vercel_url(slug)
+    if (
+        normalized_status in HEALTH_CHECKABLE_STATUSES
+        and _clean_text(health_status) == "alternate_healthy"
+        and normalized_health_url is not None
+    ):
+        # The canonical probe lost, but a fallback URL answered 200.
+        # Keep the actual reachable URL so state does not lie about reality.
+        return normalized_health_url
+
     if canonical_url is not None:
         for candidate in (
             normalized_state_url,

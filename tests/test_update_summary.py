@@ -341,13 +341,22 @@ class UpdateSummaryTests(unittest.TestCase):
             synced_state = json.loads(state_file.read_text(encoding="utf-8"))
             synced_summary = json.loads(summary_file.read_text(encoding="utf-8"))
 
-            self.assertEqual(synced_state["canonical_url_drift"], 0)
-            self.assertEqual(synced_state["canonical_url_drift_products"], [])
+            self.assertEqual(synced_state["canonical_url_drift"], 1)
+            self.assertEqual(synced_state["canonical_url_drift_products"], ["temporary-tool"])
             self.assertEqual(len(synced_state["products"]["active"]), 1)
-            self.assertEqual(synced_state["products"]["active"][0]["vercel_url"], "https://temporary-tool.vercel.app")
-            self.assertEqual(synced_state["products"]["active"][0]["v"], "https://temporary-tool.vercel.app")
-            self.assertEqual(synced_summary["canonical_url_drift"], 0)
-            self.assertEqual(synced_summary["products"][0]["v"], "https://temporary-tool.vercel.app")
+            self.assertEqual(
+                synced_state["products"]["active"][0]["vercel_url"],
+                "https://temporary-tool-preview.vercel.app",
+            )
+            self.assertEqual(
+                synced_state["products"]["active"][0]["v"],
+                "https://temporary-tool-preview.vercel.app",
+            )
+            self.assertEqual(synced_summary["canonical_url_drift"], 1)
+            self.assertEqual(
+                synced_summary["products"][0]["v"],
+                "https://temporary-tool-preview.vercel.app",
+            )
 
     def test_live_preview_alias_without_health_promotes_canonical_display(self) -> None:
         state = {
@@ -470,7 +479,7 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
         self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
 
-    def test_alternate_healthy_counts_as_healthy_when_public_url_is_canonical(self) -> None:
+    def test_alternate_healthy_records_actual_fallback_url_as_public_display(self) -> None:
         state = {
             "products": {
                 "active": [
@@ -492,6 +501,19 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["healthy_count"], 1)
         self.assertEqual(summary["unhealthy_count"], 0)
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
+        self.assertEqual(summary["products"][0]["v"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["fallback-tool"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "fallback-tool",
+                    "url": "https://fallback-tool-preview.vercel.app",
+                    "ideal_url": "https://fallback-tool.vercel.app",
+                }
+            ],
+        )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
