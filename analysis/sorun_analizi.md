@@ -1,14 +1,14 @@
-# Sorun Analizi — Cycle 1075 | 2026-04-22 02:44 UTC
+# Sorun Analizi — Cycle 1076 | 2026-04-22 03:07 UTC
 
 ## Ana Darboğaz
 - **live_health** — 6 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 200).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 72/78
-- Checkout gap: 0
-- Deploy/url gap: 23
+- Healthy live: 73/79
+- Checkout gap: 1
+- Deploy/url gap: 22
 - Canonical drift: 4
-- Spec-ready backlog: 26
+- Spec-ready backlog: 25
 
 ## Canlı Sağlıksız Ürünler
 - `jwt-generator` — code=200 status=alternate_healthy url=https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app
@@ -18,8 +18,11 @@
 - `html-entity-encoder` — code=200 status=alternate_healthy url=https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app
 - `timestamp-converter` — code=200 status=alternate_healthy url=https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app
 
+## Checkout Eksikleri
+- binary-inspector
+
 ## URL/Deploy Eksikleri
-- sql-to-nosql, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, mcp-inspector-pro, api-security-scanner, docker-command-builder, ...
+- sql-to-nosql, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, mcp-inspector-pro, api-security-scanner, docker-command-builder, mcp-server-scaffolder, ...
 
 ## Canonical Drift Ürünleri
 - `jwt-generator` — current=https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app ideal=https://jwt-generator.vercel.app

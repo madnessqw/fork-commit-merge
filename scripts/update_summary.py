@@ -247,10 +247,14 @@ def build_summary(
     }
 
 
+def persist_summary(summary: dict[str, Any], *, summary_file: Path = SUMMARY_FILE) -> None:
+    summary_file.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     summary = build_summary(state, product_catalog=load_product_catalog())
-    SUMMARY_FILE.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    persist_summary(summary)
     print(
         "STATE_SUMMARY.json updated: "
         f"active={summary['active_count']} live={summary['live_count']} "

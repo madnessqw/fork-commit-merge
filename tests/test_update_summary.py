@@ -1,6 +1,9 @@
+import json
+import tempfile
+from pathlib import Path
 import unittest
 
-from scripts.update_summary import build_summary, is_placeholder_product, normalize_product
+from scripts.update_summary import build_summary, is_placeholder_product, normalize_product, persist_summary
 
 
 class UpdateSummaryTests(unittest.TestCase):
@@ -366,6 +369,15 @@ class UpdateSummaryTests(unittest.TestCase):
                 "checkout_url": "https://checkout.example/tool",
             },
         )
+
+    def test_persist_summary_writes_json_file(self) -> None:
+        summary = {"cycle": 1, "healthy_count": 2}
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "STATE_SUMMARY.json"
+            persist_summary(summary, summary_file=path)
+
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8")), summary)
 
 
 if __name__ == "__main__":

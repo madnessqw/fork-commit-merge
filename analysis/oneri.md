@@ -1,14 +1,14 @@
-# Codex Analiz Özeti — 2026-04-22 02:44 UTC
+# Codex Analiz Özeti — 2026-04-22 03:07 UTC
 
 ## Canlı State
-- Cycle: **1075**
+- Cycle: **1076**
 - Mode: **BUILD**
-- Live sağlık: **72/78** (%92.3)
-- Checkout gap: **0**
-- Deploy/url gap: **23**
+- Live sağlık: **73/79** (%92.4)
+- Checkout gap: **1**
+- Deploy/url gap: **22**
 - Canonical drift: **4**
-- Spec-ready: **26**
-- Next action: `spec_prep_complete_continue_building`
+- Spec-ready: **25**
+- Next action: `vercel_limit_wait_deploy_pending`
 
 ## Ana Darboğaz
 - **Canlı sağlık açığı:** 6 canlı ürün sağlıksız; ilk örnek `jwt-generator` (HTTP 200).
@@ -31,4 +31,4 @@
 - `timestamp-converter` — current=https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Deploy/URL Gap Preview
-- sql-to-nosql, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, ...
+- sql-to-nosql, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, ...

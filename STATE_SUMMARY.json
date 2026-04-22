@@ -1,18 +1,18 @@
 {
-  "cycle": 1075,
+  "cycle": 1076,
   "mode": "BUILD",
   "balance": 0.0,
-  "active_count": 142,
-  "live_count": 78,
-  "healthy_count": 72,
+  "active_count": 143,
+  "live_count": 79,
+  "healthy_count": 73,
   "unhealthy_count": 6,
-  "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 23,
+  "checkout_gap_count": 1,
+  "deploy_missing_or_bad_url": 22,
   "canonical_url_drift": 4,
-  "spec_ready_count": 26,
-  "next_action": "spec_prep_complete_continue_building",
+  "spec_ready_count": 25,
+  "next_action": "vercel_limit_wait_deploy_pending",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T02:44:00.283923Z",
+  "last_updated": "2026-04-22T03:07:37.787783Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -885,8 +885,8 @@
     {
       "n": "Binary Inspector Pro",
       "s": "binary-inspector",
-      "st": "spec_ready",
-      "v": null,
+      "st": "live",
+      "v": "https://binary-inspector.vercel.app",
       "c": null
     },
     {
@@ -1007,12 +1007,18 @@
       "st": "ready_for_payment",
       "v": "https://nanoid-generator.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f7aa8e02-37f0-43c4-af63-59293833b7c7"
+    },
+    {
+      "n": "JSON Diff Pro",
+      "s": "json-diff-pro",
+      "st": "building",
+      "v": null,
+      "c": null
     }
   ],
   "gaps": {
     "missing_url": [
       "sql-to-nosql",
-      "binary-inspector",
       "ssl-config-generator",
       "browser-mock-studio",
       "docker-compose-builder",
@@ -1073,7 +1079,9 @@
         "probe_url": "https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app"
       }
     ],
-    "missing_checkout": [],
+    "missing_checkout": [
+      "binary-inspector"
+    ],
     "canonical_url_drift": [
       {
         "slug": "jwt-generator",

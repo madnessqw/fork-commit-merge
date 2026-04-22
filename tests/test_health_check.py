@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from scripts.health_check import check_product_health
+from scripts.health_check import apply_health_result, check_product_health
 
 
 class HealthCheckTests(unittest.TestCase):
@@ -67,6 +67,30 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(run_mock.call_count, 2)
+
+    def test_alternate_healthy_result_syncs_public_url(self) -> None:
+        product = {
+            "name": "Fallback Tool",
+            "slug": "fallback-tool",
+            "status": "live",
+            "vercel_url": "https://fallback-tool.vercel.app",
+            "v": "https://fallback-tool.vercel.app",
+        }
+
+        apply_health_result(
+            product,
+            {
+                "status": "alternate_healthy",
+                "code": 200,
+                "url": "https://fallback-tool-preview.vercel.app",
+            },
+        )
+
+        self.assertEqual(product["health_status"], "alternate_healthy")
+        self.assertEqual(product["last_health_code"], 200)
+        self.assertEqual(product["last_health_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
 
 
 if __name__ == "__main__":

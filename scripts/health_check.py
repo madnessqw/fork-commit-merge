@@ -17,10 +17,11 @@ if str(ROOT) not in sys.path:
 
 from scripts.checkout_metadata import get_checkout_url
 from scripts.product_state_sync import health_check_url, load_product_catalog, sync_state_products
-from scripts.update_summary import build_summary
+from scripts.update_summary import build_summary, persist_summary
 
 
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
+SYNCED_HEALTH_STATUSES = {"healthy", "alternate_healthy"}
 
 
 def _normalize_url(value):
@@ -28,6 +29,19 @@ def _normalize_url(value):
         return None
     text = str(value).strip().rstrip("/")
     return text or None
+
+
+def apply_health_result(product, result):
+    """Write a probe result back to a product record."""
+    if result.get("url"):
+        product["last_health_url"] = result["url"]
+
+    if result["status"] in SYNCED_HEALTH_STATUSES and result.get("url"):
+        product["vercel_url"] = result["url"]
+        product["v"] = result["url"]
+
+    product["health_status"] = result["status"]
+    product["last_health_code"] = result["code"] if isinstance(result["code"], int) else 0
 
 
 def check_product_health(product):
@@ -142,17 +156,7 @@ def main():
     for result in healthy + unhealthy + no_url:
         for p in products:
             if p.get('slug') == result['slug'] or p.get('s') == result['slug']:
-                if result.get('url'):
-                    p['last_health_url'] = result['url']
-                if result['status'] == 'healthy':
-                    p['health_status'] = 'healthy'
-                    p['last_health_code'] = 200
-                    if result.get('url'):
-                        p['vercel_url'] = result['url']
-                        p['v'] = result['url']
-                else:
-                    p['health_status'] = result['status']
-                    p['last_health_code'] = result['code'] if isinstance(result['code'], int) else 0
+                apply_health_result(p, result)
 
     summary = build_summary(state, product_catalog=load_product_catalog())
 
@@ -161,10 +165,12 @@ def main():
     state['live_count'] = summary['live_count']
     state['healthy_count'] = summary['healthy_count']
     state['unhealthy_count'] = summary['unhealthy_count']
+    state['checkout_gap_count'] = summary['checkout_gap_count']
     state['missing_checkout'] = summary['checkout_gap_count']
     state['deploy_missing_or_bad_url'] = summary['deploy_missing_or_bad_url']
     state['canonical_url_drift'] = summary['canonical_url_drift']
     state['canonical_url_drift_products'] = summary['canonical_url_drift_products']
+    state['spec_ready_count'] = summary['spec_ready_count']
     # `build_summary()` now treats canonical drift as part of live health, so the
     # fix count is the unhealthy live set. No double-counting the same drift twice.
     state['needs_fix_count'] = summary['unhealthy_count']
@@ -172,6 +178,7 @@ def main():
 
     with open('STATE.json', 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
+    persist_summary(summary)
 
     print(
         "STATE.json updated with health status "
