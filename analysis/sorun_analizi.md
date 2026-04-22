@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1100 | 2026-04-22 14:08 UTC
+# Sorun Analizi — Cycle 1102 | 2026-04-22 14:44 UTC
 
 ## Ana Darboğaz
 - **live_health** — 2 canlı ürün gerçekten sağlıksız. İlk örnek `email-validator-pro` (HTTP 404).

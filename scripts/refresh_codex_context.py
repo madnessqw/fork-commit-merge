@@ -124,7 +124,7 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
             f" Şu an {drift_count} ürün fallback alias ile canlı; manuel Vercel korumasını "
             "çözüldü gibi gösterme."
             if drift_count
-            else ""
+            else " Canonical drift yok; gerçek HTTP 404/402 outage'larını doğrula."
         )
         return Focus(
             key="live_health",
@@ -133,7 +133,11 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
                 f"{len(unhealthy_live)} canlı ürün gerçekten sağlıksız.{pending_clause}"
                 f"{drift_clause} İlk örnek `{slug}` (HTTP {code})."
             ),
-            codex_task_title="Health/canonical drift düzeltmesi",
+            codex_task_title=(
+                "Health/canonical drift düzeltmesi"
+                if drift_count
+                else "Canlı sağlık açığını düzelt"
+            ),
             codex_task_body=(
                 "Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini "
                 "senkron tutan scripti güçlendir."

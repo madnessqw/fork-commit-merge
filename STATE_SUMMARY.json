@@ -1,20 +1,20 @@
 {
-  "cycle": 1100,
-  "mode": "BUILD",
+  "cycle": 1102,
+  "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 144,
   "live_count": 91,
-  "healthy_count": 89,
-  "unhealthy_count": 2,
+  "healthy_count": 90,
+  "unhealthy_count": 1,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 4,
+  "deploy_missing_or_bad_url": 3,
   "canonical_url_drift": 0,
   "spec_ready_count": 11,
-  "needs_fix_count": 2,
-  "next_action": "wait_for_vercel_limit_reset",
+  "needs_fix_count": 1,
+  "next_action": "Vercel limit reseti bekle (~12 saat) veya manuel dashboard kontrolü yap",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T14:08:39.800584Z",
+  "last_updated": "2026-04-22T14:44:56.027111Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -623,7 +623,7 @@
       "s": "html-entity-encoder",
       "st": "live",
       "v": "https://html-entity-encoder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/632f8e76-192a-432d-8e3f-d464cd865253"
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-entity-encoder-001"
     },
     {
       "n": "OpenAPI Validator",
@@ -1031,12 +1031,6 @@
       "agent-prompt-engineer"
     ],
     "unhealthy_live": [
-      {
-        "slug": "email-validator-pro",
-        "url": "https://email-validator-pro.vercel.app",
-        "code": 404,
-        "health_status": "not_found"
-      },
       {
         "slug": "html-entity-encoder",
         "url": "https://html-entity-encoder.vercel.app",

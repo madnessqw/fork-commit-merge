@@ -149,6 +149,34 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("fallback alias", focus.summary)
         self.assertIn("fallback alias", focus.codex_task_body)
 
+    def test_focus_live_health_uses_outage_title_when_canonical_drift_absent(self) -> None:
+        summary = {
+            "live_count": 4,
+            "healthy_count": 3,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 1,
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "broken-live-tool",
+                        "code": 404,
+                        "health_status": "not_found",
+                        "url": "https://broken-live-tool.vercel.app",
+                    }
+                ],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "live_health")
+        self.assertEqual(focus.codex_task_title, "Canlı sağlık açığını düzelt")
+        self.assertIn("Canonical drift yok", focus.codex_task_body)
+
     def test_focus_uses_checkout_field_issue_when_live_portfolio_is_healthy(self) -> None:
         summary = {
             "live_count": 113,
