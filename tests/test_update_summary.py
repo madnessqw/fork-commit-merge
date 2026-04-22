@@ -577,6 +577,9 @@ class UpdateSummaryTests(unittest.TestCase):
                     "url": "https://broken-tool.vercel.app",
                     "code": 401,
                     "health_status": "unauthorized",
+                    "canonical_url": "https://broken-tool.vercel.app",
+                    "canonical_code": 401,
+                    "canonical_status": "unauthorized",
                     "probe_url": "https://broken-tool.vercel.app",
                 }
             ],

@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 from scripts import refresh_codex_context
-from scripts.refresh_codex_context import determine_focus, render_codex_task, render_oneri
+from scripts.refresh_codex_context import determine_focus, render_codex_task, render_oneri, render_sorun_analizi
 
 
 class RefreshCodexContextTests(unittest.TestCase):
@@ -283,6 +283,49 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("agent-prompt-engineer", rendered_oneri)
         self.assertIn("Deploy readiness gap", rendered_task)
         self.assertIn("manifest/URL/state", rendered_task)
+
+    def test_rendered_sorun_analizi_shows_canonical_health_details_for_outages(self) -> None:
+        summary = {
+            "cycle": 1110,
+            "live_count": 2,
+            "healthy_count": 1,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 1,
+            "deploy_readiness_count": 0,
+            "spec_ready_count": 0,
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "fallback-stale-error",
+                        "code": 401,
+                        "health_status": "unauthorized",
+                        "url": "https://fallback-stale-error-preview.vercel.app",
+                        "probe_url": "https://fallback-stale-error.vercel.app",
+                        "canonical_url": "https://fallback-stale-error.vercel.app",
+                        "canonical_code": 404,
+                        "canonical_status": "not_found",
+                    }
+                ],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+                "deploy_readiness": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+        rendered = render_sorun_analizi(
+            summary,
+            [],
+            focus,
+            datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertIn("canonical_url=https://fallback-stale-error.vercel.app", rendered)
+        self.assertIn("canonical_code=404", rendered)
+        self.assertIn("canonical_status=not_found", rendered)
 
     def test_focus_prefers_canonical_drift_when_health_is_clean(self) -> None:
         summary = {

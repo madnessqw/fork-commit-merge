@@ -171,6 +171,16 @@ def health_code(product: dict[str, Any]) -> int | None:
         return None
 
 
+def canonical_health_code(product: dict[str, Any]) -> int | None:
+    raw = product.get("canonical_health_code")
+    if raw is None:
+        return None
+    try:
+        return int(raw)
+    except (TypeError, ValueError):
+        return None
+
+
 def is_healthy(product: dict[str, Any]) -> bool:
     # Healthy means the last HTTP probe returned 200. Canonical drift is still tracked
     # separately so URL misalignment does not get smuggled into the outage count.
@@ -253,6 +263,40 @@ def build_summary(
     checkout_gap_live = [p for p in live + ready_for_payment if not has_checkout(p)]
     spec_ready_total = len({p.get("slug") for p in [*external_spec_ready, *spec_ready_inside_active] if p.get("slug")})
 
+    def build_unhealthy_entry(product: dict[str, Any]) -> dict[str, Any]:
+        entry = {
+            "slug": product.get("slug"),
+            "url": display_vercel_url(product),
+            "code": health_code(product),
+            "health_status": product.get("health_status"),
+        }
+
+        canonical_url = _pick(product, "canonical_health_url") or canonical_target_vercel_url(product)
+        if canonical_url is not None:
+            entry["canonical_url"] = canonical_url
+
+        canonical_code = canonical_health_code(product)
+        if canonical_code is None:
+            canonical_code = health_code(product)
+        if canonical_code is not None:
+            entry["canonical_code"] = canonical_code
+
+        canonical_status = _pick(product, "canonical_health_status") or product.get("health_status")
+        if canonical_status is not None:
+            entry["canonical_status"] = canonical_status
+
+        if (
+            probe_url := _pick(product, "health_probe_url", "last_health_url", "effective_health_url")
+        ) is not None:
+            entry["probe_url"] = probe_url
+
+        if (
+            effective_url := _pick(product, "effective_health_url", "last_health_url")
+        ) is not None and effective_url != _pick(product, "health_probe_url", "last_health_url"):
+            entry["effective_url"] = effective_url
+
+        return entry
+
     return {
         "cycle": state.get("cycle"),
         "mode": state.get("mode"),
@@ -282,29 +326,7 @@ def build_summary(
         "gaps": {
             "missing_url": [p.get("slug") for p in products_without_url],
             "unhealthy_live": [
-                {
-                    "slug": p.get("slug"),
-                    "url": display_vercel_url(p),
-                    "code": health_code(p),
-                    "health_status": p.get("health_status"),
-                    **(
-                        {"probe_url": probe_url}
-                        if (
-                            probe_url := _pick(p, "health_probe_url", "last_health_url", "effective_health_url")
-                        )
-                        is not None
-                        else {}
-                    ),
-                    **(
-                        {"effective_url": effective_url}
-                        if (
-                            effective_url := _pick(p, "effective_health_url", "last_health_url")
-                        )
-                        is not None
-                        and effective_url != _pick(p, "health_probe_url", "last_health_url")
-                        else {}
-                    ),
-                }
+                build_unhealthy_entry(p)
                 for p in unhealthy_live
             ],
             "pending_health": [

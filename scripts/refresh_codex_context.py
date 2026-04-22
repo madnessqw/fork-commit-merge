@@ -406,6 +406,34 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
+    def format_unhealthy_item(item: dict[str, Any]) -> str:
+        canonical_bits: list[str] = []
+        canonical_url = item.get("canonical_url") or item.get("canonical_health_url")
+        if canonical_url and canonical_url != item.get("url"):
+            canonical_bits.append(f"canonical_url={canonical_url}")
+
+        canonical_code = item.get("canonical_code")
+        if canonical_code is None:
+            canonical_code = item.get("canonical_health_code")
+        if canonical_code is not None and canonical_code != item.get("code"):
+            canonical_bits.append(f"canonical_code={canonical_code}")
+
+        canonical_status = item.get("canonical_status") or item.get("canonical_health_status")
+        if canonical_status and canonical_status != item.get("health_status"):
+            canonical_bits.append(f"canonical_status={canonical_status}")
+
+        probe_url = item.get("probe_url")
+        probe_suffix = (
+            f" probe_url={probe_url}"
+            if probe_url and probe_url != item.get("url")
+            else ""
+        )
+        canonical_suffix = f" {' '.join(canonical_bits)}" if canonical_bits else ""
+        return (
+            f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} "
+            f"url={item.get('url')}{probe_suffix}{canonical_suffix}"
+        )
+
     lines = [
         f"# Sorun Analizi — Cycle {summary.get('cycle')} | {now.strftime('%Y-%m-%d %H:%M')} UTC",
         "",
@@ -425,15 +453,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     if unhealthy:
         lines.extend(["", "## Canlı Sağlıksız Ürünler"])
         for item in unhealthy[:10]:
-            probe_url = item.get("probe_url")
-            probe_suffix = (
-                f" probe_url={probe_url}"
-                if probe_url and probe_url != item.get("url")
-                else ""
-            )
-            lines.append(
-                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')} url={item.get('url')}{probe_suffix}"
-            )
+            lines.append(format_unhealthy_item(item))
 
     if pending_health:
         lines.extend(["", "## Health Bekleyen Ürünler"])

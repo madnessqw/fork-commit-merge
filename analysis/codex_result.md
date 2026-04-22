@@ -1,3 +1,41 @@
+# Codex Result — 2026-04-22 22:07 +03
+
+## Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/update_summary.py`
+- `scripts/refresh_codex_context.py`
+- `tests/test_update_summary.py`
+- `tests/test_refresh_codex_context.py`
+
+## Ne Değişti
+- `scripts/update_summary.py`
+  - Sağlıksız live kayıtların summary çıktısına canonical probe kanıtı eklendi.
+  - `gaps.unhealthy_live` artık `canonical_url`, `canonical_code`, `canonical_status` alanlarını da taşıyor.
+- `scripts/refresh_codex_context.py`
+  - `analysis/sorun_analizi.md` render’ı canonical sağlık detaylarını okuyup gösterecek şekilde güçlendirildi.
+- `tests/test_update_summary.py`
+  - Sağlıksız live gap entry’sinin canonical alanları taşıdığı kilitlendi.
+- `tests/test_refresh_codex_context.py`
+  - Sorun analizinde canonical URL/kod/status satırlarının çıktığı regresyon testi eklendi.
+
+## Doğrulamalar
+- `python3 -m py_compile scripts/update_summary.py scripts/refresh_codex_context.py tests/test_update_summary.py tests/test_refresh_codex_context.py`
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
+- `python3 -m unittest discover -s tests -p 'test_*.py' -v`
+- Canlı HTTP doğrulaması: summary’deki 7 sağlıksız URL doğrudan curl ile de aynı kodları döndürüyor (`500/500/404/404/401/402/451`).
+
+## Kalan Blokerler
+- Kod tarafında açık blokaj yok.
+- Sağlıksız live ürünler gerçek outage; onları Vercel tarafı düzeltmeden healthy yapamazsın.
+
 # Codex Result — 2026-04-22 21:44 +03
 
 ## Okunanlar
