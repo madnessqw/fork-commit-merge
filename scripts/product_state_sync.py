@@ -274,6 +274,7 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         return None
 
     health_checked_at = _clean_text(_pick(record, "last_health_check", "health_checked_at"))
+    current_health_status = _clean_text(_pick(record, "health_status"))
     explicit_health_url = normalize_url(
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
@@ -293,9 +294,9 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
     # Some live snapshots only persist the fallback alias in deployment_url.
     # If we have a real health timestamp but no explicit health URL, keep that
     # alias visible instead of collapsing back to the dead canonical slug.
-    if health_checked_at is not None and _clean_text(_pick(record, "health_status")) == "healthy":
-        deployment_url = normalize_url(_pick(record, "deployment_url"))
-        if deployment_url is not None and _is_vercel_preview_alias(deployment_url, slug):
+    deployment_url = normalize_url(_pick(record, "deployment_url"))
+    if health_checked_at is not None and current_health_status == "healthy" and deployment_url is not None:
+        if _is_vercel_preview_alias(deployment_url, slug):
             return deployment_url
 
     for candidate in (_pick(record, "vercel_url", "v"), _pick(record, "deployment_url")):
@@ -303,7 +304,7 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         if (
             normalized is not None
             and _is_vercel_preview_alias(normalized, slug)
-            and _clean_text(_pick(record, "health_status")) == "alternate_healthy"
+            and current_health_status == "alternate_healthy"
         ):
             return normalized
 
@@ -641,6 +642,14 @@ def merge_product_record(
 ) -> dict[str, Any]:
     source_state = normalize_record(state_record)
     source_state_status = source_state.get("status")
+    source_state_vercel_url = normalize_url(source_state.get("vercel_url"))
+    source_state_deployment_url = normalize_url(source_state.get("deployment_url"))
+    source_state_explicit_health_url = normalize_url(
+        source_state.get("last_health_url")
+        or source_state.get("effective_health_url")
+        or source_state.get("health_probe_url")
+    )
+    source_state_canonical_url = canonical_vercel_url(source_state.get("slug"))
     merged = normalize_checkout_metadata(
         source_state,
         force_canonical_key=True,
@@ -658,6 +667,26 @@ def merge_product_record(
     )
 
     if manifest is None:
+        if (
+            source_state_status == "live"
+            and source_state_vercel_url is not None
+            and source_state_canonical_url is not None
+            and source_state_vercel_url == source_state_canonical_url
+            and source_state_deployment_url is not None
+            and _is_vercel_preview_alias(source_state_deployment_url, source_state.get("slug"))
+            and source_state_explicit_health_url is None
+            and _clean_text(merged.get("health_status")) == "healthy"
+            and _pick(merged, "last_health_code") == 200
+        ):
+            # Some live products only keep the reachable fallback alias in
+            # deployment_url. Keep that alias visible instead of normalizing
+            # back to the canonical slug when no explicit health probe URL was
+            # ever stored.
+            merged["health_status"] = "alternate_healthy"
+            merged["last_health_url"] = source_state_deployment_url
+            merged["effective_health_url"] = source_state_deployment_url
+            merged["health_probe_url"] = source_state_deployment_url
+
         merged = normalize_health_snapshot(merged)
         merged["vercel_url"] = resolved_public_vercel_url(merged)
         return normalize_checkout_metadata(
@@ -722,6 +751,25 @@ def merge_product_record(
         merged["health_status"] = manifest_health_status
     if merged.get("last_health_code") is None and has_value(manifest_health_code):
         merged["last_health_code"] = manifest_health_code
+
+    if (
+        source_state_status == "live"
+        and source_state_vercel_url is not None
+        and source_state_canonical_url is not None
+        and source_state_vercel_url == source_state_canonical_url
+        and source_state_deployment_url is not None
+        and _is_vercel_preview_alias(source_state_deployment_url, source_state.get("slug"))
+        and source_state_explicit_health_url is None
+        and _clean_text(merged.get("health_status")) == "healthy"
+        and _pick(merged, "last_health_code") == 200
+    ):
+        # Some live products only keep the reachable fallback alias in
+        # deployment_url. Keep that alias visible instead of normalizing back to
+        # the canonical slug when no explicit health probe URL was ever stored.
+        merged["health_status"] = "alternate_healthy"
+        merged["last_health_url"] = source_state_deployment_url
+        merged["effective_health_url"] = source_state_deployment_url
+        merged["health_probe_url"] = source_state_deployment_url
 
     merged = normalize_health_snapshot(merged)
     merged["vercel_url"] = resolved_public_vercel_url(merged)
