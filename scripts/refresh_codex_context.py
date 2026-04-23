@@ -441,6 +441,19 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                 f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
             )
 
+    fallback_healthy_products = list(summary.get("fallback_healthy_products", []))
+    if fallback_healthy_products:
+        preview = ", ".join(f"`{slug}`" for slug in fallback_healthy_products[:10])
+        if len(fallback_healthy_products) > 10:
+            preview += ", ..."
+        lines.extend(
+            [
+                "",
+                "## Fallback Alias Ürünleri",
+                f"- {preview}",
+            ]
+        )
+
     if pending_health:
         lines.extend(["", "## Health Bekleyen Ürünler"])
         for item in pending_health[:10]:
