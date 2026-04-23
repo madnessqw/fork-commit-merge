@@ -175,7 +175,7 @@ def check_product_health(product):
                         'slug': slug,
                         'status': 'alternate_healthy',
                         'code': 200,
-                        'url': effective_url,
+                        'url': url,
                         'effective_url': effective_url,
                         'canonical_url': url,
                         'canonical_status': CANONICAL_REDIRECTED_PREVIEW_STATUS,

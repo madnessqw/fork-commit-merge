@@ -86,6 +86,10 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["code"], 200)
         self.assertEqual(
             result["url"],
+            "https://html-entity-encoder.vercel.app",
+        )
+        self.assertEqual(
+            result["effective_url"],
             "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
         )
         self.assertEqual(result["canonical_url"], "https://html-entity-encoder.vercel.app")
@@ -260,6 +264,45 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["last_health_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["v"], "https://redirect-tool.vercel.app")
+
+    def test_redirected_preview_alias_keeps_probe_and_effective_urls_distinct(self) -> None:
+        product = {
+            "name": "HTML Entity Encoder/Decoder Pro",
+            "slug": "html-entity-encoder",
+            "status": "live",
+            "vercel_url": "https://html-entity-encoder.vercel.app",
+            "v": "https://html-entity-encoder.vercel.app",
+        }
+
+        apply_health_result(
+            product,
+            {
+                "status": "alternate_healthy",
+                "code": 200,
+                "url": "https://html-entity-encoder.vercel.app",
+                "effective_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "checked_at": "2026-04-23T10:05:00Z",
+                "canonical_status": "redirected_preview_alias",
+                "canonical_code": 200,
+                "canonical_url": "https://html-entity-encoder.vercel.app",
+            },
+        )
+
+        self.assertEqual(product["health_probe_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(
+            product["effective_health_url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(
+            product["last_health_url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(
+            product["vercel_url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(product["canonical_health_status"], "redirected_preview_alias")
+        self.assertEqual(product["canonical_health_code"], 200)
 
     def test_synced_health_results_include_alternate_healthy(self) -> None:
         self.assertTrue(is_synced_health_result({"status": "healthy"}))
