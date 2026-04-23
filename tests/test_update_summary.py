@@ -1379,6 +1379,53 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_redirected_canonical_without_probe_url_still_reports_redirected_drift(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Legacy Redirected Tool",
+                        "slug": "legacy-redirected-tool",
+                        "status": "live",
+                        "vercel_url": "https://legacy-redirected-tool-preview.vercel.app",
+                        "deployment_url": "https://legacy-redirected-tool-preview.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://legacy-redirected-tool-preview.vercel.app",
+                        "effective_health_url": "https://legacy-redirected-tool-preview.vercel.app",
+                        "canonical_health_status": "redirected_preview_alias",
+                        "canonical_health_code": 200,
+                        "canonical_health_url": "https://legacy-redirected-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://legacy-redirected-tool-preview.vercel.app")
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "legacy-redirected-tool",
+                    "url": "https://legacy-redirected-tool-preview.vercel.app",
+                    "ideal_url": "https://legacy-redirected-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://legacy-redirected-tool.vercel.app",
+                    "effective_url": "https://legacy-redirected-tool-preview.vercel.app",
+                    "canonical_url": "https://legacy-redirected-tool.vercel.app",
+                    "canonical_code": 200,
+                    "canonical_status": "redirected_preview_alias",
+                }
+            ],
+        )
+
     def test_stale_failure_with_successful_fallback_records_actual_fallback_url(self) -> None:
         state = {
             "products": {

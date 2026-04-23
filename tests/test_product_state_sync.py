@@ -956,6 +956,33 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "redirected_preview_alias")
         self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
 
+    def test_redirected_preview_status_without_canonical_probe_url_keeps_fallback_visible(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "legacy-redirected-tool",
+                "status": "live",
+                "vercel_url": "https://legacy-redirected-tool-preview.vercel.app",
+                "deployment_url": "https://legacy-redirected-tool-preview.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://legacy-redirected-tool-preview.vercel.app",
+                "effective_health_url": "https://legacy-redirected-tool-preview.vercel.app",
+                "canonical_health_code": 200,
+                "canonical_health_status": "redirected_preview_alias",
+                "canonical_health_url": "https://legacy-redirected-tool.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://legacy-redirected-tool-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://legacy-redirected-tool-preview.vercel.app")
+        self.assertEqual(merged["effective_health_url"], "https://legacy-redirected-tool-preview.vercel.app")
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_status"], "redirected_preview_alias")
+        self.assertEqual(merged["canonical_probe_url"], "https://legacy-redirected-tool.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://legacy-redirected-tool.vercel.app")
+
     def test_newer_canonical_failure_beats_stale_fallback_success(self) -> None:
         merged = merge_product_record(
             {
