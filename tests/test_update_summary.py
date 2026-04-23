@@ -11,6 +11,7 @@ from scripts.update_summary import (
     is_placeholder_product,
     normalize_product,
     persist_summary,
+    public_health_url,
 )
 
 
@@ -1247,6 +1248,22 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["fallback_healthy_count"], 0)
         self.assertEqual(summary["fallback_healthy_products"], [])
         self.assertEqual(summary["products"][0]["v"], "https://visible-fallback-tool-preview.vercel.app")
+
+    def test_public_health_url_follows_rendered_preview_alias_over_stale_raw_canonical_fields(self) -> None:
+        product = {
+            "name": "Stale Preview Tool",
+            "slug": "stale-preview-tool",
+            "status": "live",
+            "vercel_url": "https://stale-preview-tool.vercel.app",
+            "deployment_url": "https://stale-preview-tool-preview.vercel.app",
+            "health_status": "healthy",
+            "last_health_code": 404,
+            "last_health_url": "https://stale-preview-tool.vercel.app",
+            "effective_health_url": "https://stale-preview-tool.vercel.app",
+            "canonical_health_url": "https://stale-preview-tool.vercel.app",
+        }
+
+        self.assertEqual(public_health_url(product), "https://stale-preview-tool-preview.vercel.app")
 
     def test_newer_canonical_success_drops_stale_drift_record(self) -> None:
         state = {

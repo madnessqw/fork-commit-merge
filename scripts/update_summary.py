@@ -201,6 +201,14 @@ def health_code(product: dict[str, Any]) -> int | None:
 
 
 def public_health_url(product: dict[str, Any]) -> str | None:
+    # Keep summary drift logic aligned with the rendered public URL. The
+    # sync layer already decides which URL should be visible; summary helpers
+    # should follow that same decision instead of re-deriving from stale raw
+    # health fields first.
+    selected = _normalize_url(display_vercel_url(product))
+    if selected is not None:
+        return selected
+
     selected = successful_health_url(product)
     if selected is not None:
         return selected
