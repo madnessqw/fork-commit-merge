@@ -32,7 +32,12 @@ AUTH_SWITCH_PATTERNS = (
 
 
 def utc_now() -> str:
-    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return (
+        dt.datetime.now(dt.timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
 
 def normalize_account(value: Any) -> int:
@@ -60,12 +65,16 @@ def load_state(path: Path) -> dict[str, Any]:
 
 def save_state(path: Path, data: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
 
 
 def choose_state(path: Path) -> dict[str, Any]:
     state = load_state(path)
-    preferred = normalize_account(state.get("preferred_account", state.get("last_active_account", 1)))
+    preferred = normalize_account(
+        state.get("preferred_account", state.get("last_active_account", 1))
+    )
     fallback = other_account(preferred)
     return {
         "preferred_account": preferred,
@@ -123,12 +132,47 @@ def classify_output(output: str, exit_code: int) -> str:
     return "success"
 
 
+def init_state(path: Path, preferred: int = 1) -> dict[str, Any]:
+    state = load_state(path)
+    if state:
+        return state
+    now = utc_now()
+    state = {
+        "preferred_account": normalize_account(preferred),
+        "last_active_account": normalize_account(preferred),
+        "last_attempted_accounts": [normalize_account(preferred)],
+        "last_result": "initialized",
+        "last_error": "",
+        "last_exit_code": 0,
+        "switch_count": 0,
+        "cycle": 0,
+        "created_at": now,
+        "updated_at": now,
+    }
+    save_state(path, state)
+    return state
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Manage Codex auth preference state.")
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    choose_parser = subparsers.add_parser("choose", help="Print the preferred and fallback accounts.")
+    init_parser = subparsers.add_parser(
+        "init", help="Initialize state file if missing."
+    )
+    init_parser.add_argument(
+        "--state-file",
+        default=str(DEFAULT_STATE_FILE),
+        help="Path to the JSON state file.",
+    )
+    init_parser.add_argument(
+        "--preferred", type=int, default=1, help="Preferred account (1 or 2)."
+    )
+
+    choose_parser = subparsers.add_parser(
+        "choose", help="Print the preferred and fallback accounts."
+    )
     choose_parser.add_argument(
         "--state-file",
         default=str(DEFAULT_STATE_FILE),
@@ -136,7 +180,9 @@ def parse_args() -> argparse.Namespace:
     )
     choose_parser.add_argument("--format", choices=("json", "shell"), default="shell")
 
-    record_parser = subparsers.add_parser("record", help="Persist the result of a Codex cycle.")
+    record_parser = subparsers.add_parser(
+        "record", help="Persist the result of a Codex cycle."
+    )
     record_parser.add_argument(
         "--state-file",
         default=str(DEFAULT_STATE_FILE),
@@ -150,7 +196,9 @@ def parse_args() -> argparse.Namespace:
     record_parser.add_argument("--last-error", default="")
     record_parser.add_argument("--attempted-accounts", nargs="+", required=True)
 
-    classify_parser = subparsers.add_parser("classify", help="Classify raw Codex output.")
+    classify_parser = subparsers.add_parser(
+        "classify", help="Classify raw Codex output."
+    )
     classify_parser.add_argument(
         "--state-file",
         default=str(DEFAULT_STATE_FILE),
@@ -166,6 +214,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     state_file = Path(args.state_file)
+
+    if args.command == "init":
+        state = init_state(state_file, preferred=args.preferred)
+        print(json.dumps(state, ensure_ascii=False))
+        return 0
 
     if args.command == "choose":
         chosen = choose_state(state_file)

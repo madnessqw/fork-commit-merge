@@ -1,0 +1,15 @@
+{
+  "preferred_account": 2,
+  "last_active_account": 2,
+  "last_attempted_accounts": [1, 2],
+  "last_result": "auth_switch_success",
+  "last_error": "usage limit on account 1",
+  "last_exit_code": 0,
+  "last_switch_from_account": 1,
+  "last_switch_to_account": 2,
+  "last_switch_reason": "usage limit",
+  "last_success_account": 2,
+  "switch_count": 1,
+  "cycle": 1108,
+  "updated_at": "2026-04-24T01:30:00Z"
+}

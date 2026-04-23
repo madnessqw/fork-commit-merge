@@ -117,6 +117,8 @@ PROMPT_CONTENT=$(cat prompts/codex_prompt.txt)
 
 echo "--- codex exec START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
 
+python3 "$WORK_DIR/scripts/codex_auth_manager.py" init --state-file "$AUTH_STATE_FILE" | tee -a "$LOG_FILE"
+
 AUTH_INFO=$(python3 "$WORK_DIR/scripts/codex_auth_manager.py" choose --state-file "$AUTH_STATE_FILE" --format shell)
 read -r PRIMARY_ACCOUNT FALLBACK_ACCOUNT <<< "$AUTH_INFO"
 echo "[CODEX] Auth preference: first=$PRIMARY_ACCOUNT fallback=$FALLBACK_ACCOUNT state=$AUTH_STATE_FILE" | tee -a "$LOG_FILE"
