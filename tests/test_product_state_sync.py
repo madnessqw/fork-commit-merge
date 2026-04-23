@@ -173,6 +173,22 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_url"], "https://api-mock-generator.vercel.app")
         self.assertEqual(health_check_url(merged), "https://api-mock-generator.vercel.app")
 
+    def test_live_deployment_alias_without_health_snapshot_stays_canonical(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "deployment-only-tool",
+                "status": "live",
+                "vercel_url": "https://deployment-only-tool.vercel.app",
+                "deployment_url": "https://deployment-only-tool-preview.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["vercel_url"], "https://deployment-only-tool.vercel.app")
+        self.assertEqual(merged["v"], "https://deployment-only-tool.vercel.app")
+        self.assertEqual(merged["deployment_url"], "https://deployment-only-tool-preview.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://deployment-only-tool.vercel.app")
+
     def test_state_canonical_alias_beats_manifest_preview_hash(self) -> None:
         merged = merge_product_record(
             {

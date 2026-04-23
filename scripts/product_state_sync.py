@@ -769,6 +769,9 @@ def choose_public_vercel_url(
                 return candidate
 
     if canonical_url is not None:
+        # Canonical wins unless we already have health evidence that a live
+        # alias is the truth. Deployment/manifest preview URLs by themselves
+        # are hints, not proof.
         for candidate in (
             normalized_state_url,
             normalized_deployment_url,

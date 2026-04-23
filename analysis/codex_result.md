@@ -15,14 +15,14 @@
 - `tests/test_health_check.py`
 
 ## Ne değişti
-- `scripts/product_state_sync.py` ve `scripts/update_summary.py` içinde fallback/canonical karar noktalarına net yorumlar eklendi.
-- Amaç: live fallback alias truth ile canonical slug gerçeğinin birbirine karışmaması; preview alias görünür kalırken canonical probe kanıtı ayrı sayılıyor.
-- Bu turda davranış zaten doğruydu; ben kuralı source içinde sertleştirdim ki sonraki editler canonical drift'i yanlışlıkla smuggle etmesin.
+- `scripts/product_state_sync.py` içine canonical-precedence kontratını netleştiren bir yorum eklendi.
+- `tests/test_product_state_sync.py` içine yeni bir regresyon testi eklendi: health snapshot yokken `deployment_url` içindeki preview alias, canonical `vercel_url`'yi ezmiyor.
+- Amaç: fallback alias truth yalnızca gerçek health kanıtıyla yaşasın; manuel Vercel koruması veya eksik probe verisi canonical gerçeği bozamaz.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_product_state_sync.py tests/test_update_summary.py`
-- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py -q`
-- Sonuç: `85 passed`
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
+- Sonuç: `102 passed`
 - Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
 
 ## Kalan blokajlar
