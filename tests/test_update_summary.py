@@ -285,6 +285,109 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_live_state_keeps_fallback_aliases_separate_from_unhealthy_count(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Fallback A",
+                        "slug": "fallback-a",
+                        "status": "live",
+                        "vercel_url": "https://fallback-a.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-a-preview.vercel.app",
+                        "effective_health_url": "https://fallback-a-preview.vercel.app",
+                        "canonical_health_code": 404,
+                        "canonical_health_status": "not_found",
+                        "canonical_health_url": "https://fallback-a.vercel.app",
+                        "canonical_probe_url": "https://fallback-a.vercel.app",
+                    },
+                    {
+                        "name": "Fallback B",
+                        "slug": "fallback-b",
+                        "status": "live",
+                        "vercel_url": "https://fallback-b.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-b-preview.vercel.app",
+                        "effective_health_url": "https://fallback-b-preview.vercel.app",
+                        "canonical_health_code": 404,
+                        "canonical_health_status": "not_found",
+                        "canonical_health_url": "https://fallback-b.vercel.app",
+                        "canonical_probe_url": "https://fallback-b.vercel.app",
+                    },
+                    {
+                        "name": "Fallback C",
+                        "slug": "fallback-c",
+                        "status": "live",
+                        "vercel_url": "https://fallback-c.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-c-preview.vercel.app",
+                        "effective_health_url": "https://fallback-c-preview.vercel.app",
+                        "canonical_health_code": 402,
+                        "canonical_health_status": "deployment_disabled",
+                        "canonical_health_url": "https://fallback-c.vercel.app",
+                        "canonical_probe_url": "https://fallback-c.vercel.app",
+                    },
+                    {
+                        "name": "Fallback D",
+                        "slug": "fallback-d",
+                        "status": "live",
+                        "vercel_url": "https://fallback-d.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-d-preview.vercel.app",
+                        "effective_health_url": "https://fallback-d-preview.vercel.app",
+                        "canonical_health_code": 404,
+                        "canonical_health_status": "not_found",
+                        "canonical_health_url": "https://fallback-d.vercel.app",
+                        "canonical_probe_url": "https://fallback-d.vercel.app",
+                    },
+                    {
+                        "name": "Broken A",
+                        "slug": "broken-a",
+                        "status": "live",
+                        "vercel_url": "https://broken-a.vercel.app",
+                        "health_status": "error_500",
+                        "last_health_code": 500,
+                        "last_health_url": "https://broken-a.vercel.app",
+                    },
+                    {
+                        "name": "Broken B",
+                        "slug": "broken-b",
+                        "status": "live",
+                        "vercel_url": "https://broken-b.vercel.app",
+                        "health_status": "unauthorized",
+                        "last_health_code": 401,
+                        "last_health_url": "https://broken-b.vercel.app",
+                    },
+                    {
+                        "name": "Broken C",
+                        "slug": "broken-c",
+                        "status": "live",
+                        "vercel_url": "https://broken-c.vercel.app",
+                        "health_status": "error_451",
+                        "last_health_code": 451,
+                        "last_health_url": "https://broken-c.vercel.app",
+                    },
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 4)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 4)
+        self.assertEqual(summary["unhealthy_count"], 3)
+        self.assertEqual(summary["canonical_url_drift"], 4)
+        self.assertEqual(summary["needs_fix_count"], 7)
+        self.assertEqual(summary["next_action"], "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut")
+        self.assertEqual(summary["canonical_url_drift_products"], ["fallback-a", "fallback-b", "fallback-c", "fallback-d"])
+        self.assertEqual(summary["fallback_healthy_products"], ["fallback-a", "fallback-b", "fallback-c", "fallback-d"])
+
     def test_pending_health_records_are_reported_separately(self) -> None:
         state = {
             "products": {
