@@ -340,8 +340,17 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
                 canonical_code = None
 
             canonical_status = _clean_text(_pick(record, "canonical_health_status"))
+            if status == "alternate_healthy":
+                # Alternate-healthy records are already telling us the public
+                # URL is the fallback. Only a proven canonical 200 should hide
+                # that alias again.
+                if canonical_code == 200 and canonical_status != CANONICAL_REDIRECTED_PREVIEW_STATUS:
+                    return canonical_url
+                return preview_alias
+
             if canonical_code not in (None, 200) or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS:
                 return preview_alias
+            return explicit_health_url
         return explicit_health_url
 
     # Some legacy snapshots only keep the reachable alias in compact `v`,
