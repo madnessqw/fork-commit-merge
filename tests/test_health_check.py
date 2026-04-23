@@ -68,6 +68,32 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 1)
 
     @patch("scripts.health_check.subprocess.run")
+    def test_canonical_redirect_to_preview_alias_stays_alternate_healthy(self, run_mock) -> None:
+        run_mock.return_value = Mock(
+            stdout="200 https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app"
+        )
+
+        result = check_product_health(
+            {
+                "name": "HTML Entity Encoder/Decoder Pro",
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "alternate_healthy")
+        self.assertEqual(result["code"], 200)
+        self.assertEqual(
+            result["url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(result["canonical_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(result["canonical_status"], "healthy")
+        self.assertEqual(result["canonical_code"], 200)
+        self.assertEqual(run_mock.call_count, 1)
+
+    @patch("scripts.health_check.subprocess.run")
     def test_ideal_url_is_probed_before_stale_alias(self, run_mock) -> None:
         seen_urls = []
 

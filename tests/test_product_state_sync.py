@@ -533,6 +533,39 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(merged["canonical_health_checked_at"], "2026-04-23T10:05:00Z")
 
+    def test_redirected_canonical_success_keeps_fallback_alias_visible(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "health_probe_url": "https://html-entity-encoder.vercel.app",
+                "last_health_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "effective_health_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "canonical_health_code": 200,
+                "canonical_health_status": "healthy",
+                "canonical_health_url": "https://html-entity-encoder.vercel.app",
+                "canonical_health_checked_at": "2026-04-23T10:05:00Z",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(
+            merged["vercel_url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(
+            merged["last_health_url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(merged["canonical_health_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
+
     def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
         self.assertEqual(
             health_check_url(

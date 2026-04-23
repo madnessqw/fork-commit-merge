@@ -160,6 +160,27 @@ def check_product_health(product):
             http_code = _coerce_http_code(code)
 
             if http_code == 200:
+                redirected_preview_alias = (
+                    idx == 0
+                    and effective_url is not None
+                    and effective_url != url
+                    and slug
+                    and effective_url.endswith(".vercel.app")
+                    and effective_url != f"https://{slug}.vercel.app"
+                )
+                if redirected_preview_alias:
+                    return {
+                        'name': name,
+                        'slug': slug,
+                        'status': 'alternate_healthy',
+                        'code': 200,
+                        'url': effective_url,
+                        'effective_url': effective_url,
+                        'canonical_url': url,
+                        'canonical_status': 'healthy',
+                        'canonical_code': 200,
+                        'checked_at': checked_at,
+                    }
                 if idx == 0:
                     return {
                         'name': name,
