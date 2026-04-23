@@ -46,6 +46,7 @@ HEALTH_METADATA_FIELDS = (
     "canonical_health_status",
     "canonical_health_code",
     "canonical_health_url",
+    "canonical_probe_url",
     "canonical_health_checked_at",
 )
 
@@ -283,6 +284,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     if canonical_target is not None:
         normalized["ideal_vercel_url"] = canonical_target
         normalized["canonical_health_url"] = canonical_target
+        normalized["canonical_probe_url"] = normalize_url(_pick(record, "canonical_probe_url")) or canonical_target
 
     public_checked_text = _clean_text(_pick(normalized, "health_checked_at", "last_health_check"))
     public_checked_at = _parse_timestamp(public_checked_text)
@@ -309,7 +311,11 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         public_code = None
 
     successful_snapshot_url = _successful_snapshot_url(record)
-    canonical_probe_url = normalize_url(_pick(record, "health_probe_url"))
+    explicit_canonical_probe_url = normalize_url(_pick(record, "canonical_probe_url"))
+    legacy_probe_url = normalize_url(_pick(record, "health_probe_url"))
+    canonical_probe_url = explicit_canonical_probe_url or (
+        legacy_probe_url if legacy_probe_url == canonical_target else None
+    )
     preserve_redirected_canonical_status = (
         canonical_code == 200
         and current_health_status == "alternate_healthy"
@@ -356,6 +362,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         normalized["canonical_health_code"] = 200
         normalized["canonical_health_status"] = "healthy"
         normalized["canonical_health_url"] = canonical_target
+        normalized["canonical_probe_url"] = normalize_url(_pick(record, "canonical_probe_url")) or canonical_target
         normalized["canonical_health_checked_at"] = public_checked_text or canonical_checked_at
         normalized["health_status"] = "healthy"
         normalized["last_health_url"] = canonical_target
@@ -388,7 +395,6 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         current_health_status = "alternate_healthy"
 
     effective_canonical_code = normalized.get("canonical_health_code")
-    canonical_probe_url = normalize_url(_pick(normalized, "health_probe_url"))
     effective_health_url = normalize_url(_pick(normalized, "effective_health_url", "last_health_url"))
     preserve_redirected_fallback = (
         effective_canonical_code == 200
@@ -405,6 +411,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         ) or canonical_checked_at
         normalized["ideal_vercel_url"] = canonical_target
         normalized["canonical_health_url"] = canonical_target
+        normalized["canonical_probe_url"] = normalize_url(_pick(record, "canonical_probe_url")) or canonical_target
         normalized["canonical_health_checked_at"] = final_canonical_checked_at
         normalized["canonical_health_code"] = 200
         normalized["canonical_health_status"] = "healthy"

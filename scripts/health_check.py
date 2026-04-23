@@ -97,6 +97,7 @@ def apply_health_result(product, result):
     checked_at = result.get("checked_at") or _utc_now_iso()
     slug = product.get("slug", product.get("s"))
     canonical_url = result.get("canonical_url")
+    canonical_probe_url = _normalize_url(result.get("canonical_probe_url"))
     probe_url = result.get("url")
     effective_url = _normalize_url(result.get("effective_url")) or _normalize_url(probe_url)
     if canonical_url is None and slug:
@@ -112,6 +113,7 @@ def apply_health_result(product, result):
         product["ideal_vercel_url"] = canonical_url or f"https://{slug}.vercel.app"
 
     product["canonical_health_url"] = canonical_url
+    product["canonical_probe_url"] = canonical_probe_url or canonical_url
 
     product["canonical_health_status"] = result.get("canonical_status") or (
         result["status"] if result["status"] != "alternate_healthy" else None
@@ -184,6 +186,7 @@ def check_product_health(product):
                         'url': url,
                         'effective_url': effective_url,
                         'canonical_url': url,
+                        'canonical_probe_url': candidates[0],
                         'canonical_status': CANONICAL_REDIRECTED_PREVIEW_STATUS,
                         'canonical_code': 200,
                         'checked_at': checked_at,
@@ -200,6 +203,7 @@ def check_product_health(product):
                         # truthful canonical record. This avoids freezing a
                         # redirected preview alias into canonical metadata.
                         'canonical_url': effective_url or url,
+                        'canonical_probe_url': candidates[0],
                         'canonical_status': 'healthy',
                         'canonical_code': 200,
                         'checked_at': checked_at,
@@ -220,6 +224,7 @@ def check_product_health(product):
                     'url': url,
                     'effective_url': effective_url or url,
                     'canonical_url': candidates[0],
+                    'canonical_probe_url': candidates[0],
                     'canonical_status': canonical_probe['status'],
                     'canonical_code': canonical_probe['code'],
                     'checked_at': checked_at,
@@ -229,7 +234,9 @@ def check_product_health(product):
             if idx == 0:
                 canonical_failure = failure
 
-        return canonical_failure or _build_probe_result(name, slug, candidates[0], 'unknown', checked_at)
+        final_failure = canonical_failure or _build_probe_result(name, slug, candidates[0], 'unknown', checked_at)
+        final_failure['canonical_probe_url'] = candidates[0]
+        return final_failure
     except Exception as e:
         return {
             'name': name,
@@ -238,6 +245,7 @@ def check_product_health(product):
             'code': str(e),
             'url': candidates[0] if candidates else None,
             'effective_url': candidates[0] if candidates else None,
+            'canonical_probe_url': candidates[0] if candidates else None,
             'checked_at': checked_at,
         }
 

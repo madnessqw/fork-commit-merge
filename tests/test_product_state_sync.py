@@ -56,6 +56,7 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["canonical_health_status"])
         self.assertIsNone(merged["canonical_health_code"])
         self.assertIsNone(merged["canonical_health_url"])
+        self.assertIsNone(merged["canonical_probe_url"])
         self.assertIsNone(merged["canonical_health_checked_at"])
         self.assertIsNone(health_check_url(merged))
 
@@ -82,6 +83,7 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["canonical_health_status"])
         self.assertIsNone(merged["canonical_health_code"])
         self.assertIsNone(merged["canonical_health_url"])
+        self.assertIsNone(merged["canonical_probe_url"])
         self.assertIsNone(merged["canonical_health_checked_at"])
         self.assertIsNone(health_check_url(merged))
 
@@ -105,6 +107,7 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "healthy")
         self.assertEqual(merged["canonical_health_code"], 200)
         self.assertEqual(merged["canonical_health_url"], "https://timestamp-sync-tool.vercel.app")
+        self.assertEqual(merged["canonical_probe_url"], "https://timestamp-sync-tool.vercel.app")
         self.assertEqual(merged["canonical_health_checked_at"], "2026-04-22T10:00:00Z")
         self.assertEqual(merged["ideal_vercel_url"], "https://timestamp-sync-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://timestamp-sync-tool.vercel.app")
@@ -564,6 +567,37 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_code"], 200)
         self.assertEqual(merged["canonical_health_status"], "redirected_preview_alias")
         self.assertEqual(merged["canonical_health_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(merged["canonical_probe_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
+
+    def test_canonical_probe_url_preserves_redirected_fallback_when_health_probe_is_fallback(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "html-entity-encoder",
+                "status": "live",
+                "vercel_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "health_probe_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "canonical_probe_url": "https://html-entity-encoder.vercel.app",
+                "last_health_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "effective_health_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                "canonical_health_code": 200,
+                "canonical_health_status": "healthy",
+                "canonical_health_url": "https://html-entity-encoder.vercel.app",
+                "canonical_health_checked_at": "2026-04-23T10:05:00Z",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(
+            merged["vercel_url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
+        self.assertEqual(merged["health_probe_url"], "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app")
+        self.assertEqual(merged["canonical_probe_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(merged["canonical_health_status"], "redirected_preview_alias")
         self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
 
     def test_live_product_without_explicit_url_probes_slug_canonical(self) -> None:
