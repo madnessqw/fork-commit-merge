@@ -1,24 +1,25 @@
-# Codex Analiz Özeti — 2026-04-22 23:03 UTC
+# Codex Analiz Özeti — 2026-04-23 03:07 UTC
 
 ## Canlı State
 - Cycle: **1108**
 - Mode: **OPTIMIZE**
-- Live sağlık: **84/88** (%95.5)
+- Live sağlık: **85/88** (%96.6)
+- Canonical healthy: **81/88** (%92.0)
 - Health pending: **0**
-- Fallback healthy: **3**
+- Fallback healthy: **4**
 - Checkout gap: **0**
 - Deploy readiness gap: **20**
-- Deploy/url gap: **21**
-- Canonical drift: **3**
+- Deploy/url gap: **20**
+- Canonical drift: **4**
 - Spec-ready: **26**
 - Next action: `html-entity-encoder Vercel Dashboard manuel kontrol`
 
 ## Ana Darboğaz
-- **Canlı sağlık açığı:** 4 canlı ürün gerçekten sağlıksız. Ayrıca 3 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
+- **Canlı sağlık açığı:** 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
 
 ## Kod için Öneri
 1. **Health/canonical drift düzeltmesi**
-   - Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 3 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
+   - Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 4 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
 2. Production'da manuel Vercel/LemonSqueezy adımlarını script ile 'çözüldü' gibi göstermeden bırak.
 3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.
 
@@ -30,6 +31,7 @@
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 
 ## Deploy Readiness Issues
 - Count: **20** | Manifest gaps: **3** | URL gaps: **20** | State gaps: **20**

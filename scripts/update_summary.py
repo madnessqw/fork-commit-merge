@@ -39,6 +39,7 @@ SUMMARY_STATE_FIELDS = (
     "active_count",
     "live_count",
     "healthy_count",
+    "canonical_healthy_count",
     "fallback_healthy_count",
     "unhealthy_count",
     "pending_health_count",
@@ -283,6 +284,7 @@ def build_summary(
         for p in live
         if (drift := canonical_url_drift_entry(p)) is not None
     ]
+    canonical_healthy_live = [p for p in live if is_healthy(p) and canonical_url_drift_entry(p) is None]
     fallback_healthy_live = [p for p in live if is_fallback_healthy(p)]
     pending_health_live = [p for p in live if is_pending_health(p)]
     readiness_source = raw_state or state
@@ -339,6 +341,7 @@ def build_summary(
         "active_count": len(active),
         "live_count": len(live),
         "healthy_count": sum(1 for p in live if is_healthy(p)),
+        "canonical_healthy_count": len(canonical_healthy_live),
         "fallback_healthy_count": len(fallback_healthy_live),
         "unhealthy_count": len(unhealthy_live),
         "pending_health_count": len(pending_health_live),

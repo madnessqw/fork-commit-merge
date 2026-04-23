@@ -508,6 +508,7 @@ class UpdateSummaryTests(unittest.TestCase):
         summary = build_summary(state)
 
         self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
         self.assertEqual(summary["fallback_healthy_count"], 1)
         self.assertEqual(summary["unhealthy_count"], 0)
         self.assertEqual(summary["deploy_missing_or_bad_url"], 0)
@@ -767,6 +768,7 @@ class UpdateSummaryTests(unittest.TestCase):
         summary = build_summary(state)
 
         self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 1)
         self.assertEqual(summary["fallback_healthy_count"], 0)
         self.assertEqual(summary["canonical_url_drift"], 0)
         self.assertEqual(summary["canonical_url_drift_products"], [])
@@ -798,6 +800,7 @@ class UpdateSummaryTests(unittest.TestCase):
         summary = build_summary(state)
 
         self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
         self.assertEqual(summary["fallback_healthy_count"], 1)
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["html-entity-encoder"])

@@ -105,6 +105,26 @@ def _health_percent(summary: dict[str, Any]) -> float:
     return healthy_count / live_count * 100
 
 
+def _canonical_health_count(summary: dict[str, Any]) -> int:
+    raw = summary.get("canonical_healthy_count")
+    if raw is not None:
+        try:
+            return int(raw)
+        except (TypeError, ValueError):
+            return 0
+
+    healthy_count = int(summary.get("healthy_count", 0) or 0)
+    fallback_count = int(summary.get("fallback_healthy_count", 0) or 0)
+    return max(0, healthy_count - fallback_count)
+
+
+def _canonical_health_percent(summary: dict[str, Any]) -> float:
+    live_count = int(summary.get("live_count", 0) or 0)
+    if live_count <= 0:
+        return 0.0
+    return _canonical_health_count(summary) / live_count * 100
+
+
 def _issue_map(issues: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
     for issue in issues:
@@ -324,6 +344,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         f"- Cycle: **{summary.get('cycle')}**",
         f"- Mode: **{summary.get('mode')}**",
         f"- Live sağlık: **{summary.get('healthy_count')}/{summary.get('live_count')}** (%{health_percent:.1f})",
+        f"- Canonical healthy: **{_canonical_health_count(summary)}/{summary.get('live_count')}** (%{_canonical_health_percent(summary):.1f})",
         f"- Health pending: **{summary.get('pending_health_count', 0)}**",
         f"- Fallback healthy: **{summary.get('fallback_healthy_count', 0)}**",
         f"- Checkout gap: **{summary.get('checkout_gap_count')}**",
@@ -475,6 +496,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
         "",
         "## Summary'den Gelen Gerçekler",
         f"- Healthy live: {summary.get('healthy_count')}/{summary.get('live_count')}",
+        f"- Canonical healthy: {_canonical_health_count(summary)}/{summary.get('live_count')}",
         f"- Health pending: {summary.get('pending_health_count', 0)}",
         f"- Fallback healthy: {summary.get('fallback_healthy_count', 0)}",
         f"- Checkout gap: {summary.get('checkout_gap_count')}",
@@ -597,6 +619,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             "## Canlı State Özeti",
             f"- Cycle: {summary.get('cycle')}",
             f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
+            f"- Canonical healthy: {_canonical_health_count(summary)}/{summary.get('live_count')} (%{_canonical_health_percent(summary):.1f})",
             f"- Health pending: {summary.get('pending_health_count', 0)}",
             f"- Fallback healthy: {summary.get('fallback_healthy_count', 0)}",
             f"- Checkout gap: {summary.get('checkout_gap_count')}",

@@ -1,22 +1,22 @@
-# Sorun Analizi — Cycle 1108 | 2026-04-22 23:03 UTC
+# Sorun Analizi — Cycle 1108 | 2026-04-23 03:07 UTC
 
 ## Ana Darboğaz
-- **live_health** — 4 canlı ürün gerçekten sağlıksız. Ayrıca 3 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
+- **live_health** — 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 84/88
+- Healthy live: 85/88
+- Canonical healthy: 81/88
 - Health pending: 0
-- Fallback healthy: 3
+- Fallback healthy: 4
 - Checkout gap: 0
 - Deploy readiness gap: 20
-- Deploy/url gap: 21
-- Canonical drift: 3
+- Deploy/url gap: 20
+- Canonical drift: 4
 - Spec-ready backlog: 26
 
 ## Canlı Sağlıksız Ürünler
 - `jwt-generator` — code=500 status=error_500 url=https://jwt-generator.vercel.app
 - `diffmaster` — code=401 status=unauthorized url=https://diffmaster.vercel.app
-- `html-entity-encoder` — code=402 status=deployment_disabled url=https://html-entity-encoder.vercel.app
 - `timestamp-converter` — code=451 status=error_451 url=https://timestamp-converter.vercel.app
 
 ## URL/Deploy Eksikleri
@@ -26,6 +26,7 @@
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 
 ## Deploy Readiness Issues
 - Count: 20 | Manifest gaps: 3 | URL gaps: 20 | State gaps: 20

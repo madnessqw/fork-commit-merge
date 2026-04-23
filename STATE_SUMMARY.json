@@ -4,13 +4,14 @@
   "balance": 0.0,
   "active_count": 144,
   "live_count": 88,
-  "healthy_count": 84,
-  "fallback_healthy_count": 3,
-  "unhealthy_count": 4,
+  "healthy_count": 85,
+  "canonical_healthy_count": 81,
+  "fallback_healthy_count": 4,
+  "unhealthy_count": 3,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 21,
-  "canonical_url_drift": 3,
+  "deploy_missing_or_bad_url": 20,
+  "canonical_url_drift": 4,
   "spec_ready_count": 26,
   "deploy_readiness_count": 20,
   "deploy_readiness_manifest_gap_count": 3,
@@ -19,7 +20,7 @@
   "needs_fix_count": 7,
   "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-22T23:03:46.810275Z",
+  "last_updated": "2026-04-23T03:07:28.211586Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -312,7 +313,7 @@
       "n": "CronCraft",
       "s": "croncraft",
       "st": "ready_for_payment",
-      "v": "https://croncraft.vercel.app",
+      "v": "https://quickcron.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202"
     },
     {
@@ -627,7 +628,7 @@
       "n": "HTML Entity Encoder/Decoder Pro",
       "s": "html-entity-encoder",
       "st": "live",
-      "v": "https://html-entity-encoder.vercel.app",
+      "v": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-entity-encoder-001"
     },
     {
@@ -1072,16 +1073,6 @@
         "probe_url": "https://diffmaster.vercel.app"
       },
       {
-        "slug": "html-entity-encoder",
-        "url": "https://html-entity-encoder.vercel.app",
-        "code": 402,
-        "health_status": "deployment_disabled",
-        "canonical_url": "https://html-entity-encoder.vercel.app",
-        "canonical_code": 402,
-        "canonical_status": "deployment_disabled",
-        "probe_url": "https://html-entity-encoder.vercel.app"
-      },
-      {
         "slug": "timestamp-converter",
         "url": "https://timestamp-converter.vercel.app",
         "code": 451,
@@ -1127,6 +1118,17 @@
         "canonical_url": "https://email-validator-pro.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
+      },
+      {
+        "slug": "html-entity-encoder",
+        "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "ideal_url": "https://html-entity-encoder.vercel.app",
+        "health_status": "alternate_healthy",
+        "health_code": 200,
+        "probe_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "canonical_url": "https://html-entity-encoder.vercel.app",
+        "canonical_code": 402,
+        "canonical_status": "deployment_disabled"
       }
     ],
     "deploy_readiness": [
@@ -1524,11 +1526,13 @@
   "canonical_url_drift_products": [
     "pdf-forge",
     "webhook-tester",
-    "email-validator-pro"
+    "email-validator-pro",
+    "html-entity-encoder"
   ],
   "fallback_healthy_products": [
     "pdf-forge",
     "webhook-tester",
-    "email-validator-pro"
+    "email-validator-pro",
+    "html-entity-encoder"
   ]
 }

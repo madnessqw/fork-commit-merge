@@ -407,6 +407,7 @@ class RefreshCodexContextTests(unittest.TestCase):
             "cycle": 1063,
             "live_count": 113,
             "healthy_count": 113,
+            "canonical_healthy_count": 110,
             "pending_health_count": 0,
             "fallback_healthy_count": 3,
             "checkout_gap_count": 0,
@@ -430,6 +431,7 @@ class RefreshCodexContextTests(unittest.TestCase):
 
         self.assertIn("Generated 2026-04-22 12:00 UTC", rendered)
         self.assertIn("Canonical drift: 0", rendered)
+        self.assertIn("Canonical healthy: 110/113", rendered)
         self.assertIn("Manual Vercel/LemonSqueezy", rendered)
         self.assertIn("analysis/codex_result.md", rendered)
         self.assertIn("Health pending: 0", rendered)
