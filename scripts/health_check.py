@@ -17,7 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.product_state_sync import health_check_url, load_product_catalog, sync_state_products
+from scripts.product_state_sync import (
+    health_check_url,
+    load_product_catalog,
+    sync_state_products,
+)
 from scripts.product_state_sync import sync_state_snapshot
 from scripts.update_summary import apply_summary_fields, build_summary, persist_summary
 
@@ -116,12 +120,16 @@ def is_synced_health_result(result):
 
 def apply_health_result(product, result):
     """Write a probe result back to a product record."""
+    if not isinstance(result, dict):
+        return
     checked_at = result.get("checked_at") or _utc_now_iso()
     slug = product.get("slug", product.get("s"))
     canonical_url = result.get("canonical_url")
     canonical_probe_url = _normalize_url(result.get("canonical_probe_url"))
     probe_url = result.get("url")
-    effective_url = _normalize_url(result.get("effective_url")) or _normalize_url(probe_url)
+    effective_url = _normalize_url(result.get("effective_url")) or _normalize_url(
+        probe_url
+    )
     public_url = _preferred_public_url(result, slug)
     canonical_target = f"https://{slug}.vercel.app" if slug else canonical_url
     if canonical_url is None and slug:
@@ -139,27 +147,28 @@ def apply_health_result(product, result):
     product["canonical_health_url"] = canonical_url
     product["canonical_probe_url"] = canonical_probe_url or canonical_url
 
+    status = result.get("status", "unknown")
     product["canonical_health_status"] = result.get("canonical_status") or (
-        result["status"] if result["status"] != "alternate_healthy" else None
+        status if status != "alternate_healthy" else None
     )
     product["canonical_health_code"] = _coerce_http_code(
-        result.get("canonical_code") if result.get("canonical_code") is not None else (
-            result.get("code") if result["status"] != "alternate_healthy" else None
-        )
+        result.get("canonical_code")
+        if result.get("canonical_code") is not None
+        else (result.get("code") if status != "alternate_healthy" else None)
     )
     product["canonical_health_checked_at"] = checked_at
 
-    if result["status"] in SYNCED_HEALTH_STATUSES and public_url:
+    if status in SYNCED_HEALTH_STATUSES and public_url:
         product["deployment_url"] = public_url
         product["vercel_url"] = public_url
         product["v"] = public_url
 
-    product["health_status"] = result["status"]
+    product["health_status"] = status
     product["last_health_code"] = _coerce_http_code(result.get("code")) or 0
     product["last_health_check"] = checked_at
     product["health_checked_at"] = checked_at
 
-    if result["status"] == "healthy" and _is_preview_alias_url(effective_url or probe_url, slug):
+    if status == "healthy" and _is_preview_alias_url(effective_url or probe_url, slug):
         product["health_status"] = "alternate_healthy"
         product["ideal_vercel_url"] = canonical_target
         product["canonical_health_url"] = canonical_target
@@ -170,8 +179,8 @@ def apply_health_result(product, result):
 
 def check_product_health(product):
     """Check health of a single product"""
-    name = product.get('name', product.get('n', 'Unknown'))
-    slug = product.get('slug', product.get('s', 'unknown'))
+    name = product.get("name", product.get("n", "Unknown"))
+    slug = product.get("slug", product.get("s", "unknown"))
     checked_at = _utc_now_iso()
     candidates = []
     primary_url = _normalize_url(health_check_url(product))
@@ -190,14 +199,34 @@ def check_product_health(product):
             candidates.append(candidate)
 
     if not candidates:
-        return {'name': name, 'slug': slug, 'status': 'no_url', 'code': None, 'checked_at': checked_at}
+        return {
+            "name": name,
+            "slug": slug,
+            "status": "no_url",
+            "code": None,
+            "checked_at": checked_at,
+        }
 
     canonical_failure = None
     try:
         for idx, url in enumerate(candidates):
             result = subprocess.run(
-                ['curl', '-4', '-L', '-sS', '-o', '/dev/null', '-w', '%{http_code} %{url_effective}', '--max-time', '10', url],
-                capture_output=True, text=True, timeout=15
+                [
+                    "curl",
+                    "-4",
+                    "-L",
+                    "-sS",
+                    "-o",
+                    "/dev/null",
+                    "-w",
+                    "%{http_code} %{url_effective}",
+                    "--max-time",
+                    "10",
+                    url,
+                ],
+                capture_output=True,
+                text=True,
+                timeout=15,
             )
             code, effective_url = _parse_probe_stdout(result.stdout)
             http_code = _coerce_http_code(code)
@@ -206,24 +235,28 @@ def check_product_health(product):
                 if idx == 0 and _is_preview_alias_url(url, slug):
                     canonical_url = f"https://{slug}.vercel.app"
                     return {
-                        'name': name,
-                        'slug': slug,
-                        'status': 'alternate_healthy',
-                        'code': 200,
-                        'url': url,
+                        "name": name,
+                        "slug": slug,
+                        "status": "alternate_healthy",
+                        "code": 200,
+                        "url": url,
                         # The probed public URL is the fallback alias itself.
                         # Keep it visible even if curl reports a redirected
                         # canonical effective URL; otherwise the state sync
                         # layer can accidentally "heal" the alias away.
-                        'effective_url': url,
-                        'canonical_url': canonical_url,
-                        'canonical_probe_url': canonical_url,
-                        'canonical_status': 'pending',
-                        'canonical_code': None,
-                        'checked_at': checked_at,
+                        "effective_url": url,
+                        "canonical_url": canonical_url,
+                        "canonical_probe_url": canonical_url,
+                        "canonical_status": "pending",
+                        "canonical_code": None,
+                        "checked_at": checked_at,
                     }
                 visible_effective_url = effective_url or url
-                if _is_preview_alias_url(url, slug) and effective_url is not None and effective_url != url:
+                if (
+                    _is_preview_alias_url(url, slug)
+                    and effective_url is not None
+                    and effective_url != url
+                ):
                     # Later preview-alias candidates can also redirect to the
                     # canonical slug. Keep the alias itself visible so the
                     # fallback URL does not get "healed" away just because the
@@ -239,34 +272,34 @@ def check_product_health(product):
                 )
                 if redirected_preview_alias:
                     return {
-                        'name': name,
-                        'slug': slug,
-                        'status': 'alternate_healthy',
-                        'code': 200,
-                        'url': url,
-                        'effective_url': effective_url,
-                        'canonical_url': url,
-                        'canonical_probe_url': candidates[0],
-                        'canonical_status': CANONICAL_REDIRECTED_PREVIEW_STATUS,
-                        'canonical_code': 200,
-                        'checked_at': checked_at,
+                        "name": name,
+                        "slug": slug,
+                        "status": "alternate_healthy",
+                        "code": 200,
+                        "url": url,
+                        "effective_url": effective_url,
+                        "canonical_url": url,
+                        "canonical_probe_url": candidates[0],
+                        "canonical_status": CANONICAL_REDIRECTED_PREVIEW_STATUS,
+                        "canonical_code": 200,
+                        "checked_at": checked_at,
                     }
                 if idx == 0:
                     return {
-                        'name': name,
-                        'slug': slug,
-                        'status': 'healthy',
-                        'code': 200,
-                        'url': url,
-                        'effective_url': effective_url or url,
+                        "name": name,
+                        "slug": slug,
+                        "status": "healthy",
+                        "code": 200,
+                        "url": url,
+                        "effective_url": effective_url or url,
                         # For a direct success, the final effective URL is the
                         # truthful canonical record. This avoids freezing a
                         # redirected preview alias into canonical metadata.
-                        'canonical_url': effective_url or url,
-                        'canonical_probe_url': candidates[0],
-                        'canonical_status': 'healthy',
-                        'canonical_code': 200,
-                        'checked_at': checked_at,
+                        "canonical_url": effective_url or url,
+                        "canonical_probe_url": candidates[0],
+                        "canonical_status": "healthy",
+                        "canonical_code": 200,
+                        "checked_at": checked_at,
                     }
 
                 canonical_probe = canonical_failure or _build_probe_result(
@@ -277,63 +310,72 @@ def check_product_health(product):
                     checked_at,
                 )
                 return {
-                    'name': name,
-                    'slug': slug,
-                    'status': 'alternate_healthy',
-                    'code': 200,
-                    'url': url,
-                    'effective_url': visible_effective_url,
-                    'canonical_url': candidates[0],
-                    'canonical_probe_url': candidates[0],
-                    'canonical_status': canonical_probe['status'],
-                    'canonical_code': canonical_probe['code'],
-                    'checked_at': checked_at,
+                    "name": name,
+                    "slug": slug,
+                    "status": "alternate_healthy",
+                    "code": 200,
+                    "url": url,
+                    "effective_url": visible_effective_url,
+                    "canonical_url": candidates[0],
+                    "canonical_probe_url": candidates[0],
+                    "canonical_status": canonical_probe["status"],
+                    "canonical_code": canonical_probe["code"],
+                    "checked_at": checked_at,
                 }
 
-            failure = _build_probe_result(name, slug, url, code, checked_at, effective_url=effective_url)
+            failure = _build_probe_result(
+                name, slug, url, code, checked_at, effective_url=effective_url
+            )
             if idx == 0:
                 canonical_failure = failure
 
-        final_failure = canonical_failure or _build_probe_result(name, slug, candidates[0], 'unknown', checked_at)
-        final_failure['canonical_probe_url'] = candidates[0]
+        if canonical_failure is None:
+            canonical_failure = _build_probe_result(
+                name, slug, candidates[0], "unknown", checked_at
+            )
+        final_failure = canonical_failure
+        final_failure["canonical_probe_url"] = candidates[0]
         return final_failure
     except Exception as e:
         return {
-            'name': name,
-            'slug': slug,
-            'status': 'error',
-            'code': str(e),
-            'url': candidates[0] if candidates else None,
-            'effective_url': candidates[0] if candidates else None,
-            'canonical_probe_url': candidates[0] if candidates else None,
-            'checked_at': checked_at,
+            "name": name,
+            "slug": slug,
+            "status": "error",
+            "code": str(e),
+            "url": candidates[0] if candidates else None,
+            "effective_url": candidates[0] if candidates else None,
+            "canonical_probe_url": candidates[0] if candidates else None,
+            "checked_at": checked_at,
         }
+
 
 def main():
     # Load state
-    with open('STATE.json', encoding='utf-8') as f:
+    with open("STATE.json", encoding="utf-8") as f:
         raw_state = json.load(f)
 
     # Keep the file-backed snapshot pristine; the working copy is what we mutate
     # while health results are applied. Otherwise the "raw" state fed into
     # summary/readiness checks gets polluted by sync side effects.
     state = deepcopy(raw_state)
-    products = state.get('products', {}).get('active', [])
+    products = state.get("products", {}).get("active", [])
     synced_products = sync_state_products(products, load_product_catalog())
     synced_by_slug = {
-        (item.get('slug') or item.get('s')): item
+        (item.get("slug") or item.get("s")): item
         for item in synced_products
-        if (item.get('slug') or item.get('s'))
+        if (item.get("slug") or item.get("s"))
     }
 
     for product in products:
-        slug = product.get('slug') or product.get('s')
+        slug = product.get("slug") or product.get("s")
         synced = synced_by_slug.get(slug)
         if not synced:
             continue
         product.update(synced)
 
-    live_products = [p for p in synced_products if p.get('status') in HEALTH_CHECKABLE_STATUSES]
+    live_products = [
+        p for p in synced_products if p.get("status") in HEALTH_CHECKABLE_STATUSES
+    ]
 
     print(f"=== HEALTH CHECK ===")
     print(f"Total products: {len(products)}")
@@ -353,18 +395,22 @@ def main():
             result = future.result()
             if is_synced_health_result(result):
                 healthy.append(result)
-                if result['status'] == 'alternate_healthy':
+                if result["status"] == "alternate_healthy":
                     fallback_healthy.append(result)
-                    print(f"⚠️  {result['name']}: ALTERNATE HEALTHY (HTTP {result['code']})")
+                    print(
+                        f"⚠️  {result['name']}: ALTERNATE HEALTHY (HTTP {result['code']})"
+                    )
                 else:
                     print(f"✅ {result['name']}: HTTP {result['code']}")
-            elif result['status'] == 'no_url':
+            elif result["status"] == "no_url":
                 no_url.append(result)
                 print(f"⚠️  {result['name']}: NO URL")
             else:
                 unhealthy.append(result)
-                icon = "⚠️" if result['status'] == 'alternate_healthy' else "❌"
-                print(f"{icon} {result['name']}: {result['status'].upper()} (HTTP {result['code']})")
+                icon = "⚠️" if result["status"] == "alternate_healthy" else "❌"
+                print(
+                    f"{icon} {result['name']}: {result['status'].upper()} (HTTP {result['code']})"
+                )
 
     print()
     print("=== SUMMARY ===")
@@ -379,7 +425,7 @@ def main():
     # Update state with health status
     for result in healthy + unhealthy + no_url:
         for p in products:
-            if p.get('slug') == result['slug'] or p.get('s') == result['slug']:
+            if p.get("slug") == result["slug"] or p.get("s") == result["slug"]:
                 apply_health_result(p, result)
 
     product_catalog = load_product_catalog()
@@ -389,7 +435,7 @@ def main():
     # Save state
     state = apply_summary_fields(state, summary)
 
-    with open('STATE.json', 'w', encoding='utf-8') as f:
+    with open("STATE.json", "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
     persist_summary(summary)
 
@@ -401,13 +447,14 @@ def main():
 
     # Return summary for further processing
     return {
-        'healthy': summary['healthy_count'],
-        'unhealthy': summary['unhealthy_count'],
-        'no_url': len(no_url),
-        'fallback_healthy': len(fallback_healthy),
-        'total': summary['live_count']
+        "healthy": summary["healthy_count"],
+        "unhealthy": summary["unhealthy_count"],
+        "no_url": len(no_url),
+        "fallback_healthy": len(fallback_healthy),
+        "total": summary["live_count"],
     }
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     result = main()
-    sys.exit(0 if result['unhealthy'] == 0 else 1)
+    sys.exit(0 if result["unhealthy"] == 0 else 1)
