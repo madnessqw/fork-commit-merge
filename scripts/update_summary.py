@@ -93,9 +93,6 @@ def _looks_like_manual_dashboard_action(value: Any) -> bool:
 def _effective_next_action(state: dict[str, Any], unhealthy_live: list[dict[str, Any]], canonical_drift_live: list[dict[str, Any]]) -> str | None:
     raw = state.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
-    if raw_text and not _looks_like_manual_dashboard_action(raw_text):
-        return raw_text
-
     if unhealthy_live:
         if canonical_drift_live:
             return f"{len(unhealthy_live)} canlı ürünü düzelt; {len(canonical_drift_live)} fallback alias'ı görünür tut"
@@ -103,6 +100,9 @@ def _effective_next_action(state: dict[str, Any], unhealthy_live: list[dict[str,
 
     if canonical_drift_live:
         return f"{len(canonical_drift_live)} canonical URL drift'ini düzelt; fallback alias'ı ezme"
+
+    if raw_text and not _looks_like_manual_dashboard_action(raw_text):
+        return raw_text
 
     return raw_text or None
 

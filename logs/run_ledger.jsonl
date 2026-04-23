@@ -61,3 +61,4 @@
 {"run_id":"codex-20260423-2006","mode":"EXECUTION","task":"preserve alternate fallback aliases when effective_url is canonical","status":"done","slug":"health-canonical-drift","duration_min":18,"cost_est":0.05,"cycle":1108}
 {"run_id": "codex-20260423-2046", "mode": "EXECUTION", "task": "surface fallback slugs in codex task output", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T20:46:26.495344Z"}
 {"run_id": "codex-20260423-2105", "mode": "EXECUTION", "task": "health/canonical drift düzeltmesi", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.03, "cycle": 1108}
+{"run_id": "codex-20260424-0040", "mode": "EXECUTION", "task": "health/canonical drift task; stale next_action override fixed", "status": "done", "slug": "health-canonical-drift", "duration_min": 19, "cost_est": 0.05, "cycle": 1108}
