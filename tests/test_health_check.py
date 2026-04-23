@@ -269,6 +269,7 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["last_health_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["last_health_check"], "2026-04-22T10:00:00Z")
         self.assertEqual(product["health_checked_at"], "2026-04-22T10:00:00Z")
+        self.assertEqual(product["deployment_url"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["canonical_health_status"], "not_found")
         self.assertEqual(product["canonical_health_code"], 404)
         self.assertEqual(product["canonical_health_url"], "https://fallback-tool.vercel.app")
@@ -303,6 +304,7 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["health_probe_url"], "https://redirect-tool-rose.vercel.app")
         self.assertEqual(product["effective_health_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["last_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(product["deployment_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["v"], "https://redirect-tool.vercel.app")
 

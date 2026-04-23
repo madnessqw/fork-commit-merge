@@ -1,4 +1,34 @@
-# Codex Result — 2026-04-23 15:05 +03
+# Codex Result — 2026-04-23 15:43 +03
+
+## 2026-04-23 15:43 +03 — Health sync now persists fallback alias in deployment_url
+
+### Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/health_check.py`
+- `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
+- `tests/test_health_check.py`
+
+### Ne Değişti
+- `scripts/health_check.py` artık sağlıklı/fallback sonuçlarda `deployment_url` alanını da `effective_url` ile senkronluyor. Böylece fallback alias sadece `vercel_url` içinde kalmıyor; sonraki cycle’da tekrar canonical cache’e ezilme riski azalıyor.
+- `tests/test_health_check.py` buna dair iki regression aldı: alias sync ve redirect-to-canonical success path.
+- `scripts/update_summary.py` yeniden çalıştırıldı; canlı sayılar aynı kaldı: `active=144`, `live=88`, `healthy=85`, `canonical_drift=4`.
+
+### Doğrulamalar
+- `PYTHONPATH=. python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
+- `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
+- Secret scan temiz: değişen dosyalarda `sk_` / `pk_` / `ghp_` / `api_key` izi yok.
+
+### Kalan Blokajlar
+- 3 canlı ürün hâlâ gerçekten sağlıksız: `jwt-generator`, `diffmaster`, `timestamp-converter`.
+- 4 fallback alias canlı; bu değişiklik onların state içinde daha dayanıklı kalmasını sağlıyor.
 
 ## 2026-04-23 15:05 +03 — Health/canonical duplicate-snapshot dedupe
 

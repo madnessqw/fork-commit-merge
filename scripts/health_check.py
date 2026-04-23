@@ -126,6 +126,7 @@ def apply_health_result(product, result):
     product["canonical_health_checked_at"] = checked_at
 
     if result["status"] in SYNCED_HEALTH_STATUSES and effective_url:
+        product["deployment_url"] = effective_url
         product["vercel_url"] = effective_url
         product["v"] = effective_url
 
