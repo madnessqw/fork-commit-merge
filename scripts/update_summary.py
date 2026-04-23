@@ -414,7 +414,10 @@ def build_summary(
         "live_count": len(live),
         "healthy_count": sum(1 for p in live if is_healthy(p)),
         "canonical_healthy_count": len(canonical_healthy_live),
-        "fallback_healthy_count": len(fallback_healthy_live),
+        # Fallback health only counts records that still have a concrete drift
+        # snapshot. A stale alternate_healthy label on its own is not proof that
+        # the fallback alias is actually the live truth.
+        "fallback_healthy_count": len(fallback_healthy_detail),
         "unhealthy_count": len(unhealthy_live),
         "pending_health_count": len(pending_health_live),
         "checkout_gap_count": len(checkout_gap_live),
@@ -458,7 +461,7 @@ def build_summary(
             "deploy_readiness": readiness["issues"],
         },
         "canonical_url_drift_products": [item.get("slug") for item in canonical_drift_live if item.get("slug")],
-        "fallback_healthy_products": [p.get("slug") for p in fallback_healthy_live if p.get("slug")],
+        "fallback_healthy_products": [item.get("slug") for item in fallback_healthy_detail if item.get("slug")],
     }
 
 

@@ -50,3 +50,4 @@
 {"run_id":"codex-20260423-1505","mode":"EXECUTION","task":"health/canonical drift duplicate snapshot dedupe","status":"done","slug":"health-canonical-drift","duration_min":24,"cost_est":0.05,"cycle":1108,"ts":"2026-04-23T12:05:59Z"}
 {"run_id":"codex-20260423-1555","mode":"EXECUTION","task":"health/canonical drift context amplification","status":"done","slug":"health-canonical-drift","duration_min":55,"cost_est":0.05,"cycle":1108}
 {"run_id": "codex-20260423-1415", "mode": "EXECUTION", "task": "health/canonical drift preserve live canonical-only fallback", "status": "done", "slug": "health-canonical-drift", "duration_min": 24, "cost_est": 0.05, "cycle": 1108}
+{"run_id": "codex-20260423-1446", "mode": "EXECUTION", "task": "fallback healthy count detail hardening", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T14:46:56Z"}
