@@ -45,3 +45,6 @@
 {"run_id": "codex-20260423-0907", "mode": "EXECUTION", "task": "health/canonical drift fallback alias visibility fix", "status": "done", "slug": "health-canonical-drift", "duration_min": 28, "cost_est": 0.04, "cycle": 1108}
 {"run_id": "codex-20260423-1005", "mode": "EXECUTION", "task": "health/canonical drift fallback alias visibility with stale probe metadata", "status": "done", "slug": "health-canonical-drift", "duration_min": 17, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T10:05:22Z"}
 {"run_id": "codex-20260423-1045", "mode": "EXECUTION", "task": "health/canonical drift", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108}
+{"run_id":"codex-20260423-1404","mode":"EXECUTION","task":"health/canonical drift fix","status":"done","slug":"health-canonical-drift","duration_min":18,"cost_est":0.05,"cycle":1108}
+{"run_id":"codex-20260423-1442","mode":"EXECUTION","task":"health/canonical drift preserve fallback aliases","status":"done","slug":"health-canonical-drift","duration_min":26,"cost_est":0.05,"cycle":1108,"ts":"2026-04-23T11:42:57Z"}
+{"run_id":"codex-20260423-1505","mode":"EXECUTION","task":"health/canonical drift duplicate snapshot dedupe","status":"done","slug":"health-canonical-drift","duration_min":24,"cost_est":0.05,"cycle":1108,"ts":"2026-04-23T12:05:59Z"}

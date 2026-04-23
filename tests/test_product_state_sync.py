@@ -973,6 +973,43 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(synced[0]["slug"], "duplicate-tool")
         self.assertEqual(synced[0]["vercel_url"], "https://duplicate-tool.vercel.app")
 
+    def test_sync_state_products_prefers_newer_fallback_snapshot_and_keeps_checkout_metadata(self) -> None:
+        products = [
+            {
+                "name": "Duplicate Tool",
+                "slug": "duplicate-tool",
+                "status": "live",
+                "vercel_url": "https://duplicate-tool.vercel.app",
+                "checkout_url": "https://checkout.example/duplicate-tool",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://duplicate-tool.vercel.app",
+                "last_health_check": "2026-04-23T10:00:00Z",
+                "canonical_health_code": 404,
+                "canonical_health_status": "not_found",
+            },
+            {
+                "name": "Duplicate Tool",
+                "slug": "duplicate-tool",
+                "status": "live",
+                "vercel_url": "https://duplicate-tool-preview.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://duplicate-tool-preview.vercel.app",
+                "effective_health_url": "https://duplicate-tool-preview.vercel.app",
+                "health_checked_at": "2026-04-23T11:00:00Z",
+            },
+        ]
+
+        synced = sync_state_products(products)
+        product = synced[0]
+
+        self.assertEqual(product["vercel_url"], "https://duplicate-tool-preview.vercel.app")
+        self.assertEqual(product["v"], "https://duplicate-tool-preview.vercel.app")
+        self.assertEqual(product["health_status"], "alternate_healthy")
+        self.assertEqual(product["last_health_url"], "https://duplicate-tool-preview.vercel.app")
+        self.assertEqual(product["checkout_url"], "https://checkout.example/duplicate-tool")
+
 
 if __name__ == "__main__":
     unittest.main()

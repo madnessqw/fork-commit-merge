@@ -106,6 +106,48 @@ class UpdateSummaryTests(unittest.TestCase):
             },
         ])
 
+    def test_newer_fallback_duplicate_preserves_visibility_and_checkout_metadata(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Duplicate Tool",
+                        "slug": "duplicate-tool",
+                        "status": "live",
+                        "vercel_url": "https://duplicate-tool.vercel.app",
+                        "checkout_url": "https://checkout.example/duplicate-tool",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://duplicate-tool.vercel.app",
+                        "last_health_check": "2026-04-23T10:00:00Z",
+                        "canonical_health_code": 404,
+                        "canonical_health_status": "not_found",
+                    },
+                    {
+                        "name": "Duplicate Tool",
+                        "slug": "duplicate-tool",
+                        "status": "live",
+                        "vercel_url": "https://duplicate-tool-preview.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://duplicate-tool-preview.vercel.app",
+                        "effective_health_url": "https://duplicate-tool-preview.vercel.app",
+                        "health_checked_at": "2026-04-23T11:00:00Z",
+                    },
+                ],
+                "spec_ready": [],
+            },
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["duplicate-tool"])
+        self.assertEqual(summary["products"][0]["v"], "https://duplicate-tool-preview.vercel.app")
+        self.assertEqual(summary["products"][0]["c"], "https://checkout.example/duplicate-tool")
+
     def test_compact_records_are_normalized_before_counting(self) -> None:
         state = {
             "products": {

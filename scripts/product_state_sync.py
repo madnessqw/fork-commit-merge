@@ -131,6 +131,67 @@ def _record_quality_score(record: dict[str, Any]) -> int:
     return sum(1 for value in record.values() if has_value(value))
 
 
+def _record_latest_health_timestamp(record: dict[str, Any]) -> datetime | None:
+    timestamps: list[datetime] = []
+    for key in ("last_health_check", "health_checked_at", "canonical_health_checked_at"):
+        parsed = _parse_timestamp(_pick(record, key))
+        if parsed is not None:
+            timestamps.append(parsed)
+    if not timestamps:
+        return None
+    return max(timestamps)
+
+
+def _record_has_visible_fallback(record: dict[str, Any]) -> bool:
+    status = _clean_text(_pick(record, "health_status"))
+    if status not in HEALTHY_URL_STATUSES:
+        return False
+
+    raw_code = _pick(record, "last_health_code")
+    try:
+        code = int(raw_code)
+    except (TypeError, ValueError):
+        return False
+    if code != 200:
+        return False
+
+    slug = _clean_text(_pick(record, "slug", "s"))
+    canonical_url = canonical_vercel_url(slug)
+    if canonical_url is None:
+        return False
+
+    for candidate in (
+        _pick(record, "effective_health_url"),
+        _pick(record, "last_health_url"),
+        _pick(record, "health_probe_url"),
+        _pick(record, "deployment_url"),
+        _pick(record, "v"),
+        _pick(record, "vercel_url"),
+    ):
+        normalized = normalize_url(candidate)
+        if normalized is not None and normalized != canonical_url:
+            return True
+    return False
+
+
+def record_preference_key(record: dict[str, Any]) -> tuple[datetime, int, int]:
+    """Prefer fresher health snapshots, then visible fallback aliases, then density."""
+    latest = _record_latest_health_timestamp(record)
+    if latest is None:
+        latest = datetime.min.replace(tzinfo=timezone.utc)
+    fallback_visible = 1 if _record_has_visible_fallback(record) else 0
+    return (latest, fallback_visible, _record_quality_score(record))
+
+
+def merge_preferred_record(preferred: dict[str, Any], fallback: dict[str, Any]) -> dict[str, Any]:
+    """Keep the preferred record's truth while backfilling missing stable fields."""
+    merged = dict(preferred)
+    for key, value in fallback.items():
+        if not has_value(merged.get(key)) and has_value(value):
+            merged[key] = value
+    return merged
+
+
 def _dedupe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     deduped: dict[str, dict[str, Any]] = {}
     order: list[str] = []
@@ -147,8 +208,8 @@ def _dedupe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
             order.append(key)
             continue
 
-        if _record_quality_score(record) > _record_quality_score(deduped[key]):
-            deduped[key] = record
+        if record_preference_key(record) > record_preference_key(deduped[key]):
+            deduped[key] = merge_preferred_record(record, deduped[key])
 
     return [deduped[key] for key in order] + anonymous
 

@@ -1,4 +1,36 @@
-# Codex Result — 2026-04-23 14:42 +03
+# Codex Result — 2026-04-23 15:05 +03
+
+## 2026-04-23 15:05 +03 — Health/canonical duplicate-snapshot dedupe
+
+### Okunanlar
+- `skills/codex_skill.md`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
+- `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
+- `scripts/health_check.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
+- `tests/test_health_check.py`
+
+### Ne Değişti
+- `scripts/product_state_sync.py` artık duplicate slug kaydında kör kalite skoruyla seçmiyor; önce en yeni health snapshot'ı, sonra görünür fallback alias'ı tercih ediyor.
+- `merge_preferred_record()` eklendi: daha yeni fallback snapshot seçilince checkout gibi stabil metadata kaybolmasın diye eksik alanları eski kayıttan backfill ediyor.
+- `scripts/update_summary.py` aynı preference key'i kullanıyor; summary dedupe artık daha yeni fallback snapshot'ı canonical çöpüne ezdirmiyor.
+- Regression testler eklendi: duplicate canonical + newer fallback snapshot senaryosunda public URL alias kalıyor ve checkout metadata korunuyor.
+
+### Doğrulamalar
+- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py tests/test_product_state_sync.py tests/test_update_summary.py scripts/health_check.py scripts/refresh_codex_context.py`
+- `PYTHONPATH=. python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
+- Sonuç: **94 passed**
+- Secret scan temiz: değişen dosyalarda `sk_` / `pk_` / `ghp_` / `api_key` izi yok.
+
+### Kalan Blokajlar
+- Canlı portföyde hâlâ 3 gerçek health outage var: `jwt-generator`, `diffmaster`, `timestamp-converter`.
+- 4 fallback alias canlı; bu değişiklik onların daha yeni snapshot varken canonical duplicate tarafından ezilmesini önlüyor.
 
 ## Okunanlar
 - `skills/codex_skill.md`

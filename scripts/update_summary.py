@@ -25,6 +25,8 @@ from scripts.product_state_sync import (
     canonical_target_vercel_url,
     display_vercel_url,
     load_product_catalog,
+    merge_preferred_record,
+    record_preference_key,
     sync_state_snapshot,
     sync_state_products,
     successful_health_url,
@@ -147,8 +149,8 @@ def dedupe_products(products: list[dict[str, Any]]) -> list[dict[str, Any]]:
             deduped[key] = product
             order.append(key)
             continue
-        if product_quality_score(product) > product_quality_score(deduped[key]):
-            deduped[key] = product
+        if record_preference_key(product) > record_preference_key(deduped[key]):
+            deduped[key] = merge_preferred_record(product, deduped[key])
 
     return [deduped[key] for key in order] + anonymous
 
