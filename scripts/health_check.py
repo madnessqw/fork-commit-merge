@@ -196,7 +196,11 @@ def check_product_health(product):
                         'status': 'alternate_healthy',
                         'code': 200,
                         'url': url,
-                        'effective_url': effective_url or url,
+                        # The probed public URL is the fallback alias itself.
+                        # Keep it visible even if curl reports a redirected
+                        # canonical effective URL; otherwise the state sync
+                        # layer can accidentally "heal" the alias away.
+                        'effective_url': url,
                         'canonical_url': canonical_url,
                         'canonical_probe_url': canonical_url,
                         'canonical_status': 'pending',

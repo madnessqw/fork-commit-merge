@@ -231,6 +231,30 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 1)
         health_url_mock.assert_called_once()
 
+    @patch("scripts.health_check.health_check_url", return_value="https://fallback-tool-preview.vercel.app")
+    @patch("scripts.health_check.subprocess.run")
+    def test_primary_preview_alias_redirect_does_not_mask_the_alias(self, run_mock, health_url_mock) -> None:
+        run_mock.return_value = Mock(stdout="200 https://fallback-tool.vercel.app")
+
+        result = check_product_health(
+            {
+                "name": "Fallback Tool",
+                "slug": "fallback-tool",
+                "status": "live",
+                "vercel_url": "https://fallback-tool-preview.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "alternate_healthy")
+        self.assertEqual(result["code"], 200)
+        self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(result["canonical_status"], "pending")
+        self.assertIsNone(result["canonical_code"])
+        self.assertEqual(run_mock.call_count, 1)
+        health_url_mock.assert_called_once()
+
     @patch("scripts.health_check.subprocess.run")
     def test_non_standard_http_failure_code_is_preserved(self, run_mock) -> None:
         run_mock.return_value = Mock(stdout="451")

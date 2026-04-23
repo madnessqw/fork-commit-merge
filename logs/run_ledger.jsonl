@@ -54,3 +54,4 @@
 {"run_id": "codex-20260423-1608", "mode": "EXECUTION", "task": "alternate_healthy stale canonical health_url fallback visibility", "status": "done", "slug": "health-canonical-drift", "duration_min": 12, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T16:08:11Z"}
 {"run_id": "codex-20260423-1643", "mode": "EXECUTION", "task": "health/canonical drift fix", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108}
 {"run_id": "codex-20260423-1712", "mode": "EXECUTION", "task": "health/canonical drift pipeline comments and verification", "status": "done", "slug": "health-canonical-drift", "duration_min": 28, "cost_est": 0.05, "cycle": 1108}
+{"run_id": "codex-20260423-1805", "mode": "EXECUTION", "task": "preserve fallback alias when preview alias redirects during primary probe", "status": "done", "slug": "health-canonical-drift", "duration_min": 14, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T18:05:15Z"}
