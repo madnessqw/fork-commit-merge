@@ -570,6 +570,21 @@ class ProductStateSyncTests(unittest.TestCase):
 
         self.assertEqual(public_url, "https://preview-only-tool-rose.vercel.app")
 
+    def test_healthy_preview_alias_with_explicit_health_url_keeps_fallback_display(self) -> None:
+        public_url = choose_public_vercel_url(
+            slug="preview-only-tool",
+            state_status="live",
+            state_url="https://preview-only-tool.vercel.app",
+            manifest_url=None,
+            deployment_url=None,
+            status="live",
+            health_status="healthy",
+            last_health_code=200,
+            health_url="https://preview-only-tool-rose.vercel.app",
+        )
+
+        self.assertEqual(public_url, "https://preview-only-tool-rose.vercel.app")
+
     def test_deployment_alias_without_explicit_health_url_stays_alternate_healthy(self) -> None:
         merged = merge_product_record(
             {

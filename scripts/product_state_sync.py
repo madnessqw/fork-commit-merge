@@ -616,6 +616,17 @@ def choose_public_vercel_url(
     canonical_url = canonical_vercel_url(slug)
     if (
         normalized_status in HEALTH_CHECKABLE_STATUSES
+        and _clean_text(health_status) in HEALTHY_URL_STATUSES
+        and normalized_health_url is not None
+        and _is_vercel_preview_alias(normalized_health_url, slug)
+    ):
+        # If the health snapshot already points at a reachable preview alias,
+        # keep it visible. A canonical-looking state_url must not erase the
+        # live fallback URL just because the slug URL still exists in cache.
+        return normalized_health_url
+
+    if (
+        normalized_status in HEALTH_CHECKABLE_STATUSES
         and _clean_text(health_status) == "alternate_healthy"
         and normalized_health_url is not None
     ):

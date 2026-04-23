@@ -15,14 +15,15 @@
 - `tests/test_health_check.py`
 
 ## Ne Değişti
-- `tests/test_update_summary.py` içine canlı durumu temsil eden regresyon eklendi: 4 fallback alias + 3 unhealthy ürün birlikteyken `healthy_count`, `fallback_healthy_count`, `canonical_url_drift` ve `needs_fix_count` ayrışıyor.
-- Bu test, fallback alias'ların görünür kalmasını ve unhealthy sayısının şişmemesini kilitliyor.
-- Çalışma ağacı hâlâ mevcut state refresh artefact'larını taşıyor: `STATE.json`, `STATE_SUMMARY.json`, `analysis/codex_task.md`.
+- `scripts/product_state_sync.py` içinde `choose_public_vercel_url()` güçlendirildi: health snapshot explicit preview-alias URL veriyorsa, canonical görünümlü state bu fallback alias'ı ezemiyor.
+- `tests/test_product_state_sync.py` içine yeni regresyon eklendi: healthy kayıtta explicit fallback alias varsa public URL alias olarak kalıyor.
+- Amaç: fallback alias'ları görünür tutmak ve canonical cache artığı yüzünden canlı URL'yi yanlış canonical'a düşürmemek.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
 - `PYTHONPATH=. python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
-- Secret scan temiz: değiştirdiğim dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
+- Sonuç: **91 passed**
+- Secret scan temiz: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
 
 ## Kalan Blokajlar
 - 3 canlı ürün hâlâ gerçekten sağlıksız: `jwt-generator`, `diffmaster`, `timestamp-converter`.
