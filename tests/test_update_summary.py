@@ -15,6 +15,40 @@ from scripts.update_summary import (
 
 
 class UpdateSummaryTests(unittest.TestCase):
+    def test_manual_dashboard_next_action_is_replaced_with_live_gap_summary(self) -> None:
+        state = {
+            "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
+            "products": {
+                "active": [
+                    {
+                        "name": "Broken Tool",
+                        "slug": "broken-tool",
+                        "status": "live",
+                        "vercel_url": "https://broken-tool.vercel.app",
+                        "health_status": "error_500",
+                        "last_health_code": 500,
+                    },
+                    {
+                        "name": "Fallback Tool",
+                        "slug": "fallback-tool",
+                        "status": "live",
+                        "vercel_url": "https://fallback-tool.vercel.app",
+                        "deployment_url": "https://fallback-tool-preview.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-tool-preview.vercel.app",
+                        "effective_health_url": "https://fallback-tool-preview.vercel.app",
+                    },
+                ]
+            },
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["unhealthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["next_action"], "1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut")
+
     def test_placeholder_records_are_ignored(self) -> None:
         state = {
             "cycle": 1060,

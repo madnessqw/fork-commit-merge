@@ -80,6 +80,30 @@ def _normalize_url(value: Any) -> str | None:
     return str(value).strip().rstrip("/")
 
 
+def _looks_like_manual_dashboard_action(value: Any) -> bool:
+    text = str(value or "").strip().lower()
+    if not text:
+        return False
+    return "vercel dashboard" in text or "manuel" in text or "manual" in text
+
+
+def _effective_next_action(state: dict[str, Any], unhealthy_live: list[dict[str, Any]], canonical_drift_live: list[dict[str, Any]]) -> str | None:
+    raw = state.get("next_action")
+    raw_text = str(raw).strip() if raw is not None else ""
+    if raw_text and not _looks_like_manual_dashboard_action(raw_text):
+        return raw_text
+
+    if unhealthy_live:
+        if canonical_drift_live:
+            return f"{len(unhealthy_live)} canlı ürünü düzelt; {len(canonical_drift_live)} fallback alias'ı görünür tut"
+        return f"{len(unhealthy_live)} canlı ürünü düzelt"
+
+    if canonical_drift_live:
+        return f"{len(canonical_drift_live)} canonical URL drift'ini düzelt; fallback alias'ı ezme"
+
+    return raw_text or None
+
+
 def normalize_product(product: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(product)
     normalized["name"] = _pick(product, "name", "n")
@@ -395,7 +419,7 @@ def build_summary(
         # fallback aliases should stay visible until the canonical URL itself
         # probes cleanly.
         "needs_fix_count": len(unhealthy_live) + len(pending_health_live) + len(canonical_drift_live),
-        "next_action": state.get("next_action"),
+        "next_action": _effective_next_action(state, unhealthy_live, canonical_drift_live),
         "vercel_auth_issue": state.get("vercel_auth_issue"),
         "last_updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "products": [compact_product(p) for p in active],

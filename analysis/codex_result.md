@@ -9,24 +9,25 @@
 - `CODEBASE_MAP.md`
 - `scripts/product_state_sync.py`
 - `scripts/update_summary.py`
-- `tests/test_product_state_sync.py`
+- `scripts/health_check.py`
+- `tests/test_health_check.py`
 - `tests/test_update_summary.py`
 
 ## Ne Değişti
-- `scripts/product_state_sync.py` içinde sağlık/public URL seçimi sıkılaştırıldı.
-- Pre-deploy kaynaklardan gelen manifest preview alias’ları, gerçek canonical kanıt yoksa canonical sluga geri çekiliyor.
-- Canlı ürünlerde fallback alias görünürlüğü korunuyor; ama explicit canonical sağlık URL’si varsa canonical promotu ezilmiyor.
-- `choose_public_vercel_url()` için healthy/no-explicit-health case’inde state/deployment alias görünürlüğü korundu.
-- Regresyon testi eklendi: healthy state alias, explicit health URL olmadan fallback display olarak kalıyor.
+- `scripts/update_summary.py` içine stale manuel dashboard next action’ı temizleyen küçük bir normalizer eklendi.
+- `STATE_SUMMARY.json` artık `html-entity-encoder Vercel Dashboard manuel kontrol` yerine live duruma göre türetilmiş aksiyonu yazıyor: `3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut`.
+- `tests/test_update_summary.py` içine manuel dashboard next action’ın canlı health/canonical gap özetiyle değiştirildiğini doğrulayan regresyon testi eklendi.
+- Health/canonical drift görünürlüğü bozulmadı; fallback alias ürünleri hâlâ ayrı sayılıyor.
 
 ## Doğrulamalar
-- `PYTHONPATH=. pytest -q tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
-- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `PYTHONPATH=. pytest -q tests/test_update_summary.py tests/test_health_check.py tests/test_product_state_sync.py`
+- `python3 -m py_compile scripts/update_summary.py tests/test_update_summary.py`
 - Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` bulunmadı.
+- `python3 scripts/update_summary.py` ile `STATE_SUMMARY.json` yeniden üretildi.
 
 ## Kalan Blokajlar
-- Canlı state tarafında hâlâ güncel outage’lar var:
+- Canlı state tarafında hâlâ gerçek outage’lar var:
   - `jwt-generator` → HTTP 500
   - `diffmaster` → HTTP 401
   - `timestamp-converter` → HTTP 451
-- Bu task kod tarafında kapandı; canlı prod düzeltmeleri ayrı iş.
+- Bu task summary/context otomasyonunu temizledi; canlı ürün düzeltmeleri ayrı iş.
