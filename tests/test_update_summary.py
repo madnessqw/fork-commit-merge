@@ -948,7 +948,6 @@ class UpdateSummaryTests(unittest.TestCase):
                     "health_status": "alternate_healthy",
                     "health_code": 200,
                     "probe_url": "https://shadowed-fallback-tool-preview.vercel.app",
-                    "effective_url": "https://shadowed-fallback-tool.vercel.app",
                     "canonical_url": "https://shadowed-fallback-tool.vercel.app",
                     "canonical_code": 404,
                     "canonical_status": "not_found",

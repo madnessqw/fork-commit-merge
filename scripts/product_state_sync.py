@@ -262,23 +262,33 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
 
         return canonical_url
 
+    preview_alias = _visible_preview_alias(record, slug)
     explicit_health_url = normalize_url(
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
     if explicit_health_url is not None:
+        if (
+            preview_alias is not None
+            and canonical_url is not None
+            and explicit_health_url == canonical_url
+        ):
+            canonical_code = _pick(record, "canonical_health_code")
+            try:
+                canonical_code = int(canonical_code) if canonical_code is not None else None
+            except (TypeError, ValueError):
+                canonical_code = None
+
+            canonical_status = _clean_text(_pick(record, "canonical_health_status"))
+            if canonical_code not in (None, 200) or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS:
+                return preview_alias
         return explicit_health_url
 
     # Some legacy snapshots only keep the reachable alias in compact `v`,
     # `deployment_url`, or `vercel_url` after the canonical slug has failed.
     # Preserve that alias here so sync/state refreshes do not "normalize" a
     # live fallback back to the dead canonical URL.
-    for candidate in (_pick(record, "deployment_url"), _pick(record, "v"), _pick(record, "vercel_url")):
-        normalized = normalize_url(candidate)
-        if (
-            normalized is not None
-            and _is_vercel_preview_alias(normalized, slug)
-        ):
-            return normalized
+    if preview_alias is not None:
+        return preview_alias
 
     return None
 
@@ -295,6 +305,8 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
 
     health_checked_at = _clean_text(_pick(record, "last_health_check", "health_checked_at"))
     current_health_status = _clean_text(_pick(record, "health_status"))
+    slug = _pick(record, "slug", "s")
+    canonical_url = canonical_vercel_url(slug)
     if current_health_status == "alternate_healthy":
         visible_success = successful_health_url(record)
         if visible_success is not None:
@@ -304,9 +316,22 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
     if explicit_health_url is not None:
+        preview_alias = _visible_preview_alias(record, slug)
+        if (
+            preview_alias is not None
+            and canonical_url is not None
+            and explicit_health_url == canonical_url
+        ):
+            canonical_code = _pick(record, "canonical_health_code")
+            try:
+                canonical_code = int(canonical_code) if canonical_code is not None else None
+            except (TypeError, ValueError):
+                canonical_code = None
+            canonical_status = _clean_text(_pick(record, "canonical_health_status"))
+            if canonical_code not in (None, 200) or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS:
+                return preview_alias
         return explicit_health_url
 
-    slug = _pick(record, "slug", "s")
     compact_url = normalize_url(_pick(record, "v"))
     if compact_url is not None and _is_vercel_preview_alias(compact_url, slug):
         # Older summary/state snapshots sometimes kept the reachable fallback
@@ -324,16 +349,38 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         if _is_vercel_preview_alias(deployment_url, slug):
             return deployment_url
 
-    for candidate in (_pick(record, "vercel_url", "v"), _pick(record, "deployment_url")):
-        normalized = normalize_url(candidate)
-        if (
-            normalized is not None
-            and _is_vercel_preview_alias(normalized, slug)
-            and current_health_status == "alternate_healthy"
+    preview_alias = _visible_preview_alias(record, slug)
+    explicit_health_url = normalize_url(_pick(record, "effective_health_url", "last_health_url", "health_probe_url"))
+    if explicit_health_url is not None and preview_alias is not None:
+        canonical_code = _pick(record, "canonical_health_code")
+        try:
+            canonical_code = int(canonical_code) if canonical_code is not None else None
+        except (TypeError, ValueError):
+            canonical_code = None
+        canonical_status = _clean_text(_pick(record, "canonical_health_status"))
+        canonical_url = canonical_vercel_url(slug)
+        if explicit_health_url == canonical_url and (
+            canonical_code not in (None, 200) or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS
         ):
-            return normalized
+            return preview_alias
+        return explicit_health_url
+
+    if current_health_status == "alternate_healthy" and preview_alias is not None:
+        return preview_alias
 
     return normalize_url(_pick(record, "vercel_url", "v", "deployment_url"))
+
+
+def _visible_preview_alias(record: dict[str, Any], slug: str | None) -> str | None:
+    for candidate in (
+        _pick(record, "deployment_url"),
+        _pick(record, "v"),
+        _pick(record, "vercel_url"),
+    ):
+        normalized = normalize_url(candidate)
+        if normalized is not None and _is_vercel_preview_alias(normalized, slug):
+            return normalized
+    return None
 
 
 def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
@@ -420,21 +467,21 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
     has_successful_preview_snapshot = (
         public_code == 200
-        and canonical_code is None
         and canonical_target is not None
         and successful_snapshot_url is not None
         and successful_snapshot_url != canonical_target
         and _is_vercel_preview_alias(successful_snapshot_url, _pick(record, "slug", "s"))
+        and (canonical_code is None or canonical_code != 200)
     )
     if has_successful_preview_snapshot:
         # A preview/alias URL answering 200 is useful, but it is not proof that
         # the canonical slug URL is fixed. Keep the fallback visible until the
         # canonical probe records its own 200.
         normalized["health_status"] = "alternate_healthy"
-        normalized["canonical_health_code"] = None
-        normalized["canonical_health_status"] = raw_canonical_status or "pending"
+        normalized["canonical_health_code"] = canonical_code
+        normalized["canonical_health_status"] = _health_status_for_code(canonical_code) if canonical_code is not None else (raw_canonical_status or "pending")
         normalized["last_health_url"] = successful_snapshot_url
-        if normalized.get("effective_health_url") is None:
+        if normalized.get("effective_health_url") is None or normalized.get("effective_health_url") == canonical_target:
             normalized["effective_health_url"] = successful_snapshot_url
         current_health_status = "alternate_healthy"
 

@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-23
+# Codex Result — 2026-04-23 14:42 +03
 
 ## Okunanlar
 - `skills/codex_skill.md`
@@ -15,16 +15,17 @@
 - `tests/test_health_check.py`
 
 ## Ne Değişti
-- `scripts/product_state_sync.py` içinde `choose_public_vercel_url()` güçlendirildi: health snapshot explicit preview-alias URL veriyorsa, canonical görünümlü state bu fallback alias'ı ezemiyor.
-- `tests/test_product_state_sync.py` içine yeni regresyon eklendi: healthy kayıtta explicit fallback alias varsa public URL alias olarak kalıyor.
-- Amaç: fallback alias'ları görünür tutmak ve canonical cache artığı yüzünden canlı URL'yi yanlış canonical'a düşürmemek.
+- `scripts/product_state_sync.py` güçlendirildi: health snapshot artık explicit canonical URL ile preview alias çakıştığında canonical probe başarısızsa fallback alias'ı görünür tutuyor.
+- `_successful_snapshot_url()` ve `successful_health_url()` artık canonical snapshot eskimişse preview alias'ı tercih ediyor; bu, `STATE.json` içindeki health alanlarının canonical gerçeği ezmesini engelliyor.
+- `normalize_health_snapshot()` artık canonical başarı yoksa ama fallback alias 200 veriyorsa ürünü `alternate_healthy` olarak koruyor; canonical failure detaylarını da kaybetmiyor.
+- `tests/test_product_state_sync.py` ve `tests/test_update_summary.py` içine regression eklendi/güncellendi: canonical health URL eskiyken fallback alias görünür kalıyor ve summary drift bunu doğru sayıyor.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `PYTHONPATH=. python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_update_summary.py`
 - `PYTHONPATH=. python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
-- Sonuç: **91 passed**
-- Secret scan temiz: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
+- Sonuç: **92 passed**
+- Secret scan temiz: değişen dosyalarda gizli anahtar izi yok.
 
 ## Kalan Blokajlar
 - 3 canlı ürün hâlâ gerçekten sağlıksız: `jwt-generator`, `diffmaster`, `timestamp-converter`.
-- 4 canlı ürün fallback alias ile ayakta; bu görünür kalmalı.
+- 4 fallback alias canlı ve görünür kalmalı; bu kod artık onları canonical cache artığından ezmiyor.
