@@ -146,6 +146,44 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 2)
 
     @patch("scripts.health_check.subprocess.run")
+    def test_previous_effective_health_url_is_retried_as_fallback_candidate(self, run_mock) -> None:
+        seen_urls = []
+
+        def side_effect(*args, **kwargs):
+            seen_urls.append(args[0][-1])
+            if args[0][-1] == "https://fallback-tool-preview.vercel.app":
+                return Mock(stdout="200")
+            return Mock(stdout="404")
+
+        run_mock.side_effect = side_effect
+
+        result = check_product_health(
+            {
+                "name": "Fallback Tool",
+                "slug": "fallback-tool",
+                "status": "live",
+                "vercel_url": "https://fallback-tool.vercel.app",
+                "effective_health_url": "https://fallback-tool-preview.vercel.app",
+                "last_health_url": "https://fallback-tool-preview.vercel.app",
+            }
+        )
+
+        self.assertEqual(
+            seen_urls,
+            [
+                "https://fallback-tool.vercel.app",
+                "https://fallback-tool-preview.vercel.app",
+            ],
+        )
+        self.assertEqual(result["status"], "alternate_healthy")
+        self.assertEqual(result["code"], 200)
+        self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["canonical_status"], "not_found")
+        self.assertEqual(result["canonical_code"], 404)
+        self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
+
+    @patch("scripts.health_check.subprocess.run")
     def test_manifest_preview_alias_probe_success_is_marked_as_alternate_healthy(self, run_mock) -> None:
         run_mock.side_effect = [Mock(stdout="402"), Mock(stdout="200")]
 

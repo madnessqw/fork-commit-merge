@@ -31,3 +31,4 @@
 {"run_id": "codex-20260423-0306", "mode": "EXECUTION", "task": "redirected canonical preview drift guard", "status": "done", "slug": "html-entity-encoder", "duration_min": 8, "cost_est": 0.05, "cycle": 1108}
 {"run_id": "codex-20260423-0039", "mode": "EXECUTION", "task": "preserve truthful canonical status for preview-alias redirects", "status": "done", "slug": "health-canonical-drift", "duration_min": 22, "cost_est": 0.05, "cycle": 1108}
 {"run_id": "codex-20260423-0105", "mode": "EXECUTION", "task": "health pipeline: preserve canonical probe URL when canonical redirects to preview alias", "status": "done", "slug": "health-pipeline", "duration_min": 9, "cost_est": 0.05, "cycle": 1108}
+{"run_id": "codex-20260423-0140", "mode": "EXECUTION", "task": "retry recorded effective fallback URL in health pipeline", "status": "done", "slug": "health-pipeline", "duration_min": 12, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T01:40:16Z"}

@@ -1,43 +1,42 @@
-# Codex Result — 2026-04-23 01:05 UTC
+# Codex Result — 2026-04-23 01:40 UTC
 
 ## Mod
-EXECUTION
+EXECUTION — PRODUCTION SAFE INFRA
 
-## Okunan Dosyalar
+## Ne okundu
 - `skills/codex_skill.md`
 - `analysis/codex_task.md`
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `CODEBASE_MAP.md`
+- `skills/build_checklist.md`
 - `scripts/health_check.py`
-- `scripts/update_summary.py`
 - `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
 - `tests/test_health_check.py`
 - `tests/test_product_state_sync.py`
 - `tests/test_update_summary.py`
 
-## Seçilen Darboğaz
-Canonical URL preview alias'a redirect olduğunda health pipeline probe URL ile effective URL'yi karıştırıyordu. Bu, canonical drift kaydını bulanıklaştırıyordu: sistem hangi URL'yi probeladığını değil, nereye düştüğünü saklıyordu.
+## Gerçek darboğaz
+Health pipeline canonical URL'yi önce deniyor, fallback alias'ları da ayrı sayıyor. Ama eski/normalize edilmiş state'te ulaşılabilir fallback sadece `effective_health_url` / `last_health_url` içinde kalırsa probe aday listesine girmeyebiliyordu. Bu, canlı fallback'i kaçırıp canonical drift'i yanlış kötüleştirebilecek ufak ama sinsi bir boşluk.
 
-## Yapılan Değişiklikler
+## Ne değişti
 - `scripts/health_check.py`
-  - `redirected_preview_alias` sonucunda `url` alanını probelanan canonical URL olarak bıraktım.
-  - `effective_url` fallback alias olarak ayrı kaldı.
+  - Probe aday listesine canonical'dan sonra `effective_health_url` ve `last_health_url` eklendi.
+  - Böylece canonical bozuksa, son bilinen başarılı fallback alias tekrar deneniyor.
+  - Canonical yine ilk sırada; manuel Vercel/alias sorunu çözülmüş gibi gösterilmiyor.
 - `tests/test_health_check.py`
-  - Redirect senaryosu beklentisini probe/effective ayrımına göre güncelledim.
-  - `apply_health_result` için yeni regression testi ekledim; canonical probe URL korunurken public/effective URL fallback alias olarak kalıyor.
+  - `effective_health_url` fallback adayının canonical 404 sonrası `alternate_healthy` olarak kaydedildiğini doğrulayan regression testi eklendi.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
-- `python3 -m unittest discover -s tests -p 'test_health_check.py'`
-- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- Secret scan: `grep -nE 'sk_|pk_|ghp_|api_key' scripts/health_check.py tests/test_health_check.py`
+- `python3 -m py_compile scripts/health_check.py tests/test_health_check.py` ✅
+- `python3 -m unittest discover -s tests -p 'test_health_check.py'` ✅ — 15 test
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'` ✅ — 30 test
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py'` ✅ — 25 test
+- Secret scan: changed code files checked with the standard secret regex ✅ — bulgu yok
 
-## Kalan Blokajlar
-- `html-entity-encoder` için gerçek blocker hâlâ manuel Vercel tarafı; kodla çözülmüş gibi gösterilmedi.
-- Bu commit production state'i topluca rewrite etmiyor; sonraki health cycle'larda yeni doğru metadata doğal olarak yazılacak.
-
-## Not
-Bu görev dosyasındaki amaç infra fix'ti. Research/no-code stale talimatı yok sayıldı; production ürüne dokunmadan health otomasyonunun doğruluğu güçlendirildi.
+## Kalan blokajlar
+- 4 canonical drift ürünü hâlâ gerçek iş: fallback canlı, canonical URL ayrı düzeltilmeli.
+- 8 canlı sağlıksız ürün hâlâ ayrı health/debug konusu.
+- Bu commit production ürün davranışına dokunmadı; yalnız health otomasyonunu daha dayanıklı yaptı.

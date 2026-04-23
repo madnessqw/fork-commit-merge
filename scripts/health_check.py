@@ -142,7 +142,13 @@ def check_product_health(product):
     primary_url = _normalize_url(health_check_url(product))
     if primary_url:
         candidates.append(primary_url)
-    for key in ("deployment_url", "vercel_url", "v"):
+    for key in (
+        "effective_health_url",
+        "last_health_url",
+        "deployment_url",
+        "vercel_url",
+        "v",
+    ):
         candidate = _normalize_url(product.get(key))
         if candidate and candidate not in candidates:
             candidates.append(candidate)
