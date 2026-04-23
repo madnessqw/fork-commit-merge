@@ -371,6 +371,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     health_percent = _health_percent(summary)
     unresolved = top_issues(issues)
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    fallback_healthy = list(summary.get("gaps", {}).get("fallback_healthy", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
     next_action = effective_next_action(summary, focus)
@@ -442,17 +443,54 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
             )
 
     fallback_healthy_products = list(summary.get("fallback_healthy_products", []))
-    if fallback_healthy_products:
-        preview = ", ".join(f"`{slug}`" for slug in fallback_healthy_products[:10])
-        if len(fallback_healthy_products) > 10:
-            preview += ", ..."
-        lines.extend(
-            [
-                "",
-                "## Fallback Alias Ürünleri",
-                f"- {preview}",
-            ]
-        )
+    if fallback_healthy or fallback_healthy_products:
+        fallback_items = fallback_healthy[:10]
+        if fallback_items:
+            lines.extend(["", "## Fallback Alias Ürünleri"])
+            for item in fallback_items:
+                drift_bits: list[str] = []
+                health_status = item.get("health_status")
+                if health_status:
+                    drift_bits.append(f"health={health_status}")
+
+                health_code = item.get("health_code")
+                if health_code is not None:
+                    drift_bits.append(f"code={health_code}")
+
+                probe_url = item.get("probe_url")
+                if probe_url and probe_url != item.get("url"):
+                    drift_bits.append(f"probe={probe_url}")
+
+                effective_url = item.get("effective_url")
+                if effective_url and effective_url not in {item.get("url"), probe_url}:
+                    drift_bits.append(f"effective={effective_url}")
+
+                canonical_code = item.get("canonical_code")
+                if canonical_code is not None:
+                    drift_bits.append(f"canonical_code={canonical_code}")
+
+                canonical_status = item.get("canonical_status")
+                if canonical_status:
+                    drift_bits.append(f"canonical_status={canonical_status}")
+
+                drift_suffix = f" {' '.join(drift_bits)}" if drift_bits else ""
+                lines.append(
+                    f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
+                )
+
+            if len(fallback_healthy) > 10:
+                lines.append("- ...")
+        elif fallback_healthy_products:
+            preview = ", ".join(f"`{slug}`" for slug in fallback_healthy_products[:10])
+            if len(fallback_healthy_products) > 10:
+                preview += ", ..."
+            lines.extend(
+                [
+                    "",
+                    "## Fallback Alias Ürünleri",
+                    f"- {preview}",
+                ]
+            )
 
     if pending_health:
         lines.extend(["", "## Health Bekleyen Ürünler"])

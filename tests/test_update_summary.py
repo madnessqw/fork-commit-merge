@@ -930,6 +930,21 @@ class UpdateSummaryTests(unittest.TestCase):
                 }
             ],
         )
+        self.assertEqual(
+            summary["gaps"]["fallback_healthy"],
+            [
+                {
+                    "slug": "fallback-tool",
+                    "url": "https://fallback-tool-preview.vercel.app",
+                    "ideal_url": "https://fallback-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://fallback-tool-preview.vercel.app",
+                    "canonical_url": "https://fallback-tool.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
     def test_canonical_drift_entry_marks_stale_healthy_alias_as_fallback(self) -> None:

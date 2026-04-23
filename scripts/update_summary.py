@@ -309,6 +309,12 @@ def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
     return entry
 
 
+def fallback_healthy_entry(product: dict[str, Any]) -> dict[str, Any] | None:
+    if not is_fallback_healthy(product):
+        return None
+    return canonical_url_drift_entry(product)
+
+
 def compact_product(product: dict[str, Any]) -> dict[str, Any]:
     return {
         "n": product.get("name"),
@@ -347,6 +353,11 @@ def build_summary(
     ]
     canonical_healthy_live = [p for p in live if is_healthy(p) and canonical_url_drift_entry(p) is None]
     fallback_healthy_live = [p for p in live if is_fallback_healthy(p)]
+    fallback_healthy_detail = [
+        detail
+        for p in fallback_healthy_live
+        if (detail := fallback_healthy_entry(p)) is not None
+    ]
     pending_health_live = [p for p in live if is_pending_health(p)]
     readiness_source = raw_state or state
     readiness = collect_spec_ready_deploy_readiness(readiness_source)
@@ -443,6 +454,7 @@ def build_summary(
             ],
             "missing_checkout": [p.get("slug") for p in checkout_gap_live],
             "canonical_url_drift": canonical_drift_live,
+            "fallback_healthy": fallback_healthy_detail,
             "deploy_readiness": readiness["issues"],
         },
         "canonical_url_drift_products": [item.get("slug") for item in canonical_drift_live if item.get("slug")],
