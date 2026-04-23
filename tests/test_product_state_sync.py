@@ -1,6 +1,12 @@
 import unittest
 
-from scripts.product_state_sync import health_check_url, merge_product_record, sync_state_products, sync_state_snapshot
+from scripts.product_state_sync import (
+    choose_public_vercel_url,
+    health_check_url,
+    merge_product_record,
+    sync_state_products,
+    sync_state_snapshot,
+)
 
 
 class ProductStateSyncTests(unittest.TestCase):
@@ -463,6 +469,21 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertIsNone(merged["canonical_health_code"])
         self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://webhook-tester.vercel.app")
+
+    def test_alternate_healthy_preview_alias_without_explicit_health_url_keeps_fallback_display(self) -> None:
+        public_url = choose_public_vercel_url(
+            slug="preview-only-tool",
+            state_status="live",
+            state_url="https://preview-only-tool.vercel.app",
+            manifest_url=None,
+            deployment_url="https://preview-only-tool-rose.vercel.app",
+            status="live",
+            health_status="alternate_healthy",
+            last_health_code=200,
+            health_url=None,
+        )
+
+        self.assertEqual(public_url, "https://preview-only-tool-rose.vercel.app")
 
     def test_deployment_alias_without_explicit_health_url_stays_alternate_healthy(self) -> None:
         merged = merge_product_record(

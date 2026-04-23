@@ -592,6 +592,14 @@ def choose_public_vercel_url(
         # Keep the actual reachable URL so state does not lie about reality.
         return normalized_health_url
 
+    if normalized_status in HEALTH_CHECKABLE_STATUSES and _clean_text(health_status) == "alternate_healthy":
+        for candidate in (normalized_state_url, normalized_deployment_url, normalized_manifest_url):
+            if candidate is not None and _is_vercel_preview_alias(candidate, slug):
+                # Some snapshots only keep the fallback alias in deployment_url
+                # or vercel_url and never persisted last_health_url. Preserve
+                # that reachable alias instead of canonicalizing it away.
+                return candidate
+
     if canonical_url is not None:
         for candidate in (
             normalized_state_url,
