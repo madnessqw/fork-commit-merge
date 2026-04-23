@@ -76,7 +76,9 @@ def _dedupe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [deduped[slug] for slug in order]
 
 
-def _missing_fields(record: dict[str, Any] | None, fields: tuple[str, ...]) -> list[str]:
+def _missing_fields(
+    record: dict[str, Any] | None, fields: tuple[str, ...]
+) -> list[str]:
     if record is None:
         return list(fields)
     return [field for field in fields if not has_value(record.get(field))]
@@ -108,7 +110,7 @@ def _collect_spec_ready_records(state: dict[str, Any]) -> list[dict[str, Any]]:
                 continue
             normalized = normalize_record(item)
             status = str(normalized.get("status") or "").strip()
-            if status == "spec_ready":
+            if status in ("spec_ready", "ready_to_deploy"):
                 records.append(normalized)
 
     return _dedupe_records(records)
@@ -137,7 +139,9 @@ def collect_spec_ready_deploy_readiness(
         manifest_path = root / "products" / slug / "product.json"
         manifest_exists = manifest_path.exists()
         raw_manifest = _load_json(manifest_path) if manifest_exists else None
-        manifest = normalize_record(raw_manifest) if isinstance(raw_manifest, dict) else None
+        manifest = (
+            normalize_record(raw_manifest) if isinstance(raw_manifest, dict) else None
+        )
 
         missing_manifest_fields = _missing_fields(manifest, MANIFEST_REQUIRED_FIELDS)
         missing_url_fields = _missing_fields(
@@ -165,7 +169,14 @@ def collect_spec_ready_deploy_readiness(
             "missing_state_fields": missing_state_fields,
         }
 
-        if any((manifest_problem, missing_manifest_fields, missing_url_fields, missing_state_fields)):
+        if any(
+            (
+                manifest_problem,
+                missing_manifest_fields,
+                missing_url_fields,
+                missing_state_fields,
+            )
+        ):
             issues.append(issue)
 
         if missing_manifest_fields:
@@ -178,7 +189,11 @@ def collect_spec_ready_deploy_readiness(
     issues.sort(
         key=lambda item: (
             0 if item.get("manifest_problem") else 1,
-            -(len(item.get("missing_manifest_fields", [])) + len(item.get("missing_url_fields", [])) + len(item.get("missing_state_fields", []))),
+            -(
+                len(item.get("missing_manifest_fields", []))
+                + len(item.get("missing_url_fields", []))
+                + len(item.get("missing_state_fields", []))
+            ),
             str(item.get("slug") or ""),
         )
     )

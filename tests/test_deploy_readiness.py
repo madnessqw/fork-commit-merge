@@ -84,12 +84,79 @@ class DeployReadinessTests(unittest.TestCase):
         self.assertEqual(issue["missing_manifest_fields"], [])
         self.assertCountEqual(
             issue["missing_url_fields"],
-            ["vercel_url", "deployment_url", "github_url", "webhook_url", "checkout_url"],
+            [
+                "vercel_url",
+                "deployment_url",
+                "github_url",
+                "webhook_url",
+                "checkout_url",
+            ],
         )
         self.assertCountEqual(
             issue["missing_state_fields"],
-            ["payment_provider", "created_cycle", "deployed_cycle", "lemonsqueezy_product_id"],
+            [
+                "payment_provider",
+                "created_cycle",
+                "deployed_cycle",
+                "lemonsqueezy_product_id",
+            ],
         )
+
+    def test_ready_to_deploy_products_are_included(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "HTTP Load Tester Pro",
+                        "slug": "http-load-tester-pro",
+                        "status": "ready_to_deploy",
+                    }
+                ]
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            report = collect_spec_ready_deploy_readiness(state, root=root)
+
+        self.assertEqual(report["count"], 1)
+        issue = report["issues"][0]
+        self.assertEqual(issue["slug"], "http-load-tester-pro")
+        self.assertEqual(issue["manifest_problem"], "missing")
+
+    def test_other_statuses_excluded(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"name": "Live Product", "slug": "live-prod", "status": "live"},
+                    {
+                        "name": "Building Product",
+                        "slug": "building-prod",
+                        "status": "building",
+                    },
+                    {
+                        "name": "Spec Product",
+                        "slug": "spec-prod",
+                        "status": "spec_ready",
+                    },
+                    {
+                        "name": "Deploy Product",
+                        "slug": "deploy-prod",
+                        "status": "ready_to_deploy",
+                    },
+                ]
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            report = collect_spec_ready_deploy_readiness(state, root=root)
+
+        slugs = [i["slug"] for i in report["issues"]]
+        self.assertIn("spec-prod", slugs)
+        self.assertIn("deploy-prod", slugs)
+        self.assertNotIn("live-prod", slugs)
+        self.assertNotIn("building-prod", slugs)
 
 
 if __name__ == "__main__":
