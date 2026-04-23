@@ -1,6 +1,6 @@
-# Codex Result — 2026-04-23 03:40 UTC
+# Codex Sonucu — 2026-04-23 04:07 UTC
 
-## Ne okundu
+## Okunanlar
 - `skills/codex_skill.md`
 - `analysis/codex_task.md`
 - `STATE_SUMMARY.json`
@@ -10,31 +10,26 @@
 - `scripts/product_state_sync.py`
 - `scripts/update_summary.py`
 - `scripts/health_check.py`
+- İlgili testler: `tests/test_product_state_sync.py`, `tests/test_update_summary.py`
+
+## Ne Değişti
+- `scripts/product_state_sync.py`
+  - `successful_health_url()` artık explicit health URL yoksa, `alternate_healthy` kayıtlar için `vercel_url` / `deployment_url` içindeki gerçek preview alias'ı da koruyor.
+  - `_successful_snapshot_url()` aynı fallback'i kullanıyor; böylece sağlık senkronu alias'ı canonical slug'a geri ezmiyor.
 - `tests/test_product_state_sync.py`
+  - `deployment_url` üzerinden gelen fallback alias için yeni regresyon testi eklendi.
 - `tests/test_update_summary.py`
-- `tests/test_health_check.py`
+  - Summary tarafında aynı edge için public display ve canonical drift beklentisi eklendi.
 
-## Ne değişti
-- `scripts/update_summary.py`
-  - `fallback_healthy_count` artık sadece gerçekten canonical drift taşıyan 200 durumlarını sayıyor.
-  - Yani stale bir `alternate_healthy` etiketi tek başına fallback sağlıklı diye şişirmiyor.
-- `tests/test_update_summary.py`
-  - Drift kanıtı olmayan stale `alternate_healthy` etiketinin fallback sayısına girmediğini doğrulayan regresyon eklendi.
+## Doğrulama
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py tests/test_update_summary.py` ✅
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'` ✅
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py'` ✅
+- Secret scan: değişen dosyalarda `sk_ / pk_ / ghp_ / api_key` yok ✅
 
-## Doğrulamalar
-- `python3 -m pytest -q tests/test_update_summary.py tests/test_product_state_sync.py tests/test_health_check.py` ✅ — 74 test geçti
-- `python3 -m py_compile scripts/update_summary.py tests/test_update_summary.py` ✅
-- Secret scan: `scripts/update_summary.py` ve `tests/test_update_summary.py` içinde `sk_ / pk_ / ghp_ / api_key` yok ✅
+## Sonuç
+- Fallback alias artık explicit health metadata eksik olsa bile canlı gerçeklik olarak korunuyor.
+- Canonical drift görünür kalıyor; dead canonical URL “çözüldü” diye maskelenmiyor.
 
-## Güncel state
-- Live: 88
-- Healthy: 85
-- Canonical healthy: 81
-- Fallback healthy: 4
-- Canonical drift: 4
-- Unhealthy: 3
-- Needs fix: 7
-
-## Kalan blokajlar
-- `jwt-generator`, `diffmaster`, `timestamp-converter` hâlâ gerçekten sağlıksız.
-- 4 ürün fallback alias ile ayakta; canonical drift ayrı tutuluyor, sahte çözülmüş gibi gösterilmiyor.
+## Bloker
+- Yok.

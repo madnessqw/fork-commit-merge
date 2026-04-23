@@ -464,6 +464,26 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://webhook-tester.vercel.app")
 
+    def test_deployment_alias_without_explicit_health_url_stays_alternate_healthy(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "deployment-alias-tool",
+                "status": "live",
+                "vercel_url": "https://deployment-alias-tool.vercel.app",
+                "deployment_url": "https://deployment-alias-tool-rose.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://deployment-alias-tool-rose.vercel.app")
+        self.assertEqual(merged["v"], "https://deployment-alias-tool-rose.vercel.app")
+        self.assertEqual(merged["deployment_url"], "https://deployment-alias-tool-rose.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://deployment-alias-tool-rose.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://deployment-alias-tool.vercel.app")
+
     def test_failure_codes_normalize_stale_healthy_health_status(self) -> None:
         merged = merge_product_record(
             {

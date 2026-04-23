@@ -240,7 +240,27 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     if code != 200:
         return None
 
-    return normalize_url(_pick(record, "effective_health_url", "last_health_url", "health_probe_url"))
+    explicit_health_url = normalize_url(
+        _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
+    )
+    if explicit_health_url is not None:
+        return explicit_health_url
+
+    # Some legacy snapshots only keep the reachable alias in `vercel_url` or
+    # `deployment_url` after the canonical slug has failed. Preserve that alias
+    # here so sync/state refreshes do not "normalize" a live fallback back to
+    # the dead canonical URL.
+    slug = _clean_text(_pick(record, "slug", "s"))
+    for candidate in (_pick(record, "vercel_url", "v"), _pick(record, "deployment_url")):
+        normalized = normalize_url(candidate)
+        if (
+            normalized is not None
+            and _is_vercel_preview_alias(normalized, slug)
+            and status == "alternate_healthy"
+        ):
+            return normalized
+
+    return None
 
 
 def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
@@ -268,6 +288,15 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         # conservative move is to preserve that fallback instead of declaring the
         # canonical URL healthy without proof.
         return compact_url
+
+    for candidate in (_pick(record, "vercel_url", "v"), _pick(record, "deployment_url")):
+        normalized = normalize_url(candidate)
+        if (
+            normalized is not None
+            and _is_vercel_preview_alias(normalized, slug)
+            and _clean_text(_pick(record, "health_status")) == "alternate_healthy"
+        ):
+            return normalized
 
     return normalize_url(_pick(record, "vercel_url", "v", "deployment_url"))
 

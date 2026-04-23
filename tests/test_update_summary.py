@@ -743,6 +743,48 @@ class UpdateSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
+    def test_deployment_alias_without_explicit_health_url_keeps_fallback_public_display(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Deployment Alias Tool",
+                        "slug": "deployment-alias-tool",
+                        "status": "live",
+                        "vercel_url": "https://deployment-alias-tool.vercel.app",
+                        "deployment_url": "https://deployment-alias-tool-rose.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["deployment-alias-tool"])
+        self.assertEqual(summary["products"][0]["v"], "https://deployment-alias-tool-rose.vercel.app")
+        self.assertEqual(summary["fallback_healthy_products"], ["deployment-alias-tool"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "deployment-alias-tool",
+                    "url": "https://deployment-alias-tool-rose.vercel.app",
+                    "ideal_url": "https://deployment-alias-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://deployment-alias-tool-rose.vercel.app",
+                    "canonical_url": "https://deployment-alias-tool.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
+
     def test_stale_alternate_label_without_drift_does_not_count_as_fallback(self) -> None:
         state = {
             "products": {
