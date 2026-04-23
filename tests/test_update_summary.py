@@ -743,6 +743,30 @@ class UpdateSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
+    def test_stale_alternate_label_without_drift_does_not_count_as_fallback(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Stale Label Tool",
+                        "slug": "stale-label-tool",
+                        "status": "live",
+                        "vercel_url": "https://stale-label-tool.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                    }
+                ]
+            }
+        }
+
+        with patch.object(update_summary, "canonical_url_drift_entry", return_value=None):
+            summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_products"], [])
+
     def test_newer_canonical_success_drops_stale_drift_record(self) -> None:
         state = {
             "products": {

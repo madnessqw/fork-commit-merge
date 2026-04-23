@@ -192,7 +192,11 @@ def is_healthy(product: dict[str, Any]) -> bool:
 
 
 def is_fallback_healthy(product: dict[str, Any]) -> bool:
-    return health_code(product) == 200 and _pick(product, "health_status") == "alternate_healthy"
+    return (
+        health_code(product) == 200
+        and _pick(product, "health_status") == "alternate_healthy"
+        and canonical_url_drift_entry(product) is not None
+    )
 
 
 def is_pending_health(product: dict[str, Any]) -> bool:
