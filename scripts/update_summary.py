@@ -248,6 +248,8 @@ def fallback_public_health_url(product: dict[str, Any]) -> str | None:
 
     ideal_url = canonical_target_vercel_url(product)
     current_url = public_health_url(product)
+    # Only count fallback health when the visible public URL is still the
+    # alias; canonical drift is a separate signal and should stay visible.
     if ideal_url is None or current_url is None or current_url == ideal_url:
         return None
 

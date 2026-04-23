@@ -429,6 +429,8 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
             canonical_code = None
         canonical_status = _clean_text(_pick(record, "canonical_health_status"))
         canonical_url = canonical_vercel_url(slug)
+        # If the explicit public URL is canonical-looking but the canonical
+        # probe has not proven 200 yet, keep the visible preview alias.
         if explicit_health_url == canonical_url and (
             canonical_code is None
             or canonical_code not in (None, 200)
@@ -779,6 +781,9 @@ def choose_public_vercel_url(
     if normalized_status == "live":
         original_state_status = _clean_text(state_status)
         if canonical_url is not None and normalized_health_url is None:
+            # A live record with only a probe-only preview alias should still
+            # surface the alias; a bare canonical-looking cache entry must not
+            # erase fallback truth before the canonical probe has a 200.
             for candidate in (normalized_state_url, normalized_deployment_url, normalized_manifest_url):
                 if candidate is None:
                     continue
