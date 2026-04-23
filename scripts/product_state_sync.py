@@ -487,10 +487,17 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
     effective_canonical_code = normalized.get("canonical_health_code")
     effective_health_url = normalize_url(_pick(normalized, "effective_health_url", "last_health_url"))
+    preserve_missing_probe_fallback = (
+        canonical_probe_url is None
+        and visible_fallback_snapshot
+        and public_checked_at is not None
+        and canonical_checked_dt is not None
+        and public_checked_at > canonical_checked_dt
+    )
     preserve_redirected_fallback = (
         effective_canonical_code == 200
         and visible_fallback_snapshot
-        and canonical_probe_url == canonical_target
+        and (canonical_probe_url == canonical_target or preserve_missing_probe_fallback)
     )
     if effective_canonical_code == 200 and not preserve_redirected_fallback:
         final_canonical_checked_at = _clean_text(
