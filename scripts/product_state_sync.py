@@ -327,6 +327,29 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
             or canonical_probe_url == canonical_target
         )
     )
+    canonical_failure_is_newer_than_public_success = (
+        public_code == 200
+        and canonical_code not in (None, 200)
+        and canonical_checked_dt is not None
+        and public_checked_at is not None
+        and canonical_checked_dt > public_checked_at
+    )
+    if canonical_failure_is_newer_than_public_success:
+        # A stale fallback 200 is not proof that the product is still alive.
+        # If the canonical probe failed later than the public/fallback probe,
+        # make the newer canonical failure the active health truth and let the
+        # next health_check cycle retry recorded fallback candidates explicitly.
+        normalized["health_status"] = _health_status_for_code(canonical_code)
+        normalized["last_health_code"] = canonical_code
+        normalized["last_health_url"] = canonical_target
+        normalized["effective_health_url"] = canonical_target
+        normalized["last_health_check"] = canonical_checked_at
+        normalized["health_checked_at"] = canonical_checked_at
+        current_health_status = normalized["health_status"]
+        public_code = canonical_code
+        successful_snapshot_url = None
+        return normalized
+
     has_successful_preview_snapshot = (
         public_code == 200
         and canonical_code is None
