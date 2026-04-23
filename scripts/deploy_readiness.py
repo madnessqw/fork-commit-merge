@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only deploy readiness checks for spec-ready products.
 
-This validator does not mutate state. It فقط surfaces which spec-ready
+This validator does not mutate state. It only surfaces which spec-ready
 products are still missing manifest, URL, or state fields so Codex can stop
 pretending manual deploy/payment steps are already done.
 """
