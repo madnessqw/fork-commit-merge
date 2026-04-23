@@ -242,7 +242,6 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
 
     slug = _clean_text(_pick(record, "slug", "s"))
     canonical_url = canonical_vercel_url(slug)
-
     if status == "alternate_healthy":
         # Fallback aliases are the truth here. Prefer the most recent visible
         # fallback URL and refuse to let a stale canonical URL shadow it.
@@ -626,6 +625,15 @@ def choose_public_vercel_url(
                 # that reachable alias instead of canonicalizing it away.
                 return candidate
 
+    if (
+        normalized_status in HEALTH_CHECKABLE_STATUSES
+        and _clean_text(health_status) == "healthy"
+        and normalized_health_url is None
+    ):
+        for candidate in (normalized_state_url, normalized_deployment_url):
+            if candidate is not None and _is_vercel_preview_alias(candidate, slug):
+                return candidate
+
     if canonical_url is not None:
         for candidate in (
             normalized_state_url,
@@ -668,6 +676,37 @@ def choose_public_vercel_url(
         )
 
     return normalized_state_url or normalized_deployment_url or normalized_manifest_url
+
+
+def _promote_canonical_preview_for_predeploy(
+    merged: dict[str, Any],
+    *,
+    source_state_status: str | None,
+    source_state_canonical_url: str | None,
+    source_state_explicit_health_url: str | None,
+) -> dict[str, Any]:
+    if source_state_status not in PRE_DEPLOY_STATUSES:
+        return merged
+    if source_state_explicit_health_url is not None:
+        return merged
+
+    slug = _clean_text(_pick(merged, "slug", "s"))
+    public_url = resolved_public_vercel_url(merged)
+    if public_url is None or not _is_vercel_preview_alias(public_url, slug):
+        return merged
+
+    canonical_url = source_state_canonical_url or canonical_vercel_url(slug)
+    if canonical_url is None:
+        return merged
+
+    promoted = dict(merged)
+    promoted["health_status"] = "healthy"
+    promoted["last_health_url"] = canonical_url
+    promoted["effective_health_url"] = canonical_url
+    promoted["health_probe_url"] = canonical_url
+    promoted["vercel_url"] = canonical_url
+    promoted["v"] = canonical_url
+    return promoted
 
 
 def merge_product_record(
@@ -722,6 +761,12 @@ def merge_product_record(
             merged["health_probe_url"] = source_state_deployment_url
 
         merged = normalize_health_snapshot(merged)
+        merged = _promote_canonical_preview_for_predeploy(
+            merged,
+            source_state_status=source_state_status,
+            source_state_canonical_url=source_state_canonical_url,
+            source_state_explicit_health_url=source_state_explicit_health_url,
+        )
         merged["vercel_url"] = resolved_public_vercel_url(merged)
         return normalize_checkout_metadata(
             {
@@ -806,6 +851,12 @@ def merge_product_record(
         merged["health_probe_url"] = source_state_deployment_url
 
     merged = normalize_health_snapshot(merged)
+    merged = _promote_canonical_preview_for_predeploy(
+        merged,
+        source_state_status=source_state_status,
+        source_state_canonical_url=source_state_canonical_url,
+        source_state_explicit_health_url=source_state_explicit_health_url,
+    )
     merged["vercel_url"] = resolved_public_vercel_url(merged)
 
     return normalize_checkout_metadata(
