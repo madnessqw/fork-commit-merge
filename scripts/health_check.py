@@ -59,6 +59,15 @@ def _normalize_url(value):
     return text or None
 
 
+def _is_preview_alias_url(url, slug):
+    normalized_url = _normalize_url(url)
+    clean_slug = str(slug).strip() if slug is not None else ""
+    if normalized_url is None or not clean_slug:
+        return False
+    canonical_url = f"https://{clean_slug}.vercel.app"
+    return normalized_url.endswith(".vercel.app") and normalized_url != canonical_url
+
+
 def _status_for_http_code(code):
     http_code = _coerce_http_code(code)
     if http_code == 200:
@@ -100,6 +109,7 @@ def apply_health_result(product, result):
     canonical_probe_url = _normalize_url(result.get("canonical_probe_url"))
     probe_url = result.get("url")
     effective_url = _normalize_url(result.get("effective_url")) or _normalize_url(probe_url)
+    canonical_target = f"https://{slug}.vercel.app" if slug else canonical_url
     if canonical_url is None and slug:
         canonical_url = f"https://{slug}.vercel.app"
 
@@ -134,6 +144,14 @@ def apply_health_result(product, result):
     product["last_health_code"] = _coerce_http_code(result.get("code")) or 0
     product["last_health_check"] = checked_at
     product["health_checked_at"] = checked_at
+
+    if result["status"] == "healthy" and _is_preview_alias_url(effective_url or probe_url, slug):
+        product["health_status"] = "alternate_healthy"
+        product["ideal_vercel_url"] = canonical_target
+        product["canonical_health_url"] = canonical_target
+        product["canonical_probe_url"] = canonical_target
+        product["canonical_health_status"] = "pending"
+        product["canonical_health_code"] = None
 
 
 def check_product_health(product):
@@ -170,6 +188,21 @@ def check_product_health(product):
             http_code = _coerce_http_code(code)
 
             if http_code == 200:
+                if idx == 0 and _is_preview_alias_url(url, slug):
+                    canonical_url = f"https://{slug}.vercel.app"
+                    return {
+                        'name': name,
+                        'slug': slug,
+                        'status': 'alternate_healthy',
+                        'code': 200,
+                        'url': url,
+                        'effective_url': effective_url or url,
+                        'canonical_url': canonical_url,
+                        'canonical_probe_url': canonical_url,
+                        'canonical_status': 'pending',
+                        'canonical_code': None,
+                        'checked_at': checked_at,
+                    }
                 redirected_preview_alias = (
                     idx == 0
                     and effective_url is not None
