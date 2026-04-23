@@ -146,6 +146,30 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 2)
 
     @patch("scripts.health_check.subprocess.run")
+    def test_fallback_url_redirect_does_not_mask_the_alias(self, run_mock) -> None:
+        run_mock.side_effect = [Mock(stdout="500"), Mock(stdout="200 https://fallback-tool.vercel.app")]
+
+        result = check_product_health(
+            {
+                "name": "Fallback Tool",
+                "slug": "fallback-tool",
+                "status": "live",
+                "vercel_url": "https://fallback-tool.vercel.app",
+                "deployment_url": "https://fallback-tool-preview.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "alternate_healthy")
+        self.assertEqual(result["code"], 200)
+        self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(result["canonical_status"], "error_500")
+        self.assertEqual(result["canonical_code"], 500)
+        self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(result["canonical_probe_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(run_mock.call_count, 2)
+
+    @patch("scripts.health_check.subprocess.run")
     def test_previous_effective_health_url_is_retried_as_fallback_candidate(self, run_mock) -> None:
         seen_urls = []
 

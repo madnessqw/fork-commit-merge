@@ -14,18 +14,18 @@
 - `tests/test_update_summary.py`
 
 ## Ne değişti
-- `scripts/health_check.py` içinde preview-alias ilk probe sonucunda curl redirected canonical URL döndürse bile fallback alias korunuyor.
-- `tests/test_health_check.py` içine yeni regresyon testi eklendi: preview alias redirect ettiğinde `effective_url` canonical'a kaçmıyor.
-- Amaç: fallback alias görünür kalsın; state sync canonical gerçeği yanlışlıkla “iyileşmiş” gibi göstermesin.
+- `scripts/health_check.py` içinde, fallback alias candidate 200 dönüp canonical'a redirect etse bile alias artık `effective_url` olarak korunuyor.
+- `tests/test_health_check.py` içine regresyon testi eklendi: kanonik ilk probe başarısızken ikinci probe olarak gelen preview alias redirect ettiğinde alias gizlenmiyor.
+- Bu, live fallback URL'nin state sync tarafından yanlışlıkla canonical'a “iyileştirilmesini” engelliyor.
 
 ## Doğrulama
 - `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
-- `python3 -m pytest tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py -q`
-- Sonuç: `103 passed`
+- `python3 -m pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py`
+- Sonuç: `104 passed`
 - Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
 
 ## Run Ledger
-- `logs/run_ledger.jsonl` giriş: `codex-20260423-1805` / `health-canonical-drift` / `done`
+- `logs/run_ledger.jsonl` giriş: `codex-20260423-1839` / `health-canonical-drift` / `done`
 
 ## Kalan blokajlar
 - Yok.

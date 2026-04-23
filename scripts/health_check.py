@@ -207,6 +207,13 @@ def check_product_health(product):
                         'canonical_code': None,
                         'checked_at': checked_at,
                     }
+                visible_effective_url = effective_url or url
+                if _is_preview_alias_url(url, slug) and effective_url is not None and effective_url != url:
+                    # Later preview-alias candidates can also redirect to the
+                    # canonical slug. Keep the alias itself visible so the
+                    # fallback URL does not get "healed" away just because the
+                    # redirect target happened to answer 200.
+                    visible_effective_url = url
                 redirected_preview_alias = (
                     idx == 0
                     and effective_url is not None
@@ -260,7 +267,7 @@ def check_product_health(product):
                     'status': 'alternate_healthy',
                     'code': 200,
                     'url': url,
-                    'effective_url': effective_url or url,
+                    'effective_url': visible_effective_url,
                     'canonical_url': candidates[0],
                     'canonical_probe_url': candidates[0],
                     'canonical_status': canonical_probe['status'],
