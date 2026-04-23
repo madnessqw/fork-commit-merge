@@ -470,6 +470,30 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://webhook-tester.vercel.app")
 
+    def test_stale_effective_canonical_url_does_not_shadow_fallback_alias(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "shadowed-fallback-tool",
+                "status": "live",
+                "vercel_url": "https://shadowed-fallback-tool.vercel.app",
+                "deployment_url": "https://shadowed-fallback-tool-preview.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://shadowed-fallback-tool-preview.vercel.app",
+                "effective_health_url": "https://shadowed-fallback-tool.vercel.app",
+                "canonical_health_code": 404,
+                "canonical_health_status": "not_found",
+                "canonical_health_url": "https://shadowed-fallback-tool.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://shadowed-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["v"], "https://shadowed-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://shadowed-fallback-tool-preview.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://shadowed-fallback-tool.vercel.app")
+
     def test_alternate_healthy_preview_alias_without_explicit_health_url_keeps_fallback_display(self) -> None:
         public_url = choose_public_vercel_url(
             slug="preview-only-tool",

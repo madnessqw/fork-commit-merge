@@ -27,6 +27,7 @@ from scripts.product_state_sync import (
     load_product_catalog,
     sync_state_snapshot,
     sync_state_products,
+    successful_health_url,
 )
 
 
@@ -173,6 +174,10 @@ def health_code(product: dict[str, Any]) -> int | None:
 
 
 def public_health_url(product: dict[str, Any]) -> str | None:
+    selected = successful_health_url(product)
+    if selected is not None:
+        return selected
+
     for key in (
         "effective_health_url",
         "last_health_url",

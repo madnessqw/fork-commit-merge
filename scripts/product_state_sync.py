@@ -240,6 +240,28 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     if code != 200:
         return None
 
+    slug = _clean_text(_pick(record, "slug", "s"))
+    canonical_url = canonical_vercel_url(slug)
+
+    if status == "alternate_healthy":
+        # Fallback aliases are the truth here. Prefer the most recent visible
+        # fallback URL and refuse to let a stale canonical URL shadow it.
+        for candidate in (
+            _pick(record, "last_health_url"),
+            _pick(record, "health_probe_url"),
+            _pick(record, "effective_health_url"),
+            _pick(record, "deployment_url"),
+            _pick(record, "vercel_url", "v"),
+        ):
+            normalized = normalize_url(candidate)
+            if normalized is None:
+                continue
+            if canonical_url is not None and normalized == canonical_url:
+                continue
+            return normalized
+
+        return canonical_url
+
     explicit_health_url = normalize_url(
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
@@ -250,7 +272,6 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     # `deployment_url` after the canonical slug has failed. Preserve that alias
     # here so sync/state refreshes do not "normalize" a live fallback back to
     # the dead canonical URL.
-    slug = _clean_text(_pick(record, "slug", "s"))
     for candidate in (_pick(record, "vercel_url", "v"), _pick(record, "deployment_url")):
         normalized = normalize_url(candidate)
         if (
@@ -275,6 +296,11 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
 
     health_checked_at = _clean_text(_pick(record, "last_health_check", "health_checked_at"))
     current_health_status = _clean_text(_pick(record, "health_status"))
+    if current_health_status == "alternate_healthy":
+        visible_success = successful_health_url(record)
+        if visible_success is not None:
+            return visible_success
+
     explicit_health_url = normalize_url(
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )

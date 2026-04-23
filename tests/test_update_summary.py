@@ -767,6 +767,54 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(entry["health_status"], "alternate_healthy")
         self.assertEqual(entry["health_code"], 200)
 
+    def test_stale_effective_canonical_url_still_counts_as_fallback_drift(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Shadowed Fallback Tool",
+                        "slug": "shadowed-fallback-tool",
+                        "status": "live",
+                        "vercel_url": "https://shadowed-fallback-tool.vercel.app",
+                        "deployment_url": "https://shadowed-fallback-tool-preview.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://shadowed-fallback-tool-preview.vercel.app",
+                        "effective_health_url": "https://shadowed-fallback-tool.vercel.app",
+                        "canonical_health_code": 404,
+                        "canonical_health_status": "not_found",
+                        "canonical_health_url": "https://shadowed-fallback-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["shadowed-fallback-tool"])
+        self.assertEqual(summary["products"][0]["v"], "https://shadowed-fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "shadowed-fallback-tool",
+                    "url": "https://shadowed-fallback-tool-preview.vercel.app",
+                    "ideal_url": "https://shadowed-fallback-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://shadowed-fallback-tool-preview.vercel.app",
+                    "effective_url": "https://shadowed-fallback-tool.vercel.app",
+                    "canonical_url": "https://shadowed-fallback-tool.vercel.app",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
+                }
+            ],
+        )
+
     def test_deployment_alias_without_explicit_health_url_keeps_fallback_public_display(self) -> None:
         state = {
             "products": {
