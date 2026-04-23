@@ -420,6 +420,40 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(product["canonical_health_code"], 200)
         self.assertEqual(product["canonical_probe_url"], "https://html-entity-encoder.vercel.app")
 
+    def test_alternate_healthy_result_preserves_probe_alias_when_effective_url_is_canonical(self) -> None:
+        product = {
+            "name": "Fallback Tool",
+            "slug": "fallback-tool",
+            "status": "live",
+            "vercel_url": "https://fallback-tool-preview.vercel.app",
+            "v": "https://fallback-tool-preview.vercel.app",
+        }
+
+        apply_health_result(
+            product,
+            {
+                "status": "alternate_healthy",
+                "code": 200,
+                "url": "https://fallback-tool-preview.vercel.app",
+                "effective_url": "https://fallback-tool.vercel.app",
+                "checked_at": "2026-04-23T10:15:00Z",
+                "canonical_status": "healthy",
+                "canonical_code": 200,
+                "canonical_url": "https://fallback-tool.vercel.app",
+            },
+        )
+
+        self.assertEqual(product["health_status"], "alternate_healthy")
+        self.assertEqual(product["health_probe_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["effective_health_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(product["last_health_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(product["deployment_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(product["canonical_health_status"], "healthy")
+        self.assertEqual(product["canonical_health_code"], 200)
+        self.assertEqual(product["canonical_health_url"], "https://fallback-tool.vercel.app")
+
     def test_synced_health_results_include_alternate_healthy(self) -> None:
         self.assertTrue(is_synced_health_result({"status": "healthy"}))
         self.assertTrue(is_synced_health_result({"status": "alternate_healthy"}))

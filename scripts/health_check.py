@@ -97,6 +97,19 @@ def _build_probe_result(name, slug, url, code, checked_at, effective_url=None):
     }
 
 
+def _preferred_public_url(result, slug):
+    """Keep the probed fallback alias visible when alternate health exists."""
+    probe_url = _normalize_url(result.get("url"))
+    effective_url = _normalize_url(result.get("effective_url")) or probe_url
+
+    if result.get("status") == "alternate_healthy":
+        for candidate in (probe_url, effective_url):
+            if candidate and _is_preview_alias_url(candidate, slug):
+                return candidate
+
+    return effective_url or probe_url
+
+
 def is_synced_health_result(result):
     return result.get("status") in SYNCED_HEALTH_STATUSES
 
@@ -109,6 +122,7 @@ def apply_health_result(product, result):
     canonical_probe_url = _normalize_url(result.get("canonical_probe_url"))
     probe_url = result.get("url")
     effective_url = _normalize_url(result.get("effective_url")) or _normalize_url(probe_url)
+    public_url = _preferred_public_url(result, slug)
     canonical_target = f"https://{slug}.vercel.app" if slug else canonical_url
     if canonical_url is None and slug:
         canonical_url = f"https://{slug}.vercel.app"
@@ -135,10 +149,10 @@ def apply_health_result(product, result):
     )
     product["canonical_health_checked_at"] = checked_at
 
-    if result["status"] in SYNCED_HEALTH_STATUSES and effective_url:
-        product["deployment_url"] = effective_url
-        product["vercel_url"] = effective_url
-        product["v"] = effective_url
+    if result["status"] in SYNCED_HEALTH_STATUSES and public_url:
+        product["deployment_url"] = public_url
+        product["vercel_url"] = public_url
+        product["v"] = public_url
 
     product["health_status"] = result["status"]
     product["last_health_code"] = _coerce_http_code(result.get("code")) or 0
