@@ -180,6 +180,7 @@ def check_product_health(product):
     for key in (
         "effective_health_url",
         "last_health_url",
+        "health_probe_url",
         "deployment_url",
         "vercel_url",
         "v",

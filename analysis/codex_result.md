@@ -1,38 +1,39 @@
-# Codex Result — 2026-04-24 01:03 +03
+# Codex Result — 2026-04-23 22:40 UTC
 
-## Okunanlar
+## Mod
+- EXECUTION
+- Slug: `health-canonical-drift`
+
+## Okunan Dosyalar
 - `skills/codex_skill.md`
 - `analysis/codex_task.md`
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `CODEBASE_MAP.md`
-- `scripts/update_summary.py`
-- `scripts/product_state_sync.py`
+- `skills/build_checklist.md`
 - `scripts/health_check.py`
-- `tests/test_update_summary.py`
-- `tests/test_product_state_sync.py`
+- `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
 - `tests/test_health_check.py`
-- `tests/test_refresh_codex_context.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
 
-## Değişenler
-- `scripts/__init__.py`
-  - Local `scripts/` klasörü gerçek Python paketi yapıldı.
-  - Böylece `from scripts import ...` importları repo kopyasını kullanıyor; başka bir namespace-package yoluna kaymıyor.
-- `tests/conftest.py`
-  - Pytest başlangıcında repo kökü `sys.path` başına alındı.
-  - Bu, health/canonical pipeline testlerinin çıplak `pytest` ile de lokal kodu kullanmasını garanti ediyor.
+## Seçilen Darboğaz
+`health_check.py`, sadece `health_probe_url` içinde kalan fallback alias'ı tekrar aday listesine almıyordu. Böyle bir snapshot'ta canonical probe patlarsa canlı fallback alias yanlışlıkla ölü sayılıyordu.
 
-## Not
-- Health/canonical drift mantığı zaten kodda yerli yerindeydi; current task içindeki pipeline testi asıl olarak import-path drift yüzünden güvenilir çalışmıyordu.
-- Bu yüzden düzeltme, hesaplanan health state'i bozmadan lokal kodu deterministic olarak test edilebilir hale getirdi.
+## Yapılan Değişiklik
+- `scripts/health_check.py`: probe aday listesine `health_probe_url` eklendi.
+- `tests/test_health_check.py`: sadece `health_probe_url` üzerinden bilinen fallback alias'ın canonical probe sonrası tekrar denendiğini doğrulayan regresyon testi eklendi.
 
-## Doğrulamalar
-- `python3 -m py_compile scripts/__init__.py scripts/update_summary.py scripts/product_state_sync.py scripts/health_check.py tests/conftest.py tests/test_update_summary.py tests/test_product_state_sync.py tests/test_health_check.py tests/test_refresh_codex_context.py`
-- `pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_refresh_codex_context.py`
-  - Sonuç: `124 passed`
+## Doğrulama
+- `python3 -m py_compile scripts/health_check.py tests/test_health_check.py`
+- `pytest tests/test_health_check.py` → 20/20 geçti
+- `pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py` → 110/110 geçti
+- Secret scan: kaba grep `mask_the_alias` içindeki `sk_` yüzünden false-positive verdi; manuel inceleme + token-şekilli regex ile doğrulandı → temiz
+- `sync_state_snapshot()` karşılaştırması: mevcut live snapshot'ta ek drift üretmedi (`changed products = 0`)
 
 ## Kalan Blokajlar
-- Kod tarafında yok.
-- Workspace’te önceki cycle’dan kalmış `STATE.json`, `STATE_SUMMARY.json`, `analysis/codex_task.md`, `analysis/oneri.md`, `analysis/sorun_analizi.md`, `memory/2026-04-23.md` ve çeşitli artefaktlar dirty durumda; bu run onların üstüne yazmadı.
-- `.signals/qa_pending` ve `logs/run_ledger.jsonl` bu run için güncellendi; bunlar commit kapsamına alınmadı.
+- 3 canlı ürün hâlâ gerçekten sağlıksız: `jwt-generator` (500), `diffmaster` (401), `timestamp-converter` (451)
+- 4 ürün fallback alias ile canlı: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
+- Bunlar kodla “çözülmüş” gibi işaretlenmedi; manual/canonical taraf hâlâ ayrı iş
