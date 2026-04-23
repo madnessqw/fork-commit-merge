@@ -117,6 +117,50 @@ def _canonical_health_percent(summary: dict[str, Any]) -> float:
     return _canonical_health_count(summary) / live_count * 100
 
 
+def _looks_like_manual_dashboard_action(value: Any) -> bool:
+    text = str(value or "").strip().lower()
+    if not text:
+        return False
+    return "vercel dashboard" in text or "manuel" in text or "manual" in text
+
+
+def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
+    raw = summary.get("next_action")
+    raw_text = str(raw).strip() if raw is not None else ""
+    if raw_text and not _looks_like_manual_dashboard_action(raw_text):
+        return raw_text
+
+    gaps = summary.get("gaps", {})
+    unhealthy_live = list(gaps.get("unhealthy_live", []))
+    canonical_drift = list(gaps.get("canonical_url_drift", []))
+
+    if focus.key == "live_health":
+        if unhealthy_live:
+            if canonical_drift:
+                return (
+                    f"{len(unhealthy_live)} canlı ürünü düzelt; "
+                    f"{len(canonical_drift)} fallback alias'ı görünür tut"
+                )
+            return f"{len(unhealthy_live)} canlı ürünü düzelt"
+
+    if focus.key == "canonical_url_drift" and canonical_drift:
+        return (
+            f"{len(canonical_drift)} canonical URL drift'ini düzelt; "
+            "fallback alias'ı ezme"
+        )
+
+    if raw_text:
+        return raw_text
+
+    if unhealthy_live:
+        return f"{len(unhealthy_live)} canlı ürünü düzelt"
+
+    if canonical_drift:
+        return f"{len(canonical_drift)} canonical URL drift'ini düzelt"
+
+    return None
+
+
 def _issue_map(issues: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
     for issue in issues:
@@ -329,6 +373,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
+    next_action = effective_next_action(summary, focus)
     lines = [
         f"# Codex Analiz Özeti — {now.strftime('%Y-%m-%d %H:%M')} UTC",
         "",
@@ -344,7 +389,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         f"- Deploy/url gap: **{summary.get('deploy_missing_or_bad_url')}**",
         f"- Canonical drift: **{summary.get('canonical_url_drift', 0)}**",
         f"- Spec-ready: **{summary.get('spec_ready_count')}**",
-        f"- Next action: `{summary.get('next_action')}`",
+        f"- Next action: `{next_action}`",
         "",
         "## Ana Darboğaz",
         f"- **{focus.title}:** {focus.summary}",
@@ -594,6 +639,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
 
 def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> str:
     health_percent = _health_percent(summary)
+    next_action = effective_next_action(summary, focus)
     return "\n".join(
         [
             f"# Codex Task — Generated {now.strftime('%Y-%m-%d %H:%M')} UTC",
@@ -619,7 +665,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
             f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
             f"- Spec-ready count: {summary.get('spec_ready_count')}",
-            f"- Next action: {summary.get('next_action')}",
+            f"- Next action: {next_action}",
             "",
             "## Guardrails",
             "- Dosyaları okumadan edit yapma.",

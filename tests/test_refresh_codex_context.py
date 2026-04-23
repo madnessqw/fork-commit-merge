@@ -500,6 +500,58 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("Health pending: 0", rendered)
         self.assertIn("Fallback healthy: 3", rendered)
 
+    def test_manual_vercel_next_action_is_replaced_by_live_health_action(self) -> None:
+        summary = {
+            "cycle": 1108,
+            "mode": "OPTIMIZE",
+            "live_count": 88,
+            "healthy_count": 85,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 7,
+            "deploy_readiness_count": 20,
+            "deploy_readiness_manifest_gap_count": 3,
+            "deploy_readiness_url_gap_count": 20,
+            "deploy_readiness_state_gap_count": 20,
+            "canonical_url_drift": 1,
+            "fallback_healthy_count": 4,
+            "spec_ready_count": 26,
+            "next_action": "html-entity-encoder Vercel Dashboard manuel kontrol",
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "jwt-generator",
+                        "code": 500,
+                        "health_status": "error_500",
+                        "url": "https://jwt-generator.vercel.app",
+                    }
+                ],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "html-entity-encoder",
+                        "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                        "ideal_url": "https://html-entity-encoder.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "health_code": 200,
+                    }
+                ],
+                "deploy_readiness": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+        rendered_oneri = render_oneri(summary, [], focus, datetime(2026, 4, 23, 6, 42, tzinfo=timezone.utc))
+        rendered_task = render_codex_task(summary, focus, datetime(2026, 4, 23, 6, 42, tzinfo=timezone.utc))
+
+        self.assertEqual(focus.key, "live_health")
+        self.assertNotIn("manuel kontrol", rendered_oneri)
+        self.assertNotIn("manuel kontrol", rendered_task)
+        self.assertIn("canlı ürünü düzelt", rendered_oneri)
+        self.assertIn("fallback alias'ı görünür tut", rendered_task)
+
     def test_load_summary_refreshes_live_health_before_rebuilding_context(self) -> None:
         summary = {
             "cycle": 1103,

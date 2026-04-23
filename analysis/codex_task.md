@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-23 06:10 UTC
+# Codex Task — Generated 2026-04-23 06:55 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -21,7 +21,7 @@ Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senk
 - Deploy/url gap: 20
 - Canonical drift: 4
 - Spec-ready count: 26
-- Next action: html-entity-encoder Vercel Dashboard manuel kontrol
+- Next action: 3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut
 
 ## Guardrails
 - Dosyaları okumadan edit yapma.

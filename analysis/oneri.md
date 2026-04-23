@@ -1,4 +1,4 @@
-# Codex Analiz Özeti — 2026-04-23 06:10 UTC
+# Codex Analiz Özeti — 2026-04-23 06:55 UTC
 
 ## Canlı State
 - Cycle: **1108**
@@ -12,7 +12,7 @@
 - Deploy/url gap: **20**
 - Canonical drift: **4**
 - Spec-ready: **26**
-- Next action: `html-entity-encoder Vercel Dashboard manuel kontrol`
+- Next action: `3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut`
 
 ## Ana Darboğaz
 - **Canlı sağlık açığı:** 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
