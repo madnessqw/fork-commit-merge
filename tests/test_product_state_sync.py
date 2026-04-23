@@ -562,7 +562,7 @@ class ProductStateSyncTests(unittest.TestCase):
             "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
         )
         self.assertEqual(merged["canonical_health_code"], 200)
-        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(merged["canonical_health_status"], "redirected_preview_alias")
         self.assertEqual(merged["canonical_health_url"], "https://html-entity-encoder.vercel.app")
         self.assertEqual(health_check_url(merged), "https://html-entity-encoder.vercel.app")
 

@@ -786,7 +786,7 @@ class UpdateSummaryTests(unittest.TestCase):
                         "health_probe_url": "https://html-entity-encoder.vercel.app",
                         "last_health_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
                         "effective_health_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
-                        "canonical_health_status": "healthy",
+                        "canonical_health_status": "redirected_preview_alias",
                         "canonical_health_code": 200,
                         "canonical_health_url": "https://html-entity-encoder.vercel.app",
                         "canonical_health_checked_at": "2026-04-23T10:05:00Z",
@@ -802,6 +802,23 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["canonical_url_drift_products"], ["html-entity-encoder"])
         self.assertEqual(summary["products"][0]["v"], "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app")
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "html-entity-encoder",
+                    "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                    "ideal_url": "https://html-entity-encoder.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://html-entity-encoder.vercel.app",
+                    "effective_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                    "canonical_url": "https://html-entity-encoder.vercel.app",
+                    "canonical_code": 200,
+                    "canonical_status": "redirected_preview_alias",
+                }
+            ],
+        )
 
     def test_stale_failure_with_successful_fallback_records_actual_fallback_url(self) -> None:
         state = {

@@ -89,7 +89,7 @@ class HealthCheckTests(unittest.TestCase):
             "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
         )
         self.assertEqual(result["canonical_url"], "https://html-entity-encoder.vercel.app")
-        self.assertEqual(result["canonical_status"], "healthy")
+        self.assertEqual(result["canonical_status"], "redirected_preview_alias")
         self.assertEqual(result["canonical_code"], 200)
         self.assertEqual(run_mock.call_count, 1)
 

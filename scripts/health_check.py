@@ -24,6 +24,7 @@ from scripts.update_summary import apply_summary_fields, build_summary, persist_
 
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
 SYNCED_HEALTH_STATUSES = {"healthy", "alternate_healthy"}
+CANONICAL_REDIRECTED_PREVIEW_STATUS = "redirected_preview_alias"
 
 
 def _utc_now_iso() -> str:
@@ -177,7 +178,7 @@ def check_product_health(product):
                         'url': effective_url,
                         'effective_url': effective_url,
                         'canonical_url': url,
-                        'canonical_status': 'healthy',
+                        'canonical_status': CANONICAL_REDIRECTED_PREVIEW_STATUS,
                         'canonical_code': 200,
                         'checked_at': checked_at,
                     }

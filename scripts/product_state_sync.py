@@ -28,6 +28,7 @@ PRODUCTS_DIR = ROOT / "products"
 PRE_DEPLOY_STATUSES = {"building", "spec_ready", "ready_to_deploy"}
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
 HEALTHY_URL_STATUSES = {"healthy", "alternate_healthy"}
+CANONICAL_REDIRECTED_PREVIEW_STATUS = "redirected_preview_alias"
 FAILURE_HEALTH_STATUS_BY_CODE = {
     0: "timeout",
     401: "unauthorized",
@@ -308,6 +309,18 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         public_code = None
 
     successful_snapshot_url = _successful_snapshot_url(record)
+    canonical_probe_url = normalize_url(_pick(record, "health_probe_url"))
+    preserve_redirected_canonical_status = (
+        canonical_code == 200
+        and current_health_status == "alternate_healthy"
+        and canonical_target is not None
+        and successful_snapshot_url is not None
+        and successful_snapshot_url != canonical_target
+        and (
+            raw_canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS
+            or canonical_probe_url == canonical_target
+        )
+    )
     has_successful_preview_snapshot = (
         public_code == 200
         and canonical_code is None
@@ -360,7 +373,10 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
 
     if canonical_snapshot_code is not None:
         normalized["canonical_health_code"] = canonical_snapshot_code
-        normalized["canonical_health_status"] = _health_status_for_code(canonical_snapshot_code)
+        if preserve_redirected_canonical_status:
+            normalized["canonical_health_status"] = CANONICAL_REDIRECTED_PREVIEW_STATUS
+        else:
+            normalized["canonical_health_status"] = _health_status_for_code(canonical_snapshot_code)
     else:
         normalized["canonical_health_code"] = None
         normalized["canonical_health_status"] = raw_canonical_status or normalized.get("canonical_health_status")
