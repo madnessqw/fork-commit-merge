@@ -380,12 +380,16 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     canonical_probe_url = explicit_canonical_probe_url or (
         legacy_probe_url if legacy_probe_url == canonical_target else None
     )
-    preserve_redirected_canonical_status = (
+    visible_fallback_snapshot = (
         canonical_code == 200
         and current_health_status == "alternate_healthy"
         and canonical_target is not None
         and successful_snapshot_url is not None
         and successful_snapshot_url != canonical_target
+        and _is_vercel_preview_alias(successful_snapshot_url, _pick(record, "slug", "s"))
+    )
+    preserve_redirected_canonical_status = (
+        visible_fallback_snapshot
         and (
             raw_canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS
             or canonical_probe_url == canonical_target
@@ -485,12 +489,8 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
     effective_health_url = normalize_url(_pick(normalized, "effective_health_url", "last_health_url"))
     preserve_redirected_fallback = (
         effective_canonical_code == 200
-        and current_health_status == "alternate_healthy"
-        and canonical_target is not None
-        and successful_snapshot_url is not None
-        and successful_snapshot_url != canonical_target
+        and visible_fallback_snapshot
         and canonical_probe_url == canonical_target
-        and effective_health_url == successful_snapshot_url
     )
     if effective_canonical_code == 200 and not preserve_redirected_fallback:
         final_canonical_checked_at = _clean_text(
@@ -515,8 +515,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         normalized["health_status"] = "alternate_healthy"
         normalized["last_health_code"] = 200
         normalized["last_health_url"] = successful_snapshot_url
-        if normalized.get("effective_health_url") is None:
-            normalized["effective_health_url"] = successful_snapshot_url
+        normalized["effective_health_url"] = successful_snapshot_url
 
     raw_code = _pick(record, "last_health_code")
     try:

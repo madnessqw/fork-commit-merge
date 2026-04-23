@@ -13,18 +13,17 @@
 - `tests/test_update_summary.py`
 
 ## Ne Değişti
-- `scripts/product_state_sync.py` içinde fallback sağlık URL seçimi compact `v` alanını da explicit aday olarak dikkate alacak şekilde sıkılaştırıldı.
-- `successful_health_url()` artık `alternate_healthy` kayıtlarında ve legacy healthy snapshot’larda compact `v` alias’ını da koruyor; canonical URL’yi alias diye ezmiyor.
-- `tests/test_product_state_sync.py` içine compact `v`-only fallback alias’ın `alternate_healthy` durumda da görünür kaldığını doğrulayan regresyon testi eklendi.
+- `scripts/product_state_sync.py` içinde canonical başarı sonrası fallback alias görünürlüğü, stale `effective_health_url` alanı canonical kalsa bile korunacak şekilde sıkılaştırıldı.
+- `visible_fallback_snapshot` üzerinden hem `canonical_health_status` hem de public fallback URL yeniden bağlandı; canonical probe temizse alias artık yanlışlıkla healthy/canonical diye ezilmiyor.
+- `tests/test_product_state_sync.py` içine stale canonical efekt alanı olan bir fallback snapshot için regresyon testi eklendi.
 
 ## Doğrulamalar
 - `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
 - `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
 - `python3 -m unittest discover -s tests -p 'test_health_check.py'`
 - `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
-- `python3 -m unittest discover -s tests`
 - Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` bulunmadı.
 
 ## Kalan Blokajlar
 - Canlı üründe hâlâ gerçekten bozuk 3 ürün var: `jwt-generator`, `diffmaster`, `timestamp-converter`.
-- 4 fallback alias ürününün görünürlüğü korunuyor; canonical drift artık alias truth’u ezmiyor.
+- 4 fallback alias ürününün görünürlüğü korunuyor; stale canonical metadata artık alias truth’u ezmiyor.
