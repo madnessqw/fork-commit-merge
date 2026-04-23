@@ -564,6 +564,7 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertNotIn("manuel kontrol", rendered_task)
         self.assertIn("canlı ürünü düzelt", rendered_oneri)
         self.assertIn("fallback alias'ı görünür tut", rendered_task)
+        self.assertIn("- Fallback healthy slugs: `html-entity-encoder`", rendered_task)
         self.assertIn("## Fallback Alias Ürünleri", rendered_oneri)
         self.assertIn(
             "- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 probe=https://html-entity-encoder.vercel.app canonical_code=200 canonical_status=redirected_preview_alias",

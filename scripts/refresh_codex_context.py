@@ -691,6 +691,35 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
 def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> str:
     health_percent = _health_percent(summary)
     next_action = effective_next_action(summary, focus)
+    fallback_source: list[Any] = []
+    if isinstance(summary.get("fallback_healthy_products"), list):
+        fallback_source = list(summary["fallback_healthy_products"])
+    else:
+        gaps = summary.get("gaps", {})
+        if isinstance(gaps, dict) and isinstance(gaps.get("fallback_healthy"), list):
+            fallback_source = [item.get("slug") for item in gaps["fallback_healthy"] if isinstance(item, dict)]
+    fallback_products = [str(slug).strip() for slug in fallback_source if str(slug).strip()]
+    fallback_line = None
+    if fallback_products:
+        fallback_preview = ", ".join(f"`{slug}`" for slug in fallback_products[:8])
+        if len(fallback_products) > 8:
+            fallback_preview += ", ..."
+        fallback_line = f"- Fallback healthy slugs: {fallback_preview}"
+    summary_lines = [
+        f"- Cycle: {summary.get('cycle')}",
+        f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
+        f"- Canonical healthy: {_canonical_health_count(summary)}/{summary.get('live_count')} (%{_canonical_health_percent(summary):.1f})",
+        f"- Health pending: {summary.get('pending_health_count', 0)}",
+        f"- Fallback healthy: {summary.get('fallback_healthy_count', 0)}",
+        f"- Checkout gap: {summary.get('checkout_gap_count')}",
+        f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
+        f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
+        f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
+        f"- Spec-ready count: {summary.get('spec_ready_count')}",
+        f"- Next action: {next_action}",
+    ]
+    if fallback_line:
+        summary_lines.insert(9, fallback_line)
     return "\n".join(
         [
             f"# Codex Task — Generated {now.strftime('%Y-%m-%d %H:%M')} UTC",
@@ -706,17 +735,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             focus.codex_task_body,
             "",
             "## Canlı State Özeti",
-            f"- Cycle: {summary.get('cycle')}",
-            f"- Live sağlık: {summary.get('healthy_count')}/{summary.get('live_count')} (%{health_percent:.1f})",
-            f"- Canonical healthy: {_canonical_health_count(summary)}/{summary.get('live_count')} (%{_canonical_health_percent(summary):.1f})",
-            f"- Health pending: {summary.get('pending_health_count', 0)}",
-            f"- Fallback healthy: {summary.get('fallback_healthy_count', 0)}",
-            f"- Checkout gap: {summary.get('checkout_gap_count')}",
-            f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
-            f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
-            f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
-            f"- Spec-ready count: {summary.get('spec_ready_count')}",
-            f"- Next action: {next_action}",
+            *summary_lines,
             "",
             "## Guardrails",
             "- Dosyaları okumadan edit yapma.",
