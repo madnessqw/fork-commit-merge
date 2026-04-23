@@ -785,6 +785,49 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_deployment_alias_with_health_timestamp_counts_as_fallback_drift(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Deployment Timestamp Tool",
+                        "slug": "deployment-timestamp-tool",
+                        "status": "live",
+                        "vercel_url": "https://deployment-timestamp-tool.vercel.app",
+                        "deployment_url": "https://deployment-timestamp-tool-rose.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_check": "2026-04-23T10:00:00Z",
+                        "health_checked_at": "2026-04-23T10:00:00Z",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["deployment-timestamp-tool"])
+        self.assertEqual(summary["products"][0]["v"], "https://deployment-timestamp-tool-rose.vercel.app")
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"],
+            [
+                {
+                    "slug": "deployment-timestamp-tool",
+                    "url": "https://deployment-timestamp-tool-rose.vercel.app",
+                    "ideal_url": "https://deployment-timestamp-tool.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "health_code": 200,
+                    "probe_url": "https://deployment-timestamp-tool-rose.vercel.app",
+                    "canonical_url": "https://deployment-timestamp-tool.vercel.app",
+                    "canonical_status": "pending",
+                }
+            ],
+        )
+
     def test_stale_alternate_label_without_drift_does_not_count_as_fallback(self) -> None:
         state = {
             "products": {

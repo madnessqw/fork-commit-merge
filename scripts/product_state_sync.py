@@ -273,6 +273,7 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
     if code != 200:
         return None
 
+    health_checked_at = _clean_text(_pick(record, "last_health_check", "health_checked_at"))
     explicit_health_url = normalize_url(
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
@@ -288,6 +289,14 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         # conservative move is to preserve that fallback instead of declaring the
         # canonical URL healthy without proof.
         return compact_url
+
+    # Some live snapshots only persist the fallback alias in deployment_url.
+    # If we have a real health timestamp but no explicit health URL, keep that
+    # alias visible instead of collapsing back to the dead canonical slug.
+    if health_checked_at is not None and _clean_text(_pick(record, "health_status")) == "healthy":
+        deployment_url = normalize_url(_pick(record, "deployment_url"))
+        if deployment_url is not None and _is_vercel_preview_alias(deployment_url, slug):
+            return deployment_url
 
     for candidate in (_pick(record, "vercel_url", "v"), _pick(record, "deployment_url")):
         normalized = normalize_url(candidate)

@@ -484,6 +484,27 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://deployment-alias-tool-rose.vercel.app")
         self.assertEqual(health_check_url(merged), "https://deployment-alias-tool.vercel.app")
 
+    def test_deployment_alias_with_health_timestamp_keeps_fallback_display(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "deployment-timestamp-tool",
+                "status": "live",
+                "vercel_url": "https://deployment-timestamp-tool.vercel.app",
+                "deployment_url": "https://deployment-timestamp-tool-rose.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_check": "2026-04-23T10:00:00Z",
+                "health_checked_at": "2026-04-23T10:00:00Z",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://deployment-timestamp-tool-rose.vercel.app")
+        self.assertEqual(merged["v"], "https://deployment-timestamp-tool-rose.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://deployment-timestamp-tool-rose.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://deployment-timestamp-tool.vercel.app")
+
     def test_failure_codes_normalize_stale_healthy_health_status(self) -> None:
         merged = merge_product_record(
             {
