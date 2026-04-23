@@ -613,7 +613,7 @@ def normalize_health_snapshot(record: dict[str, Any]) -> dict[str, Any]:
         and visible_fallback_snapshot
         and public_checked_at is not None
         and canonical_checked_dt is not None
-        and public_checked_at > canonical_checked_dt
+        and public_checked_at >= canonical_checked_dt
     )
     preserve_redirected_fallback = (
         effective_canonical_code == 200

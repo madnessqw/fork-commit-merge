@@ -367,6 +367,31 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_url"], "https://temporary-tool.vercel.app")
         self.assertEqual(health_check_url(merged), "https://temporary-tool.vercel.app")
 
+    def test_equal_timestamp_fallback_snapshot_without_explicit_canonical_probe_keeps_alias_visible(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "temporary-tool",
+                "status": "live",
+                "vercel_url": "https://temporary-tool-preview.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://temporary-tool-preview.vercel.app",
+                "last_health_check": "2026-04-22T10:05:00Z",
+                "canonical_health_status": "healthy",
+                "canonical_health_code": 200,
+                "canonical_health_url": "https://temporary-tool.vercel.app",
+                "canonical_health_checked_at": "2026-04-22T10:05:00Z",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://temporary-tool-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://temporary-tool-preview.vercel.app")
+        self.assertEqual(merged["canonical_health_code"], 200)
+        self.assertEqual(merged["canonical_health_status"], "healthy")
+        self.assertEqual(merged["canonical_health_url"], "https://temporary-tool.vercel.app")
+
     def test_live_manifest_canonical_url_beats_stale_state_alias(self) -> None:
         merged = merge_product_record(
             {
