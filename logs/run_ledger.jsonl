@@ -38,3 +38,4 @@
 {"run_id": "codex-20260423-0443", "mode": "EXECUTION", "task": "preserve timestamped deployment alias fallback", "status": "done", "slug": "health-canonical-drift", "duration_min": 14, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T04:43:39.795760Z"}
 {"run_id": "codex-20260423-0537", "mode": "EXECUTION", "task": "preserve live deployment alias fallback without explicit health URL", "status": "done", "slug": "health-canonical-drift", "duration_min": 22, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T05:37:47.601672Z"}
 {"run_id":"codex-20260423-0604","mode":"EXECUTION","task":"health/canonical drift fallback alias preservation","status":"done","slug":"health-canonical-drift","duration_min":12,"cost_est":0.05,"cycle":1108}
+{"run_id":"codex-20260423-0650","mode":"EXECUTION","task":"health/canonical drift alias fallback hardening","status":"done","slug":"health-canonical-drift","duration_min":18,"cost_est":0.05,"cycle":1108,"ts":"2026-04-23T06:50:12Z"}

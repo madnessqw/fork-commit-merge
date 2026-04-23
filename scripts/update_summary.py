@@ -172,6 +172,21 @@ def health_code(product: dict[str, Any]) -> int | None:
         return None
 
 
+def public_health_url(product: dict[str, Any]) -> str | None:
+    for key in (
+        "effective_health_url",
+        "last_health_url",
+        "health_probe_url",
+        "vercel_url",
+        "v",
+        "deployment_url",
+    ):
+        value = _normalize_url(_pick(product, key))
+        if value is not None:
+            return value
+    return None
+
+
 def canonical_health_code(product: dict[str, Any]) -> int | None:
     raw = product.get("canonical_health_code")
     if raw is None:
@@ -192,11 +207,19 @@ def is_healthy(product: dict[str, Any]) -> bool:
 
 
 def is_fallback_healthy(product: dict[str, Any]) -> bool:
-    return (
-        health_code(product) == 200
-        and _pick(product, "health_status") == "alternate_healthy"
-        and canonical_url_drift_entry(product) is not None
-    )
+    return fallback_public_health_url(product) is not None
+
+
+def fallback_public_health_url(product: dict[str, Any]) -> str | None:
+    if health_code(product) != 200:
+        return None
+
+    ideal_url = canonical_target_vercel_url(product)
+    current_url = public_health_url(product)
+    if ideal_url is None or current_url is None or current_url == ideal_url:
+        return None
+
+    return current_url
 
 
 def is_pending_health(product: dict[str, Any]) -> bool:
@@ -212,7 +235,7 @@ def is_pending_health(product: dict[str, Any]) -> bool:
 
 def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
     ideal_url = canonical_target_vercel_url(product)
-    current_url = _normalize_url(display_vercel_url(product))
+    current_url = public_health_url(product)
     if ideal_url is None or current_url is None or ideal_url == current_url:
         return None
     entry = {
@@ -221,13 +244,15 @@ def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
         "ideal_url": ideal_url,
     }
 
-    health_status = _pick(product, "health_status")
-    if health_status is not None:
-        entry["health_status"] = health_status
-
     health_code_value = health_code(product)
     if health_code_value is not None:
         entry["health_code"] = health_code_value
+
+    health_status = _pick(product, "health_status")
+    if health_code_value == 200 and current_url != ideal_url:
+        entry["health_status"] = "alternate_healthy"
+    elif health_status is not None:
+        entry["health_status"] = health_status
 
     probe_url = _pick(product, "health_probe_url", "last_health_url")
     if probe_url is not None:

@@ -5,7 +5,13 @@ import unittest
 from unittest.mock import patch
 
 from scripts import update_summary
-from scripts.update_summary import build_summary, is_placeholder_product, normalize_product, persist_summary
+from scripts.update_summary import (
+    build_summary,
+    canonical_url_drift_entry,
+    is_placeholder_product,
+    normalize_product,
+    persist_summary,
+)
 
 
 class UpdateSummaryTests(unittest.TestCase):
@@ -742,6 +748,24 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
+
+    def test_canonical_drift_entry_marks_stale_healthy_alias_as_fallback(self) -> None:
+        product = {
+            "name": "Stale Healthy Tool",
+            "slug": "stale-healthy-tool",
+            "status": "live",
+            "vercel_url": "https://stale-healthy-tool.vercel.app",
+            "health_status": "healthy",
+            "last_health_code": 200,
+            "last_health_url": "https://stale-healthy-tool-rose.vercel.app",
+        }
+
+        entry = canonical_url_drift_entry(product)
+
+        self.assertEqual(entry["url"], "https://stale-healthy-tool-rose.vercel.app")
+        self.assertEqual(entry["ideal_url"], "https://stale-healthy-tool.vercel.app")
+        self.assertEqual(entry["health_status"], "alternate_healthy")
+        self.assertEqual(entry["health_code"], 200)
 
     def test_deployment_alias_without_explicit_health_url_keeps_fallback_public_display(self) -> None:
         state = {
