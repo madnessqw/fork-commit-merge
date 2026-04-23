@@ -56,6 +56,7 @@ SUMMARY_STATE_FIELDS = (
     "deploy_readiness_url_gap_count",
     "deploy_readiness_state_gap_count",
     "needs_fix_count",
+    "next_action",
     "last_updated",
 )
 

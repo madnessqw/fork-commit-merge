@@ -513,6 +513,10 @@ class UpdateSummaryTests(unittest.TestCase):
 
             self.assertEqual(synced_state["canonical_url_drift"], 1)
             self.assertEqual(synced_state["canonical_url_drift_products"], ["temporary-tool"])
+            self.assertEqual(
+                synced_state["next_action"],
+                "1 canonical URL drift'ini düzelt; fallback alias'ı ezme",
+            )
             self.assertEqual(len(synced_state["products"]["active"]), 1)
             self.assertEqual(
                 synced_state["products"]["active"][0]["vercel_url"],
