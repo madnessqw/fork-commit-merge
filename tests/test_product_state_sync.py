@@ -470,6 +470,26 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://webhook-tester.vercel.app")
 
+    def test_compact_preview_alias_with_alternate_healthy_keeps_fallback_display(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "compact-fallback-tool",
+                "status": "live",
+                "vercel_url": "https://compact-fallback-tool.vercel.app",
+                "v": "https://compact-fallback-tool-preview.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_code": 200,
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://compact-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["v"], "https://compact-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://compact-fallback-tool-preview.vercel.app")
+        self.assertEqual(merged["effective_health_url"], "https://compact-fallback-tool-preview.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://compact-fallback-tool.vercel.app")
+
     def test_stale_effective_canonical_url_does_not_shadow_fallback_alias(self) -> None:
         merged = merge_product_record(
             {

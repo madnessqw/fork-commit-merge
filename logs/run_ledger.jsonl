@@ -40,3 +40,5 @@
 {"run_id":"codex-20260423-0604","mode":"EXECUTION","task":"health/canonical drift fallback alias preservation","status":"done","slug":"health-canonical-drift","duration_min":12,"cost_est":0.05,"cycle":1108}
 {"run_id":"codex-20260423-0650","mode":"EXECUTION","task":"health/canonical drift alias fallback hardening","status":"done","slug":"health-canonical-drift","duration_min":18,"cost_est":0.05,"cycle":1108,"ts":"2026-04-23T06:50:12Z"}
 {"run_id":"codex-20260423-0705","mode":"EXECUTION","task":"stale effective canonical URL no longer shadows fallback alias","status":"done","slug":"health-canonical-drift","duration_min":14,"cost_est":0.05,"cycle":1108,"ts":"2026-04-23T07:05:00Z"}
+{"run_id":"codex-20260423-0800","mode":"EXECUTION","task":"Health/canonical drift next_action normalizer","status":"done","slug":"live_health","duration_min":18,"cost_est":0.05,"cycle":1108}
+{"run_id": "codex-20260423-0846", "mode": "EXECUTION", "task": "compact v fallback alias visibility", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108}
