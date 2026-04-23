@@ -947,6 +947,36 @@ class UpdateSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summary["gaps"]["unhealthy_live"], [])
 
+    def test_healthy_canonical_url_with_preview_alias_and_missing_canonical_probe_keeps_fallback_visible(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Fallback Tool",
+                        "slug": "fallback-tool",
+                        "status": "live",
+                        "vercel_url": "https://fallback-tool.vercel.app",
+                        "deployment_url": "https://fallback-tool-preview.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://fallback-tool.vercel.app",
+                        "effective_health_url": "https://fallback-tool.vercel.app",
+                        "canonical_health_url": "https://fallback-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_healthy_count"], 0)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(summary["gaps"]["canonical_url_drift"][0]["health_status"], "alternate_healthy")
+        self.assertEqual(summary["gaps"]["canonical_url_drift"][0]["canonical_status"], "pending")
+
     def test_canonical_drift_entry_marks_stale_healthy_alias_as_fallback(self) -> None:
         product = {
             "name": "Stale Healthy Tool",

@@ -834,6 +834,43 @@ def _promote_canonical_preview_for_predeploy(
     return promoted
 
 
+def _preserve_live_fallback_without_canonical_probe(
+    merged: dict[str, Any],
+    *,
+    source_state_status: str | None,
+    source_state_vercel_url: str | None,
+    source_state_canonical_url: str | None,
+    source_state_explicit_health_url: str | None,
+) -> dict[str, Any]:
+    if source_state_status != "live":
+        return merged
+    if source_state_canonical_url is None:
+        return merged
+    if source_state_vercel_url != source_state_canonical_url:
+        return merged
+    if source_state_explicit_health_url != source_state_canonical_url:
+        return merged
+
+    slug = _clean_text(_pick(merged, "slug", "s"))
+    public_url = _visible_preview_alias(merged, slug)
+    if public_url is None:
+        return merged
+
+    if _clean_text(_pick(merged, "health_status")) != "healthy":
+        return merged
+    if _pick(merged, "last_health_code") != 200:
+        return merged
+    if _pick(merged, "canonical_health_code") is not None:
+        return merged
+
+    preserved = dict(merged)
+    preserved["health_status"] = "alternate_healthy"
+    preserved["last_health_url"] = public_url
+    preserved["effective_health_url"] = public_url
+    preserved["health_probe_url"] = public_url
+    return preserved
+
+
 def merge_product_record(
     state_record: dict[str, Any],
     manifest_record: dict[str, Any] | None = None,
@@ -885,6 +922,13 @@ def merge_product_record(
             merged["effective_health_url"] = source_state_deployment_url
             merged["health_probe_url"] = source_state_deployment_url
 
+        merged = _preserve_live_fallback_without_canonical_probe(
+            merged,
+            source_state_status=source_state_status,
+            source_state_vercel_url=source_state_vercel_url,
+            source_state_canonical_url=source_state_canonical_url,
+            source_state_explicit_health_url=source_state_explicit_health_url,
+        )
         merged = normalize_health_snapshot(merged)
         merged = _promote_canonical_preview_for_predeploy(
             merged,
@@ -975,6 +1019,13 @@ def merge_product_record(
         merged["effective_health_url"] = source_state_deployment_url
         merged["health_probe_url"] = source_state_deployment_url
 
+    merged = _preserve_live_fallback_without_canonical_probe(
+        merged,
+        source_state_status=source_state_status,
+        source_state_vercel_url=source_state_vercel_url,
+        source_state_canonical_url=source_state_canonical_url,
+        source_state_explicit_health_url=source_state_explicit_health_url,
+    )
     merged = normalize_health_snapshot(merged)
     merged = _promote_canonical_preview_for_predeploy(
         merged,

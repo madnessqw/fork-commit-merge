@@ -475,6 +475,30 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["canonical_health_status"], "pending")
         self.assertEqual(health_check_url(merged), "https://drift-tool.vercel.app")
 
+    def test_healthy_canonical_url_with_preview_alias_and_missing_canonical_probe_keeps_fallback_visible(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "drift-tool",
+                "status": "live",
+                "vercel_url": "https://drift-tool.vercel.app",
+                "deployment_url": "https://drift-tool-rose.vercel.app",
+                "health_status": "healthy",
+                "last_health_code": 200,
+                "last_health_url": "https://drift-tool.vercel.app",
+                "effective_health_url": "https://drift-tool.vercel.app",
+                "canonical_health_url": "https://drift-tool.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://drift-tool-rose.vercel.app")
+        self.assertEqual(merged["v"], "https://drift-tool-rose.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://drift-tool-rose.vercel.app")
+        self.assertIsNone(merged["canonical_health_code"])
+        self.assertEqual(merged["canonical_health_status"], "pending")
+        self.assertEqual(health_check_url(merged), "https://drift-tool.vercel.app")
+
     def test_compact_preview_alias_without_health_url_stays_alternate_healthy(self) -> None:
         merged = merge_product_record(
             {
