@@ -742,15 +742,6 @@ def choose_public_vercel_url(
         # live fallback URL just because the slug URL still exists in cache.
         return normalized_health_url
 
-    if (
-        normalized_status in HEALTH_CHECKABLE_STATUSES
-        and _clean_text(health_status) == "alternate_healthy"
-        and normalized_health_url is not None
-    ):
-        # The canonical probe lost, but a fallback URL answered 200.
-        # Keep the actual reachable URL so state does not lie about reality.
-        return normalized_health_url
-
     if normalized_status in HEALTH_CHECKABLE_STATUSES and _clean_text(health_status) == "alternate_healthy":
         for candidate in (normalized_state_url, normalized_deployment_url, normalized_manifest_url):
             if candidate is not None and _is_vercel_preview_alias(candidate, slug):
@@ -758,6 +749,11 @@ def choose_public_vercel_url(
                 # or vercel_url and never persisted last_health_url. Preserve
                 # that reachable alias instead of canonicalizing it away.
                 return candidate
+        if normalized_health_url is not None:
+            # No visible preview alias is available. Keep the recorded health
+            # URL, even if it is the canonical slug, so callers still have a
+            # concrete public URL instead of None.
+            return normalized_health_url
 
     if (
         normalized_status in HEALTH_CHECKABLE_STATUSES

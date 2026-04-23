@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-23 18:45 +0300
+# Codex Result — 2026-04-23T16:08:11Z
 
 ## Okunanlar
 - `skills/codex_skill.md`
@@ -15,14 +15,14 @@
 - `tests/test_health_check.py`
 
 ## Ne Değişti
-- `scripts/product_state_sync.py` içinde, `successful_health_url()` artık `alternate_healthy` kayıtlar için canonical URL'yi körlemesine öne çıkarmıyor.
-- Visible fallback alias varsa ve canonical 200 açıkça doğrulanmamışsa alias korunuyor; canonical 200 netleşirse canonical URL geri geliyor.
-- `tests/test_product_state_sync.py` içine bu davranışı kilitleyen regresyon testi eklendi.
+- `scripts/product_state_sync.py` içindeki `choose_public_vercel_url()` artık `alternate_healthy` kayıtlarında görünür preview alias'ı, stalenmiş canonical `health_url`'nin önüne koyuyor.
+- Böylece fallback alias `deployment_url`/`vercel_url` içinde görünüyorsa canonical URL kayıtları onu ezmiyor; manuel Vercel koruması kodla çözüldü gibi maskelenmiyor.
+- `tests/test_product_state_sync.py` içine bu regresyonu kilitleyen test eklendi.
 
 ## Doğrulamalar
-- `python3 -m pytest -q tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
-- `python3 -m py_compile scripts/product_state_sync.py scripts/health_check.py scripts/update_summary.py tests/test_product_state_sync.py`
-- Secret scan: `grep -nE 'sk_|pk_|ghp_|api_key' scripts/product_state_sync.py scripts/health_check.py scripts/update_summary.py tests/test_product_state_sync.py` → temiz
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q` → 100 passed
+- Secret scan: changed files üzerinde credential-prefix taraması → temiz
 
 ## Kalan Blokajlar
 - Live state'de hâlâ 3 gerçek outage var: `jwt-generator`, `diffmaster`, `timestamp-converter`.
