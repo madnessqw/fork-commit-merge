@@ -67,8 +67,20 @@ cd "$WORK_DIR"
 PROMPT_CONTENT=$(cat prompts/glm_prompt.txt)
 
 echo "--- opencode run START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
+set +e
 "$OPENCODE_BIN" run -m "$MODEL" "$PROMPT_CONTENT" 2>&1 | tee -a "$LOG_FILE"
-echo "--- opencode run END $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
+GLM_EXIT=${PIPESTATUS[0]}
+set -e
+echo "--- opencode run END $(date '+%Y-%m-%d %H:%M:%S') exit=$GLM_EXIT ---" | tee -a "$LOG_FILE"
+
+# ─── Shell-level Telegram (ZORUNLU — LLM atlasa da tetiklenir) ──────────
+ONERI_HEAD=$(head -15 "$WORK_DIR/analysis/oneri.md" 2>/dev/null | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | cut -c1-300 || echo "(oneri.md yok)")
+EXIT_TAG=""
+[[ "$GLM_EXIT" != "0" ]] && EXIT_TAG=" ❌exit=$GLM_EXIT"
+printf '🔍 <b>GLM Cycle Bitti</b>%s\n🕐 %s\n\n%s' \
+    "$EXIT_TAG" "$(date '+%d.%m %H:%M')" "$ONERI_HEAD" \
+    | "$WORK_DIR/scripts/telegram_send.sh" || true
+# ─────────────────────────────────────────────────────────────────────────
 RUNEOF
 chmod +x "$RUN_SCRIPT"
 

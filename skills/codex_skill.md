@@ -156,7 +156,13 @@ Her cycle sonunda `logs/run_ledger.jsonl`'a ekle (append, overwrite değil):
 - Token, webhook, API key, credential dosyaya yazılmaz.
 - Secret scan: execution öncesi ve sonrası zorunlu (`grep -r "sk_\|pk_\|ghp_\|api_key"`).
 - Geniş config/report dump yok; okuma gerekiyorsa redaction kullan.
-- Telegram/e-posta/post gibi dış bildirimler default kapalıdır; explicit opt-in/env yoksa gönderme.
+- **Telegram: Her run sonunda ZORUNLU.** `analysis/codex_result.md` bittikten sonra aşağıdaki komutu çalıştır:
+  ```bash
+  RESULT_HEAD=$(head -10 /home/gokhan/UniverseCreator/analysis/codex_result.md 2>/dev/null | tr '\n' ' ')
+  printf '🤖 <b>Codex Cycle Bitti</b>\n🕐 %s\n\n%s' "$(date '+%d.%m %H:%M')" "$RESULT_HEAD" \
+    | /home/gokhan/UniverseCreator/scripts/telegram_send.sh
+  ```
+  E-posta/post gibi diğer dış bildirimler hâlâ kapalıdır.
 - Git remote URL'lerini raw basma; tokenlı remote görürsen düz URL'ye çevir.
 
 ---

@@ -180,6 +180,18 @@ python3 "$WORK_DIR/scripts/codex_auth_manager.py" record \
     | tee -a "$LOG_FILE"
 
 echo "--- codex exec END $(date '+%Y-%m-%d %H:%M:%S') exit=$EXIT_CODE ---" | tee -a "$LOG_FILE"
+
+# ─── Shell-level Telegram (ZORUNLU — LLM atlasa da tetiklenir) ──────────
+RESULT_HEAD=$(head -12 "$WORK_DIR/analysis/codex_result.md" 2>/dev/null | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | cut -c1-300 || echo "(codex_result.md yok)")
+AUTH_TAG=""
+[[ "$AUTH_OUTCOME" == auth_switch_success ]] && AUTH_TAG=" 🔁 hesap geçildi"
+[[ "$AUTH_OUTCOME" == auth_switch_failure ]] && AUTH_TAG=" ⚠️ auth sorun"
+[[ "$EXIT_CODE" != "0" ]] && AUTH_TAG="$AUTH_TAG ❌exit=$EXIT_CODE"
+CYCLE_LABEL="$N"
+printf '🤖 <b>Codex Cycle %s Bitti</b>%s\n🕐 %s\n\n%s' \
+    "$CYCLE_LABEL" "$AUTH_TAG" "$(date '+%d.%m %H:%M')" "$RESULT_HEAD" \
+    | "$WORK_DIR/scripts/telegram_send.sh" || true
+# ─────────────────────────────────────────────────────────────────────────
 RUNEOF
 chmod +x "$RUN_SCRIPT"
 

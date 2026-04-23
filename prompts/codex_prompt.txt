@@ -12,5 +12,11 @@ Skill dosyasını okuduktan sonra tüm adımları uygula:
 3. Görevi spec'e göre uygula — gerçek kod değişiklikleri yap
 4. analysis/codex_result.md yaz
 5. Git commit et
+6. **ZORUNLU — Telegram özeti gönder:**
+```bash
+RESULT_HEAD=$(head -10 /home/gokhan/UniverseCreator/analysis/codex_result.md 2>/dev/null | tr '\n' ' ')
+printf '🤖 <b>Codex Cycle Bitti</b>\n🕐 %s\n\n%s' "$(date '+%d.%m %H:%M')" "$RESULT_HEAD" \
+  | /home/gokhan/UniverseCreator/scripts/telegram_send.sh
+```
 
 Soru sorma, direkt çalış. 30-40 dakika boyunca derinlemesine çalışabilirsin.
