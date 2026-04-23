@@ -1059,6 +1059,48 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(product["v"], "https://orphan-tool.vercel.app")
         self.assertEqual(product["last_health_url"], "https://orphan-tool.vercel.app")
 
+    def test_sync_state_products_prefers_canonical_success_over_equal_timestamp_fallback(self) -> None:
+        synced = sync_state_products(
+            [
+                {
+                    "name": "PDF Forge",
+                    "slug": "pdf-forge",
+                    "status": "live",
+                    "vercel_url": "https://pdf-forge-five.vercel.app",
+                    "deployment_url": "https://pdf-forge-five.vercel.app",
+                    "health_status": "alternate_healthy",
+                    "last_health_code": 200,
+                    "last_health_url": "https://pdf-forge-five.vercel.app",
+                    "canonical_health_url": "https://pdf-forge.vercel.app",
+                    "canonical_health_code": 500,
+                    "canonical_health_status": "error_500",
+                    "last_health_check": "2026-04-24T10:00:00Z",
+                },
+                {
+                    "name": "PDF Forge",
+                    "slug": "pdf-forge",
+                    "status": "live",
+                    "vercel_url": "https://pdf-forge.vercel.app",
+                    "health_status": "healthy",
+                    "last_health_code": 200,
+                    "last_health_url": "https://pdf-forge.vercel.app",
+                    "canonical_health_url": "https://pdf-forge.vercel.app",
+                    "canonical_health_code": 200,
+                    "canonical_health_status": "healthy",
+                    "last_health_check": "2026-04-24T10:00:00Z",
+                },
+            ],
+            {},
+        )
+
+        self.assertEqual(len(synced), 1)
+        product = synced[0]
+        self.assertEqual(product["health_status"], "healthy")
+        self.assertEqual(product["vercel_url"], "https://pdf-forge.vercel.app")
+        self.assertEqual(product["v"], "https://pdf-forge.vercel.app")
+        self.assertEqual(product["last_health_url"], "https://pdf-forge.vercel.app")
+        self.assertEqual(product["canonical_health_code"], 200)
+
     def test_sync_state_products_deduplicates_duplicate_slugs(self) -> None:
         products = [
             {

@@ -1462,6 +1462,51 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["gaps"]["unhealthy_live"][0]["code"], 404)
         self.assertEqual(summary["products"][0]["v"], "https://stale-fallback-tool.vercel.app")
 
+    def test_duplicate_equal_timestamp_records_prefer_canonical_success_over_fallback_alias(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "PDF Forge",
+                        "slug": "pdf-forge",
+                        "status": "live",
+                        "vercel_url": "https://pdf-forge-five.vercel.app",
+                        "deployment_url": "https://pdf-forge-five.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://pdf-forge-five.vercel.app",
+                        "canonical_health_url": "https://pdf-forge.vercel.app",
+                        "canonical_health_code": 500,
+                        "canonical_health_status": "error_500",
+                        "last_health_check": "2026-04-24T10:00:00Z",
+                    },
+                    {
+                        "name": "PDF Forge",
+                        "slug": "pdf-forge",
+                        "status": "live",
+                        "vercel_url": "https://pdf-forge.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://pdf-forge.vercel.app",
+                        "canonical_health_url": "https://pdf-forge.vercel.app",
+                        "canonical_health_code": 200,
+                        "canonical_health_status": "healthy",
+                        "last_health_check": "2026-04-24T10:00:00Z",
+                    },
+                ]
+            }
+        }
+
+        summary = build_summary(state, product_catalog={})
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["fallback_healthy_count"], 0)
+        self.assertEqual(summary["canonical_url_drift"], 0)
+        self.assertEqual(summary["canonical_url_drift_products"], [])
+        self.assertEqual(summary["fallback_healthy_products"], [])
+        self.assertEqual(summary["products"][0]["v"], "https://pdf-forge.vercel.app")
+        self.assertEqual(summary["gaps"]["canonical_url_drift"], [])
+
     def test_placeholder_detector_treats_whitespace_as_empty(self) -> None:
         self.assertTrue(
             is_placeholder_product(

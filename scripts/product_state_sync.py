@@ -174,13 +174,64 @@ def _record_has_visible_fallback(record: dict[str, Any]) -> bool:
     return False
 
 
+def _record_has_canonical_success(record: dict[str, Any]) -> bool:
+    slug = _clean_text(_pick(record, "slug", "s"))
+    canonical_url = canonical_vercel_url(slug)
+    if canonical_url is None:
+        return False
+
+    raw_canonical_status = _clean_text(_pick(record, "canonical_health_status"))
+    if raw_canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS:
+        return False
+
+    raw_canonical_code = _pick(record, "canonical_health_code")
+    try:
+        canonical_code = int(raw_canonical_code) if raw_canonical_code is not None else None
+    except (TypeError, ValueError):
+        canonical_code = None
+
+    if canonical_code == 200:
+        return True
+
+    status = _clean_text(_pick(record, "health_status"))
+    raw_public_code = _pick(record, "last_health_code")
+    try:
+        public_code = int(raw_public_code) if raw_public_code is not None else None
+    except (TypeError, ValueError):
+        public_code = None
+
+    if public_code != 200 or status != "healthy":
+        return False
+
+    if _record_has_visible_fallback(record):
+        return False
+
+    for candidate in (
+        _pick(record, "effective_health_url"),
+        _pick(record, "last_health_url"),
+        _pick(record, "health_probe_url"),
+        _pick(record, "vercel_url"),
+        _pick(record, "v"),
+        _pick(record, "deployment_url"),
+    ):
+        if normalize_url(candidate) == canonical_url:
+            return True
+
+    return False
+
+
 def record_preference_key(record: dict[str, Any]) -> tuple[datetime, int, int]:
-    """Prefer fresher health snapshots, then visible fallback aliases, then density."""
+    """Prefer fresher health snapshots, then stronger URL truth, then density."""
     latest = _record_latest_health_timestamp(record)
     if latest is None:
         latest = datetime.min.replace(tzinfo=timezone.utc)
-    fallback_visible = 1 if _record_has_visible_fallback(record) else 0
-    return (latest, fallback_visible, _record_quality_score(record))
+    if _record_has_canonical_success(record):
+        url_truth = 2
+    elif _record_has_visible_fallback(record):
+        url_truth = 1
+    else:
+        url_truth = 0
+    return (latest, url_truth, _record_quality_score(record))
 
 
 def merge_preferred_record(preferred: dict[str, Any], fallback: dict[str, Any]) -> dict[str, Any]:
