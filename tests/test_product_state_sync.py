@@ -556,6 +556,22 @@ class ProductStateSyncTests(unittest.TestCase):
 
         self.assertEqual(successful_health_url(record), "https://drift-tool-rose.vercel.app")
 
+    def test_successful_health_url_prefers_preview_alias_when_canonical_probe_is_missing(self) -> None:
+        record = {
+            "slug": "drift-tool",
+            "status": "live",
+            "vercel_url": "https://drift-tool.vercel.app",
+            "deployment_url": "https://drift-tool-rose.vercel.app",
+            "health_status": "healthy",
+            "last_health_code": 200,
+            "last_health_url": "https://drift-tool.vercel.app",
+            "effective_health_url": "https://drift-tool.vercel.app",
+            "canonical_health_url": "https://drift-tool.vercel.app",
+            "health_checked_at": "2026-04-23T10:05:00Z",
+        }
+
+        self.assertEqual(successful_health_url(record), "https://drift-tool-rose.vercel.app")
+
     def test_compact_preview_alias_without_health_url_stays_alternate_healthy(self) -> None:
         merged = merge_product_record(
             {

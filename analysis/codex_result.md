@@ -6,26 +6,26 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
+- `CODEBASE_MAP.md`
 - `scripts/health_check.py`
-- `scripts/update_summary.py`
 - `scripts/product_state_sync.py`
-- `tests/test_health_check.py`
+- `scripts/update_summary.py`
+- ilgili testler: `tests/test_health_check.py`, `tests/test_product_state_sync.py`, `tests/test_update_summary.py`
+
+## Ne Değişti
+- `scripts/product_state_sync.py`
+  - `successful_health_url()` artık canonical probe yoksa ve health snapshot timestamp'i varsa preview alias'ı saklıyor; canonical-looking kayıtların fallback alias'ı erken canonicalize etmesini engelliyor.
+  - Bu, sağlıklı görünen ama canonical kanıtı olmayan kayıtların public URL'sini yanlışlıkla canonical slug'a döndürme bug'ını kapatıyor.
 - `tests/test_product_state_sync.py`
-- `tests/test_update_summary.py`
+  - Canonical probe eksikken preview alias'ı koruyan yeni regresyon testi eklendi.
 
-## Ne değişti
-- `scripts/product_state_sync.py` içinde, canonical 200 için fallback koruması daha sıkı hale getirildi: explicit canonical proof yoksa aynı zaman damgasına sahip fallback snapshot canonical'a ezilmiyor.
-- Bu, live fallback alias'ların state sync sırasında "iyileştirilmiş" gibi görünmesini engelliyor.
-- `tests/test_product_state_sync.py` içine eşzamanlı timestamp regresyon testi eklendi; `tests/test_update_summary.py` current coverage ile uyumlu kaldı.
+## Doğrulamalar
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py'`
+- `python3 -m unittest discover -s tests -p 'test_update_summary.py'`
+- `python3 -m unittest discover -s tests -p 'test_health_check.py'`
+- Secret scan: değişen dosyalarda `sk_\|pk_\|ghp_\|api_key` bulunmadı.
 
-## Doğrulama
-- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
-- `python3 -m pytest -q tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py`
-- Sonuç: `105 passed`
-- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
-
-## Run Ledger
-- `logs/run_ledger.jsonl` giriş: `codex-20260423-1907` / `health-canonical-drift` / `done`
-
-## Kalan blokajlar
-- Yok.
+## Kalan Blokajlar
+- Canlı state'te hâlâ 3 gerçek unhealthy ürün var: `jwt-generator`, `diffmaster`, `timestamp-converter`.
+- 4 ürün fallback alias ile ayakta; bu kod değişikliği onları görünür tutuyor.

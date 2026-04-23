@@ -327,6 +327,7 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     explicit_health_url = normalize_url(
         _pick(record, "effective_health_url", "last_health_url", "health_probe_url")
     )
+    health_checked_at = _clean_text(_pick(record, "health_checked_at", "last_health_check"))
     if explicit_health_url is not None:
         if (
             preview_alias is not None
@@ -348,7 +349,11 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
                     return canonical_url
                 return preview_alias
 
-            if canonical_code not in (None, 200) or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS:
+            if canonical_code is None:
+                if health_checked_at is not None:
+                    return preview_alias
+                return explicit_health_url
+            if canonical_code != 200 or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS:
                 return preview_alias
             return explicit_health_url
         return explicit_health_url
