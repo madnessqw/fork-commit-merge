@@ -63,14 +63,6 @@ def refresh_live_health() -> None:
 
 def load_summary() -> dict[str, Any]:
     refresh_live_health()
-    if SUMMARY_FILE.exists():
-        try:
-            summary = json.loads(SUMMARY_FILE.read_text(encoding="utf-8"))
-            if isinstance(summary, dict):
-                return summary
-        except json.JSONDecodeError:
-            pass
-
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     summary = build_summary(state, product_catalog=load_product_catalog(), raw_state=state)
     _write_summary(summary)

@@ -242,6 +242,69 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "checkout_field_inconsistency")
         self.assertIn("metadata", focus.summary)
 
+    def test_load_summary_rebuilds_from_state_even_if_stale_summary_exists(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            state_file = tmp_path / "STATE.json"
+            summary_file = tmp_path / "STATE_SUMMARY.json"
+
+            state_file.write_text(
+                json.dumps(
+                    {
+                        "cycle": 1108,
+                        "products": {
+                            "active": [
+                                {
+                                    "name": "Fallback Tool",
+                                    "slug": "fallback-tool",
+                                    "status": "live",
+                                    "vercel_url": "https://fallback-tool-preview.vercel.app",
+                                    "health_status": "alternate_healthy",
+                                    "last_health_code": 200,
+                                    "last_health_url": "https://fallback-tool-preview.vercel.app",
+                                    "canonical_health_url": "https://fallback-tool.vercel.app",
+                                    "canonical_health_status": "not_found",
+                                    "canonical_health_code": 404,
+                                }
+                            ]
+                        },
+                    },
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+            summary_file.write_text(
+                json.dumps(
+                    {
+                        "healthy_count": 999,
+                        "canonical_url_drift": 0,
+                        "fallback_healthy_count": 0,
+                    },
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+
+            with (
+                patch.object(refresh_codex_context, "STATE_FILE", state_file),
+                patch.object(refresh_codex_context, "SUMMARY_FILE", summary_file),
+                patch.object(refresh_codex_context, "refresh_live_health", return_value=None),
+                patch.object(refresh_codex_context, "load_product_catalog", return_value={}),
+            ):
+                summary = refresh_codex_context.load_summary()
+
+            self.assertEqual(summary["healthy_count"], 1)
+            self.assertEqual(summary["canonical_healthy_count"], 0)
+            self.assertEqual(summary["fallback_healthy_count"], 1)
+            self.assertEqual(summary["canonical_url_drift"], 1)
+            self.assertEqual(summary["canonical_url_drift_products"], ["fallback-tool"])
+            self.assertEqual(summary["gaps"]["canonical_url_drift"][0]["slug"], "fallback-tool")
+
+            persisted = json.loads(summary_file.read_text(encoding="utf-8"))
+            self.assertEqual(persisted["healthy_count"], 1)
+            self.assertEqual(persisted["canonical_url_drift"], 1)
+            self.assertEqual(persisted["fallback_healthy_count"], 1)
+
     def test_rendered_deploy_readiness_sections_include_missing_fields(self) -> None:
         summary = {
             "cycle": 1108,
@@ -474,12 +537,12 @@ class RefreshCodexContextTests(unittest.TestCase):
             with patch.object(refresh_codex_context, "STATE_FILE", state_file), patch.object(
                 refresh_codex_context, "SUMMARY_FILE", summary_file
             ), patch.object(refresh_codex_context.subprocess, "run", return_value=Mock(returncode=1)) as run_mock, patch.object(
-                refresh_codex_context, "build_summary"
+                refresh_codex_context, "build_summary", return_value=summary
             ) as build_mock:
                 loaded = refresh_codex_context.load_summary()
 
             self.assertEqual(loaded, summary)
-            build_mock.assert_not_called()
+            build_mock.assert_called_once()
             self.assertTrue(run_mock.called)
             audit_args = run_mock.call_args[0][0]
             self.assertIn("audit_portfolio_health.py", audit_args[1])

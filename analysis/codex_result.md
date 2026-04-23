@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-23
+# Codex Result — 2026-04-23 06:10 UTC
 
 ## Okunanlar
 - `skills/codex_skill.md`
@@ -6,29 +6,28 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `CODEBASE_MAP.md`
-- `scripts/product_state_sync.py`
-- `scripts/update_summary.py`
 - `scripts/health_check.py`
-- `tests/test_product_state_sync.py`
-- `tests/test_update_summary.py`
+- `scripts/update_summary.py`
+- `scripts/product_state_sync.py`
+- `scripts/refresh_codex_context.py`
 - `tests/test_health_check.py`
+- `tests/test_update_summary.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_refresh_codex_context.py`
 
 ## Ne Değişti
-- `scripts/product_state_sync.py`
-  - `choose_public_vercel_url()` güçlendirildi.
-  - `alternate_healthy` kayıtlarında explicit `last_health_url` yoksa bile fallback preview alias `vercel_url` / `deployment_url` üzerinden korunuyor.
-  - Canonical host’a geri düşüp “sanki sorun çözülmüş” görüntüsü verme riski azaltıldı.
-- `tests/test_product_state_sync.py`
-  - Bu edge-case için regresyon testi eklendi.
+- `scripts/refresh_codex_context.py` içindeki `load_summary()` artık var olan `STATE_SUMMARY.json` dosyasına körlemesine güvenmiyor.
+- Her çalıştırmada mevcut `STATE.json` ve product catalog üzerinden fresh summary üretiliyor, sonra dosyaya geri yazılıyor.
+- Böylece stale context dosyaları canlı health/canonical durumunu yanlış taşımıyor.
+- `tests/test_refresh_codex_context.py` içine regresyon testi eklendi; stale summary var olsa bile load_summary’nin canlı state’ten yeniden ürettiği doğrulandı.
 
 ## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
-- `python3 -m unittest discover -s tests -p 'test_product_state_sync.py' -v`
-- `python3 -m unittest discover -s tests -p 'test_update_summary.py' -v`
-- `python3 -m unittest discover -s tests -p 'test_health_check.py' -v`
-- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
+- `python3 -m py_compile scripts/refresh_codex_context.py tests/test_refresh_codex_context.py`
+- `python3 -m unittest discover -s tests -p 'test_refresh_codex_context.py'`
 
 ## Kalan Blokajlar
-- Kod tarafı tamam.
-- Canlı Vercel / manuel koruma işleri hâlâ manuel; kod bunları çözülmüş gibi göstermiyor.
+- Canlı portföyde 3 gerçek health outage var:
+  - `jwt-generator` → HTTP 500
+  - `diffmaster` → HTTP 401
+  - `timestamp-converter` → HTTP 451
+- 4 ürün hâlâ fallback alias ile ayakta; bu manuel Vercel kontrolü gibi gösterilmemeli.
