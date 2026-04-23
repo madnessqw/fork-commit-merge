@@ -327,6 +327,34 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_healthy_canonical_url_with_preview_alias_and_missing_canonical_probe_stays_visible(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Drift Tool",
+                        "slug": "drift-tool",
+                        "status": "live",
+                        "vercel_url": "https://drift-tool.vercel.app",
+                        "deployment_url": "https://drift-tool-rose.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://drift-tool.vercel.app",
+                        "effective_health_url": "https://drift-tool.vercel.app",
+                        "canonical_health_url": "https://drift-tool.vercel.app",
+                    }
+                ]
+            }
+        }
+
+        summary = build_summary(state, product_catalog={})
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["products"][0]["v"], "https://drift-tool-rose.vercel.app")
+        self.assertEqual(summary["fallback_healthy_products"], ["drift-tool"])
+
     def test_live_state_keeps_fallback_aliases_separate_from_unhealthy_count(self) -> None:
         state = {
             "products": {

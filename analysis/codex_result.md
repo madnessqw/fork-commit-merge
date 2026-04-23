@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-23T16:08:11Z
+# Codex Result — 2026-04-23
 
 ## Okunanlar
 - `skills/codex_skill.md`
@@ -7,23 +7,24 @@
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `CODEBASE_MAP.md`
-- `scripts/product_state_sync.py`
-- `scripts/update_summary.py`
 - `scripts/health_check.py`
+- `scripts/update_summary.py`
+- `scripts/product_state_sync.py`
 - `tests/test_product_state_sync.py`
 - `tests/test_update_summary.py`
 - `tests/test_health_check.py`
 
-## Ne Değişti
-- `scripts/product_state_sync.py` içindeki `choose_public_vercel_url()` artık `alternate_healthy` kayıtlarında görünür preview alias'ı, stalenmiş canonical `health_url`'nin önüne koyuyor.
-- Böylece fallback alias `deployment_url`/`vercel_url` içinde görünüyorsa canonical URL kayıtları onu ezmiyor; manuel Vercel koruması kodla çözüldü gibi maskelenmiyor.
-- `tests/test_product_state_sync.py` içine bu regresyonu kilitleyen test eklendi.
+## Ne değişti
+- `scripts/product_state_sync.py` içinde `_successful_snapshot_url()` sıkılaştırıldı.
+- `canonical_health_code` yokken ve canonical health URL ile preview alias birlikte görünürken, fallback alias artık erken canonicalizasyonla ezilmiyor.
+- Bu, canonical probe kanıtı eksikken canlı fallback alias'ı görünür tutuyor; manuel Vercel problemi "çözülmüş" gibi saklanmıyor.
+- `tests/test_update_summary.py` içine missing canonical probe + visible preview alias için regresyon eklendi.
 
-## Doğrulamalar
-- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
-- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q` → 100 passed
-- Secret scan: changed files üzerinde credential-prefix taraması → temiz
+## Doğrulama
+- `python3 -m py_compile scripts/product_state_sync.py scripts/update_summary.py scripts/health_check.py tests/test_product_state_sync.py tests/test_update_summary.py`
+- `python3 -m pytest tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py -q`
+- Sonuç: `101 passed`
+- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key` yok.
 
-## Kalan Blokajlar
-- Live state'de hâlâ 3 gerçek outage var: `jwt-generator`, `diffmaster`, `timestamp-converter`.
-- 4 fallback alias görünür tutuluyor; manuel Vercel koruması kodla çözülmüş gibi işaretlenmedi.
+## Kalan blokajlar
+- Yok.

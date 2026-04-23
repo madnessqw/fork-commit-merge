@@ -52,3 +52,4 @@
 {"run_id": "codex-20260423-1415", "mode": "EXECUTION", "task": "health/canonical drift preserve live canonical-only fallback", "status": "done", "slug": "health-canonical-drift", "duration_min": 24, "cost_est": 0.05, "cycle": 1108}
 {"run_id": "codex-20260423-1446", "mode": "EXECUTION", "task": "fallback healthy count detail hardening", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T14:46:56Z"}
 {"run_id": "codex-20260423-1608", "mode": "EXECUTION", "task": "alternate_healthy stale canonical health_url fallback visibility", "status": "done", "slug": "health-canonical-drift", "duration_min": 12, "cost_est": 0.05, "cycle": 1108, "ts": "2026-04-23T16:08:11Z"}
+{"run_id": "codex-20260423-1643", "mode": "EXECUTION", "task": "health/canonical drift fix", "status": "done", "slug": "health-canonical-drift", "duration_min": 18, "cost_est": 0.05, "cycle": 1108}

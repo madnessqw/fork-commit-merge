@@ -430,7 +430,9 @@ def _successful_snapshot_url(record: dict[str, Any]) -> str | None:
         canonical_status = _clean_text(_pick(record, "canonical_health_status"))
         canonical_url = canonical_vercel_url(slug)
         if explicit_health_url == canonical_url and (
-            canonical_code not in (None, 200) or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS
+            canonical_code is None
+            or canonical_code not in (None, 200)
+            or canonical_status == CANONICAL_REDIRECTED_PREVIEW_STATUS
         ):
             return preview_alias
         return explicit_health_url
