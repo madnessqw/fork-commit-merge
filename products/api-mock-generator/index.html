@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Mock Generator</title>
+    <meta name="description" content="Professional API Mock Generator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="api, mock, generator, API tool, API tester, REST API, API development, code generator, dev tool, generator, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="None">
+    <meta property="og:title" content="API Mock Generator">
+    <meta property="og:description" content="Professional API Mock Generator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "API Mock Generator",
+  "description": "Professional API Mock Generator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": null
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#6366f1',
+                        'primary-dark': '#4f46e5',
+                        dark: '#0a0a0a',
+                        'dark-card': '#111111',
+                        'dark-border': '#222222'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.6)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #0a0a0a; color: #ffffff; }
+        .glass { background: rgba(17, 17, 17, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .code-block { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; font-family: 'Monaco', 'Consolas', monospace; }
+        .glow-btn { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); transition: all 0.3s ease; }
+        .glow-btn:hover { box-shadow: 0 0 40px rgba(99, 102, 241, 0.7); transform: translateY(-2px); }
+        .feature-card { transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); border-color: rgba(99, 102, 241, 0.5); }
+        .mock-output { background: #0d1117; border: 1px solid #30363d; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary to-purple-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-lg">API Mock Generator</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#features" class="text-gray-400 hover:text-white transition">Features</a>
+                    <a href="#demo" class="text-gray-400 hover:text-white transition">Demo</a>
+                    <a href="https://profitbridge.lemonsqueezy.com/checkout/buy/api-mock-generator" class="glow-btn bg-primary hover:bg-primary-dark px-6 py-2 rounded-full font-semibold text-white">Get Access — $19</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-purple-900/10"></div>
+        <div class="max-w-7xl mx-auto text-center relative">
+            <div class="animate-fade-in">
+                <span class="inline-block px-4 py-1 rounded-full bg-primary/20 text-primary text-sm font-medium mb-6 border border-primary/30">For Developers & QA Engineers</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                    Generate <span class="gradient-text">Realistic</span><br>Mock API Responses
+                </h1>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
+                    Create instant REST and GraphQL API mocks with realistic fake data. Test your frontend without waiting for the backend. No signup required.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#demo" class="glow-btn bg-primary hover:bg-primary-dark px-8 py-4 rounded-full font-semibold text-white text-lg">
+                        Try Demo Free
+                    </a>
+                    <a href="https://profitbridge.lemonsqueezy.com/checkout/buy/api-mock-generator" class="px-8 py-4 rounded-full font-semibold text-white border border-gray-600 hover:border-primary transition">
+                        Get Full Access — $19
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Try It Live</h2>
+                <p class="text-gray-400">Generate mock responses instantly. No signup required.</p>
+            </div>
+
+            <div class="glass rounded-2xl p-6 lg:p-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Input Panel -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-3">Endpoint Path</label>
+                        <div class="flex gap-2 mb-4">
+                            <select id="method" class="bg-dark-card border border-dark-border rounded-lg px-3 py-2 text-white focus:border-primary focus:outline-none">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
+                            <input type="text" id="endpoint" placeholder="/api/users" class="flex-1 bg-dark-card border border-dark-border rounded-lg px-4 py-2 text-white focus:border-primary focus:outline-none" value="/api/users">
+                        </div>
+
+                        <label class="block text-sm font-medium text-gray-300 mb-3">Response Schema (JSON)</label>
+                        <textarea id="schema" rows="10" class="w-full code-block p-4 text-sm text-gray-300 focus:border-primary focus:outline-none resize-none" placeholder="Define your response schema...">{
+  "users": {
+    "type": "array",
+    "count": 5,
+    "item": {
+      "id": "uuid",
+      "name": "fullName",
+      "email": "email",
+      "role": "random:admin,editor,user",
+      "isActive": "boolean",
+      "createdAt": "dateISO"
+    }
+  },
+  "total": "number:50,200",
+  "page": 1
+}</textarea>
+
+                        <div class="flex gap-4 mt-4">
+                            <button onclick="generateMock()" class="glow-btn flex-1 bg-primary hover:bg-primary-dark px-6 py-3 rounded-lg font-semibold text-white">
+                                Generate Mock Response
+                            </button>
+                            <button onclick="clearOutput()" class="px-6 py-3 rounded-lg font-medium text-gray-300 border border-gray-600 hover:border-gray-400 transition">
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Output Panel -->
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-sm font-medium text-gray-300">Generated Response</label>
+                            <div class="flex gap-2">
+                                <span id="statusBadge" class="hidden px-2 py-1 rounded text-xs font-medium bg-green-900 text-green-300">200 OK</span>
+                                <span id="latencyBadge" class="hidden px-2 py-1 rounded text-xs font-medium bg-gray-800 text-gray-400">~45ms</span>
+                            </div>
+                        </div>
+                        <div id="output" class="mock-output rounded-lg p-4 h-[340px] overflow-auto">
+                            <div class="text-gray-500 text-center mt-20">
+                                <svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <p>Click "Generate Mock Response" to see output</p>
+                            </div>
+                        </div>
+                        <button onclick="copyOutput()" id="copyBtn" class="hidden mt-3 w-full py-2 rounded-lg border border-gray-600 hover:border-primary text-gray-300 hover:text-white transition flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Everything You Need</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Build and test your frontend with realistic API mocks that simulate real-world scenarios.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="feature-card glass rounded-xl p-6 border border-dark-border">
+                    <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">REST API Mocks</h3>
+                    <p class="text-gray-400">Generate complete REST API responses with support for all HTTP methods and custom status codes.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card glass rounded-xl p-6 border border-dark-border">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">GraphQL Support</h3>
+                    <p class="text-gray-400">Create GraphQL mock responses with nested data structures and type-safe schemas.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card glass rounded-xl p-6 border border-dark-border">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Realistic Data</h3>
+                    <p class="text-gray-400">Built-in generators for names, emails, UUIDs, dates, addresses, and 50+ data types.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card glass rounded-xl p-6 border border-dark-border">
+                    <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Custom Schemas</h3>
+                    <p class="text-gray-400">Define your own response schemas with JSON syntax. Support for nested objects and arrays.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card glass rounded-xl p-6 border border-dark-border">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Error Simulation</h3>
+                    <p class="text-gray-400">Test error handling with configurable status codes, delays, and failure scenarios.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card glass rounded-xl p-6 border border-dark-border">
+                    <div class="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Latency Control</h3>
+                    <p class="text-gray-400">Simulate real network conditions with configurable response delays from 0ms to 30s.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Types Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-primary/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">50+ Data Generators</h2>
+                <p class="text-gray-400">Built-in fake data types for every use case.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass rounded-lg p-4 border border-dark-border">
+                    <h4 class="font-semibold text-primary mb-2">Personal</h4>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• fullName, firstName, lastName</li>
+                        <li>• email, phone</li>
+                        <li>• username, password</li>
+                        <li>• avatar, gender</li>
+                    </ul>
+                </div>
+                <div class="glass rounded-lg p-4 border border-dark-border">
+                    <h4 class="font-semibold text-purple-400 mb-2">Technical</h4>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• uuid, nanoId</li>
+                        <li>• ip, mac, ipv6</li>
+                        <li>• url, domain</li>
+                        <li>• hex, base64</li>
+                    </ul>
+                </div>
+                <div class="glass rounded-lg p-4 border border-dark-border">
+                    <h4 class="font-semibold text-green-400 mb-2">Numbers</h4>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• integer, float</li>
+                        <li>• number:min,max</li>
+                        <li>• price, percentage</li>
+                        <li>• random:opt1,opt2</li>
+                    </ul>
+                </div>
+                <div class="glass rounded-lg p-4 border border-dark-border">
+                    <h4 class="font-semibold text-yellow-400 mb-2">Date & Time</h4>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• date, dateISO</li>
+                        <li>• time, datetime</li>
+                        <li>• timestamp</li>
+                        <li>• pastDate, futureDate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Simple Pricing</h2>
+                <p class="text-gray-400">One-time payment. Unlimited mocks. Forever.</p>
+            </div>
+
+            <div class="glass rounded-2xl p-8 border border-primary/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-2">Lifetime Access</h3>
+                    <div class="flex items-center justify-center gap-2 mb-6">
+                        <span class="text-5xl font-bold">$19</span>
+                        <span class="text-gray-400 line-through">$49</span>
+                    </div>
+                    <ul class="text-left max-w-md mx-auto space-y-3 mb-8">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Unlimited mock generation</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>REST & GraphQL support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>50+ data generators</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Export as JSON, YAML, TypeScript</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Priority support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Lifetime updates</span>
+                        </li>
+                    </ul>
+                    <a href="https://profitbridge.lemonsqueezy.com/checkout/buy/api-mock-generator" class="glow-btn inline-block bg-primary hover:bg-primary-dark px-10 py-4 rounded-full font-bold text-white text-lg">
+                        Get Instant Access
+                    </a>
+                    <p class="text-sm text-gray-500 mt-4">One-time payment. No subscription.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">FAQ</h2>
+            <div class="space-y-4">
+                <details class="glass rounded-lg p-4 border border-dark-border cursor-pointer">
+                    <summary class="font-semibold">What is API Mock Generator?</summary>
+                    <p class="text-gray-400 mt-2">A tool that generates realistic mock API responses for REST and GraphQL APIs. Perfect for frontend development when the backend isn't ready yet.</p>
+                </details>
+                <details class="glass rounded-lg p-4 border border-dark-border cursor-pointer">
+                    <summary class="font-semibold">Do I need a backend?</summary>
+                    <p class="text-gray-400 mt-2">No! This tool generates mock responses instantly. No backend server required.</p>
+                </details>
+                <details class="glass rounded-lg p-4 border border-dark-border cursor-pointer">
+                    <summary class="font-semibold">Can I export the mocks?</summary>
+                    <p class="text-gray-400 mt-2">Yes, you can export mocks as JSON, YAML, or TypeScript interfaces. Full version includes all export formats.</p>
+                </details>
+                <details class="glass rounded-lg p-4 border border-dark-border cursor-pointer">
+                    <summary class="font-semibold">Is this a one-time payment?</summary>
+                    <p class="text-gray-400 mt-2">Yes! $19 one-time payment for lifetime access and updates. No subscriptions.</p>
+                </details>
+                <details class="glass rounded-lg p-4 border border-dark-border cursor-pointer">
+                    <summary class="font-semibold">Can I simulate errors?</summary>
+                    <p class="text-gray-400 mt-2">Yes, you can configure status codes (404, 500, etc.) and simulate network delays for realistic testing.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Build Faster?</h2>
+            <p class="text-gray-400 mb-8">Join developers who ship faster with realistic API mocks.</p>
+            <a href="https://profitbridge.lemonsqueezy.com/checkout/buy/api-mock-generator" class="glow-btn inline-block bg-primary hover:bg-primary-dark px-10 py-4 rounded-full font-bold text-white text-lg">
+                Get API Mock Generator — $19
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-dark-border">
+        <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+            <p>&copy; 2026 API Mock Generator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mock data generators
+        const generators = {
+            uuid: () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            }),
+            fullName: () => {
+                const first = ['John', 'Jane', 'Alex', 'Sarah', 'Michael', 'Emma', 'David', 'Lisa'][Math.floor(Math.random() * 8)];
+                const last = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis'][Math.floor(Math.random() * 8)];
+                return `${first} ${last}`;
+            },
+            firstName: () => ['John', 'Jane', 'Alex', 'Sarah', 'Michael', 'Emma', 'David', 'Lisa'][Math.floor(Math.random() * 8)],
+            lastName: () => ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis'][Math.floor(Math.random() * 8)],
+            email: (name) => {
+                const local = name ? name.toLowerCase().replace(' ', '.') : generators.firstName().toLowerCase();
+                const domains = ['gmail.com', 'yahoo.com', 'outlook.com', 'example.com', 'company.com'];
+                return `${local}@${domains[Math.floor(Math.random() * domains.length)]}`;
+            },
+            phone: () => `+1 (${Math.floor(Math.random() * 900) + 100}) ${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`,
+            boolean: () => Math.random() > 0.5,
+            dateISO: () => new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString(),
+            date: () => new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toLocaleDateString(),
+            timestamp: () => Math.floor(Date.now() / 1000) - Math.floor(Math.random() * 10000000),
+            ip: () => `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}`,
+            url: () => `https://example.com/${generators.uuid().slice(0, 8)}`,
+            domain: () => ['example.com', 'test.io', 'demo.app', 'api.dev'][Math.floor(Math.random() * 4)],
+            hex: (len = 8) => Array(len).fill(0).map(() => Math.floor(Math.random() * 16).toString(16)).join(''),
+            base64: (len = 16) => btoa(Array(len).fill(0).map(() => String.fromCharCode(Math.floor(Math.random() * 256))).join('')),
+            number: (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1)) + min,
+            float: (min = 0, max = 100) => (Math.random() * (max - min) + min).toFixed(2),
+            price: () => (Math.random() * 1000 + 10).toFixed(2),
+            percentage: () => Math.floor(Math.random() * 101),
+            color: () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0'),
+            avatar: () => `https://api.dicebear.com/7.x/avataaars/svg?seed=${Math.random().toString(36).substring(7)}`,
+            company: () => ['Acme Corp', 'Tech Solutions', 'Global Industries', 'Digital Innovations', 'Future Systems'][Math.floor(Math.random() * 5)],
+            jobTitle: () => ['Developer', 'Designer', 'Manager', 'Engineer', 'Analyst', 'Director'][Math.floor(Math.random() * 6)],
+            address: () => `${Math.floor(Math.random() * 9999) + 1} ${['Main', 'Oak', 'Pine', 'Maple', 'Cedar'][Math.floor(Math.random() * 5)]} ${['St', 'Ave', 'Blvd', 'Dr', 'Ln'][Math.floor(Math.random() * 5)]}`,
+            city: () => ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia'][Math.floor(Math.random() * 6)],
+            country: () => ['USA', 'UK', 'Canada', 'Germany', 'France', 'Australia'][Math.floor(Math.random() * 6)],
+            zipCode: () => Math.floor(Math.random() * 90000) + 10000,
+            lorem: (words = 10) => {
+                const wordList = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore', 'magna', 'aliqua'];
+                return Array(words).fill(0).map(() => wordList[Math.floor(Math.random() * wordList.length)]).join(' ');
+            },
+            nanoId: (len = 21) => {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+                return Array(len).fill(0).map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
+            }
+        };
+
+        function parseValue(type) {
+            if (typeof type !== 'string') return type;
+
+            // Handle random:option1,option2
+            if (type.startsWith('random:')) {
+                const options = type.slice(7).split(',');
+                return options[Math.floor(Math.random() * options.length)];
+            }
+
+            // Handle number:min,max
+            if (type.startsWith('number:')) {
+                const [min, max] = type.slice(7).split(',').map(Number);
+                return generators.number(min, max);
+            }
+
+            // Handle float:min,max
+            if (type.startsWith('float:')) {
+                const [min, max] = type.slice(6).split(',').map(Number);
+                return Number(generators.float(min, max));
+            }
+
+            // Handle lorem:wordCount
+            if (type.startsWith('lorem:')) {
+                return generators.lorem(Number(type.slice(6)));
+            }
+
+            // Handle hex:length
+            if (type.startsWith('hex:')) {
+                return generators.hex(Number(type.slice(4)));
+            }
+
+            // Default generators
+            if (generators[type]) return generators[type]();
+
+            return type;
+        }
+
+        function generateObject(schema, depth = 0) {
+            if (depth > 10) return null;
+
+            const result = {};
+
+            for (const [key, value] of Object.entries(schema)) {
+                if (typeof value === 'object' && value !== null) {
+                    if (value.type === 'array' && value.item) {
+                        const count = value.count || 3;
+                        result[key] = Array(count).fill(0).map(() => generateObject(value.item, depth + 1));
+                    } else {
+                        result[key] = generateObject(value, depth + 1);
+                    }
+                } else {
+                    result[key] = parseValue(value);
+                }
+            }
+
+            return result;
+        }
+
+        async function generateMock() {
+            const output = document.getElementById('output');
+            const statusBadge = document.getElementById('statusBadge');
+            const latencyBadge = document.getElementById('latencyBadge');
+            const copyBtn = document.getElementById('copyBtn');
+
+            output.innerHTML = '<div class="text-center mt-20"><div class="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto"></div><p class="text-gray-400 mt-4">Generating...</p></div>';
+
+            try {
+                const schemaText = document.getElementById('schema').value;
+                const schema = JSON.parse(schemaText);
+
+                // Simulate network delay
+                await new Promise(r => setTimeout(r, 300));
+
+                const result = generateObject(schema);
+                const latency = Math.floor(Math.random() * 50) + 20;
+
+                output.innerHTML = `<pre class="text-sm text-gray-300 overflow-x-auto">${JSON.stringify(result, null, 2)}</pre>`;
+                statusBadge.classList.remove('hidden');
+                latencyBadge.classList.remove('hidden');
+                latencyBadge.textContent = `~${latency}ms`;
+                copyBtn.classList.remove('hidden');
+
+            } catch (e) {
+                output.innerHTML = `<div class="text-red-400 text-center mt-10"><p>Error: ${e.message}</p><p class="text-sm text-gray-500 mt-2">Check your JSON syntax</p></div>`;
+                statusBadge.classList.add('hidden');
+                latencyBadge.classList.add('hidden');
+                copyBtn.classList.add('hidden');
+            }
+        }
+
+        function clearOutput() {
+            document.getElementById('output').innerHTML = `<div class="text-gray-500 text-center mt-20"><svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><p>Click "Generate Mock Response" to see output</p></div>`;
+            document.getElementById('statusBadge').classList.add('hidden');
+            document.getElementById('latencyBadge').classList.add('hidden');
+            document.getElementById('copyBtn').classList.add('hidden');
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('output');
+            const text = output.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!`;
+                setTimeout(() => {
+                    btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy to Clipboard`;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

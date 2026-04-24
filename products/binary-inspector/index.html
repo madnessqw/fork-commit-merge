@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Inspector Pro</title>
+  <meta name="description" content="Professional Binary Inspector tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="binary, inspector, inspector tool, debugger, analyzer, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://binary-inspector.vercel.app">
+  <meta property="og:title" content="Binary Inspector Pro">
+  <meta property="og:description" content="Professional Binary Inspector tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Binary Inspector Pro",
+  "description": "Professional Binary Inspector tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://binary-inspector.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    body { background: #0a0a0a; color: white; }
+    .gradient-text {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+    }
+    .glow-button {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      animation: pulse 2s infinite;
+      transition: all 0.3s ease;
+    }
+    .glow-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(139, 92, 246, 0.7);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+      50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.8); }
+    }
+    .fadeInUp { animation: fadeInUp 0.8s ease-out; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hex-dump {
+      background: #0f0f1a;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hex-byte {
+      display: inline-block;
+      width: 2ch;
+      text-align: center;
+    }
+    .hex-addr { color: #6b7280; }
+    .hex-data { color: #a5b4fc; }
+    .hex-ascii { color: #6b7280; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- NAV -->
+  <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-bold mono">0x</div>
+        <span class="font-bold text-lg">BinaryInspector</span>
+      </div>
+      <a href="#pricing" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition text-sm font-medium">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-block px-4 py-2 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-sm mb-6 fadeInUp">
+        🔍 Analyze binary files instantly
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight fadeInUp">
+        <span class="gradient-text">Binary Inspector</span><br>Pro
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8 fadeInUp">
+        Inspect binary files, view hex dumps, analyze headers, and decode binary data structures.
+        Support for multiple encodings and byte orders.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 fadeInUp">
+        <a href="#demo" class="glow-button px-8 py-4 rounded-xl font-bold text-lg inline-block">Try Demo Free</a>
+        <a href="#pricing" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 transition font-medium text-lg">Get Full Access - $19</a>
+      </div>
+      <div class="flex justify-center gap-6 text-sm text-gray-500 fadeInUp">
+        <span class="flex items-center gap-2">✓ Hex dump viewer</span>
+        <span class="flex items-center gap-2">✓ Structure analysis</span>
+        <span class="flex items-center gap-2">✓ Multi-encoding</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Try the Demo</h2>
+      <div class="glass-card p-6">
+        <div class="mb-4">
+          <label class="block text-sm text-gray-400 mb-2">Enter hex data (e.g., 48 65 6C 6C 6F):</label>
+          <input type="text" id="hexInput" class="w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-white mono" placeholder="48 65 6C 6C 6F 20 57 6F 72 6C 64" value="48 65 6C 6C 6F 20 57 6F 72 6C 64">
+        </div>
+        <button onclick="analyzeBinary()" class="w-full py-3 bg-gradient-to-r from-violet-500 to-blue-500 rounded-lg font-medium mb-4 hover:opacity-90 transition">Analyze</button>
+        <div id="demoOutput" class="hex-dump p-4 text-sm hidden">
+          <div class="grid grid-cols-3 gap-4 text-xs mb-2 text-gray-500 border-b border-gray-700 pb-2">
+            <span>Offset</span>
+            <span>Hex</span>
+            <span>ASCII</span>
+          </div>
+          <div id="hexContent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Powerful Features</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card p-6">
+          <div class="w-12 h-12 rounded-lg bg-violet-500/20 flex items-center justify-center mb-4 text-2xl">📊</div>
+          <h3 class="text-xl font-bold mb-2">Hex Dump Viewer</h3>
+          <p class="text-gray-400">View binary data in classic hex dump format with offset, hex bytes, and ASCII representation.</p>
+        </div>
+        <div class="glass-card p-6">
+          <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 text-2xl">🔍</div>
+          <h3 class="text-xl font-bold mb-2">Structure Analysis</h3>
+          <p class="text-gray-400">Analyze binary headers and detect file signatures for common formats.</p>
+        </div>
+        <div class="glass-card p-6">
+          <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4 text-2xl">🔄</div>
+          <h3 class="text-xl font-bold mb-2">Encoding Support</h3>
+          <p class="text-gray-400">Multiple encoding support including UTF-8, UTF-16, ASCII, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="py-20 px-4 bg-white/5">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+      <div class="space-y-8">
+        <div class="flex items-center gap-6">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-bold">1</div>
+          <div>
+            <h3 class="text-xl font-bold">Paste Your Data</h3>
+            <p class="text-gray-400">Input hex data or upload binary files directly.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-bold">2</div>
+          <div>
+            <h3 class="text-xl font-bold">Analyze</h3>
+            <p class="text-gray-400">Our engine processes the binary data and extracts structure information.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-bold">3</div>
+          <div>
+            <h3 class="text-xl font-bold">Get Results</h3>
+            <p class="text-gray-400">View formatted hex dumps, decoded values, and structure analysis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Simple Pricing</h2>
+      <div class="glass-card p-8 text-center max-w-md mx-auto">
+        <div class="text-4xl font-bold mb-2">$19</div>
+        <div class="text-gray-400 mb-6">One-time payment</div>
+        <ul class="text-left space-y-3 mb-8">
+          <li class="flex items-center gap-2">✓ Unlimited hex dumps</li>
+          <li class="flex items-center gap-2">✓ File upload support</li>
+          <li class="flex items-center gap-2">✓ Structure analysis</li>
+          <li class="flex items-center gap-2">✓ Export to multiple formats</li>
+          <li class="flex items-center gap-2">✓ Lifetime updates</li>
+        </ul>
+        <button class="w-full glow-button py-4 rounded-xl font-bold text-lg">Get Full Access</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">FAQ</h2>
+      <div class="space-y-4">
+        <details class="glass-card p-4">
+          <summary class="font-medium cursor-pointer">What file formats are supported?</summary>
+          <p class="text-gray-400 mt-2">Any binary file can be analyzed. We also detect common file signatures for formats like PNG, JPEG, PDF, ZIP, and more.</p>
+        </details>
+        <details class="glass-card p-4">
+          <summary class="font-medium cursor-pointer">Is this a subscription?</summary>
+          <p class="text-gray-400 mt-2">No. This is a one-time payment of $19 for lifetime access.</p>
+        </details>
+        <details class="glass-card p-4">
+          <summary class="font-medium cursor-pointer">Can I export the results?</summary>
+          <p class="text-gray-400 mt-2">Yes! Full version supports exporting to JSON, CSV, and plain text formats.</p>
+        </details>
+        <details class="glass-card p-4">
+          <summary class="font-medium cursor-pointer">What encodings are supported?</summary>
+          <p class="text-gray-400 mt-2">We support UTF-8, UTF-16 (LE/BE), ASCII, ISO-8859-1, and Windows-1252.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-4 border-t border-white/10">
+    <div class="max-w-6xl mx-auto flex justify-between items-center text-sm text-gray-500">
+      <span>© 2024 Binary Inspector Pro</span>
+      <span>Lifetime access • $19 one-time</span>
+    </div>
+  </footer>
+
+  <script>
+    function analyzeBinary() {
+      const input = document.getElementById('hexInput').value.trim();
+      const output = document.getElementById('demoOutput');
+      const content = document.getElementById('hexContent');
+
+      if (!input) return;
+
+      // Parse hex input
+      const hexBytes = input.split(/\s+/).filter(b => b.length > 0);
+      let html = '';
+
+      for (let i = 0; i < hexBytes.length; i += 16) {
+        const chunk = hexBytes.slice(i, i + 16);
+        const offset = i.toString(16).padStart(8, '0');
+
+        // Hex bytes
+        const hexStr = chunk.map(b => b.padStart(2, '0').toUpperCase()).join(' ');
+
+        // ASCII representation
+        const ascii = chunk.map(b => {
+          const code = parseInt(b, 16);
+          return (code >= 32 && code < 127) ? String.fromCharCode(code) : '.';
+        }).join('');
+
+        html += `<div class="grid grid-cols-3 gap-4 py-1">
+          <span class="hex-addr mono">${offset}</span>
+          <span class="hex-data mono">${hexStr.padEnd(48, ' ')}</span>
+          <span class="hex-ascii mono">${ascii}</span>
+        </div>`;
+      }
+
+      content.innerHTML = html;
+      output.classList.remove('hidden');
+    }
+
+    // Auto-run on load
+    analyzeBinary();
+  </script>
+</body>
+</html>

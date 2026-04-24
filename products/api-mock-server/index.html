@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Mock Server</title>
+    <meta name="description" content="Advanced API Mock Server utility for developers. Fast, secure, and completely client-side processing for maximum privacy.">
+    <meta name="keywords" content="api, mock, server, API tool, API tester, REST API, API development, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://api-mock-server.vercel.app">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "API Mock Server",
+  "description": "Advanced API Mock Server utility for developers. Fast, secure, and completely client-side processing for maximum privacy.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://api-mock-server.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glow { box-shadow: 0 0 30px rgba(102, 126, 234, 0.3); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Hero -->
+    <header class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-gray-900"></div>
+        <div class="container mx-auto px-6 py-20 relative">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">API Mock Server</h1>
+                <p class="text-xl text-gray-400 mb-8">Generate mock REST and GraphQL APIs for testing and development</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
+                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all">Get Pro - $19</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-8 rounded-xl card-hover border border-gray-700">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">REST & GraphQL</h3>
+                    <p class="text-gray-400">Support for both REST endpoints and GraphQL schema mocking</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl card-hover border border-gray-700">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Dynamic Responses</h3>
+                    <p class="text-gray-400">Create dynamic responses with templating and faker integration</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl card-hover border border-gray-700">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Request Matching</h3>
+                    <p class="text-gray-400">Match requests by method, headers, query params, and body</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Live Demo</h2>
+            <div class="max-w-4xl mx-auto bg-gray-800 rounded-xl p-8 border border-gray-700">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Endpoint Path</label>
+                        <input type="text" id="endpoint" value="/api/users" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">HTTP Method</label>
+                        <select id="method" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white">
+                            <option>GET</option>
+                            <option>POST</option>
+                            <option>PUT</option>
+                            <option>DELETE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label class="block text-sm font-medium mb-2">Response Body (JSON)</label>
+                    <textarea id="responseBody" rows="8" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono text-sm">{
+  "users": [
+    { "id": 1, "name": "John Doe", "email": "john@example.com" },
+    { "id": 2, "name": "Jane Smith", "email": "jane@example.com" }
+  ],
+  "total": 2,
+  "page": 1
+}</textarea>
+                </div>
+                <div class="mt-6 flex gap-4">
+                    <button onclick="testMock()" class="btn-primary px-6 py-3 rounded-lg font-medium text-white">Test Mock</button>
+                    <button onclick="copyConfig()" class="px-6 py-3 rounded-lg font-medium border border-gray-600 hover:bg-gray-700">Copy Config</button>
+                </div>
+                <div id="result" class="mt-6 p-4 bg-gray-900 rounded-lg hidden">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-green-400 font-mono">200 OK</span>
+                        <span class="text-gray-500">•</span>
+                        <span class="text-gray-400">23ms</span>
+                    </div>
+                    <pre id="responseOutput" class="text-sm text-gray-300 font-mono overflow-x-auto"></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Pricing</h2>
+            <div class="max-w-md mx-auto bg-gradient-to-br from-purple-900/20 to-blue-900/20 p-8 rounded-2xl border border-purple-500/30 glow">
+                <h3 class="text-2xl font-bold mb-4">Pro License</h3>
+                <div class="text-4xl font-bold mb-6">$19</div>
+                <ul class="space-y-3 mb-8 text-gray-300">
+                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Unlimited mock endpoints</li>
+                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>REST & GraphQL support</li>
+                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Dynamic response templates</li>
+                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Request proxying</li>
+                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Priority support</li>
+                </ul>
+                <a href="#" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold text-white">Buy Now - $19</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 API Mock Server. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToDemo() { document.getElementById('demo').scrollIntoView({ behavior: 'smooth' }); }
+        function testMock() {
+            const result = document.getElementById('result');
+            const output = document.getElementById('responseOutput');
+            const body = document.getElementById('responseBody').value;
+            result.classList.remove('hidden');
+            output.textContent = JSON.stringify(JSON.parse(body), null, 2);
+        }
+        function copyConfig() {
+            const config = { method: document.getElementById('method').value, path: document.getElementById('endpoint').value, response: JSON.parse(document.getElementById('responseBody').value) };
+            navigator.clipboard.writeText(JSON.stringify(config, null, 2));
+            alert('Config copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

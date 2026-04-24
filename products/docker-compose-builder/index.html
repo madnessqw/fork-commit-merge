@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Compose Builder - Visual YAML Generator</title>
+    <meta name="description" content="Build Docker Compose files visually with drag-and-drop. Generate production-ready YAML for multi-container applications.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-text { background: linear-gradient(135deg, #2496ed 0%, #1a5f9e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .docker-blue { color: #2496ed; }
+        .glow { box-shadow: 0 0 30px rgba(36, 150, 237, 0.3); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .btn-primary { background: linear-gradient(135deg, #2496ed 0%, #1a5f9e 100%); }
+        .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
+        .yaml-syntax { color: #fbbf24; }
+        .service-box { border-left: 3px solid #2496ed; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Hero -->
+    <header class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-gray-900 to-gray-900"></div>
+        <div class="container mx-auto px-6 py-20 relative">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 rounded-full text-blue-400 text-sm mb-6">
+                    <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                    DevOps Made Visual
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">Docker Compose Builder</h1>
+                <p class="text-xl text-gray-400 mb-8">Build multi-container applications visually. Drag, connect, deploy.</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
+                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-all">Get Pro - $19</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-lg font-semibold mb-2">Visual Builder</h3>
+                    <p class="text-gray-400 text-sm">Drag-and-drop service configuration</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h3 class="text-lg font-semibold mb-2">Templates</h3>
+                    <p class="text-gray-400 text-sm">MERN, LAMP, WordPress stacks</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">✅</div>
+                    <h3 class="text-lg font-semibold mb-2">Validation</h3>
+                    <p class="text-gray-400 text-sm">YAML syntax validation built-in</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">📤</div>
+                    <h3 class="text-lg font-semibold mb-2">Export</h3>
+                    <p class="text-gray-400 text-sm">Copy or download compose files</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Build Your Compose File</h2>
+            <div class="max-w-5xl mx-auto">
+                <!-- Service Builder -->
+                <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Add Service</h3>
+                    <div class="grid md:grid-cols-4 gap-4 mb-4">
+                        <input type="text" id="serviceName" placeholder="Service name (e.g., web)" class="bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                        <input type="text" id="serviceImage" placeholder="Image (e.g., nginx)" class="bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                        <input type="text" id="servicePorts" placeholder="Ports (e.g., 80:80)" class="bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                        <button onclick="addService()" class="btn-primary px-4 py-2 rounded-lg text-white font-medium">Add Service</button>
+                    </div>
+                </div>
+
+                <!-- Services List -->
+                <div id="servicesList" class="space-y-4 mb-6"></div>
+
+                <!-- Generated YAML -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden border border-gray-700">
+                    <div class="flex items-center justify-between px-6 py-3 bg-gray-800 border-b border-gray-700">
+                        <span class="text-sm font-medium text-gray-400">docker-compose.yml</span>
+                        <button onclick="copyYaml()" class="text-blue-400 hover:text-blue-300 text-sm font-medium">Copy</button>
+                    </div>
+                    <pre id="yamlOutput" class="p-6 font-mono text-sm text-gray-300 overflow-x-auto"></pre>
+                </div>
+
+                <!-- Template Buttons -->
+                <div class="flex flex-wrap gap-3 mt-6 justify-center">
+                    <button onclick="loadTemplate('nginx')" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm border border-gray-700 transition">🌐 Nginx</button>
+                    <button onclick="loadTemplate('postgres')" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm border border-gray-700 transition">🐘 PostgreSQL</button>
+                    <button onclick="loadTemplate('redis')" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm border border-gray-700 transition">🔴 Redis</button>
+                    <button onclick="loadTemplate('mongo')" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm border border-gray-700 transition">🍃 MongoDB</button>
+                    <button onclick="loadTemplate('mern')" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm border border-gray-700 transition">⚛️ MERN Stack</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Choose Your Plan</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                    <h3 class="text-xl font-semibold mb-2">Free</h3>
+                    <p class="text-gray-400 mb-6">Basic features</p>
+                    <div class="text-4xl font-bold mb-6">$0</div>
+                    <ul class="space-y-3 text-gray-400 mb-8">
+                        <li>✓ Up to 3 services</li>
+                        <li>✓ Basic templates</li>
+                        <li>✓ YAML export</li>
+                        <li>✗ No validation</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl border-2 border-blue-500 relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-500 rounded-full text-xs font-semibold">POPULAR</div>
+                    <h3 class="text-xl font-semibold mb-2">Pro</h3>
+                    <p class="text-gray-400 mb-6">Full power</p>
+                    <div class="text-4xl font-bold mb-6">$19</div>
+                    <ul class="space-y-3 text-gray-400 mb-8">
+                        <li>✓ Unlimited services</li>
+                        <li>✓ All templates</li>
+                        <li>✓ Advanced validation</li>
+                        <li>✓ Volume & network config</li>
+                        <li>✓ Priority support</li>
+                    </ul>
+                    <button class="w-full btn-primary py-3 rounded-lg text-white font-semibold">Get Pro</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl font-bold text-center mb-12">FAQ</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h3 class="font-semibold mb-2">Is the generated YAML production-ready?</h3>
+                    <p class="text-gray-400">Yes! All generated YAML follows Docker Compose best practices and includes sensible defaults.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h3 class="font-semibold mb-2">Can I import existing compose files?</h3>
+                    <p class="text-gray-400">Pro version supports importing and editing existing docker-compose.yml files.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h3 class="font-semibold mb-2">What templates are included?</h3>
+                    <p class="text-gray-400">MERN, LAMP, WordPress, Django, Rails, and 15+ other popular stacks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 Docker Compose Builder. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let services = [];
+
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function addService() {
+            const name = document.getElementById('serviceName').value.trim();
+            const image = document.getElementById('serviceImage').value.trim();
+            const ports = document.getElementById('servicePorts').value.trim();
+
+            if (!name || !image) {
+                alert('Please enter service name and image');
+                return;
+            }
+
+            services.push({ name, image, ports });
+            document.getElementById('serviceName').value = '';
+            document.getElementById('serviceImage').value = '';
+            document.getElementById('servicePorts').value = '';
+
+            renderServices();
+            generateYaml();
+        }
+
+        function removeService(index) {
+            services.splice(index, 1);
+            renderServices();
+            generateYaml();
+        }
+
+        function renderServices() {
+            const list = document.getElementById('servicesList');
+            list.innerHTML = services.map((s, i) => `
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex justify-between items-center service-box">
+                    <div>
+                        <span class="font-semibold text-blue-400">${s.name}</span>
+                        <span class="text-gray-500 mx-2">|</span>
+                        <span class="text-gray-400">${s.image}</span>
+                        ${s.ports ? `<span class="text-gray-500 mx-2">|</span><span class="text-gray-400">${s.ports}</span>` : ''}
+                    </div>
+                    <button onclick="removeService(${i})" class="text-red-400 hover:text-red-300 px-2">×</button>
+                </div>
+            `).join('');
+        }
+
+        function generateYaml() {
+            if (services.length === 0) {
+                document.getElementById('yamlOutput').textContent = '# Add services to generate docker-compose.yml';
+                return;
+            }
+
+            let yaml = 'version: "3.8"\n\nservices:\n';
+            services.forEach(s => {
+                yaml += `  ${s.name}:\n    image: ${s.image}\n`;
+                if (s.ports) {
+                    yaml += `    ports:\n      - "${s.ports}"\n`;
+                }
+            });
+
+            document.getElementById('yamlOutput').textContent = yaml;
+        }
+
+        function copyYaml() {
+            const yaml = document.getElementById('yamlOutput').textContent;
+            navigator.clipboard.writeText(yaml).then(() => {
+                alert('YAML copied to clipboard!');
+            });
+        }
+
+        function loadTemplate(template) {
+            services = [];
+
+            switch(template) {
+                case 'nginx':
+                    services = [
+                        { name: 'web', image: 'nginx:latest', ports: '80:80' }
+                    ];
+                    break;
+                case 'postgres':
+                    services = [
+                        { name: 'db', image: 'postgres:15', ports: '5432:5432' },
+                        { name: 'adminer', image: 'adminer:latest', ports: '8080:8080' }
+                    ];
+                    break;
+                case 'redis':
+                    services = [
+                        { name: 'redis', image: 'redis:latest', ports: '6379:6379' }
+                    ];
+                    break;
+                case 'mongo':
+                    services = [
+                        { name: 'mongo', image: 'mongo:latest', ports: '27017:27017' },
+                        { name: 'mongo-express', image: 'mongo-express:latest', ports: '8081:8081' }
+                    ];
+                    break;
+                case 'mern':
+                    services = [
+                        { name: 'frontend', image: 'node:18', ports: '3000:3000' },
+                        { name: 'backend', image: 'node:18', ports: '5000:5000' },
+                        { name: 'mongo', image: 'mongo:latest', ports: '27017:27017' }
+                    ];
+                    break;
+            }
+
+            renderServices();
+            generateYaml();
+        }
+
+        generateYaml();
+    </script>
+</body>
+</html>

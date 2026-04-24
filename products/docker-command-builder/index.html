@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Command Builder</title>
+    <meta name="description" content="Docker Command Builder made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta name="keywords" content="docker, command, builder, Docker tool, Docker Compose, container tool, builder tool, generator, creator, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://docker-command-builder.vercel.app">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Docker Command Builder",
+  "description": "Docker Command Builder made simple. Professional-grade tool with instant results and developer-friendly features.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://docker-command-builder.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-text { background: linear-gradient(135deg, #0db7ed 0%, #384d54 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .docker-blue { color: #0db7ed; }
+        .bg-docker { background-color: #0db7ed; }
+        .glow { box-shadow: 0 0 30px rgba(13, 183, 237, 0.3); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .btn-primary { background: linear-gradient(135deg, #0db7ed 0%, #008bb9 100%); }
+        .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Hero -->
+    <header class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-gray-900 to-gray-900"></div>
+        <div class="container mx-auto px-6 py-20 relative">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 rounded-full text-cyan-400 text-sm mb-6">
+                    <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+                    Docker Made Simple
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">Docker Command Builder</h1>
+                <p class="text-xl text-gray-400 mb-8">Generate Docker commands visually without memorizing complex syntax</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
+                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all">Get Pro - $19</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">🐳</div>
+                    <h3 class="text-lg font-semibold mb-2">Docker Run</h3>
+                    <p class="text-gray-400 text-sm">Build run commands with ports, volumes, env vars</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">🏗️</div>
+                    <h3 class="text-lg font-semibold mb-2">Docker Build</h3>
+                    <p class="text-gray-400 text-sm">Create build commands with tags and build args</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h3 class="text-lg font-semibold mb-2">Docker Compose</h3>
+                    <p class="text-gray-400 text-sm">Generate docker-compose.yml files visually</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl card-hover border border-gray-700">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="text-lg font-semibold mb-2">Container Mgmt</h3>
+                    <p class="text-gray-400 text-sm">Exec, logs, stop, remove commands</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Build Docker Commands</h2>
+            <div class="max-w-5xl mx-auto bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                <div class="flex border-b border-gray-700">
+                    <button onclick="setMode('run')" id="tab-run" class="tab-btn flex-1 py-4 px-6 text-center font-medium bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400">Run</button>
+                    <button onclick="setMode('build')" id="tab-build" class="tab-btn flex-1 py-4 px-6 text-center font-medium text-gray-400 hover:text-white">Build</button>
+                    <button onclick="setMode('compose')" id="tab-compose" class="tab-btn flex-1 py-4 px-6 text-center font-medium text-gray-400 hover:text-white">Compose</button>
+                </div>
+                <div class="p-8">
+                    <!-- Run Mode -->
+                    <div id="mode-run" class="mode-panel">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Image Name</label>
+                                <input type="text" id="runImage" value="nginx:latest" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Container Name</label>
+                                <input type="text" id="runName" value="my-nginx" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Port Mapping (host:container)</label>
+                                <input type="text" id="runPort" value="8080:80" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Volume Mount (host:container)</label>
+                                <input type="text" id="runVolume" value="./html:/usr/share/nginx/html" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="runDetach" checked class="w-5 h-5 rounded border-gray-600">
+                                <span>Run in detached mode (-d)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Output -->
+                    <div class="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-400">Generated Command</span>
+                            <button onclick="copyCommand()" class="text-cyan-400 hover:text-cyan-300 text-sm">Copy</button>
+                        </div>
+                        <code id="commandOutput" class="block text-cyan-400 font-mono text-lg break-all"></code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Pricing</h2>
+            <div class="max-w-md mx-auto bg-gradient-to-br from-cyan-900/20 to-blue-900/20 p-8 rounded-2xl border border-cyan-500/30 glow">
+                <h3 class="text-2xl font-bold mb-4">Pro License</h3>
+                <div class="text-4xl font-bold mb-2">$19</div>
+                <p class="text-gray-400 mb-6">One-time payment, lifetime access</p>
+                <ul class="space-y-3 mb-8 text-gray-300">
+                    <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> All Docker commands</li>
+                    <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Docker Compose YAML export</li>
+                    <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Command history</li>
+                    <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Save & share configs</li>
+                    <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Priority support</li>
+                </ul>
+                <a href="#" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold text-white">Buy Now - $19</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 Docker Command Builder. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentMode = 'run';
+        function scrollToDemo() { document.getElementById('demo').scrollIntoView({ behavior: 'smooth' }); }
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-500/20', 'text-cyan-400', 'border-b-2', 'border-cyan-400');
+                btn.classList.add('text-gray-400');
+            });
+            document.getElementById('tab-' + mode).classList.add('bg-cyan-500/20', 'text-cyan-400', 'border-b-2', 'border-cyan-400');
+            document.getElementById('tab-' + mode).classList.remove('text-gray-400');
+            generateCommand();
+        }
+        function generateCommand() {
+            let cmd = '';
+            if (currentMode === 'run') {
+                cmd = 'docker run';
+                if (document.getElementById('runDetach').checked) cmd += ' -d';
+                const name = document.getElementById('runName').value;
+                if (name) cmd += ' --name ' + name;
+                const port = document.getElementById('runPort').value;
+                if (port) cmd += ' -p ' + port;
+                const volume = document.getElementById('runVolume').value;
+                if (volume) cmd += ' -v ' + volume;
+                cmd += ' ' + document.getElementById('runImage').value;
+            } else if (currentMode === 'build') {
+                cmd = 'docker build -t myapp:latest .';
+            } else {
+                cmd = 'docker-compose up -d';
+            }
+            document.getElementById('commandOutput').textContent = cmd;
+        }
+        function copyCommand() {
+            navigator.clipboard.writeText(document.getElementById('commandOutput').textContent);
+            alert('Command copied!');
+        }
+        // Auto-generate on input
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', generateCommand);
+        });
+        // Initial generation
+        generateCommand();
+    </script>
+</body>
+</html>

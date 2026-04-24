@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Screenshot Beautifier - Turn Code into Art</title>
+    <meta name="description" content="Transform code snippets into beautiful, shareable screenshots with custom themes, backgrounds, and syntax highlighting.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glow { box-shadow: 0 0 40px rgba(102, 126, 234, 0.3); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .code-window { background: #1e1e1e; border-radius: 12px; overflow: hidden; }
+        .window-controls { display: flex; gap: 8px; padding: 12px 16px; background: #2d2d2d; }
+        .window-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .theme-gradient-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .theme-gradient-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .theme-gradient-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .theme-gradient-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .theme-gradient-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .theme-dark { background: #0f0f0f; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .btn-primary:hover { opacity: 0.9; transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <!-- Hero -->
+    <header class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-gray-900 to-gray-900"></div>
+        <div class="container mx-auto px-6 py-20 relative">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full text-purple-400 text-sm mb-6">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+                    Beautiful Code Screenshots
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">Code Screenshot Beautifier</h1>
+                <p class="text-xl text-gray-400 mb-8">Transform your code snippets into stunning, shareable screenshots with custom themes and backgrounds</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
+                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all">Get Pro - $19</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass p-6 rounded-xl card-hover">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-lg font-semibold mb-2">50+ Themes</h3>
+                    <p class="text-gray-400 text-sm">Choose from beautiful syntax highlighting themes</p>
+                </div>
+                <div class="glass p-6 rounded-xl card-hover">
+                    <div class="text-4xl mb-4">🖼️</div>
+                    <h3 class="text-lg font-semibold mb-2">Custom Backgrounds</h3>
+                    <p class="text-gray-400 text-sm">Gradients, patterns, and solid colors</p>
+                </div>
+                <div class="glass p-6 rounded-xl card-hover">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-lg font-semibold mb-2">Social Ready</h3>
+                    <p class="text-gray-400 text-sm">Optimized sizes for Twitter, LinkedIn, and more</p>
+                </div>
+                <div class="glass p-6 rounded-xl card-hover">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-lg font-semibold mb-2">Export Options</h3>
+                    <p class="text-gray-400 text-sm">PNG, SVG, or copy to clipboard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Create Beautiful Code Screenshots</h2>
+            <div class="max-w-5xl mx-auto">
+                <!-- Editor -->
+                <div class="glass rounded-xl p-6 mb-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Your Code</label>
+                            <textarea id="codeInput" rows="10" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-3 text-white font-mono text-sm" placeholder="Paste your code here...">function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Calculate first 10 numbers
+for (let i = 0; i < 10; i++) {
+  console.log(fibonacci(i));
+}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Preview</label>
+                            <div id="previewContainer" class="theme-gradient-1 p-8 rounded-lg">
+                                <div class="code-window glow">
+                                    <div class="window-controls">
+                                        <div class="window-dot dot-red"></div>
+                                        <div class="window-dot dot-yellow"></div>
+                                        <div class="window-dot dot-green"></div>
+                                    </div>
+                                    <pre class="p-4 m-0 bg-transparent"><code id="codePreview" class="language-javascript font-mono text-sm">function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="glass rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-4">Customize</h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Background Theme</label>
+                            <select id="themeSelect" onchange="updateTheme()" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                                <option value="theme-gradient-1">Purple Dream</option>
+                                <option value="theme-gradient-2">Sunset</option>
+                                <option value="theme-gradient-3">Ocean</option>
+                                <option value="theme-gradient-4">Mint</option>
+                                <option value="theme-gradient-5">Candy</option>
+                                <option value="theme-dark">Dark</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Language</label>
+                            <select id="languageSelect" onchange="updateLanguage()" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="css">CSS</option>
+                                <option value="html">HTML</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Window Style</label>
+                            <select id="windowSelect" onchange="updateWindow()" class="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                                <option value="macos">macOS</option>
+                                <option value="linux">Linux</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="exportImage()" class="btn-primary px-6 py-3 rounded-lg font-semibold text-white transition-all">
+                        📸 Export Screenshot
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Simple Pricing</h2>
+            <div class="max-w-md mx-auto glass rounded-2xl p-8 glow">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-2">Pro License</h3>
+                    <div class="text-5xl font-bold gradient-text mb-2">$19</div>
+                    <p class="text-gray-400">One-time payment, lifetime access</p>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3"><span class="text-green-400">✓</span> All 50+ themes</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Custom backgrounds</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400">✓</span> PNG & SVG export</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Social media templates</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Lifetime updates</li>
+                </ul>
+                <a href="#" class="btn-primary block text-center px-8 py-4 rounded-lg font-semibold text-white transition-all">Get Pro Access</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2024 Code Screenshot Beautifier. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateTheme() {
+            const theme = document.getElementById('themeSelect').value;
+            const container = document.getElementById('previewContainer');
+            container.className = theme + ' p-8 rounded-lg';
+        }
+
+        function updateLanguage() {
+            const lang = document.getElementById('languageSelect').value;
+            const code = document.getElementById('codePreview');
+            code.className = 'language-' + lang + ' font-mono text-sm';
+            Prism.highlightElement(code);
+        }
+
+        function updateWindow() {
+            const style = document.getElementById('windowSelect').value;
+            const controls = document.querySelector('.window-controls');
+            if (style === 'none') {
+                controls.style.display = 'none';
+            } else {
+                controls.style.display = 'flex';
+            }
+        }
+
+        function exportImage() {
+            alert('Screenshot exported! (Demo: In Pro version, this downloads the image)');
+        }
+
+        // Live preview update
+        document.getElementById('codeInput').addEventListener('input', function(e) {
+            document.getElementById('codePreview').textContent = e.target.value;
+            Prism.highlightAll();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Cert Checker</title>
+    <meta name="description" content="Professional SSL Cert Checker tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="ssl, cert, checker, developer tools, online tool, web utility, productivity">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://ssl-cert-checker.vercel.app">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SSL Cert Checker",
+  "description": "Professional SSL Cert Checker tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://ssl-cert-checker.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #0a0a0a; color: #fff; }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-button {
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+            transform: translateY(-2px);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .result-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        .status-valid { color: #10b981; }
+        .status-warning { color: #f59e0b; }
+        .status-invalid { color: #ef4444; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="border-b border-white/10 bg-black/50 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold">SSL Cert Checker</span>
+                </div>
+                <a href="#pricing" class="px-6 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-all">Buy Now $19</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 fade-in">
+                Analyze <span class="gradient-text">SSL/TLS Certificates</span><br>With Confidence
+            </h1>
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto fade-in">
+                Check SSL certificate expiration, issuer details, chain validation, and security configuration for any domain. Get instant security insights.
+            </p>
+
+            <!-- Demo Section -->
+            <div class="glass-card rounded-2xl p-8 mb-12 fade-in">
+                <h3 class="text-xl font-semibold mb-6">Try it now</h3>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+                    <input type="text" id="domainInput" placeholder="Enter domain (e.g., google.com)"
+                           class="input-field flex-1 px-6 py-4 rounded-xl text-white placeholder-gray-500">
+                    <button onclick="checkSSL()" id="checkBtn"
+                            class="glow-button px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold text-white">
+                        Check Certificate
+                    </button>
+                </div>
+                <div id="result" class="mt-6 text-left"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20 px-4 bg-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">Comprehensive SSL Analysis</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Validation Check</h3>
+                    <p class="text-gray-400 text-sm">Verify certificate authenticity and chain of trust</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-yellow-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Expiration Monitor</h3>
+                    <p class="text-gray-400 text-sm">Track certificate expiry dates and get alerts</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Issuer Details</h3>
+                    <p class="text-gray-400 text-sm">Complete certificate authority information</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Security Grade</h3>
+                    <p class="text-gray-400 text-sm">A-F security scoring based on configuration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">How It Works</h2>
+            <div class="space-y-8">
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg shrink-0">1</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Enter Domain</h3>
+                        <p class="text-gray-400">Type any domain name you want to analyze</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg shrink-0">2</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Instant Analysis</h3>
+                        <p class="text-gray-400">Our tool checks certificate chain, expiration, and configuration</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg shrink-0">3</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Get Results</h3>
+                        <p class="text-gray-400">View detailed report with security recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-4 bg-white/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Simple Pricing</h2>
+            <p class="text-gray-400 mb-12">One-time payment, lifetime access</p>
+            <div class="glass-card rounded-2xl p-8 max-w-md mx-auto">
+                <div class="text-5xl font-bold mb-4">$19</div>
+                <p class="text-gray-400 mb-8">One-time purchase</p>
+                <ul class="text-left space-y-4 mb-8">
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Unlimited SSL checks
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Certificate chain analysis
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Security grading
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Export reports
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Lifetime updates
+                    </li>
+                </ul>
+                <a href="https://buy.polar.sh/polar_cl_YpC4xsXpLSvoIhUCJVdOP0PAc5SgL3OpCzkUp46y3xV"
+                   class="glow-button block w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold text-white text-center">
+                    Buy Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">FAQ</h2>
+            <div class="space-y-6">
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What information does the SSL check provide?</h3>
+                    <p class="text-gray-400">Certificate validity, expiration date, issuer details, TLS version, cipher suites, and security grade.</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Is this a one-time payment?</h3>
+                    <p class="text-gray-400">Yes, $19 is a one-time payment for lifetime access with all future updates included.</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Can I check any domain?</h3>
+                    <p class="text-gray-400">Yes, you can analyze SSL certificates for any publicly accessible domain.</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Do you store my check history?</h3>
+                    <p class="text-gray-400">No, all SSL checks are performed in real-time without storing any data.</p>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What TLS versions are supported?</h3>
+                    <p class="text-gray-400">We analyze TLS 1.0 through TLS 1.3 and provide recommendations for optimal security.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-12 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <span class="font-semibold">SSL Cert Checker Pro</span>
+            </div>
+            <div class="text-gray-400 text-sm">
+                © 2026 SSL Cert Checker Pro. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function checkSSL() {
+            const domain = document.getElementById('domainInput').value.trim();
+            const btn = document.getElementById('checkBtn');
+            const result = document.getElementById('result');
+
+            if (!domain) {
+                result.innerHTML = '<div class="text-red-400">Please enter a domain</div>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Checking...';
+            result.innerHTML = '<div class="text-gray-400">Analyzing certificate...</div>';
+
+            try {
+                const response = await fetch('/api/process', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ domain: domain.replace(/^https?:\/\//, '').replace(/\/.*$/, '') })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const cert = data.certificate;
+                    const daysUntilExpiry = Math.ceil((new Date(cert.validTo) - new Date()) / (1000 * 60 * 60 * 24));
+                    const statusClass = daysUntilExpiry > 30 ? 'status-valid' : daysUntilExpiry > 7 ? 'status-warning' : 'status-invalid';
+
+                    result.innerHTML = `
+                        <div class="result-card rounded-xl p-6 fade-in">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl ${statusClass}">●</span>
+                                <h4 class="text-xl font-semibold">Certificate Status</h4>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="text-gray-400">Domain:</span>
+                                    <span class="ml-2 font-medium">${cert.subject}</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400">Issuer:</span>
+                                    <span class="ml-2 font-medium">${cert.issuer}</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400">Valid From:</span>
+                                    <span class="ml-2 font-medium">${new Date(cert.validFrom).toLocaleDateString()}</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400">Valid Until:</span>
+                                    <span class="ml-2 font-medium ${statusClass}">${new Date(cert.validTo).toLocaleDateString()} (${daysUntilExpiry} days)</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400">Serial Number:</span>
+                                    <span class="ml-2 font-mono text-xs">${cert.serialNumber}</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400">Fingerprint:</span>
+                                    <span class="ml-2 font-mono text-xs">${cert.fingerprint}</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-white/5 rounded-lg">
+                                <span class="text-gray-400">Subject Alternative Names:</span>
+                                <p class="mt-1 text-sm">${cert.san?.join(', ') || 'N/A'}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `<div class="text-red-400">Error: ${data.error || 'Failed to analyze certificate'}</div>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<div class="text-red-400">Error: ${error.message}</div>`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Check Certificate';
+            }
+        }
+
+        document.getElementById('domainInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkSSL();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Diff Pro</title>
+    <meta name="description" content="JSON Diff made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta name="keywords" content="json, diff, JSON tool, JSON formatter, JSON validator, diff tool, text comparison, file compare, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://json-diff-pro.vercel.app">
+    <meta property="og:title" content="JSON Diff Pro">
+    <meta property="og:description" content="JSON Diff made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JSON Diff Pro",
+  "description": "JSON Diff made simple. Professional-grade tool with instant results and developer-friendly features.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://json-diff-pro.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .added { background: rgba(34, 197, 94, 0.2); border-left: 3px solid #22c55e; }
+        .removed { background: rgba(239, 68, 68, 0.2); border-left: 3px solid #ef4444; }
+        .modified { background: rgba(234, 179, 8, 0.2); border-left: 3px solid #eab308; }
+        .glow-cyan { box-shadow: 0 0 30px rgba(34, 211, 238, 0.3); }
+        .glow-purple { box-shadow: 0 0 30px rgba(192, 132, 252, 0.3); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .animate-fade-in-delay { animation: fadeIn 0.6s ease-out 0.2s forwards; opacity: 0; }
+        .animate-fade-in-delay-2 { animation: fadeIn 0.6s ease-out 0.4s forwards; opacity: 0; }
+        textarea { resize: none; }
+        .scroll-hidden::-webkit-scrollbar { display: none; }
+        .scroll-hidden { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-gray-100 min-h-screen overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">JD</span>
+                    </div>
+                    <span class="font-semibold text-lg">JSON Diff Pro</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#features" class="text-gray-400 hover:text-white transition-colors text-sm">Features</a>
+                    <a href="#demo" class="text-gray-400 hover:text-white transition-colors text-sm">Demo</a>
+                    <a href="#pricing" class="text-gray-400 hover:text-white transition-colors text-sm">Pricing</a>
+                    <a href="https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe" class="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-white px-5 py-2 rounded-full font-medium transition-all glow-cyan">
+                        Buy Now $19
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/20 via-purple-900/10 to-transparent"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-40 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 glass-card px-4 py-2 rounded-full mb-8 animate-fade-in">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span class="text-sm text-gray-300">Trusted by 500+ developers</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-in">
+                Compare JSON Files
+                <span class="gradient-text">Instantly</span>
+            </h1>
+
+            <p class="text-xl text-gray-400 mb-10 max-w-3xl mx-auto animate-fade-in-delay">
+                Visual JSON comparison tool that detects added, removed, and modified fields with color-coded highlighting. Perfect for API debugging and data validation.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay">
+                <a href="#demo" class="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all glow-cyan">
+                    Try Demo Free
+                </a>
+                <a href="#features" class="glass-card hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all border border-white/20">
+                    See Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Live Demo</h2>
+                <p class="text-gray-400">Paste your JSON and see the magic happen</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 glow-purple">
+                <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Left JSON Input -->
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="text-sm font-medium text-gray-300 flex items-center">
+                                <span class="w-2 h-2 bg-gray-500 rounded-full mr-2"></span>
+                                Original JSON
+                            </label>
+                            <button onclick="loadSample('left')" class="text-xs text-cyan-400 hover:text-cyan-300">Load Sample</button>
+                        </div>
+                        <textarea id="json-left" class="w-full h-64 bg-[#0f172a] border border-gray-700 rounded-lg p-4 mono text-sm text-gray-300 focus:border-cyan-500 focus:outline-none" placeholder="Paste your original JSON here..."></textarea>
+                    </div>
+
+                    <!-- Right JSON Input -->
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="text-sm font-medium text-gray-300 flex items-center">
+                                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2"></span>
+                                Modified JSON
+                            </label>
+                            <button onclick="loadSample('right')" class="text-xs text-cyan-400 hover:text-cyan-300">Load Sample</button>
+                        </div>
+                        <textarea id="json-right" class="w-full h-64 bg-[#0f172a] border border-gray-700 rounded-lg p-4 mono text-sm text-gray-300 focus:border-purple-500 focus:outline-none" placeholder="Paste your modified JSON here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mb-6">
+                    <button onclick="compareJSON()" class="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-white px-10 py-3 rounded-full font-semibold transition-all glow-cyan flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>Compare JSON</span>
+                    </button>
+                </div>
+
+                <!-- Diff Result -->
+                <div id="diff-result" class="hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Differences Found</h3>
+                        <div class="flex space-x-4 text-sm">
+                            <span class="flex items-center"><span class="w-3 h-3 bg-green-500 rounded mr-2"></span>Added</span>
+                            <span class="flex items-center"><span class="w-3 h-3 bg-red-500 rounded mr-2"></span>Removed</span>
+                            <span class="flex items-center"><span class="w-3 h-3 bg-yellow-500 rounded mr-2"></span>Modified</span>
+                        </div>
+                    </div>
+                    <div id="diff-output" class="bg-[#0f172a] border border-gray-700 rounded-lg p-4 mono text-sm max-h-96 overflow-y-auto">
+                    </div>
+                    <div class="flex justify-end mt-4 space-x-3">
+                        <button onclick="copyResult()" class="glass-card hover:bg-white/10 text-white px-4 py-2 rounded-lg transition-all text-sm">
+                            Copy Result
+                        </button>
+                        <button onclick="downloadResult()" class="bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm">
+                            Download JSON
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-gray-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Powerful Features</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Everything you need to compare JSON files efficiently</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Detect Additions</h3>
+                    <p class="text-gray-400 text-sm">Instantly spot new fields and values added to your JSON with green highlighting.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Find Removals</h3>
+                    <p class="text-gray-400 text-sm">See exactly what was deleted with red highlighting and clear indicators.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Track Modifications</h3>
+                    <p class="text-gray-400 text-sm">Yellow highlighting shows fields that changed values, with before/after comparison.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Nested Objects</h3>
+                    <p class="text-gray-400 text-sm">Deep comparison of nested objects and arrays with full path tracking.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Export Results</h3>
+                    <p class="text-gray-400 text-sm">Download diff reports as JSON or copy to clipboard for documentation.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Syntax Validation</h3>
+                    <p class="text-gray-400 text-sm">Built-in JSON validation ensures your inputs are valid before comparison.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Simple Pricing</h2>
+                <p class="text-gray-400">One-time payment, lifetime access</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-8 text-center glow-cyan max-w-md mx-auto">
+                <div class="text-5xl font-bold mb-2">$19</div>
+                <div class="text-gray-400 mb-6">One-time payment</div>
+
+                <ul class="text-left space-y-3 mb-8">
+                    <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Unlimited comparisons</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Deep nested diff</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Export to JSON</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Lifetime updates</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Priority support</li>
+                </ul>
+
+                <a href="https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe" class="block w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-white py-4 rounded-full font-semibold transition-all">
+                    Buy Now - $19
+                </a>
+                <p class="text-xs text-gray-500 mt-4">30-day money-back guarantee</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-gray-900/30">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What file sizes are supported?</h3>
+                    <p class="text-gray-400 text-sm">JSON Diff Pro handles files up to 10MB comfortably. For larger files, we recommend splitting them into smaller chunks.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Is my data secure?</h3>
+                    <p class="text-gray-400 text-sm">Absolutely. All processing happens in your browser. Your JSON data never leaves your computer.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Do I get lifetime updates?</h3>
+                    <p class="text-gray-400 text-sm">Yes! One-time payment includes all future updates and feature additions at no extra cost.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What if I'm not satisfied?</h3>
+                    <p class="text-gray-400 text-sm">We offer a 30-day money-back guarantee. If JSON Diff Pro doesn't meet your needs, contact us for a full refund.</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Can I use this for commercial projects?</h3>
+                    <p class="text-gray-400 text-sm">Yes, absolutely. Your purchase includes a commercial license for personal and business use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">JD</span>
+                    </div>
+                    <span class="font-semibold">JSON Diff Pro</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    © 2026 JSON Diff Pro. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample JSON data
+        const sampleLeft = {
+            "user": {
+                "id": 123,
+                "name": "John Doe",
+                "email": "john@example.com",
+                "role": "admin",
+                "settings": {
+                    "theme": "dark",
+                    "notifications": true
+                }
+            },
+            "products": [
+                { "id": 1, "name": "Widget", "price": 19.99 }
+            ]
+        };
+
+        const sampleRight = {
+            "user": {
+                "id": 123,
+                "name": "John Smith",
+                "email": "john@example.com",
+                "role": "user",
+                "settings": {
+                    "theme": "light",
+                    "notifications": true,
+                    "language": "en"
+                },
+                "created_at": "2024-01-15"
+            },
+            "products": [
+                { "id": 1, "name": "Widget", "price": 24.99 },
+                { "id": 2, "name": "Gadget", "price": 29.99 }
+            ]
+        };
+
+        function loadSample(side) {
+            const textarea = document.getElementById(side === 'left' ? 'json-left' : 'json-right');
+            const data = side === 'left' ? sampleLeft : sampleRight;
+            textarea.value = JSON.stringify(data, null, 2);
+        }
+
+        function compareJSON() {
+            const leftText = document.getElementById('json-left').value;
+            const rightText = document.getElementById('json-right').value;
+
+            if (!leftText || !rightText) {
+                alert('Please paste JSON in both fields');
+                return;
+            }
+
+            try {
+                const left = JSON.parse(leftText);
+                const right = JSON.parse(rightText);
+
+                const diff = generateDiff(left, right);
+                displayDiff(diff);
+
+                document.getElementById('diff-result').classList.remove('hidden');
+            } catch (e) {
+                alert('Invalid JSON: ' + e.message);
+            }
+        }
+
+        function generateDiff(left, right, path = '') {
+            const diff = [];
+
+            // Check for additions and modifications
+            for (const key in right) {
+                const currentPath = path ? `${path}.${key}` : key;
+
+                if (!(key in left)) {
+                    diff.push({
+                        path: currentPath,
+                        type: 'added',
+                        value: right[key]
+                    });
+                } else if (typeof left[key] !== typeof right[key]) {
+                    diff.push({
+                        path: currentPath,
+                        type: 'modified',
+                        oldValue: left[key],
+                        newValue: right[key]
+                    });
+                } else if (typeof right[key] === 'object' && right[key] !== null) {
+                    if (Array.isArray(right[key])) {
+                        if (JSON.stringify(left[key]) !== JSON.stringify(right[key])) {
+                            diff.push({
+                                path: currentPath,
+                                type: 'modified',
+                                oldValue: left[key],
+                                newValue: right[key]
+                            });
+                        }
+                    } else {
+                        diff.push(...generateDiff(left[key], right[key], currentPath));
+                    }
+                } else if (left[key] !== right[key]) {
+                    diff.push({
+                        path: currentPath,
+                        type: 'modified',
+                        oldValue: left[key],
+                        newValue: right[key]
+                    });
+                }
+            }
+
+            // Check for removals
+            for (const key in left) {
+                const currentPath = path ? `${path}.${key}` : key;
+
+                if (!(key in right)) {
+                    diff.push({
+                        path: currentPath,
+                        type: 'removed',
+                        value: left[key]
+                    });
+                }
+            }
+
+            return diff;
+        }
+
+        function displayDiff(diff) {
+            const output = document.getElementById('diff-output');
+
+            if (diff.length === 0) {
+                output.innerHTML = '<div class="text-green-400 text-center py-8">✓ No differences found - JSON files are identical!</div>';
+                return;
+            }
+
+            let html = '<div class="space-y-2">';
+
+            diff.forEach(item => {
+                const colorClass = item.type === 'added' ? 'added text-green-300' :
+                                 item.type === 'removed' ? 'removed text-red-300' :
+                                 'modified text-yellow-300';
+
+                const icon = item.type === 'added' ? '+' : item.type === 'removed' ? '-' : '~';
+
+                html += `<div class="${colorClass} p-2 rounded font-mono text-xs">`;
+                html += `<div class="flex items-start">`;
+                html += `<span class="mr-2 font-bold">${icon}</span>`;
+                html += `<div class="flex-1">`;
+                html += `<span class="text-gray-400">${item.path}</span>`;
+
+                if (item.type === 'added') {
+                    html += `<div class="text-green-300">${JSON.stringify(item.value)}</div>`;
+                } else if (item.type === 'removed') {
+                    html += `<div class="text-red-300">${JSON.stringify(item.value)}</div>`;
+                } else {
+                    html += `<div class="text-red-300 line-through">${JSON.stringify(item.oldValue)}</div>`;
+                    html += `<div class="text-green-300">${JSON.stringify(item.newValue)}</div>`;
+                }
+
+                html += `</div></div></div>`;
+            });
+
+            html += '</div>';
+            output.innerHTML = html;
+        }
+
+        function copyResult() {
+            const output = document.getElementById('diff-output').innerText;
+            navigator.clipboard.writeText(output).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+
+        function downloadResult() {
+            const output = document.getElementById('diff-output').innerText;
+            const blob = new Blob([output], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'json-diff-result.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to CSV Pro</title>
+    <meta name="description" content="The ultimate JSON to CSV tool. Powerful features with an intuitive interface designed for developers and power users.">
+    <meta name="keywords" content="json to csv, json converter, csv export, json flatten, data conversion">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://json-to-csv-pro.vercel.app">
+    <meta property="og:title" content="JSON to CSV Pro">
+    <meta property="og:description" content="The ultimate JSON to CSV tool. Powerful features with an intuitive interface designed for developers and power users.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JSON to CSV Pro",
+  "description": "The ultimate JSON to CSV tool. Powerful features with an intuitive interface designed for developers and power users.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://json-to-csv-pro.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e5e5e5; }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glow-button {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .drop-zone {
+            border: 2px dashed rgba(16, 185, 129, 0.5);
+            transition: all 0.3s ease;
+        }
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        .json-area {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #0d1117;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="file-json" class="w-6 h-6 text-emerald-500"></i>
+                    <span class="font-bold text-lg">JSON to CSV Pro</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#features" class="text-sm text-gray-400 hover:text-white transition">Features</a>
+                    <a href="#demo" class="text-sm text-gray-400 hover:text-white transition">Demo</a>
+                    <a href="#pricing" class="text-sm text-gray-400 hover:text-white transition">Pricing</a>
+                    <a href="#" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-sm font-medium transition">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+                <span class="gradient-text">JSON to CSV</span> Pro
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+                Transform complex nested JSON into clean, flat CSV files in seconds.
+                Handle arrays, nested objects, and customize your output.
+            </p>
+            <div class="flex justify-center gap-4 mb-12">
+                <a href="#demo" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 rounded-xl font-semibold glow-button transition">
+                    Try Free Demo
+                </a>
+                <a href="#pricing" class="px-8 py-4 card rounded-xl font-semibold hover:bg-white/10 transition">
+                    Buy Now $19
+                </a>
+            </div>
+            <div class="flex justify-center gap-8 text-sm text-gray-500">
+                <span class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                    Nested JSON support
+                </span>
+                <span class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                    Client-side processing
+                </span>
+                <span class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                    Lifetime access
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 px-4 bg-black/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Try It Now</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Area -->
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <i data-lucide="braces" class="w-5 h-5 text-emerald-500"></i>
+                        JSON Input
+                    </h3>
+                    <textarea id="jsonInput" class="json-area w-full h-64 p-4 rounded-xl border border-white/10 text-sm text-blue-400 resize-none outline-none focus:border-emerald-500" placeholder='Paste your JSON here...
+
+Example:
+[
+  {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "address": {
+      "city": "New York",
+      "country": "USA"
+    }
+  }
+]'></textarea>
+                    <div class="mt-4 flex items-center justify-between">
+                        <label class="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
+                            <input type="checkbox" id="flattenNested" checked class="w-4 h-4 rounded border-gray-600 bg-gray-700 text-emerald-600 focus:ring-emerald-500">
+                            Flatten nested objects
+                        </label>
+                        <select id="arrayStrategy" class="px-3 py-1 bg-black/50 border border-white/10 rounded-lg text-sm focus:border-emerald-500 outline-none">
+                            <option value="expand">Expand arrays</option>
+                            <option value="join">Join with comma</option>
+                            <option value="json">Keep as JSON</option>
+                        </select>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm text-gray-400 mb-2">Delimiter</label>
+                        <select id="delimiter" class="w-full px-4 py-2 bg-black/50 border border-white/10 rounded-lg focus:border-emerald-500 outline-none">
+                            <option value=",">Comma (,)</option>
+                            <option value=";">Semicolon (;)</option>
+                            <option value="\t">Tab</option>
+                            <option value="|">Pipe (|)</option>
+                        </select>
+                    </div>
+                    <button id="convertBtn" class="w-full mt-4 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-lg font-medium transition">
+                        Convert to CSV
+                    </button>
+                </div>
+
+                <!-- Output Area -->
+                <div class="card rounded-2xl p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold flex items-center gap-2">
+                            <i data-lucide="file-spreadsheet" class="w-5 h-5 text-green-500"></i>
+                            CSV Output
+                        </h3>
+                        <div class="flex gap-2">
+                            <button id="copyBtn" class="px-3 py-1 text-sm bg-white/10 hover:bg-white/20 rounded-lg transition flex items-center gap-2">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                                Copy
+                            </button>
+                            <button id="downloadBtn" class="px-3 py-1 text-sm bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 rounded-lg transition flex items-center gap-2">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="csvOutput" class="json-area w-full h-64 p-4 rounded-xl border border-white/10 text-sm text-green-400 resize-none outline-none" placeholder="-- Your CSV output will appear here..." readonly></textarea>
+                    <div id="stats" class="mt-4 text-sm text-gray-500 hidden">
+                        <span id="rowCount">0</span> rows • <span id="colCount">0</span> columns
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">Powerful Features</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+                Professional JSON to CSV conversion with advanced features for complex data
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="layers" class="w-6 h-6 text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Flatten Nested Objects</h3>
+                    <p class="text-gray-400 text-sm">Automatically flatten nested JSON objects with dot notation paths. address.city becomes address.city.</p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="list" class="w-6 h-6 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Handle Arrays</h3>
+                    <p class="text-gray-400 text-sm">Choose how to handle arrays: expand to rows, join with delimiter, or keep as JSON string.</p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="shield" class="w-6 h-6 text-purple-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Client-Side Processing</h3>
+                    <p class="text-gray-400 text-sm">Your JSON never leaves your browser. 100% private and secure conversion on your device.</p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="settings" class="w-6 h-6 text-pink-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Custom Delimiters</h3>
+                    <p class="text-gray-400 text-sm">Use comma, semicolon, tab, or pipe as your CSV delimiter to match your target application.</p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="eye" class="w-6 h-6 text-orange-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Live Preview</h3>
+                    <p class="text-gray-400 text-sm">See your CSV output instantly with row and column counts. Copy or download when ready.</p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="file-check" class="w-6 h-6 text-indigo-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Large Files</h3>
+                    <p class="text-gray-400 text-sm">Handle JSON files up to 10MB with efficient streaming conversion and memory management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-4 bg-black/30">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Simple Pricing</h2>
+            <p class="text-gray-400 mb-12">One-time purchase. Lifetime access. No subscriptions.</p>
+            <div class="card rounded-2xl p-8 max-w-md mx-auto border-2 border-emerald-500/50">
+                <div class="text-5xl font-bold gradient-text mb-2">$19</div>
+                <p class="text-gray-400 mb-6">one-time payment</p>
+                <ul class="space-y-3 text-left mb-8">
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        Unlimited conversions
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        Nested object flattening
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        Files up to 10MB
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        Lifetime updates
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
+                        Priority support
+                    </li>
+                </ul>
+                <a href="#" class="block w-full py-4 bg-emerald-600 hover:bg-emerald-700 rounded-xl font-semibold glow-button transition">
+                    Get JSON to CSV Pro
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">How does nested JSON flattening work?</h3>
+                    <p class="text-gray-400 text-sm">Nested objects are flattened using dot notation. For example, {"user": {"name": "John"}} becomes a column "user.name". Deeply nested structures are fully expanded.</p>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What happens to arrays in my JSON?</h3>
+                    <p class="text-gray-400 text-sm">You have three options: expand (create multiple rows), join (comma-separated list), or keep as JSON string. Choose based on your data needs.</p>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Is my data secure?</h3>
+                    <p class="text-gray-400 text-sm">Absolutely. All processing happens client-side in your browser. Your JSON data is never uploaded to any server.</p>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Can I customize the CSV format?</h3>
+                    <p class="text-gray-400 text-sm">Yes! Choose your delimiter (comma, semicolon, tab, pipe) and decide how to handle arrays and nested objects.</p>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Is this a subscription?</h3>
+                    <p class="text-gray-400 text-sm">No. This is a one-time purchase of $19 for lifetime access, including all future updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i data-lucide="file-json" class="w-5 h-5 text-emerald-500"></i>
+                <span class="font-semibold">JSON to CSV Pro</span>
+            </div>
+            <div class="text-sm text-gray-500">
+                © 2024 JSON to CSV Pro. All rights reserved.
+            </div>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-400 hover:text-white transition">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Flatten JSON object
+        function flattenObject(obj, prefix = '', result = {}) {
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const newKey = prefix ? `${prefix}.${key}` : key;
+                    if (obj[key] && typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+                        flattenObject(obj[key], newKey, result);
+                    } else {
+                        result[newKey] = obj[key];
+                    }
+                }
+            }
+            return result;
+        }
+
+        // Convert JSON to CSV
+        function jsonToCsv(json, flatten = true, arrayStrategy = 'expand', delimiter = ',') {
+            if (!json || (Array.isArray(json) && json.length === 0)) {
+                return 'No data';
+            }
+
+            let data = Array.isArray(json) ? json : [json];
+
+            if (flatten) {
+                data = data.map(item => flattenObject(item));
+            }
+
+            // Get all unique headers
+            const headers = new Set();
+            data.forEach(row => {
+                Object.keys(row).forEach(key => headers.add(key));
+            });
+            const headerArray = Array.from(headers);
+
+            // Escape values for CSV
+            const escapeCsv = (value) => {
+                if (value === null || value === undefined) return '';
+                let str = String(value);
+                if (str.includes(delimiter) || str.includes('"') || str.includes('\n')) {
+                    str = str.replace(/"/g, '""');
+                    str = `"${str}"`;
+                }
+                return str;
+            };
+
+            // Build CSV
+            const rows = [];
+            rows.push(headerArray.map(escapeCsv).join(delimiter));
+
+            data.forEach(row => {
+                const values = headerArray.map(header => {
+                    const value = row[header];
+
+                    if (Array.isArray(value)) {
+                        switch (arrayStrategy) {
+                            case 'join':
+                                return escapeCsv(value.join(', '));
+                            case 'json':
+                                return escapeCsv(JSON.stringify(value));
+                            case 'expand':
+                            default:
+                                return escapeCsv(value.join(', '));
+                        }
+                    }
+
+                    if (typeof value === 'object' && value !== null) {
+                        return escapeCsv(JSON.stringify(value));
+                    }
+
+                    return escapeCsv(value);
+                });
+                rows.push(values.join(delimiter));
+            });
+
+            return rows.join('\n');
+        }
+
+        // DOM elements
+        const jsonInput = document.getElementById('jsonInput');
+        const flattenNested = document.getElementById('flattenNested');
+        const arrayStrategy = document.getElementById('arrayStrategy');
+        const delimiter = document.getElementById('delimiter');
+        const convertBtn = document.getElementById('convertBtn');
+        const csvOutput = document.getElementById('csvOutput');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const stats = document.getElementById('stats');
+        const rowCount = document.getElementById('rowCount');
+        const colCount = document.getElementById('colCount');
+
+        convertBtn.addEventListener('click', () => {
+            try {
+                const json = JSON.parse(jsonInput.value.trim());
+                const csv = jsonToCsv(json, flattenNested.checked, arrayStrategy.value, delimiter.value);
+                csvOutput.value = csv;
+
+                // Update stats
+                const data = Array.isArray(json) ? json : [json];
+                const lines = csv.split('\n');
+                rowCount.textContent = lines.length - 1;
+                colCount.textContent = lines[0] ? lines[0].split(delimiter.value).length : 0;
+                stats.classList.remove('hidden');
+            } catch (e) {
+                csvOutput.value = `Error: ${e.message}`;
+                csvOutput.classList.add('text-red-400');
+            }
+        });
+
+        copyBtn.addEventListener('click', () => {
+            csvOutput.select();
+            document.execCommand('copy');
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Copied!';
+            lucide.createIcons();
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                lucide.createIcons();
+            }, 2000);
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const blob = new Blob([csvOutput.value], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'converted.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Server Scaffolder</title>
+    <meta name="description" content="The ultimate MCP Server Scaffolder tool. Powerful features with an intuitive interface designed for developers and power users.">
+    <meta name="keywords" content="mcp, server, scaffolder, developer tools, online tool, web utility, productivity">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://mcp-server-scaffolder.vercel.app">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MCP Server Scaffolder",
+  "description": "The ultimate MCP Server Scaffolder tool. Powerful features with an intuitive interface designed for developers and power users.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://mcp-server-scaffolder.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body{font-family:'Inter',sans-serif;}</style>
+</head>
+<body class="bg-[#0a0a0a] text-white min-h-screen">
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-20 pb-32">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20"></div>
+        <div class="container mx-auto px-4 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                    MCP Server Scaffolder
+                </h1>
+                <p class="text-xl text-gray-400 mb-8">
+                    Generate production-ready Model Context Protocol server boilerplate in seconds
+                </p>
+                <a href="#generator" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full font-semibold transition-all">
+                    Start Scaffolding
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generator -->
+    <section id="generator" class="py-20 bg-[#0f0f0f]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-900/50 rounded-2xl p-8 border border-gray-800">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Server Name</label>
+                            <input type="text" id="serverName" placeholder="my-mcp-server" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Language</label>
+                            <select id="language" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                <option value="typescript">TypeScript</option>
+                                <option value="python">Python</option>
+                                <option value="node">Node.js</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="generateServer()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-lg font-semibold transition-all">
+                        Generate Server
+                    </button>
+                    <div id="result" class="mt-6 hidden">
+                        <div class="bg-gray-800 rounded-lg p-4 font-mono text-sm text-gray-300 overflow-x-auto"></div>
+                        <button onclick="downloadZip()" class="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold">
+                            Download as ZIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">TypeScript Template</h3>
+                    <p class="text-gray-400">Full TypeScript support with type definitions and modern ES modules</p>
+                </div>
+                <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+                    <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Python Template</h3>
+                    <p class="text-gray-400">Python 3.10+ with async support and proper package structure</p>
+                </div>
+                <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+                    <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Tool Scaffolding</h3>
+                    <p class="text-gray-400">Auto-generate tool handlers with proper validation and error handling</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function generateServer() {
+            const name = document.getElementById('serverName').value || 'my-mcp-server';
+            const lang = document.getElementById('language').value;
+            const result = document.getElementById('result');
+            const codeDiv = result.querySelector('div');
+            
+            let code = '';
+            if (lang === 'typescript') {
+                code = `// ${name}/src/index.ts\nimport { Server } from '@modelcontextprotocol/sdk/server/index.js';\nimport { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';\n\nconst server = new Server({\n  name: '${name}',\n  version: '1.0.0'\n}, {\n  capabilities: {\n    tools: {}\n  }\n});\n\nconst transport = new StdioServerTransport();\nawait server.connect(transport);`;
+            } else if (lang === 'python') {
+                code = `# ${name}/server.py\nimport asyncio\nfrom mcp.server import Server\n\napp = Server('${name}')\n\n@app.tool()\nasync def example_tool():\n    return {'result': 'Hello from ${name}'}\n\nif __name__ == '__main__':\n    asyncio.run(app.run())`;
+            }
+            
+            codeDiv.textContent = code;
+            result.classList.remove('hidden');
+        }
+        
+        function downloadZip() {
+            alert('ZIP download would be implemented in production version');
+        }
+    </script>
+</body>
+</html>

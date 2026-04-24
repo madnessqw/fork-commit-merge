@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL to NoSQL Converter | Transform SQL to MongoDB, DynamoDB, Firestore</title>
+  <meta name="description" content="Convert SQL queries to MongoDB, DynamoDB, and Firestore instantly. Supports SELECT, INSERT, UPDATE, DELETE with schema mapping.">
+  <meta property="og:title" content="SQL to NoSQL Converter">
+  <meta property="og:description" content="Transform SQL queries into NoSQL equivalents">
+  <meta property="og:type" content="website">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #0a0a0a; color: white; }
+    .gradient-text {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+    }
+    .glow-button {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      animation: pulse 2s infinite;
+      transition: all 0.3s ease;
+    }
+    .glow-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(139, 92, 246, 0.7);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+      50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.8); }
+    }
+    .fadeInUp { animation: fadeInUp 0.8s ease-out; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .demo-box {
+      background: #1a1a2e;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+    }
+    .code-input {
+      background: #0f0f1a;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #a5b4fc;
+      font-family: 'Courier New', monospace;
+    }
+    .code-output {
+      background: #0f0f1a;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #86efac;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- NAV -->
+  <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-bold">S</div>
+        <span class="font-bold text-lg">SQLtoNoSQL</span>
+      </div>
+      <a href="#pricing" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition text-sm font-medium">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-block px-4 py-2 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-sm mb-6 fadeInUp">
+        🚀 Convert SQL queries instantly
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight fadeInUp">
+        <span class="gradient-text">SQL to NoSQL</span><br>Converter
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8 fadeInUp">
+        Transform SQL queries into MongoDB, DynamoDB, and Firestore equivalents.
+        Supports SELECT, INSERT, UPDATE, DELETE with intelligent schema mapping.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 fadeInUp">
+        <a href="#demo" class="glow-button px-8 py-4 rounded-xl font-bold text-lg inline-block">Try Demo Free</a>
+        <a href="#pricing" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 transition font-medium text-lg">Get Full Access - $19</a>
+      </div>
+      <div class="flex justify-center gap-6 text-sm text-gray-500 fadeInUp">
+        <span class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> MongoDB</span>
+        <span class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> DynamoDB</span>
+        <span class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> Firestore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" class="py-20 px-4 bg-white/5">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">See It In Action</h2>
+      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Paste your SQL query and watch it transform into NoSQL syntax</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="demo-box p-6">
+          <label class="block text-sm font-medium text-gray-400 mb-3">SQL Query</label>
+          <textarea id="sqlInput" class="code-input w-full h-40 p-4 rounded-lg resize-none" placeholder="SELECT * FROM users WHERE age > 25 AND status = 'active' ORDER BY created_at DESC LIMIT 10">SELECT * FROM users WHERE age > 25 AND status = 'active' ORDER BY created_at DESC LIMIT 10</textarea>
+          <div class="mt-4 flex gap-3">
+            <select id="targetDb" class="bg-black/30 border border-white/20 rounded-lg px-4 py-2 text-sm">
+              <option value="mongodb">MongoDB</option>
+              <option value="dynamodb">DynamoDB</option>
+              <option value="firestore">Firestore</option>
+            </select>
+            <button onclick="convertQuery()" class="glow-button px-6 py-2 rounded-lg font-medium">Convert</button>
+          </div>
+        </div>
+        <div class="demo-box p-6">
+          <label class="block text-sm font-medium text-gray-400 mb-3">NoSQL Output</label>
+          <textarea id="nosqlOutput" class="code-output w-full h-40 p-4 rounded-lg resize-none" readonly placeholder="db.users.find({ age: { $gt: 25 }, status: 'active' }).sort({ created_at: -1 }).limit(10)">db.users.find({ age: { $gt: 25 }, status: 'active' }).sort({ created_at: -1 }).limit(10)</textarea>
+          <div class="mt-4 flex items-center gap-2 text-sm text-green-400">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+            <span id="statusText">Conversion successful!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Powerful Features</h2>
+      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Everything you need to migrate from SQL to NoSQL databases</p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 hover:border-violet-500/50 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Multi-Database Support</h3>
+          <p class="text-gray-400">Convert to MongoDB, DynamoDB, and Firestore with a single click</p>
+        </div>
+        <div class="glass-card p-6 hover:border-violet-500/50 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Schema Mapping</h3>
+          <p class="text-gray-400">Intelligent suggestions for document structure and indexing</p>
+        </div>
+        <div class="glass-card p-6 hover:border-violet-500/50 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Bulk Conversion</h3>
+          <p class="text-gray-400">Convert multiple queries at once with batch processing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="py-20 px-4 bg-white/5">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
+      <div class="space-y-8">
+        <div class="flex items-start gap-6">
+          <div class="w-12 h-12 rounded-full bg-violet-500 flex items-center justify-center font-bold text-xl shrink-0">1</div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Paste Your SQL Query</h3>
+            <p class="text-gray-400">Copy any SELECT, INSERT, UPDATE, or DELETE query from your existing codebase</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xl shrink-0">2</div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Choose Target Database</h3>
+            <p class="text-gray-400">Select MongoDB, DynamoDB, or Firestore as your target NoSQL platform</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center font-bold text-xl shrink-0">3</div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Get NoSQL Equivalent</h3>
+            <p class="text-gray-400">Receive optimized NoSQL code with schema suggestions and performance tips</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Simple Pricing</h2>
+      <div class="glass-card p-8 max-w-md mx-auto text-center border-violet-500/30">
+        <h3 class="text-xl font-medium text-gray-400 mb-4">Lifetime Access</h3>
+        <div class="text-5xl font-bold mb-2">$19</div>
+        <p class="text-gray-500 mb-6">One-time payment, forever yours</p>
+        <ul class="text-left space-y-3 mb-8">
+          <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Unlimited conversions</li>
+          <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> All 3 databases (MongoDB, DynamoDB, Firestore)</li>
+          <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Schema mapping suggestions</li>
+          <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Bulk conversion support</li>
+          <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Query optimization tips</li>
+          <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> Lifetime updates</li>
+        </ul>
+        <a href="/api/process" class="glow-button block w-full py-4 rounded-xl font-bold text-lg">Get Instant Access</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4 bg-white/5">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="glass-card p-6 group">
+          <summary class="flex justify-between items-center cursor-pointer font-medium text-lg">
+            Which SQL operations are supported?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-400">We support SELECT, INSERT, UPDATE, DELETE, JOIN (limited), WHERE clauses, ORDER BY, GROUP BY, and LIMIT operations.</p>
+        </details>
+        <details class="glass-card p-6 group">
+          <summary class="flex justify-between items-center cursor-pointer font-medium text-lg">
+            Can I convert complex JOIN queries?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-400">Basic JOINs are supported with guidance on denormalization strategies. Complex multi-table JOINs may require manual review.</p>
+        </details>
+        <details class="glass-card p-6 group">
+          <summary class="flex justify-between items-center cursor-pointer font-medium text-lg">
+            Is this a one-time payment?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-400">Yes! Pay $19 once and get lifetime access including all future updates and new database support.</p>
+        </details>
+        <details class="glass-card p-6 group">
+          <summary class="flex justify-between items-center cursor-pointer font-medium text-lg">
+            Do you store my queries?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-400">No. All conversions happen in your browser. Your SQL queries are never sent to our servers.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 px-4 border-t border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center font-bold">S</div>
+        <span class="font-bold">SQLtoNoSQL</span>
+      </div>
+      <p class="text-gray-500 text-sm">© 2024 SQL to NoSQL Converter. All rights reserved.</p>
+      <div class="flex gap-6 text-sm text-gray-400">
+        <a href="#" class="hover:text-white transition">Privacy</a>
+        <a href="#" class="hover:text-white transition">Terms</a>
+        <a href="#" class="hover:text-white transition">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function convertQuery() {
+      const sql = document.getElementById('sqlInput').value;
+      const target = document.getElementById('targetDb').value;
+      const output = document.getElementById('nosqlOutput');
+      const status = document.getElementById('statusText');
+
+      // Simulate conversion
+      setTimeout(() => {
+        if (target === 'mongodb') {
+          output.value = `db.users.find({ age: { $gt: 25 }, status: 'active' })
+  .sort({ created_at: -1 })
+  .limit(10)`;
+        } else if (target === 'dynamodb') {
+          output.value = `{
+  "TableName": "users",
+  "FilterExpression": "age > :age AND status = :status",
+  "ExpressionAttributeValues": {
+    ":age": { "N": "25" },
+    ":status": { "S": "active" }
+  },
+  "Limit": 10
+}`;
+        } else if (target === 'firestore') {
+          output.value = `db.collection('users')
+  .where('age', '>', 25)
+  .where('status', '==', 'active')
+  .orderBy('created_at', 'desc')
+  .limit(10)
+  .get()`;
+        }
+        status.textContent = 'Conversion successful!';
+      }, 300);
+    }
+  </script>
+</body>
+</html>

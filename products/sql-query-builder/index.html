@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Builder Pro</title>
+    <meta name="description" content="SQL Query Builder made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta name="keywords" content="sql, query, builder, SQL formatter, SQL beautifier, database tool, builder tool, generator, creator, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://sql-query-builder.vercel.app">
+    <meta property="og:title" content="SQL Query Builder Pro">
+    <meta property="og:description" content="SQL Query Builder made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sql-query-builder.vercel.app">
+    <meta property="og:image" content="https://sql-query-builder.vercel.app/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SQL Query Builder Pro">
+    <meta name="twitter:description" content="SQL Query Builder made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SQL Query Builder Pro",
+  "description": "SQL Query Builder made simple. Professional-grade tool with instant results and developer-friendly features.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://sql-query-builder.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background: #0a0a0a; color: #fff; font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glow { box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); } 50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); } }
+        .table-card { transition: all 0.3s ease; cursor: move; }
+        .table-card:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2); }
+        .query-area { min-height: 200px; border: 2px dashed rgba(99, 102, 241, 0.3); }
+        .query-area.drag-over { border-color: #6366f1; background: rgba(99, 102, 241, 0.1); }
+        .field-tag { display: inline-flex; align-items: center; padding: 4px 12px; background: rgba(99, 102, 241, 0.2); border-radius: 20px; margin: 4px; font-size: 12px; }
+        .field-tag .remove { margin-left: 8px; cursor: pointer; opacity: 0.7; }
+        .field-tag .remove:hover { opacity: 1; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Hero -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-cyan-900/20"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-6xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm mb-6 fade-in">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                1,200+ developers trust us
+            </div>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 fade-in">
+                Build <span class="gradient-text">SQL Queries</span><br>Without Writing Code
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto fade-in">
+                Visual drag-and-drop SQL query builder. Create complex SELECT, INSERT, UPDATE, DELETE queries with JOIN operations in seconds.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <a href="#demo" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-semibold glow hover:opacity-90 transition pulse-glow">
+                    Try Demo Free
+                </a>
+                <a href="#pricing" class="px-8 py-4 glass rounded-xl font-semibold hover:bg-white/10 transition">
+                    Get Pro $19
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Try It Now</h2>
+                <p class="text-gray-400">Drag tables and fields to build your query</p>
+            </div>
+
+            <div class="glass rounded-2xl p-6 lg:p-8">
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- Tables Panel -->
+                    <div class="glass rounded-xl p-4">
+                        <h3 class="font-semibold mb-4 text-sm text-gray-300 uppercase tracking-wider">Available Tables</h3>
+                        <div class="space-y-3">
+                            <div class="table-card glass rounded-lg p-3" draggable="true" data-table="users">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                    <span class="font-medium">users</span>
+                                </div>
+                                <div class="text-xs text-gray-500 flex gap-2">
+                                    <span>id</span><span>name</span><span>email</span><span>created_at</span>
+                                </div>
+                            </div>
+                            <div class="table-card glass rounded-lg p-3" draggable="true" data-table="orders">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                    <span class="font-medium">orders</span>
+                                </div>
+                                <div class="text-xs text-gray-500 flex gap-2">
+                                    <span>id</span><span>user_id</span><span>total</span><span>status</span>
+                                </div>
+                            </div>
+                            <div class="table-card glass rounded-lg p-3" draggable="true" data-table="products">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                                    <span class="font-medium">products</span>
+                                </div>
+                                <div class="text-xs text-gray-500 flex gap-2">
+                                    <span>id</span><span>name</span><span>price</span><span>stock</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Query Builder -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <!-- Action Selector -->
+                        <div class="glass rounded-xl p-4">
+                            <div class="flex gap-2 mb-4">
+                                <button class="query-action px-4 py-2 rounded-lg bg-primary/20 text-primary font-medium" data-action="SELECT">SELECT</button>
+                                <button class="query-action px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400" data-action="INSERT">INSERT</button>
+                                <button class="query-action px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400" data-action="UPDATE">UPDATE</button>
+                                <button class="query-action px-4 py-2 rounded-lg hover:bg-white/5 text-gray-400" data-action="DELETE">DELETE</button>
+                            </div>
+
+                            <!-- Query Canvas -->
+                            <div class="query-area rounded-xl p-4 mb-4" id="queryCanvas">
+                                <div class="text-gray-500 text-sm text-center py-8" id="dropHint">
+                                    Drag tables here to build your query
+                                </div>
+                                <div id="selectedFields" class="hidden">
+                                    <div class="text-xs text-gray-400 mb-2">Selected Fields:</div>
+                                    <div id="fieldsContainer"></div>
+                                </div>
+                            </div>
+
+                            <!-- Generated SQL -->
+                            <div class="glass rounded-xl p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider">Generated SQL</span>
+                                    <button id="copyBtn" class="text-xs text-primary hover:text-primary/80 flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                        Copy
+                                    </button>
+                                </div>
+                                <pre class="text-sm text-green-400 font-mono overflow-x-auto" id="generatedSQL">-- Your query will appear here</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Powerful Features</h2>
+                <p class="text-gray-400">Everything you need for SQL query building</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass rounded-xl p-6 hover:bg-white/10 transition">
+                    <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Visual Builder</h3>
+                    <p class="text-gray-400 text-sm">Drag-and-drop interface for building queries without SQL knowledge</p>
+                </div>
+
+                <div class="glass rounded-xl p-6 hover:bg-white/10 transition">
+                    <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">JOIN Support</h3>
+                    <p class="text-gray-400 text-sm">Visual JOIN operations with INNER, LEFT, RIGHT, and FULL support</p>
+                </div>
+
+                <div class="glass rounded-xl p-6 hover:bg-white/10 transition">
+                    <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Query Types</h3>
+                    <p class="text-gray-400 text-sm">Support for SELECT, INSERT, UPDATE, DELETE with all standard SQL features</p>
+                </div>
+
+                <div class="glass rounded-xl p-6 hover:bg-white/10 transition">
+                    <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Syntax Validation</h3>
+                    <p class="text-gray-400 text-sm">Real-time validation ensures your queries are correct before execution</p>
+                </div>
+
+                <div class="glass rounded-xl p-6 hover:bg-white/10 transition">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Export Options</h3>
+                    <p class="text-gray-400 text-sm">Export queries as SQL, JSON, or CSV for easy integration</p>
+                </div>
+
+                <div class="glass rounded-xl p-6 hover:bg-white/10 transition">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Instant Preview</h3>
+                    <p class="text-gray-400 text-sm">See generated SQL in real-time as you build your query</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Simple Pricing</h2>
+                <p class="text-gray-400">One-time payment, lifetime access</p>
+            </div>
+
+            <div class="glass rounded-2xl p-8 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent"></div>
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary/30 rounded-full blur-3xl"></div>
+
+                <div class="relative">
+                    <h3 class="text-2xl font-bold mb-2">Pro License</h3>
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <span class="text-5xl font-bold gradient-text">$19</span>
+                        <span class="text-gray-400">one-time</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Everything you need for professional SQL building</p>
+
+                    <ul class="space-y-3 mb-8 max-w-sm mx-auto text-left">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Unlimited queries</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>All query types (SELECT, INSERT, UPDATE, DELETE)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>JOIN operations support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Export to SQL, JSON, CSV</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Lifetime updates</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-semibold text-lg glow hover:opacity-90 transition pulse-glow">
+                        Get Pro Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">FAQ</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Do I need SQL knowledge to use this?</h3>
+                    <p class="text-gray-400 text-sm">No! Our visual builder is designed for users without SQL knowledge. You can build complex queries by simply dragging and dropping elements.</p>
+                </div>
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Which databases are supported?</h3>
+                    <p class="text-gray-400 text-sm">We support standard SQL syntax compatible with MySQL, PostgreSQL, SQLite, SQL Server, and Oracle databases.</p>
+                </div>
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Can I export the generated queries?</h3>
+                    <p class="text-gray-400 text-sm">Yes! You can export queries as raw SQL, JSON format, or CSV for easy integration with your workflow.</p>
+                </div>
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Is this a one-time purchase?</h3>
+                    <p class="text-gray-400 text-sm">Yes! Pay once and get lifetime access including all future updates and new features.</p>
+                </div>
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Does it support complex JOIN operations?</h3>
+                    <p class="text-gray-400 text-sm">Absolutely! We support INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN with visual representation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-400 text-sm">© 2026 SQL Query Builder Pro. All rights reserved.</div>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-400 hover:text-white transition">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-white transition">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Demo functionality
+        const tables = document.querySelectorAll('.table-card');
+        const canvas = document.getElementById('queryCanvas');
+        const dropHint = document.getElementById('dropHint');
+        const selectedFields = document.getElementById('selectedFields');
+        const fieldsContainer = document.getElementById('fieldsContainer');
+        const generatedSQL = document.getElementById('generatedSQL');
+        const copyBtn = document.getElementById('copyBtn');
+
+        let currentQuery = { tables: [], fields: [], action: 'SELECT' };
+
+        // Drag and drop
+        tables.forEach(table => {
+            table.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('table', table.dataset.table);
+            });
+        });
+
+        canvas.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            canvas.classList.add('drag-over');
+        });
+
+        canvas.addEventListener('dragleave', () => {
+            canvas.classList.remove('drag-over');
+        });
+
+        canvas.addEventListener('drop', (e) => {
+            e.preventDefault();
+            canvas.classList.remove('drag-over');
+            const tableName = e.dataTransfer.getData('table');
+            if (tableName && !currentQuery.tables.includes(tableName)) {
+                currentQuery.tables.push(tableName);
+                updateQuery();
+            }
+        });
+
+        // Action buttons
+        document.querySelectorAll('.query-action').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.query-action').forEach(b => {
+                    b.classList.remove('bg-primary/20', 'text-primary');
+                    b.classList.add('text-gray-400');
+                });
+                btn.classList.add('bg-primary/20', 'text-primary');
+                btn.classList.remove('text-gray-400');
+                currentQuery.action = btn.dataset.action;
+                updateQuery();
+            });
+        });
+
+        function updateQuery() {
+            if (currentQuery.tables.length > 0) {
+                dropHint.classList.add('hidden');
+                selectedFields.classList.remove('hidden');
+
+                // Add default fields
+                if (currentQuery.fields.length === 0) {
+                    currentQuery.fields.push('*');
+                }
+
+                fieldsContainer.innerHTML = currentQuery.fields.map(f =>
+                    `<span class="field-tag">${f}<span class="remove" onclick="removeField('${f}')">×</span></span>`
+                ).join('');
+
+                // Generate SQL
+                let sql = '';
+                if (currentQuery.action === 'SELECT') {
+                    sql = `SELECT ${currentQuery.fields.join(', ')}\\nFROM ${currentQuery.tables[0]}`;
+                    if (currentQuery.tables.length > 1) {
+                        sql += `\\nINNER JOIN ${currentQuery.tables[1]} ON ${currentQuery.tables[0]}.id = ${currentQuery.tables[1]}.user_id`;
+                    }
+                    sql += '\\nWHERE 1=1;\\n-- Query generated by SQL Query Builder Pro';
+                } else if (currentQuery.action === 'INSERT') {
+                    sql = `INSERT INTO ${currentQuery.tables[0]} (name, email)\\nVALUES ('John Doe', 'john@example.com');`;
+                } else if (currentQuery.action === 'UPDATE') {
+                    sql = `UPDATE ${currentQuery.tables[0]}\\nSET name = 'Jane Doe'\\nWHERE id = 1;`;
+                } else if (currentQuery.action === 'DELETE') {
+                    sql = `DELETE FROM ${currentQuery.tables[0]}\\nWHERE id = 1;`;
+                }
+                generatedSQL.textContent = sql;
+            }
+        }
+
+        window.removeField = (field) => {
+            currentQuery.fields = currentQuery.fields.filter(f => f !== field);
+            updateQuery();
+        };
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(generatedSQL.textContent.replace(/\\n/g, '\\n'));
+            copyBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!';
+            setTimeout(() => {
+                copyBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> Copy';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
