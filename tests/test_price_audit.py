@@ -187,3 +187,74 @@ class TestAuditProductPrices:
         state_file.write_text(json.dumps(self._make_state(products)))
         result = audit_product_prices(state_path=state_file)
         assert any(i["slug"] == "alt-slug" for i in result["inconsistencies"])
+
+    def test_missing_state_file(self, tmp_path):
+        state_file = tmp_path / "nonexistent.json"
+        result = audit_product_prices(state_path=state_file)
+        assert result["total"] == 0
+        assert result["inconsistencies"] == []
+
+    def test_products_as_list(self, tmp_path):
+        products = [
+            {"slug": "list-prod", "price": "$9"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps({"products": products}))
+        result = audit_product_prices(state_path=state_file)
+        assert result["total"] == 1
+
+    def test_spec_ready_products_included(self, tmp_path):
+        state = {
+            "products": {
+                "active": [{"slug": "active-prod", "price": "$9"}],
+                "spec_ready": [{"slug": "spec-prod", "price": "19"}],
+            }
+        }
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(state))
+        result = audit_product_prices(state_path=state_file)
+        assert result["total"] == 2
+
+    def test_non_dict_items_skipped(self, tmp_path):
+        products = [
+            "not_a_dict",
+            42,
+            {"slug": "valid", "price": "$9"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = audit_product_prices(state_path=state_file)
+        assert result["total"] == 3
+        assert len(result["inconsistencies"]) == 0
+
+    def test_unparseable_price_tracked(self, tmp_path):
+        products = [
+            {"slug": "bad-price", "price": "call_us"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = audit_product_prices(state_path=state_file)
+        assert any(i["issue"] == "unparseable" for i in result["inconsistencies"])
+
+
+class TestParsePriceEdgeCases:
+    def test_negative_int(self):
+        assert parse_price(-5) == -500
+
+    def test_whitespace_string(self):
+        assert parse_price("  $19  ") == 1900
+
+    def test_string_with_comma(self):
+        assert parse_price("$1,299") == 129900
+
+    def test_large_float(self):
+        assert parse_price(299.99) == 29999
+
+    def test_very_small_float(self):
+        assert parse_price(0.01) == 1
+
+    def test_bool_false(self):
+        assert parse_price(False) == 0
+
+    def test_string_only_dollar_sign(self):
+        assert parse_price("$") is None
