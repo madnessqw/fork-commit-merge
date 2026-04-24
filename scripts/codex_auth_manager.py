@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -72,14 +73,25 @@ def save_state(path: Path, data: dict[str, Any]) -> None:
 
 def choose_state(path: Path) -> dict[str, Any]:
     state = load_state(path)
-    preferred = normalize_account(
-        state.get("preferred_account", state.get("last_active_account", 1))
-    )
+    available = next_available_account(state)
+    if available is not None:
+        preferred = available
+    else:
+        preferred = normalize_account(
+            state.get("preferred_account", state.get("last_active_account", 1))
+        )
     fallback = other_account(preferred)
+    blocked_info = {}
+    for account in (1, 2):
+        raw = account_blocked_until(state, account)
+        if raw:
+            blocked_info[f"account_{account}_blocked_until"] = raw
     return {
         "preferred_account": preferred,
         "fallback_account": fallback,
+        "all_blocked": all_accounts_blocked(state),
         "state": state,
+        **blocked_info,
     }
 
 
@@ -93,6 +105,7 @@ def record_state(
     cycle: int = 0,
     exit_code: int = 0,
     last_error: str = "",
+    raw_output: str = "",
 ) -> dict[str, Any]:
     state = load_state(path)
     preferred = normalize_account(preferred_account)
@@ -113,9 +126,18 @@ def record_state(
         state["last_switch_to_account"] = active
         state["last_switch_reason"] = last_error or "auth_limit"
         state["switch_count"] = int(state.get("switch_count", 0) or 0) + 1
+        if raw_output:
+            limit_until = parse_limit_until(raw_output)
+            if limit_until:
+                failed_account = other_account(active)
+                state[f"account_{failed_account}_blocked_until"] = limit_until
     elif outcome == "failure":
         state["last_failure_account"] = preferred
         state["last_failure_reason"] = last_error
+        if raw_output:
+            limit_until = parse_limit_until(raw_output)
+            if limit_until:
+                state[f"account_{active}_blocked_until"] = limit_until
     else:
         state["last_success_account"] = active
 
@@ -130,6 +152,73 @@ def classify_output(output: str, exit_code: int) -> str:
     if exit_code != 0:
         return "failure"
     return "success"
+
+
+_LIMIT_DATE_RE = re.compile(
+    r"try\s+again\s+(?:at\s+)?(.+?)(?:\s*$|\s*\.)",
+    re.IGNORECASE,
+)
+
+
+def parse_limit_until(output: str) -> str | None:
+    match = _LIMIT_DATE_RE.search(output)
+    if not match:
+        return None
+    raw = match.group(1).strip()
+    for fmt in (
+        "%B %d, %Y %I:%M %p",
+        "%b %d, %Y %I:%M %p",
+        "%B %dth, %Y %I:%M %p",
+        "%b %dth, %Y %I:%M %p",
+        "%B %dst, %Y %I:%M %p",
+        "%B %dnd, %Y %I:%M %p",
+        "%B %drd, %Y %I:%M %p",
+    ):
+        try:
+            return (
+                dt.datetime.strptime(raw, fmt)
+                .replace(tzinfo=dt.timezone.utc)
+                .isoformat()
+                .replace("+00:00", "Z")
+            )
+        except ValueError:
+            continue
+    return raw if raw else None
+
+
+def account_blocked_until(state: dict[str, Any], account: int) -> str | None:
+    key = f"account_{account}_blocked_until"
+    return state.get(key)
+
+
+def all_accounts_blocked(state: dict[str, Any]) -> bool:
+    now = dt.datetime.now(dt.timezone.utc)
+    for account in (1, 2):
+        raw = account_blocked_until(state, account)
+        if not raw:
+            return False
+        try:
+            until = dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
+            if until <= now:
+                return False
+        except (ValueError, TypeError):
+            return False
+    return True
+
+
+def next_available_account(state: dict[str, Any]) -> int | None:
+    now = dt.datetime.now(dt.timezone.utc)
+    for account in (1, 2):
+        raw = account_blocked_until(state, account)
+        if not raw:
+            return account
+        try:
+            until = dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
+            if until <= now:
+                return account
+        except (ValueError, TypeError):
+            return account
+    return None
 
 
 def init_state(path: Path, preferred: int = 1) -> dict[str, Any]:
@@ -194,6 +283,7 @@ def parse_args() -> argparse.Namespace:
     record_parser.add_argument("--cycle", type=int, default=0)
     record_parser.add_argument("--exit-code", type=int, default=0)
     record_parser.add_argument("--last-error", default="")
+    record_parser.add_argument("--raw-output", default="")
     record_parser.add_argument("--attempted-accounts", nargs="+", required=True)
 
     classify_parser = subparsers.add_parser(
@@ -225,7 +315,8 @@ def main() -> int:
         if args.format == "json":
             print(json.dumps(chosen, ensure_ascii=False))
         else:
-            print(f"{chosen['preferred_account']} {chosen['fallback_account']}")
+            suffix = " BLOCKED" if chosen.get("all_blocked") else ""
+            print(f"{chosen['preferred_account']} {chosen['fallback_account']}{suffix}")
         return 0
 
     if args.command == "record":
@@ -238,6 +329,7 @@ def main() -> int:
             cycle=args.cycle,
             exit_code=args.exit_code,
             last_error=args.last_error,
+            raw_output=args.raw_output,
         )
         print(json.dumps(state, ensure_ascii=False))
         return 0
