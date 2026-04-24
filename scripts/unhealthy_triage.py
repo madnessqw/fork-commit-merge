@@ -49,6 +49,21 @@ TRIAGE_RULES = {
         "action": "Check Vercel firewall/geo rules; may need region whitelist",
         "severity": "low",
     },
+    502: {
+        "label": "bad_gateway",
+        "action": "Vercel upstream error; redeploy or check serverless function logs",
+        "severity": "high",
+    },
+    503: {
+        "label": "service_unavailable",
+        "action": "Vercel platform issue or deployment overload; retry deploy after brief wait",
+        "severity": "medium",
+    },
+    504: {
+        "label": "gateway_timeout",
+        "action": "Serverless function exceeded timeout; optimize function or increase timeout limit",
+        "severity": "high",
+    },
     500: {
         "label": "server_error",
         "action": "Check Vercel build/runtime logs; redeploy if transient",
@@ -204,6 +219,9 @@ def write_triage_report(entries: list[dict], output_path: Path | None = None) ->
 
 CANONICAL_DRIFT_FIXES = {
     "error_500": "Redeploy via: cd products/{slug} && vercel --prod --yes",
+    "error_502": "Redeploy via: cd products/{slug} && vercel --prod --yes",
+    "error_503": "Wait briefly then redeploy: cd products/{slug} && vercel --prod --yes",
+    "error_504": "Check function timeout then redeploy: cd products/{slug} && vercel --prod --yes",
     "not_found": "Link project: cd products/{slug} && vercel link --yes && vercel --prod --yes",
     "deployment_disabled": "Re-enable in Vercel dashboard → Settings → Deployment Protection → disable, then: cd products/{slug} && vercel --prod --yes",
     "ssoProtection": "vercel project inspect {slug} && disable Vercel Authentication in project settings",
@@ -258,6 +276,9 @@ VERCEL_FIX_COMMANDS = {
     404: "cd products/{slug} && vercel --prod --yes 2>&1",
     429: "echo 'Rate limited — check Vercel plan limits at vercel.com/account/billing'",
     451: "echo 'Geo-block: check Vercel Firewall rules → vercel.com/dashboard → project → Settings → Firewall'",
+    502: "cd products/{slug} && vercel logs --output json 2>/dev/null | tail -50 || echo 'Bad gateway — redeploy: cd products/{slug} && vercel --prod --yes'",
+    503: "echo 'Service unavailable — Vercel platform issue; wait and redeploy: cd products/{slug} && vercel --prod --yes'",
+    504: "cd products/{slug} && vercel logs --output json 2>/dev/null | tail -50 || echo 'Gateway timeout — check serverless function execution time'",
     500: "cd products/{slug} && vercel logs --output json 2>/dev/null | tail -50 || echo 'Check Vercel dashboard → Deployments → Function Logs'",
     0: "echo 'Timeout — check DNS or increase timeout settings'",
 }

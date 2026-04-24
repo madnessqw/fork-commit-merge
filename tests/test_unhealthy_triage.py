@@ -51,10 +51,34 @@ def test_triage_entry_rate_limited():
     assert "plan limits" in entry["suggested_action"]
 
 
-def test_triage_entry_unknown_code():
+def test_triage_entry_503_service_unavailable():
     entry = _triage_entry("foo", 503)
-    assert entry["label"] == "error_503"
+    assert entry["label"] == "service_unavailable"
     assert entry["http_code"] == 503
+    assert entry["severity"] == "medium"
+    assert "platform issue" in entry["suggested_action"]
+
+
+def test_triage_entry_502_bad_gateway():
+    entry = _triage_entry("bar", 502)
+    assert entry["label"] == "bad_gateway"
+    assert entry["http_code"] == 502
+    assert entry["severity"] == "high"
+    assert "upstream" in entry["suggested_action"]
+
+
+def test_triage_entry_504_gateway_timeout():
+    entry = _triage_entry("baz", 504)
+    assert entry["label"] == "gateway_timeout"
+    assert entry["http_code"] == 504
+    assert entry["severity"] == "high"
+    assert "timeout" in entry["suggested_action"]
+
+
+def test_triage_entry_unknown_code():
+    entry = _triage_entry("foo", 999)
+    assert entry["label"] == "error_999"
+    assert entry["http_code"] == 999
     assert entry["severity"] == "medium"
 
 
@@ -249,6 +273,20 @@ def test_quick_fix_suggestion_451():
     assert "Firewall" in fix or "Geo" in fix
 
 
+def test_quick_fix_suggestion_502():
+    entry = _triage_entry("upstream-app", 502)
+    fix = quick_fix_suggestion(entry)
+    assert "upstream-app" in fix
+    assert "vercel" in fix
+
+
+def test_quick_fix_suggestion_504():
+    entry = _triage_entry("timeout-app", 504)
+    fix = quick_fix_suggestion(entry)
+    assert "timeout-app" in fix
+    assert "timeout" in fix or "vercel" in fix
+
+
 def test_quick_fix_suggestion_unknown_code():
     entry = _triage_entry("weird-app", 999)
     fix = quick_fix_suggestion(entry)
@@ -424,6 +462,9 @@ def test_canonical_drift_fix_suggestions_deployment_disabled(tmp_path):
 
 def test_canonical_drift_fixes_dict_has_expected_keys():
     assert "error_500" in CANONICAL_DRIFT_FIXES
+    assert "error_502" in CANONICAL_DRIFT_FIXES
+    assert "error_503" in CANONICAL_DRIFT_FIXES
+    assert "error_504" in CANONICAL_DRIFT_FIXES
     assert "not_found" in CANONICAL_DRIFT_FIXES
     assert "deployment_disabled" in CANONICAL_DRIFT_FIXES
     for key, template in CANONICAL_DRIFT_FIXES.items():
