@@ -4,7 +4,8 @@
   "description": "Generate realistic mock API responses for testing. Create REST and GraphQL mocks instantly.",
   "price": 19,
   "status": "ready_to_deploy",
-  "category": "developer_tools",
+  "tagline": "Generate realistic mock API responses for testing REST and GraphQL endpoints",
+  "category": "Developer Tools",
   "features": [
     "REST API mock generation",
     "GraphQL mock support",
@@ -21,5 +22,6 @@
   "created_at": "2026-04-21",
   "updated_at": "2026-04-22",
   "target_audience": "Frontend developers, QA engineers, API developers",
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }

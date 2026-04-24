@@ -4,6 +4,7 @@
   "tagline": "Validate YAML syntax, detect errors, and format YAML files with proper indentation",
   "description": "Validate YAML syntax, detect errors, and format YAML files with proper indentation",
   "price": "9",
+  "category": "Developer Tools",
   "features": [],
   "tech_stack": "Vercel + Node.js",
   "status": "ready_to_deploy",
@@ -13,5 +14,6 @@
   "webhook_url": null,
   "created_cycle": null,
   "deployed_cycle": null,
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }

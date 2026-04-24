@@ -4,6 +4,7 @@
   "description": "Generate Apache/Nginx .htpasswd files with multiple hash algorithms",
   "price": "$19",
   "status": "ready_to_deploy",
+  "tagline": "Generate secure Apache/Nginx .htpasswd files with bcrypt and bulk user support",
   "category": "Developer Tools",
   "features": [
     "MD5, SHA1, Bcrypt hashing",
@@ -19,5 +20,6 @@
   "estimated_build_time": "45 min",
   "created_at": "2026-04-21",
   "batch": 27,
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }
