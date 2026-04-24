@@ -8,6 +8,7 @@ from scripts.health_trend import (
     load_trend,
     compute_trend,
     trend_summary_text,
+    stuck_metrics,
 )
 
 
@@ -226,6 +227,48 @@ class HealthTrendTests(unittest.TestCase):
         finally:
             ht.TREND_FILE = orig_trend
             ht.ROOT = orig_root
+
+    def test_stuck_metrics_detects_stuck_deploy_gap(self) -> None:
+        entries = [
+            {"deploy_gap": 5, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 5, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 5, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+        ]
+        result = stuck_metrics(entries, window=3)
+        self.assertEqual(result["stuck_count"], 1)
+        self.assertEqual(result["stuck_metrics"][0]["metric"], "deploy_gap")
+        self.assertEqual(result["stuck_metrics"][0]["value"], 5)
+
+    def test_stuck_metrics_no_stuck_when_improving(self) -> None:
+        entries = [
+            {"deploy_gap": 5, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 3, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 1, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+        ]
+        result = stuck_metrics(entries, window=3)
+        self.assertEqual(result["stuck_count"], 0)
+
+    def test_stuck_metrics_multiple_stuck(self) -> None:
+        entries = [
+            {"deploy_gap": 5, "canonical_drift": 7, "fallback_healthy": 7, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 5, "canonical_drift": 7, "fallback_healthy": 7, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 5, "canonical_drift": 7, "fallback_healthy": 7, "unhealthy": 0, "checkout_gap": 0},
+        ]
+        result = stuck_metrics(entries, window=3)
+        self.assertEqual(result["stuck_count"], 3)
+
+    def test_stuck_metrics_unknown_with_one_entry(self) -> None:
+        result = stuck_metrics([{"deploy_gap": 5}])
+        self.assertEqual(result["stuck_count"], 0)
+        self.assertEqual(result["snapshots"], 1)
+
+    def test_stuck_metrics_ignores_zero_values(self) -> None:
+        entries = [
+            {"deploy_gap": 0, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+            {"deploy_gap": 0, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 0},
+        ]
+        result = stuck_metrics(entries, window=2)
+        self.assertEqual(result["stuck_count"], 0)
 
 
 if __name__ == "__main__":

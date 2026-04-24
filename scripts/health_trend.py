@@ -135,6 +135,48 @@ def compute_trend(entries: list[dict] | None = None) -> dict:
     }
 
 
+STUCK_METRIC_KEYS = (
+    "deploy_gap",
+    "canonical_drift",
+    "fallback_healthy",
+    "unhealthy",
+    "checkout_gap",
+)
+
+
+def stuck_metrics(entries: list[dict] | None = None, *, window: int = 5) -> dict:
+    if entries is None:
+        entries = load_trend(limit=max(window, 20))
+
+    if len(entries) < 2:
+        return {"stuck_count": 0, "stuck_metrics": [], "window": window, "snapshots": len(entries)}
+
+    recent = entries[-window:]
+    first_values = recent[0]
+    last_values = recent[-1]
+
+    stuck: list[dict] = []
+    for key in STUCK_METRIC_KEYS:
+        first_val = first_values.get(key, 0)
+        last_val = last_values.get(key, 0)
+        if first_val == 0 and last_val == 0:
+            continue
+        all_same = all(e.get(key, 0) == first_val for e in recent)
+        if all_same and first_val > 0:
+            stuck.append({
+                "metric": key,
+                "value": first_val,
+                "stale_snapshots": len(recent),
+            })
+
+    return {
+        "stuck_count": len(stuck),
+        "stuck_metrics": stuck,
+        "window": window,
+        "snapshots": len(recent),
+    }
+
+
 def trend_summary_text() -> str:
     snapshot = record_snapshot()
     if not snapshot:
@@ -157,6 +199,10 @@ def trend_summary_text() -> str:
 
 
 def main() -> int:
+    if len(sys.argv) > 1 and sys.argv[1] == "stuck":
+        print(json.dumps(stuck_metrics(), indent=2, ensure_ascii=False))
+        return 0
+
     if len(sys.argv) > 1 and sys.argv[1] == "summary":
         print(trend_summary_text())
         return 0
