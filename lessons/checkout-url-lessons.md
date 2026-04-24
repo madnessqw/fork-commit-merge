@@ -247,6 +247,7 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 | urllib 307 redirect'te POST→GET dönüşümü | `requests` kütüphanesi kullan | 2026-04-23 |
 | Checkout session URL = kısa ömürlü | Catalog ürünler için `checkout_links` (reusable) kullan | 2026-04-23 |
 | `vercel_url` missing ürünler sync-links dışına düşer | Önce deploy/URL düzelt, sonra Polar sync; yoksa live ürün LS’de kalır | 2026-04-24 |
+| Polar checkout URL provider inference | `polar.sh` / `buy.polar.sh` checkout URL'lerini `payment_provider=polar` olarak normalize et | 2026-04-24 |
 
 ---
 

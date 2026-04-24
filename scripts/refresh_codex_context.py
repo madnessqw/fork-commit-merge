@@ -247,8 +247,8 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
             codex_task_title="Checkout alan standardizasyonu",
             codex_task_body=(
                 "Checkout metadata okumayı tek kanala indir. `checkout_url`, "
-                "`lemon_checkout_url` ve `lemonsqueezy_checkout_url` varyantlarını güvenli biçimde "
-                "normalize eden utility/script yaz veya mevcut akışı düzelt. Production checkout URL'lerini uydurma."
+                "eski legacy alias'ları güvenli biçimde normalize eden utility/script yaz veya mevcut akışı düzelt. "
+                "Production checkout URL'lerini uydurma."
             ),
         )
 
@@ -294,7 +294,7 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
             codex_task_title="Spec-ready deploy readiness doğrulaması",
             codex_task_body=(
                 "Spec-ready ürünleri deploy-ready saymadan önce read-only bir validator ile tara. "
-                "Eksik manifest/URL/state alanlarını raporla; manuel Vercel/LemonSqueezy adımlarını "
+                "Eksik manifest/URL/state alanlarını raporla; manuel Vercel/ödeme-provider adımlarını "
                 "çözülmüş gibi yazma. "
                 f"İlk örnekte manifest eksikleri: {manifest_missing}; URL eksikleri: {url_missing}; "
                 f"state eksikleri: {state_missing}."
@@ -398,7 +398,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         "## Kod için Öneri",
         f"1. **{focus.codex_task_title}**",
         f"   - {focus.codex_task_body}",
-        "2. Production'da manuel Vercel/LemonSqueezy adımlarını script ile 'çözüldü' gibi göstermeden bırak.",
+        "2. Production'da manuel Vercel/ödeme-provider adımlarını script ile 'çözüldü' gibi göstermeden bırak.",
         "3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.",
     ]
 
@@ -740,7 +740,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
             "## Guardrails",
             "- Dosyaları okumadan edit yapma.",
             "- Production canlı ürün davranışını bozma.",
-            "- Manual Vercel/LemonSqueezy aksiyonlarını çözüldü gibi gösterme.",
+            "- Manual Vercel/ödeme-provider aksiyonlarını çözüldü gibi gösterme.",
             "- Cerrahi değişiklik + test/verification + `analysis/codex_result.md` + commit.",
         ]
     ) + "\n"

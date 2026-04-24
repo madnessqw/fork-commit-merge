@@ -89,6 +89,80 @@ def test_generate_triage_empty(tmp_path):
     assert entries == []
 
 
+def test_generate_triage_canonical_drift_included(tmp_path):
+    """Canonical-drift products should appear in triage entries."""
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "jwt-generator", "code": 500},
+            ],
+            "canonical_drift": [
+                {
+                    "slug": "pdf-forge",
+                    "canonical_code": 500,
+                    "canonical_status": "error_500",
+                },
+                {
+                    "slug": "webhook-tester",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
+                },
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 3
+
+    slugs = {e["slug"] for e in entries}
+    assert slugs == {"jwt-generator", "pdf-forge", "webhook-tester"}
+
+    # Canonical-drift entries should have prefixed label
+    pf = next(e for e in entries if e["slug"] == "pdf-forge")
+    assert pf["label"].startswith("canonical_drift/")
+    assert pf["severity"] == "medium"
+    assert "fallback alias" in pf["suggested_action"]
+
+
+def test_generate_triage_no_duplicate_on_overlap(tmp_path):
+    """If a slug appears in both unhealthy_live and canonical_drift, only one entry."""
+    summary = {
+        "gaps": {
+            "unhealthy_live": [{"slug": "jwt-generator", "code": 500}],
+            "canonical_drift": [{"slug": "jwt-generator", "canonical_code": 500}],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 1
+    assert entries[0]["slug"] == "jwt-generator"
+    # Should keep the direct unhealthy entry, not the canonical-drift version
+    assert not entries[0]["label"].startswith("canonical_drift/")
+
+
+def test_generate_triage_canonical_drift_only(tmp_path):
+    """Only canonical-drift, no unhealthy_live."""
+    summary = {
+        "gaps": {
+            "unhealthy_live": [],
+            "canonical_drift": [
+                {"slug": "html-entity-encoder", "canonical_code": 402},
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 1
+    assert entries[0]["slug"] == "html-entity-encoder"
+    assert entries[0]["label"] == "canonical_drift/deployment_disabled"
+
+
 def test_write_triage_report(tmp_path):
     entries = [
         _triage_entry("jwt-generator", 500),

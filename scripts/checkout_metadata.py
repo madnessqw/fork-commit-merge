@@ -17,6 +17,7 @@ CHECKOUT_URL_KEYS = ("checkout_url", "lemon_checkout_url", "lemonsqueezy_checkou
 LEGACY_CHECKOUT_URL_KEYS = ("lemon_checkout_url", "lemonsqueezy_checkout_url")
 PAYMENT_PROVIDER_KEY = "payment_provider"
 LEMONSQUEEZY = "lemonsqueezy"
+POLAR = "polar"
 
 
 def has_value(value: Any) -> bool:
@@ -49,8 +50,12 @@ def infer_payment_provider(record: dict[str, Any], checkout_url: str | None = No
     if resolved_checkout_url is None:
         return None
 
-    if "lemonsqueezy.com" in resolved_checkout_url.lower():
+    lowered = resolved_checkout_url.lower()
+
+    if "lemonsqueezy.com" in lowered:
         return LEMONSQUEEZY
+    if "polar.sh" in lowered or "buy.polar.sh" in lowered:
+        return POLAR
 
     return None
 

@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-24 07:10 +03
+# Codex Result — 2026-04-24 07:40 +03
 
 ## Okunanlar
 - `/home/gokhan/UniverseCreator/skills/SWARM_IDENTITY.md`
@@ -11,26 +11,29 @@
 - `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `skills/build_checklist.md`
-- `CODEBASE_MAP.md`
+- `/home/gokhan/mind/PROFILE.md`
+- `/home/gokhan/mind/PROJECTS.md`
+- `/home/gokhan/mind/DECISIONS.md`
+- `/home/gokhan/mind/ERRORS.md`
+- `/home/gokhan/mind/logs/2026-04-24.md`
 
 ## Ne Değişti
-- `scripts/polar_checkout_sync.py` artık Polar API çağrılarını `requests` ile yapıyor; `urllib`'nin 307 redirect'te POST'u bozması kapatıldı.
-- `tests/test_polar_checkout_sync.py` içine 307 redirect regresyon testi eklendi.
-- `scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment --replace-non-polar` tekrar çalıştı ve 117 ürünü Polar'a bağladı.
-- `STATE_SUMMARY.json` yenilendi; `checkout_gap_count` artık 0.
-- `lessons/checkout-url-lessons.md` güncellendi: Section 1 checkout sayıları, Section 2 checkout tablosu ve Section 6'ya `vercel_url` eksikliği notu eklendi.
-- `analysis/polar_checkout_plan.md` ve `analysis/polar_checkout_sync_report.md` yenilendi.
+- `scripts/checkout_metadata.py` artık Polar checkout URL'lerini `polar.sh` ve `buy.polar.sh` üzerinden `payment_provider=polar` olarak tanıyor.
+- `scripts/polar_checkout_sync.py` Polar API çağrılarına `Accept-Encoding: gzip, deflate` ekliyor; Brotli yüzünden sync bozulmuyor.
+- `scripts/unhealthy_triage.py` canonical-drift ürünleri de triage listesine alıyor; fallback-alive ama canonical kırık ürünler artık görünür.
+- `scripts/refresh_codex_context.py` metinleri LemonSqueezy-spesifik olmaktan çıkarıp legacy alias / generic payment-provider diline taşıdı.
+- `lessons/checkout-url-lessons.md` Section 6'ya Polar URL inference notu eklendi.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/polar_checkout_sync.py tests/test_polar_checkout_sync.py`
-- `pytest -q tests/test_polar_checkout_sync.py tests/test_checkout_metadata.py` → 16 passed
-- `python3 scripts/polar_checkout_sync.py plan --status live --status ready_for_payment --replace-non-polar --output analysis/polar_checkout_plan.md` → `total_candidates: 0`
-- `python3 scripts/update_summary.py` → `checkout_gaps=0`
-- Secret scan: 123 değişen dosyada token pattern'i bulunmadı
+- `python3 -m py_compile scripts/checkout_metadata.py scripts/polar_checkout_sync.py scripts/refresh_codex_context.py scripts/unhealthy_triage.py tests/test_checkout_metadata.py tests/test_unhealthy_triage.py`
+- `pytest -q tests/test_checkout_metadata.py tests/test_unhealthy_triage.py` → 17 passed
+- `pytest -q tests/test_polar_checkout_sync.py` → 10 passed
+- `pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_refresh_codex_context.py` → 133 passed
+- Secret scan: değişen dosyalarda gerçek secret değeri yok; yalnızca beklenen `POLAR_OAT` env-var referansları var.
 
 ## Kalan Blokajlar
-- `graphql-query-builder`, `html-to-markdown-pro`, `table-to-csv` hâlâ legacy LemonSqueezy checkout taşıyor; local manifestlerde `vercel_url` yok, bu yüzden sync-links onları atlıyor. Bunları Polar'a taşımak için önce URL/deploy tarafını düzeltmek lazım.
+- `STATE_SUMMARY.json` hâlâ 3 unhealthy live ürün ve 4 fallback-alive canonical drift gösteriyor; bu cycle onları daha görünür yaptı, upstream deployment sorunlarını çözmedi.
+- Deploy/url gap'leri açık kalmaya devam ediyor; checkout gap yine 0.
 
 ## Not
-- `analysis/codex_task.md` içindeki health/canonical drift görevi bu turda user önceliğiyle gölgelendi; Polar checkout rollout daha yüksek ROI idi ve onu çözdüm.
+- Task tarafında Polar checkout rayı sağlam; bu turda asıl kazanç checkout/provider normalizasyonu ve canonical-drift triage görünürlüğü oldu.

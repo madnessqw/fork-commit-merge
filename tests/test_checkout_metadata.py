@@ -37,6 +37,18 @@ class CheckoutMetadataTests(unittest.TestCase):
         self.assertEqual(normalized["checkout_url"], "https://gumroad.com/l/tool")
         self.assertEqual(normalized["lemon_checkout_url"], "https://old.example/ignore-me")
 
+    def test_polar_checkout_url_infers_polar_provider(self) -> None:
+        record = {
+            "checkout_url": "https://polar.sh/checkout/polar_cl_123",
+        }
+
+        normalized = normalize_checkout_metadata(record, force_canonical_key=True)
+
+        self.assertEqual(normalized["payment_provider"], "polar")
+        self.assertEqual(normalized["checkout_url"], "https://polar.sh/checkout/polar_cl_123")
+        self.assertNotIn("lemon_checkout_url", normalized)
+        self.assertNotIn("lemonsqueezy_checkout_url", normalized)
+
     def test_prune_legacy_drops_duplicate_checkout_aliases(self) -> None:
         record = {
             "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/tool-001",

@@ -75,7 +75,7 @@ class PolarClient:
                 url,
                 params={k: v for k, v in (query or {}).items() if v is not None},
                 json=payload,
-                headers=headers,
+                headers={**headers, "Accept-Encoding": "gzip, deflate"},
                 timeout=60,
             )
             response.raise_for_status()

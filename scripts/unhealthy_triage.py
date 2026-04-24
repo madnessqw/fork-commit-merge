@@ -86,18 +86,47 @@ def sort_by_severity(entries: list[dict]) -> list[dict]:
 
 
 def generate_triage(summary_path: Path | None = None) -> list[dict]:
+    """Generate triage entries for unhealthy live products AND canonical-drift products.
+
+    Canonical-drift products (alternate_healthy via fallback alias) are triaged
+    based on the canonical URL HTTP code so they surface in remediation reports.
+    """
     if summary_path is None:
         summary_path = ROOT / "STATE_SUMMARY.json"
     with open(summary_path, encoding="utf-8") as f:
         summary = json.load(f)
 
-    unhealthy = summary.get("gaps", {}).get("unhealthy_live", [])
-    entries = []
-    for item in unhealthy:
+    gaps = summary.get("gaps", {})
+    seen_slugs: set[str] = set()
+    entries: list[dict] = []
+
+    # 1) Direct unhealthy live products
+    for item in gaps.get("unhealthy_live", []):
         code = item.get("code", 0)
         if isinstance(code, str) and code.isdigit():
             code = int(code)
-        entries.append(_triage_entry(item.get("slug", "unknown"), code))
+        slug = item.get("slug", "unknown")
+        seen_slugs.add(slug)
+        entries.append(_triage_entry(slug, code))
+
+    # 2) Canonical-drift products (healthy via fallback, broken at canonical)
+    for item in gaps.get("canonical_drift", []):
+        slug = item.get("slug", "unknown")
+        if slug in seen_slugs:
+            continue
+        canonical_code = item.get("canonical_code", 0)
+        if isinstance(canonical_code, str) and canonical_code.isdigit():
+            canonical_code = int(canonical_code)
+        entry = _triage_entry(slug, canonical_code)
+        entry["label"] = f"canonical_drift/{entry['label']}"
+        entry["severity"] = "medium"
+        entry["suggested_action"] = (
+            f"Canonical URL returns {canonical_code}; healthy via fallback alias. "
+            "Redeploy canonical or update DNS/Vercel project slug."
+        )
+        seen_slugs.add(slug)
+        entries.append(entry)
+
     return entries
 
 
