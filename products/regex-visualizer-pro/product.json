@@ -1,0 +1,45 @@
+{
+  "slug": "regex-visualizer-pro",
+  "name": "Regex Visualizer Pro",
+  "tagline": "Visualize, test, and debug regular expressions with ease",
+  "description": "Interactive regex visualizer with real-time matching, explanation builder, cheat sheet, and pattern tester. Perfect for learning and debugging complex regular expressions.",
+  "price": "$19",
+  "payment_provider": "polar",
+  "category": "developer-tools",
+  "checkout_url": "https://buy.polar.sh/polar_cl_x0ZMumCo534zwcD2psufJbmOQ6V6TVfjdhx5V4FZifC",
+  "features": [
+    "Real-time regex pattern matching",
+    "Visual match highlighting with color-coded capture groups",
+    "Regex explanation in plain English",
+    "Built-in cheat sheet for 16 common patterns",
+    "Capture group extraction",
+    "Replace functionality preview",
+    "Pattern library with examples",
+    "Export matches as JSON/CSV"
+  ],
+  "tech_stack": [
+    "html",
+    "javascript"
+  ],
+  "pages": [
+    "index",
+    "api/process",
+    "api/health"
+  ],
+  "integrations": [
+    "polar"
+  ],
+  "status": "live",
+  "spec_version": "1.0",
+  "created_at": "2026-04-21T22:00:00Z",
+  "updated_at": "2026-04-24T11:00:00Z",
+  "vercel_url": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/regex-visualizer-pro",
+  "deployment_url": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app",
+  "webhook_url": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app/api/webhook",
+  "polar_product_id": "258c092a-7417-4e84-8a25-30ca64c7922e",
+  "polar_product_price_id": "61e04dc9-4679-4ae9-896b-9a02a62b40b3",
+  "polar_checkout_link_id": "ba24047f-79d3-44dc-af87-a6d4047412ad",
+  "created_cycle": 988,
+  "deployed_cycle": 1108
+}

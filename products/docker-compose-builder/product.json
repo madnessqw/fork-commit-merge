@@ -13,7 +13,7 @@
     "YAML validation"
   ],
   "tech_stack": "Vercel + React",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "devops_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg",
@@ -21,5 +21,7 @@
   "payment_provider": "polar",
   "polar_product_id": "1f446f84-17c6-4160-b291-c57602e1df6b",
   "polar_product_price_id": "98628c88-65a8-4089-a16a-e550cacde958",
-  "polar_checkout_link_id": "57179c14-2102-45b9-b2c8-7a1e7d157157"
+  "polar_checkout_link_id": "57179c14-2102-45b9-b2c8-7a1e7d157157",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

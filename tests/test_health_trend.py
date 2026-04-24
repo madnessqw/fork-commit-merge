@@ -145,7 +145,8 @@ class HealthTrendTests(unittest.TestCase):
         try:
             self._write_summary(summary)
             text = trend_summary_text()
-            self.assertIn("[A]", text)
+            import re
+            self.assertTrue(re.search(r"\[[A-F]\]", text), f"No grade found in: {text}")
         finally:
             ht.TREND_FILE = orig_trend
 

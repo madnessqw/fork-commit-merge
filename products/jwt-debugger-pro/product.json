@@ -13,7 +13,7 @@
     "Token generation"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "security_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU",
@@ -24,5 +24,7 @@
   "payment_provider": "polar",
   "polar_product_id": "feee5cf3-fc04-49b0-a464-6d42396c61cd",
   "polar_product_price_id": "42b9cd6a-36a5-49a0-b267-99e26922563a",
-  "polar_checkout_link_id": "35a309b1-3f9e-4f2f-b15b-160569fc8f67"
+  "polar_checkout_link_id": "35a309b1-3f9e-4f2f-b15b-160569fc8f67",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

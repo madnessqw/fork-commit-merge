@@ -20,7 +20,7 @@
     "javascript"
   ],
   "payment_provider": "polar",
-  "status": "ready_for_payment",
+  "status": "live",
   "vercel_url": "https://base64-encoder-pro.vercel.app",
   "deployment_url": "https://base64-encoder-kclywa0b5-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/base64-encoder-pro",
@@ -28,5 +28,7 @@
   "checkout_url": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug",
   "polar_product_id": "61ba5809-d786-4359-99be-6ca12af4621c",
   "polar_product_price_id": "85c06459-30fc-480a-b444-e942f8593c42",
-  "polar_checkout_link_id": "1057b47b-8b7a-4567-b612-dc9ba4af0cbb"
+  "polar_checkout_link_id": "1057b47b-8b7a-4567-b612-dc9ba4af0cbb",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

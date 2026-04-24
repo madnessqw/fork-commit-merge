@@ -30,5 +30,7 @@
   "polar_product_id": "9f0d87e7-36af-4bb1-b3b9-e183e8224b66",
   "polar_product_price_id": "9912165b-b8ae-4d1c-b40d-aaf66f5b4dc1",
   "polar_checkout_link_id": "e4e0e707-7ad0-471f-abbe-c4923b8a8f70",
-  "deployment_url": "https://sql-query-builder-m6oeivfa5-madnessqws-projects.vercel.app"
+  "deployment_url": "https://sql-query-builder-m6oeivfa5-madnessqws-projects.vercel.app",
+  "created_cycle": 988,
+  "deployed_cycle": 1108
 }

@@ -13,7 +13,7 @@
     "Command history"
   ],
   "tech_stack": "Vercel + Vanilla JS",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "devops_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz",
@@ -24,5 +24,7 @@
   "payment_provider": "polar",
   "polar_product_id": "d34b5872-a36f-4218-902b-5128d17dbc6c",
   "polar_product_price_id": "29404873-9ea2-4c32-899d-ddd5503979d1",
-  "polar_checkout_link_id": "96e88ac0-8344-4e65-9bb3-46152503747a"
+  "polar_checkout_link_id": "96e88ac0-8344-4e65-9bb3-46152503747a",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

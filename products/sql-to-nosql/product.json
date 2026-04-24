@@ -13,7 +13,7 @@
     "Bulk conversion support"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "developer_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_thd5uw8PKttnBq51UARVGnCEytJKUIEG3wrIa24dktJ",
@@ -24,5 +24,7 @@
   "payment_provider": "polar",
   "polar_product_id": "8ab04ad3-ba2b-4277-9a01-b4ae5a83d6d8",
   "polar_product_price_id": "55c52903-d734-45aa-9f1e-c376c90c76c3",
-  "polar_checkout_link_id": "14207f5a-d7a0-447f-9394-7d9a55a99598"
+  "polar_checkout_link_id": "14207f5a-d7a0-447f-9394-7d9a55a99598",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

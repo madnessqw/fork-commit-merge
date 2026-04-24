@@ -13,7 +13,7 @@
     "GitHub integration"
   ],
   "tech_stack": "Vercel + Vanilla JS",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "developer_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_tJujKpPKzDfFiifrDzi4VFfwPd6BO4KA423UY3JZK39",
@@ -21,5 +21,7 @@
   "payment_provider": "polar",
   "polar_product_id": "db9ace29-4183-4db6-b474-847b84ad52b9",
   "polar_product_price_id": "0b3732f9-0512-459c-9fcd-252f03b4f09c",
-  "polar_checkout_link_id": "4f841afb-2e26-4162-8111-3278da38abb2"
+  "polar_checkout_link_id": "4f841afb-2e26-4162-8111-3278da38abb2",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

@@ -32,5 +32,7 @@
   "spec_version": "1.0",
   "polar_product_id": "1109272a-26ce-42e1-97b7-3deb7414eda9",
   "polar_product_price_id": "03c84eac-f584-4901-816b-ec856219bf83",
-  "polar_checkout_link_id": "2253bdb1-af8c-475c-a0a9-29fac2192427"
+  "polar_checkout_link_id": "2253bdb1-af8c-475c-a0a9-29fac2192427",
+  "created_cycle": 988,
+  "deployed_cycle": 1108
 }

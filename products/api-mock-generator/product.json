@@ -27,5 +27,7 @@
   "payment_provider": "polar",
   "polar_product_id": "1faf2dec-8d66-4af6-9e97-97649dd6a1b7",
   "polar_product_price_id": "bab7e461-029c-4960-aaf6-e38c52698e82",
-  "polar_checkout_link_id": "94ed64b6-527a-4bcb-a606-7594eaf8232a"
+  "polar_checkout_link_id": "94ed64b6-527a-4bcb-a606-7594eaf8232a",
+  "created_cycle": 988,
+  "deployed_cycle": 1108
 }

@@ -3,7 +3,7 @@
   "slug": "htpasswd-generator",
   "description": "Generate Apache/Nginx .htpasswd files with multiple hash algorithms",
   "price": "$19",
-  "status": "ready_to_deploy",
+  "status": "live",
   "tagline": "Generate secure Apache/Nginx .htpasswd files with bcrypt and bulk user support",
   "category": "Developer Tools",
   "features": [
@@ -25,5 +25,9 @@
   "payment_provider": "polar",
   "polar_product_id": "9691c1db-e3b3-4b76-a4a6-8ae5a4098892",
   "polar_product_price_id": "8d30eb3e-309d-4d77-ab29-a411e947e711",
-  "polar_checkout_link_id": "e54b73cc-8161-418a-94fe-91602eb09003"
+  "polar_checkout_link_id": "e54b73cc-8161-418a-94fe-91602eb09003",
+  "vercel_url": "https://htpasswd-generator.vercel.app",
+  "github_url": "https://github.com/universe7creator/htpasswd-generator",
+  "created_cycle": 988,
+  "deployed_cycle": 1108
 }

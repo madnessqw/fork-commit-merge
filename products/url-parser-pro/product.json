@@ -4,7 +4,7 @@
   "tagline": "Parse and analyze any URL with detailed component breakdown",
   "description": "Extract every component from any URL including protocol, host, pathname, query parameters, hash fragments, and more. Generate ready-to-use code snippets in multiple languages.",
   "price": "$19",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "developer-tools",
   "features": [
     "Paste any URL for instant parsing",
@@ -51,5 +51,7 @@
   "payment_provider": "polar",
   "polar_product_id": "81cd950e-f185-423f-bb60-bdd825fdf3d0",
   "polar_product_price_id": "87c1a689-7c36-4bb9-8378-7988036896d3",
-  "polar_checkout_link_id": "d10436ba-84ed-4f2c-b5d8-1c2b24ac21f7"
+  "polar_checkout_link_id": "d10436ba-84ed-4f2c-b5d8-1c2b24ac21f7",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

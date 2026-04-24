@@ -13,7 +13,7 @@
     "Export prompts"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "ai_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_TJnoSgktY09ZuCoai0vIMdX4HkFkMhc5GzxKS0OLYgB",
@@ -21,5 +21,7 @@
   "payment_provider": "polar",
   "polar_product_id": "97e9c91c-a7ad-4518-a602-7d51f1ba69c8",
   "polar_product_price_id": "c37c128c-2d2e-484e-9b0c-9cc6567f9568",
-  "polar_checkout_link_id": "41b62bc7-9c49-4e95-84c7-6c1324cd9a4e"
+  "polar_checkout_link_id": "41b62bc7-9c49-4e95-84c7-6c1324cd9a4e",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

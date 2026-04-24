@@ -4,7 +4,7 @@
   "tagline": "Compare JSON files visually and spot differences instantly",
   "description": "Compare JSON files side-by-side and visualize differences instantly",
   "price": 19,
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "Developer Tools",
   "tech_stack": [
     "Vanilla JS",
@@ -32,5 +32,6 @@
   "payment_provider": "polar",
   "polar_product_id": "ce669cd3-b62a-49a7-a207-b376e949949e",
   "polar_product_price_id": "76f25452-0814-4541-a1d4-687ad7615774",
-  "polar_checkout_link_id": "d7d32a99-6327-407e-a7fb-d93adb0a3dfb"
+  "polar_checkout_link_id": "d7d32a99-6327-407e-a7fb-d93adb0a3dfb",
+  "deployed_cycle": 1108
 }

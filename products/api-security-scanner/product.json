@@ -13,7 +13,7 @@
     "Detailed reports"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "ready_for_payment",
+  "status": "live",
   "category": "security_tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_0gYWdHmAc5bx0rnESOwmN33A5WoBZFUttdbdc2Ph7Up",
@@ -21,5 +21,7 @@
   "payment_provider": "polar",
   "polar_product_id": "1a7e40f0-0178-454b-b134-2bddaa28f163",
   "polar_product_price_id": "c548815d-4525-4ef3-86ef-cbc2d6d26b5e",
-  "polar_checkout_link_id": "1026c23f-4d13-4a20-a8af-baf5a1e1d13e"
+  "polar_checkout_link_id": "1026c23f-4d13-4a20-a8af-baf5a1e1d13e",
+  "created_cycle": 1116,
+  "deployed_cycle": 1108
 }

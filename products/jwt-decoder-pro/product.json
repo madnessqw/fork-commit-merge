@@ -1,0 +1,45 @@
+{
+  "slug": "jwt-decoder-pro",
+  "name": "JWT Decoder Pro",
+  "tagline": "Decode, verify, and debug JSON Web Tokens instantly",
+  "description": "Professional JWT token decoder with signature verification, payload inspection, header analysis, and token validation. Supports HS256, HS384, HS512, RS256, RS384, RS512 algorithms.",
+  "price": "$19",
+  "payment_provider": "polar",
+  "checkout_url": "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof",
+  "category": "developer-tools",
+  "features": [
+    "Decode JWT header and payload",
+    "Signature verification with secret/key",
+    "Support for multiple algorithms (HS256, RS256, etc.)",
+    "Pretty print JSON payloads",
+    "Token expiration check",
+    "Claim validation and inspection",
+    "Copy decoded parts to clipboard",
+    "Security warnings for unsafe tokens"
+  ],
+  "tech_stack": [
+    "html",
+    "javascript"
+  ],
+  "pages": [
+    "index",
+    "api/process",
+    "api/health",
+    "api/webhook"
+  ],
+  "integrations": [
+    "polar"
+  ],
+  "status": "live",
+  "spec_version": "1.0",
+  "created_at": "2026-04-21T22:00:00Z",
+  "vercel_url": "https://jwt-decoder-liyurccmi-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/jwt-decoder-pro",
+  "deployment_url": "https://jwt-decoder-liyurccmi-madnessqws-projects.vercel.app",
+  "webhook_url": "https://jwt-decoder-liyurccmi-madnessqws-projects.vercel.app/api/webhook",
+  "polar_product_id": "5ebdfa15-c0e4-4be5-8761-b3a5e7e77598",
+  "polar_product_price_id": "470b2bc6-69a1-4b53-9cd3-e652bffb54f7",
+  "polar_checkout_link_id": "4f99ac6d-e651-434d-b6c9-b0443de16ac9",
+  "created_cycle": 988,
+  "deployed_cycle": 1108
+}
