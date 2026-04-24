@@ -1,31 +1,88 @@
 #!/usr/bin/env python3
+"""Generic STATE.json updater — CLI-driven, no hardcoded values."""
+import argparse
 import json
-import datetime
+import os
+import sys
+from datetime import datetime, timezone
 
-# Read current STATE
-with open('STATE.json', 'r') as f:
-    s = json.load(f)
 
-# Update for Cycle 279
-s['cycle'] = 279
-s['timestamp'] = datetime.datetime.utcnow().isoformat() + '+00:00'
-s['message'] = 'Cycle 279 - Deploying agents for emergency income generation'
-s['next_priority'] = '1) Execute highest priority quick win, 2) Check PR statuses, 3) Deploy backup tasks'
+def load_state(path="STATE.json"):
+    if not os.path.exists(path):
+        print(f"ERROR: {path} not found", file=sys.stderr)
+        sys.exit(1)
+    with open(path, "r") as f:
+        return json.load(f)
 
-# Update agent statuses
-for agent in s['team']['agents']:
-    if agent['name'] in ['planner', 'executor-2', 'quick-executor', 'researcher-3', 'bounty-finder']:
-        agent['status'] = 'working'
 
-# Add learning
-s.setdefault('learnings', []).append('Cycle 279: Deploying agents for emergency income - 9 PRs pending ($170), 10 opportunities ready')
+def save_state(state, path="STATE.json"):
+    with open(path, "w") as f:
+        json.dump(state, f, indent=2)
+    return state
 
-# Write back
-with open('STATE.json', 'w') as f:
-    json.dump(s, f, indent=2)
 
-print('STATE.json updated for Cycle 279')
-print(f'Cycle: {s["cycle"]}')
-print(f'Balance: ${s["balance"]}')
-print(f'Pending PRs: {len(s.get("pending_prs", []))}')
-print(f'Active agents: {len([a for a in s["team"]["agents"] if a["status"] == "working"])}')
+def update_cycle(state, cycle=None):
+    if cycle is not None:
+        state["cycle"] = cycle
+    state["timestamp"] = datetime.now(timezone.utc).isoformat()
+    return state
+
+
+def update_message(state, message=None, next_priority=None):
+    if message:
+        state["message"] = message
+    if next_priority:
+        state["next_priority"] = next_priority
+    return state
+
+
+def set_agent_status(state, names, status):
+    agents = state.get("team", {}).get("agents", [])
+    updated = 0
+    for agent in agents:
+        if agent.get("name") in names:
+            agent["status"] = status
+            updated += 1
+    return state, updated
+
+
+def add_learning(state, text):
+    state.setdefault("learnings", []).append(text)
+    return state
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Update STATE.json generically")
+    parser.add_argument("--state-file", default="STATE.json", help="Path to STATE.json")
+    parser.add_argument("--cycle", type=int, help="Set cycle number")
+    parser.add_argument("--message", help="Set status message")
+    parser.add_argument("--next-priority", help="Set next priority")
+    parser.add_argument("--agent-status", nargs=2, metavar=("NAMES", "STATUS"),
+                        help="Set agent statuses (comma-separated names, status)")
+    parser.add_argument("--learning", help="Add a learning entry")
+    parser.add_argument("--dry-run", action="store_true", help="Print changes without writing")
+    args = parser.parse_args()
+
+    state = load_state(args.state_file)
+    state = update_cycle(state, args.cycle)
+    state = update_message(state, args.message, args.next_priority)
+
+    updated_agents = 0
+    if args.agent_status:
+        names = [n.strip() for n in args.agent_status[0].split(",")]
+        status = args.agent_status[1]
+        state, updated_agents = set_agent_status(state, names, status)
+
+    if args.learning:
+        state = add_learning(state, args.learning)
+
+    if args.dry_run:
+        print(json.dumps(state, indent=2))
+        return
+
+    save_state(state, args.state_file)
+    print(f"STATE.json updated | cycle={state.get('cycle')} | agents_updated={updated_agents}")
+
+
+if __name__ == "__main__":
+    main()
