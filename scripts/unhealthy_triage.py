@@ -512,12 +512,23 @@ def main(argv: list[str] | None = None):
         dest="health_score",
         help="Output portfolio_health_score() as JSON",
     )
+    parser.add_argument(
+        "--drift-fix",
+        action="store_true",
+        dest="drift_fix",
+        help="Output canonical_drift_fix_suggestions() as JSON",
+    )
     args = parser.parse_args(argv)
 
     if args.health_score:
         score = portfolio_health_score()
         print(json.dumps(score, indent=2))
         return {"health_score": score}
+
+    if args.drift_fix:
+        suggestions = canonical_drift_fix_suggestions()
+        print(json.dumps(suggestions, indent=2))
+        return {"drift_fix": len(suggestions)}
 
     entries = generate_triage()
     if not entries:

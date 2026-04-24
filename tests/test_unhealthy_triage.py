@@ -795,3 +795,75 @@ def test_generate_glm_brief_sorted_by_severity(tmp_path):
     high_pos = md.find("high-tool")
     low_pos = md.find("low-tool")
     assert high_pos < low_pos
+
+
+def test_main_drift_fix_flag(tmp_path, monkeypatch, capsys):
+    fake_suggestions = [
+        {
+            "slug": "pdf-forge",
+            "fallback_url": "https://pdf-forge-five.vercel.app",
+            "ideal_url": "https://pdf-forge.vercel.app",
+            "canonical_status": "error_500",
+            "fix_command": "Redeploy via: cd products/pdf-forge && vercel --prod --yes",
+        },
+        {
+            "slug": "webhook-tester",
+            "fallback_url": "https://webhook-tester-alt.vercel.app",
+            "ideal_url": "https://webhook-tester.vercel.app",
+            "canonical_status": "not_found",
+            "fix_command": "Link project: cd products/webhook-tester && vercel link --yes && vercel --prod --yes",
+        },
+    ]
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.canonical_drift_fix_suggestions",
+        lambda **kw: fake_suggestions,
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--drift-fix"])
+    assert "drift_fix" in result
+    assert result["drift_fix"] == 2
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert len(data) == 2
+    assert data[0]["slug"] == "pdf-forge"
+    assert data[1]["slug"] == "webhook-tester"
+    assert "vercel --prod" in data[0]["fix_command"]
+
+
+def test_main_drift_fix_empty(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.canonical_drift_fix_suggestions",
+        lambda **kw: [],
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--drift-fix"])
+    assert result["drift_fix"] == 0
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert data == []
+
+
+def test_main_drift_fix_does_not_call_generate_triage(tmp_path, monkeypatch, capsys):
+    call_count = {"n": 0}
+
+    def fake_generate_triage(**kw):
+        call_count["n"] += 1
+        return []
+
+    def fake_drift_fix(**kw):
+        return [{"slug": "test", "fallback_url": "", "ideal_url": "", "canonical_status": "x", "fix_command": "x"}]
+
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.generate_triage",
+        fake_generate_triage,
+    )
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.canonical_drift_fix_suggestions",
+        fake_drift_fix,
+    )
+    from scripts.unhealthy_triage import main
+
+    main(["--drift-fix"])
+    assert call_count["n"] == 0
