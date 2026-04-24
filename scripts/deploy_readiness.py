@@ -337,3 +337,106 @@ def readiness_summary(
         "top_url_gap_slugs": top_url_gap_slugs,
     }
 
+
+PAYMENT_BLOCKERS = {
+    "missing_checkout_url": "Polar checkout link missing — run polar_checkout_sync.py",
+    "missing_vercel_url": "Not deployed — deploy via Vercel first",
+    "missing_health_check": "No health check recorded — run health_check.py",
+    "unhealthy": "Deployed but unhealthy — triage via unhealthy_triage.py",
+}
+
+
+def _payment_blockers(record: dict[str, Any]) -> list[str]:
+    blockers: list[str] = []
+    c_url = record.get("checkout_url") or record.get("c")
+    if not has_value(c_url) or not str(c_url).startswith("http"):
+        blockers.append("missing_checkout_url")
+    v_url = record.get("vercel_url") or record.get("v") or record.get("deployment_url")
+    if not has_value(v_url) or not str(v_url).startswith("http"):
+        blockers.append("missing_vercel_url")
+    last_hc = record.get("last_health_code")
+    if last_hc is None:
+        blockers.append("missing_health_check")
+    elif isinstance(last_hc, int) and last_hc >= 400:
+        blockers.append("unhealthy")
+    return blockers
+
+
+def ready_for_payment_audit(
+    state_path: Path = STATE_PATH,
+) -> dict[str, Any]:
+    """Audit ready_for_payment products and identify blockers to going live.
+
+    Scans STATE.json for products with status ``ready_for_payment`` and
+    reports which ones can be fast-tracked to live vs. which need action.
+
+    Returns a dict with keys:
+        - ``total``: number of ready_for_payment products
+        - ``live_ready``: products with no blockers (can go live)
+        - ``blocked``: products with one or more blockers
+        - ``blocker_counts``: how many products have each blocker type
+    """
+    state = _load_json(state_path)
+    if not state:
+        return {
+            "total": 0,
+            "live_ready": [],
+            "blocked": [],
+            "blocker_counts": {},
+        }
+
+    products = state.get("products", {})
+    collections: list[list[dict[str, Any]]] = []
+    if isinstance(products, dict):
+        for key in ("active", "spec_ready"):
+            coll = products.get(key, [])
+            if isinstance(coll, list):
+                collections.append(coll)
+    elif isinstance(products, list):
+        collections.append(products)
+
+    seen: set[str] = set()
+    live_ready: list[dict[str, Any]] = []
+    blocked: list[dict[str, Any]] = []
+    blocker_counts: dict[str, int] = {}
+
+    for collection in collections:
+        for item in collection:
+            if not isinstance(item, dict):
+                continue
+            normalized = normalize_record(item)
+            status = str(normalized.get("status") or "").strip()
+            if status != "ready_for_payment":
+                continue
+            slug = _pick_slug(normalized) or "unknown"
+            if slug in seen:
+                continue
+            seen.add(slug)
+
+            product_blockers = _payment_blockers(normalized)
+            entry = {
+                "slug": slug,
+                "name": normalized.get("name") or normalized.get("n", slug),
+                "vercel_url": normalized.get("vercel_url") or normalized.get("v", ""),
+                "checkout_url": normalized.get("checkout_url") or normalized.get("c", ""),
+                "last_health_code": normalized.get("last_health_code"),
+                "blockers": product_blockers,
+            }
+
+            if product_blockers:
+                blocked.append(entry)
+                for b in product_blockers:
+                    blocker_counts[b] = blocker_counts.get(b, 0) + 1
+            else:
+                live_ready.append(entry)
+
+    live_ready.sort(key=lambda e: str(e["slug"]))
+    blocked.sort(key=lambda e: (len(e["blockers"]), str(e["slug"])))
+
+    return {
+        "total": len(live_ready) + len(blocked),
+        "live_ready": live_ready,
+        "blocked": blocked,
+        "blocker_counts": blocker_counts,
+    }
+

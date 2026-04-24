@@ -7,6 +7,7 @@ from scripts.deploy_readiness import (
     auto_fix_suggestions,
     batch_suggest_vercel_urls,
     collect_spec_ready_deploy_readiness,
+    ready_for_payment_audit,
     readiness_summary,
     suggest_vercel_url,
 )
@@ -404,6 +405,187 @@ class AutoFixSuggestionsTests(unittest.TestCase):
 
         self.assertEqual(len(result), 1)
         self.assertFalse(result[0]["manifest_ok"])
+
+
+class ReadyForPaymentAuditTests(unittest.TestCase):
+    def _write_state(self, tmpdir: str, products: list[dict]) -> Path:
+        state_path = Path(tmpdir) / "STATE.json"
+        state_path.parent.mkdir(parents=True, exist_ok=True)
+        state = {"products": {"active": products}}
+        state_path.write_text(json.dumps(state), encoding="utf-8")
+        return state_path
+
+    def test_no_ready_for_payment(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {"slug": "live-prod", "status": "live", "vercel_url": "https://x.vercel.app"},
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(result["total"], 0)
+        self.assertEqual(result["live_ready"], [])
+        self.assertEqual(result["blocked"], [])
+
+    def test_live_ready_product(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "ready-prod",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://ready-prod.vercel.app",
+                    "checkout_url": "https://buy.polar.sh/test",
+                    "last_health_code": 200,
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(result["total"], 1)
+        self.assertEqual(len(result["live_ready"]), 1)
+        self.assertEqual(result["live_ready"][0]["slug"], "ready-prod")
+        self.assertEqual(result["live_ready"][0]["blockers"], [])
+        self.assertEqual(result["blocked"], [])
+
+    def test_blocked_missing_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "no-checkout",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://no-checkout.vercel.app",
+                    "last_health_code": 200,
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(result["total"], 1)
+        self.assertEqual(len(result["blocked"]), 1)
+        self.assertIn("missing_checkout_url", result["blocked"][0]["blockers"])
+        self.assertEqual(result["blocker_counts"]["missing_checkout_url"], 1)
+
+    def test_blocked_unhealthy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "sick-prod",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://sick-prod.vercel.app",
+                    "checkout_url": "https://buy.polar.sh/test",
+                    "last_health_code": 500,
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(len(result["blocked"]), 1)
+        self.assertIn("unhealthy", result["blocked"][0]["blockers"])
+
+    def test_blocked_missing_vercel_url(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "no-deploy",
+                    "status": "ready_for_payment",
+                    "checkout_url": "https://buy.polar.sh/test",
+                    "last_health_code": 200,
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(len(result["blocked"]), 1)
+        self.assertIn("missing_vercel_url", result["blocked"][0]["blockers"])
+
+    def test_blocked_missing_health_check(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "no-hc",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://no-hc.vercel.app",
+                    "checkout_url": "https://buy.polar.sh/test",
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertIn("missing_health_check", result["blocked"][0]["blockers"])
+
+    def test_multiple_blockers(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "bad-prod",
+                    "status": "ready_for_payment",
+                    "last_health_code": 500,
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        blocked = result["blocked"][0]
+        self.assertIn("missing_checkout_url", blocked["blockers"])
+        self.assertIn("missing_vercel_url", blocked["blockers"])
+        self.assertIn("unhealthy", blocked["blockers"])
+
+    def test_mixed_products(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "good",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://good.vercel.app",
+                    "checkout_url": "https://buy.polar.sh/test",
+                    "last_health_code": 200,
+                },
+                {
+                    "slug": "bad",
+                    "status": "ready_for_payment",
+                    "last_health_code": 500,
+                },
+                {
+                    "slug": "live-prod",
+                    "status": "live",
+                    "vercel_url": "https://live.vercel.app",
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(result["total"], 2)
+        self.assertEqual(len(result["live_ready"]), 1)
+        self.assertEqual(len(result["blocked"]), 1)
+
+    def test_missing_file_returns_empty(self) -> None:
+        result = ready_for_payment_audit(Path("/nonexistent/STATE.json"))
+        self.assertEqual(result["total"], 0)
+        self.assertEqual(result["live_ready"], [])
+        self.assertEqual(result["blocked"], [])
+
+    def test_deduplication(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            sp = self._write_state(tmpdir, [
+                {
+                    "slug": "dup-prod",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://dup.vercel.app",
+                    "checkout_url": "https://buy.polar.sh/test",
+                    "last_health_code": 200,
+                },
+                {
+                    "slug": "dup-prod",
+                    "status": "ready_for_payment",
+                    "vercel_url": "https://dup.vercel.app",
+                    "checkout_url": "https://buy.polar.sh/test",
+                    "last_health_code": 200,
+                },
+            ])
+            result = ready_for_payment_audit(sp)
+        self.assertEqual(result["total"], 1)
+
+    def test_shorthand_fields_recognized(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            state_path = Path(tmpdir) / "STATE.json"
+            state_path.parent.mkdir(parents=True, exist_ok=True)
+            state = {"products": {"active": [
+                {
+                    "s": "shorthand-prod",
+                    "st": "ready_for_payment",
+                    "v": "https://shorthand-prod.vercel.app",
+                    "c": "https://buy.polar.sh/test",
+                    "last_health_code": 200,
+                },
+            ]}}
+            state_path.write_text(json.dumps(state), encoding="utf-8")
+            result = ready_for_payment_audit(state_path)
+        self.assertEqual(result["total"], 1)
+        self.assertEqual(len(result["live_ready"]), 1)
 
 
 if __name__ == "__main__":
