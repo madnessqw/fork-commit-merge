@@ -506,7 +506,18 @@ def main(argv: list[str] | None = None):
         action="store_true",
         help="Also output triage_summary() overview",
     )
+    parser.add_argument(
+        "--health-score",
+        action="store_true",
+        dest="health_score",
+        help="Output portfolio_health_score() as JSON",
+    )
     args = parser.parse_args(argv)
+
+    if args.health_score:
+        score = portfolio_health_score()
+        print(json.dumps(score, indent=2))
+        return {"health_score": score}
 
     entries = generate_triage()
     if not entries:

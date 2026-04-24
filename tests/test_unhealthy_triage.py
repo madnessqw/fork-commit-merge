@@ -727,6 +727,56 @@ def test_main_default_output(tmp_path, monkeypatch, capsys):
     assert "mock report" in captured.out
 
 
+def test_main_health_score_flag(tmp_path, monkeypatch, capsys):
+    fake_score = {
+        "live_count": 91,
+        "healthy_count": 88,
+        "unhealthy_count": 3,
+        "health_pct": 96.7,
+        "grade": "A",
+        "checkout_covered": True,
+        "deploy_gap": 5,
+        "canonical_drift": 4,
+    }
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.portfolio_health_score",
+        lambda **kw: fake_score,
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--health-score"])
+    assert "health_score" in result
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert data["grade"] == "A"
+    assert data["live_count"] == 91
+    assert data["health_pct"] == 96.7
+
+
+def test_main_health_score_json_output(tmp_path, monkeypatch, capsys):
+    fake_score = {
+        "live_count": 10,
+        "healthy_count": 7,
+        "unhealthy_count": 3,
+        "health_pct": 70.0,
+        "grade": "C",
+        "checkout_covered": False,
+        "deploy_gap": 2,
+        "canonical_drift": 1,
+    }
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.portfolio_health_score",
+        lambda **kw: fake_score,
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--health-score"])
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert data["grade"] == "C"
+    assert data["checkout_covered"] is False
+
+
 def test_generate_glm_brief_sorted_by_severity(tmp_path):
     summary = {
         "gaps": {
