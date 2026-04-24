@@ -1,0 +1,28 @@
+{
+  "name": "JSON Diff Pro",
+  "slug": "json-diff-pro",
+  "tagline": "Compare JSON files visually and spot differences instantly",
+  "description": "Compare JSON files side-by-side and visualize differences instantly",
+  "price": 19,
+  "status": "ready_to_deploy",
+  "category": "Developer Tools",
+  "tech_stack": ["Vanilla JS", "Vercel"],
+  "tags": [
+    "json",
+    "diff",
+    "compare",
+    "developer"
+  ],
+  "created_cycle": 1076,
+  "features": [
+    "Side-by-side JSON comparison",
+    "Color-coded difference highlighting",
+    "Detect added, removed, modified fields",
+    "Nested object diff support",
+    "Export diff reports"
+  ],
+  "vercel_url": null,
+  "github_url": "https://github.com/universe7creator/json-diff-pro",
+  "checkout_url": null,
+  "spec_version": "1.0"
+}
