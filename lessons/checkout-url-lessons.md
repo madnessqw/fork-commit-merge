@@ -12,17 +12,17 @@
 | Status | Adet |
 |---|---|
 | live | 88 |
-| spec_ready | 27 |
+| spec_ready | 26 |
 | ready_to_deploy | 22 |
-| ready_for_payment | 13 |
+| ready_for_payment | 14 |
 | building | 10 |
 
 | Checkout Durumu | Adet |
 |---|---|
-| polar-ok | 119 |
+| polar-ok | 120 |
 | lemon-migrate (Polar'a taşı) | 0 |
 | other | 0 |
-| missing (oluşturulmamış) | 41 |
+| missing (oluşturulmamış) | 40 |
 
 ---
 
@@ -115,7 +115,7 @@
 | ip-network-tools | live | $19 | product.json | ✅ | 23f7313f-3f9e-4c69-8d56-f7e943f1db33 |
 | json-diff-pro | ready_to_deploy | $19 | spec.json | ✅ | ce669cd3-b62a-49a7-a207-b376e949949e |
 | json-schema-generator | spec_ready | $19 | product.json | ❌ |  |
-| json-schema-to-ts | spec_ready | $19 | spec.json | ❌ |  |
+| json-schema-to-ts | ready_for_payment | $19 | product.json | ✅ | eaa25798-7f3b-4acb-91d1-35e5041e5264 |
 | json-to-csv-pro | spec_ready | $19 | product.json | ✅ | d322b1f1-d854-4d38-b4f8-efc64535b0d8 |
 | jsonpath-tester | live | $9 | product.json | ✅ | 0bc4079c-b31f-4efc-846c-51061216a3e2 |
 | jwt-debugger-pro | spec_ready | $19 | product.json | ✅ | feee5cf3-fc04-49b0-a464-6d42396c61cd |

@@ -70,3 +70,5 @@
 {"run_id": "codex-20260424-0711", "mode": "EXECUTION", "task": "Polar checkout rollout", "status": "done", "slug": "checkout-rollout", "duration_min": 30, "cost_est": 0.15, "cycle": 1108}
 {"run_id":"codex-20260424-0842","mode":"EXECUTION","task":"health/canonical drift visibility hardening","status":"done","slug":"health-canonical-drift","duration_min":22,"cost_est":0.04,"cycle":1109}
 {"run_id":"codex-20260424-0907","mode":"EXECUTION","task":"align Polar scaffold and deploy templates with polar_* checkout ids","status":"done","slug":"checkout-template-schema","duration_min":14,"cost_est":0.03,"cycle":1109,"ts":"2026-04-24T06:07:06Z"}
+{"run_id": "codex-20260424-0942", "mode": "EXECUTION", "task": "harden Polar checkout sync for no-vercel legacy migrations", "status": "done", "slug": "polar-checkout-sync-hardening", "duration_min": 28, "cost_est": 0.08, "cycle": 1109, "commit": "a6b150e", "ts": "2026-04-24T06:43:07Z"}
+{"run_id": "codex-20260424-1207", "mode": "EXECUTION", "task": "Polar checkout sync for json-schema-to-ts", "status": "done", "slug": "json-schema-to-ts", "duration_min": 18, "cost_est": 0.05, "cycle": 1110, "ts": "2026-04-24T09:07:02Z"}

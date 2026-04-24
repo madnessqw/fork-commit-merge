@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-24 08:07 UTC
+# Codex Task — Generated 2026-04-24 09:06 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -11,18 +11,18 @@ stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyile
 Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 4 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
 
 ## Canlı State Özeti
-- Cycle: 1109
-- Live sağlık: 87/90 (%96.7)
-- Canonical healthy: 83/90 (%92.2)
+- Cycle: 1110
+- Live sağlık: 88/91 (%96.7)
+- Canonical healthy: 84/91 (%92.3)
 - Health pending: 0
 - Fallback healthy: 4
 - Checkout gap: 0
-- Deploy readiness gap: 16
-- Deploy/url gap: 6
+- Deploy readiness gap: 15
+- Deploy/url gap: 5
 - Canonical drift: 4
 - Canonical drift slugs: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
 - Fallback healthy slugs: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
-- Spec-ready count: 12
+- Spec-ready count: 2
 - Next action: 3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut
 
 ## Guardrails

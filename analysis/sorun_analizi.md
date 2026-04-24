@@ -1,18 +1,18 @@
-# Sorun Analizi — Cycle 1109 | 2026-04-24 08:07 UTC
+# Sorun Analizi — Cycle 1110 | 2026-04-24 09:06 UTC
 
 ## Ana Darboğaz
 - **live_health** — 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 87/90
-- Canonical healthy: 83/90
+- Healthy live: 88/91
+- Canonical healthy: 84/91
 - Health pending: 0
 - Fallback healthy: 4
 - Checkout gap: 0
-- Deploy readiness gap: 16
-- Deploy/url gap: 6
+- Deploy readiness gap: 15
+- Deploy/url gap: 5
 - Canonical drift: 4
-- Spec-ready backlog: 12
+- Spec-ready backlog: 2
 
 ## Canlı Sağlıksız Ürünler
 - `jwt-generator` — code=500 status=error_500 url=https://jwt-generator.vercel.app
@@ -20,7 +20,7 @@
 - `timestamp-converter` — code=451 status=error_451 url=https://timestamp-converter.vercel.app
 
 ## URL/Deploy Eksikleri
-- browser-mock-studio, json-schema-to-ts, mcp-inspector-pro
+- browser-mock-studio, mcp-inspector-pro
 
 ## Canonical Drift Ürünleri
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
@@ -29,7 +29,7 @@
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 
 ## Deploy Readiness Issues
-- Count: 16 | Manifest gaps: 0 | URL gaps: 16 | State gaps: 13
+- Count: 15 | Manifest gaps: 0 | URL gaps: 15 | State gaps: 12
 - `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
 - `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
 - `diff-checker-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
@@ -37,9 +37,9 @@
 - `yaml-validator-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
 - `api-mock-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
 - `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
-- `json-schema-to-ts` — manifest=none; url=vercel_url, deployment_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
 - `docker-run-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
 - `subdomain-finder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
+- `favicon-generator-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle
 
 ## Açık Issue Kayıtları
 - **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift

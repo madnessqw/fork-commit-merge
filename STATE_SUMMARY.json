@@ -1,26 +1,26 @@
 {
-  "cycle": 1109,
+  "cycle": 1110,
   "mode": "OPTIMIZE",
   "balance": 0.0,
-  "active_count": 149,
-  "live_count": 90,
-  "healthy_count": 87,
-  "canonical_healthy_count": 83,
+  "active_count": 154,
+  "live_count": 91,
+  "healthy_count": 88,
+  "canonical_healthy_count": 84,
   "fallback_healthy_count": 4,
   "unhealthy_count": 3,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 6,
+  "deploy_missing_or_bad_url": 5,
   "canonical_url_drift": 4,
-  "spec_ready_count": 12,
-  "deploy_readiness_count": 16,
+  "spec_ready_count": 2,
+  "deploy_readiness_count": 15,
   "deploy_readiness_manifest_gap_count": 0,
-  "deploy_readiness_url_gap_count": 16,
-  "deploy_readiness_state_gap_count": 13,
+  "deploy_readiness_url_gap_count": 15,
+  "deploy_readiness_state_gap_count": 12,
   "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T08:07:27.297482Z",
+  "last_updated": "2026-04-24T09:06:13.486107Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -839,7 +839,7 @@
       "s": "binary-inspector",
       "st": "ready_for_payment",
       "v": "https://binary-inspector.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_ifeHO0XG1VqRRhKDgearUvMUTWhlc8EVQ7RdS2Pc6si"
+      "c": "https://buy.polar.sh/polar_cl_M5OekeHDFA27GQau9ZeakKBgsnCT9UgKnyZIx2I7qGM"
     },
     {
       "n": "Browser Mock Studio",
@@ -853,35 +853,35 @@
       "s": "docker-compose-builder",
       "st": "ready_for_payment",
       "v": "https://docker-compose-builder.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_gwluHxTLq7MlFexWtX5TVDz7sUCWqCzgtR3Q30N6Zxj"
+      "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg"
     },
     {
       "n": "ENV File Manager",
       "s": "env-file-manager",
       "st": "ready_for_payment",
       "v": "https://env-file-manager.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_7ugX7GcMrzAGYkcUCPPMgQyH5A7IFPq8Um3Ot16fCUN"
+      "c": "https://buy.polar.sh/polar_cl_zMXK2xQkz1dUTor0OZxI8sPugmHrKMwuKS13D1iGRgh"
     },
     {
       "n": "Git Diff Visualizer",
       "s": "git-diff-visualizer",
       "st": "ready_for_payment",
       "v": "https://git-diff-visualizer.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_NAWE9YYCnSyS0Xl6CPFIroEOdKchEQZLEYxem3fe57O"
+      "c": "https://buy.polar.sh/polar_cl_tJujKpPKzDfFiifrDzi4VFfwPd6BO4KA423UY3JZK39"
     },
     {
       "n": "Code Screenshot Beautifier",
       "s": "code-screenshot-beautifier",
       "st": "ready_for_payment",
       "v": "https://code-screenshot-beautifier.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_w6ByNH3jJOZHHMxoBojpmIhkp8GAG7bMguYRU4H8MIg"
+      "c": "https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ"
     },
     {
       "n": "JSON Schema to TypeScript",
       "s": "json-schema-to-ts",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://json-schema-to-ts.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_R5W98j2AAYtEqN8uGMHKLOKA5oVSuOv9xx7ZO24y8oV"
     },
     {
       "n": "MCP Inspector Pro",
@@ -895,14 +895,14 @@
       "s": "api-security-scanner",
       "st": "ready_for_payment",
       "v": "https://api-security-scanner.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_7I8KgZ4hUKiR4rOppJQ68uEBX8RgW25g6P7Xz2XoXyN"
+      "c": "https://buy.polar.sh/polar_cl_0gYWdHmAc5bx0rnESOwmN33A5WoBZFUttdbdc2Ph7Up"
     },
     {
       "n": "Docker Command Builder",
       "s": "docker-command-builder",
       "st": "ready_for_payment",
       "v": "https://docker-command-builder.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_G4E0u2BGrixfLZc4Q3QpY8Jt91XWiLumOFPMl3gmxXo"
+      "c": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz"
     },
     {
       "n": "MCP Server Scaffolder",
@@ -916,21 +916,21 @@
       "s": "browser-use-studio",
       "st": "ready_for_payment",
       "v": "https://browser-use-studio.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_ZnglDtareq07k7gyOUGrAAleHYWDbS8Uefz5d02RlLE"
+      "c": "https://buy.polar.sh/polar_cl_q3FcyaWh5Oc4sLhJrC8vJFsiJ3W4UYxAax0Qo3TekK2"
     },
     {
       "n": "Agent Prompt Engineer",
       "s": "agent-prompt-engineer",
       "st": "ready_for_payment",
       "v": "https://agent-prompt-engineer.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_yAX8q8zCVXsgT4Vls87PpR4h49m48slD1WHfU0R6umq"
+      "c": "https://buy.polar.sh/polar_cl_TJnoSgktY09ZuCoai0vIMdX4HkFkMhc5GzxKS0OLYgB"
     },
     {
       "n": "API Mock Server",
       "s": "api-mock-server",
       "st": "ready_for_payment",
       "v": "https://api-mock-server.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_RD1umMPQTv9I1lKpcXfhnHEXpPqUehRgt5h881acntm"
+      "c": "https://buy.polar.sh/polar_cl_jOKhder8lrfEIrXKXy48SgRgXQOI9cn1Z0rs30Lzwcy"
     },
     {
       "n": "CSS Gradient Studio",
@@ -1047,7 +1047,7 @@
     {
       "n": "SQL Query Builder Pro",
       "s": "sql-query-builder",
-      "st": "ready_for_payment",
+      "st": "live",
       "v": "https://sql-query-builder.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW"
     },
@@ -1064,12 +1064,46 @@
       "st": "ready_for_payment",
       "v": "https://json-diff-pro.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe"
+    },
+    {
+      "n": "GraphQL Schema Validator",
+      "s": "graphql-schema-validator",
+      "st": "ready_for_payment",
+      "v": "https://graphql-schema-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_YrUJM2j1W0hZOTHYTDKz0GtmbMohuIxvfpvBe1wBaR9"
+    },
+    {
+      "n": "Code Complexity Analyzer",
+      "s": "code-complexity-analyzer",
+      "st": "ready_for_payment",
+      "v": "https://code-complexity-analyzer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jeuGPZLj7WQXyoRVK1vbLHs1liPR8UXicV39t2hlGoR"
+    },
+    {
+      "n": "JWT Decoder Pro",
+      "s": "jwt-decoder-pro",
+      "st": "ready_for_payment",
+      "v": "https://jwt-decoder-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof"
+    },
+    {
+      "n": "Regex Visualizer Pro",
+      "s": "regex-visualizer-pro",
+      "st": "ready_for_payment",
+      "v": "https://regex-visualizer-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_x0ZMumCo534zwcD2psufJbmOQ6V6TVfjdhx5V4FZifC"
+    },
+    {
+      "n": "Base64 Encoder/Decoder Pro",
+      "s": "base64-encoder-pro",
+      "st": "ready_for_payment",
+      "v": "https://base64-encoder-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug"
     }
   ],
   "gaps": {
     "missing_url": [
       "browser-mock-studio",
-      "json-schema-to-ts",
       "mcp-inspector-pro"
     ],
     "unhealthy_live": [
@@ -1321,23 +1355,6 @@
         ],
         "missing_state_fields": [
           "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "json-schema-to-ts",
-        "name": "JSON Schema to TypeScript",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/json-schema-to-ts/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
           "deployed_cycle"
         ]
       },
