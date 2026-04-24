@@ -1,38 +1,21 @@
-# SESSION CHECKPOINT — Cycle 1114
+# SESSION CHECKPOINT — Cycle 1115
 
 ## Durum:
-- Cycle: 1114
+- Cycle: 1115
 - Mode: OPTIMIZE
-- live_count: 91 (st=live)
-- checkout_gap: 0 ✅
-- canonical_drift: 8 (apply_drift_fix_to_state run → STATE.json updated)
+- live_count: 93 (+2: mcp-validator, browser-mock-studio)
+- Vercel rate limit: HARD LIMIT (100/day) — ~22 saat sonra reset (2026-04-25 13:27 UTC)
+- Polar checkout gap: 0 ✅
 
 ## Bu cycle'da yapılan:
-1. **STATE drift fix** — `apply_drift_fix_to_state()` çalıştırıldı → 8 ürünün ideal_vercel_url deployment_url ile senkronize edildi
-   - jwt-generator, pdf-forge, croncraft, webhook-tester, email-validator-pro, html-entity-encoder, timestamp-converter, chmod-calculator
-   - STATE.json + STATE_SUMMARY.json güncellendi
-
-2. **Vercel rate limit kontrolü** — 100/day HARD LIMIT aktif ❌
-   - mcp-inspector-pro, toml-parser, tüm ready_to_deploy ürünler beklemede
-   - ~24 saat sonra reset (2026-04-25 13:27 UTC)
-
-3. **Broken products analizi** — 9 ürün canonical health sorunlu:
-   - jwt-generator: 500 (build/runtime error — local dosya var, redeploy gerekli)
-   - pdf-forge: 500 (build/runtime error — local dosya var)
-   - timestamp-converter: 451 (Vercel Firewall geo-block — local dosya var)
-   - diffmaster: 401 (Vercel Auth enabled — dashboard'tan kapatılmalı)
-   - email-validator-pro: 404 (deployed ama 404 — local dosya var)
-   - webhook-tester: 404 (deployed ama 404 — local dosya var)
-   - html-entity-encoder: 402 (billing/deployment disabled)
-   - chmod-calculator: 307 → redirect (alias clash)
-   - code-formatter-universal: 404 (Vercel'de silinmiş/güncellenmemiş)
+1. **mcp-validator state fix** — deployed+healthy(200) ama status="building" → live, vercel_url set
+2. **browser-mock-studio state fix** — deployed+healthy(200) ama status="spec_ready" → live, vercel_url set
 
 ## Blokaj:
-- Vercel rate limit: 100 deploys/day HARD LIMIT — rate limit reset bekleniyor
+- Vercel rate limit: 100/day HARD LIMIT — 13 ürün ready_to_deploy, ~22 saat bekleme
+- mcp-inspector-pro: spec_ready, deploy bekliyor (rate limit)
 
-## Sonraki Aksiyonlar (Cycle 1115):
-1. Vercel rate limit reset olduysa mcp-inspector-pro deploy et + ready_to_deploy ürünleri
-2. Broken products: diffmaster (401 → Vercel Auth kapat), email-validator-pro + webhook-tester (404 → redeploy)
-3. timestamp-converter 451 → Vercel Firewall geo-blocking rules kontrol et
-4. code-formatter-universal: GitHub'da var, Vercel project silinmiş → yeniden deploy
-5. jwt-generator + pdf-forge 500: build logs kontrol et, local kod var → fix + redeploy
+## Sonraki Aksiyonlar (Cycle 1116):
+1. Vercel rate limit reset olduysa → 13 ready_to_deploy ürünü deploy et
+2. mcp-inspector-pro → deploy sonrası live
+3. Polar checkout: tüm live ürünlerde checkout_url var → gap=0 ✅
