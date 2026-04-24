@@ -4,23 +4,23 @@
   "balance": 0.0,
   "active_count": 154,
   "live_count": 91,
-  "healthy_count": 88,
+  "healthy_count": 90,
   "canonical_healthy_count": 84,
-  "fallback_healthy_count": 4,
-  "unhealthy_count": 3,
+  "fallback_healthy_count": 6,
+  "unhealthy_count": 1,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 5,
-  "canonical_url_drift": 4,
+  "deploy_missing_or_bad_url": 3,
+  "canonical_url_drift": 6,
   "spec_ready_count": 2,
   "deploy_readiness_count": 15,
   "deploy_readiness_manifest_gap_count": 0,
   "deploy_readiness_url_gap_count": 15,
   "deploy_readiness_state_gap_count": 12,
   "needs_fix_count": 7,
-  "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
+  "next_action": "1 canlı ürünü düzelt; 6 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T11:00:11.430981Z",
+  "last_updated": "2026-04-24T12:35:09.765758Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -271,7 +271,7 @@
       "n": "JWT Generator",
       "s": "jwt-generator",
       "st": "live",
-      "v": "https://jwt-generator.vercel.app",
+      "v": "https://jwt-generator-rho.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_kFuZ2FESbeQqeKMXmzYoFG4SRyhgw7lImbRIT0GeYPJ"
     },
     {
@@ -747,7 +747,7 @@
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter",
       "st": "live",
-      "v": "https://timestamp-converter.vercel.app",
+      "v": "https://timestamp-converter-pro.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
     },
     {
@@ -1108,16 +1108,6 @@
     ],
     "unhealthy_live": [
       {
-        "slug": "jwt-generator",
-        "url": "https://jwt-generator.vercel.app",
-        "code": 500,
-        "health_status": "error_500",
-        "canonical_url": "https://jwt-generator.vercel.app",
-        "canonical_code": 500,
-        "canonical_status": "error_500",
-        "probe_url": "https://jwt-generator.vercel.app"
-      },
-      {
         "slug": "diffmaster",
         "url": "https://diffmaster.vercel.app",
         "code": 401,
@@ -1126,22 +1116,23 @@
         "canonical_code": 401,
         "canonical_status": "unauthorized",
         "probe_url": "https://diffmaster.vercel.app"
-      },
-      {
-        "slug": "timestamp-converter",
-        "url": "https://timestamp-converter.vercel.app",
-        "code": 451,
-        "health_status": "error_451",
-        "canonical_url": "https://timestamp-converter.vercel.app",
-        "canonical_code": 451,
-        "canonical_status": "error_451",
-        "probe_url": "https://timestamp-converter.vercel.app"
       }
     ],
     "pending_health": [],
     "missing_checkout": [],
     "canonical_url_drift": [
       {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator-rho.vercel.app",
+        "ideal_url": "https://jwt-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://jwt-generator-rho.vercel.app",
+        "canonical_url": "https://jwt-generator.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
         "slug": "pdf-forge",
         "url": "https://pdf-forge-five.vercel.app",
         "ideal_url": "https://pdf-forge.vercel.app",
@@ -1184,10 +1175,32 @@
         "canonical_url": "https://html-entity-encoder.vercel.app",
         "canonical_code": 402,
         "canonical_status": "deployment_disabled"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-pro.vercel.app",
+        "ideal_url": "https://timestamp-converter.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://timestamp-converter-pro.vercel.app",
+        "canonical_url": "https://timestamp-converter.vercel.app",
+        "canonical_code": 451,
+        "canonical_status": "error_451"
       }
     ],
     "fallback_healthy": [
       {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator-rho.vercel.app",
+        "ideal_url": "https://jwt-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://jwt-generator-rho.vercel.app",
+        "canonical_url": "https://jwt-generator.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
         "slug": "pdf-forge",
         "url": "https://pdf-forge-five.vercel.app",
         "ideal_url": "https://pdf-forge.vercel.app",
@@ -1230,6 +1243,17 @@
         "canonical_url": "https://html-entity-encoder.vercel.app",
         "canonical_code": 402,
         "canonical_status": "deployment_disabled"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-pro.vercel.app",
+        "ideal_url": "https://timestamp-converter.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://timestamp-converter-pro.vercel.app",
+        "canonical_url": "https://timestamp-converter.vercel.app",
+        "canonical_code": 451,
+        "canonical_status": "error_451"
       }
     ],
     "deploy_readiness": [
@@ -1470,15 +1494,19 @@
     ]
   },
   "canonical_url_drift_products": [
+    "jwt-generator",
     "pdf-forge",
     "webhook-tester",
     "email-validator-pro",
-    "html-entity-encoder"
+    "html-entity-encoder",
+    "timestamp-converter"
   ],
   "fallback_healthy_products": [
+    "jwt-generator",
     "pdf-forge",
     "webhook-tester",
     "email-validator-pro",
-    "html-entity-encoder"
+    "html-entity-encoder",
+    "timestamp-converter"
   ]
 }

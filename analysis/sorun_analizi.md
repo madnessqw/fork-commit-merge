@@ -1,32 +1,32 @@
-# Sorun Analizi — Cycle 1110 | 2026-04-24 11:00 UTC
+# Sorun Analizi — Cycle 1110 | 2026-04-24 12:35 UTC
 
 ## Ana Darboğaz
-- **live_health** — 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
+- **live_health** — 1 canlı ürün gerçekten sağlıksız. Ayrıca 6 canlı ürün fallback alias ile ayakta. İlk örnek `diffmaster` (HTTP 401).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 88/91
+- Healthy live: 90/91
 - Canonical healthy: 84/91
 - Health pending: 0
-- Fallback healthy: 4
+- Fallback healthy: 6
 - Checkout gap: 0
 - Deploy readiness gap: 15
-- Deploy/url gap: 5
-- Canonical drift: 4
+- Deploy/url gap: 3
+- Canonical drift: 6
 - Spec-ready backlog: 2
 
 ## Canlı Sağlıksız Ürünler
-- `jwt-generator` — code=500 status=error_500 url=https://jwt-generator.vercel.app
 - `diffmaster` — code=401 status=unauthorized url=https://diffmaster.vercel.app
-- `timestamp-converter` — code=451 status=error_451 url=https://timestamp-converter.vercel.app
 
 ## URL/Deploy Eksikleri
 - browser-mock-studio, mcp-inspector-pro
 
 ## Canonical Drift Ürünleri
+- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
+- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app health=alternate_healthy code=200 canonical_code=451 canonical_status=error_451
 
 ## Deploy Readiness Issues
 - Count: 15 | Manifest gaps: 0 | URL gaps: 15 | State gaps: 12

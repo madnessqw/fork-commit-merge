@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-24 11:00 UTC
+# Codex Task — Generated 2026-04-24 12:35 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -8,22 +8,22 @@ stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyile
 ## Aktif Görev
 **Health/canonical drift düzeltmesi**
 
-Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 4 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
+Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 6 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
 
 ## Canlı State Özeti
 - Cycle: 1110
-- Live sağlık: 88/91 (%96.7)
+- Live sağlık: 90/91 (%98.9)
 - Canonical healthy: 84/91 (%92.3)
 - Health pending: 0
-- Fallback healthy: 4
+- Fallback healthy: 6
 - Checkout gap: 0
 - Deploy readiness gap: 15
-- Deploy/url gap: 5
-- Canonical drift: 4
-- Canonical drift slugs: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
-- Fallback healthy slugs: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
+- Deploy/url gap: 3
+- Canonical drift: 6
+- Canonical drift slugs: `jwt-generator`, `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`, `timestamp-converter`
+- Fallback healthy slugs: `jwt-generator`, `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`, `timestamp-converter`
 - Spec-ready count: 2
-- Next action: 3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut
+- Next action: 1 canlı ürünü düzelt; 6 fallback alias'ı görünür tut
 
 ## Guardrails
 - Dosyaları okumadan edit yapma.

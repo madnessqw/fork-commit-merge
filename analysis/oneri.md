@@ -1,25 +1,25 @@
-# Codex Analiz Özeti — 2026-04-24 11:00 UTC
+# Codex Analiz Özeti — 2026-04-24 12:35 UTC
 
 ## Canlı State
 - Cycle: **1110**
 - Mode: **OPTIMIZE**
-- Live sağlık: **88/91** (%96.7)
+- Live sağlık: **90/91** (%98.9)
 - Canonical healthy: **84/91** (%92.3)
 - Health pending: **0**
-- Fallback healthy: **4**
+- Fallback healthy: **6**
 - Checkout gap: **0**
 - Deploy readiness gap: **15**
-- Deploy/url gap: **5**
-- Canonical drift: **4**
+- Deploy/url gap: **3**
+- Canonical drift: **6**
 - Spec-ready: **2**
-- Next action: `3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut`
+- Next action: `1 canlı ürünü düzelt; 6 fallback alias'ı görünür tut`
 
 ## Ana Darboğaz
-- **Canlı sağlık açığı:** 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
+- **Canlı sağlık açığı:** 1 canlı ürün gerçekten sağlıksız. Ayrıca 6 canlı ürün fallback alias ile ayakta. İlk örnek `diffmaster` (HTTP 401).
 
 ## Kod için Öneri
 1. **Health/canonical drift düzeltmesi**
-   - Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 4 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
+   - Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 6 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
 2. Production'da manuel Vercel/ödeme-provider adımlarını script ile 'çözüldü' gibi göstermeden bırak.
 3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.
 
@@ -28,16 +28,20 @@
 - **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
 
 ## Canonical Drift Ürünleri
+- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
+- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app health=alternate_healthy code=200 canonical_code=451 canonical_status=error_451
 
 ## Fallback Alias Ürünleri
+- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
+- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app health=alternate_healthy code=200 canonical_code=451 canonical_status=error_451
 
 ## Deploy Readiness Issues
 - Count: **15** | Manifest gaps: **0** | URL gaps: **15** | State gaps: **12**
