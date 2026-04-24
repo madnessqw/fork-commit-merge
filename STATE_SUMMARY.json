@@ -3,24 +3,24 @@
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 144,
-  "live_count": 88,
+  "live_count": 89,
   "healthy_count": 85,
   "canonical_healthy_count": 81,
   "fallback_healthy_count": 4,
   "unhealthy_count": 3,
-  "pending_health_count": 0,
-  "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 20,
+  "pending_health_count": 1,
+  "checkout_gap_count": 5,
+  "deploy_missing_or_bad_url": 22,
   "canonical_url_drift": 4,
-  "spec_ready_count": 26,
-  "deploy_readiness_count": 20,
-  "deploy_readiness_manifest_gap_count": 3,
-  "deploy_readiness_url_gap_count": 20,
-  "deploy_readiness_state_gap_count": 20,
-  "needs_fix_count": 7,
+  "spec_ready_count": 27,
+  "deploy_readiness_count": 37,
+  "deploy_readiness_manifest_gap_count": 9,
+  "deploy_readiness_url_gap_count": 37,
+  "deploy_readiness_state_gap_count": 37,
+  "needs_fix_count": 8,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-23T20:45:11.458437Z",
+  "last_updated": "2026-04-24T02:24:27.103273Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -408,13 +408,6 @@
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3d2bd184-9988-4050-b2d7-dbf6845b0b8e"
     },
     {
-      "n": "Cron Master",
-      "s": "cron-master",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
-    },
-    {
       "n": "Image Compressor Pro",
       "s": "image-compressor-pro",
       "st": "live",
@@ -494,20 +487,6 @@
     {
       "n": "HTML2Markdown Pro",
       "s": "html2markdown",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
-    },
-    {
-      "n": "Color Contrast Pro",
-      "s": "color-contrast-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08"
-    },
-    {
-      "n": "Markdown to PDF",
-      "s": "markdown-to-pdf",
       "st": "ready_to_deploy",
       "v": null,
       "c": null
@@ -646,13 +625,6 @@
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4"
     },
     {
-      "n": "Cron Express",
-      "s": "cron-express",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
-    },
-    {
       "n": "Regex Tester Pro",
       "s": "regex-tester-pro",
       "st": "live",
@@ -735,20 +707,6 @@
       "st": "live",
       "v": "https://css-shadow-studio.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e8816f80-75f7-40a8-9287-2a58afec8ac5"
-    },
-    {
-      "n": "Lorem Ipsum Pro",
-      "s": "lorem-ipsum-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
-    },
-    {
-      "n": "Color Palette Extractor",
-      "s": "color-palette-extractor",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
     },
     {
       "n": "Git Command Builder",
@@ -871,8 +829,8 @@
     },
     {
       "n": "SQL to NoSQL Converter",
-      "s": "ready_to_deploy",
-      "st": "ready_to_deploy",
+      "s": "sql-to-nosql",
+      "st": "spec_ready",
       "v": null,
       "c": null
     },
@@ -1029,10 +987,53 @@
       "st": "ready_to_deploy",
       "v": null,
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
+    },
+    {
+      "n": "Cron Master",
+      "s": "cron-master",
+      "st": "ready_for_payment",
+      "v": "https://cron-master.vercel.app",
+      "c": null
+    },
+    {
+      "n": "Color Contrast Pro",
+      "s": "color-contrast-pro",
+      "st": "live",
+      "v": "https://color-contrast-pro.vercel.app",
+      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08"
+    },
+    {
+      "n": "Markdown to PDF",
+      "s": "markdown-to-pdf",
+      "st": "ready_for_payment",
+      "v": "https://markdown-to-pdf.vercel.app",
+      "c": null
+    },
+    {
+      "n": "Cron Express",
+      "s": "cron-express",
+      "st": "ready_for_payment",
+      "v": "https://cron-express.vercel.app",
+      "c": null
+    },
+    {
+      "n": "Lorem Ipsum Pro",
+      "s": "lorem-ipsum-pro",
+      "st": "ready_for_payment",
+      "v": "https://lorem-ipsum-pro.vercel.app",
+      "c": null
+    },
+    {
+      "n": "Color Palette Extractor",
+      "s": "color-palette-extractor",
+      "st": "ready_for_payment",
+      "v": "https://color-palette-extractor.vercel.app",
+      "c": null
     }
   ],
   "gaps": {
     "missing_url": [
+      "sql-to-nosql",
       "chmod-calculator",
       "binary-inspector",
       "ssl-config-generator",
@@ -1083,8 +1084,21 @@
         "probe_url": "https://timestamp-converter.vercel.app"
       }
     ],
-    "pending_health": [],
-    "missing_checkout": [],
+    "pending_health": [
+      {
+        "slug": "color-contrast-pro",
+        "url": "https://color-contrast-pro.vercel.app",
+        "code": null,
+        "health_status": "pending"
+      }
+    ],
+    "missing_checkout": [
+      "cron-master",
+      "markdown-to-pdf",
+      "cron-express",
+      "lorem-ipsum-pro",
+      "color-palette-extractor"
+    ],
     "canonical_url_drift": [
       {
         "slug": "pdf-forge",
@@ -1179,12 +1193,12 @@
     ],
     "deploy_readiness": [
       {
-        "slug": "csv-to-sql-pro",
-        "name": "CSV to SQL Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/csv-to-sql-pro/product.json",
+        "slug": "docker-run-generator",
+        "name": "Docker Run Generator",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [
-          "spec_version"
+          "tagline"
         ],
         "missing_url_fields": [
           "vercel_url",
@@ -1196,17 +1210,16 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
-        "slug": "json-to-csv-pro",
-        "name": "JSON to CSV Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/json-to-csv-pro/product.json",
+        "slug": "htpasswd-generator",
+        "name": "Htpasswd Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/htpasswd-generator/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [
-          "spec_version"
+          "tagline"
         ],
         "missing_url_fields": [
           "vercel_url",
@@ -1218,30 +1231,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
-        ]
-      },
-      {
-        "slug": "url-parser-pro",
-        "name": "URL Parser Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/url-parser-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "spec_version"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1260,8 +1250,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1280,8 +1269,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1300,8 +1288,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1320,8 +1307,66 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "case-converter-pro",
+        "name": "Case Converter Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "category"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "csv-to-sql-pro",
+        "name": "CSV to SQL Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/csv-to-sql-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "diff-checker-pro",
+        "name": "Diff Checker Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "category"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
         ]
       },
       {
@@ -1340,8 +1385,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1360,8 +1404,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1380,8 +1423,141 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "json-to-csv-pro",
+        "name": "JSON to CSV Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/json-to-csv-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "security-headers-checker",
+        "name": "Security Headers Checker",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/security-headers-checker/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "sql-to-nosql",
+        "name": "SQL to NoSQL Converter",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/sql-to-nosql/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "subdomain-finder",
+        "name": "Subdomain Finder",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "url-parser-pro",
+        "name": "URL Parser Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/url-parser-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "yaml-validator-pro",
+        "name": "YAML Validator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/yaml-validator-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "category"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "api-mock-generator",
+        "name": "API Mock Generator",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/api-mock-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "tagline"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
         ]
       },
       {
@@ -1399,8 +1575,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1418,8 +1593,63 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "htaccess-generator",
+        "name": "Htaccess Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/htaccess-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "html2markdown",
+        "name": "HTML2Markdown Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "category"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "http-load-tester-pro",
+        "name": "HTTP Load Tester Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/http-load-tester-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "category"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
         ]
       },
       {
@@ -1437,8 +1667,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1456,8 +1685,7 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1475,8 +1703,43 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "nginx-config-tester",
+        "name": "Nginx Config Tester",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/nginx-config-tester/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "ssl-cipher-analyzer",
+        "name": "SSL Cipher Analyzer",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/ssl-cipher-analyzer/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
         ]
       },
       {
@@ -1494,8 +1757,26 @@
         "missing_state_fields": [
           "payment_provider",
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "toml-parser",
+        "name": "TOML Parser Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "category"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
         ]
       },
       {
@@ -1512,8 +1793,41 @@
         ],
         "missing_state_fields": [
           "created_cycle",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "favicon-generator-pro",
+        "name": "Favicon Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/favicon-generator-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "json-diff-pro",
+        "name": "JSON Diff Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/json-diff-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
         ]
       },
       {
@@ -1530,8 +1844,7 @@
         ],
         "missing_state_fields": [
           "payment_provider",
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1547,8 +1860,7 @@
           "webhook_url"
         ],
         "missing_state_fields": [
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       },
       {
@@ -1563,8 +1875,7 @@
           "webhook_url"
         ],
         "missing_state_fields": [
-          "deployed_cycle",
-          "lemonsqueezy_product_id"
+          "deployed_cycle"
         ]
       }
     ]

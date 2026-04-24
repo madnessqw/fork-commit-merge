@@ -1,15 +1,8 @@
 {
   "preferred_account": 2,
-  "last_active_account": 2,
-  "last_attempted_accounts": [1, 2],
-  "last_result": "auth_switch_success",
-  "last_error": "usage limit on account 1",
-  "last_exit_code": 0,
-  "last_switch_from_account": 1,
-  "last_switch_to_account": 2,
-  "last_switch_reason": "usage limit",
-  "last_success_account": 2,
-  "switch_count": 1,
-  "cycle": 1108,
-  "updated_at": "2026-04-24T01:30:00Z"
+  "last_result": "auth_switch_1_to_2",
+  "reason": "Account 1 usage limit hit (blocked until ~Apr 28)",
+  "ts": 1776997471,
+  "account_1_status": "blocked_until_2026-04-28",
+  "account_2_status": "active"
 }
