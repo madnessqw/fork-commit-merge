@@ -12,8 +12,10 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.summary_visibility import (
+    apply_drift_fix_to_state,
     canonical_drift_count,
     canonical_drift_entries,
+    drift_products_from_state,
     fallback_healthy_count,
     fallback_healthy_entries,
     _has_value,
@@ -199,3 +201,132 @@ class TestFallbackHealthyCount:
 
     def test_empty_is_zero(self):
         assert fallback_healthy_count({}) == 0
+
+
+class TestDriftProductsFromState:
+    def test_finds_alternate_healthy_drift(self):
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "slug": "jwt-gen",
+                        "health_status": "alternate_healthy",
+                        "ideal_vercel_url": "https://jwt-gen.vercel.app",
+                        "deployment_url": "https://jwt-gen-rho.vercel.app",
+                    }
+                ]
+            }
+        }
+        result = drift_products_from_state(state)
+        assert len(result) == 1
+        assert result[0]["slug"] == "jwt-gen"
+        assert result[0]["ideal_url"] == "https://jwt-gen.vercel.app"
+        assert result[0]["deployment_url"] == "https://jwt-gen-rho.vercel.app"
+
+    def test_ignores_healthy_products(self):
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "slug": "ok-prod",
+                        "health_status": "healthy",
+                        "ideal_vercel_url": "https://ok-prod.vercel.app",
+                        "deployment_url": "https://ok-prod.vercel.app",
+                    }
+                ]
+            }
+        }
+        assert drift_products_from_state(state) == []
+
+    def test_ignores_when_urls_match(self):
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "slug": "no-drift",
+                        "health_status": "alternate_healthy",
+                        "ideal_vercel_url": "https://no-drift.vercel.app",
+                        "deployment_url": "https://no-drift.vercel.app",
+                    }
+                ]
+            }
+        }
+        assert drift_products_from_state(state) == []
+
+    def test_handles_missing_products_key(self):
+        assert drift_products_from_state({}) == []
+
+    def test_handles_non_dict_product(self):
+        state = {"products": {"active": ["not-a-dict"]}}
+        assert drift_products_from_state(state) == []
+
+
+class TestApplyDriftFixToState:
+    def _sample_state(self):
+        return {
+            "products": {
+                "active": [
+                    {
+                        "slug": "jwt-gen",
+                        "health_status": "alternate_healthy",
+                        "ideal_vercel_url": "https://jwt-gen.vercel.app",
+                        "deployment_url": "https://jwt-gen-rho.vercel.app",
+                        "canonical_health_status": "error_500",
+                    },
+                    {
+                        "slug": "pdf-forge",
+                        "health_status": "alternate_healthy",
+                        "ideal_vercel_url": "https://pdf-forge.vercel.app",
+                        "deployment_url": "https://pdf-forge-five.vercel.app",
+                        "canonical_health_status": "error_500",
+                    },
+                    {
+                        "slug": "ok-prod",
+                        "health_status": "healthy",
+                        "ideal_vercel_url": "https://ok-prod.vercel.app",
+                        "deployment_url": "https://ok-prod.vercel.app",
+                    },
+                ]
+            }
+        }
+
+    def test_dry_run_does_not_modify_state(self):
+        state = self._sample_state()
+        report = apply_drift_fix_to_state(state, dry_run=True)
+        assert report["dry_run"] is True
+        assert report["checked"] == 2
+        assert report["fixed"] == 0
+        assert len(report["fixes"]) == 2
+        assert state["products"]["active"][0]["ideal_vercel_url"] == "https://jwt-gen.vercel.app"
+
+    def test_applies_fix_to_state(self):
+        state = self._sample_state()
+        report = apply_drift_fix_to_state(state)
+        assert report["checked"] == 2
+        assert report["fixed"] == 2
+        assert state["products"]["active"][0]["ideal_vercel_url"] == "https://jwt-gen-rho.vercel.app"
+        assert state["products"]["active"][1]["ideal_vercel_url"] == "https://pdf-forge-five.vercel.app"
+
+    def test_slug_filter(self):
+        state = self._sample_state()
+        report = apply_drift_fix_to_state(state, slugs=["jwt-gen"])
+        assert report["checked"] == 1
+        assert report["fixed"] == 1
+        assert state["products"]["active"][1]["ideal_vercel_url"] == "https://pdf-forge.vercel.app"
+
+    def test_no_drift_returns_empty(self):
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "slug": "ok-prod",
+                        "health_status": "healthy",
+                        "ideal_vercel_url": "https://ok-prod.vercel.app",
+                        "deployment_url": "https://ok-prod.vercel.app",
+                    }
+                ]
+            }
+        }
+        report = apply_drift_fix_to_state(state)
+        assert report["checked"] == 0
+        assert report["fixed"] == 0

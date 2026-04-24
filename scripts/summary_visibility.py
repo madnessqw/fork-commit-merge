@@ -183,3 +183,70 @@ def fallback_healthy_count(summary: dict[str, Any]) -> int:
 
     entries = fallback_healthy_entries(summary)
     return len(entries)
+
+
+def drift_products_from_state(state: dict[str, Any]) -> list[dict[str, Any]]:
+    products = state.get("products", {}).get("active", [])
+    if not isinstance(products, list):
+        return []
+    result: list[dict[str, Any]] = []
+    for p in products:
+        if not isinstance(p, dict):
+            continue
+        if p.get("health_status") != "alternate_healthy":
+            continue
+        slug = str(p.get("slug") or "").strip()
+        ideal = _normalize_url(p.get("ideal_vercel_url"))
+        deployment = _normalize_url(p.get("deployment_url"))
+        if slug and ideal and deployment and ideal != deployment:
+            result.append({
+                "slug": slug,
+                "ideal_url": ideal,
+                "deployment_url": deployment,
+                "canonical_health_status": p.get("canonical_health_status", "unknown"),
+            })
+    return result
+
+
+def apply_drift_fix_to_state(
+    state: dict[str, Any],
+    *,
+    slugs: list[str] | None = None,
+    dry_run: bool = False,
+) -> dict[str, Any]:
+    drift = drift_products_from_state(state)
+    if slugs is not None:
+        slug_set = {s.strip() for s in slugs if s.strip()}
+        drift = [d for d in drift if d["slug"] in slug_set]
+
+    report: dict[str, Any] = {
+        "checked": len(drift),
+        "fixed": 0,
+        "fixes": [],
+        "dry_run": dry_run,
+    }
+
+    slug_to_drift = {d["slug"]: d for d in drift}
+    products = state.get("products", {}).get("active", [])
+    for p in products:
+        if not isinstance(p, dict):
+            continue
+        slug = str(p.get("slug") or "").strip()
+        if slug not in slug_to_drift:
+            continue
+        d = slug_to_drift[slug]
+        new_url = d["deployment_url"]
+        old_url = _normalize_url(p.get("ideal_vercel_url"))
+        if old_url == new_url:
+            continue
+        fix_entry = {
+            "slug": slug,
+            "old_ideal_url": old_url,
+            "new_ideal_url": new_url,
+        }
+        report["fixes"].append(fix_entry)
+        if not dry_run:
+            p["ideal_vercel_url"] = new_url
+            report["fixed"] += 1
+
+    return report
