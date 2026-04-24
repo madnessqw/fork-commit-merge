@@ -1,4 +1,5 @@
 import json
+import sys
 import tempfile
 from pathlib import Path
 import unittest
@@ -270,6 +271,141 @@ class HealthTrendTests(unittest.TestCase):
         ]
         result = stuck_metrics(entries, window=2)
         self.assertEqual(result["stuck_count"], 0)
+
+    def test_main_default_outputs_snapshot(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            from scripts.health_trend import main
+            import io
+            captured = io.StringIO()
+            import contextlib
+            with contextlib.redirect_stdout(captured):
+                ret = main()
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertEqual(output["live"], 90)
+            self.assertEqual(output["healthy"], 87)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_main_stuck_subcommand(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            from scripts.health_trend import main
+            import io, contextlib
+            captured = io.StringIO()
+            with contextlib.redirect_stdout(captured):
+                orig_argv = sys.argv
+                sys.argv = ["health_trend.py", "stuck"]
+                try:
+                    ret = main()
+                finally:
+                    sys.argv = orig_argv
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertIn("stuck_count", output)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_main_trend_subcommand(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            ht.TREND_FILE = trend_file
+            from scripts.health_trend import main
+            import io, contextlib
+            captured = io.StringIO()
+            with contextlib.redirect_stdout(captured):
+                orig_argv = sys.argv
+                sys.argv = ["health_trend.py", "trend"]
+                try:
+                    ret = main()
+                finally:
+                    sys.argv = orig_argv
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertIn("direction", output)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_compute_trend_includes_deploy_and_drift_details(self) -> None:
+        entries = [
+            {"health_pct": 90.0, "cycle": 1, "deploy_gap": 5, "canonical_drift": 2, "fallback_healthy": 1},
+            {"health_pct": 95.0, "cycle": 2, "deploy_gap": 3, "canonical_drift": 0, "fallback_healthy": 0},
+        ]
+        trend = compute_trend(entries)
+        self.assertEqual(trend["latest_deploy_gap"], 3)
+        self.assertEqual(trend["latest_canonical_drift"], 0)
+        self.assertEqual(trend["latest_fallback_healthy"], 0)
+
+    def test_stuck_metrics_checkout_gap_stuck(self) -> None:
+        entries = [
+            {"deploy_gap": 0, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 4},
+            {"deploy_gap": 0, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 4},
+            {"deploy_gap": 0, "canonical_drift": 0, "fallback_healthy": 0, "unhealthy": 0, "checkout_gap": 4},
+        ]
+        result = stuck_metrics(entries, window=3)
+        self.assertEqual(result["stuck_count"], 1)
+        self.assertEqual(result["stuck_metrics"][0]["metric"], "checkout_gap")
+        self.assertEqual(result["stuck_metrics"][0]["stale_snapshots"], 3)
+
+    def test_record_snapshot_zero_live(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(summary, live_count=0, healthy_count=0)
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["health_pct"], 0.0)
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_load_trend_corrupt_line_skipped(self) -> None:
+        import scripts.health_trend as ht
+
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        trend_file.parent.mkdir(parents=True, exist_ok=True)
+        trend_file.write_text('{"health_pct":90}\nCORRUPT\n{"health_pct":95}\n', encoding="utf-8")
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            entries = load_trend(limit=10)
+            self.assertEqual(len(entries), 2)
+            self.assertEqual(entries[0]["health_pct"], 90)
+            self.assertEqual(entries[1]["health_pct"], 95)
+        finally:
+            ht.TREND_FILE = orig
 
 
 if __name__ == "__main__":
