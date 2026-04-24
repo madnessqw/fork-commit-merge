@@ -331,6 +331,10 @@ def canonical_target_vercel_url(record: dict[str, Any]) -> str | None:
     if status not in HEALTH_CHECKABLE_STATUSES:
         return normalize_url(_pick(record, "ideal_vercel_url"))
 
+    override = normalize_url(_pick(record, "canonical_url_override"))
+    if override:
+        return override
+
     slug = _clean_text(_pick(record, "slug", "s"))
     canonical_url = canonical_vercel_url(slug)
     if canonical_url is not None:

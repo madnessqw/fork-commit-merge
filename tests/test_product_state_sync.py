@@ -2,12 +2,15 @@ import unittest
 
 from scripts.product_state_sync import (
     choose_public_vercel_url,
+    canonical_target_vercel_url as _canonical_fn,
     health_check_url,
     merge_product_record,
     successful_health_url,
     sync_state_products,
     sync_state_snapshot,
 )
+
+import scripts.product_state_sync as product_state_sync
 
 
 class ProductStateSyncTests(unittest.TestCase):
@@ -1210,6 +1213,55 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(product["health_status"], "alternate_healthy")
         self.assertEqual(product["last_health_url"], "https://duplicate-tool-preview.vercel.app")
         self.assertEqual(product["checkout_url"], "https://checkout.example/duplicate-tool")
+
+
+class TestCanonicalUrlOverride(unittest.TestCase):
+    def test_override_used_when_set(self):
+        record = {
+            "slug": "jwt-generator",
+            "status": "live",
+            "vercel_url": "https://jwt-generator-rho.vercel.app",
+            "canonical_url_override": "https://jwt-generator-rho.vercel.app",
+        }
+        result = product_state_sync.canonical_target_vercel_url(record)
+        self.assertEqual(result, "https://jwt-generator-rho.vercel.app")
+
+    def test_slug_based_when_no_override(self):
+        record = {
+            "slug": "uuid-generator-pro",
+            "status": "live",
+            "vercel_url": "https://uuid-generator-pro.vercel.app",
+        }
+        result = product_state_sync.canonical_target_vercel_url(record)
+        self.assertEqual(result, "https://uuid-generator-pro.vercel.app")
+
+    def test_override_none_falls_through(self):
+        record = {
+            "slug": "my-tool",
+            "status": "live",
+            "canonical_url_override": None,
+        }
+        result = product_state_sync.canonical_target_vercel_url(record)
+        self.assertEqual(result, "https://my-tool.vercel.app")
+
+    def test_override_empty_string_falls_through(self):
+        record = {
+            "slug": "my-tool",
+            "status": "live",
+            "canonical_url_override": "",
+        }
+        result = product_state_sync.canonical_target_vercel_url(record)
+        self.assertEqual(result, "https://my-tool.vercel.app")
+
+    def test_non_health_checkable_ignores_override(self):
+        record = {
+            "slug": "building-tool",
+            "status": "building",
+            "ideal_vercel_url": "https://building-tool.vercel.app",
+            "canonical_url_override": "https://other.vercel.app",
+        }
+        result = product_state_sync.canonical_target_vercel_url(record)
+        self.assertEqual(result, "https://building-tool.vercel.app")
 
 
 if __name__ == "__main__":
