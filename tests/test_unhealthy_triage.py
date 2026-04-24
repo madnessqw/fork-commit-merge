@@ -867,3 +867,102 @@ def test_main_drift_fix_does_not_call_generate_triage(tmp_path, monkeypatch, cap
 
     main(["--drift-fix"])
     assert call_count["n"] == 0
+
+
+def test_generate_triage_rfp_unhealthy_included(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [],
+            "canonical_drift": [],
+            "ready_for_payment_health": [
+                {
+                    "slug": "code-formatter-universal",
+                    "code": 404,
+                    "health_status": "not_found",
+                    "url": "https://code-formatter-universal.vercel.app",
+                },
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 1
+    assert entries[0]["slug"] == "code-formatter-universal"
+    assert entries[0]["label"].startswith("rfp_unhealthy/")
+    assert entries[0]["severity"] == "high"
+    assert "ready_for_payment" in entries[0]["suggested_action"]
+
+
+def test_generate_triage_rfp_unhealthy_no_duplicate(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [{"slug": "code-formatter-universal", "code": 404}],
+            "canonical_drift": [],
+            "ready_for_payment_health": [
+                {"slug": "code-formatter-universal", "code": 404},
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 1
+    assert not entries[0]["label"].startswith("rfp_unhealthy/")
+
+
+def test_generate_triage_rfp_unhealthy_with_canonical_drift(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [],
+            "canonical_drift": [
+                {"slug": "pdf-forge", "canonical_code": 500},
+            ],
+            "ready_for_payment_health": [
+                {"slug": "code-formatter-universal", "code": 404},
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 2
+    slugs = {e["slug"] for e in entries}
+    assert slugs == {"pdf-forge", "code-formatter-universal"}
+
+
+def test_portfolio_health_score_includes_rfp_unhealthy(tmp_path):
+    summary = {
+        "live_count": 91,
+        "healthy_count": 91,
+        "unhealthy_count": 0,
+        "checkout_gap_count": 0,
+        "deploy_missing_or_bad_url": 2,
+        "ready_for_payment_unhealthy_count": 1,
+        "gaps": {},
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = portfolio_health_score(summary_path=summary_file)
+    assert result["rfp_unhealthy"] == 1
+    assert result["grade"] == "A"
+
+
+def test_portfolio_health_score_rfp_unhealthy_missing_key(tmp_path):
+    summary = {
+        "live_count": 10,
+        "healthy_count": 10,
+        "unhealthy_count": 0,
+        "checkout_gap_count": 0,
+        "deploy_missing_or_bad_url": 0,
+        "gaps": {},
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = portfolio_health_score(summary_path=summary_file)
+    assert result["rfp_unhealthy"] == 0

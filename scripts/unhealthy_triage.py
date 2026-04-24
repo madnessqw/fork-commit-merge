@@ -147,6 +147,24 @@ def generate_triage(summary_path: Path | None = None) -> list[dict]:
         seen_slugs.add(slug)
         entries.append(entry)
 
+    # 3) ready_for_payment_unhealthy products
+    for item in gaps.get("ready_for_payment_health", []):
+        slug = item.get("slug", "unknown")
+        if slug in seen_slugs:
+            continue
+        code = item.get("code", 0)
+        if isinstance(code, str) and code.isdigit():
+            code = int(code)
+        entry = _triage_entry(slug, code)
+        entry["label"] = f"rfp_unhealthy/{entry['label']}"
+        entry["severity"] = "high"
+        entry["suggested_action"] = (
+            f"ready_for_payment product returning HTTP {code}; "
+            "deploy or fix before enabling checkout."
+        )
+        seen_slugs.add(slug)
+        entries.append(entry)
+
     return entries
 
 
@@ -345,6 +363,7 @@ def portfolio_health_score(summary_path: Path | None = None) -> dict:
             "deploy_gap": 0,
             "canonical_drift": 0,
             "unhealthy_count": 0,
+            "rfp_unhealthy": 0,
         }
 
     live = summary.get("live_count", 0)
@@ -356,6 +375,8 @@ def portfolio_health_score(summary_path: Path | None = None) -> dict:
     deploy_gap = summary.get("deploy_missing_or_bad_url", 0)
     canonical_drift = canonical_drift_count(summary)
 
+    rfp_unhealthy = summary.get("ready_for_payment_unhealthy_count", 0)
+
     return {
         "live_count": live,
         "healthy_count": healthy,
@@ -365,6 +386,7 @@ def portfolio_health_score(summary_path: Path | None = None) -> dict:
         "checkout_covered": checkout_gap == 0,
         "deploy_gap": deploy_gap,
         "canonical_drift": canonical_drift,
+        "rfp_unhealthy": rfp_unhealthy,
     }
 
 
