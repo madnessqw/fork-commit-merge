@@ -3,7 +3,7 @@
   "slug": "code-formatter-universal",
   "description": "Universal code formatter supporting 50+ languages. Auto-format your code with customizable rules.",
   "price": 19,
-  "status": "building",
+  "status": "ready_for_payment",
   "category": "developer_tools",
   "features": [
     "Support for 50+ programming languages",
@@ -20,5 +20,13 @@
   ],
   "created_at": "2026-04-21",
   "target_audience": "Developers, code reviewers, students",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_JCQ0MYuXuo6477e1GWoPvMNXvTnLiVOEdhFLZ2AyDsm",
+  "spec_version": "1.0",
+  "vercel_url": "https://code-formatter-universal.vercel.app",
+  "github_url": "https://github.com/universe7creator/code-formatter-universal",
+  "webhook_url": "https://code-formatter-universal.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "9d7fca2b-80a4-45af-bf50-4075d7c2524e",
+  "polar_product_price_id": "c350ad21-5ccf-4f5f-af89-03db1a093263",
+  "polar_checkout_link_id": "3da7184b-3356-4d2e-a225-97c465808edf"
 }

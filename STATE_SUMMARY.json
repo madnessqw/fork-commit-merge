@@ -2,256 +2,256 @@
   "cycle": 1108,
   "mode": "OPTIMIZE",
   "balance": 0.0,
-  "active_count": 144,
+  "active_count": 149,
   "live_count": 89,
-  "healthy_count": 85,
-  "canonical_healthy_count": 81,
+  "healthy_count": 86,
+  "canonical_healthy_count": 82,
   "fallback_healthy_count": 4,
   "unhealthy_count": 3,
-  "pending_health_count": 1,
-  "checkout_gap_count": 5,
-  "deploy_missing_or_bad_url": 22,
+  "pending_health_count": 0,
+  "checkout_gap_count": 0,
+  "deploy_missing_or_bad_url": 18,
   "canonical_url_drift": 4,
-  "spec_ready_count": 27,
-  "deploy_readiness_count": 37,
-  "deploy_readiness_manifest_gap_count": 9,
-  "deploy_readiness_url_gap_count": 37,
-  "deploy_readiness_state_gap_count": 37,
-  "needs_fix_count": 8,
+  "spec_ready_count": 24,
+  "deploy_readiness_count": 29,
+  "deploy_readiness_manifest_gap_count": 0,
+  "deploy_readiness_url_gap_count": 29,
+  "deploy_readiness_state_gap_count": 29,
+  "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T02:24:27.103273Z",
+  "last_updated": "2026-04-24T04:07:38.308158Z",
   "products": [
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator-pro",
       "st": "live",
       "v": "https://uuid-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/87fd590f-48b7-48de-9555-0d59faeb8e21"
+      "c": "https://buy.polar.sh/polar_cl_jcHPZaMewa15LsUU11l8fcTabdHwFBcNpyWjc17lI3b"
     },
     {
       "n": "URL Forge",
       "s": "url-forge",
       "st": "live",
       "v": "https://url-forge.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/cb25ef0c-bab7-4a5e-aa8c-e3c8378cd902"
+      "c": "https://buy.polar.sh/polar_cl_b0MwojNa7y60nnLtGfx5nJ5iQxRKwvzCYjd7m2hlK03"
     },
     {
       "n": "WebTerminal Pro",
       "s": "webterminal-pro",
       "st": "live",
       "v": "https://webterminal-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/webterminal-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_wzzCAWqOY3BoGuqwimQGv1eMGaFDLkRr3wA7R1I4zVs"
     },
     {
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter-pro",
       "st": "live",
       "v": "https://timestamp-converter-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/09838336-f26a-43fe-9205-0324f93406cd"
+      "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
     },
     {
       "n": "CSS to Tailwind",
       "s": "css-to-tailwind",
       "st": "live",
       "v": "https://css-to-tailwind.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4"
+      "c": "https://buy.polar.sh/polar_cl_ecBTwl2bqHg1Wm9X5H5DGhgssHPdtlwwIewP33mknRp"
     },
     {
       "n": "URL Encoder/Decoder Pro",
       "s": "url-encoder-decoder",
       "st": "live",
       "v": "https://url-encoder-decoder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc"
+      "c": "https://buy.polar.sh/polar_cl_rdhqgsV11XGEiLRtzv3kJOBkOJGFjnTRBnBbz1bWMiB"
     },
     {
       "n": "HTML Beautifier Pro",
       "s": "html-beautifier",
       "st": "live",
       "v": "https://html-beautifier.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-beautifier-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_9PcVbpVjXK9TsF3erPm9VNePEfoAFbeCx2wVs4Odz07"
     },
     {
       "n": "SQL Query Formatter",
       "s": "sql-query-formatter",
       "st": "live",
       "v": "https://sql-query-formatter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/737af03e-3f84-4a5b-adbe-02a3f5e1c672"
+      "c": "https://buy.polar.sh/polar_cl_BJS2IQBZicJuo4lFgRaEx3uW789SKKHoZ5PCB30tJOw"
     },
     {
       "n": "Cron Expression Builder",
       "s": "cron-expression-builder",
       "st": "live",
       "v": "https://cron-expression-builder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0c610a2b-7b1d-4d5a-8ce2-c7c5eaa9d3da"
+      "c": "https://buy.polar.sh/polar_cl_N4bByH55hpw9jzjpK6jwbeyjUTdWJSqCItF3F0Hwiin"
     },
     {
       "n": "TOML Toolkit",
       "s": "toml-toolkit",
       "st": "live",
       "v": "https://toml-toolkit.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/9b15894e-e4c7-457c-aaa2-0c36752972aa"
+      "c": "https://buy.polar.sh/polar_cl_ulpJ3ZdKSrQs8wWVxXfM49K8rCOFmBSOfr3bJ2wMpl6"
     },
     {
       "n": "OG Forge",
       "s": "og-forge",
       "st": "live",
       "v": "https://og-forge.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/09838336-f26a-43fe-9205-0324f93406cd"
+      "c": "https://buy.polar.sh/polar_cl_ypHFTvr55itGoPEJYWb5w8cGOuEjftV4nykbZ09oBKP"
     },
     {
       "n": "HTML Entities Pro",
       "s": "html-entities",
       "st": "live",
       "v": "https://html-entities.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-entities-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_Ekxs1s6IJEOcoyTNLLmzlcCWBh53lg9KTvuij23kv7g"
     },
     {
       "n": "JWT Inspector",
       "s": "jwtinspector",
       "st": "live",
       "v": "https://jwtinspector.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7abe093-4c74-4bb0-abe0-765d0217e864"
+      "c": "https://buy.polar.sh/polar_cl_WJC849vPueBI5fU0TqBB26Ard9ezKI6RDMqPm283wgg"
     },
     {
       "n": "SVG Pattern Generator",
       "s": "svg-pattern-generator",
       "st": "live",
       "v": "https://svg-pattern-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8cddeabf-17fe-4067-a833-c32154e78bac"
+      "c": "https://buy.polar.sh/polar_cl_gpLJlEqV7KMxHAIKCj8zpV1r4iLMsrbyJci7h0mw9ue"
     },
     {
       "n": "Mock Data Pro",
       "s": "mock-data-pro",
       "st": "live",
       "v": "https://mock-data-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/mock-data-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_x6JBA77ZXmnDwgx0yNwwzjI8ogvjBHGK0damQ0CSeSB"
     },
     {
       "n": "Unit Test Generator",
       "s": "unit-test-generator",
       "st": "live",
       "v": "https://unit-test-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/unit-test-generator-001"
+      "c": "https://buy.polar.sh/polar_cl_NtHgl5sUgHNJoUHUiFA7A8AZZp3B97EEJiYKl2vjPMi"
     },
     {
       "n": "XML to JSON",
       "s": "xml-to-json",
       "st": "live",
       "v": "https://xml-to-json.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e5c0e72b-2b88-4d3f-8a32-4d9d5cd2a3fc"
+      "c": "https://buy.polar.sh/polar_cl_BiMyNvxi0Vn8kILYcav6YOBFEBpjBO89B7tyS3U0WdO"
     },
     {
       "n": "ColorMine",
       "s": "colormine",
       "st": "live",
       "v": "https://colormine.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0"
+      "c": "https://buy.polar.sh/polar_cl_jfo6xWTEQy62mcdQELYklg39834jtMOZkmWzl4ZJjfi"
     },
     {
       "n": "Password Strength Checker Pro",
       "s": "password-strength-checker",
       "st": "live",
       "v": "https://password-strength-checker.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/558b0af0-fadf-4ad2-9c18-df74e8a51820"
+      "c": "https://buy.polar.sh/polar_cl_UoqXI4Qs1nsqXU3dkczjpfgznpwwmDV5qnjnD1BSZ4k"
     },
     {
       "n": "API Doc Generator",
       "s": "api-doc-generator",
       "st": "live",
       "v": "https://api-doc-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514"
+      "c": "https://buy.polar.sh/polar_cl_vZxVvpgwdO1vppzfOvMZxUWxlcbKKnX7HcCMt0u9gp5"
     },
     {
       "n": "Docker Compose Validator",
       "s": "docker-compose-validator",
       "st": "live",
       "v": "https://docker-compose-validator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e5c0e72b-2b88-4d3f-8a32-4d9d5cd2a3fc"
+      "c": "https://buy.polar.sh/polar_cl_2hXn4jnDKtuORnvi4KcV9rv5y1KQ3lGskuiHG0Zsnpi"
     },
     {
       "n": "Cron Expression Parser",
       "s": "cron-expression-parser",
       "st": "live",
       "v": "https://cron-expression-parser.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8958f3b5-a4bb-40de-b5df-31932317fb01"
+      "c": "https://buy.polar.sh/polar_cl_eFMf60OIBHzjKcsLskew5YFBMdJgdy18fDXp24bZwhh"
     },
     {
       "n": "ID Generator Pro",
       "s": "id-generator-pro",
       "st": "live",
       "v": "https://id-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/efe1b957-a4cd-42a2-bc90-1ca99928ecf6"
+      "c": "https://buy.polar.sh/polar_cl_aJUjX3tDVdWu5lzMFn8gow7PMzV9d2a0liFJ60XRT9b"
     },
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator",
       "st": "live",
       "v": "https://uuid-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fbf28983-c614-473b-bf9c-fdeed947fd8e"
+      "c": "https://buy.polar.sh/polar_cl_jcHPZaMewa15LsUU11l8fcTabdHwFBcNpyWjc17lI3b"
     },
     {
       "n": "HTML Minifier Pro",
       "s": "html-minifier-pro",
       "st": "live",
       "v": "https://html-minifier-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-minifier-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_1EFp18agU9PF89q1OF7xSmjl2DmNVY8vy96dq0gFd68"
     },
     {
       "n": "TOML Validator",
       "s": "toml-validator",
       "st": "live",
       "v": "https://toml-validator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/594a1fdb-a891-44e0-9db8-5925ae2765ad"
+      "c": "https://buy.polar.sh/polar_cl_BGcKzTVTZNS84ofbTrH2NJ4Ua3E2G02ylbOif0xQtYD"
     },
     {
       "n": "KeyForge",
       "s": "keyforge",
       "st": "live",
       "v": "https://keyforge.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d8350a7c-1c8c-424a-83db-9bee03f99e17"
+      "c": "https://buy.polar.sh/polar_cl_EYR87kQ40XK5EHEIKpqDCXBezwSH7AZB6pv572bCAXU"
     },
     {
       "n": "TOML Parser Pro",
       "s": "toml-parser-pro",
       "st": "live",
       "v": "https://toml-parser-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7e9d4b61-9f17-407e-a3fc-b7f8a6978bab"
+      "c": "https://buy.polar.sh/polar_cl_LaOVl4Xtiho03vdc1rDVOH30N0lYheGO5iKdc0pqbXR"
     },
     {
       "n": "Nginx Config Generator",
       "s": "nginx-config-generator",
       "st": "live",
       "v": "https://nginx-config-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b4b323f-5262-4865-842e-348244a4151a"
+      "c": "https://buy.polar.sh/polar_cl_NWgCKtCN0pn73PJX4bRGZP8LAkbeOfl5pmOAd14heRt"
     },
     {
       "n": "HTML to Markdown Pro",
       "s": "html-to-markdown",
       "st": "live",
       "v": "https://html-to-markdown.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/b6a9eef4-cad4-4a9f-8d38-dbb8a7eb883f"
+      "c": "https://buy.polar.sh/polar_cl_uTeOkm3qjTmxHxJvOO9sexWzhTIVCSDFSqInr1Sy1Ty"
     },
     {
       "n": "API Request Builder",
       "s": "api-request-builder",
       "st": "live",
       "v": "https://api-request-builder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/600312ea-17e0-4080-ba69-a92a14198a8f"
+      "c": "https://buy.polar.sh/polar_cl_izcPWpkX9nL19G4FuqHc0nlPJS0jzID1OtFPH00FQmM"
     },
     {
       "n": "Number Base Converter",
       "s": "number-base-converter",
       "st": "live",
       "v": "https://number-base-converter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/cb25ef0c-bab7-4a5e-aa8c-e3c8378cd902"
+      "c": "https://buy.polar.sh/polar_cl_dIHF8rN5Ez9TfoSJg8MN3XzVYwsUMAs5KgwUv2BlibD"
     },
     {
       "n": "XML Master Pro",
       "s": "xml-master-pro",
       "st": "live",
       "v": "https://xml-master-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fe4f14a2-bef8-4708-86f4-4513308b8a6e"
+      "c": "https://buy.polar.sh/polar_cl_N4b0RCU8fuxvsLA8Iq9zZL1GbnO8wHt0iyqtE4P9Lcq"
     },
     {
       "n": "HTML Table to CSV Pro",
@@ -265,105 +265,105 @@
       "s": "dataflip",
       "st": "live",
       "v": "https://dataflip.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8958f3b5-a4bb-40de-b5df-31932317fb01"
+      "c": "https://buy.polar.sh/polar_cl_FPuabfxe1yxFuGAbd391gjsqrzbBuqs0dSDuS1JzU4B"
     },
     {
       "n": "JWT Generator",
       "s": "jwt-generator",
       "st": "live",
       "v": "https://jwt-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/7d9338a5-9478-4b88-bf65-08b173d46fe6"
+      "c": "https://buy.polar.sh/polar_cl_kFuZ2FESbeQqeKMXmzYoFG4SRyhgw7lImbRIT0GeYPJ"
     },
     {
       "n": "Hash Generator Pro",
       "s": "hash-generator-pro",
       "st": "live",
       "v": "https://hash-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/73633660-cd30-4599-adb1-61700d9505cd"
+      "c": "https://buy.polar.sh/polar_cl_562gbKSezwp2wRwOQM65x7WKfnweBISlHY4li2Wko1a"
     },
     {
       "n": "PDF Forge",
       "s": "pdf-forge",
       "st": "live",
       "v": "https://pdf-forge-five.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/bff91167-5e47-4677-9240-fedbabc1a514"
+      "c": "https://buy.polar.sh/polar_cl_vCswYFsXyGJ6w8PAioKHmvPKfwccdX39flPCN3D4MaT"
     },
     {
       "n": "Text Transformer Pro",
       "s": "text-transformer-pro",
       "st": "live",
       "v": "https://text-transformer-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/a4d9d9f4-219f-4d8b-8a81-250a35afa9a9"
+      "c": "https://buy.polar.sh/polar_cl_aoQt6kQ3BPJi6wd9I1imsQ57dbwxx5rt5VqsG07xBRd"
     },
     {
       "n": "XML Formatter & Validator",
       "s": "xml-formatter",
       "st": "live",
       "v": "https://xml-formatter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/545408a7-b1ac-4eac-99a0-b1b5e6095808"
+      "c": "https://buy.polar.sh/polar_cl_wESkpcNRy4b005LICYsD9CkinsED4qu7QtQde3WMNRZ"
     },
     {
       "n": "Markdown Previewer Pro",
       "s": "markdown-previewer",
       "st": "live",
       "v": "https://markdown-previewer.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/11076aee-8e3c-44c0-9515-5f9bffee4684"
+      "c": "https://buy.polar.sh/polar_cl_vYVvtenG7kUyXc68mp0TM9S19GqXsjcXx10XC0hxiFU"
     },
     {
       "n": "CronCraft",
       "s": "croncraft",
       "st": "ready_for_payment",
       "v": "https://quickcron.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/90742f8c-3f69-4095-8592-322053c25202"
+      "c": "https://buy.polar.sh/polar_cl_FbRgdOgQqzby8CSqSiUyT5rD2sa6CnfpjiaV33hkoBO"
     },
     {
       "n": "EnvGuard Pro",
       "s": "envguard-pro",
       "st": "live",
       "v": "https://envguard-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/4f105b4f-2c70-46e5-8a0f-80802550d304"
+      "c": "https://buy.polar.sh/polar_cl_4tR1pNsTnYsQjLARUP4rz9HnpfFOsYJcLgB0L4HAMbI"
     },
     {
       "n": "Base64 Pro",
       "s": "base64-pro",
       "st": "live",
       "v": "https://base64-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8a2f9c3e-4b5d-6e7f-8g9h-0i1j2k3l4m5n"
+      "c": "https://buy.polar.sh/polar_cl_K0MoRlJpjzzt3q1SexCfi7YGn2sYuI6ZYo5ow0j0I3M"
     },
     {
       "n": "LLM TokenLens",
       "s": "llm-token-lens",
       "st": "live",
       "v": "https://llm-token-lens.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3f9a0d5b-2c4e-6f7g-9b0c-2d3e4f5g6h7i"
+      "c": "https://buy.polar.sh/polar_cl_LVKHaDo4K4ldgUZNgtob4ScAIInu2eNEdzfwK0qIoJm"
     },
     {
       "n": "CSS Grid Generator",
       "s": "css-grid-gen",
       "st": "live",
       "v": "https://css-grid-gen.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/css-grid-gen-001"
+      "c": "https://buy.polar.sh/polar_cl_PYtQi4o3J5tnNHHwgR00m3MT9nre9SDFno6bI3Ksc0W"
     },
     {
       "n": "HTTP Pulse",
       "s": "http-pulse",
       "st": "live",
       "v": "https://http-pulse.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/73633660-cd30-4599-adb1-61700d9505cd"
+      "c": "https://buy.polar.sh/polar_cl_uysX88B6S83mLGLLbBB0xaIYVZftcZy2W493i4QtYZa"
     },
     {
       "n": "Dockerfile Generator",
       "s": "dockerfile-generator",
       "st": "live",
       "v": "https://dockerfile-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/dockerfile-gen-001"
+      "c": "https://buy.polar.sh/polar_cl_betbJmbiyzzcTnf3REoyJ0VRGD98oL03tZyUp027IN5"
     },
     {
       "n": "Timestamp Master",
       "s": "timestamp-master",
       "st": "live",
       "v": "https://timestamp-master.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/dd014c5e-f735-4355-affa-f3c9640c66b0"
+      "c": "https://buy.polar.sh/polar_cl_aDv6inuk3bH9Ce3HyhXrVWJxg8wJOgxKImMlk2Di22H"
     },
     {
       "n": "HTML to Markdown Pro",
@@ -377,91 +377,91 @@
       "s": "api-spec-validator",
       "st": "live",
       "v": "https://api-spec-validator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/41b9518d-9146-4054-b3a7-775ac91324fe"
+      "c": "https://buy.polar.sh/polar_cl_y2hgCQrQ6p8GcIZVLDFzg5MCEbJoupvq3zqDV1Q9U2A"
     },
     {
       "n": "Markdown Previewer Pro",
       "s": "markdown-previewer-pro",
       "st": "live",
       "v": "https://markdown-previewer-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/md-previewer-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_vYVvtenG7kUyXc68mp0TM9S19GqXsjcXx10XC0hxiFU"
     },
     {
       "n": "HTTP Load Tester Pro",
       "s": "http-load-tester-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://http-load-tester-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_TB4NdlpfcxVG2pT3nBtZj5jRGdQTGLCgah3vf15kC3F"
     },
     {
       "n": "CarbonLite",
       "s": "carbonlite",
       "st": "live",
       "v": "https://carbonlite.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
+      "c": "https://buy.polar.sh/polar_cl_QBBZhgPvaO9tTCUdJJNACtT4hhuDtHl5Lnd9q2enRc0"
     },
     {
       "n": "Code Minifier Pro",
       "s": "code-minifier-pro",
       "st": "live",
       "v": "https://code-minifier-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3d2bd184-9988-4050-b2d7-dbf6845b0b8e"
+      "c": "https://buy.polar.sh/polar_cl_lsIXtqxBzH7Xyd2jjveCLYZRH8sanTkepAIhu2fOSJ3"
     },
     {
       "n": "Image Compressor Pro",
       "s": "image-compressor-pro",
       "st": "live",
       "v": "https://image-compressor-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/img-compressor-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_uZ3vDkgRvLnzeasMM0A8A3BFmW6sRqoazHM3j0Eel8x"
     },
     {
       "n": "TOML Converter Pro",
       "s": "toml-converter-pro",
       "st": "live",
       "v": "https://toml-converter-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0978ea71-ce15-430a-80d6-8f64d412887a"
+      "c": "https://buy.polar.sh/polar_cl_s24ySxW8RZx5OE478j7s863n9Y8CKgfzMNYjq3M3WpI"
     },
     {
       "n": "HTML to JSX",
       "s": "html2jsx",
       "st": "live",
       "v": "https://html2jsx.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ebfac0d1-9da0-4b82-bbc9-9d4a3b099a11"
+      "c": "https://buy.polar.sh/polar_cl_ZP2aUtmUzesqRztZGV15ybi5LR1bHU4wYMpfu3JBfcC"
     },
     {
       "n": "CSV to JSON Pro",
       "s": "csv-to-json-pro",
       "st": "live",
       "v": "https://csv-to-json-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8958f3b5-a4bb-40de-b5df-31932317fb01"
+      "c": "https://buy.polar.sh/polar_cl_enNlqo2OzS4tWshl68yiPgZv7Osgj6WWzuoda3No0bq"
     },
     {
       "n": "Webhook Tester",
       "s": "webhook-tester",
       "st": "live",
       "v": "https://webhook-tester-beryl.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74"
+      "c": "https://buy.polar.sh/polar_cl_RhfiFaGpUiWPIc8ueYuuDPlGveJwJJxsPjS9k01SwwC"
     },
     {
       "n": "YAML Converter Pro",
       "s": "yaml-converter-pro",
       "st": "live",
       "v": "https://yaml-converter-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f52e1510-75cd-4b47-8f42-c53c48486719"
+      "c": "https://buy.polar.sh/polar_cl_4s7ofrlBr9ddNcV6NA62KzK4rknqMFYoBzFfG1ImNPX"
     },
     {
       "n": "Curl2Code",
       "s": "curl2code",
       "st": "ready_for_payment",
       "v": "https://curl2code.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7cfaca5-7db7-4525-8146-a49df5bb37f7"
+      "c": "https://buy.polar.sh/polar_cl_XrNyYGbDmjZKqUXs3ogZKWlZkN7jmCO9YN9Ht0yKrfb"
     },
     {
       "n": "Email Validator Pro",
       "s": "email-validator-pro",
       "st": "live",
       "v": "https://email-validator-pro-smoky.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/email-validator-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_g3zhBLpxH7Ot16hgAxsZX5vmvXLqiuI9cd1rU1PaYPy"
     },
     {
       "n": "MCP Server Validator",
@@ -482,7 +482,7 @@
       "s": "techstack",
       "st": "live",
       "v": "https://techstack.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/8cddeabf-17fe-4067-a833-c32154e78bac"
+      "c": "https://buy.polar.sh/polar_cl_qfvyvsuFB3VvffEuMXzy4Z9H2E0XWqA3sFau61Azwoe"
     },
     {
       "n": "HTML2Markdown Pro",
@@ -496,84 +496,84 @@
       "s": "jwt-generator-pro",
       "st": "live",
       "v": "https://jwt-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/657c71c4-5608-4224-84de-075a8938610f"
+      "c": "https://buy.polar.sh/polar_cl_iWQFhxbiGyHJNj0F6bWKOwlTaNCAAixhuw4tI3h4NQy"
     },
     {
       "n": "HTTP API Client",
       "s": "http-api-client",
       "st": "live",
       "v": "https://http-api-client.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/fcc5aeb3-b93c-4b65-9eb5-0e6a1deb2fcf"
+      "c": "https://buy.polar.sh/polar_cl_QJMRuyYZtQVra9NlWvCv14EsB9cSKIkgnOd7f3ChkzV"
     },
     {
       "n": "HMAC Generator Pro",
       "s": "hmac-generator-pro",
       "st": "live",
       "v": "https://hmac-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7cfaca5-7db7-4525-8146-a49df5bb37f7"
+      "c": "https://buy.polar.sh/polar_cl_4PBaINXvEJ5DuHzHIiObg72O6vBWpSujZtkIS15cuPl"
     },
     {
       "n": "URL Builder Pro",
       "s": "url-builder-pro",
       "st": "live",
       "v": "https://url-builder-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f"
+      "c": "https://buy.polar.sh/polar_cl_1efrdpGmLSgsyKe4G6sDY2iGAeLx6chwpUM4K2ZiVUf"
     },
     {
       "n": "Markdown Table Generator",
       "s": "markdown-table-generator",
       "st": "ready_for_payment",
       "v": "https://markdown-table-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/83e85fd0-ab7a-483c-aa50-9be7bf67c7ff"
+      "c": "https://buy.polar.sh/polar_cl_BHSydnmsi0nQSiuQJxpNq5vv1CuqFdZG44N0P2dn1mb"
     },
     {
       "n": "Terminal Theme Studio",
       "s": "terminal-theme-studio",
-      "st": "building",
-      "v": null,
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/terminal-theme-pro-001"
+      "st": "ready_for_payment",
+      "v": "https://terminal-theme-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jvKKEgjBrwRJ4SHuankRdmUV0nnvyPDCKv3ED0Ovcno"
     },
     {
       "n": "QR Forge",
       "s": "qr-forge",
       "st": "live",
       "v": "https://qr-forge.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f52e1510-75cd-4b47-8f42-c53c48486719"
+      "c": "https://buy.polar.sh/polar_cl_YnHyj2qQTI6yIKS8qqm5L1DdkwVGZ2JhgPrJC3bRSlQ"
     },
     {
       "n": "DiffForge",
       "s": "diffforge",
       "st": "ready_for_payment",
       "v": "https://diffforge.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1faaada2-30af-4d29-bf65-88d56ccc6fd3"
+      "c": "https://buy.polar.sh/polar_cl_DNWeoUVWeQjstBfZ6FIvjKhu7cTRXCgioI1RR41zGmN"
     },
     {
       "n": "AI Cost Dashboard",
       "s": "ai-cost-dashboard",
       "st": "live",
       "v": "https://ai-cost-dashboard.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ai-cost-dashboard-001"
+      "c": "https://buy.polar.sh/polar_cl_y88TBZPU5AhHHlTtOUDnGGeKTK27fcc0yw1Gc1Npc6M"
     },
     {
       "n": "IP Network Tools",
       "s": "ip-network-tools",
       "st": "live",
       "v": "https://ip-network-tools.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/63331f41-075b-4a06-84bf-eae188a5db67"
+      "c": "https://buy.polar.sh/polar_cl_fJ1ZHEZUHTYo1KsH4v85BdTPhwij7mf8n7t5H1aKYUt"
     },
     {
       "n": "Chart Studio",
       "s": "chart-studio",
       "st": "ready_for_payment",
       "v": "https://chart-studio.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/9e45edef-4cd7-4852-9fe9-42d22aa325b6"
+      "c": "https://buy.polar.sh/polar_cl_HK36ti0BiK3toadzPrn0X3J9A1PYB5dHuIZlR0tXFIx"
     },
     {
       "n": "DiffMaster Pro",
       "s": "diffmaster",
       "st": "live",
       "v": "https://diffmaster.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/diffmaster-pro-001"
+      "c": "https://buy.polar.sh/polar_cl_p6giwneYr0MejhtHnb1BbqLgt6rTWcb2Uj5hy0PYrdn"
     },
     {
       "n": "Favicon Generator Pro",
@@ -587,56 +587,56 @@
       "s": "markdown-to-html-pro",
       "st": "live",
       "v": "https://markdown-to-html-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
+      "c": "https://buy.polar.sh/polar_cl_HgMHYjJwLYAPeqh7oKCNW4bm8Cr6ZqqFaqR253E75vz"
     },
     {
       "n": "XML Formatter Pro",
       "s": "xml-formatter-pro",
       "st": "live",
       "v": "https://xml-formatter-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0ab8c94f-1597-41ef-abc9-36cda2f46fd5"
+      "c": "https://buy.polar.sh/polar_cl_q8Csm2CzMDB77e4YytBF8gJSn5WQOqFfLC8w72Jp0Nt"
     },
     {
       "n": "API Compare",
       "s": "api-compare",
       "st": "live",
       "v": "https://api-compare.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0"
+      "c": "https://buy.polar.sh/polar_cl_28y8YL8gOkj2hmrptMp1dvQO2mGJtzSH4Obe232esTA"
     },
     {
       "n": "HTML Entity Encoder/Decoder Pro",
       "s": "html-entity-encoder",
       "st": "live",
       "v": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/html-entity-encoder-001"
+      "c": "https://buy.polar.sh/polar_cl_olWSUa4C8xKUfufNq3mQ9TmfdTO6kr7C1xMEe0l5BKt"
     },
     {
       "n": "OpenAPI Validator",
       "s": "openapi-validator",
       "st": "live",
       "v": "https://openapi-validator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/b8c2c5d6-3129-432a-b720-2ecd49e99e69"
+      "c": "https://buy.polar.sh/polar_cl_PJG3vjGunfn8HfzZEH7RmA5rpFnTx5s4isq8s0E7AFg"
     },
     {
       "n": "CodeSnap",
       "s": "codesnap",
       "st": "live",
       "v": "https://codesnap.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4"
+      "c": "https://buy.polar.sh/polar_cl_RJdU7XxEFKQvRtnoyv1jVhSmLIxwTYFRySrC60HtQaH"
     },
     {
       "n": "Regex Tester Pro",
       "s": "regex-tester-pro",
       "st": "live",
       "v": "https://regex-tester-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f"
+      "c": "https://buy.polar.sh/polar_cl_HhIOESlDnsjOHBSPLjsnLEkkT8YXimYsVsc6934FD3z"
     },
     {
       "n": "CronMaster",
       "s": "cronmaster",
       "st": "live",
       "v": "https://cronmaster.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/c060a64e-bc84-47be-94d8-8e8f6788c92c"
+      "c": "https://buy.polar.sh/polar_cl_W6b6ybZA8GuYtKPkrZtoOSCs1aZZ00jmqNsa22Bkaiu"
     },
     {
       "n": "GraphQL Query Builder",
@@ -650,112 +650,112 @@
       "s": "secretguard",
       "st": "live",
       "v": "https://secretguard.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/775314ac-9d0a-49df-bf91-c706cd35e377"
+      "c": "https://buy.polar.sh/polar_cl_Y7LbbTH2WPkxxQtUiNh68XcsLomfIUtPLHnRD3wWgcp"
     },
     {
       "n": "GeoIP Lite",
       "s": "geoip-lite",
       "st": "live",
       "v": "https://geoip-lite.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc"
+      "c": "https://buy.polar.sh/polar_cl_nLWnEkfr8WYOPnIkysHCnPo2ATQ2lSBDcyCuZ1uYEqG"
     },
     {
       "n": "JSONPath Tester",
       "s": "jsonpath-tester",
       "st": "live",
       "v": "https://jsonpath-tester.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/775314ac-9d0a-49df-bf91-c706cd35e377"
+      "c": "https://buy.polar.sh/polar_cl_rvH8SA0YessVXSb8vM8caF7xrGUhnbqKO39Mq1N2dKU"
     },
     {
       "n": "Text Case Converter Pro",
       "s": "text-case-converter",
       "st": "ready_for_payment",
       "v": "https://text-case-converter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/72ed8216-25bf-444f-be92-2b06cac8944f"
+      "c": "https://buy.polar.sh/polar_cl_ZR1png9Lzq2oaU7kZhESy7hKSgF0zIX1hKEHG1sBAjI"
     },
     {
       "n": "Lorem Ipsum Generator Pro",
       "s": "lorem-ipsum-generator",
       "st": "live",
       "v": "https://lorem-ipsum-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d84f690f-29cd-40c9-bffc-af4c122846ea"
+      "c": "https://buy.polar.sh/polar_cl_zwEkiloMNGsRqD51LrwJRS7NIhXWcdUbeAV8G05N9zl"
     },
     {
       "n": "Email Signature Pro",
       "s": "email-signature-pro",
       "st": "live",
       "v": "https://email-signature-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0e625a81-50e9-44f2-860e-4aaa6f804f03"
+      "c": "https://buy.polar.sh/polar_cl_ijtr72KOTZT7Cz9nlBm4vAtyeCGVZLT04ASRX3EmK8P"
     },
     {
       "n": "Password Generator Pro",
       "s": "password-generator-pro",
       "st": "live",
       "v": "https://password-generator-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/d7abe093-4c74-4bb0-abe0-765d0217e864"
+      "c": "https://buy.polar.sh/polar_cl_hyzpqskaz9eADJtv5p4WHAxOjbk2ugiOVmEB22BtarO"
     },
     {
       "n": "Text Diff Pro",
       "s": "text-diff-pro",
-      "st": "building",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://text-diff-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_BLEyiNAUxrDtR77JmEIQHJ8BpxeZDLdaVqtO63WHU6H"
     },
     {
       "n": "CSS Shadow Studio",
       "s": "css-shadow-studio",
       "st": "live",
       "v": "https://css-shadow-studio.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e8816f80-75f7-40a8-9287-2a58afec8ac5"
+      "c": "https://buy.polar.sh/polar_cl_i9ejmboFVDVWHyUUIpxh6apGYKcPYWFnqiZJI49AzhE"
     },
     {
       "n": "Git Command Builder",
       "s": "git-command-builder",
       "st": "live",
       "v": "https://git-command-builder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ba82486b-ff51-4ce9-a1da-3e3d18ff9c74"
+      "c": "https://buy.polar.sh/polar_cl_uOjkFRM7BS9eQ1G0WrK8rGrTFsOfWluNSS9tl0ta2HZ"
     },
     {
       "n": "Code Snippet Manager",
       "s": "code-snippet-manager",
       "st": "ready_for_payment",
       "v": "https://code-snippet-manager.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/0a52f7e1-e18b-46fe-b914-e2626f4396f1"
+      "c": "https://buy.polar.sh/polar_cl_s144XGHeuFvnvAwK9qejgXSEjoeqaarcmU7ko1v4zza"
     },
     {
       "n": "Email Signature Generator",
       "s": "email-signature",
       "st": "ready_for_payment",
       "v": "https://email-signature.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/486d8fed-a718-4e6e-9f1b-7e1dcacb2316"
+      "c": "https://buy.polar.sh/polar_cl_hsFUZLfXEpiSfKdeAWn0uOr5uEzTLrqeZBsXv1KppHL"
     },
     {
       "n": "HMAC Generator Pro",
       "s": "hmac-generator",
       "st": "ready_for_payment",
       "v": "https://hmac-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/e0f03a74-d73c-485f-a47b-4e33c6f4122a"
+      "c": "https://buy.polar.sh/polar_cl_4PBaINXvEJ5DuHzHIiObg72O6vBWpSujZtkIS15cuPl"
     },
     {
       "n": "HTML Entity Encoder/Decoder",
       "s": "html-entity",
       "st": "ready_for_payment",
       "v": "https://html-entity.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/2bd2d28c-eab1-485f-98da-5237a2df4041"
+      "c": "https://buy.polar.sh/polar_cl_GLYrN79GSYNSc0RbbqjbMeJvuf9sthUj7zOK70qWy9H"
     },
     {
       "n": "Timestamp Converter Pro",
       "s": "timestamp-converter",
       "st": "live",
       "v": "https://timestamp-converter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f4b93302-0fff-4312-9ce8-c34e64ebebd9"
+      "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
     },
     {
       "n": "SSL Cert Checker",
       "s": "ssl-cert-checker",
       "st": "live",
       "v": "https://ssl-cert-checker.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/ssl-cert-checker-001"
+      "c": "https://buy.polar.sh/polar_cl_YpC4xsXpLSvoIhUCJVdOP0PAc5SgL3OpCzkUp46y3xV"
     },
     {
       "n": "Security Headers Checker",
@@ -835,25 +835,11 @@
       "c": null
     },
     {
-      "n": "Chmod Calculator Pro",
-      "s": "chmod-calculator",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
-    },
-    {
       "n": "Binary Inspector Pro",
       "s": "binary-inspector",
       "st": "spec_ready",
       "v": null,
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
-    },
-    {
-      "n": "SSL Config Generator",
-      "s": "ssl-config-generator",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
     },
     {
       "n": "Browser Mock Studio",
@@ -947,39 +933,25 @@
       "c": null
     },
     {
-      "n": "JWT Debugger Pro",
-      "s": "jwt-debugger-pro",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
-    },
-    {
       "n": "CSS Gradient Studio",
       "s": "css-gradient-studio",
       "st": "ready_for_payment",
       "v": "https://css-gradient-studio.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3371230d-fa48-4654-ad09-f14b64481e93"
+      "c": "https://buy.polar.sh/polar_cl_HLCsi5dYw3cFoqIwQlR1Z5LYlMcwcBghSF30l4ALmne"
     },
     {
       "n": "NanoID Generator Pro",
       "s": "nanoid-generator",
       "st": "ready_for_payment",
       "v": "https://nanoid-generator.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/f7aa8e02-37f0-43c4-af63-59293833b7c7"
-    },
-    {
-      "n": "JSON Diff Pro",
-      "s": "json-diff-pro",
-      "st": "ready_to_deploy",
-      "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_zhuiVwpMU7DBeFvY043Pd3JFHKSmTOew8T4lp08jtOR"
     },
     {
       "n": "YAML to JSON Converter",
       "s": "yaml-json-converter",
       "st": "ready_for_payment",
       "v": "https://yaml-json-converter.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/07dbcaad-a466-444f-8716-9ad1bd27197b"
+      "c": "https://buy.polar.sh/polar_cl_NEjO26rhBVufWdhfxq7n9NpALVWEA0y3ZVpRK1cNo9Q"
     },
     {
       "n": "API Mock Generator",
@@ -993,50 +965,111 @@
       "s": "cron-master",
       "st": "ready_for_payment",
       "v": "https://cron-master.vercel.app",
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_MPISgTSo7gTIFTwOgP1TQKWrlAMfQK3mbgtF83X8ORF"
     },
     {
       "n": "Color Contrast Pro",
       "s": "color-contrast-pro",
       "st": "live",
       "v": "https://color-contrast-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/aa92fb04-8962-472c-ad5b-1d4cafdd3e08"
+      "c": "https://buy.polar.sh/polar_cl_RdsAw3cge4hMKJ8HT3W5lrDPVZw5OIElhYQra3dMyu2"
     },
     {
       "n": "Markdown to PDF",
       "s": "markdown-to-pdf",
       "st": "ready_for_payment",
       "v": "https://markdown-to-pdf.vercel.app",
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_uUkn3U5Ril8LVLyUV8pVfXfRBqmBZ5c9yrQBJ2fmQPn"
     },
     {
       "n": "Cron Express",
       "s": "cron-express",
       "st": "ready_for_payment",
       "v": "https://cron-express.vercel.app",
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_jWYgsmgGnWo6u4AV9z02vmhLY8KcXTP4pAga23YNeBN"
     },
     {
       "n": "Lorem Ipsum Pro",
       "s": "lorem-ipsum-pro",
       "st": "ready_for_payment",
       "v": "https://lorem-ipsum-pro.vercel.app",
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_wnUZwLSOBpc7XLuZqVdP3DdlUsMiUoXInit0N1wDQ1G"
     },
     {
       "n": "Color Palette Extractor",
       "s": "color-palette-extractor",
       "st": "ready_for_payment",
       "v": "https://color-palette-extractor.vercel.app",
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_rZbQezdT6PLGvDMNlofExKS0TldXDwCdwBjrz1bMNBE"
+    },
+    {
+      "n": "Chmod Calculator Pro",
+      "s": "chmod-calculator",
+      "st": "ready_for_payment",
+      "v": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC"
+    },
+    {
+      "n": "JWT Debugger Pro",
+      "s": "jwt-debugger-pro",
+      "st": "ready_for_payment",
+      "v": "https://jwt-debugger-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU"
+    },
+    {
+      "n": "SSL Config Generator",
+      "s": "ssl-config-generator",
+      "st": "ready_for_payment",
+      "v": "https://ssl-config-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_paRLFk43opFv2okCWDcOjr0rB1SYl7PPxOVJD3WdhVR"
+    },
+    {
+      "n": "CSV to SQL Pro",
+      "s": "csv-to-sql-pro",
+      "st": "ready_for_payment",
+      "v": "https://csv-to-sql-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_5TlXlD2xB8l5hdpt0Kf7KGDDVfMZjU8QSPUCv0nXQl4"
+    },
+    {
+      "n": "JSON to CSV Pro",
+      "s": "json-to-csv-pro",
+      "st": "ready_for_payment",
+      "v": "https://json-to-csv-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7"
+    },
+    {
+      "n": "URL Parser Pro",
+      "s": "url-parser-pro",
+      "st": "ready_for_payment",
+      "v": "https://url-parser-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_8yilHKiu3uU7kx4VOTISULxnK7gSb7Jurd9B42LAtUG"
+    },
+    {
+      "n": "SQL Query Builder Pro",
+      "s": "sql-query-builder",
+      "st": "ready_for_payment",
+      "v": "https://sql-query-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW"
+    },
+    {
+      "n": "Code Formatter Universal",
+      "s": "code-formatter-universal",
+      "st": "ready_for_payment",
+      "v": "https://code-formatter-universal.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_JCQ0MYuXuo6477e1GWoPvMNXvTnLiVOEdhFLZ2AyDsm"
+    },
+    {
+      "n": "JSON Diff Pro",
+      "s": "json-diff-pro",
+      "st": "ready_for_payment",
+      "v": "https://json-diff-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe"
     }
   ],
   "gaps": {
     "missing_url": [
       "sql-to-nosql",
-      "chmod-calculator",
       "binary-inspector",
-      "ssl-config-generator",
       "browser-mock-studio",
       "docker-compose-builder",
       "env-file-manager",
@@ -1049,8 +1082,7 @@
       "mcp-server-scaffolder",
       "browser-use-studio",
       "agent-prompt-engineer",
-      "api-mock-server",
-      "jwt-debugger-pro"
+      "api-mock-server"
     ],
     "unhealthy_live": [
       {
@@ -1084,21 +1116,8 @@
         "probe_url": "https://timestamp-converter.vercel.app"
       }
     ],
-    "pending_health": [
-      {
-        "slug": "color-contrast-pro",
-        "url": "https://color-contrast-pro.vercel.app",
-        "code": null,
-        "health_status": "pending"
-      }
-    ],
-    "missing_checkout": [
-      "cron-master",
-      "markdown-to-pdf",
-      "cron-express",
-      "lorem-ipsum-pro",
-      "color-palette-extractor"
-    ],
+    "pending_health": [],
+    "missing_checkout": [],
     "canonical_url_drift": [
       {
         "slug": "pdf-forge",
@@ -1193,48 +1212,6 @@
     ],
     "deploy_readiness": [
       {
-        "slug": "docker-run-generator",
-        "name": "Docker Run Generator",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "tagline"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "htpasswd-generator",
-        "name": "Htpasswd Generator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/htpasswd-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "tagline"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "agent-prompt-engineer",
         "name": "Agent Prompt Engineer",
         "manifest_path": "/home/gokhan/UniverseCreator/products/agent-prompt-engineer/product.json",
@@ -1311,65 +1288,6 @@
         ]
       },
       {
-        "slug": "case-converter-pro",
-        "name": "Case Converter Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "category"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "csv-to-sql-pro",
-        "name": "CSV to SQL Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/csv-to-sql-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "diff-checker-pro",
-        "name": "Diff Checker Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "category"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "docker-command-builder",
         "name": "Docker Command Builder",
         "manifest_path": "/home/gokhan/UniverseCreator/products/docker-command-builder/product.json",
@@ -1427,28 +1345,9 @@
         ]
       },
       {
-        "slug": "json-to-csv-pro",
-        "name": "JSON to CSV Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/json-to-csv-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "security-headers-checker",
-        "name": "Security Headers Checker",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/security-headers-checker/product.json",
+        "slug": "htpasswd-generator",
+        "name": "Htpasswd Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/htpasswd-generator/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
@@ -1484,83 +1383,6 @@
         ]
       },
       {
-        "slug": "subdomain-finder",
-        "name": "Subdomain Finder",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "url-parser-pro",
-        "name": "URL Parser Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/url-parser-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "yaml-validator-pro",
-        "name": "YAML Validator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/yaml-validator-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "category"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "api-mock-generator",
-        "name": "API Mock Generator",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/api-mock-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "tagline"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "api-security-scanner",
         "name": "API Security Scanner",
         "manifest_path": "/home/gokhan/UniverseCreator/products/api-security-scanner/product.json",
@@ -1579,27 +1401,9 @@
         ]
       },
       {
-        "slug": "chmod-calculator",
-        "name": "Chmod Calculator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/chmod-calculator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "htaccess-generator",
-        "name": "Htaccess Generator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/htaccess-generator/product.json",
+        "slug": "case-converter-pro",
+        "name": "Case Converter Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
@@ -1615,59 +1419,39 @@
         ]
       },
       {
-        "slug": "html2markdown",
-        "name": "HTML2Markdown Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "category"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
-        ]
-      },
-      {
-        "slug": "http-load-tester-pro",
-        "name": "HTTP Load Tester Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/http-load-tester-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "category"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
-        ]
-      },
-      {
-        "slug": "jwt-debugger-pro",
-        "name": "JWT Debugger Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/jwt-debugger-pro/product.json",
+        "slug": "diff-checker-pro",
+        "name": "Diff Checker Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
           "deployment_url",
+          "github_url",
           "webhook_url",
           "checkout_url"
         ],
         "missing_state_fields": [
           "payment_provider",
-          "created_cycle",
           "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "docker-run-generator",
+        "name": "Docker Run Generator",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
         ]
       },
       {
@@ -1707,76 +1491,74 @@
         ]
       },
       {
-        "slug": "nginx-config-tester",
-        "name": "Nginx Config Tester",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/nginx-config-tester/product.json",
+        "slug": "security-headers-checker",
+        "name": "Security Headers Checker",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/security-headers-checker/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
           "deployment_url",
           "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "ssl-cipher-analyzer",
-        "name": "SSL Cipher Analyzer",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/ssl-cipher-analyzer/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "ssl-config-generator",
-        "name": "SSL Config Generator",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/ssl-config-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "toml-parser",
-        "name": "TOML Parser Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [
-          "category"
-        ],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
           "webhook_url",
           "checkout_url"
         ],
         "missing_state_fields": [
           "payment_provider",
           "created_cycle"
+        ]
+      },
+      {
+        "slug": "subdomain-finder",
+        "name": "Subdomain Finder",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "yaml-validator-pro",
+        "name": "YAML Validator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/yaml-validator-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "api-mock-generator",
+        "name": "API Mock Generator",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/api-mock-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
         ]
       },
       {
@@ -1814,9 +1596,26 @@
         ]
       },
       {
-        "slug": "json-diff-pro",
-        "name": "JSON Diff Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/json-diff-pro/product.json",
+        "slug": "htaccess-generator",
+        "name": "Htaccess Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/htaccess-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider"
+        ]
+      },
+      {
+        "slug": "html2markdown",
+        "name": "HTML2Markdown Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
@@ -1827,7 +1626,7 @@
         ],
         "missing_state_fields": [
           "payment_provider",
-          "deployed_cycle"
+          "created_cycle"
         ]
       },
       {
@@ -1845,6 +1644,57 @@
         "missing_state_fields": [
           "payment_provider",
           "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "nginx-config-tester",
+        "name": "Nginx Config Tester",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/nginx-config-tester/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider"
+        ]
+      },
+      {
+        "slug": "ssl-cipher-analyzer",
+        "name": "SSL Cipher Analyzer",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/ssl-cipher-analyzer/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider"
+        ]
+      },
+      {
+        "slug": "toml-parser",
+        "name": "TOML Parser Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
         ]
       },
       {

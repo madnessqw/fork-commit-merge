@@ -13,8 +13,16 @@
     "Permission explanation tooltips"
   ],
   "tech_stack": "Vercel + Vanilla JS",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "developer_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC",
+  "vercel_url": "https://chmod-calculator.vercel.app",
+  "deployment_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/chmod-calculator",
+  "webhook_url": "https://chmod-calculator.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "c9af1deb-34a4-4d2a-bd08-ffe2a5b92694",
+  "polar_product_price_id": "9f75fab1-9f03-4448-a326-fd59b7c36d9b",
+  "polar_checkout_link_id": "246d2a5d-bd95-422f-8f33-8a20f97350b2"
 }

@@ -4,9 +4,12 @@
   "tagline": "Compare JSON files visually and spot differences instantly",
   "description": "Compare JSON files side-by-side and visualize differences instantly",
   "price": 19,
-  "status": "ready_to_deploy",
+  "status": "ready_for_payment",
   "category": "Developer Tools",
-  "tech_stack": ["Vanilla JS", "Vercel"],
+  "tech_stack": [
+    "Vanilla JS",
+    "Vercel"
+  ],
   "tags": [
     "json",
     "diff",
@@ -21,8 +24,13 @@
     "Nested object diff support",
     "Export diff reports"
   ],
-  "vercel_url": null,
+  "vercel_url": "https://json-diff-pro.vercel.app",
   "github_url": "https://github.com/universe7creator/json-diff-pro",
-  "checkout_url": null,
-  "spec_version": "1.0"
+  "checkout_url": "https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe",
+  "spec_version": "1.0",
+  "webhook_url": "https://json-diff-pro.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "ce669cd3-b62a-49a7-a207-b376e949949e",
+  "polar_product_price_id": "76f25452-0814-4541-a1d4-687ad7615774",
+  "polar_checkout_link_id": "d7d32a99-6327-407e-a7fb-d93adb0a3dfb"
 }

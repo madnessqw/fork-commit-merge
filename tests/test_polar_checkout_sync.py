@@ -1,9 +1,13 @@
+import json
 import tempfile
+import threading
 import unittest
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
 
 from scripts.polar_checkout_sync import (
+    PolarClient,
     discover_price_from_files,
     find_remote_product,
     load_local_products,
@@ -15,6 +19,53 @@ from scripts.polar_checkout_sync import (
 
 
 class PolarCheckoutSyncTests(unittest.TestCase):
+    def test_polar_client_request_preserves_post_across_307_redirect(self) -> None:
+        events: list[tuple[str, str]] = []
+
+        class Handler(BaseHTTPRequestHandler):
+            def do_POST(self) -> None:  # noqa: N802
+                length = int(self.headers.get("Content-Length") or "0")
+                body = self.rfile.read(length).decode("utf-8")
+                events.append((self.path, body))
+
+                if self.path == "/products":
+                    self.send_response(307)
+                    self.send_header("Location", "/v1/products")
+                    self.end_headers()
+                    return
+
+                if self.path == "/v1/products":
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/json")
+                    self.end_headers()
+                    self.wfile.write(
+                        json.dumps({"ok": True, "body": json.loads(body)}).encode("utf-8")
+                    )
+                    return
+
+                self.send_error(404)
+
+            def log_message(self, format: str, *args) -> None:  # noqa: A003
+                return
+
+        server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            client = PolarClient(
+                "test-token",
+                base_url=f"http://127.0.0.1:{server.server_port}",
+            )
+            result = client.create_product({"name": "Redirect Tool"})
+        finally:
+            server.shutdown()
+            thread.join(timeout=5)
+
+        self.assertEqual(result["ok"], True)
+        self.assertEqual(events[0][0], "/products")
+        self.assertEqual(events[1][0], "/v1/products")
+        self.assertEqual(events[1][1], json.dumps({"name": "Redirect Tool"}))
+
     def test_parse_price_to_cents_handles_common_product_formats(self) -> None:
         self.assertEqual(parse_price_to_cents("9"), 900)
         self.assertEqual(parse_price_to_cents("$19"), 1900)

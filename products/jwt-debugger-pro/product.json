@@ -13,8 +13,16 @@
     "Token generation"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "security_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU",
+  "vercel_url": "https://jwt-debugger-pro.vercel.app",
+  "deployment_url": "https://jwt-debugger-ocjfbvgq8-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/jwt-debugger-pro",
+  "webhook_url": "https://jwt-debugger-pro.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "feee5cf3-fc04-49b0-a464-6d42396c61cd",
+  "polar_product_price_id": "42b9cd6a-36a5-49a0-b267-99e26922563a",
+  "polar_checkout_link_id": "35a309b1-3f9e-4f2f-b15b-160569fc8f67"
 }

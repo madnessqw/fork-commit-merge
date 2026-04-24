@@ -14,9 +14,13 @@
   "created_cycle": null,
   "deployed_cycle": 989,
   "deployed_at": "2026-04-20T23:29:27.256694+00:00",
-  "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/a4d9d9f4-219f-4d8b-8a81-250a35afa9a9",
+  "checkout_url": "https://buy.polar.sh/polar_cl_aoQt6kQ3BPJi6wd9I1imsQ57dbwxx5rt5VqsG07xBRd",
   "checkout_status": "pending_lemonsqueezy_creation",
   "seo_optimized": true,
   "seo_optimized_at": "2026-04-21T17:45:00Z",
-  "payment_provider": "lemonsqueezy"
+  "payment_provider": "polar",
+  "spec_version": "1.0",
+  "polar_product_id": "572a4824-a98f-4625-8a06-3ea9aac75b53",
+  "polar_product_price_id": "19401f3f-aaff-446e-89bb-df62cef45de8",
+  "polar_checkout_link_id": "a3a5a380-38b1-4928-a307-fa3c0c7eb0bc"
 }

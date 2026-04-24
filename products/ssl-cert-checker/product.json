@@ -27,6 +27,10 @@
   "created_at": "2026-04-21T22:30:00Z",
   "updated_at": "2026-04-21T22:30:00Z",
   "vercel_url": "https://ssl-cert-checker.vercel.app",
-  "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/ssl-cert-checker-001",
-  "payment_provider": "lemonsqueezy"
+  "checkout_url": "https://buy.polar.sh/polar_cl_YpC4xsXpLSvoIhUCJVdOP0PAc5SgL3OpCzkUp46y3xV",
+  "payment_provider": "polar",
+  "spec_version": "1.0",
+  "polar_product_id": "1109272a-26ce-42e1-97b7-3deb7414eda9",
+  "polar_product_price_id": "03c84eac-f584-4901-816b-ec856219bf83",
+  "polar_checkout_link_id": "2253bdb1-af8c-475c-a0a9-29fac2192427"
 }

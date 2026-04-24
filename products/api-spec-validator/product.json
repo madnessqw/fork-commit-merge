@@ -16,11 +16,15 @@
   "target_audience": "API developers, backend engineers, DevOps teams",
   "problem": "OpenAPI specs often have subtle errors that break client generation and documentation",
   "solution": "Instant validation with clear error messages and actionable fixes",
-  "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/41b9518d-9146-4054-b3a7-775ac91324fe",
+  "checkout_url": "https://buy.polar.sh/polar_cl_y2hgCQrQ6p8GcIZVLDFzg5MCEbJoupvq3zqDV1Q9U2A",
   "checkout_status": "pending_lemonsqueezy_creation",
   "vercel_url": "https://api-spec-validator.vercel.app",
   "status": "live",
   "seo_optimized": true,
   "seo_optimized_at": "2026-04-21T17:47:00Z",
-  "payment_provider": "lemonsqueezy"
+  "payment_provider": "polar",
+  "spec_version": "1.0",
+  "polar_product_id": "168cb04e-7088-496d-89c1-cc0864146c86",
+  "polar_product_price_id": "01e7d053-ca92-4010-8f93-e36b82df4cd5",
+  "polar_checkout_link_id": "4f740495-d2a2-47e2-b82f-90ca95cadc77"
 }

@@ -12,12 +12,11 @@ import json
 import os
 import re
 import sys
-import urllib.error
-import urllib.parse
-import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -66,32 +65,36 @@ class PolarClient:
         payload: dict[str, Any] | None = None,
     ) -> dict[str, Any] | list[Any]:
         url = f"{self.base_url}{path}"
-        if query:
-            qp = {k: v for k, v in query.items() if v is not None}
-            url = f"{url}?{urllib.parse.urlencode(qp)}"
-
-        data = None
         headers = {
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/json",
         }
-        if payload is not None:
-            data = json.dumps(payload).encode("utf-8")
-            headers["Content-Type"] = "application/json"
-
-        request = urllib.request.Request(url, data=data, headers=headers, method=method)
         try:
-            with urllib.request.urlopen(request, timeout=60) as response:
-                raw = response.read().decode("utf-8")
-        except urllib.error.HTTPError as exc:
-            body = exc.read().decode("utf-8", errors="replace")
-            raise PolarAPIError(f"{method} {path} failed: HTTP {exc.code} — {body}") from exc
-        except urllib.error.URLError as exc:
+            response = requests.request(
+                method,
+                url,
+                params={k: v for k, v in (query or {}).items() if v is not None},
+                json=payload,
+                headers=headers,
+                timeout=60,
+            )
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            status = getattr(getattr(exc, "response", None), "status_code", None)
+            body = getattr(getattr(exc, "response", None), "text", "")
+            if status is not None:
+                raise PolarAPIError(f"{method} {path} failed: HTTP {status} — {body}") from exc
             raise PolarAPIError(f"{method} {path} failed: {exc}") from exc
 
+        raw = response.text
         if not raw.strip():
             return {}
-        return json.loads(raw)
+        try:
+            return response.json()
+        except ValueError as exc:
+            raise PolarAPIError(
+                f"{method} {path} failed: invalid JSON — {raw[:500]}"
+            ) from exc
 
     def list_products(self) -> list[dict[str, Any]]:
         data = self.request("GET", "/products", query={"limit": 200})

@@ -4,7 +4,7 @@
   "tagline": "Convert JSON data to CSV format effortlessly",
   "description": "Transform complex nested JSON into clean, flat CSV files. Handles arrays, nested objects, and provides column customization options.",
   "price": "$19",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "developer-tools",
   "features": [
     "Paste JSON or upload file",
@@ -41,5 +41,14 @@
     "konklone.io"
   ],
   "differentiation": "Handles deeply nested JSON, multiple array strategies, clean modern UI",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7",
+  "spec_version": "1.0",
+  "vercel_url": "https://json-to-csv-pro.vercel.app",
+  "deployment_url": "https://json-to-csv-fy98dkok4-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/json-to-csv-pro",
+  "webhook_url": "https://json-to-csv-pro.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "d322b1f1-d854-4d38-b4f8-efc64535b0d8",
+  "polar_product_price_id": "c42bf3f9-1a63-4e50-8b5f-3623cfd1b894",
+  "polar_checkout_link_id": "0dfe8f54-3e0d-42fd-a525-eed05a1c4512"
 }

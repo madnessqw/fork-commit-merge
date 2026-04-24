@@ -1,0 +1,32 @@
+{
+  "slug": "base64-encoder-pro",
+  "name": "Base64 Encoder/Decoder Pro",
+  "tagline": "Encode and decode Base64 strings with advanced features",
+  "description": "Professional Base64 encoding/decoding tool with file support, URL-safe encoding, multiple output formats, and batch processing capabilities.",
+  "price": "$19",
+  "category": "developer-tools",
+  "features": [
+    "Text to Base64 encoding",
+    "Base64 to text decoding",
+    "File to Base64 conversion",
+    "URL-safe Base64 encoding",
+    "Batch processing",
+    "Copy to clipboard",
+    "Character count",
+    "Validation and error handling"
+  ],
+  "tech_stack": [
+    "html",
+    "javascript"
+  ],
+  "payment_provider": "polar",
+  "status": "ready_for_payment",
+  "vercel_url": "https://base64-encoder-pro.vercel.app",
+  "deployment_url": "https://base64-encoder-5h1p1a4ns-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/base64-encoder-pro",
+  "webhook_url": "https://base64-encoder-pro.vercel.app/api/webhook",
+  "checkout_url": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug",
+  "polar_product_id": "387c6535-2505-4847-9935-7ae26f754f0f",
+  "polar_product_price_id": "359ed56e-4549-4fd0-ae92-ca65ec5b9a1b",
+  "polar_checkout_link_id": "1057b47b-8b7a-4567-b612-dc9ba4af0cbb"
+}

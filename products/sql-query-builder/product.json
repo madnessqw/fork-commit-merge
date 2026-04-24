@@ -3,7 +3,7 @@
   "slug": "sql-query-builder",
   "description": "Visual SQL query builder with drag-and-drop interface. Build complex queries without writing SQL.",
   "price": 19,
-  "status": "building",
+  "status": "ready_for_payment",
   "category": "developer_tools",
   "features": [
     "Visual drag-and-drop query builder",
@@ -20,5 +20,13 @@
   ],
   "created_at": "2026-04-21",
   "target_audience": "Developers, database administrators, data analysts",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW",
+  "spec_version": "1.0",
+  "vercel_url": "https://sql-query-builder.vercel.app",
+  "github_url": "https://github.com/universe7creator/sql-query-builder",
+  "webhook_url": "https://sql-query-builder.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "9f0d87e7-36af-4bb1-b3b9-e183e8224b66",
+  "polar_product_price_id": "9912165b-b8ae-4d1c-b40d-aaf66f5b4dc1",
+  "polar_checkout_link_id": "e4e0e707-7ad0-471f-abbe-c4923b8a8f70"
 }

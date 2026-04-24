@@ -4,7 +4,7 @@
   "tagline": "Convert CSV data to SQL INSERT statements instantly",
   "description": "Transform CSV files into ready-to-execute SQL INSERT statements with support for multiple database dialects including MySQL, PostgreSQL, SQLite, and SQL Server.",
   "price": "$19",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "developer-tools",
   "features": [
     "Drag & drop CSV upload",
@@ -41,5 +41,14 @@
     "sqlizer.io"
   ],
   "differentiation": "Clean UI, instant client-side processing, multiple dialect support",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_5TlXlD2xB8l5hdpt0Kf7KGDDVfMZjU8QSPUCv0nXQl4",
+  "spec_version": "1.0",
+  "vercel_url": "https://csv-to-sql-pro.vercel.app",
+  "deployment_url": "https://csv-to-sql-ixjpjfe4h-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/csv-to-sql-pro",
+  "webhook_url": "https://csv-to-sql-pro.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "c6eeac4f-e518-457f-8a58-d45de53e1d3a",
+  "polar_product_price_id": "78825767-2a6c-4b64-a1b2-46120cbc2b95",
+  "polar_checkout_link_id": "409eb73a-5774-441d-98c6-189e7eefb793"
 }
