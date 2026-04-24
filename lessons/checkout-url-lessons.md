@@ -258,6 +258,7 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 | `vercel_url` missing ürünler checkout sync dışına düşüyordu | `load_local_products` artık checkout_url boş ama fiyatı çözülen ürünleri de aday sayıyor; `success_url` / `return_url` opsiyonel | 2026-04-24 |
 | Compact STATE/summary snapshot'ları gap detail olmadan da drift/fallback count taşıyabiliyor | Downstream report kodu top-level `canonical_url_drift` / `fallback_healthy_count` alanlarını kullanmalı; detail array boşsa `products` listesinden görünür alias'ı yeniden kurmalı | 2026-04-24 |
 | Legacy `canonical_drift` key'li eski summary'ler | `summary_visibility.canonical_drift_entries` artık `canonical_url_drift` + legacy `canonical_drift` + compact `products` snapshot'larını tek yerden normalleştiriyor; `retry_probe` ve `vercel_autofix` bunu kullanmalı | 2026-04-24 |
+| Ready-for-payment health issues ayrı görünmeli | `ready_for_payment_unhealthy_count` + `gaps.ready_for_payment_health` live outage metriğini şişirmeden 404/401 sonuçlarını context'e taşıyor; dashboard `RFPU` gösterir | 2026-04-24 |
 
 ---
 

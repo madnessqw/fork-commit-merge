@@ -84,6 +84,43 @@ class UpdateSummaryTests(unittest.TestCase):
         self.assertEqual(summary["canonical_url_drift"], 1)
         self.assertEqual(summary["next_action"], "1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut")
 
+    def test_ready_for_payment_health_stays_out_of_live_metrics_but_is_visible(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Live Tool",
+                        "slug": "live-tool",
+                        "status": "live",
+                        "vercel_url": "https://live-tool.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                    },
+                    {
+                        "name": "Ready Tool",
+                        "slug": "ready-tool",
+                        "status": "ready_for_payment",
+                        "vercel_url": "https://ready-tool.vercel.app",
+                        "health_status": "not_found",
+                        "last_health_code": 404,
+                    },
+                ]
+            },
+        }
+
+        summary = build_summary(state)
+
+        self.assertEqual(summary["live_count"], 1)
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["unhealthy_count"], 0)
+        self.assertEqual(summary["ready_for_payment_unhealthy_count"], 1)
+        self.assertEqual(summary["needs_fix_count"], 0)
+        self.assertEqual(
+            summary["next_action"],
+            "1 ready_for_payment ürün health-check'te sorunlu; ayrı takip et",
+        )
+        self.assertEqual(summary["gaps"]["ready_for_payment_health"][0]["slug"], "ready-tool")
+
     def test_placeholder_records_are_ignored(self) -> None:
         state = {
             "cycle": 1060,

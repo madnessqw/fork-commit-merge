@@ -147,6 +147,43 @@ def test_compute_metrics_checkout_gap():
     assert m["checkout_gap"] == 3
 
 
+def test_compute_metrics_surfaces_ready_for_payment_health_issues():
+    summary = _sample_summary(
+        gaps={
+            "unhealthy_live": [
+                {"slug": "jwt-generator", "code": 500},
+                {"slug": "diffmaster", "code": 401},
+            ],
+            "canonical_url_drift": [
+                {
+                    "slug": "pdf-forge",
+                    "url": "https://pdf-forge-alt.vercel.app",
+                    "ideal_url": "https://pdf-forge.vercel.app",
+                },
+                {
+                    "slug": "webhook-tester",
+                    "url": "https://webhook-tester-alt.vercel.app",
+                    "ideal_url": "https://webhook-tester.vercel.app",
+                },
+            ],
+            "ready_for_payment_health": [
+                {
+                    "slug": "code-formatter-universal",
+                    "code": 404,
+                    "health_status": "not_found",
+                }
+            ],
+        },
+    )
+    m = compute_metrics(summary)
+    assert m["ready_for_payment_unhealthy"] == 1
+    assert "code-formatter-universal" in [
+        item.get("slug", "?") for item in m["ready_for_payment_entries"]
+    ]
+    assert "RFPU:1" in render_compact(m)
+    assert "READY FOR PAYMENT" in render_full(m)
+
+
 def test_render_compact_contains_grade():
     m = compute_metrics(_sample_summary())
     result = render_compact(m)

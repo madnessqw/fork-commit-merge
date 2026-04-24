@@ -95,6 +95,7 @@ def compute_metrics(summary: dict) -> dict:
     active = summary.get("active_count", 0)
     unhealthy = summary.get("unhealthy_count", 0)
     pending = summary.get("pending_health_count", 0)
+    ready_for_payment_unhealthy = summary.get("ready_for_payment_unhealthy_count")
     fallback_healthy = fallback_healthy_count(summary)
     canonical_healthy = summary.get("canonical_healthy_count")
     if canonical_healthy is None:
@@ -113,6 +114,11 @@ def compute_metrics(summary: dict) -> dict:
     gaps = summary.get("gaps", {})
     unhealthy_live = gaps.get("unhealthy_live", [])
     drift_entries = canonical_drift_entries(summary)
+    ready_for_payment_entries = gaps.get("ready_for_payment_health", [])
+    if ready_for_payment_unhealthy is None:
+        ready_for_payment_unhealthy = len(
+            [item for item in ready_for_payment_entries if isinstance(item, dict)]
+        )
 
     return {
         "active": active,
@@ -131,8 +137,12 @@ def compute_metrics(summary: dict) -> dict:
         "needs_fix": needs_fix,
         "spec_ready": spec_ready,
         "deploy_ready": deploy_ready,
+        "ready_for_payment_unhealthy": ready_for_payment_unhealthy,
         "unhealthy_live": unhealthy_live,
         "drift_entries": drift_entries,
+        "ready_for_payment_entries": [
+            item for item in ready_for_payment_entries if isinstance(item, dict)
+        ],
         "cycle": summary.get("cycle", 0),
         "mode": summary.get("mode", "?"),
     }
@@ -149,6 +159,7 @@ def render_compact(m: dict) -> str:
         f"{check}CO "
         f"CH:{m['canonical_healthy']} "
         f"FH:{m['fallback_healthy']} "
+        f"RFPU:{m['ready_for_payment_unhealthy']} "
         f"DG:{m['deploy_gap']} "
         f"CD:{m['canonical_drift']} "
         f"NF:{m['needs_fix']}"
@@ -172,6 +183,7 @@ def render_full(m: dict) -> str:
         f"    Healthy:  {GREEN}{m['healthy']}{RESET}",
         f"    Canonical healthy: {GREEN}{m['canonical_healthy']}{RESET}",
         f"    Fallback healthy:  {YELLOW}{m['fallback_healthy']}{RESET}",
+        f"    Ready-for-payment issues: {YELLOW}{m['ready_for_payment_unhealthy']}{RESET}",
         f"    Unhealthy:{RED}{m['unhealthy']}{RESET}",
         f"    Pending:  {YELLOW}{m['pending']}{RESET}",
         "",
@@ -210,20 +222,43 @@ def render_full(m: dict) -> str:
             lines.append(f"    {DIM}... +{len(m['drift_entries']) - 6} more{RESET}")
         lines.append("")
 
+    if m["ready_for_payment_entries"]:
+        lines.append(f"  {BOLD}{YELLOW}READY FOR PAYMENT{RESET}")
+        for item in m["ready_for_payment_entries"][:6]:
+            slug = item.get("slug", "?")
+            code = item.get("code", "?")
+            status = item.get("health_status", "?")
+            lines.append(f"    {YELLOW}•{RESET} {slug:30s} HTTP {code} ({status})")
+        if len(m["ready_for_payment_entries"]) > 6:
+            lines.append(
+                f"    {DIM}... +{len(m['ready_for_payment_entries']) - 6} more{RESET}"
+            )
+        lines.append("")
+
     lines.append(f"{BOLD}{'═' * 52}{RESET}")
     lines.append("")
     return "\n".join(lines)
 
 
 def render_json(m: dict) -> str:
-    export = {k: v for k, v in m.items() if k not in ("unhealthy_live", "drift_entries")}
+    export = {
+        k: v
+        for k, v in m.items()
+        if k not in ("unhealthy_live", "drift_entries", "ready_for_payment_entries")
+    }
     export["unhealthy_live_count"] = len(m.get("unhealthy_live", []))
     export["drift_entries_count"] = len(m.get("drift_entries", []))
+    export["ready_for_payment_unhealthy_count"] = len(
+        m.get("ready_for_payment_entries", [])
+    )
     export["unhealthy_slugs"] = [
         i.get("slug", "?") for i in m.get("unhealthy_live", [])
     ]
     export["drift_slugs"] = [
         i.get("slug", "?") for i in m.get("drift_entries", [])
+    ]
+    export["ready_for_payment_unhealthy_slugs"] = [
+        i.get("slug", "?") for i in m.get("ready_for_payment_entries", [])
     ]
     return json.dumps(export, indent=2)
 

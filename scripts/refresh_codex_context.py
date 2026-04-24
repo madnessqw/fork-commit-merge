@@ -68,7 +68,9 @@ def load_summary() -> dict[str, Any]:
         build_summary(state, product_catalog=load_product_catalog(), raw_state=state)
     )
     _write_summary(summary)
-    summary["_non_live_health_issues"] = _ready_for_payment_health_issues(state)
+    summary["_non_live_health_issues"] = _ready_for_payment_health_issues(summary)
+    if not summary["_non_live_health_issues"]:
+        summary["_non_live_health_issues"] = _ready_for_payment_health_issues(state)
     return summary
 
 
@@ -218,6 +220,14 @@ def _fallback_healthy_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _ready_for_payment_health_issues(state: dict[str, Any]) -> list[dict[str, Any]]:
+    gaps = state.get("gaps", {})
+    if isinstance(gaps, dict):
+        raw_entries = gaps.get("ready_for_payment_health")
+        if isinstance(raw_entries, list):
+            entries = [item for item in raw_entries if isinstance(item, dict)]
+            if entries:
+                return entries
+
     products = state.get("products", {})
     if isinstance(products, dict):
         active = products.get("active", [])

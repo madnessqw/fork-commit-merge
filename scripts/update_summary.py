@@ -46,6 +46,7 @@ SUMMARY_STATE_FIELDS = (
     "fallback_healthy_count",
     "unhealthy_count",
     "pending_health_count",
+    "ready_for_payment_unhealthy_count",
     "checkout_gap_count",
     "missing_checkout",
     "deploy_missing_or_bad_url",
@@ -100,6 +101,15 @@ def _looks_like_manual_dashboard_action(value: Any) -> bool:
 
 
 def _effective_next_action(state: dict[str, Any], unhealthy_live: list[dict[str, Any]], canonical_drift_live: list[dict[str, Any]]) -> str | None:
+    return _effective_next_action_with_rfp(state, unhealthy_live, canonical_drift_live, [])
+
+
+def _effective_next_action_with_rfp(
+    state: dict[str, Any],
+    unhealthy_live: list[dict[str, Any]],
+    canonical_drift_live: list[dict[str, Any]],
+    ready_for_payment_health: list[dict[str, Any]],
+) -> str | None:
     raw = state.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
     if unhealthy_live:
@@ -109,6 +119,12 @@ def _effective_next_action(state: dict[str, Any], unhealthy_live: list[dict[str,
 
     if canonical_drift_live:
         return f"{len(canonical_drift_live)} canonical URL drift'ini düzelt; fallback alias'ı ezme"
+
+    if ready_for_payment_health:
+        return (
+            f"{len(ready_for_payment_health)} ready_for_payment ürün health-check'te sorunlu; "
+            "ayrı takip et"
+        )
 
     if raw_text and not _looks_like_manual_dashboard_action(raw_text):
         return raw_text
@@ -439,6 +455,12 @@ def build_summary(
 
         return entry
 
+    ready_for_payment_health = [
+        build_unhealthy_entry(p)
+        for p in ready_for_payment
+        if not is_pending_health(p) and health_code(p) not in (None, 200)
+    ]
+
     return {
         "cycle": state.get("cycle"),
         "mode": state.get("mode"),
@@ -453,6 +475,7 @@ def build_summary(
         "fallback_healthy_count": len(fallback_healthy_detail),
         "unhealthy_count": len(unhealthy_live),
         "pending_health_count": len(pending_health_live),
+        "ready_for_payment_unhealthy_count": len(ready_for_payment_health),
         "checkout_gap_count": len(checkout_gap_live),
         # Deploy/URL gaps cover missing URLs plus broken live records. Canonical
         # drift stays separate so alias-only products do not inflate the deploy
@@ -469,7 +492,12 @@ def build_summary(
         # fallback aliases should stay visible until the canonical URL itself
         # probes cleanly.
         "needs_fix_count": len(unhealthy_live) + len(pending_health_live) + len(canonical_drift_live),
-        "next_action": _effective_next_action(state, unhealthy_live, canonical_drift_live),
+        "next_action": _effective_next_action_with_rfp(
+            state,
+            unhealthy_live,
+            canonical_drift_live,
+            ready_for_payment_health,
+        ),
         "vercel_auth_issue": state.get("vercel_auth_issue"),
         "last_updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "products": [compact_product(p) for p in active],
@@ -491,10 +519,14 @@ def build_summary(
             "missing_checkout": [p.get("slug") for p in checkout_gap_live],
             "canonical_url_drift": canonical_drift_live,
             "fallback_healthy": fallback_healthy_detail,
+            "ready_for_payment_health": ready_for_payment_health,
             "deploy_readiness": readiness["issues"],
         },
         "canonical_url_drift_products": [item.get("slug") for item in canonical_drift_live if item.get("slug")],
         "fallback_healthy_products": [item.get("slug") for item in fallback_healthy_detail if item.get("slug")],
+        "ready_for_payment_unhealthy_products": [
+            item.get("slug") for item in ready_for_payment_health if item.get("slug")
+        ],
     }
 
 
