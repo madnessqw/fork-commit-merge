@@ -27,6 +27,7 @@ SNAPSHOT_KEYS = (
     "checkout_gap_count",
     "deploy_missing_or_bad_url",
     "canonical_url_drift",
+    "fallback_healthy_count",
 )
 
 
@@ -54,6 +55,8 @@ def record_snapshot(summary_path: Path | None = None) -> dict:
 
     canonical_drift = canonical_drift_count(summary)
 
+    fallback_healthy = summary.get("fallback_healthy_count", len(summary.get("gaps", {}).get("fallback_healthy", [])))
+
     grade = _grade_from_pct(health_pct)
 
     snapshot = {
@@ -67,6 +70,7 @@ def record_snapshot(summary_path: Path | None = None) -> dict:
         "checkout_gap": summary.get("checkout_gap_count", 0),
         "deploy_gap": summary.get("deploy_missing_or_bad_url", 0),
         "canonical_drift": canonical_drift,
+        "fallback_healthy": fallback_healthy,
     }
 
     TREND_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -127,6 +131,7 @@ def compute_trend(entries: list[dict] | None = None) -> dict:
         "snapshots": len(entries),
         "latest_deploy_gap": last.get("deploy_gap", 0),
         "latest_canonical_drift": last.get("canonical_drift", 0),
+        "latest_fallback_healthy": last.get("fallback_healthy", 0),
     }
 
 
@@ -140,11 +145,13 @@ def trend_summary_text() -> str:
         trend["direction"], "?"
     )
     grade = snapshot.get("grade", _grade_from_pct(snapshot["health_pct"]))
+    fallback = snapshot.get("fallback_healthy", 0)
+    fb_tag = f" | Fallback: {fallback}" if fallback else ""
     return (
         f"[{grade}] Sağlık: {snapshot['health_pct']}% {arrow} "
         f"(trend: {trend['direction']}, Δ{trend['health_delta']:+.1f}%) | "
         f"Unhealthy: {snapshot['unhealthy']} | "
-        f"Drift: {snapshot['canonical_drift']} | "
+        f"Drift: {snapshot['canonical_drift']}{fb_tag} | "
         f"Deploy gap: {snapshot['deploy_gap']}"
     )
 

@@ -162,6 +162,71 @@ class HealthTrendTests(unittest.TestCase):
         finally:
             ht.TREND_FILE = orig
 
+    def test_record_snapshot_includes_fallback_healthy(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(summary, fallback_healthy_count=4)
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["fallback_healthy"], 4)
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_record_snapshot_fallback_healthy_from_gaps_array(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(
+                summary,
+                gaps={"fallback_healthy": [{"slug": "a"}, {"slug": "b"}]},
+            )
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["fallback_healthy"], 2)
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_trend_summary_text_includes_fallback_when_nonzero(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary, fallback_healthy_count=3)
+            text = trend_summary_text()
+            self.assertIn("Fallback: 3", text)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_trend_summary_text_no_fallback_when_zero(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary, fallback_healthy_count=0)
+            text = trend_summary_text()
+            self.assertNotIn("Fallback", text)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
 
 if __name__ == "__main__":
     unittest.main()
