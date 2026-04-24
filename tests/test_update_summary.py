@@ -1468,6 +1468,30 @@ class UpdateSummaryTests(unittest.TestCase):
             ],
         )
 
+    def test_redirected_drift_entry_without_probe_url_uses_canonical_probe_url(self) -> None:
+        product = {
+            "name": "Legacy Redirected Tool",
+            "slug": "legacy-redirected-tool",
+            "status": "live",
+            "vercel_url": "https://legacy-redirected-tool-preview.vercel.app",
+            "deployment_url": "https://legacy-redirected-tool-preview.vercel.app",
+            "health_status": "alternate_healthy",
+            "last_health_code": 200,
+            "last_health_url": "https://legacy-redirected-tool-preview.vercel.app",
+            "effective_health_url": "https://legacy-redirected-tool-preview.vercel.app",
+            "canonical_health_status": "redirected_preview_alias",
+            "canonical_health_code": 200,
+            "canonical_health_url": "https://legacy-redirected-tool.vercel.app",
+        }
+
+        entry = canonical_url_drift_entry(product)
+
+        self.assertEqual(entry["probe_url"], "https://legacy-redirected-tool.vercel.app")
+        self.assertEqual(
+            entry["effective_url"], "https://legacy-redirected-tool-preview.vercel.app"
+        )
+        self.assertEqual(entry["canonical_status"], "redirected_preview_alias")
+
     def test_stale_failure_with_successful_fallback_records_actual_fallback_url(self) -> None:
         state = {
             "products": {

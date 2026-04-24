@@ -309,11 +309,16 @@ def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
         entry["health_status"] = health_status
 
     probe_url = _pick(product, "health_probe_url")
-    if probe_url is None and _pick(product, "canonical_health_status") == "redirected_preview_alias":
+    canonical_status = _pick(product, "canonical_health_status")
+    if probe_url is None and canonical_status == "redirected_preview_alias":
         # Legacy redirected-fallback snapshots may miss `health_probe_url` even
         # though the canonical probe did run. Surface that canonical probe URL
         # so drift reports explain why the preview alias is still visible.
-        probe_url = _pick(product, "canonical_probe_url")
+        probe_url = (
+            _pick(product, "canonical_probe_url")
+            or _pick(product, "canonical_health_url")
+            or ideal_url
+        )
     if probe_url is None:
         probe_url = _pick(product, "last_health_url")
     if probe_url is not None:
@@ -331,7 +336,6 @@ def canonical_url_drift_entry(product: dict[str, Any]) -> dict[str, Any] | None:
     if canonical_code is not None:
         entry["canonical_code"] = canonical_code
 
-    canonical_status = _pick(product, "canonical_health_status")
     if canonical_status is not None:
         entry["canonical_status"] = canonical_status
 

@@ -6,20 +6,19 @@
 - `skills/SWARM_IDENTITY.md`, `skills/ULTRATHINK.md`, `logic/codex.logic.md`, `skills/universe-creator/SKILL.md`
 - `lessons/checkout-url-lessons.md`, `skills/POLAR_CHECKOUT.md`, `skills/codex_skill.md`
 - `analysis/codex_task.md`, `STATE_SUMMARY.json`, `analysis/oneri.md`, `analysis/sorun_analizi.md`, `CODEBASE_MAP.md`, `skills/build_checklist.md`
-- `products/json-schema-to-ts/product.json`, `products/json-schema-to-ts/spec.json`, `products/json-schema-to-ts/index.html`
-- `analysis/polar_checkout_sync_report.md`
+- `scripts/update_summary.py`, `scripts/product_state_sync.py`
+- `tests/test_update_summary.py`, `tests/test_product_state_sync.py`, `tests/test_health_check.py`, `tests/test_refresh_codex_context.py`
 
 ## Ne Değişti
-- Polar checkout sync ile `json-schema-to-ts` için Polar product + reusable checkout link oluşturuldu/güncellendi.
-- `products/json-schema-to-ts/product.json` içinde `checkout_url`, `payment_provider=polar`, `polar_product_id`, `polar_product_price_id`, `polar_checkout_link_id` yazıldı; status `ready_for_payment` oldu.
-- `lessons/checkout-url-lessons.md` içinde aktif snapshot sayaçları ve ilgili tablo satırı güncellendi.
-- `STATE_SUMMARY.json`, `analysis/codex_task.md`, `analysis/oneri.md`, `analysis/sorun_analizi.md` refresh edildi.
+- `scripts/update_summary.py` içindeki `canonical_url_drift_entry()` artık `canonical_health_status == redirected_preview_alias` ve `health_probe_url` eksikse canonical probe URL'yi daha sağlam çıkarıyor.
+- Bu durumda probe kaynağı artık sırayla `canonical_probe_url`, `canonical_health_url`, `ideal_url` üzerinden korunuyor; böylece preview alias/probe ayrımı kaybolmuyor.
+- `tests/test_update_summary.py` içine redirected preview alias için probe URL regression testi eklendi.
 
 ## Doğrulama
-- `python3 scripts/polar_checkout_sync.py plan --status live --status ready_for_payment --replace-non-polar` → `total_candidates: 0`
-- `python3 -m py_compile scripts/polar_checkout_sync.py scripts/refresh_codex_context.py scripts/update_summary.py scripts/product_state_sync.py` → geçti
-- Değişen dosyalarda credential/tokene benzer desenler → temiz
+- `python3 -m pytest -q tests/test_update_summary.py tests/test_product_state_sync.py tests/test_health_check.py tests/test_refresh_codex_context.py` → 139 passed
+- `python3 -m py_compile scripts/update_summary.py tests/test_update_summary.py` → geçti
+- Değişen dosyalarda `sk_ / pk_ / ghp_ / api_key` secret deseni → temiz
 
 ## Kalan Durum
+- Canlı ürün state'i bu change ile değiştirilmedi; sadece summary/drift raporlaması sağlamlaştırıldı.
 - Live health tarafında hâlâ 3 gerçek sağlıksız ürün ve 4 canonical drift/fallback alias ürünü var.
-- Checkout gap tarafı live + ready_for_payment için kapalı.
