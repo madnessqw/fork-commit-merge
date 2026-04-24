@@ -30,6 +30,8 @@ def _sample_summary(**overrides):
         "active_count": 100,
         "live_count": 90,
         "healthy_count": 85,
+        "canonical_healthy_count": 83,
+        "fallback_healthy_count": 2,
         "unhealthy_count": 5,
         "pending_health_count": 0,
         "checkout_gap_count": 0,
@@ -109,6 +111,8 @@ def test_compute_metrics_basic():
     assert m["active"] == 100
     assert m["live"] == 90
     assert m["healthy"] == 85
+    assert m["canonical_healthy"] == 83
+    assert m["fallback_healthy"] == 2
     assert m["unhealthy"] == 5
     assert m["health_pct"] == round(85 / 90 * 100, 1)
     assert m["grade"] == "B"
@@ -116,6 +120,18 @@ def test_compute_metrics_basic():
     assert m["deploy_gap"] == 3
     assert m["canonical_drift"] == 2
     assert m["cycle"] == 500
+
+
+def test_compute_metrics_derives_canonical_healthy_from_fallback_visibility():
+    summary = _sample_summary(
+        healthy_count=88,
+        canonical_healthy_count=None,
+        fallback_healthy_count=4,
+    )
+    m = compute_metrics(summary)
+    assert m["healthy"] == 88
+    assert m["canonical_healthy"] == 84
+    assert m["fallback_healthy"] == 4
 
 
 def test_compute_metrics_zero_live():
@@ -136,6 +152,8 @@ def test_render_compact_contains_grade():
     result = render_compact(m)
     assert "B" in result
     assert "85/90" in result
+    assert "CH:83" in result
+    assert "FH:2" in result
 
 
 def test_render_full_contains_sections():
@@ -147,6 +165,8 @@ def test_render_full_contains_sections():
     assert "PIPELINE" in result
     assert "UNHEALTHY" in result
     assert "CANONICAL DRIFT" in result
+    assert "Canonical healthy" in result
+    assert "Fallback healthy" in result
     assert "jwt-generator" in result
     assert "pdf-forge" in result
 
@@ -166,6 +186,8 @@ def test_render_json_valid():
     data = json.loads(output)
     assert data["live"] == 90
     assert data["grade"] == "B"
+    assert data["canonical_healthy"] == 83
+    assert data["fallback_healthy"] == 2
     assert data["unhealthy_slugs"] == ["jwt-generator", "diffmaster"]
     assert "pdf-forge" in data["drift_slugs"]
     assert "unhealthy_live" not in data

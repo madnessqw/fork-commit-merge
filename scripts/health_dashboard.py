@@ -23,7 +23,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.summary_visibility import canonical_drift_count, canonical_drift_entries
+from scripts.summary_visibility import (
+    canonical_drift_count,
+    canonical_drift_entries,
+    fallback_healthy_count,
+)
 
 
 BOLD = "\033[1m"
@@ -91,6 +95,10 @@ def compute_metrics(summary: dict) -> dict:
     active = summary.get("active_count", 0)
     unhealthy = summary.get("unhealthy_count", 0)
     pending = summary.get("pending_health_count", 0)
+    fallback_healthy = fallback_healthy_count(summary)
+    canonical_healthy = summary.get("canonical_healthy_count")
+    if canonical_healthy is None:
+        canonical_healthy = max(healthy - fallback_healthy, 0)
 
     health_pct = round(healthy / live * 100, 1) if live > 0 else 0.0
     grade = _grade(health_pct)
@@ -110,6 +118,8 @@ def compute_metrics(summary: dict) -> dict:
         "active": active,
         "live": live,
         "healthy": healthy,
+        "canonical_healthy": canonical_healthy,
+        "fallback_healthy": fallback_healthy,
         "unhealthy": unhealthy,
         "pending": pending,
         "health_pct": health_pct,
@@ -137,6 +147,8 @@ def render_compact(m: dict) -> str:
         f"{_bar(m['health_pct'], 10)} "
         f"{health} ({_pct(m['health_pct'])}) "
         f"{check}CO "
+        f"CH:{m['canonical_healthy']} "
+        f"FH:{m['fallback_healthy']} "
         f"DG:{m['deploy_gap']} "
         f"CD:{m['canonical_drift']} "
         f"NF:{m['needs_fix']}"
@@ -158,6 +170,8 @@ def render_full(m: dict) -> str:
         f"    Active:   {m['active']}",
         f"    Live:     {m['live']}",
         f"    Healthy:  {GREEN}{m['healthy']}{RESET}",
+        f"    Canonical healthy: {GREEN}{m['canonical_healthy']}{RESET}",
+        f"    Fallback healthy:  {YELLOW}{m['fallback_healthy']}{RESET}",
         f"    Unhealthy:{RED}{m['unhealthy']}{RESET}",
         f"    Pending:  {YELLOW}{m['pending']}{RESET}",
         "",
