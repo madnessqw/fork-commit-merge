@@ -1,0 +1,22 @@
+{
+  "name": "ASCII Art Generator Pro",
+  "slug": "ascii-art-generator",
+  "tagline": "Generate stylish ASCII banners and text art for code comments, documentation, and CLI outputs",
+  "description": "Generate stylish ASCII banners, logos, and text art for code comments, documentation, and CLI outputs. 30+ fonts, real-time preview, export to TXT.",
+  "price": "19",
+  "features": ["30+ font styles", "Real-time preview", "Copy to clipboard", "Export to TXT", "CLI-ready output", "Responsive design"],
+  "category": "Developer Tools",
+  "tech_stack": "Vercel + Static",
+  "status": "ready_to_deploy",
+  "vercel_url": null,
+  "github_url": null,
+  "checkout_url": null,
+  "payment_provider": "polar",
+  "polar_product_id": null,
+  "polar_product_price_id": null,
+  "polar_checkout_link_id": null,
+  "webhook_url": null,
+  "created_cycle": 1119,
+  "deployed_cycle": null,
+  "spec_version": "1.0"
+}

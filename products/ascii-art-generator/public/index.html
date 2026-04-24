@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Art Generator Pro</title>
+  <meta name="description" content="The ultimate ASCII Art Generator tool. Powerful features with an intuitive interface designed for developers and power users.">
+    <meta name="keywords" content="ascii, art, generator, code generator, dev tool, generator, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://ascii-art-generator.vercel.app">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ASCII Art Generator Pro",
+  "description": "The ultimate ASCII Art Generator tool. Powerful features with an intuitive interface designed for developers and power users.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://ascii-art-generator.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --surface: #161b22; --border: #30363d;
+      --accent: #58a6ff; --accent2: #3fb950; --text: #e6edf3;
+      --muted: #8b949e; --red: #f85149; --yellow: #d29922;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 1.1rem; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+    .nav-brand span { color: var(--muted); font-weight: 400; font-size: 0.85rem; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #79b8ff; transform: translateY(-1px); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-ghost { color: var(--muted); background: transparent; border: none; }
+    .btn-ghost:hover { color: var(--text); }
+    /* HERO */
+    .hero { text-align: center; padding: 64px 24px 48px; max-width: 860px; margin: 0 auto; }
+    .hero-badge { display: inline-block; background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.3); color: var(--accent); font-size: 0.8rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero p { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto 32px; line-height: 1.6; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    /* DEMO SECTION */
+    .demo-section { max-width: 1100px; margin: 0 auto; padding: 0 24px 64px; }
+    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .demo-grid { grid-template-columns: 1fr; } }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.2); }
+    .panel-title { font-weight: 600; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .panel-body { padding: 16px; }
+    /* TOOL CONTROLS */
+    .controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .control-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .control-row label { font-size: 0.85rem; color: var(--muted); min-width: 60px; }
+    select, input[type="text"], input[type="number"] { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: inherit; font-size: 0.85rem; padding: 6px 10px; outline: none; transition: border-color 0.2s; }
+    select:focus, input:focus { border-color: var(--accent); }
+    select { cursor: pointer; min-width: 160px; }
+    input[type="number"] { width: 80px; }
+    textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; padding: 12px; resize: vertical; min-height: 80px; outline: none; transition: border-color 0.2s; line-height: 1.5; }
+    textarea:focus { border-color: var(--accent); }
+    .action-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    /* OUTPUT */
+    #ascii-output { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; min-height: 200px; max-height: 400px; overflow: auto; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.2; white-space: pre; color: var(--accent2); position: relative; }
+    #ascii-output .placeholder { color: var(--muted); font-style: italic; }
+    .output-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    /* FONT GRID */
+    .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; padding: 24px; }
+    .font-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; cursor: pointer; transition: all 0.2s; }
+    .font-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .font-card.active { border-color: var(--accent); background: rgba(88,166,255,0.05); }
+    .font-card-name { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-card-preview { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent2); white-space: pre; line-height: 1.1; overflow: hidden; }
+    .font-card.pro .badge { display: inline-block; background: rgba(210,168,34,0.15); border: 1px solid rgba(210,168,34,0.4); color: var(--yellow); font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 64px 24px; }
+    .section-title { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    .section-sub { text-align: center; color: var(--muted); margin-bottom: 48px; }
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .feature-title { font-weight: 700; margin-bottom: 8px; }
+    .feature-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 700px; margin: 0 auto; }
+    .price-card { background: var(--surface); border: 2px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; position: relative; }
+    .price-card.featured { border-color: var(--accent); }
+    .price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 14px; border-radius: 20px; letter-spacing: 0.05em; }
+    .price-name { font-size: 1rem; font-weight: 600; color: var(--muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .price-amount { font-size: 3rem; font-weight: 700; margin-bottom: 4px; }
+    .price-amount .currency { font-size: 1.5rem; vertical-align: super; }
+    .price-period { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 24px; }
+    .price-features li { padding: 6px 0; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    .price-features li::before { content: '✓'; color: var(--accent2); font-weight: 700; }
+    .price-features li.disabled { color: var(--muted); text-decoration: line-through; }
+    .price-features li.disabled::before { content: '✗'; color: var(--muted); }
+    /* FAQ */
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-q { font-weight: 700; font-size: 1rem; margin-bottom: 8px; color: var(--text); }
+    .faq-a { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+    footer a { color: var(--accent); }
+    /* TABS */
+    .tabs { display: flex; gap: 4px; padding: 0 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+    .tab { padding: 8px 16px; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: var(--muted); border-radius: 6px 6px 0 0; border-bottom: 2px solid transparent; transition: all 0.2s; }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    /* PRO OVERLAY */
+    .pro-overlay { position: relative; }
+    .pro-overlay::after { content: ''; position: absolute; inset: 0; background: rgba(13,17,23,0.6); backdrop-filter: blur(2px); border-radius: 8px; cursor: pointer; }
+    .pro-overlay-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; }
+    .pro-overlay-text .pro-badge { background: rgba(210,168,34,0.9); color: #000; font-weight: 700; font-size: 0.75rem; padding: 4px 12px; border-radius: 20px; }
+    /* TOAST */
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--surface); border: 1px solid var(--accent2); color: var(--text); padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; z-index: 1000; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .toast.show { opacity: 1; }
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand"><span class="mono">&lt;/&gt;</span> ASCII Art Generator <span>Pro</span></div>
+    <div class="nav-links">
+      <a href="#demo">Demo</a>
+      <a href="#fonts">Fonts</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#" class="btn btn-primary" id="nav-buy" onclick="showProToast();return false;">Buy — $19</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">30+ Font Styles · Real-time Preview · Export to TXT</div>
+    <h1>Create <span class="highlight">Stylish ASCII Art</span> in Seconds</h1>
+    <p>Generate beautiful ASCII banners, logos, and text art for your code comments, README files, CLI scripts, and terminal output. No signup required.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn btn-primary">Try Free — No Signup</a>
+      <a href="#pricing" class="btn btn-outline">View Pricing</a>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo-section" id="demo">
+    <div class="tabs">
+      <div class="tab active" data-tab="editor">ASCII Generator</div>
+      <div class="tab" data-tab="fonts">Font Gallery</div>
+    </div>
+
+    <!-- EDITOR TAB -->
+    <div class="tab-content active" id="tab-editor">
+      <div class="demo-grid">
+        <!-- INPUT PANEL -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Input</span>
+            <button class="btn btn-ghost" onclick="resetInput()" style="font-size:0.8rem">Reset</button>
+          </div>
+          <div class="panel-body">
+            <div class="controls">
+              <div class="control-row">
+                <label>Font:</label>
+                <select id="font-select">
+                  <optgroup label="— Standard Fonts (Free) —">
+                    <option value="standard">Standard</option>
+                    <option value="banner">Banner</option>
+                    <option value="digital">Digital</option>
+                    <option value="block">Block</option>
+                    <option value="bubble">Bubble</option>
+                  </optgroup>
+                  <optgroup label="— Pro Fonts —">
+                    <option value="slant" class="pro">Slant (Pro)</option>
+                    <option value="shadow" class="pro">Shadow (Pro)</option>
+                    <option value="script" class="pro">Script (Pro)</option>
+                    <option value="speed" class="pro">Speed (Pro)</option>
+                    <option value="avatar" class="pro">Avatar (Pro)</option>
+                    <option value="o8" class="pro">O8 (Pro)</option>
+                    <option value="rect" class="pro">Rect (Pro)</option>
+                    <option value="weird" class="pro">Weird (Pro)</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Width:</label>
+                <input type="number" id="font-width" value="80" min="40" max="160">
+                <span style="color:var(--muted);font-size:0.8rem">chars</span>
+              </div>
+            </div>
+            <textarea id="text-input" placeholder="Type your text here..." oninput="generateArt()">Hello World</textarea>
+            <div class="action-row" style="margin-top:12px">
+              <button class="btn btn-primary" onclick="generateArt()">Generate</button>
+              <button class="btn btn-outline" onclick="copyToClipboard()">Copy</button>
+              <button class="btn btn-outline" onclick="downloadTxt()">Download .txt</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTPUT PANEL -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Output</span>
+            <button class="btn btn-ghost" id="pro-lock" style="display:none" onclick="showProToast()">🔒 Pro</button>
+          </div>
+          <div class="panel-body">
+            <div id="ascii-output"><span class="placeholder">Your ASCII art will appear here...</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FONTS TAB -->
+    <div class="tab-content" id="tab-fonts">
+      <div class="font-grid" id="font-gallery">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2 class="section-title">Everything You Need for ASCII Art</h2>
+    <p class="section-sub">From quick one-liners to complex banner designs</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Real-time Preview</div>
+        <div class="feature-desc">See your ASCII art update instantly as you type. No waiting, no page reloads.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">30+ Font Styles</div>
+        <div class="feature-desc">Block letters, bubble text, digital displays, gothic fonts, slanted styles, and many more.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">One-Click Copy</div>
+        <div class="feature-desc">Copy your ASCII art to clipboard with a single click. Ready to paste anywhere.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">Export to .txt</div>
+        <div class="feature-desc">Download your ASCII art as a .txt file for use in code, docs, or sharing.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <div class="feature-title">CLI-Ready Output</div>
+        <div class="feature-desc">Perfect output for shell scripts, MOTDs, git commits, and terminal greetings.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Responsive Design</div>
+        <div class="feature-desc">Works beautifully on desktop, tablet, and mobile devices.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <h2 class="section-title">Simple, Transparent Pricing</h2>
+    <p class="section-sub">One-time payment. Lifetime access. No subscriptions.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">Forever free</div>
+        <ul class="price-features">
+          <li>5 font styles</li>
+          <li>Real-time preview</li>
+          <li>Copy to clipboard</li>
+          <li class="disabled">All 30+ fonts</li>
+          <li class="disabled">Custom width control</li>
+          <li class="disabled">Batch export</li>
+          <li class="disabled">API access</li>
+        </ul>
+        <a href="#demo" class="btn btn-outline" style="width:100%;justify-content:center">Get Started Free</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Pro</div>
+        <div class="price-amount"><span class="currency">$</span>19</div>
+        <div class="price-period">One-time payment · Lifetime access</div>
+        <ul class="price-features">
+          <li>30+ font styles</li>
+          <li>Real-time preview</li>
+          <li>Copy to clipboard</li>
+          <li>Custom width control</li>
+          <li>Batch export</li>
+          <li>Priority support</li>
+          <li>API access (coming soon)</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center" onclick="showProToast();return false;">Buy Pro — $19</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub"></p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What is ASCII art?</div>
+        <div class="faq-a">ASCII art is artwork created using characters from the ASCII standard (letters, numbers, symbols). It's commonly used in code comments, README files, terminal greetings, and CLI tools.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What fonts are available in the free version?</div>
+        <div class="faq-a">The free version includes Standard, Banner, Digital, Block, and Bubble fonts. Pro gives you access to 30+ additional fonts including Shadow, Script, Slant, Speed, Avatar, and more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this a subscription?</div>
+        <div class="faq-a">No! Pro is a one-time payment of $19 for lifetime access. No recurring charges, no hidden fees.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use the generated ASCII art commercially?</div>
+        <div class="faq-a">Yes! Once generated, the ASCII art is yours to use in personal or commercial projects, including client work, open-source projects, and products.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there an API?</div>
+        <div class="faq-a">API access is included in Pro (coming soon). You'll be able to generate ASCII art programmatically for integration into your own tools and workflows.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does it work on mobile?</div>
+        <div class="faq-a">Yes! The tool is fully responsive and works on mobile devices, tablets, and desktops.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>ASCII Art Generator Pro · <a href="#" onclick="showProToast();return false;">Buy Pro — $19</a></p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Font definitions: name → figlet font name
+    const FONTS = {
+      standard: { name: 'Standard', free: true },
+      banner: { name: 'Banner', free: true },
+      digital: { name: 'Digital', free: true },
+      block: { name: 'Block', free: true },
+      bubble: { name: 'Bubble', free: true },
+      slant: { name: 'Slant', free: false },
+      shadow: { name: 'Shadow', free: false },
+      script: { name: 'Script', free: false },
+      speed: { name: 'Speed', free: false },
+      avatar: { name: 'Avatar', free: false },
+      o8: { name: 'O8', free: false },
+      rect: { name: 'Rect', free: false },
+      weird: { name: 'Weird', free: false },
+      big: { name: 'Big', free: false },
+      emboss: { name: 'Emboss', free: false },
+      emboss2: { name: 'Emboss2', free: false },
+      cosmic: { name: 'Cosmic', free: false },
+      graffiti: { name: 'Graffiti', free: false },
+      hollywood: { name: 'Hollywood', free: false },
+      iso: { name: 'ISO', free: false },
+      lean: { name: 'Lean', free: false },
+      mini: { name: 'Mini', free: false },
+      mnemonic: { name: 'Mnemonic', free: false },
+      pagga: { name: 'Pagga', free: false },
+      peaks: { name: 'Peaks', free: false },
+      pepper: { name: 'Pepper', free: false },
+      rectangles: { name: 'Rectangles', free: false },
+      rounded: { name: 'Rounded', free: false },
+      rows: { name: 'Rows', free: false },
+      short: { name: 'Short', free: false },
+      slabs: { name: 'Slabs', free: false },
+      starwars: { name: 'Star Wars', free: false },
+      stellar: { name: 'Stellar', free: false },
+      stop: { name: 'Stop', free: false },
+      threepoint: { name: '3D', free: false },
+      tiny: { name: 'Tiny', free: false },
+      twopoint: { name: '2D', free: false },
+      univers: { name: 'Univers', free: false },
+      wavy: { name: 'Wavy', free: false },
+    };
+
+    // Load figlet.js
+    const FIGLET_CDN = 'https://cdn.jsdelivr.net/npm/figlet@1.7.0/lib/figlet.min.js';
+    let figletLoaded = false;
+    let isPro = false;
+
+    function loadFiglet() {
+      return new Promise((resolve, reject) => {
+        if (window.figlet) { resolve(); return; }
+        const s = document.createElement('script');
+        s.src = FIGLET_CDN;
+        s.onload = () => resolve();
+        s.onerror = () => reject(new Error('Failed to load figlet.js'));
+        document.head.appendChild(s);
+      });
+    }
+
+    async function init() {
+      try {
+        await loadFiglet();
+        figletLoaded = true;
+        generateArt();
+        buildFontGallery();
+      } catch(e) {
+        document.getElementById('ascii-output').innerHTML = '<span style="color:var(--red)">⚠️ Failed to load ASCII engine. Please refresh.</span>';
+      }
+    }
+
+    function generateArt() {
+      if (!figletLoaded || !window.figlet) return;
+      const text = document.getElementById('text-input').value || 'Hello World';
+      const font = document.getElementById('font-select').value;
+      const width = parseInt(document.getElementById('font-width').value) || 80;
+
+      const proFonts = Object.entries(FONTS).filter(([,v]) => !v.free).map(([k]) => k);
+      const isProFont = proFonts.includes(font);
+      document.getElementById('pro-lock').style.display = isProFont ? 'inline-flex' : 'none';
+
+      try {
+        window.figlet.text(text, {
+          font: font === 'standard' ? 'Standard' : font,
+          width: width,
+          whitespaceBreak: true,
+        }, function(err, data) {
+          if (err) {
+            document.getElementById('ascii-output').innerHTML = '<span style="color:var(--red)">⚠️ Font not supported</span>';
+            return;
+          }
+          document.getElementById('ascii-output').textContent = data;
+        });
+      } catch(e) {
+        document.getElementById('ascii-output').innerHTML = '<span class="placeholder">Error generating art. Try a different font.</span>';
+      }
+    }
+
+    function buildFontGallery() {
+      const gallery = document.getElementById('font-gallery');
+      gallery.innerHTML = '';
+      const sampleText = 'ASCII';
+
+      Object.entries(FONTS).forEach(([key, font]) => {
+        const card = document.createElement('div');
+        card.className = 'font-card' + (font.free ? '' : ' pro');
+        card.innerHTML = `<div class="font-card-name">${font.name}${font.free ? '' : '<span class="badge">PRO</span>'}</div><pre class="font-card-preview">${sampleText}</pre>`;
+        card.onclick = () => {
+          if (!font.free) { showProToast(); return; }
+          document.getElementById('font-select').value = key;
+          document.querySelector('[data-tab="editor"]').click();
+          generateArt();
+        };
+        gallery.appendChild(card);
+
+        // Preview with actual figlet
+        if (figletLoaded && window.figlet) {
+          try {
+            window.figlet.text(sampleText, { font: key === 'standard' ? 'Standard' : key, width: 80 }, function(err, data) {
+              if (!err && data) {
+                card.querySelector('.font-card-preview').textContent = data.substring(0, 200);
+              }
+            });
+          } catch(e) {}
+        }
+      });
+    }
+
+    function copyToClipboard() {
+      const output = document.getElementById('ascii-output').textContent;
+      if (!output || output.includes('will appear')) { showToast('Nothing to copy yet!'); return; }
+      navigator.clipboard.writeText(output).then(() => showToast('Copied to clipboard!')).
+        catch(() => showToast('Failed to copy'));
+    }
+
+    function downloadTxt() {
+      const output = document.getElementById('ascii-output').textContent;
+      if (!output || output.includes('will appear')) { showToast('Generate something first!'); return; }
+      const blob = new Blob([output], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ascii-art.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast('Downloaded ascii-art.txt');
+    }
+
+    function resetInput() {
+      document.getElementById('text-input').value = 'Hello World';
+      document.getElementById('font-select').value = 'standard';
+      document.getElementById('font-width').value = '80';
+      generateArt();
+    }
+
+    function showProToast() {
+      showToast('🔒 Upgrade to Pro for all 30+ fonts');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Init
+    init();
+  </script>
+</body>
+</html>
