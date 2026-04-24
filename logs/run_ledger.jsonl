@@ -76,3 +76,5 @@
 {"run_id": "codex-20260424-1007", "mode": "EXECUTION", "task": "Polar checkout rollout for missing static products", "status": "done", "slug": "polar-checkout-rollout", "duration_min": 32, "cost_est": 0.08, "cycle": 1110, "ts": "2026-04-24T10:07:16Z"}
 {"run_id": "codex-20260424-1346", "mode": "OPTIMIZE", "task": "compact fallback visibility", "status": "done", "slug": "health-canonical-drift", "duration_min": 24, "cost_est": 0.05, "cycle": 1110}
 {"run_id": "codex-20260424-1404", "mode": "EXECUTION", "task": "health/canonical drift packaging and loop hardening", "status": "done", "slug": "health-canonical-drift", "duration_min": 24, "cost_est": 0.06, "cycle": 1110, "ts": "2026-04-24T14:04:36Z"}
+{"run_id":"codex-20260424-1141","mode":"EXECUTION","task":"health dashboard canonical/fallback visibility","status":"done","slug":"health-canonical-drift","duration_min":12,"cost_est":0.05,"cycle":1110}
+{"run_id": "codex-20260424-1508", "mode": "EXECUTION", "task": "canonical drift visibility hardening", "status": "done", "slug": "health-canonical-drift", "duration_min": 34, "cost_est": 0.08, "cycle": 1110}
