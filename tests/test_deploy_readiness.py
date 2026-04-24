@@ -3,7 +3,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.deploy_readiness import collect_spec_ready_deploy_readiness, readiness_summary
+from scripts.deploy_readiness import (
+    batch_suggest_vercel_urls,
+    collect_spec_ready_deploy_readiness,
+    readiness_summary,
+    suggest_vercel_url,
+)
 
 
 class DeployReadinessTests(unittest.TestCase):
@@ -248,6 +253,38 @@ class ReadinessSummaryTests(unittest.TestCase):
         self.assertEqual(result["healthy_count"], 0)
         self.assertEqual(result["health_pct"], 0.0)
         self.assertEqual(result["issues_count"], 0)
+
+
+class SuggestVercelUrlTests(unittest.TestCase):
+    """Tests for suggest_vercel_url and batch_suggest_vercel_urls."""
+
+    def test_basic_slug(self) -> None:
+        self.assertEqual(
+            suggest_vercel_url("my-cool-tool"), "https://my-cool-tool.vercel.app"
+        )
+
+    def test_slug_whitespace_stripped(self) -> None:
+        self.assertEqual(
+            suggest_vercel_url("  fancy-tool  "), "https://fancy-tool.vercel.app"
+        )
+
+    def test_slug_lowercased(self) -> None:
+        self.assertEqual(
+            suggest_vercel_url("My-Cool-Tool"), "https://my-cool-tool.vercel.app"
+        )
+
+    def test_batch_returns_mapping(self) -> None:
+        result = batch_suggest_vercel_urls(["tool-a", "tool-b"])
+        self.assertEqual(
+            result,
+            {
+                "tool-a": "https://tool-a.vercel.app",
+                "tool-b": "https://tool-b.vercel.app",
+            },
+        )
+
+    def test_batch_empty_list(self) -> None:
+        self.assertEqual(batch_suggest_vercel_urls([]), {})
 
 
 if __name__ == "__main__":

@@ -208,6 +208,24 @@ def collect_spec_ready_deploy_readiness(
     }
 
 
+def suggest_vercel_url(slug: str) -> str:
+    """Return the canonical Vercel URL for a given product slug.
+
+    Convention: ``https://{slug}.vercel.app``
+    """
+    cleaned = slug.strip().lower()
+    return f"https://{cleaned}.vercel.app"
+
+
+def batch_suggest_vercel_urls(slugs: list[str]) -> dict[str, str]:
+    """Return a mapping of slug → suggested Vercel URL.
+
+    Useful for agents that need to quickly populate missing vercel_url fields
+    without querying the Vercel API.
+    """
+    return {slug: suggest_vercel_url(slug) for slug in slugs}
+
+
 def readiness_summary(
     state_path: Path = STATE_PATH,
     summary_path: Path = SUMMARY_PATH,
