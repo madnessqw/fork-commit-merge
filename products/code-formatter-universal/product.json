@@ -28,5 +28,6 @@
   "payment_provider": "polar",
   "polar_product_id": "75f90a32-0f83-497c-9d13-3f7da9a46737",
   "polar_product_price_id": "a64ed913-3906-4dda-a09a-d15fae0d73d5",
-  "polar_checkout_link_id": "3da7184b-3356-4d2e-a225-97c465808edf"
+  "polar_checkout_link_id": "3da7184b-3356-4d2e-a225-97c465808edf",
+  "tagline": "Universal code formatter supporting 50+ languages. Auto-format your code with customizable rules."
 }

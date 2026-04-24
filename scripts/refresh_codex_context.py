@@ -64,8 +64,11 @@ def refresh_live_health() -> None:
 def load_summary() -> dict[str, Any]:
     refresh_live_health()
     state = json.loads(STATE_FILE.read_text(encoding="utf-8"))
-    summary = build_summary(state, product_catalog=load_product_catalog(), raw_state=state)
+    summary = dict(
+        build_summary(state, product_catalog=load_product_catalog(), raw_state=state)
+    )
     _write_summary(summary)
+    summary["_non_live_health_issues"] = _ready_for_payment_health_issues(state)
     return summary
 
 
@@ -214,12 +217,63 @@ def _fallback_healthy_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
     return []
 
 
+def _ready_for_payment_health_issues(state: dict[str, Any]) -> list[dict[str, Any]]:
+    products = state.get("products", {})
+    if isinstance(products, dict):
+        active = products.get("active", [])
+    elif isinstance(products, list):
+        active = products
+    else:
+        active = []
+
+    if not isinstance(active, list):
+        return []
+
+    issues: list[dict[str, Any]] = []
+    for item in active:
+        if not isinstance(item, dict):
+            continue
+
+        status = str(item.get("status") or item.get("st") or "").strip()
+        if status != "ready_for_payment":
+            continue
+
+        raw_code = item.get("last_health_code")
+        try:
+            code = int(raw_code) if raw_code is not None else None
+        except (TypeError, ValueError):
+            code = None
+
+        if code is None or code == 200:
+            continue
+
+        slug = str(item.get("slug") or item.get("s") or "").strip()
+        if not slug:
+            continue
+
+        issues.append(
+            {
+                "slug": slug,
+                "code": code,
+                "health_status": str(item.get("health_status") or f"error_{code}").strip()
+                or f"error_{code}",
+                "url": item.get("v") or item.get("vercel_url") or item.get("deployment_url"),
+                "canonical_url": item.get("canonical_health_url") or item.get("ideal_vercel_url"),
+                "canonical_code": item.get("canonical_health_code"),
+                "canonical_status": item.get("canonical_health_status"),
+            }
+        )
+
+    return issues
+
+
 def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
     raw = summary.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
     gaps = summary.get("gaps", {})
     unhealthy_live = list(gaps.get("unhealthy_live", []))
     canonical_drift = _canonical_drift_entries(summary)
+    non_live_health = list(summary.get("_non_live_health_issues", []))
 
     if unhealthy_live:
         if canonical_drift:
@@ -233,6 +287,12 @@ def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
         return (
             f"{len(canonical_drift)} canonical URL drift'ini düzelt; "
             "fallback alias'ı ezme"
+        )
+
+    if non_live_health:
+        return (
+            f"{len(non_live_health)} ready_for_payment ürün health-check'te sorunlu; "
+            "ayrı takip et"
         )
 
     if raw_text and not _looks_like_manual_dashboard_action(raw_text):
@@ -253,6 +313,7 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
     grouped = _issue_map(issues)
     unhealthy_live = list(summary.get("gaps", {}).get("unhealthy_live", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
+    non_live_health = list(summary.get("_non_live_health_issues", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     canonical_drift = _canonical_drift_entries(summary)
@@ -316,6 +377,25 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
             codex_task_body=(
                 "Canlı ürünlerin health snapshot'ını summary/state tarafında ayrı takip et. "
                 "Eksik health metadata'yı outage diye sayma; önce health pipeline'ını çalıştırıp sonuçları geri yaz."
+            ),
+        )
+
+    if non_live_health:
+        sample = non_live_health[0]
+        slug = sample.get("slug") or "unknown"
+        code = sample.get("code")
+        status = sample.get("health_status") or "error"
+        return Focus(
+            key="ready_for_payment_health",
+            title="Ready-for-payment health açığı",
+            summary=(
+                f"{len(non_live_health)} ready_for_payment ürün health-check'te sorunlu; "
+                f"ilk örnek `{slug}` (HTTP {code}, {status})."
+            ),
+            codex_task_title="Ready-for-payment health düzeltmesi",
+            codex_task_body=(
+                "Live sağlık metriğini şişirmeden ready_for_payment ürünlerin health sorunlarını da görünür tut. "
+                "Bu ürünleri ayrı takip et; live outage diye sayma ama 404/401 gibi sonuçları context'e kaybetme."
             ),
         )
 
@@ -453,6 +533,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     canonical_drift = _canonical_drift_entries(summary)
     fallback_healthy = list(summary.get("gaps", {}).get("fallback_healthy", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
+    non_live_health = list(summary.get("_non_live_health_issues", []))
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
     next_action = effective_next_action(summary, focus)
     lines = [
@@ -583,6 +664,23 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                 f"- `{item.get('slug')}` — status={item.get('health_status')} url={item.get('url')}"
             )
 
+    if non_live_health:
+        lines.extend(["", "## Ready-for-Payment Health Issues"])
+        for item in non_live_health[:10]:
+            bits: list[str] = []
+            if item.get("url"):
+                bits.append(f"url={item.get('url')}")
+            if item.get("canonical_url"):
+                bits.append(f"canonical_url={item.get('canonical_url')}")
+            if item.get("canonical_code") is not None:
+                bits.append(f"canonical_code={item.get('canonical_code')}")
+            if item.get("canonical_status"):
+                bits.append(f"canonical_status={item.get('canonical_status')}")
+            extra = f" {' '.join(bits)}" if bits else ""
+            lines.append(
+                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')}{extra}"
+            )
+
     if deploy_readiness:
         lines.extend(["", "## Deploy Readiness Issues"])
         lines.append(
@@ -621,6 +719,7 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
 def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
     unhealthy = list(summary.get("gaps", {}).get("unhealthy_live", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
+    non_live_health = list(summary.get("_non_live_health_issues", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
     canonical_drift = _canonical_drift_entries(summary)
@@ -733,6 +832,23 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
             drift_suffix = f" {' '.join(drift_bits)}" if drift_bits else ""
             lines.append(
                 f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
+            )
+
+    if non_live_health:
+        lines.extend(["", "## Ready-for-Payment Health Issues"])
+        for item in non_live_health[:10]:
+            bits: list[str] = []
+            if item.get("url"):
+                bits.append(f"url={item.get('url')}")
+            if item.get("canonical_url"):
+                bits.append(f"canonical_url={item.get('canonical_url')}")
+            if item.get("canonical_code") is not None:
+                bits.append(f"canonical_code={item.get('canonical_code')}")
+            if item.get("canonical_status"):
+                bits.append(f"canonical_status={item.get('canonical_status')}")
+            extra = f" {' '.join(bits)}" if bits else ""
+            lines.append(
+                f"- `{item.get('slug')}` — code={item.get('code')} status={item.get('health_status')}{extra}"
             )
 
     if deploy_readiness:

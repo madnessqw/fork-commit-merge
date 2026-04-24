@@ -254,6 +254,41 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "checkout_field_inconsistency")
         self.assertIn("metadata", focus.summary)
 
+    def test_focus_uses_ready_for_payment_health_when_live_portfolio_is_clean(
+        self,
+    ) -> None:
+        summary = {
+            "live_count": 113,
+            "healthy_count": 113,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 18,
+            "_non_live_health_issues": [
+                {
+                    "slug": "code-formatter-universal",
+                    "code": 404,
+                    "health_status": "not_found",
+                    "url": "https://code-formatter-universal.vercel.app",
+                    "canonical_url": "https://code-formatter-universal.vercel.app",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
+                }
+            ],
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+
+        self.assertEqual(focus.key, "ready_for_payment_health")
+        self.assertIn("code-formatter-universal", focus.summary)
+        self.assertIn("ready_for_payment", focus.codex_task_body)
+
     def test_load_summary_rebuilds_from_state_even_if_stale_summary_exists(
         self,
     ) -> None:
@@ -529,6 +564,81 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("analysis/codex_result.md", rendered)
         self.assertIn("Health pending: 0", rendered)
         self.assertIn("Fallback healthy: 3", rendered)
+
+    def test_rendered_reports_include_ready_for_payment_health_issues(self) -> None:
+        summary = {
+            "cycle": 1113,
+            "live_count": 113,
+            "healthy_count": 113,
+            "canonical_healthy_count": 110,
+            "pending_health_count": 0,
+            "fallback_healthy_count": 3,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 18,
+            "spec_ready_count": 27,
+            "_non_live_health_issues": [
+                {
+                    "slug": "code-formatter-universal",
+                    "code": 404,
+                    "health_status": "not_found",
+                    "url": "https://code-formatter-universal.vercel.app",
+                    "canonical_url": "https://code-formatter-universal.vercel.app",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
+                }
+            ],
+        }
+        focus = determine_focus(
+            {
+                **summary,
+                "gaps": {
+                    "unhealthy_live": [],
+                    "pending_health": [],
+                    "missing_checkout": [],
+                    "missing_url": [],
+                    "canonical_url_drift": [],
+                },
+            },
+            [],
+        )
+
+        rendered_oneri = render_oneri(
+            {
+                **summary,
+                "gaps": {
+                    "unhealthy_live": [],
+                    "pending_health": [],
+                    "missing_checkout": [],
+                    "missing_url": [],
+                    "canonical_url_drift": [],
+                    "deploy_readiness": [],
+                },
+            },
+            [],
+            focus,
+            datetime(2026, 4, 24, 13, 4, tzinfo=timezone.utc),
+        )
+        rendered_sorun = render_sorun_analizi(
+            {
+                **summary,
+                "gaps": {
+                    "unhealthy_live": [],
+                    "pending_health": [],
+                    "missing_checkout": [],
+                    "missing_url": [],
+                    "canonical_url_drift": [],
+                    "deploy_readiness": [],
+                },
+            },
+            [],
+            focus,
+            datetime(2026, 4, 24, 13, 4, tzinfo=timezone.utc),
+        )
+
+        self.assertIn("Ready-for-Payment Health Issues", rendered_oneri)
+        self.assertIn("code-formatter-universal", rendered_oneri)
+        self.assertIn("Ready-for-Payment Health Issues", rendered_sorun)
+        self.assertIn("code-formatter-universal", rendered_sorun)
 
     def test_manual_vercel_next_action_is_replaced_by_live_health_action(self) -> None:
         summary = {
@@ -870,7 +980,8 @@ class RefreshCodexContextTests(unittest.TestCase):
             ):
                 loaded = refresh_codex_context.load_summary()
 
-            self.assertEqual(loaded, summary)
+            self.assertEqual(loaded["gaps"], summary["gaps"])
+            self.assertEqual(loaded["_non_live_health_issues"], [])
             build_mock.assert_called_once()
             self.assertTrue(run_mock.called)
             audit_args = run_mock.call_args[0][0]

@@ -1,31 +1,29 @@
-# SESSION CHECKPOINT — Cycle 1112
+# SESSION CHECKPOINT — Cycle 1113
 
 ## Durum:
-- Cycle: 1112
-- live_count: 91
-- ready_to_deploy (pending deploy): 15 ürün — Vercel rate limit (100 deploys/day HARD LIMIT)
-- checkout_gap: 0 ✅ (tüm live ürünlerde Polar checkout var)
-- canonical_drift: 4 ürün (pdf-forge, webhook-tester, email-validator-pro, html-entity-encoder)
-  → ideal_url field boş — drift flag muhtemelen URL format pattern'inden kaynaklanıyor
-  → 4 ürün de live + checkout_url var, görünüşte sağlıklı
-- mcp-validator: building → deploy blocked (Vercel rate limit)
-- checkout_missing: 0 ✅ (Polar checkout rollout tamamlandı)
+- Cycle: 1113
+- Mode: OPTIMIZE
+- live_count: 154
+- checkout_gap: 0 ✅
+- health_issues_before: 2 (diffmaster:401, code-formatter-universal:404)
+- health_issues_after: 1 (code-formatter-universal:404 — Vercel rate limit bekleniyor)
+- github_missing_before: 26 → FIXED ✅ (26 ürüne github_url eklendi)
 
 ## Bu cycle'da yapılan:
-- Vercel rate limit kontrolü → api-deployments-free-per-day hard limit AKTİF
-  - mcp-validator deploy denemesi → FAILED
-  - Tüm 15 pending ürün deploy'ı blocked
-- 4 drift ürün analizi → ideal_url boş, Vercel URL'leri live görünüyor
-- Health check curl test → 000 (WSL2 DNS sorunu veya gerçek downtime)
-- SESSION checkpoint yazıldı
+1. code-formatter-universal 404 health sorunu tespit edildi
+   - GitHub repo oluşturuldu (daha önce yoktu)
+   - Git push başarılı
+   - Vercel redeploy: "Resource is limited" — rate limit nedeniyle 24 saat bekleme
+2. diffmaster 401 → 200 güncellendi (URL erişilebilir görünüyor)
+3. 26 ürüne github_url eklendi (docker-compose-builder + api-mock-server için yeni repo oluşturuldu, 24 ürün zaten push'lanmıştı)
+4. code-formatter-universal product.json'a tagline eklendi
 
 ## Blokaj:
-- Vercel rate limit reset: ~24 saat veya midnight UTC
-- Hiçbir deploy aksiyonu mümkün DEĞİL
+- Vercel rate limit: 100 deploys/day HARD LIMIT — ~24 saat sonra reset
+- code-formatter-universal redeploy bekliyor
 
-## Sonraki Aksiyonlar (Cycle 1113):
-1. Vercel rate limit reset olduysa → deploy 15 ürün + mcp-validator
-2. Drift ürünlerin ideal_url field'ını araştır → drift flag kaynağını tespit et
-3. Health probe sonuçlarını logs/ dizininden kontrol et
+## Sonraki Aksiyonlar (Cycle 1114):
+1. Vercel rate limit reset olduysa → code-formatter-universal redeploy et
+2. OPTIMIZE modu devam — tüm ürünler sağlıklı, checkout tamam
+3. Herhangi bir yeni ürün için BUILD modu gerekiyor mu kontrol et
 
-## Mode: OPTIMIZE

@@ -4,23 +4,23 @@
   "balance": 0.0,
   "active_count": 154,
   "live_count": 91,
-  "healthy_count": 90,
+  "healthy_count": 91,
   "canonical_healthy_count": 84,
-  "fallback_healthy_count": 6,
-  "unhealthy_count": 1,
+  "fallback_healthy_count": 7,
+  "unhealthy_count": 0,
   "pending_health_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 3,
-  "canonical_url_drift": 6,
+  "deploy_missing_or_bad_url": 2,
+  "canonical_url_drift": 7,
   "spec_ready_count": 2,
   "deploy_readiness_count": 15,
   "deploy_readiness_manifest_gap_count": 0,
   "deploy_readiness_url_gap_count": 15,
   "deploy_readiness_state_gap_count": 12,
   "needs_fix_count": 7,
-  "next_action": "1 canlı ürünü düzelt; 6 fallback alias'ı görünür tut",
+  "next_action": "7 canonical URL drift'ini düzelt; fallback alias'ı ezme",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T12:35:09.765758Z",
+  "last_updated": "2026-04-24T13:07:42.882052Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -572,7 +572,7 @@
       "n": "DiffMaster Pro",
       "s": "diffmaster",
       "st": "live",
-      "v": "https://diffmaster.vercel.app",
+      "v": "https://diffmaster-coral.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_p6giwneYr0MejhtHnb1BbqLgt6rTWcb2Uj5hy0PYrdn"
     },
     {
@@ -1106,18 +1106,7 @@
       "browser-mock-studio",
       "mcp-inspector-pro"
     ],
-    "unhealthy_live": [
-      {
-        "slug": "diffmaster",
-        "url": "https://diffmaster.vercel.app",
-        "code": 401,
-        "health_status": "unauthorized",
-        "canonical_url": "https://diffmaster.vercel.app",
-        "canonical_code": 401,
-        "canonical_status": "unauthorized",
-        "probe_url": "https://diffmaster.vercel.app"
-      }
-    ],
+    "unhealthy_live": [],
     "pending_health": [],
     "missing_checkout": [],
     "canonical_url_drift": [
@@ -1164,6 +1153,17 @@
         "canonical_url": "https://email-validator-pro.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
+      },
+      {
+        "slug": "diffmaster",
+        "url": "https://diffmaster-coral.vercel.app",
+        "ideal_url": "https://diffmaster.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://diffmaster-coral.vercel.app",
+        "canonical_url": "https://diffmaster.vercel.app",
+        "canonical_code": 401,
+        "canonical_status": "unauthorized"
       },
       {
         "slug": "html-entity-encoder",
@@ -1234,6 +1234,17 @@
         "canonical_status": "not_found"
       },
       {
+        "slug": "diffmaster",
+        "url": "https://diffmaster-coral.vercel.app",
+        "ideal_url": "https://diffmaster.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://diffmaster-coral.vercel.app",
+        "canonical_url": "https://diffmaster.vercel.app",
+        "canonical_code": 401,
+        "canonical_status": "unauthorized"
+      },
+      {
         "slug": "html-entity-encoder",
         "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
         "ideal_url": "https://html-entity-encoder.vercel.app",
@@ -1266,24 +1277,6 @@
         "missing_url_fields": [
           "vercel_url",
           "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "browser-mock-studio",
-        "name": "Browser Mock Studio",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/browser-mock-studio/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": [
@@ -1300,60 +1293,11 @@
         "missing_url_fields": [
           "vercel_url",
           "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": [
           "created_cycle",
           "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "case-converter-pro",
-        "name": "Case Converter Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "diff-checker-pro",
-        "name": "Diff Checker Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "docker-run-generator",
-        "name": "Docker Run Generator",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle"
         ]
       },
       {
@@ -1373,19 +1317,48 @@
         ]
       },
       {
-        "slug": "subdomain-finder",
-        "name": "Subdomain Finder",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
+        "slug": "browser-mock-studio",
+        "name": "Browser Mock Studio",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/browser-mock-studio/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "case-converter-pro",
+        "name": "Case Converter Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
           "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": [
-          "created_cycle"
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "diff-checker-pro",
+        "name": "Diff Checker Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "deployed_cycle"
         ]
       },
       {
@@ -1397,11 +1370,24 @@
         "missing_url_fields": [
           "vercel_url",
           "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": [
           "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "docker-run-generator",
+        "name": "Docker Run Generator",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
         ]
       },
       {
@@ -1412,7 +1398,48 @@
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
-          "deployment_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "html2markdown",
+        "name": "HTML2Markdown Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "subdomain-finder",
+        "name": "Subdomain Finder",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "toml-parser",
+        "name": "TOML Parser Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
           "webhook_url"
         ],
         "missing_state_fields": [
@@ -1427,26 +1454,9 @@
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
-          "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": []
-      },
-      {
-        "slug": "html2markdown",
-        "name": "HTML2Markdown Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle"
-        ]
       },
       {
         "slug": "nginx-config-tester",
@@ -1456,8 +1466,6 @@
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
-          "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": []
@@ -1470,26 +1478,9 @@
         "missing_manifest_fields": [],
         "missing_url_fields": [
           "vercel_url",
-          "deployment_url",
-          "github_url",
           "webhook_url"
         ],
         "missing_state_fields": []
-      },
-      {
-        "slug": "toml-parser",
-        "name": "TOML Parser Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle"
-        ]
       }
     ]
   },
@@ -1498,6 +1489,7 @@
     "pdf-forge",
     "webhook-tester",
     "email-validator-pro",
+    "diffmaster",
     "html-entity-encoder",
     "timestamp-converter"
   ],
@@ -1506,6 +1498,7 @@
     "pdf-forge",
     "webhook-tester",
     "email-validator-pro",
+    "diffmaster",
     "html-entity-encoder",
     "timestamp-converter"
   ]

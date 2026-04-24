@@ -1,21 +1,18 @@
-# Sorun Analizi — Cycle 1110 | 2026-04-24 12:35 UTC
+# Sorun Analizi — Cycle 1110 | 2026-04-24 13:07 UTC
 
 ## Ana Darboğaz
-- **live_health** — 1 canlı ürün gerçekten sağlıksız. Ayrıca 6 canlı ürün fallback alias ile ayakta. İlk örnek `diffmaster` (HTTP 401).
+- **ready_for_payment_health** — 1 ready_for_payment ürün health-check'te sorunlu; ilk örnek `code-formatter-universal` (HTTP 404, not_found).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 90/91
+- Healthy live: 91/91
 - Canonical healthy: 84/91
 - Health pending: 0
-- Fallback healthy: 6
+- Fallback healthy: 7
 - Checkout gap: 0
 - Deploy readiness gap: 15
-- Deploy/url gap: 3
-- Canonical drift: 6
+- Deploy/url gap: 2
+- Canonical drift: 7
 - Spec-ready backlog: 2
-
-## Canlı Sağlıksız Ürünler
-- `diffmaster` — code=401 status=unauthorized url=https://diffmaster.vercel.app
 
 ## URL/Deploy Eksikleri
 - browser-mock-studio, mcp-inspector-pro
@@ -25,21 +22,25 @@
 - `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app health=alternate_healthy code=200 canonical_code=401 canonical_status=unauthorized
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app health=alternate_healthy code=200 canonical_code=451 canonical_status=error_451
 
+## Ready-for-Payment Health Issues
+- `code-formatter-universal` — code=404 status=not_found url=https://code-formatter-universal.vercel.app canonical_url=https://code-formatter-universal.vercel.app canonical_code=404 canonical_status=not_found
+
 ## Deploy Readiness Issues
 - Count: 15 | Manifest gaps: 0 | URL gaps: 15 | State gaps: 12
-- `api-mock-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
-- `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
-- `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
-- `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=deployed_cycle
-- `diff-checker-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=deployed_cycle
-- `docker-run-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
+- `api-mock-generator` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle, deployed_cycle
+- `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle, deployed_cycle
 - `mcp-inspector-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle, deployed_cycle
-- `subdomain-finder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
-- `yaml-validator-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=deployed_cycle
-- `favicon-generator-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle
+- `browser-mock-studio` — manifest=none; url=vercel_url, webhook_url; state=created_cycle, deployed_cycle
+- `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=deployed_cycle
+- `diff-checker-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=deployed_cycle
+- `yaml-validator-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=deployed_cycle
+- `docker-run-generator` — manifest=none; url=vercel_url, webhook_url; state=created_cycle
+- `favicon-generator-pro` — manifest=none; url=vercel_url, webhook_url; state=created_cycle
+- `html2markdown` — manifest=none; url=vercel_url, webhook_url; state=created_cycle
 
 ## Açık Issue Kayıtları
 - **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
