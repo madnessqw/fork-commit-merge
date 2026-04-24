@@ -163,6 +163,53 @@ def write_triage_report(entries: list[dict], output_path: Path | None = None) ->
     return report
 
 
+def triage_summary(
+    summary_path: Path | None = None,
+) -> dict:
+    """One-call triage overview for downstream agents.
+
+    Returns a compact dict with severity counts, top-severity slugs,
+    and whether a handoff to Codex is recommended.
+
+    Example output::
+
+        {
+            "total_unhealthy": 7,
+            "high": 2,
+            "medium": 4,
+            "low": 1,
+            "top_high_slugs": ["jwt-generator", "diffmaster"],
+            "codex_handoff_recommended": true,
+            "triage_entries": [...],
+        }
+    """
+    entries = generate_triage(summary_path)
+    if not entries:
+        return {
+            "total_unhealthy": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "top_high_slugs": [],
+            "codex_handoff_recommended": False,
+            "triage_entries": [],
+        }
+
+    high = [e for e in entries if e.get("severity") == "high"]
+    medium = [e for e in entries if e.get("severity") == "medium"]
+    low = [e for e in entries if e.get("severity") == "low"]
+
+    return {
+        "total_unhealthy": len(entries),
+        "high": len(high),
+        "medium": len(medium),
+        "low": len(low),
+        "top_high_slugs": [e["slug"] for e in sort_by_severity(high)],
+        "codex_handoff_recommended": len(high) > 0,
+        "triage_entries": sort_by_severity(entries),
+    }
+
+
 def main():
     entries = generate_triage()
     if not entries:

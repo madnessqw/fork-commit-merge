@@ -14,6 +14,7 @@ from scripts.unhealthy_triage import (
     _triage_entry,
     generate_triage,
     sort_by_severity,
+    triage_summary,
     write_triage_report,
 )
 
@@ -182,3 +183,60 @@ def test_write_triage_report(tmp_path):
     content = out.read_text()
     assert "| diffmaster |" in content
     assert "Severity breakdown:" in content
+
+
+def test_triage_summary_empty(tmp_path):
+    summary = {"gaps": {"unhealthy_live": [], "canonical_drift": []}}
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = triage_summary(summary_path=summary_file)
+    assert result["total_unhealthy"] == 0
+    assert result["high"] == 0
+    assert result["medium"] == 0
+    assert result["low"] == 0
+    assert result["top_high_slugs"] == []
+    assert result["codex_handoff_recommended"] is False
+    assert result["triage_entries"] == []
+
+
+def test_triage_summary_with_mixed_severity(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "jwt-generator", "code": 500},
+                {"slug": "diffmaster", "code": 401},
+                {"slug": "timestamp-converter", "code": 451},
+            ],
+            "canonical_drift": [
+                {"slug": "pdf-forge", "canonical_code": 500},
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = triage_summary(summary_path=summary_file)
+    assert result["total_unhealthy"] == 4
+    assert result["high"] == 2
+    assert result["low"] == 1
+    assert result["codex_handoff_recommended"] is True
+    assert "jwt-generator" in result["top_high_slugs"]
+    assert len(result["triage_entries"]) == 4
+
+
+def test_triage_summary_no_high_means_no_handoff(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "timestamp-converter", "code": 451},
+            ],
+            "canonical_drift": [],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = triage_summary(summary_path=summary_file)
+    assert result["high"] == 0
+    assert result["codex_handoff_recommended"] is False
