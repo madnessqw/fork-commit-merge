@@ -347,10 +347,11 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
     try:
         code = int(raw_code)
     except (TypeError, ValueError):
-        return None
+        code = None
 
     if code != 200:
-        return None
+        if code is not None or status != "alternate_healthy":
+            return None
 
     slug = _clean_text(_pick(record, "slug", "s"))
     canonical_url = canonical_vercel_url(slug)
@@ -372,7 +373,7 @@ def successful_health_url(record: dict[str, Any]) -> str | None:
                 continue
             return normalized
 
-        return canonical_url
+        return canonical_url if code == 200 else None
 
     preview_alias = _visible_preview_alias(record, slug)
     explicit_health_url = normalize_url(
@@ -788,10 +789,18 @@ def choose_public_vercel_url(
         else None
     )
     if normalized_health_url is not None:
+        parsed_health_code = None
         try:
-            if int(last_health_code) != 200:
-                normalized_health_url = None
+            parsed_health_code = int(last_health_code)
         except (TypeError, ValueError):
+            parsed_health_code = None
+
+        if parsed_health_code is not None and parsed_health_code != 200:
+            normalized_health_url = None
+        elif parsed_health_code is None and not _is_vercel_preview_alias(normalized_health_url, slug):
+            # Missing health code is only enough to preserve a visibly
+            # reachable preview alias. A canonical-looking health URL without
+            # a 200 should still fall back to the regular public URL logic.
             normalized_health_url = None
 
     canonical_url = canonical_vercel_url(slug)

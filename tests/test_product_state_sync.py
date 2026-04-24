@@ -246,6 +246,26 @@ class ProductStateSyncTests(unittest.TestCase):
         self.assertEqual(merged["last_health_url"], "https://temporary-tool-preview.vercel.app")
         self.assertEqual(health_check_url(merged), "https://temporary-tool.vercel.app")
 
+    def test_alternate_healthy_preview_alias_without_health_code_keeps_fallback_visible(self) -> None:
+        merged = merge_product_record(
+            {
+                "slug": "code-less-fallback",
+                "status": "live",
+                "vercel_url": "https://code-less-fallback.vercel.app",
+                "health_status": "alternate_healthy",
+                "last_health_url": "https://code-less-fallback-preview.vercel.app",
+                "effective_health_url": "https://code-less-fallback-preview.vercel.app",
+            },
+            None,
+        )
+
+        self.assertEqual(merged["health_status"], "alternate_healthy")
+        self.assertEqual(merged["vercel_url"], "https://code-less-fallback-preview.vercel.app")
+        self.assertEqual(merged["v"], "https://code-less-fallback-preview.vercel.app")
+        self.assertEqual(merged["last_health_url"], "https://code-less-fallback-preview.vercel.app")
+        self.assertEqual(successful_health_url(merged), "https://code-less-fallback-preview.vercel.app")
+        self.assertEqual(health_check_url(merged), "https://code-less-fallback.vercel.app")
+
     def test_canonical_failure_with_successful_fallback_becomes_alternate_healthy(self) -> None:
         merged = merge_product_record(
             {

@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-24 09:42 +03
+# Codex Result — 2026-04-24 10:08 +0300
 
 ## Okunanlar
 - `skills/SWARM_IDENTITY.md`
@@ -9,26 +9,28 @@
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
 - `skills/POLAR_CHECKOUT.md`
-- `scripts/polar_checkout_sync.py`
-- `scripts/checkout_metadata.py`
-- `tests/test_polar_checkout_sync.py`
-- `lessons/checkout-url-lessons.md`
-- `analysis/polar_checkout_plan.md`
-- `analysis/polar_checkout_sync_report.md`
+- `skills/codex_skill.md`
+- `scripts/product_state_sync.py`
+- `scripts/health_check.py`
+- `scripts/update_summary.py`
+- `scripts/refresh_codex_context.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
 
 ## Ne Değişti
-- `scripts/polar_checkout_sync.py` artık `vercel_url` boş olan ama mevcut checkout URL’si bulunan legacy ürünleri `--replace-non-polar` ile aday sayıyor.
-- Aynı script, landing page yoksa Polar checkout link payload’ından `success_url` / `return_url` alanlarını atlıyor; böylece no-landing-page migration takılmıyor.
-- `tests/test_polar_checkout_sync.py` içine iki regresyon eklendi: legacy non-Polar checkout’un landing page olmadan seçilmesi ve checkout link payload’ında return/success URL alanlarının gönderilmemesi.
-- `skills/POLAR_CHECKOUT.md` bu davranışı truth source olarak not ediyor.
-- `lessons/checkout-url-lessons.md` güncellendi: checkout sayıları, üç live Polar checkout satırı ve yeni bilinen durum kaydı yenilendi.
-- `analysis/polar_checkout_plan.md` ve `analysis/polar_checkout_sync_report.md` current-state no-op hale getirildi: `live` + `ready_for_payment` için aday kalmadı.
+- `scripts/product_state_sync.py` güçlendirildi: `alternate_healthy` kayıtlar `last_health_code` kaybolsa bile preview alias bilgisini koruyor.
+- `choose_public_vercel_url()` artık code-less fallback snapshot’larda canonical slug’a geri düşmüyor; görünür alias varsa onu public URL olarak tutuyor.
+- `successful_health_url()` da aynı edge-case’i destekliyor; summary ve state sync aynı fallback truth’u görüyor.
+- `tests/test_product_state_sync.py` içine code-less `alternate_healthy` regresyonu eklendi.
+
+## Etki
+- Fallback alias, HTTP 200 kodu snapshot’tan düşse bile görünür kalıyor.
+- Canonical URL cache’i, reachable preview alias’ı sessizce yutamıyor.
+- Canlı health sayıları bozulmuyor; sadece görünürlük ve drift sinyali daha sağlam oluyor.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/polar_checkout_sync.py tests/test_polar_checkout_sync.py`
-- `pytest -q tests/test_polar_checkout_sync.py tests/test_checkout_metadata.py` → 18 passed
-- `python3 scripts/polar_checkout_sync.py plan --status live --status ready_for_payment --replace-non-polar --output analysis/polar_checkout_plan.md`
-- `python3 scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment --replace-non-polar --output analysis/polar_checkout_sync_report.md`
+- `python3 -m py_compile scripts/product_state_sync.py tests/test_product_state_sync.py`
+- `pytest -q tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py tests/test_refresh_codex_context.py tests/test_unhealthy_triage.py` → 181 passed
 
 ## Blokerler
-- Yok. Mevcut live/ready_for_payment checkout gap’i kapalı; rollout tool’u yalnızca gelecekteki legacy drift’i yakalayacak şekilde sertleştirildi.
+- Yok.
