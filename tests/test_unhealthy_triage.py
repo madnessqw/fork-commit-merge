@@ -11,7 +11,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.unhealthy_triage import (
+    CANONICAL_DRIFT_FIXES,
     _triage_entry,
+    canonical_drift_fix_suggestions,
     generate_triage,
     quick_fix_suggestion,
     sort_by_severity,
@@ -285,3 +287,111 @@ def test_triage_summary_no_high_means_no_handoff(tmp_path):
     result = triage_summary(summary_path=summary_file)
     assert result["high"] == 0
     assert result["codex_handoff_recommended"] is False
+
+
+def test_canonical_drift_fix_suggestions_from_file(tmp_path):
+    summary = {
+        "gaps": {
+            "canonical_url_drift": [
+                {
+                    "slug": "pdf-forge",
+                    "url": "https://pdf-forge-five.vercel.app",
+                    "ideal_url": "https://pdf-forge.vercel.app",
+                    "canonical_code": 500,
+                    "canonical_status": "error_500",
+                },
+                {
+                    "slug": "webhook-tester",
+                    "url": "https://webhook-tester-beryl.vercel.app",
+                    "ideal_url": "https://webhook-tester.vercel.app",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
+                },
+            ]
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = canonical_drift_fix_suggestions(summary_path=summary_file)
+    assert len(result) == 2
+
+    pdf = next(r for r in result if r["slug"] == "pdf-forge")
+    assert pdf["fallback_url"] == "https://pdf-forge-five.vercel.app"
+    assert pdf["ideal_url"] == "https://pdf-forge.vercel.app"
+    assert pdf["canonical_status"] == "error_500"
+    assert "vercel --prod" in pdf["fix_command"]
+    assert "pdf-forge" in pdf["fix_command"]
+
+    wh = next(r for r in result if r["slug"] == "webhook-tester")
+    assert wh["canonical_status"] == "not_found"
+    assert "vercel link" in wh["fix_command"]
+
+
+def test_canonical_drift_fix_suggestions_empty(tmp_path):
+    summary = {"gaps": {"canonical_url_drift": []}}
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = canonical_drift_fix_suggestions(summary_path=summary_file)
+    assert result == []
+
+
+def test_canonical_drift_fix_suggestions_missing_file(tmp_path):
+    result = canonical_drift_fix_suggestions(
+        summary_path=tmp_path / "nonexistent.json"
+    )
+    assert result == []
+
+
+def test_canonical_drift_fix_suggestions_unknown_status(tmp_path):
+    summary = {
+        "gaps": {
+            "canonical_url_drift": [
+                {
+                    "slug": "odd-product",
+                    "url": "https://odd-product-alt.vercel.app",
+                    "ideal_url": "https://odd-product.vercel.app",
+                    "canonical_status": "some_weird_status",
+                },
+            ]
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = canonical_drift_fix_suggestions(summary_path=summary_file)
+    assert len(result) == 1
+    assert "Investigate" in result[0]["fix_command"]
+    assert "odd-product" in result[0]["fix_command"]
+
+
+def test_canonical_drift_fix_suggestions_deployment_disabled(tmp_path):
+    summary = {
+        "gaps": {
+            "canonical_url_drift": [
+                {
+                    "slug": "html-entity-encoder",
+                    "url": "https://html-entity-encoder-1p2e2xs77.vercel.app",
+                    "ideal_url": "https://html-entity-encoder.vercel.app",
+                    "canonical_status": "deployment_disabled",
+                },
+            ]
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = canonical_drift_fix_suggestions(summary_path=summary_file)
+    assert len(result) == 1
+    assert "Re-enable" in result[0]["fix_command"]
+    assert "html-entity-encoder" in result[0]["fix_command"]
+
+
+def test_canonical_drift_fixes_dict_has_expected_keys():
+    assert "error_500" in CANONICAL_DRIFT_FIXES
+    assert "not_found" in CANONICAL_DRIFT_FIXES
+    assert "deployment_disabled" in CANONICAL_DRIFT_FIXES
+    for key, template in CANONICAL_DRIFT_FIXES.items():
+        formatted = template.format(slug="test-slug")
+        assert "test-slug" in formatted

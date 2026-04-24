@@ -164,6 +164,56 @@ def write_triage_report(entries: list[dict], output_path: Path | None = None) ->
     return report
 
 
+CANONICAL_DRIFT_FIXES = {
+    "error_500": "Redeploy via: cd products/{slug} && vercel --prod --yes",
+    "not_found": "Link project: cd products/{slug} && vercel link --yes && vercel --prod --yes",
+    "deployment_disabled": "Re-enable in Vercel dashboard → Settings → Deployment Protection → disable, then: cd products/{slug} && vercel --prod --yes",
+    "ssoProtection": "vercel project inspect {slug} && disable Vercel Authentication in project settings",
+}
+
+
+def canonical_drift_fix_suggestions(
+    summary_path: Path | None = None,
+) -> list[dict]:
+    """Generate concrete fix suggestions for canonical URL drift products.
+
+    For each product whose canonical URL is broken but works via a fallback
+    alias, produces a remediation command based on the canonical_status code.
+
+    Returns a list of dicts with keys: slug, fallback_url, ideal_url,
+    canonical_status, fix_command.
+    """
+    if summary_path is None:
+        summary_path = ROOT / "STATE_SUMMARY.json"
+    try:
+        with open(summary_path, encoding="utf-8") as f:
+            summary = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+
+    drift_items = summary.get("gaps", {}).get("canonical_url_drift", [])
+    suggestions: list[dict] = []
+
+    for item in drift_items:
+        slug = item.get("slug", "unknown")
+        canonical_status = item.get("canonical_status", "unknown")
+        template = CANONICAL_DRIFT_FIXES.get(canonical_status)
+        fix_command = template.format(slug=slug) if template else (
+            f"Investigate canonical URL for {slug}: "
+            f"status={canonical_status}"
+        )
+        suggestions.append({
+            "slug": slug,
+            "fallback_url": item.get("url", ""),
+            "ideal_url": item.get("ideal_url", ""),
+            "canonical_status": canonical_status,
+            "fix_command": fix_command,
+        })
+
+    suggestions.sort(key=lambda s: str(s["slug"]))
+    return suggestions
+
+
 VERCEL_FIX_COMMANDS = {
     401: "vercel project ls --yes 2>/dev/null && vercel inspect {slug} 2>/dev/null || echo 'Check Vercel dashboard → Settings → Authentication → Disable Vercel Authentication'",
     402: "vercel inspect {slug} 2>/dev/null || echo 'Check billing/deployment status in Vercel dashboard'",
