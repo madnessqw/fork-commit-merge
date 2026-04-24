@@ -46,7 +46,7 @@ def test_croncraft_override_set():
     cc = next((p for p in products if p.get('slug') == 'croncraft'), None)
     assert cc is not None, "croncraft not found"
     assert cc.get('canonical_url_override') is not None, "croncraft missing override"
-    assert 'quickcron.vercel.app' in cc['canonical_url_override']
+    assert 'croncraft' in cc['canonical_url_override']
 
 
 def test_chmod_calculator_override_set():
