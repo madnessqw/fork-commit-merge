@@ -163,22 +163,41 @@ def format_delta_markdown(delta: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def main() -> dict[str, Any]:
-    n = 2
-    if len(sys.argv) > 1 and sys.argv[1] == "--last":
-        try:
-            n = int(sys.argv[2]) if len(sys.argv) > 2 else 5
-        except ValueError:
-            n = 5
+DELTA_OUTPUT_PATH = ROOT / "analysis" / "cycle_delta.md"
 
+
+def main() -> dict[str, Any]:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Cycle-over-cycle delta metrics")
+    parser.add_argument("--last", type=int, default=2, help="Number of recent snapshots to compare (default: 2)")
+    parser.add_argument("--write", action="store_true", help="Write markdown report to analysis/cycle_delta.md")
+    parser.add_argument("--json", action="store_true", help="Output as JSON instead of markdown")
+    args = parser.parse_args()
+
+    n = args.last
     deltas = last_n_deltas(n)
     if not deltas:
         print("No delta data available.")
         return {"error": "no_data"}
 
+    if args.json:
+        summary = delta_summary(n)
+        print(json.dumps({"deltas": deltas, "summary": summary}, indent=2, ensure_ascii=False))
+        return summary
+
+    md_parts: list[str] = []
     for delta in deltas:
-        print(format_delta_markdown(delta))
+        md = format_delta_markdown(delta)
+        md_parts.append(md)
+        print(md)
         print()
+
+    if args.write:
+        full_md = "# Cycle Delta Report\n\n" + "\n\n".join(md_parts) + "\n"
+        DELTA_OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+        DELTA_OUTPUT_PATH.write_text(full_md, encoding="utf-8")
+        print(f"Written: {DELTA_OUTPUT_PATH}")
 
     summary = delta_summary(n)
     return summary
