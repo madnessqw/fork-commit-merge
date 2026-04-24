@@ -8,7 +8,7 @@ import json
 import os
 import re
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 # SEO-optimized meta descriptions for each product type
 SEO_DESCRIPTIONS = {
@@ -169,7 +169,7 @@ def update_state_json(slugs):
         for product in products:
             if product.get('slug') in slugs:
                 product['seo_optimized'] = True
-                product['seo_optimized_at'] = datetime.utcnow().isoformat() + 'Z'
+                product['seo_optimized_at'] = datetime.now(timezone.utc).isoformat()
                 updated_count += 1
 
         with open('STATE.json', 'w') as f:

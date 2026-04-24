@@ -5,7 +5,7 @@ SEO Mass Optimizer - Adds JSON-LD structured data to product pages
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Products to optimize with their metadata
 PRODUCTS = [
@@ -129,7 +129,7 @@ def update_state_json(slugs):
         with open('STATE.json', 'r') as f:
             state = json.load(f)
 
-        now = datetime.utcnow().isoformat() + 'Z'
+        now = datetime.now(timezone.utc).isoformat()
         updated = 0
 
         for product in state.get('products', {}).get('active', []):
