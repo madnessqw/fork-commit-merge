@@ -6,8 +6,18 @@ Direct payment tracking for PayPal/Akbank
 
 import json
 from datetime import datetime
+from pathlib import Path
 
-SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+ROOT = Path(__file__).resolve().parents[1]
+SALES_FILE = str(ROOT / "data" / "p2p_sales.json")
+STATE_FILE = ROOT / "STATE.json"
+
+_FALLBACK_PRODUCTS = [
+    {"id": 1, "name": "SEO Analyzer API", "price": 19, "description": "Full SEO analysis service"},
+    {"id": 2, "name": "Invoice Generator API", "price": 5, "description": "Invoice management system"},
+    {"id": 3, "name": "Content Distributor", "price": 15, "description": "Multi-platform content tool"},
+    {"id": 4, "name": "Dev Tools Bundle", "price": 49, "description": "All tools + future updates"},
+]
 PAYMENT_INFO = """
 💰 DIRECT PAYMENT OPTIONS:
 
@@ -51,33 +61,40 @@ def add_sale(product, amount, buyer_email, transaction_id):
     return sale
 
 
-def list_products():
-    return [
-        {
-            "id": 1,
-            "name": "SEO Analyzer API",
-            "price": 19,
-            "description": "Full SEO analysis service",
-        },
-        {
-            "id": 2,
-            "name": "Invoice Generator API",
-            "price": 5,
-            "description": "Invoice management system",
-        },
-        {
-            "id": 3,
-            "name": "Content Distributor",
-            "price": 15,
-            "description": "Multi-platform content tool",
-        },
-        {
-            "id": 4,
-            "name": "Dev Tools Bundle",
-            "price": 49,
-            "description": "All tools + future updates",
-        },
-    ]
+def _parse_price_int(raw) -> int | None:
+    if raw is None:
+        return None
+    s = str(raw).strip().lstrip("$")
+    try:
+        return int(float(s))
+    except (ValueError, TypeError):
+        return None
+
+
+def list_products(state_path: Path | None = None):
+    path = state_path or STATE_FILE
+    try:
+        with open(path, encoding="utf-8") as f:
+            state = json.load(f)
+        active = state.get("products", {}).get("active", [])
+        live = [p for p in active if p.get("status") == "live"]
+        if not live:
+            return _FALLBACK_PRODUCTS
+        result = []
+        for idx, p in enumerate(live, start=1):
+            price = _parse_price_int(p.get("price"))
+            if price is None:
+                continue
+            result.append({
+                "id": idx,
+                "name": p.get("name", p.get("slug", f"Product {idx}")),
+                "price": price,
+                "slug": p.get("slug", ""),
+                "description": p.get("category", ""),
+            })
+        return result if result else _FALLBACK_PRODUCTS
+    except (OSError, json.JSONDecodeError, KeyError):
+        return _FALLBACK_PRODUCTS
 
 
 if __name__ == "__main__":
