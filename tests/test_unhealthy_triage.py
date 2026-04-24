@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 from scripts.unhealthy_triage import (
     _triage_entry,
     generate_triage,
+    quick_fix_suggestion,
     sort_by_severity,
     triage_summary,
     write_triage_report,
@@ -183,6 +184,50 @@ def test_write_triage_report(tmp_path):
     content = out.read_text()
     assert "| diffmaster |" in content
     assert "Severity breakdown:" in content
+
+
+def test_quick_fix_suggestion_500():
+    entry = _triage_entry("jwt-generator", 500)
+    fix = quick_fix_suggestion(entry)
+    assert "jwt-generator" in fix
+    assert "vercel logs" in fix
+
+
+def test_quick_fix_suggestion_401():
+    entry = _triage_entry("diffmaster", 401)
+    fix = quick_fix_suggestion(entry)
+    assert "diffmaster" in fix
+    assert "Authentication" in fix or "vercel" in fix
+
+
+def test_quick_fix_suggestion_404():
+    entry = _triage_entry("missing-app", 404)
+    fix = quick_fix_suggestion(entry)
+    assert "missing-app" in fix
+    assert "vercel --prod" in fix
+
+
+def test_quick_fix_suggestion_451():
+    entry = _triage_entry("geo-blocked", 451)
+    fix = quick_fix_suggestion(entry)
+    assert "Firewall" in fix or "Geo" in fix
+
+
+def test_quick_fix_suggestion_unknown_code():
+    entry = _triage_entry("weird-app", 999)
+    fix = quick_fix_suggestion(entry)
+    assert "Investigate" in fix
+
+
+def test_write_triage_report_includes_quick_fix(tmp_path):
+    entries = [
+        _triage_entry("jwt-generator", 500),
+        _triage_entry("diffmaster", 401),
+    ]
+    out = tmp_path / "triage.md"
+    report = write_triage_report(entries, output_path=out)
+    assert "Quick Fix" in report
+    assert "vercel logs" in report
 
 
 def test_triage_summary_empty(tmp_path):

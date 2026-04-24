@@ -141,12 +141,13 @@ def write_triage_report(entries: list[dict], output_path: Path | None = None) ->
         f"**Generated:** {_utc_now_iso()} UTC",
         f"**Count:** {len(sorted_entries)}",
         "",
-        "| Slug | HTTP | Label | Severity | Suggested Action |",
-        "|------|------|-------|----------|-----------------|",
+        "| Slug | HTTP | Label | Severity | Quick Fix |",
+        "|------|------|-------|----------|----------|",
     ]
     for e in sorted_entries:
+        fix = quick_fix_suggestion(e)
         lines.append(
-            f"| {e['slug']} | {e['http_code']} | {e['label']} | {e['severity']} | {e['suggested_action']} |"
+            f"| {e['slug']} | {e['http_code']} | {e['label']} | {e['severity']} | `{fix}` |"
         )
     lines.append("")
     if sorted_entries:
@@ -161,6 +162,32 @@ def write_triage_report(entries: list[dict], output_path: Path | None = None) ->
     report = "\n".join(lines)
     output_path.write_text(report, encoding="utf-8")
     return report
+
+
+VERCEL_FIX_COMMANDS = {
+    401: "vercel project ls --yes 2>/dev/null && vercel inspect {slug} 2>/dev/null || echo 'Check Vercel dashboard → Settings → Authentication → Disable Vercel Authentication'",
+    402: "vercel inspect {slug} 2>/dev/null || echo 'Check billing/deployment status in Vercel dashboard'",
+    404: "cd products/{slug} && vercel --prod --yes 2>&1",
+    429: "echo 'Rate limited — check Vercel plan limits at vercel.com/account/billing'",
+    451: "echo 'Geo-block: check Vercel Firewall rules → vercel.com/dashboard → project → Settings → Firewall'",
+    500: "cd products/{slug} && vercel logs --output json 2>/dev/null | tail -50 || echo 'Check Vercel dashboard → Deployments → Function Logs'",
+    0: "echo 'Timeout — check DNS or increase timeout settings'",
+}
+
+
+def quick_fix_suggestion(entry: dict) -> str:
+    """Return a concrete CLI command or action for a triage entry.
+
+    If a Vercel CLI command template exists for the HTTP code, format it
+    with the product slug.  Otherwise fall back to the generic
+    ``suggested_action`` field.
+    """
+    code = entry.get("http_code", 0)
+    slug = entry.get("slug", "unknown")
+    template = VERCEL_FIX_COMMANDS.get(code)
+    if template:
+        return template.format(slug=slug)
+    return entry.get("suggested_action", "Investigate manually")
 
 
 def triage_summary(
