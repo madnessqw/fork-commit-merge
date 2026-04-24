@@ -13,5 +13,6 @@
   "webhook_url": null,
   "created_cycle": null,
   "deployed_cycle": null,
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }

@@ -13,8 +13,13 @@
     "Export prompts"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "ai_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_yAX8q8zCVXsgT4Vls87PpR4h49m48slD1WHfU0R6umq",
+  "vercel_url": "https://agent-prompt-engineer.vercel.app",
+  "payment_provider": "polar",
+  "polar_product_id": "97e9c91c-a7ad-4518-a602-7d51f1ba69c8",
+  "polar_product_price_id": "c37c128c-2d2e-484e-9b0c-9cc6567f9568",
+  "polar_checkout_link_id": "f6842fcf-b0af-436d-9ad7-dbcbf925637a"
 }

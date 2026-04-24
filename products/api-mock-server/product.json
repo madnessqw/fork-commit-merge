@@ -13,8 +13,13 @@
     "Response delays"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "developer_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_RD1umMPQTv9I1lKpcXfhnHEXpPqUehRgt5h881acntm",
+  "vercel_url": "https://api-mock-server.vercel.app",
+  "payment_provider": "polar",
+  "polar_product_id": "74485063-af2e-42a2-a1f3-462c1fbc8634",
+  "polar_product_price_id": "ac10e29b-e611-446d-a022-5f5860ad6d00",
+  "polar_checkout_link_id": "e625009a-5797-4f91-97f7-8448b9527034"
 }

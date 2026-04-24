@@ -13,8 +13,13 @@
     "README generator"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "developer_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_qpPjyY3vUsUJcVSIwearedVBl7V6TjYKTDcxl0HpIMX",
+  "vercel_url": "https://mcp-server-scaffolder.vercel.app",
+  "payment_provider": "polar",
+  "polar_product_id": "020aaa7d-da02-4b52-9e09-2e45542420b2",
+  "polar_product_price_id": "0429c2e7-fab5-43bb-b2f8-ec618a505e34",
+  "polar_checkout_link_id": "2b3e744c-6148-47c3-9a79-e143cd1f2c54"
 }

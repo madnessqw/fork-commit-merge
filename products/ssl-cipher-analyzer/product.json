@@ -33,7 +33,17 @@
     "ssl security scan",
     "certificate analyzer"
   ],
-  "tech_stack": ["Next.js", "TypeScript", "Tailwind CSS"],
-  "checkout_url": null,
-  "spec_version": "1.0"
+  "tech_stack": [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "checkout_url": "https://buy.polar.sh/polar_cl_7P7U6me2BeWPXhFXwhzKGAIWq0FXF4OE7PqdU2jn0QE",
+  "spec_version": "1.0",
+  "vercel_url": "https://ssl-cipher-analyzer.vercel.app",
+  "deployed_cycle": 1108,
+  "payment_provider": "polar",
+  "polar_product_id": "dbd670de-4273-419c-80f7-2de16ffc20e6",
+  "polar_product_price_id": "996fbb2d-3fad-4e5b-b8d2-c6dcfa1d2940",
+  "polar_checkout_link_id": "60cc00f7-62b0-4e79-91ca-df28e45707b0"
 }

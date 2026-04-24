@@ -13,8 +13,13 @@
     "YAML validation"
   ],
   "tech_stack": "Vercel + React",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "devops_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_gwluHxTLq7MlFexWtX5TVDz7sUCWqCzgtR3Q30N6Zxj",
+  "vercel_url": "https://docker-compose-builder-flame.vercel.app",
+  "payment_provider": "polar",
+  "polar_product_id": "1f446f84-17c6-4160-b291-c57602e1df6b",
+  "polar_product_price_id": "98628c88-65a8-4089-a16a-e550cacde958",
+  "polar_checkout_link_id": "59b9ea8e-3b24-47d6-9a5d-3b376994e286"
 }

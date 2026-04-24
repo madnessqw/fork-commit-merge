@@ -13,8 +13,16 @@
     "Social media presets"
   ],
   "tech_stack": "Vercel + Canvas API",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "design_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_w6ByNH3jJOZHHMxoBojpmIhkp8GAG7bMguYRU4H8MIg",
+  "vercel_url": "https://code-screenshot-beautifier.vercel.app",
+  "payment_provider": "polar",
+  "deployment_url": "https://code-screenshot-beautifier-hl5t6j2n1-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/code-screenshot-beautifier",
+  "webhook_url": "https://code-screenshot-beautifier.vercel.app/api/webhook",
+  "polar_product_id": "450ab4f4-cde9-454f-9b57-4977a0ed0f3b",
+  "polar_product_price_id": "8f486154-fa57-4897-9e21-09174b5bc812",
+  "polar_checkout_link_id": "cf87d2ec-a0ae-4ea6-a998-f1530b5dc9f7"
 }

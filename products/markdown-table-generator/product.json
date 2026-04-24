@@ -7,7 +7,7 @@
   "features": [],
   "tech_stack": "Vercel + Node.js",
   "status": "ready_for_payment",
-  "vercel_url": "https://markdown-table-generator-hmp70qdla-madnessqws-projects.vercel.app",
+  "vercel_url": "https://markdown-table-generator.vercel.app",
   "github_url": "https://github.com/universe7creator/markdown-table-generator",
   "lemonsqueezy_product_id": null,
   "webhook_url": "https://markdown-table-generator-hmp70qdla-madnessqws-projects.vercel.app/api/webhook",

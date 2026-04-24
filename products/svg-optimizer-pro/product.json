@@ -18,5 +18,6 @@
   "status": "spec_ready",
   "created_cycle": 1052,
   "seo_optimized": false,
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }

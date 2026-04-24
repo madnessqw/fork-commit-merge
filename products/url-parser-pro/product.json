@@ -42,7 +42,7 @@
     "freeformatter.com"
   ],
   "differentiation": "Code snippet generation, component-by-component copy, URL comparison feature",
-  "checkout_url": "https://buy.polar.sh/polar_cl_8yilHKiu3uU7kx4VOTISULxnK7gSb7Jurd9B42LAtUG",
+  "checkout_url": "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa",
   "spec_version": "1.0",
   "vercel_url": "https://url-parser-pro.vercel.app",
   "deployment_url": "https://url-parser-plo90j0k2-madnessqws-projects.vercel.app",
@@ -51,5 +51,5 @@
   "payment_provider": "polar",
   "polar_product_id": "81cd950e-f185-423f-bb60-bdd825fdf3d0",
   "polar_product_price_id": "87c1a689-7c36-4bb9-8378-7988036896d3",
-  "polar_checkout_link_id": "fd6231e0-8312-410e-a1e0-3b1057285fc4"
+  "polar_checkout_link_id": "d10436ba-84ed-4f2c-b5d8-1c2b24ac21f7"
 }

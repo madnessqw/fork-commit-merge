@@ -16,5 +16,6 @@
   "status": "spec_ready",
   "category": "design_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": null,
+  "vercel_url": "https://browser-mock-studio.vercel.app"
 }

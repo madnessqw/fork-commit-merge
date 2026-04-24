@@ -13,8 +13,16 @@
     "Export to multiple formats"
   ],
   "tech_stack": "Vercel + Node.js",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "developer_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_ifeHO0XG1VqRRhKDgearUvMUTWhlc8EVQ7RdS2Pc6si",
+  "vercel_url": "https://binary-inspector.vercel.app",
+  "deployment_url": "https://binary-inspector-a1bs4gqwv-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/binary-inspector",
+  "webhook_url": "https://binary-inspector.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "01390bd0-4555-4dc0-a164-a4f8d857d33a",
+  "polar_product_price_id": "c0ebad39-0081-4f08-8d39-1440a3e002d1",
+  "polar_checkout_link_id": "65c63024-9787-4e5c-9a85-5d11dd330667"
 }

@@ -13,8 +13,16 @@
     "Command history"
   ],
   "tech_stack": "Vercel + Vanilla JS",
-  "status": "spec_ready",
+  "status": "ready_for_payment",
   "category": "devops_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_G4E0u2BGrixfLZc4Q3QpY8Jt91XWiLumOFPMl3gmxXo",
+  "vercel_url": "https://docker-command-builder.vercel.app",
+  "deployment_url": "https://docker-command-builder-bkk6qvb7e-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/docker-command-builder",
+  "webhook_url": "https://docker-command-builder.vercel.app/api/webhook",
+  "payment_provider": "polar",
+  "polar_product_id": "d34b5872-a36f-4218-902b-5128d17dbc6c",
+  "polar_product_price_id": "29404873-9ea2-4c32-899d-ddd5503979d1",
+  "polar_checkout_link_id": "6e148556-43c2-4465-b15d-f0414d225bd9"
 }

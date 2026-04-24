@@ -7,7 +7,7 @@
   "features": [],
   "tech_stack": "Vercel + Node.js",
   "status": "ready_for_payment",
-  "vercel_url": "https://croncraft-zeta.vercel.app",
+  "vercel_url": "https://quickcron.vercel.app",
   "github_url": "https://github.com/universe7creator/croncraft",
   "lemonsqueezy_product_id": null,
   "webhook_url": "https://croncraft-zeta.vercel.app/api/webhook",
@@ -20,7 +20,7 @@
   "seo_optimized_at": "2026-04-21T17:45:00Z",
   "payment_provider": "polar",
   "spec_version": "1.0",
-  "polar_product_id": "9ace3775-e5b1-420e-bf01-92c30ebf1264",
-  "polar_product_price_id": "fcecbb71-2951-41cf-a86e-bfaaba18c851",
+  "polar_product_id": "5cc279f8-3efa-44c5-a923-02391e8c2ccc",
+  "polar_product_price_id": "ec3e08c4-aa55-45ce-8f29-95a544517ec5",
   "polar_checkout_link_id": "ad5c59d2-575a-4260-9d14-6bd8203f9532"
 }
