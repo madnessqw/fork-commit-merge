@@ -16,5 +16,9 @@
   "status": "spec_ready",
   "category": "developer_tools",
   "spec_version": "1.0",
-  "checkout_url": null
+  "checkout_url": "https://buy.polar.sh/polar_cl_MFwQIHRNW1bhGv5ldOX79RHb6AIrtsb8pkd9a17yjJK",
+  "payment_provider": "polar",
+  "polar_product_id": "742e41f4-2cc3-46da-953b-d55636b7034d",
+  "polar_product_price_id": "d759894b-e3da-45f1-ad4a-4225d3562135",
+  "polar_checkout_link_id": "7f494d96-078b-4913-8408-057ef812c8c4"
 }

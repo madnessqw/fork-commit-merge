@@ -247,8 +247,6 @@ def load_local_products(
         vercel_url = str(raw.get("vercel_url") or "").strip() or None
         checkout_url = raw.get("checkout_url")
         checkout_url_normalized = str(checkout_url).strip() if checkout_url else None
-        if vercel_url is None and checkout_url_normalized is None:
-            continue
 
         provider_normalized = infer_payment_provider(raw, checkout_url=checkout_url_normalized)
         should_replace_non_polar = replace_non_polar and provider_normalized not in (None, POLAR_PROVIDER)

@@ -14,6 +14,10 @@
   "webhook_url": null,
   "created_cycle": null,
   "deployed_cycle": null,
-  "checkout_url": null,
-  "spec_version": "1.0"
+  "checkout_url": "https://buy.polar.sh/polar_cl_T7ja7tYtgvdbTKP8rWQSHsxZ3jq6MHGaEkT4N3gXhgD",
+  "spec_version": "1.0",
+  "payment_provider": "polar",
+  "polar_product_id": "3f4524ed-6a8c-4cb9-828e-7d1c4df8ae57",
+  "polar_product_price_id": "46cf383f-e901-425b-a4e6-612b0c448c7b",
+  "polar_checkout_link_id": "17de81f7-dc4f-4be1-82c4-a2d2ffdc9d98"
 }

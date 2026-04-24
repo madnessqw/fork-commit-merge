@@ -22,6 +22,10 @@
   "created_at": "2026-04-21",
   "updated_at": "2026-04-22",
   "target_audience": "Frontend developers, QA engineers, API developers",
-  "checkout_url": null,
-  "spec_version": "1.0"
+  "checkout_url": "https://buy.polar.sh/polar_cl_lTfuDqjnOTHsSNGdshCuT7rNPiAXBo7euUQLb4E8rN2",
+  "spec_version": "1.0",
+  "payment_provider": "polar",
+  "polar_product_id": "1faf2dec-8d66-4af6-9e97-97649dd6a1b7",
+  "polar_product_price_id": "bab7e461-029c-4960-aaf6-e38c52698e82",
+  "polar_checkout_link_id": "94ed64b6-527a-4bcb-a606-7594eaf8232a"
 }

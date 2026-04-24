@@ -200,6 +200,36 @@ class PolarCheckoutSyncTests(unittest.TestCase):
         self.assertEqual(products[0].payment_provider, "lemonsqueezy")
         self.assertEqual(products[0].selection_reason, "replace_non_polar")
 
+    def test_load_local_products_keeps_missing_checkout_products_without_vercel_url(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            product_dir = root / "products" / "spec-tool"
+            product_dir.mkdir(parents=True)
+            (product_dir / "product.json").write_text(
+                """{
+  "name": "Spec Tool",
+  "slug": "spec-tool",
+  "status": "spec_ready",
+  "price": "$19"
+}
+""",
+                encoding="utf-8",
+            )
+
+            with patch("scripts.polar_checkout_sync.PRODUCTS_DIR", root / "products"):
+                products = load_local_products(
+                    statuses={"spec_ready"},
+                    include_existing=False,
+                    replace_non_polar=False,
+                )
+
+        self.assertEqual(len(products), 1)
+        self.assertIsNone(products[0].vercel_url)
+        self.assertIsNone(products[0].checkout_url)
+        self.assertEqual(products[0].selection_reason, "missing_checkout")
+
     def test_ensure_checkout_link_omits_return_urls_without_vercel_url(self) -> None:
         captured: dict[str, dict] = {}
 
