@@ -69,3 +69,4 @@
 {"run_id": "codex-20260424-0305", "mode": "EXECUTION", "task": "polar checkout rollout hardening", "status": "done", "slug": "polar-checkout-rollout", "duration_min": 18, "cost_est": 0.05, "cycle": 1108}
 {"run_id": "codex-20260424-0711", "mode": "EXECUTION", "task": "Polar checkout rollout", "status": "done", "slug": "checkout-rollout", "duration_min": 30, "cost_est": 0.15, "cycle": 1108}
 {"run_id":"codex-20260424-0842","mode":"EXECUTION","task":"health/canonical drift visibility hardening","status":"done","slug":"health-canonical-drift","duration_min":22,"cost_est":0.04,"cycle":1109}
+{"run_id":"codex-20260424-0907","mode":"EXECUTION","task":"align Polar scaffold and deploy templates with polar_* checkout ids","status":"done","slug":"checkout-template-schema","duration_min":14,"cost_est":0.03,"cycle":1109,"ts":"2026-04-24T06:07:06Z"}

@@ -228,7 +228,7 @@ Aşağıdaki adımlar smoke test ile doğrulandı ($1 ödemesi alındı):
 Adım 1: POLAR_OAT ortam değişkeni yüklendi (config/polar.json → codex_loop.sh otomatik)
 Adım 2: Plan çıkar → python3 scripts/polar_checkout_sync.py plan --status live --status ready_for_payment --replace-non-polar
 Adım 3: Rollout → POLAR_OAT='...' python3 scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment --replace-non-polar --output analysis/polar_checkout_sync_report.md
-Adım 4: product.json güncellendiğini doğrula (checkout_url, payment_provider: polar, polar_product_id)
+Adım 4: product.json güncellendiğini doğrula (checkout_url, payment_provider: polar, polar_product_id, polar_product_price_id, polar_checkout_link_id)
 Adım 5: Değişen product.json dosyalarını commit et
 Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 ```
@@ -248,6 +248,7 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 | Checkout session URL = kısa ömürlü | Catalog ürünler için `checkout_links` (reusable) kullan | 2026-04-23 |
 | `vercel_url` missing ürünler sync-links dışına düşer | Önce deploy/URL düzelt, sonra Polar sync; yoksa live ürün LS’de kalır | 2026-04-24 |
 | Polar checkout URL provider inference | `polar.sh` / `buy.polar.sh` checkout URL'lerini `payment_provider=polar` olarak normalize et | 2026-04-24 |
+| Yeni ürün scaffold yanlış Polar anahtarları üretiyordu | `payment_*` yerine `polar_product_id`, `polar_product_price_id`, `polar_checkout_link_id` kullan | 2026-04-24 |
 
 ---
 

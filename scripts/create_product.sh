@@ -40,8 +40,10 @@ cat > "$PRODUCT_DIR/product.json" << EOJSON
   "vercel_url": null,
   "github_url": null,
   "checkout_url": null,
-  "payment_provider": "lemonsqueezy",
-  "lemonsqueezy_product_id": null,
+  "payment_provider": "polar",
+  "polar_product_id": null,
+  "polar_product_price_id": null,
+  "polar_checkout_link_id": null,
   "webhook_url": null,
   "created_cycle": null,
   "deployed_cycle": null
@@ -112,7 +114,7 @@ module.exports = async (req, res) => {
 };
 EOJS
 
-# Webhook endpoint (LemonSqueezy compatible)
+# Webhook endpoint (payment-provider ready placeholder)
 cat > "$PRODUCT_DIR/api/webhook.js" << 'EOJS'
 const crypto = require('crypto');
 
@@ -129,7 +131,7 @@ module.exports = async (req, res) => {
   try {
     const rawBody = JSON.stringify(req.body);
     const signature = req.headers['x-signature'];
-    const secret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
+    const secret = process.env.CHECKOUT_WEBHOOK_SECRET;
 
     if (secret && signature && !verifySignature(rawBody, signature, secret)) {
       return res.status(401).json({ error: 'Invalid signature' });
@@ -187,3 +189,4 @@ echo "Next steps:"
 echo "  1. Implement api/process.js with your product logic"
 echo "  2. Customize public/index.html landing page"
 echo "  3. Run: ./scripts/deploy_product.sh $SLUG"
+echo "  4. After deploy, sync Polar checkout: python3 scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment"

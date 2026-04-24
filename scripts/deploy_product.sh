@@ -178,7 +178,7 @@ PYEOF
 # Step 5: Telegram Notification
 echo ""
 echo "📱 Step 5: Telegram notification..."
-MSG="🚀 YENİ ÜRÜN HAZIR — LemonSqueezy'e ekle!
+MSG="🚀 YENİ ÜRÜN HAZIR — Polar checkout bağla!
 
 📦 Ürün: $NAME
 💬 Tagline: $TAGLINE
@@ -188,13 +188,12 @@ MSG="🚀 YENİ ÜRÜN HAZIR — LemonSqueezy'e ekle!
 🌐 Landing page: $VERCEL_URL
 🛰️ Deployment URL: $DEPLOYMENT_URL
 📂 GitHub: $GITHUB_URL
-🔗 Webhook URL (LS'ye gir): $WEBHOOK_URL
+🔗 Webhook URL: $WEBHOOK_URL
 
 📋 Yapman gerekenler:
-1. LemonSqueezy'de yeni product oluştur
-2. Webhook URL'yi ayarla: $WEBHOOK_URL
-3. License key özelliğini aktive et
-4. Checkout URL'yi bana geri yaz
+1. Polar product/checkout sync çalıştır
+2. Fiyatın doğru olduğundan emin ol: $PRICE
+3. Checkout URL'yi product.json + landing page'e yaz
 
 ✅ Sistem hazır, müşteri bekliyor."
 
@@ -232,8 +231,10 @@ product_entry = {
     "github_url": "$GITHUB_URL",
     "webhook_url": "$WEBHOOK_URL",
     "checkout_url": None,
-    "payment_provider": "lemonsqueezy",
-    "lemon_product_id": None,
+    "payment_provider": "polar",
+    "polar_product_id": None,
+    "polar_product_price_id": None,
+    "polar_checkout_link_id": None,
     "revenue": 0,
     "price": "$PRICE"
 }
@@ -290,4 +291,4 @@ echo "  🌐 $VERCEL_URL"
 echo "  📂 $GITHUB_URL"
 echo "  🔗 Webhook: $WEBHOOK_URL"
 echo ""
-echo "⏳ Waiting for LemonSqueezy checkout URL from owner..."
+echo "⏳ Waiting for Polar checkout sync..."
