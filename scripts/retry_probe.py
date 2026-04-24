@@ -138,19 +138,23 @@ def format_table(results: list[dict]) -> str:
             f"{r['retried_code']} | {rec} | `{r['url']}` |"
         )
     recovered_count = sum(1 for r in results if r["recovered"])
+    pct = (recovered_count / len(results) * 100) if results else 0
     lines.append("")
-    lines.append(f"**Recovered:** {recovered_count}/{len(results)}")
+    lines.append(f"**Recovered:** {recovered_count}/{len(results)} ({pct:.0f}%)")
     return "\n".join(lines)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Retry probe unhealthy products")
     parser.add_argument("--slug", default="", help="Filter by slug substring")
+    parser.add_argument("--summary", default="", help="Path to STATE_SUMMARY.json")
+    parser.add_argument("--workers", type=int, default=4, help="Parallel probe workers")
     parser.add_argument("--json", action="store_true", dest="as_json")
     parser.add_argument("--output", default="", help="Write report to file")
     args = parser.parse_args()
 
-    results = retry_probe(slug_filter=args.slug)
+    summary_path = Path(args.summary) if args.summary else None
+    results = retry_probe(summary_path=summary_path, slug_filter=args.slug, workers=args.workers)
 
     if args.as_json:
         print(json.dumps(results, indent=2, ensure_ascii=False))

@@ -164,4 +164,27 @@ class TestFormatTable:
         assert "YES" in table
         assert "**Recovered:** 1/1" in table
 
+    def test_recovery_percentage(self):
+        results = [
+            {
+                "slug": "prod-a",
+                "category": "unhealthy",
+                "prior_code": 500,
+                "retried_code": 200,
+                "recovered": True,
+                "url": "https://prod-a.vercel.app",
+            },
+            {
+                "slug": "prod-b",
+                "category": "unhealthy",
+                "prior_code": 500,
+                "retried_code": 500,
+                "recovered": False,
+                "url": "https://prod-b.vercel.app",
+            },
+        ]
+        table = format_table(results)
+        assert "50%" in table
+        assert "**Recovered:** 1/2" in table
+
 
