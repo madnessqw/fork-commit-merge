@@ -192,6 +192,28 @@ def _canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
     return entries
 
 
+def _fallback_healthy_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
+    gaps = summary.get("gaps", {})
+    if isinstance(gaps, dict):
+        raw_entries = gaps.get("fallback_healthy")
+        if isinstance(raw_entries, list):
+            entries = [item for item in raw_entries if isinstance(item, dict)]
+            if entries:
+                return entries
+
+    canonical_drift = _canonical_drift_entries(summary)
+    if canonical_drift:
+        return canonical_drift
+
+    raw_slugs = summary.get("fallback_healthy_products")
+    if isinstance(raw_slugs, list):
+        slugs = [str(slug).strip() for slug in raw_slugs if str(slug).strip()]
+        if slugs:
+            return [{"slug": slug} for slug in slugs]
+
+    return []
+
+
 def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
     raw = summary.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
@@ -500,12 +522,14 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                 f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
             )
 
-    fallback_healthy_products = list(summary.get("fallback_healthy_products", []))
-    if fallback_healthy or fallback_healthy_products:
-        fallback_items = fallback_healthy[:10]
-        if fallback_items:
+    fallback_healthy_entries = _fallback_healthy_entries(summary)
+    if fallback_healthy_entries:
+        detailed_fallback = any(
+            item.get("url") or item.get("ideal_url") for item in fallback_healthy_entries
+        )
+        if detailed_fallback:
             lines.extend(["", "## Fallback Alias Ürünleri"])
-            for item in fallback_items:
+            for item in fallback_healthy_entries[:10]:
                 drift_bits: list[str] = []
                 health_status = item.get("health_status")
                 if health_status:
@@ -536,11 +560,13 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                     f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
                 )
 
-            if len(fallback_healthy) > 10:
+            if len(fallback_healthy_entries) > 10:
                 lines.append("- ...")
-        elif fallback_healthy_products:
-            preview = ", ".join(f"`{slug}`" for slug in fallback_healthy_products[:10])
-            if len(fallback_healthy_products) > 10:
+        else:
+            preview = ", ".join(
+                f"`{item.get('slug')}`" for item in fallback_healthy_entries[:10] if item.get("slug")
+            )
+            if len(fallback_healthy_entries) > 10:
                 preview += ", ..."
             lines.extend(
                 [
@@ -750,14 +776,8 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
     health_percent = _health_percent(summary)
     next_action = effective_next_action(summary, focus)
     canonical_drift = _canonical_drift_entries(summary)
-    fallback_source: list[Any] = []
-    if isinstance(summary.get("fallback_healthy_products"), list):
-        fallback_source = list(summary["fallback_healthy_products"])
-    else:
-        gaps = summary.get("gaps", {})
-        if isinstance(gaps, dict) and isinstance(gaps.get("fallback_healthy"), list):
-            fallback_source = [item.get("slug") for item in gaps["fallback_healthy"] if isinstance(item, dict)]
-    fallback_products = [str(slug).strip() for slug in fallback_source if str(slug).strip()]
+    fallback_entries = _fallback_healthy_entries(summary)
+    fallback_products = [str(item.get("slug")).strip() for item in fallback_entries if str(item.get("slug")).strip()]
     fallback_line = None
     if fallback_products:
         fallback_preview = ", ".join(f"`{slug}`" for slug in fallback_products[:8])
