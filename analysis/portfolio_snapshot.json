@@ -1,0 +1,277 @@
+{
+  "ts": "2026-04-24T08:28:43.204597+00:00",
+  "cycle": 1109,
+  "mode": "OPTIMIZE",
+  "active": 149,
+  "live": 90,
+  "healthy": 87,
+  "health_pct": 96.7,
+  "grade": "A",
+  "canonical_healthy": 83,
+  "canonical_pct": 92.2,
+  "fallback_healthy": 4,
+  "unhealthy": 3,
+  "checkout_gap": 0,
+  "deploy_gap": 6,
+  "spec_ready": 12,
+  "deploy_readiness": 16,
+  "unhealthy_detail": [
+    {
+      "slug": "jwt-generator",
+      "code": 500,
+      "status": "error_500"
+    },
+    {
+      "slug": "diffmaster",
+      "code": 401,
+      "status": "unauthorized"
+    },
+    {
+      "slug": "timestamp-converter",
+      "code": 451,
+      "status": "error_451"
+    }
+  ],
+  "drift_detail": [
+    {
+      "slug": "pdf-forge",
+      "current_url": "https://pdf-forge-five.vercel.app",
+      "ideal_url": "https://pdf-forge.vercel.app",
+      "canonical_code": 500,
+      "canonical_status": "error_500"
+    },
+    {
+      "slug": "webhook-tester",
+      "current_url": "https://webhook-tester-beryl.vercel.app",
+      "ideal_url": "https://webhook-tester.vercel.app",
+      "canonical_code": 404,
+      "canonical_status": "not_found"
+    },
+    {
+      "slug": "email-validator-pro",
+      "current_url": "https://email-validator-pro-smoky.vercel.app",
+      "ideal_url": "https://email-validator-pro.vercel.app",
+      "canonical_code": 404,
+      "canonical_status": "not_found"
+    },
+    {
+      "slug": "html-entity-encoder",
+      "current_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+      "ideal_url": "https://html-entity-encoder.vercel.app",
+      "canonical_code": 402,
+      "canonical_status": "deployment_disabled"
+    }
+  ],
+  "fallback_slugs": [
+    "pdf-forge",
+    "webhook-tester",
+    "email-validator-pro",
+    "html-entity-encoder"
+  ],
+  "deploy_gap_detail": [
+    {
+      "slug": "htpasswd-generator",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url",
+        "checkout_url"
+      ],
+      "missing_state": [
+        "payment_provider",
+        "created_cycle",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "case-converter-pro",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url",
+        "checkout_url"
+      ],
+      "missing_state": [
+        "payment_provider",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "diff-checker-pro",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url",
+        "checkout_url"
+      ],
+      "missing_state": [
+        "payment_provider",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "mcp-inspector-pro",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "webhook_url",
+        "checkout_url"
+      ],
+      "missing_state": [
+        "payment_provider",
+        "created_cycle",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "yaml-validator-pro",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url",
+        "checkout_url"
+      ],
+      "missing_state": [
+        "payment_provider",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "api-mock-generator",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "browser-mock-studio",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "json-schema-to-ts",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "webhook_url",
+        "checkout_url"
+      ],
+      "missing_state": [
+        "payment_provider",
+        "deployed_cycle"
+      ]
+    },
+    {
+      "slug": "docker-run-generator",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle"
+      ]
+    },
+    {
+      "slug": "subdomain-finder",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle"
+      ]
+    },
+    {
+      "slug": "favicon-generator-pro",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle"
+      ]
+    },
+    {
+      "slug": "htaccess-generator",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": []
+    },
+    {
+      "slug": "html2markdown",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle"
+      ]
+    },
+    {
+      "slug": "nginx-config-tester",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": []
+    },
+    {
+      "slug": "ssl-cipher-analyzer",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "github_url",
+        "webhook_url"
+      ],
+      "missing_state": []
+    },
+    {
+      "slug": "toml-parser",
+      "missing_urls": [
+        "vercel_url",
+        "deployment_url",
+        "webhook_url"
+      ],
+      "missing_state": [
+        "created_cycle"
+      ]
+    }
+  ],
+  "codex_handoff": true,
+  "next_actions": [
+    "Fix 3 unhealthy live products",
+    "Deploy 6 ready products",
+    "Resolve 4 canonical URL drifts",
+    "Normalize 4 fallback alias products"
+  ]
+}
