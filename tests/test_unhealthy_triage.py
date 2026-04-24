@@ -33,6 +33,14 @@ def test_triage_entry_geo_block_low_severity():
     assert entry["severity"] == "low"
 
 
+def test_triage_entry_rate_limited():
+    entry = _triage_entry("some-tool", 429)
+    assert entry["label"] == "rate_limited"
+    assert entry["http_code"] == 429
+    assert entry["severity"] == "medium"
+    assert "plan limits" in entry["suggested_action"]
+
+
 def test_triage_entry_unknown_code():
     entry = _triage_entry("foo", 503)
     assert entry["label"] == "error_503"

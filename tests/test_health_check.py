@@ -457,6 +457,23 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["url"], "https://blocked-tool.vercel.app")
         self.assertEqual(run_mock.call_count, 1)
 
+    @patch("scripts.health_check.subprocess.run")
+    def test_http_429_rate_limited_status(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="429")
+
+        result = check_product_health(
+            {
+                "name": "Rate Limit Tool",
+                "slug": "rate-limit-tool",
+                "status": "live",
+                "vercel_url": "https://rate-limit-tool.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "rate_limited")
+        self.assertEqual(result["code"], 429)
+        self.assertIn("checked_at", result)
+
     def test_alternate_healthy_result_syncs_public_url(self) -> None:
         product = {
             "name": "Fallback Tool",

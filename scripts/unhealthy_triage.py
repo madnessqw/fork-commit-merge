@@ -32,6 +32,11 @@ TRIAGE_RULES = {
         "action": "Verify deployment exists; re-link Vercel project to correct slug",
         "severity": "medium",
     },
+    429: {
+        "label": "rate_limited",
+        "action": "Check Vercel plan limits; reduce concurrent deployments or upgrade plan",
+        "severity": "medium",
+    },
     451: {
         "label": "geo_block",
         "action": "Check Vercel firewall/geo rules; may need region whitelist",

@@ -84,6 +84,8 @@ def _status_for_http_code(code):
         return "forbidden"
     if http_code == 404:
         return "not_found"
+    if http_code == 429:
+        return "rate_limited"
     if http_code == 451:
         return "geo_blocked"
     if http_code == 500:
