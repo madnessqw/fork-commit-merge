@@ -1,11 +1,11 @@
 {
-  "cycle": 1130,
+  "cycle": 1134,
   "mode": "OPTIMIZE",
   "balance": 0.0,
-  "active_count": 156,
-  "live_count": 155,
-  "healthy_count": 154,
-  "canonical_healthy_count": 154,
+  "active_count": 157,
+  "live_count": 157,
+  "healthy_count": 157,
+  "canonical_healthy_count": 157,
   "fallback_healthy_count": 0,
   "unhealthy_count": 0,
   "pending_health_count": 0,
@@ -19,9 +19,9 @@
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "1 canl\u0131 \u00fcr\u00fcn\u00fc d\u00fczelt",
+  "next_action": "1 canonical URL drift'ini düzelt; fallback alias'ı ezme",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T21:35:12.602407Z",
+  "last_updated": "2026-04-24T23:05:06.999924Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -468,7 +468,7 @@
       "n": "MCP Server Validator",
       "s": "mcp-validator",
       "st": "live",
-      "v": null,
+      "v": "https://mcp-validator.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_N4k06TC4yPQfPrYiG5JZjAOdTdVazxOSub2sv0SLFt3"
     },
     {
@@ -1114,6 +1114,13 @@
       "st": "live",
       "v": "https://terminal-os-green.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_l6VyX62FmonHoMLtjuZoPhGWwNkacFtgeU3ES2OMIFU"
+    },
+    {
+      "n": "Terraink - Cartographic Poster Engine",
+      "s": "terraink",
+      "st": "live",
+      "v": "https://terraink-flax.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_v6aLBWg5RLrML74Hra5G1mmbGbvFb0JnFOv9s2pEkb7"
     }
   ],
   "gaps": {
