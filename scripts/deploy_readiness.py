@@ -440,3 +440,44 @@ def ready_for_payment_audit(
         "blocker_counts": blocker_counts,
     }
 
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Deploy readiness and payment audit for UniverseCreator products"
+    )
+    parser.add_argument(
+        "command",
+        nargs="?",
+        default="summary",
+        choices=["summary", "readiness", "audit", "suggestions"],
+        help="Subcommand to run (default: summary)",
+    )
+    args = parser.parse_args(argv)
+
+    state = _load_json(STATE_PATH) or {}
+
+    if args.command == "readiness":
+        report = collect_spec_ready_deploy_readiness(state)
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        return 0
+
+    if args.command == "audit":
+        report = ready_for_payment_audit(STATE_PATH)
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        return 0
+
+    if args.command == "suggestions":
+        suggestions = auto_fix_suggestions(state)
+        print(json.dumps(suggestions, indent=2, ensure_ascii=False))
+        return 0
+
+    result = readiness_summary()
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+

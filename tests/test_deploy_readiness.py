@@ -7,6 +7,7 @@ from scripts.deploy_readiness import (
     auto_fix_suggestions,
     batch_suggest_vercel_urls,
     collect_spec_ready_deploy_readiness,
+    main,
     ready_for_payment_audit,
     readiness_summary,
     suggest_vercel_url,
@@ -586,6 +587,27 @@ class ReadyForPaymentAuditTests(unittest.TestCase):
             result = ready_for_payment_audit(state_path)
         self.assertEqual(result["total"], 1)
         self.assertEqual(len(result["live_ready"]), 1)
+
+
+class CLITests(unittest.TestCase):
+    def test_main_summary_returns_zero(self) -> None:
+        self.assertEqual(main(["summary"]), 0)
+
+    def test_main_readiness_returns_zero(self) -> None:
+        self.assertEqual(main(["readiness"]), 0)
+
+    def test_main_audit_returns_zero(self) -> None:
+        self.assertEqual(main(["audit"]), 0)
+
+    def test_main_suggestions_returns_zero(self) -> None:
+        self.assertEqual(main(["suggestions"]), 0)
+
+    def test_main_default_is_summary(self) -> None:
+        self.assertEqual(main([]), 0)
+
+    def test_main_invalid_command_exits(self) -> None:
+        with self.assertRaises(SystemExit):
+            main(["invalid"])
 
 
 if __name__ == "__main__":
