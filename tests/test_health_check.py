@@ -6,7 +6,11 @@ import tempfile
 from unittest.mock import Mock, patch
 
 from scripts import health_check
-from scripts.health_check import apply_health_result, check_product_health, is_synced_health_result
+from scripts.health_check import (
+    apply_health_result,
+    check_product_health,
+    is_synced_health_result,
+)
 
 
 class HealthCheckTests(unittest.TestCase):
@@ -68,7 +72,9 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 1)
 
     @patch("scripts.health_check.subprocess.run")
-    def test_canonical_redirect_to_preview_alias_stays_alternate_healthy(self, run_mock) -> None:
+    def test_canonical_redirect_to_preview_alias_stays_alternate_healthy(
+        self, run_mock
+    ) -> None:
         run_mock.return_value = Mock(
             stdout="200 https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app"
         )
@@ -92,7 +98,9 @@ class HealthCheckTests(unittest.TestCase):
             result["effective_url"],
             "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
         )
-        self.assertEqual(result["canonical_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(
+            result["canonical_url"], "https://html-entity-encoder.vercel.app"
+        )
         self.assertEqual(result["canonical_status"], "redirected_preview_alias")
         self.assertEqual(result["canonical_code"], 200)
         self.assertEqual(run_mock.call_count, 1)
@@ -124,7 +132,9 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(run_mock.call_count, 1)
 
     @patch("scripts.health_check.subprocess.run")
-    def test_fallback_url_success_is_marked_as_alternate_healthy(self, run_mock) -> None:
+    def test_fallback_url_success_is_marked_as_alternate_healthy(
+        self, run_mock
+    ) -> None:
         run_mock.side_effect = [Mock(stdout="500"), Mock(stdout="200")]
 
         result = check_product_health(
@@ -140,14 +150,17 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["canonical_status"], "error_500")
+        self.assertEqual(result["canonical_status"], "server_error")
         self.assertEqual(result["canonical_code"], 500)
         self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(run_mock.call_count, 2)
 
     @patch("scripts.health_check.subprocess.run")
     def test_fallback_url_redirect_does_not_mask_the_alias(self, run_mock) -> None:
-        run_mock.side_effect = [Mock(stdout="500"), Mock(stdout="200 https://fallback-tool.vercel.app")]
+        run_mock.side_effect = [
+            Mock(stdout="500"),
+            Mock(stdout="200 https://fallback-tool.vercel.app"),
+        ]
 
         result = check_product_health(
             {
@@ -162,15 +175,21 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["canonical_status"], "error_500")
+        self.assertEqual(
+            result["effective_url"], "https://fallback-tool-preview.vercel.app"
+        )
+        self.assertEqual(result["canonical_status"], "server_error")
         self.assertEqual(result["canonical_code"], 500)
         self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
-        self.assertEqual(result["canonical_probe_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(
+            result["canonical_probe_url"], "https://fallback-tool.vercel.app"
+        )
         self.assertEqual(run_mock.call_count, 2)
 
     @patch("scripts.health_check.subprocess.run")
-    def test_previous_effective_health_url_is_retried_as_fallback_candidate(self, run_mock) -> None:
+    def test_previous_effective_health_url_is_retried_as_fallback_candidate(
+        self, run_mock
+    ) -> None:
         seen_urls = []
 
         def side_effect(*args, **kwargs):
@@ -202,14 +221,20 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            result["effective_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(result["canonical_status"], "not_found")
         self.assertEqual(result["canonical_code"], 404)
         self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
-        self.assertEqual(result["canonical_probe_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(
+            result["canonical_probe_url"], "https://fallback-tool.vercel.app"
+        )
 
     @patch("scripts.health_check.subprocess.run")
-    def test_health_probe_url_only_fallback_candidate_is_retried(self, run_mock) -> None:
+    def test_health_probe_url_only_fallback_candidate_is_retried(
+        self, run_mock
+    ) -> None:
         seen_urls = []
 
         def side_effect(*args, **kwargs):
@@ -240,14 +265,20 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            result["effective_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(result["canonical_status"], "not_found")
         self.assertEqual(result["canonical_code"], 404)
         self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
-        self.assertEqual(result["canonical_probe_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(
+            result["canonical_probe_url"], "https://fallback-tool.vercel.app"
+        )
 
     @patch("scripts.health_check.subprocess.run")
-    def test_manifest_preview_alias_probe_success_is_marked_as_alternate_healthy(self, run_mock) -> None:
+    def test_manifest_preview_alias_probe_success_is_marked_as_alternate_healthy(
+        self, run_mock
+    ) -> None:
         run_mock.side_effect = [Mock(stdout="402"), Mock(stdout="200")]
 
         result = check_product_health(
@@ -262,16 +293,28 @@ class HealthCheckTests(unittest.TestCase):
 
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
-        self.assertEqual(result["url"], "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app")
+        self.assertEqual(
+            result["url"],
+            "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        )
         self.assertEqual(result["canonical_status"], "deployment_disabled")
         self.assertEqual(result["canonical_code"], 402)
-        self.assertEqual(result["canonical_url"], "https://html-entity-encoder.vercel.app")
-        self.assertEqual(result["canonical_probe_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(
+            result["canonical_url"], "https://html-entity-encoder.vercel.app"
+        )
+        self.assertEqual(
+            result["canonical_probe_url"], "https://html-entity-encoder.vercel.app"
+        )
         self.assertEqual(run_mock.call_count, 2)
 
-    @patch("scripts.health_check.health_check_url", return_value="https://fallback-tool-preview.vercel.app")
+    @patch(
+        "scripts.health_check.health_check_url",
+        return_value="https://fallback-tool-preview.vercel.app",
+    )
     @patch("scripts.health_check.subprocess.run")
-    def test_primary_preview_alias_success_is_preserved_as_alternate_healthy(self, run_mock, health_url_mock) -> None:
+    def test_primary_preview_alias_success_is_preserved_as_alternate_healthy(
+        self, run_mock, health_url_mock
+    ) -> None:
         run_mock.return_value = Mock(stdout="200")
 
         result = check_product_health(
@@ -286,16 +329,23 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            result["effective_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(result["canonical_status"], "pending")
         self.assertIsNone(result["canonical_code"])
         self.assertEqual(run_mock.call_count, 1)
         health_url_mock.assert_called_once()
 
-    @patch("scripts.health_check.health_check_url", return_value="https://fallback-tool-preview.vercel.app")
+    @patch(
+        "scripts.health_check.health_check_url",
+        return_value="https://fallback-tool-preview.vercel.app",
+    )
     @patch("scripts.health_check.subprocess.run")
-    def test_primary_preview_alias_redirect_does_not_mask_the_alias(self, run_mock, health_url_mock) -> None:
+    def test_primary_preview_alias_redirect_does_not_mask_the_alias(
+        self, run_mock, health_url_mock
+    ) -> None:
         run_mock.return_value = Mock(stdout="200 https://fallback-tool.vercel.app")
 
         result = check_product_health(
@@ -310,7 +360,9 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(result["status"], "alternate_healthy")
         self.assertEqual(result["code"], 200)
         self.assertEqual(result["url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(result["effective_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            result["effective_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(result["canonical_url"], "https://fallback-tool.vercel.app")
         self.assertEqual(result["canonical_status"], "pending")
         self.assertIsNone(result["canonical_code"])
@@ -319,7 +371,7 @@ class HealthCheckTests(unittest.TestCase):
 
     @patch("scripts.health_check.subprocess.run")
     def test_non_standard_http_failure_code_is_preserved(self, run_mock) -> None:
-        run_mock.return_value = Mock(stdout="451")
+        run_mock.return_value = Mock(stdout="503")
 
         result = check_product_health(
             {
@@ -330,12 +382,65 @@ class HealthCheckTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(result["status"], "error_451")
+        self.assertEqual(result["status"], "error_503")
+        self.assertEqual(result["code"], 503)
+        self.assertIn("checked_at", result)
+
+    @patch("scripts.health_check.subprocess.run")
+    def test_http_451_geo_blocked_status(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="451")
+
+        result = check_product_health(
+            {
+                "name": "GeoBlock Tool",
+                "slug": "geoblock-tool",
+                "status": "live",
+                "vercel_url": "https://geoblock-tool.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "geo_blocked")
         self.assertEqual(result["code"], 451)
         self.assertIn("checked_at", result)
 
     @patch("scripts.health_check.subprocess.run")
-    def test_deployment_disabled_http_402_is_reported_explicitly(self, run_mock) -> None:
+    def test_http_403_forbidden_status(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="403")
+
+        result = check_product_health(
+            {
+                "name": "Forbidden Tool",
+                "slug": "forbidden-tool",
+                "status": "live",
+                "vercel_url": "https://forbidden-tool.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "forbidden")
+        self.assertEqual(result["code"], 403)
+        self.assertIn("checked_at", result)
+
+    @patch("scripts.health_check.subprocess.run")
+    def test_http_500_server_error_status(self, run_mock) -> None:
+        run_mock.return_value = Mock(stdout="500")
+
+        result = check_product_health(
+            {
+                "name": "Crash Tool",
+                "slug": "crash-tool",
+                "status": "live",
+                "vercel_url": "https://crash-tool.vercel.app",
+            }
+        )
+
+        self.assertEqual(result["status"], "server_error")
+        self.assertEqual(result["code"], 500)
+        self.assertIn("checked_at", result)
+
+    @patch("scripts.health_check.subprocess.run")
+    def test_deployment_disabled_http_402_is_reported_explicitly(
+        self, run_mock
+    ) -> None:
         run_mock.return_value = Mock(stdout="402")
 
         result = check_product_health(
@@ -376,17 +481,29 @@ class HealthCheckTests(unittest.TestCase):
 
         self.assertEqual(product["health_status"], "alternate_healthy")
         self.assertEqual(product["last_health_code"], 200)
-        self.assertEqual(product["last_health_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            product["last_health_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(product["last_health_check"], "2026-04-22T10:00:00Z")
         self.assertEqual(product["health_checked_at"], "2026-04-22T10:00:00Z")
-        self.assertEqual(product["deployment_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            product["deployment_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(product["canonical_health_status"], "not_found")
         self.assertEqual(product["canonical_health_code"], 404)
-        self.assertEqual(product["canonical_health_url"], "https://fallback-tool.vercel.app")
-        self.assertEqual(product["canonical_probe_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(
+            product["canonical_health_url"], "https://fallback-tool.vercel.app"
+        )
+        self.assertEqual(
+            product["canonical_probe_url"], "https://fallback-tool.vercel.app"
+        )
         self.assertEqual(product["canonical_health_checked_at"], "2026-04-22T10:00:00Z")
-        self.assertEqual(product["ideal_vercel_url"], "https://fallback-tool.vercel.app")
-        self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            product["ideal_vercel_url"], "https://fallback-tool.vercel.app"
+        )
+        self.assertEqual(
+            product["vercel_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
 
     def test_effective_health_url_is_preserved_for_redirected_successes(self) -> None:
@@ -411,14 +528,20 @@ class HealthCheckTests(unittest.TestCase):
             },
         )
 
-        self.assertEqual(product["health_probe_url"], "https://redirect-tool-rose.vercel.app")
-        self.assertEqual(product["effective_health_url"], "https://redirect-tool.vercel.app")
+        self.assertEqual(
+            product["health_probe_url"], "https://redirect-tool-rose.vercel.app"
+        )
+        self.assertEqual(
+            product["effective_health_url"], "https://redirect-tool.vercel.app"
+        )
         self.assertEqual(product["last_health_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["deployment_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["vercel_url"], "https://redirect-tool.vercel.app")
         self.assertEqual(product["v"], "https://redirect-tool.vercel.app")
 
-    def test_redirected_preview_alias_keeps_probe_and_effective_urls_distinct(self) -> None:
+    def test_redirected_preview_alias_keeps_probe_and_effective_urls_distinct(
+        self,
+    ) -> None:
         product = {
             "name": "HTML Entity Encoder/Decoder Pro",
             "slug": "html-entity-encoder",
@@ -441,7 +564,9 @@ class HealthCheckTests(unittest.TestCase):
             },
         )
 
-        self.assertEqual(product["health_probe_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(
+            product["health_probe_url"], "https://html-entity-encoder.vercel.app"
+        )
         self.assertEqual(
             product["effective_health_url"],
             "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
@@ -456,9 +581,13 @@ class HealthCheckTests(unittest.TestCase):
         )
         self.assertEqual(product["canonical_health_status"], "redirected_preview_alias")
         self.assertEqual(product["canonical_health_code"], 200)
-        self.assertEqual(product["canonical_probe_url"], "https://html-entity-encoder.vercel.app")
+        self.assertEqual(
+            product["canonical_probe_url"], "https://html-entity-encoder.vercel.app"
+        )
 
-    def test_alternate_healthy_result_preserves_probe_alias_when_effective_url_is_canonical(self) -> None:
+    def test_alternate_healthy_result_preserves_probe_alias_when_effective_url_is_canonical(
+        self,
+    ) -> None:
         product = {
             "name": "Fallback Tool",
             "slug": "fallback-tool",
@@ -482,15 +611,25 @@ class HealthCheckTests(unittest.TestCase):
         )
 
         self.assertEqual(product["health_status"], "alternate_healthy")
-        self.assertEqual(product["health_probe_url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(product["effective_health_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(
+            product["health_probe_url"], "https://fallback-tool-preview.vercel.app"
+        )
+        self.assertEqual(
+            product["effective_health_url"], "https://fallback-tool.vercel.app"
+        )
         self.assertEqual(product["last_health_url"], "https://fallback-tool.vercel.app")
-        self.assertEqual(product["deployment_url"], "https://fallback-tool-preview.vercel.app")
-        self.assertEqual(product["vercel_url"], "https://fallback-tool-preview.vercel.app")
+        self.assertEqual(
+            product["deployment_url"], "https://fallback-tool-preview.vercel.app"
+        )
+        self.assertEqual(
+            product["vercel_url"], "https://fallback-tool-preview.vercel.app"
+        )
         self.assertEqual(product["v"], "https://fallback-tool-preview.vercel.app")
         self.assertEqual(product["canonical_health_status"], "healthy")
         self.assertEqual(product["canonical_health_code"], 200)
-        self.assertEqual(product["canonical_health_url"], "https://fallback-tool.vercel.app")
+        self.assertEqual(
+            product["canonical_health_url"], "https://fallback-tool.vercel.app"
+        )
 
     def test_synced_health_results_include_alternate_healthy(self) -> None:
         self.assertTrue(is_synced_health_result({"status": "healthy"}))
@@ -539,32 +678,47 @@ class HealthCheckTests(unittest.TestCase):
 
             try:
                 os.chdir(tmpdir)
-                with patch.object(health_check, "check_product_health", return_value={
-                    "name": "Raw State Tool",
-                    "slug": "raw-state-tool",
-                    "status": "healthy",
-                    "code": 200,
-                    "url": "https://raw-state-tool.vercel.app",
-                    "canonical_url": "https://raw-state-tool.vercel.app",
-                    "canonical_status": "healthy",
-                    "canonical_code": 200,
-                    "checked_at": "2026-04-22T10:00:00Z",
-                }), patch.object(health_check, "load_product_catalog", return_value={}), patch.object(
-                    health_check, "build_summary", side_effect=fake_build_summary
-                ), patch.object(health_check, "apply_summary_fields", side_effect=identity_apply_summary_fields), patch.object(
-                    health_check, "persist_summary"
+                with (
+                    patch.object(
+                        health_check,
+                        "check_product_health",
+                        return_value={
+                            "name": "Raw State Tool",
+                            "slug": "raw-state-tool",
+                            "status": "healthy",
+                            "code": 200,
+                            "url": "https://raw-state-tool.vercel.app",
+                            "canonical_url": "https://raw-state-tool.vercel.app",
+                            "canonical_status": "healthy",
+                            "canonical_code": 200,
+                            "checked_at": "2026-04-22T10:00:00Z",
+                        },
+                    ),
+                    patch.object(health_check, "load_product_catalog", return_value={}),
+                    patch.object(
+                        health_check, "build_summary", side_effect=fake_build_summary
+                    ),
+                    patch.object(
+                        health_check,
+                        "apply_summary_fields",
+                        side_effect=identity_apply_summary_fields,
+                    ),
+                    patch.object(health_check, "persist_summary"),
                 ):
                     result = health_check.main()
             finally:
                 os.chdir(original_cwd)
 
         self.assertEqual(result["unhealthy"], 0)
-        self.assertEqual(captured["raw_state"]["products"]["active"][0], {
-            "name": "Raw State Tool",
-            "slug": "raw-state-tool",
-            "status": "live",
-            "vercel_url": "https://raw-state-tool.vercel.app",
-        })
+        self.assertEqual(
+            captured["raw_state"]["products"]["active"][0],
+            {
+                "name": "Raw State Tool",
+                "slug": "raw-state-tool",
+                "status": "live",
+                "vercel_url": "https://raw-state-tool.vercel.app",
+            },
+        )
         self.assertIn("ideal_vercel_url", captured["state"]["products"]["active"][0])
         self.assertIn("health_status", captured["state"]["products"]["active"][0])
 

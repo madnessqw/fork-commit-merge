@@ -80,8 +80,14 @@ def _status_for_http_code(code):
         return "unauthorized"
     if http_code == 402:
         return "deployment_disabled"
+    if http_code == 403:
+        return "forbidden"
     if http_code == 404:
         return "not_found"
+    if http_code == 451:
+        return "geo_blocked"
+    if http_code == 500:
+        return "server_error"
     if http_code == 0:
         return "timeout"
     if http_code is not None:
