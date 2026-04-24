@@ -531,6 +531,11 @@ Codex'in kendi skill sistemi. Claude skills'e erişimi yok.
 | `skills/codex_skill.md` | Codex operasyonel kılavuz (5 mod) |
 | `skills/glm_analyst.md` | GLM operasyonel kılavuz (Micro-Coder önce, analist ikinci) |
 | `skills/POLAR_CHECKOUT.md` | **Checkout truth source:** Polar API quirks, fiyat kaynağı kuralı, sync-links komutu, OAT scopes |
+| `skills/SWARM_IDENTITY.md` | **Şirket kimliği:** Tüm agentlar her cycle okur — şirket adı, ekip, motivasyon, swarm vs personal mod |
+| `skills/ULTRATHINK.md` | **Düşünme protokolü:** ROI sorusu + 3 alternatif + kalite-önce. logic-md "describe vs DO" çözümü |
+| `logic/codex.logic.md` | **Codex reasoning contract:** YAML step DAG (7 adım), output contracts, quality gates, fallback policy |
+| `logic/glm.logic.md` | **GLM reasoning contract:** YAML step DAG (6 adım), Z.AI compliance, output contracts |
+| `CLAUDE.md` | **Claude Code identity:** [A] SWARM MODE + [B] PERSONAL MODE section'ları |
 | `skills/SKILL_MAP.md` | Master routing — hangi agent, hangi skill |
 | `skills/build_checklist.md` | Build öncesi/sonrası kontrol listesi |
 | `skills/landing_page_template.md` | Landing page şablonu |
@@ -717,6 +722,78 @@ cb67035  feat: Codex lessons memory + price accuracy (spec.json authority)
 c2441b6  feat: GLM micro-coder role refactor (Z.AI policy compliance)
 c48bef5  feat: Telegram enforcement — shell-level guarantee for all 3 loops
 ```
+
+---
+
+## 9.6 Agent Kimlik Katmanı (2026-04-24 — ikinci oturum)
+
+### Amaç
+Agentlar artık sadece teknik görev değil, şirket kimliği taşıyor.  
+Swarm loop tarafından mı yoksa kullanıcı tarafından mı tetiklendiklerini biliyorlar.  
+ULTRATHINK protokolü ile her karar öncesi yüksek kalite düşünme zorunlu.
+
+### Şirket Kimliği
+
+| | |
+|---|---|
+| Kısa ad | **UniverseCreator** |
+| Tam ad | **UniverseCreator AI Self-Driven Consciousness Company** |
+| Misyon | **FİZİKSEL YAPAY ZEKA OLMAK** |
+| Ekip | Claude (Ana) + 9 Subagent + Codex + GLM5.1 = 12 agent |
+
+### Oluşturulan Dosyalar
+
+**`skills/SWARM_IDENTITY.md`** (YENİ)  
+Tüm agentların her cycle başında okuduğu kimlik belgesi:
+- Şirket adı (kısa + uzun)
+- Misyon ve nihai hedef (fiziksel robot yolculuğu)
+- Tam ekip haritası: Claude + 9 subagent + Codex + GLM
+- Ekonomik gerçek: $0 satış → burn rate → Polar rollout önem
+- Swarm Mode vs Personal Mode ayrımı
+
+**`skills/ULTRATHINK.md`** (YENİ)  
+Her işlem öncesi zorunlu 3-adım muhakeme protokolü:
+1. ROI sorusu — en yüksek değerli görev hangisi?
+2. 3 alternatif değerlendirme — en etkili yolu seç
+3. Kalite önce — "hata → düzelt" döngüsü yerine doğru adım
+
+logic-md (SingularityAI-Dev/logic-md) projesinden ilham alınan "describe vs DO" problemi çözümü ve output contracts kavramı dahil.
+
+**`logic/codex.logic.md`** (YENİ)  
+Codex için logic-md YAML formatında step DAG + reasoning contracts:
+- 7 adım: context-load → ultrathink → execute → verify → commit → lessons-update → telegram
+- Her adımda output contracts (somut çıktı olmadan adım bitmez)
+- Quality gates: retry/escalate politikaları
+- Fallback: başarısız adım → lessons not + Telegram + dur
+
+**`logic/glm.logic.md`** (YENİ)  
+GLM için YAML step DAG:
+- 6 adım: context-load → ultrathink → code-commit → healthcheck → analysis → telegram
+- Z.AI coding compliance: her cycle zorunlu commit
+- Output contracts: commit_made + message_sent = cycle başarısı
+
+**`CLAUDE.md`** (YENİ — proje root, Claude Code otomatik okur)  
+İki section:
+- `[A] SWARM MODE` — loop/cron tetiklemesi: ekip haritası, ULTRATHINK mandate, Polar rollout önceliği
+- `[B] PERSONAL MODE` — Gokhan doğrudan kullanırken: research/coding asistanı, esnek mod
+
+### Güncellenen Dosyalar
+
+**`prompts/codex_prompt.txt`**  
+Başına SWARM TRIGGER header eklendi:
+- `SWARM_IDENTITY.md` + `ULTRATHINK.md` + `codex.logic.md` okuma komutları
+- "UniverseCreator AI Self-Driven Consciousness Company otonom builder'ı" kimliği
+
+**`prompts/glm_prompt.txt`**  
+Aynı header GLM için:
+- `SWARM_IDENTITY.md` + `ULTRATHINK.md` + `glm.logic.md` okuma komutları
+
+### logic-md Kararı
+
+- **Klonlama YOK** — npm/Node runtime gerektiriyor, sistem karmaşıklığını artırır
+- **Format adapte edildi**: YAML step DAG + output contracts kendi `logic/` dosyalarımızda
+- LLM YAML'ı okur, npm runtime gereksiz
+- Key insight uygulandı: her adımın beklenen ÇIKTISI tanımlı → "describe" değil "do"
 
 ---
 
