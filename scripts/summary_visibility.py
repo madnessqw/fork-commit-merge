@@ -250,3 +250,47 @@ def apply_drift_fix_to_state(
             report["fixed"] += 1
 
     return report
+
+
+def deploy_readiness_report(summary: dict[str, Any]) -> dict[str, Any]:
+    """Summarize deploy readiness gaps from STATE_SUMMARY.
+
+    Returns a dict with counts grouped by missing field category so agents
+    can quickly see which products need what before deployment.
+    """
+    items = summary.get("gaps", {}).get("deploy_readiness", [])
+    if not isinstance(items, list):
+        return {"total": 0, "url_gap": 0, "state_gap": 0, "manifest_gap": 0, "items": []}
+
+    url_gap = 0
+    state_gap = 0
+    manifest_gap = 0
+    report_items: list[dict[str, Any]] = []
+
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        slug = str(item.get("slug") or "").strip()
+        if not slug:
+            continue
+        missing_url = list(item.get("missing_url_fields") or [])
+        missing_state = list(item.get("missing_state_fields") or [])
+        missing_manifest = list(item.get("missing_manifest_fields") or [])
+        url_gap += len(missing_url)
+        state_gap += len(missing_state)
+        manifest_gap += len(missing_manifest)
+        report_items.append({
+            "slug": slug,
+            "name": item.get("name", slug),
+            "missing_url": missing_url,
+            "missing_state": missing_state,
+            "missing_manifest": missing_manifest,
+        })
+
+    return {
+        "total": len(report_items),
+        "url_gap": url_gap,
+        "state_gap": state_gap,
+        "manifest_gap": manifest_gap,
+        "items": report_items,
+    }

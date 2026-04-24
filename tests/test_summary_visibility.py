@@ -15,6 +15,7 @@ from scripts.summary_visibility import (
     apply_drift_fix_to_state,
     canonical_drift_count,
     canonical_drift_entries,
+    deploy_readiness_report,
     drift_products_from_state,
     fallback_healthy_count,
     fallback_healthy_entries,
@@ -330,3 +331,54 @@ class TestApplyDriftFixToState:
         report = apply_drift_fix_to_state(state)
         assert report["checked"] == 0
         assert report["fixed"] == 0
+
+
+class TestDeployReadinessReport:
+    def test_empty_summary(self):
+        assert deploy_readiness_report({})["total"] == 0
+
+    def test_no_deploy_readiness_key(self):
+        assert deploy_readiness_report({"gaps": {}})["total"] == 0
+
+    def test_counts_gaps_correctly(self):
+        summary = {
+            "gaps": {
+                "deploy_readiness": [
+                    {
+                        "slug": "api-mock-generator",
+                        "name": "API Mock Generator",
+                        "missing_url_fields": ["vercel_url", "deployment_url"],
+                        "missing_state_fields": ["created_cycle"],
+                        "missing_manifest_fields": [],
+                    },
+                    {
+                        "slug": "case-converter-pro",
+                        "name": "Case Converter Pro",
+                        "missing_url_fields": ["vercel_url"],
+                        "missing_state_fields": ["deployed_cycle"],
+                        "missing_manifest_fields": ["price"],
+                    },
+                ]
+            }
+        }
+        report = deploy_readiness_report(summary)
+        assert report["total"] == 2
+        assert report["url_gap"] == 3
+        assert report["state_gap"] == 2
+        assert report["manifest_gap"] == 1
+        assert len(report["items"]) == 2
+        assert report["items"][0]["slug"] == "api-mock-generator"
+        assert report["items"][1]["slug"] == "case-converter-pro"
+
+    def test_skips_non_dict_items(self):
+        summary = {"gaps": {"deploy_readiness": ["bad", 42, {"slug": "ok", "missing_url_fields": [], "missing_state_fields": [], "missing_manifest_fields": []}]}}
+        report = deploy_readiness_report(summary)
+        assert report["total"] == 1
+        assert report["items"][0]["slug"] == "ok"
+
+    def test_handles_missing_fields_gracefully(self):
+        summary = {"gaps": {"deploy_readiness": [{"slug": "minimal"}]}}
+        report = deploy_readiness_report(summary)
+        assert report["total"] == 1
+        assert report["url_gap"] == 0
+        assert report["items"][0]["missing_url"] == []
