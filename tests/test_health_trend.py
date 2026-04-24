@@ -106,6 +106,48 @@ class HealthTrendTests(unittest.TestCase):
         finally:
             ht.TREND_FILE = orig
 
+    def test_record_snapshot_includes_grade(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(summary)
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["grade"], "A")
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_record_snapshot_grade_b(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(summary, live_count=100, healthy_count=90)
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["grade"], "B")
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_trend_summary_text_includes_grade(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(summary)
+            text = trend_summary_text()
+            self.assertIn("[A]", text)
+        finally:
+            ht.TREND_FILE = orig_trend
+
     def test_record_snapshot_uses_top_level_canonical_drift_when_detail_missing(self) -> None:
         root, summary = self._workspace()
         trend_file = root / "logs" / "health_trend.jsonl"

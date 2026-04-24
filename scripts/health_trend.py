@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
 TREND_FILE = ROOT / "logs" / "health_trend.jsonl"
 
 from scripts.summary_visibility import canonical_drift_count
+from scripts.unhealthy_triage import portfolio_health_score, _grade_from_pct
 
 SNAPSHOT_KEYS = (
     "live_count",
@@ -53,12 +54,15 @@ def record_snapshot(summary_path: Path | None = None) -> dict:
 
     canonical_drift = canonical_drift_count(summary)
 
+    grade = _grade_from_pct(health_pct)
+
     snapshot = {
         "ts": _utc_now_iso(),
         "cycle": summary.get("cycle", 0),
         "live": live,
         "healthy": healthy,
         "health_pct": health_pct,
+        "grade": grade,
         "unhealthy": summary.get("unhealthy_count", 0),
         "checkout_gap": summary.get("checkout_gap_count", 0),
         "deploy_gap": summary.get("deploy_missing_or_bad_url", 0),
@@ -135,8 +139,9 @@ def trend_summary_text() -> str:
     arrow = {"improving": "↑", "degrading": "↓", "stable": "→"}.get(
         trend["direction"], "?"
     )
+    grade = snapshot.get("grade", _grade_from_pct(snapshot["health_pct"]))
     return (
-        f"Sağlık: {snapshot['health_pct']}% {arrow} "
+        f"[{grade}] Sağlık: {snapshot['health_pct']}% {arrow} "
         f"(trend: {trend['direction']}, Δ{trend['health_delta']:+.1f}%) | "
         f"Unhealthy: {snapshot['unhealthy']} | "
         f"Drift: {snapshot['canonical_drift']} | "
@@ -152,6 +157,11 @@ def main() -> int:
     if len(sys.argv) > 1 and sys.argv[1] == "trend":
         trend = compute_trend()
         print(json.dumps(trend, indent=2, ensure_ascii=False))
+        return 0
+
+    if len(sys.argv) > 1 and sys.argv[1] == "grade":
+        score = portfolio_health_score()
+        print(json.dumps(score, indent=2, ensure_ascii=False))
         return 0
 
     snapshot = record_snapshot()
