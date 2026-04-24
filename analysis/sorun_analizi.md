@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1109 | 2026-04-24 05:41 UTC
+# Sorun Analizi — Cycle 1109 | 2026-04-24 07:35 UTC
 
 ## Ana Darboğaz
 - **live_health** — 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).

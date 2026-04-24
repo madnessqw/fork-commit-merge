@@ -20,7 +20,7 @@
   "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T05:41:38.377685Z",
+  "last_updated": "2026-04-24T07:35:12.101834Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -258,7 +258,7 @@
       "s": "table-to-csv",
       "st": "live",
       "v": "https://table-to-csv.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/3b1f9bc0-08eb-4d7d-9be5-fe338d179ad0"
+      "c": "https://buy.polar.sh/polar_cl_dBcJXMPMdvIbGa44j8cChc0RCQ38iARTPUKTc148J8K"
     },
     {
       "n": "DataFlip",
@@ -370,7 +370,7 @@
       "s": "html-to-markdown-pro",
       "st": "live",
       "v": "https://html-to-markdown-pro.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/af379155-d385-49f1-b1ae-76722a747ce4"
+      "c": "https://buy.polar.sh/polar_cl_I59NmkCiR8cxVtqWfwPFgvCiWbxc3tEg8Bgv23COvXZ"
     },
     {
       "n": "API Spec Validator",
@@ -643,7 +643,7 @@
       "s": "graphql-query-builder",
       "st": "live",
       "v": "https://graphql-query-builder.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
+      "c": "https://buy.polar.sh/polar_cl_xnVybQVlPAmESvP4hbhuixq57G2GIbG4Wa3DR3CfMP9"
     },
     {
       "n": "SecretGuard",
