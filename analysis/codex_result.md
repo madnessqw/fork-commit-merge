@@ -1,4 +1,10 @@
-# Codex Result — 2026-04-24 07:40 +03
+# Codex Result — 2026-04-24 08:07 +0300
+
+- Refresh context next_action guard hardened: stale non-manual values now yield to live health/canonical gaps.
+- Added regression test proving `prepare_new_products_wait_deploy` is ignored when live gaps exist.
+- Validation passed: py_compile + pytest (134 passed).
+- Secret scan clean; no real secrets in changed files.
+- Live state still has 3 true outages and 4 fallback-alias canonical drifts; not touched.
 
 ## Okunanlar
 - `/home/gokhan/UniverseCreator/skills/SWARM_IDENTITY.md`
@@ -16,24 +22,27 @@
 - `/home/gokhan/mind/DECISIONS.md`
 - `/home/gokhan/mind/ERRORS.md`
 - `/home/gokhan/mind/logs/2026-04-24.md`
+- `scripts/product_state_sync.py`
+- `scripts/update_summary.py`
+- `scripts/health_check.py`
+- `scripts/refresh_codex_context.py`
+- `tests/test_product_state_sync.py`
+- `tests/test_update_summary.py`
+- `tests/test_health_check.py`
+- `tests/test_refresh_codex_context.py`
 
 ## Ne Değişti
-- `scripts/checkout_metadata.py` artık Polar checkout URL'lerini `polar.sh` ve `buy.polar.sh` üzerinden `payment_provider=polar` olarak tanıyor.
-- `scripts/polar_checkout_sync.py` Polar API çağrılarına `Accept-Encoding: gzip, deflate` ekliyor; Brotli yüzünden sync bozulmuyor.
-- `scripts/unhealthy_triage.py` canonical-drift ürünleri de triage listesine alıyor; fallback-alive ama canonical kırık ürünler artık görünür.
-- `scripts/refresh_codex_context.py` metinleri LemonSqueezy-spesifik olmaktan çıkarıp legacy alias / generic payment-provider diline taşıdı.
-- `lessons/checkout-url-lessons.md` Section 6'ya Polar URL inference notu eklendi.
+- `scripts/refresh_codex_context.py` now mirrors `scripts/update_summary.py` for `effective_next_action`: unhealthy live gaps and canonical drift override stale non-manual `next_action` strings.
+- `tests/test_refresh_codex_context.py` gained a regression for a stale `prepare_new_products_wait_deploy` summary value being replaced by the live gap summary.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/checkout_metadata.py scripts/polar_checkout_sync.py scripts/refresh_codex_context.py scripts/unhealthy_triage.py tests/test_checkout_metadata.py tests/test_unhealthy_triage.py`
-- `pytest -q tests/test_checkout_metadata.py tests/test_unhealthy_triage.py` → 17 passed
-- `pytest -q tests/test_polar_checkout_sync.py` → 10 passed
-- `pytest -q tests/test_health_check.py tests/test_product_state_sync.py tests/test_update_summary.py tests/test_refresh_codex_context.py` → 133 passed
-- Secret scan: değişen dosyalarda gerçek secret değeri yok; yalnızca beklenen `POLAR_OAT` env-var referansları var.
+- `python3 -m py_compile scripts/refresh_codex_context.py tests/test_refresh_codex_context.py`
+- `python3 -m pytest tests/test_refresh_codex_context.py tests/test_update_summary.py tests/test_product_state_sync.py tests/test_health_check.py -q` → 134 passed
+- Secret scan: değişen dosyalarda gerçek secret yok; yalnızca beklendiği gibi `api_key` kelime eşleşmeleri var.
 
 ## Kalan Blokajlar
-- `STATE_SUMMARY.json` hâlâ 3 unhealthy live ürün ve 4 fallback-alive canonical drift gösteriyor; bu cycle onları daha görünür yaptı, upstream deployment sorunlarını çözmedi.
-- Deploy/url gap'leri açık kalmaya devam ediyor; checkout gap yine 0.
+- `jwt-generator`, `diffmaster`, `timestamp-converter` hâlâ gerçek outage; bunlar kodla çözülmüş gibi raporlanmıyor.
+- `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder` fallback alias üzerinden canlı; canonical drift görünür kalmalı.
 
 ## Not
-- Task tarafında Polar checkout rayı sağlam; bu turda asıl kazanç checkout/provider normalizasyonu ve canonical-drift triage görünürlüğü oldu.
+- Bu turda checkout/lessons tarafına dokunmadım; sorun health-context refresh guard’ındaydı.

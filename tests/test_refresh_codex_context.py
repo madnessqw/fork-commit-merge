@@ -8,6 +8,7 @@ from unittest.mock import Mock, patch
 from scripts import refresh_codex_context
 from scripts.refresh_codex_context import (
     determine_focus,
+    effective_next_action,
     render_codex_task,
     render_oneri,
     render_sorun_analizi,
@@ -603,6 +604,79 @@ class RefreshCodexContextTests(unittest.TestCase):
             "- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 probe=https://html-entity-encoder.vercel.app canonical_code=200 canonical_status=redirected_preview_alias",
             rendered_oneri,
         )
+
+    def test_stale_non_manual_next_action_is_replaced_by_live_gap_summary(self) -> None:
+        summary = {
+            "cycle": 1109,
+            "mode": "OPTIMIZE",
+            "live_count": 89,
+            "healthy_count": 86,
+            "pending_health_count": 0,
+            "checkout_gap_count": 1,
+            "deploy_missing_or_bad_url": 16,
+            "deploy_readiness_count": 27,
+            "deploy_readiness_manifest_gap_count": 0,
+            "deploy_readiness_url_gap_count": 27,
+            "deploy_readiness_state_gap_count": 24,
+            "canonical_url_drift": 4,
+            "fallback_healthy_count": 4,
+            "spec_ready_count": 22,
+            "next_action": "prepare_new_products_wait_deploy",
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "jwt-generator",
+                        "code": 500,
+                        "health_status": "error_500",
+                        "url": "https://jwt-generator.vercel.app",
+                    }
+                ],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "html-entity-encoder",
+                        "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                        "ideal_url": "https://html-entity-encoder.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "health_code": 200,
+                    }
+                ],
+                "fallback_healthy": [
+                    {
+                        "slug": "html-entity-encoder",
+                        "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+                        "ideal_url": "https://html-entity-encoder.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "health_code": 200,
+                        "probe_url": "https://html-entity-encoder.vercel.app",
+                        "canonical_url": "https://html-entity-encoder.vercel.app",
+                        "canonical_code": 200,
+                        "canonical_status": "redirected_preview_alias",
+                    }
+                ],
+                "deploy_readiness": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+        self.assertEqual(
+            effective_next_action(summary, focus),
+            "1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut",
+        )
+
+        rendered_task = render_codex_task(
+            summary, focus, datetime(2026, 4, 24, 5, 0, tzinfo=timezone.utc)
+        )
+        rendered_oneri = render_oneri(
+            summary, [], focus, datetime(2026, 4, 24, 5, 0, tzinfo=timezone.utc)
+        )
+
+        self.assertNotIn("prepare_new_products_wait_deploy", rendered_task)
+        self.assertNotIn("prepare_new_products_wait_deploy", rendered_oneri)
+        self.assertIn("1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut", rendered_task)
+        self.assertIn("1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut", rendered_oneri)
 
     def test_load_summary_refreshes_live_health_before_rebuilding_context(self) -> None:
         summary = {

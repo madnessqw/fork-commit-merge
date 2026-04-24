@@ -127,38 +127,28 @@ def _looks_like_manual_dashboard_action(value: Any) -> bool:
 def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
     raw = summary.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
-    if raw_text and not _looks_like_manual_dashboard_action(raw_text):
-        return raw_text
-
     gaps = summary.get("gaps", {})
     unhealthy_live = list(gaps.get("unhealthy_live", []))
     canonical_drift = list(gaps.get("canonical_url_drift", []))
 
-    if focus.key == "live_health":
-        if unhealthy_live:
-            if canonical_drift:
-                return (
-                    f"{len(unhealthy_live)} canlı ürünü düzelt; "
-                    f"{len(canonical_drift)} fallback alias'ı görünür tut"
-                )
-            return f"{len(unhealthy_live)} canlı ürünü düzelt"
+    if unhealthy_live:
+        if canonical_drift:
+            return (
+                f"{len(unhealthy_live)} canlı ürünü düzelt; "
+                f"{len(canonical_drift)} fallback alias'ı görünür tut"
+            )
+        return f"{len(unhealthy_live)} canlı ürünü düzelt"
 
-    if focus.key == "canonical_url_drift" and canonical_drift:
+    if canonical_drift:
         return (
             f"{len(canonical_drift)} canonical URL drift'ini düzelt; "
             "fallback alias'ı ezme"
         )
 
-    if raw_text:
+    if raw_text and not _looks_like_manual_dashboard_action(raw_text):
         return raw_text
 
-    if unhealthy_live:
-        return f"{len(unhealthy_live)} canlı ürünü düzelt"
-
-    if canonical_drift:
-        return f"{len(canonical_drift)} canonical URL drift'ini düzelt"
-
-    return None
+    return raw_text or None
 
 
 def _issue_map(issues: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:

@@ -1,17 +1,17 @@
-# Codex Analiz Özeti — 2026-04-23 20:45 UTC
+# Codex Analiz Özeti — 2026-04-24 05:00 UTC
 
 ## Canlı State
-- Cycle: **1108**
+- Cycle: **1109**
 - Mode: **OPTIMIZE**
-- Live sağlık: **85/88** (%96.6)
-- Canonical healthy: **81/88** (%92.0)
+- Live sağlık: **86/89** (%96.6)
+- Canonical healthy: **82/89** (%92.1)
 - Health pending: **0**
 - Fallback healthy: **4**
-- Checkout gap: **0**
-- Deploy readiness gap: **20**
-- Deploy/url gap: **20**
+- Checkout gap: **1**
+- Deploy readiness gap: **27**
+- Deploy/url gap: **16**
 - Canonical drift: **4**
-- Spec-ready: **26**
+- Spec-ready: **22**
 - Next action: `3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut`
 
 ## Ana Darboğaz
@@ -20,7 +20,7 @@
 ## Kod için Öneri
 1. **Health/canonical drift düzeltmesi**
    - Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senkron tutan scripti güçlendir. Şu an 4 ürün fallback alias ile canlı; manuel Vercel korumasını çözüldü gibi gösterme. Önce mevcut health pipeline'ını oku, sonra yalnız otomasyon tarafını düzelt.
-2. Production'da manuel Vercel/LemonSqueezy adımlarını script ile 'çözüldü' gibi göstermeden bırak.
+2. Production'da manuel Vercel/ödeme-provider adımlarını script ile 'çözüldü' gibi göstermeden bırak.
 3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.
 
 ## Açık Issue Sinyalleri
@@ -40,17 +40,17 @@
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 
 ## Deploy Readiness Issues
-- Count: **20** | Manifest gaps: **3** | URL gaps: **20** | State gaps: **20**
-- `csv-to-sql-pro` — manifest=spec_version; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `json-to-csv-pro` — manifest=spec_version; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `url-parser-pro` — manifest=spec_version; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `agent-prompt-engineer` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `api-mock-server` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `browser-use-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `docker-command-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `docker-compose-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
-- `env-file-manager` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle, lemonsqueezy_product_id
+- Count: **27** | Manifest gaps: **0** | URL gaps: **27** | State gaps: **24**
+- `agent-prompt-engineer` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `api-mock-server` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `browser-use-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `docker-command-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `docker-compose-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `env-file-manager` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `api-security-scanner` — manifest=none; url=vercel_url, deployment_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
 
 ## Deploy/URL Gap Preview
-- chmod-calculator, binary-inspector, ssl-config-generator, browser-mock-studio, docker-compose-builder, env-file-manager, ...
+- browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, ...

@@ -1,5 +1,5 @@
 {
-  "cycle": 1108,
+  "cycle": 1109,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 149,
@@ -9,39 +9,39 @@
   "fallback_healthy_count": 4,
   "unhealthy_count": 3,
   "pending_health_count": 0,
-  "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 18,
+  "checkout_gap_count": 1,
+  "deploy_missing_or_bad_url": 16,
   "canonical_url_drift": 4,
-  "spec_ready_count": 24,
-  "deploy_readiness_count": 29,
+  "spec_ready_count": 22,
+  "deploy_readiness_count": 27,
   "deploy_readiness_manifest_gap_count": 0,
-  "deploy_readiness_url_gap_count": 29,
-  "deploy_readiness_state_gap_count": 29,
+  "deploy_readiness_url_gap_count": 27,
+  "deploy_readiness_state_gap_count": 24,
   "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T04:07:38.308158Z",
+  "last_updated": "2026-04-24T05:00:07.966423Z",
   "products": [
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator-pro",
       "st": "live",
       "v": "https://uuid-generator-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_jcHPZaMewa15LsUU11l8fcTabdHwFBcNpyWjc17lI3b"
+      "c": "https://buy.polar.sh/polar_cl_LITjFT1XdMD9kD9nw1Gbxr4YV5la5dYdbKY5x1TPXq2"
     },
     {
       "n": "URL Forge",
       "s": "url-forge",
       "st": "live",
       "v": "https://url-forge.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_b0MwojNa7y60nnLtGfx5nJ5iQxRKwvzCYjd7m2hlK03"
+      "c": "https://buy.polar.sh/polar_cl_dLTXUj2HsJJfQiqQDCUb5uuP4B184QK2TKXOa0iSZ9P"
     },
     {
       "n": "WebTerminal Pro",
       "s": "webterminal-pro",
       "st": "live",
       "v": "https://webterminal-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_wzzCAWqOY3BoGuqwimQGv1eMGaFDLkRr3wA7R1I4zVs"
+      "c": "https://buy.polar.sh/polar_cl_loGLhcccbNCm1blOaV8X9dh0uL1ptTJeFdfDv3NYIvg"
     },
     {
       "n": "Timestamp Converter Pro",
@@ -62,7 +62,7 @@
       "s": "url-encoder-decoder",
       "st": "live",
       "v": "https://url-encoder-decoder.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_rdhqgsV11XGEiLRtzv3kJOBkOJGFjnTRBnBbz1bWMiB"
+      "c": "https://buy.polar.sh/polar_cl_IKqoSeBYBgidHpsDBrIZuMQM8xz6SQuxZ7St71fyDcl"
     },
     {
       "n": "HTML Beautifier Pro",
@@ -90,7 +90,7 @@
       "s": "toml-toolkit",
       "st": "live",
       "v": "https://toml-toolkit.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_ulpJ3ZdKSrQs8wWVxXfM49K8rCOFmBSOfr3bJ2wMpl6"
+      "c": "https://buy.polar.sh/polar_cl_ojtgirUiBuZJ8SpW9qG6Hoky0Uyvr8z3gsem02ZqFmX"
     },
     {
       "n": "OG Forge",
@@ -132,14 +132,14 @@
       "s": "unit-test-generator",
       "st": "live",
       "v": "https://unit-test-generator.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_NtHgl5sUgHNJoUHUiFA7A8AZZp3B97EEJiYKl2vjPMi"
+      "c": "https://buy.polar.sh/polar_cl_aJDmAUq27Caohnpsz3yybGUH0bq91i71kP3bS1RnQ4T"
     },
     {
       "n": "XML to JSON",
       "s": "xml-to-json",
       "st": "live",
       "v": "https://xml-to-json.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_BiMyNvxi0Vn8kILYcav6YOBFEBpjBO89B7tyS3U0WdO"
+      "c": "https://buy.polar.sh/polar_cl_T0AuUCZ01laMkAJZhvBv3EDJXemznjjGXfAFV22PIVD"
     },
     {
       "n": "ColorMine",
@@ -188,7 +188,7 @@
       "s": "uuid-generator",
       "st": "live",
       "v": "https://uuid-generator.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_jcHPZaMewa15LsUU11l8fcTabdHwFBcNpyWjc17lI3b"
+      "c": "https://buy.polar.sh/polar_cl_LITjFT1XdMD9kD9nw1Gbxr4YV5la5dYdbKY5x1TPXq2"
     },
     {
       "n": "HTML Minifier Pro",
@@ -202,7 +202,7 @@
       "s": "toml-validator",
       "st": "live",
       "v": "https://toml-validator.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_BGcKzTVTZNS84ofbTrH2NJ4Ua3E2G02ylbOif0xQtYD"
+      "c": "https://buy.polar.sh/polar_cl_lMZwfUkVU6e82cb5Hvr9GuOrRuubHR2EbfCes3Y0zxf"
     },
     {
       "n": "KeyForge",
@@ -251,7 +251,7 @@
       "s": "xml-master-pro",
       "st": "live",
       "v": "https://xml-master-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_N4b0RCU8fuxvsLA8Iq9zZL1GbnO8wHt0iyqtE4P9Lcq"
+      "c": "https://buy.polar.sh/polar_cl_etBCr0mlL8ZBKl1fNwXS8FZchgMTwyICegt7I0ngfxY"
     },
     {
       "n": "HTML Table to CSV Pro",
@@ -300,7 +300,7 @@
       "s": "xml-formatter",
       "st": "live",
       "v": "https://xml-formatter.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_wESkpcNRy4b005LICYsD9CkinsED4qu7QtQde3WMNRZ"
+      "c": "https://buy.polar.sh/polar_cl_vjecE6yib7RzalnTBrklyJJoQalaDGrpjDoIK3JxfFK"
     },
     {
       "n": "Markdown Previewer Pro",
@@ -377,7 +377,7 @@
       "s": "api-spec-validator",
       "st": "live",
       "v": "https://api-spec-validator.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_y2hgCQrQ6p8GcIZVLDFzg5MCEbJoupvq3zqDV1Q9U2A"
+      "c": "https://buy.polar.sh/polar_cl_erxMNWkQZAOWMMwcDkNOEOwWe7nL79LderUeL2qetb2"
     },
     {
       "n": "Markdown Previewer Pro",
@@ -440,14 +440,14 @@
       "s": "webhook-tester",
       "st": "live",
       "v": "https://webhook-tester-beryl.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_RhfiFaGpUiWPIc8ueYuuDPlGveJwJJxsPjS9k01SwwC"
+      "c": "https://buy.polar.sh/polar_cl_tS8bLsxTE5qh2GcSupsgTVLb0XLQtTvkR43vY3nxdfu"
     },
     {
       "n": "YAML Converter Pro",
       "s": "yaml-converter-pro",
       "st": "live",
       "v": "https://yaml-converter-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_4s7ofrlBr9ddNcV6NA62KzK4rknqMFYoBzFfG1ImNPX"
+      "c": "https://buy.polar.sh/polar_cl_HzFJYQa4hWlESoAeoWKytAhcPxYAc941EMIqu27xy3t"
     },
     {
       "n": "Curl2Code",
@@ -475,7 +475,7 @@
       "s": "toml-parser",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_LaOVl4Xtiho03vdc1rDVOH30N0lYheGO5iKdc0pqbXR"
     },
     {
       "n": "TechStack Analyzer",
@@ -489,7 +489,7 @@
       "s": "html2markdown",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_c0sbO71DorUHW5V7N5RHAOkksi0XMABIQHvg52LQ1Jv"
     },
     {
       "n": "JWT Generator Pro",
@@ -510,14 +510,14 @@
       "s": "hmac-generator-pro",
       "st": "live",
       "v": "https://hmac-generator-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_4PBaINXvEJ5DuHzHIiObg72O6vBWpSujZtkIS15cuPl"
+      "c": "https://buy.polar.sh/polar_cl_MFHcO6ruG8Ljx0VhhXLjN29moIPdCtidbE1hy3PfACz"
     },
     {
       "n": "URL Builder Pro",
       "s": "url-builder-pro",
       "st": "live",
       "v": "https://url-builder-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_1efrdpGmLSgsyKe4G6sDY2iGAeLx6chwpUM4K2ZiVUf"
+      "c": "https://buy.polar.sh/polar_cl_0b4CtBFxLHmjydEXxFV46xz9KZ8LkIAgHLkAm2KISQi"
     },
     {
       "n": "Markdown Table Generator",
@@ -580,7 +580,7 @@
       "s": "favicon-generator-pro",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_se6xPe8oiLloheAXLHr6PkbDMe31fDGzmcqPf1QszxC"
     },
     {
       "n": "Markdown to HTML Pro",
@@ -594,7 +594,7 @@
       "s": "xml-formatter-pro",
       "st": "live",
       "v": "https://xml-formatter-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_q8Csm2CzMDB77e4YytBF8gJSn5WQOqFfLC8w72Jp0Nt"
+      "c": "https://buy.polar.sh/polar_cl_xu7FzMzGSPIAdis1YUaWVwD2cej8mONbN2HZt28yzYh"
     },
     {
       "n": "API Compare",
@@ -762,35 +762,35 @@
       "s": "security-headers-checker",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_dDipNSG0OGpdPuJ6tsUQ9ZDNgGJO0sxkKmQg54cnnWM"
     },
     {
       "n": "Subdomain Finder",
       "s": "subdomain-finder",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_LIcp0EWuDJvbPa56gAT98eCNeu5RwHNmv5Mjv2NhQlR"
     },
     {
       "n": "Htaccess Generator Pro",
       "s": "htaccess-generator",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_mBF5fjnCVQeppqqYeCL5Wrc2ClWAvaWaxO3Wm3vwUFs"
     },
     {
       "n": "Nginx Config Tester",
       "s": "nginx-config-tester",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_trCJDYRxOvzVZL7yM3yRjepH9Hq0ar7hJaYNu1iYLn0"
     },
     {
       "n": "SSL Cipher Analyzer",
       "s": "ssl-cipher-analyzer",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_7P7U6me2BeWPXhFXwhzKGAIWq0FXF4OE7PqdU2jn0QE"
     },
     {
       "n": "Diff Checker Pro",
@@ -825,20 +825,20 @@
       "s": "docker-run-generator",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_USUu81FPAWsLZtQOwzrPk8KtYxYdmeB5S5VvF2PLaFg"
     },
     {
       "n": "SQL to NoSQL Converter",
       "s": "sql-to-nosql",
-      "st": "spec_ready",
-      "v": null,
+      "st": "ready_for_payment",
+      "v": "https://sql-to-nosql.vercel.app",
       "c": null
     },
     {
       "n": "Binary Inspector Pro",
       "s": "binary-inspector",
-      "st": "spec_ready",
-      "v": null,
+      "st": "ready_for_payment",
+      "v": "https://binary-inspector.vercel.app",
       "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
     },
     {
@@ -951,7 +951,7 @@
       "s": "yaml-json-converter",
       "st": "ready_for_payment",
       "v": "https://yaml-json-converter.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_NEjO26rhBVufWdhfxq7n9NpALVWEA0y3ZVpRK1cNo9Q"
+      "c": "https://buy.polar.sh/polar_cl_OxRkEUfuUtHaIgQLMxZ9UfndFJ5146d68HP584aXZpa"
     },
     {
       "n": "API Mock Generator",
@@ -1042,7 +1042,7 @@
       "s": "url-parser-pro",
       "st": "ready_for_payment",
       "v": "https://url-parser-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_8yilHKiu3uU7kx4VOTISULxnK7gSb7Jurd9B42LAtUG"
+      "c": "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa"
     },
     {
       "n": "SQL Query Builder Pro",
@@ -1068,8 +1068,6 @@
   ],
   "gaps": {
     "missing_url": [
-      "sql-to-nosql",
-      "binary-inspector",
       "browser-mock-studio",
       "docker-compose-builder",
       "env-file-manager",
@@ -1117,7 +1115,9 @@
       }
     ],
     "pending_health": [],
-    "missing_checkout": [],
+    "missing_checkout": [
+      "sql-to-nosql"
+    ],
     "canonical_url_drift": [
       {
         "slug": "pdf-forge",
@@ -1364,25 +1364,6 @@
         ]
       },
       {
-        "slug": "sql-to-nosql",
-        "name": "SQL to NoSQL Converter",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/sql-to-nosql/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "api-security-scanner",
         "name": "API Security Scanner",
         "manifest_path": "/home/gokhan/UniverseCreator/products/api-security-scanner/product.json",
@@ -1437,24 +1418,6 @@
         ]
       },
       {
-        "slug": "docker-run-generator",
-        "name": "Docker Run Generator",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
-        ]
-      },
-      {
         "slug": "mcp-inspector-pro",
         "name": "MCP Inspector Pro",
         "manifest_path": "/home/gokhan/UniverseCreator/products/mcp-inspector-pro/product.json",
@@ -1488,42 +1451,6 @@
           "payment_provider",
           "created_cycle",
           "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "security-headers-checker",
-        "name": "Security Headers Checker",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/security-headers-checker/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
-        ]
-      },
-      {
-        "slug": "subdomain-finder",
-        "name": "Subdomain Finder",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
         ]
       },
       {
@@ -1562,74 +1489,6 @@
         ]
       },
       {
-        "slug": "binary-inspector",
-        "name": "Binary Inspector Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/binary-inspector/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "favicon-generator-pro",
-        "name": "Favicon Generator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/favicon-generator-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
-        ]
-      },
-      {
-        "slug": "htaccess-generator",
-        "name": "Htaccess Generator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/htaccess-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider"
-        ]
-      },
-      {
-        "slug": "html2markdown",
-        "name": "HTML2Markdown Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
-        ]
-      },
-      {
         "slug": "json-schema-to-ts",
         "name": "JSON Schema to TypeScript",
         "manifest_path": "/home/gokhan/UniverseCreator/products/json-schema-to-ts/product.json",
@@ -1644,57 +1503,6 @@
         "missing_state_fields": [
           "payment_provider",
           "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "nginx-config-tester",
-        "name": "Nginx Config Tester",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/nginx-config-tester/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider"
-        ]
-      },
-      {
-        "slug": "ssl-cipher-analyzer",
-        "name": "SSL Cipher Analyzer",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/ssl-cipher-analyzer/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider"
-        ]
-      },
-      {
-        "slug": "toml-parser",
-        "name": "TOML Parser Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle"
         ]
       },
       {
@@ -1714,6 +1522,69 @@
         ]
       },
       {
+        "slug": "docker-run-generator",
+        "name": "Docker Run Generator",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "security-headers-checker",
+        "name": "Security Headers Checker",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/security-headers-checker/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "subdomain-finder",
+        "name": "Subdomain Finder",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "favicon-generator-pro",
+        "name": "Favicon Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/favicon-generator-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
         "slug": "git-diff-visualizer",
         "name": "Git Diff Visualizer",
         "manifest_path": "/home/gokhan/UniverseCreator/products/git-diff-visualizer/product.json",
@@ -1726,6 +1597,78 @@
         ],
         "missing_state_fields": [
           "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "htaccess-generator",
+        "name": "Htaccess Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/htaccess-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": []
+      },
+      {
+        "slug": "html2markdown",
+        "name": "HTML2Markdown Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/html2markdown/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "nginx-config-tester",
+        "name": "Nginx Config Tester",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/nginx-config-tester/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": []
+      },
+      {
+        "slug": "ssl-cipher-analyzer",
+        "name": "SSL Cipher Analyzer",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/ssl-cipher-analyzer/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": []
+      },
+      {
+        "slug": "toml-parser",
+        "name": "TOML Parser Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/toml-parser/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle"
         ]
       }
     ]
