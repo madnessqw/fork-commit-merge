@@ -12,10 +12,13 @@ if str(ROOT) not in sys.path:
 
 from scripts.unhealthy_triage import (
     CANONICAL_DRIFT_FIXES,
+    CODEX_ONLY_CODES,
+    GLM_BRIEF_TEMPLATES,
     HEALTH_GRADE_THRESHOLDS,
     _grade_from_pct,
     _triage_entry,
     canonical_drift_fix_suggestions,
+    generate_glm_brief,
     generate_triage,
     portfolio_health_score,
     quick_fix_suggestion,
@@ -495,3 +498,126 @@ def test_health_grade_thresholds_complete():
     for (lo, hi), grade in HEALTH_GRADE_THRESHOLDS.items():
         grades.add(grade)
     assert grades == {"A", "B", "C", "D", "F"}
+
+
+def test_generate_glm_brief_empty(tmp_path):
+    summary = {"gaps": {"unhealthy_live": [], "canonical_drift": []}}
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = generate_glm_brief(summary_path=summary_file)
+    assert result["glm_scope"] == []
+    assert result["codex_scope"] == []
+    assert "sağlıklı" in result["markdown"]
+
+
+def test_generate_glm_brief_mixed_severity(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "jwt-generator", "code": 500},
+                {"slug": "diffmaster", "code": 401},
+                {"slug": "timestamp-converter", "code": 451},
+            ],
+            "canonical_drift": [
+                {"slug": "pdf-forge", "canonical_code": 500, "canonical_status": "error_500"},
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = generate_glm_brief(summary_path=summary_file)
+    assert len(result["glm_scope"]) == 2  # jwt-generator + pdf-forge
+    assert set(result["codex_scope"]) == {"diffmaster", "timestamp-converter"}
+    assert "jwt-generator" in result["markdown"]
+    assert "pdf-forge" in result["markdown"]
+    assert "Codex Scope" in result["markdown"]
+    assert "diffmaster" in result["markdown"]
+
+
+def test_generate_glm_brief_all_codex_scope(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "diffmaster", "code": 401},
+                {"slug": "geo-tool", "code": 451},
+            ],
+            "canonical_drift": [],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = generate_glm_brief(summary_path=summary_file)
+    assert result["glm_scope"] == []
+    assert set(result["codex_scope"]) == {"diffmaster", "geo-tool"}
+
+
+def test_generate_glm_brief_canonical_drift_entry(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [],
+            "canonical_drift": [
+                {
+                    "slug": "webhook-tester",
+                    "canonical_code": 404,
+                    "canonical_status": "not_found",
+                },
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = generate_glm_brief(summary_path=summary_file)
+    assert len(result["glm_scope"]) == 1
+    assert "canonical_drift" in result["glm_scope"][0]
+    assert "webhook-tester" in result["markdown"]
+
+
+def test_generate_glm_brief_unknown_code_fallback(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [{"slug": "weird-app", "code": 503}],
+            "canonical_drift": [],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = generate_glm_brief(summary_path=summary_file)
+    assert len(result["glm_scope"]) == 1
+    assert "weird-app" in result["markdown"]
+
+
+def test_codex_only_codes():
+    assert 401 in CODEX_ONLY_CODES
+    assert 451 in CODEX_ONLY_CODES
+    assert 500 not in CODEX_ONLY_CODES
+    assert 404 not in CODEX_ONLY_CODES
+
+
+def test_glm_brief_templates_have_placeholders():
+    for key, template in GLM_BRIEF_TEMPLATES.items():
+        assert "{slug}" in template or "slug" in template
+
+
+def test_generate_glm_brief_sorted_by_severity(tmp_path):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "low-tool", "code": 0},
+                {"slug": "high-tool", "code": 500},
+            ],
+            "canonical_drift": [],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = generate_glm_brief(summary_path=summary_file)
+    md = result["markdown"]
+    high_pos = md.find("high-tool")
+    low_pos = md.find("low-tool")
+    assert high_pos < low_pos

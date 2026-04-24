@@ -349,6 +349,127 @@ def portfolio_health_score(summary_path: Path | None = None) -> dict:
     }
 
 
+GLM_BRIEF_SCOPE_THRESHOLD = 60
+
+CODEX_ONLY_CODES = {401, 451}
+
+GLM_BRIEF_TEMPLATES = {
+    "server_error": (
+        "## Brief: {slug} — Server Error (HTTP {code})\n"
+        "| Alan | Not |\n"
+        "|---|---|\n"
+        "| Problem | {slug} canonical URL returns HTTP {code} — build/runtime failure |\n"
+        "| Önerilen dosyalar | `products/{slug}/` — Vercel deployment logs |\n"
+        "| Kabul kriteri | Canonical URL 200 dönmeli |\n"
+        "| Risk | Düşük — redeploy ile çözülebilir |\n"
+    ),
+    "sso_protection": (
+        "## Brief: {slug} — Vercel SSO Protection (HTTP {code})\n"
+        "| Alan | Not |\n"
+        "|---|---|\n"
+        "| Problem | {slug} Vercel Authentication/SSO aktif — public erişim engelli |\n"
+        "| Önerilen dosyalar | Vercel dashboard → project settings → disable Vercel Auth |\n"
+        "| Kabul kriteri | HTTP {code} yerine 200 dönmeli |\n"
+        "| Risk | Düşük — settings değişikliği |\n"
+    ),
+    "geo_block": (
+        "## Brief: {slug} — Geo Block (HTTP {code})\n"
+        "| Alan | Not |\n"
+        "|---|---|\n"
+        "| Problem | {slug} Vercel firewall geo-block aktif |\n"
+        "| Önerilen dosyalar | Vercel dashboard → Firewall → geo rules |\n"
+        "| Kabul kriteri | Tüm bölgelerden erişilebilir olmalı |\n"
+        "| Risk | Düşük — firewall kuralı değişikliği |\n"
+    ),
+    "canonical_drift": (
+        "## Brief: {slug} — Canonical URL Drift ({status})\n"
+        "| Alan | Not |\n"
+        "|---|---|\n"
+        "| Problem | {slug} canonical URL bozuk ({status}), fallback alias ile ayakta |\n"
+        "| Önerilen dosyalar | STATE.json → canonical URL update veya Vercel'de redeploy |\n"
+        "| Kabul kriteri | Canonical URL 200 dönmeli |\n"
+        "| Risk | Orta — Vercel proje ismi/sahiplik değişimi gerekebilir |\n"
+    ),
+}
+
+
+def generate_glm_brief(
+    summary_path: Path | None = None,
+) -> dict:
+    """Auto-generate GLM fix brief content from current triage data.
+
+    Returns a dict with:
+      - ``glm_scope``: list of brief entries GLM can handle (< threshold)
+      - ``codex_scope``: list of brief entries that need Codex
+      - ``markdown``: formatted markdown suitable for glm_fix_brief.md
+    """
+    entries = generate_triage(summary_path)
+    ts = _utc_now_iso()
+
+    glm_scope: list[str] = []
+    codex_scope: list[str] = []
+
+    for entry in sort_by_severity(entries):
+        slug = entry["slug"]
+        code = entry.get("http_code", 0)
+        label = entry.get("label", "")
+        status = entry.get("suggested_action", "")
+
+        if code in CODEX_ONLY_CODES:
+            codex_scope.append(slug)
+            continue
+
+        is_drift = label.startswith("canonical_drift/")
+        if is_drift:
+            template = GLM_BRIEF_TEMPLATES["canonical_drift"]
+            brief_text = template.format(slug=slug, status=label)
+        else:
+            base_label = label.split("/")[-1] if "/" in label else label
+            template = GLM_BRIEF_TEMPLATES.get(base_label)
+            if template:
+                brief_text = template.format(slug=slug, code=code)
+            else:
+                brief_text = (
+                    f"## Brief: {slug} — {label} (HTTP {code})\n"
+                    "| Alan | Not |\n"
+                    "|---|---|\n"
+                    f"| Problem | {slug} returns HTTP {code}: {label} |\n"
+                    "| Önerilen dosyalar | products/{slug}/ |\n"
+                    "| Kabul kriteri | HTTP 200 dönmeli |\n"
+                    "| Risk | Orta — araştırma gerekli |\n"
+                ).format(slug=slug, code=code, label=label)
+
+        glm_scope.append(brief_text)
+
+    if not entries:
+        markdown = (
+            f"## GLM Fix Brief\n"
+            f"**Tarih:** {ts}\n\n"
+            f"Tüm live ürünler sağlıklı — aktif brief yok.\n"
+        )
+    else:
+        sections = [
+            f"## GLM Fix Brief\n**Tarih:** {ts}\n",
+        ]
+        if glm_scope:
+            sections.append("### GLM Scope (küçük, güvenli)")
+            for brief in glm_scope:
+                sections.append(brief)
+                sections.append("")
+        if codex_scope:
+            sections.append("### Codex Scope (Vercel erişimi gerekli)")
+            for slug in codex_scope:
+                sections.append(f"- **{slug}** → Codex'e bırakıldı (Vercel dashboard erişimi gerekli)")
+            sections.append("")
+        markdown = "\n".join(sections)
+
+    return {
+        "glm_scope": glm_scope,
+        "codex_scope": codex_scope,
+        "markdown": markdown,
+    }
+
+
 def main():
     entries = generate_triage()
     if not entries:
