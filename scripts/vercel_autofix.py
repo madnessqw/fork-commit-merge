@@ -282,6 +282,7 @@ def run_autofix(
     summary_path: Path | None = None,
     slug_filter: str = "",
     apply: bool = False,
+    dry_run: bool = False,
 ) -> list[dict]:
     if summary_path is None:
         summary_path = ROOT / "STATE_SUMMARY.json"
@@ -330,7 +331,13 @@ def run_autofix(
         diagnosis["recovered"] = fresh_probe["code"] == 200 and code != 200
 
         config_fix = diagnosis.get("config_fix") or {}
-        if apply and config_fix.get("auto_apply"):
+        if dry_run and config_fix.get("auto_apply"):
+            diagnosis["would_apply"] = {
+                "slug": slug,
+                "fix": "migrated routes → rewrites in vercel.json",
+                "dry_run": True,
+            }
+        elif apply and config_fix.get("auto_apply"):
             fix_result = autofix_deprecated_routes(slug)
             if fix_result:
                 diagnosis["applied_fix"] = fix_result
@@ -346,7 +353,7 @@ def run_autofix(
     return results
 
 
-def format_report(results: list[dict]) -> str:
+def format_report(results: list[dict], *, compact: bool = False) -> str:
     if not results:
         return "All products healthy — no autofix needed."
 
@@ -360,6 +367,19 @@ def format_report(results: list[dict]) -> str:
     recovered = sum(1 for r in results if r.get("recovered"))
     auto_fixable = sum(1 for r in results if r.get("auto_fixable"))
     applied = sum(1 for r in results if r.get("applied_fix"))
+    would_apply = sum(1 for r in results if r.get("would_apply"))
+
+    if compact:
+        slugs_by_code: dict[str, list[str]] = {}
+        for r in results:
+            code = str(r.get("current_code", "?"))
+            slugs_by_code.setdefault(code, []).append(r["slug"])
+        lines.append(f"**Recovered:** {recovered} | **Fixable:** {auto_fixable} | **Would apply:** {would_apply}")
+        lines.append("")
+        for code in sorted(slugs_by_code):
+            lines.append(f"- HTTP {code}: {', '.join(slugs_by_code[code])}")
+        lines.append("")
+        return "\n".join(lines)
 
     lines.append(f"**Recovered:** {recovered} | **Auto-fixable:** {auto_fixable} | **Applied:** {applied}")
     lines.append("")
@@ -386,6 +406,8 @@ def format_report(results: list[dict]) -> str:
 
         if r.get("applied_fix"):
             lines.append(f"- **Applied fix:** {r['applied_fix']['fix']}")
+        if r.get("would_apply"):
+            lines.append(f"- **Would apply (dry-run):** {r['would_apply']['fix']}")
 
         fix_steps = r.get("fix_steps", [])
         if fix_steps and not r.get("recovered"):
@@ -402,16 +424,18 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="AutoFix unhealthy Vercel products")
     parser.add_argument("--slug", default="", help="Filter by slug substring")
     parser.add_argument("--apply", action="store_true", help="Apply safe fixes")
+    parser.add_argument("--dry-run", action="store_true", dest="dry_run", help="Preview fixes without applying")
+    parser.add_argument("--compact", action="store_true", help="Compact summary output")
     parser.add_argument("--json", action="store_true", dest="as_json")
     parser.add_argument("--output", default="", help="Write report to file")
     args = parser.parse_args()
 
-    results = run_autofix(slug_filter=args.slug, apply=args.apply)
+    results = run_autofix(slug_filter=args.slug, apply=args.apply, dry_run=args.dry_run)
 
     if args.as_json:
         print(json.dumps(results, indent=2, ensure_ascii=False))
     else:
-        report = format_report(results)
+        report = format_report(results, compact=args.compact)
         print(report)
         if args.output:
             Path(args.output).parent.mkdir(parents=True, exist_ok=True)

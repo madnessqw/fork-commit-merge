@@ -283,3 +283,123 @@ class TestFormatReport:
         assert "jwt-generator" in report
         assert "HTTP 500" in report
         assert "health.js" in report
+
+
+class TestDryRun:
+    @patch("scripts.vercel_autofix.probe_url")
+    @patch("scripts.vercel_autofix._inspect_product_dir")
+    @patch("scripts.vercel_autofix._check_api_health")
+    def test_dry_run_sets_would_apply(self, mock_health, mock_inspect, mock_probe, tmp_path: Path):
+        mock_inspect.return_value = {
+            "exists": True,
+            "slug": "test-product",
+            "has_api_dir": False,
+            "config_issues": [],
+            "api_files": [],
+            "uses_deprecated_routes": True,
+        }
+        mock_health.return_value = {"has_health_endpoint": False}
+        mock_probe.return_value = {"code": 500, "effective_url": "https://test-product.vercel.app"}
+
+        product_dir = tmp_path / "products" / "test-product"
+        product_dir.mkdir(parents=True)
+        (product_dir / "index.html").write_text("<html></html>", encoding="utf-8")
+        (product_dir / "vercel.json").write_text(
+            json.dumps({"routes": [{"src": "/(.*)", "dest": "/index.html"}]}),
+            encoding="utf-8",
+        )
+
+        summary = {
+            "gaps": {
+                "unhealthy_live": [
+                    {"slug": "test-product", "code": 500, "url": "https://test-product.vercel.app"},
+                ],
+            },
+        }
+        summary_path = tmp_path / "STATE_SUMMARY.json"
+        summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+        import scripts.vercel_autofix as vaf
+        original_root = vaf.ROOT
+        monkeypatch_obj = pytest.MonkeyPatch()
+        monkeypatch_obj.setattr(vaf, "ROOT", tmp_path)
+
+        try:
+            results = run_autofix(summary_path=summary_path, dry_run=True)
+        finally:
+            monkeypatch_obj.setattr(vaf, "ROOT", original_root)
+            monkeypatch_obj.undo()
+
+        assert len(results) == 1
+        assert results[0].get("would_apply") is not None
+        assert results[0]["would_apply"]["dry_run"] is True
+
+    @patch("scripts.vercel_autofix.probe_url")
+    @patch("scripts.vercel_autofix._inspect_product_dir")
+    @patch("scripts.vercel_autofix._check_api_health")
+    def test_no_dry_run_no_would_apply(self, mock_health, mock_inspect, mock_probe, tmp_path: Path):
+        mock_inspect.return_value = {
+            "exists": True,
+            "slug": "test-product",
+            "has_api_dir": False,
+            "config_issues": [],
+            "api_files": [],
+            "uses_deprecated_routes": True,
+        }
+        mock_health.return_value = {"has_health_endpoint": False}
+        mock_probe.return_value = {"code": 500, "effective_url": "https://test-product.vercel.app"}
+
+        summary = {
+            "gaps": {
+                "unhealthy_live": [
+                    {"slug": "test-product", "code": 500, "url": "https://test-product.vercel.app"},
+                ],
+            },
+        }
+        summary_path = tmp_path / "STATE_SUMMARY.json"
+        summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+        results = run_autofix(summary_path=summary_path, dry_run=False, apply=False)
+        assert len(results) == 1
+        assert results[0].get("would_apply") is None
+        assert results[0].get("applied_fix") is None
+
+
+class TestCompactReport:
+    def test_compact_groups_by_code(self):
+        results = [
+            {
+                "slug": "jwt-generator",
+                "http_code": 500,
+                "current_code": 500,
+                "prior_code": 500,
+                "url": "https://jwt-generator.vercel.app",
+                "root_cause": "Server error",
+                "fix_type": "code_fix",
+                "auto_fixable": True,
+                "fix_steps": [],
+                "recovered": False,
+            },
+            {
+                "slug": "diffmaster",
+                "http_code": 401,
+                "current_code": 401,
+                "prior_code": 401,
+                "url": "https://diffmaster.vercel.app",
+                "root_cause": "SSO",
+                "fix_type": "vercel_settings",
+                "auto_fixable": False,
+                "fix_steps": [],
+                "recovered": False,
+            },
+        ]
+        report = format_report(results, compact=True)
+        assert "HTTP 500" in report
+        assert "HTTP 401" in report
+        assert "jwt-generator" in report
+        assert "diffmaster" in report
+        assert "Fixable" in report
+
+    def test_compact_empty(self):
+        report = format_report([], compact=True)
+        assert "healthy" in report.lower() or "no autofix" in report.lower()
