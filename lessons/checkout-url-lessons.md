@@ -19,8 +19,8 @@
 
 | Checkout Durumu | Adet |
 |---|---|
-| polar-ok | 116 |
-| lemon-migrate (Polar'a taşı) | 3 |
+| polar-ok | 119 |
+| lemon-migrate (Polar'a taşı) | 0 |
 | other | 0 |
 | missing (oluşturulmamış) | 41 |
 
@@ -90,7 +90,7 @@
 | geoip-lite | live | $9 | product.json | ✅ | ce6fd505-24be-4193-990b-9eeeeb9f8c2f |
 | git-command-builder | live | $19 | product.json | ✅ | 37e1a808-be84-42b8-8f52-78cfb39bdd17 |
 | git-diff-visualizer | spec_ready | $19 | spec.json | ❌ |  |
-| graphql-query-builder | live | $19 | product.json | ⚠️LS |  |
+| graphql-query-builder | live | $19 | product.json | ✅ | 15df1041-25b5-40d9-b84a-4e631ac6a1bc |
 | hash-generator-pro | live | $19 | spec.json | ✅ | 4a7b4053-463f-42ea-bd0d-98107b234832 |
 | hmac-generator | ready_for_payment | $9 | product.json | ✅ | 9bb31472-dd63-43f5-9597-1eb535272234 |
 | hmac-generator-pro | live | $9 | product.json | ✅ | 9bb31472-dd63-43f5-9597-1eb535272234 |
@@ -102,7 +102,7 @@
 | html-entity-pro | building | $19 | product.json | ❌ |  |
 | html-minifier-pro | live | $9 | product.json | ✅ | 5ac30ed1-32fd-4b1c-94c7-d79efdd56713 |
 | html-to-markdown | live | $9 | product.json | ✅ | aee8c873-8ae9-43fc-85fd-34f445fd58b7 |
-| html-to-markdown-pro | live | $9 | product.json | ⚠️LS |  |
+| html-to-markdown-pro | live | $9 | product.json | ✅ | b8cfa831-3edb-4205-aba4-dc2cfd549163 |
 | html-validator-pro | spec_ready | $19 | product.json | ❌ |  |
 | html2jsx | live | $19 | product.json | ✅ | fd58f3ab-5e74-4405-87da-c74301cd698e |
 | html2markdown | ready_to_deploy | $9 | product.json | ❌ |  |
@@ -159,7 +159,7 @@
 | subdomain-finder | ready_to_deploy | $19 | product.json | ❌ |  |
 | svg-optimizer-pro | spec_ready | $19 | product.json | ❌ |  |
 | svg-pattern-generator | live | $19 | product.json | ✅ | c9905a73-84a6-4d99-b2c4-cb48526c4f24 |
-| table-to-csv | live | $19 | product.json | ⚠️LS |  |
+| table-to-csv | live | $19 | product.json | ✅ | b5094e1f-3457-4589-8cb3-f1c7c4a30099 |
 | techstack | live | $19 | product.json | ✅ | 6ff67c46-396c-4c0f-ae5f-6ab97d631a4c |
 | terminal-os | building | $9 | product.json | ❌ |  |
 | terminal-theme-studio | building | $9 | product.json | ✅ | 821a8e54-7ce6-4a3f-afd3-a53207e42cfc |
@@ -246,9 +246,10 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 | OAT ile `organization_id` gönderme yasak | Product/checkout payload'ından `org_id` çıkar | 2026-04-23 |
 | urllib 307 redirect'te POST→GET dönüşümü | `requests` kütüphanesi kullan | 2026-04-23 |
 | Checkout session URL = kısa ömürlü | Catalog ürünler için `checkout_links` (reusable) kullan | 2026-04-23 |
-| `vercel_url` missing ürünler sync-links dışına düşer | Önce deploy/URL düzelt, sonra Polar sync; yoksa live ürün LS’de kalır | 2026-04-24 |
+| `vercel_url` missing ürünler, checkout_url da yoksa sync-links dışına düşer | Önce deploy/URL düzelt; checkout_url varsa `--replace-non-polar` ile legacy migration yap | 2026-04-24 |
 | Polar checkout URL provider inference | `polar.sh` / `buy.polar.sh` checkout URL'lerini `payment_provider=polar` olarak normalize et | 2026-04-24 |
 | Yeni ürün scaffold yanlış Polar anahtarları üretiyordu | `payment_*` yerine `polar_product_id`, `polar_product_price_id`, `polar_checkout_link_id` kullan | 2026-04-24 |
+| Legacy live checkout'lar `vercel_url` boşsa plan dışı kalıyordu | `--replace-non-polar` ile checkout_url olan legacy ürünleri landing page olmadan da aday say; `success_url`/`return_url` sadece varsa gönder | 2026-04-24 |
 
 ---
 

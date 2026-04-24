@@ -244,11 +244,12 @@ def load_local_products(
         if statuses and status not in statuses:
             continue
 
-        if not raw.get("vercel_url"):
-            continue
-
+        vercel_url = str(raw.get("vercel_url") or "").strip() or None
         checkout_url = raw.get("checkout_url")
         checkout_url_normalized = str(checkout_url).strip() if checkout_url else None
+        if vercel_url is None and checkout_url_normalized is None:
+            continue
+
         provider_normalized = infer_payment_provider(raw, checkout_url=checkout_url_normalized)
         should_replace_non_polar = replace_non_polar and provider_normalized not in (None, POLAR_PROVIDER)
         should_repair_polar_link = polar_checkout_requires_link_repair(
@@ -322,7 +323,7 @@ def load_local_products(
                 price_display=price_display,
                 price_source=price_source,
                 status=status,
-                vercel_url=str(raw.get("vercel_url") or "").strip() or None,
+                vercel_url=vercel_url,
                 checkout_url=checkout_url_normalized,
                 payment_provider=provider_normalized,
                 selection_reason=selection_reason,
@@ -440,20 +441,22 @@ def ensure_checkout_link(
 
     success_url = f"{local.vercel_url}?checkout=success&checkout_id={{CHECKOUT_ID}}" if local.vercel_url else None
     return_url = local.vercel_url
-    created = client.create_checkout_link(
-        {
-            "product_price_id": price["id"],
-            "payment_processor": "stripe",
-            "label": f"universecreator:{local.slug}",
-            "metadata": {
-                "source": "universecreator",
-                "local_slug": local.slug,
-            },
-            "success_url": success_url,
-            "return_url": return_url,
-            "allow_discount_codes": True,
-        }
-    )
+    payload: dict[str, Any] = {
+        "product_price_id": price["id"],
+        "payment_processor": "stripe",
+        "label": f"universecreator:{local.slug}",
+        "metadata": {
+            "source": "universecreator",
+            "local_slug": local.slug,
+        },
+        "allow_discount_codes": True,
+    }
+    if success_url is not None:
+        payload["success_url"] = success_url
+    if return_url is not None:
+        payload["return_url"] = return_url
+
+    created = client.create_checkout_link(payload)
     checkout_links.append(created)
     return created
 

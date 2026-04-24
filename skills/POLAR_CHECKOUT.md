@@ -109,6 +109,8 @@ Ne yapar:
 
 ## `--replace-non-polar` ne yapar?
 - mevcut checkout'u başka provider olan ürünleri de migration adayına alır
+- legacy ürünün `vercel_url` alanı boş olsa bile, checkout_url varsa Polar'a taşıma adayı olarak tutar
+- `vercel_url` yoksa checkout link payload'ında `success_url` / `return_url` alanları gönderilmez
 - yani legacy provider checkout'ları Polar'a taşıyabilirsin
 
 ## İlgili Yardımcı Dosyalar
