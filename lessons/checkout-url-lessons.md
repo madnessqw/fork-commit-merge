@@ -57,6 +57,7 @@
 | color-contrast-pro | live | $19 | product.json | ✅ | 03532a94-3831-450a-853c-7f2d67cca8ab |
 | color-palette-extractor | ready_for_payment | $9 | product.json | ✅ | db9ca7c9-ea9c-4f8a-bc23-6b86c09a7685 |
 | colormine | live | $29 | product.json | ✅ | d89fdef1-6d70-4bdf-b0ef-d01389019e9c |
+| ascii-art-generator | ready_for_payment | $19 | product.json | ✅ | b56556c1-7ca2-424c-bfcf-f72e14762986 |
 | cron-express | ready_for_payment | $19 | product.json | ✅ | dd1d145c-a23d-4c75-b093-fc1d8925f299 |
 | cron-expression-builder | live | $9 | product.json | ✅ | 670fb449-47f3-4add-9f61-5b6390fab57c |
 | cron-expression-parser | live | $19 | product.json | ✅ | e11a030e-c7ea-423b-bbad-73481b46ec2a |
