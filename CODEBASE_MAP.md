@@ -1,7 +1,7 @@
 # CODEBASE_MAP.md — UniverseCreator
 
-**Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → LemonSqueezy'de sat.
-Cycle 1108 itibarıyla: 144 aktif, 88 canlı, 85 sağlıklı (%96.6).
+**Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
+Cycle 1113 itibarıyla: 154 aktif, 91 canlı, 91 sağlıklı (%100).
 Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
@@ -65,6 +65,27 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `checkout_metadata.py` | Checkout metadata yardımcı fonksiyonları |
 | `standardize_checkout_fields.py` | Ürün checkout alanlarını standardize eder |
 | `audit_portfolio_health.py` | Backward-compat health audit entrypoint |
+| `checkout_duplicate_detector.py` | Checkout URL duplicate tespiti |
+| `cycle_delta.py` | Cycle'lar arası değişim raporu |
+| `p2p_sales_tracker.py` | P2P satış takibi |
+| `price_audit.py` | Ürün fiyat tutarlılık denetimi |
+| `fill_spec_version.py` | Spec version alanını doldurur |
+| `unhealthy_triage.py` | Unhealthy ürün triage CLI aracı |
+| `vercel_autofix.py` | Vercel URL sorunlarını otomatik düzeltir |
+| `summary_visibility.py` | Summary drift/fallback helper fonksiyonları |
+| `health_dashboard.py` | Portföy sağlık dashboard metrikleri |
+| `portfolio_snapshot.py` | Portföy anlık durum kaydı |
+| `portfolio_report.py` | Portföy rapor üretici |
+| `health_trend.py` | Sağlık trend analizi |
+| `retry_probe.py` | Başarısız health probe'ları yeniden dener |
+| `vercel_fix.py` | Vercel deploy düzeltme yardımcısı |
+| `bulk_seo_optimize.py` | Toplu SEO optimizasyonu |
+| `optimize_seo.py` | Tekil ürün SEO optimizasyonu |
+| `seo_fix_batch.py` | Toplu SEO düzeltme |
+| `seo_optimize_batch.py` | Toplu SEO optimizasyon batch |
+| `seo_mass_optimize.py` | Kitle halinde SEO optimizasyonu |
+| `sync_from_vercel.py` | Vercel'den STATE.json senkronizasyonu |
+| `refresh_codex_context.py` | Codex context dosyalarını yeniler |
 | `log_rotation.sh` | Log dosyalarını sıkıştırır/temizler |
 
 ---
@@ -115,14 +136,15 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
        └── public/           (static assets)
 
 4. DEPLOY
-   scripts/deploy_product.sh <slug>
-   → git push → github.com/universe7creator/<slug>
-   → vercel deploy → <slug>.vercel.app
-   → STATE.json güncellenir (status: "live", vercel_url set)
+    scripts/deploy_product.sh <slug>
+    → git push → github.com/universe7creator/<slug>
+    → vercel deploy → <slug>.vercel.app
+    → STATE.json güncellenir (status: "live", vercel_url set)
 
 5. CHECKOUT
-   LemonSqueezy'de ürün linki → product.json checkout_url alanına yazılır
-   → STATE_SUMMARY.json güncellenir
+    Polar'da ürün checkout linki → product.json checkout_url alanına yazılır
+    → scripts/polar_checkout_sync.py sync-links
+    → STATE_SUMMARY.json güncellenir
 
 6. OPTİMİZASYON
    optimizer agent → seo_optimize_auto.py → health_check.py
@@ -131,15 +153,16 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
 
-## 📊 Mevcut Durum (Cycle 1108)
+## 📊 Mevcut Durum (Cycle 1113)
 
 | Metrik | Değer |
 |---|---|
-| Toplam ürün | 144 aktif |
-| Canlı (live) | 88 |
-| Sağlıklı | 85 (%96.6) |
-| Unhealthy | 3 (jwt-generator, diffmaster, timestamp-converter) |
-| Canonical drift | 4 (pdf-forge, webhook-tester, email-validator-pro, html-entity-encoder) |
-| Deploy gap | 20 |
-| Spec hazır | 26 |
+| Toplam ürün | 154 aktif |
+| Canlı (live) | 91 |
+| Sağlıklı | 91 (%100) |
+| Unhealthy | 0 |
+| Canonical drift | 7 (fallback alias ile erişilebilir) |
+| Deploy gap | 2 |
+| Spec hazır | 2 |
+| Checkout gap | 0 |
 | Mod | `OPTIMIZE` |
