@@ -32,5 +32,7 @@
     "rewrite rules",
     "htaccess security"
   ],
-  "checkout_url": null
+  "tech_stack": ["Next.js", "TypeScript", "Tailwind CSS"],
+  "checkout_url": null,
+  "spec_version": "1.0"
 }

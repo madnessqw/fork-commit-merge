@@ -1,8 +1,10 @@
 {
   "name": "Security Headers Checker",
   "slug": "security-headers-checker",
+  "tagline": "Audit your website's HTTP security headers in seconds",
   "description": "Scan and analyze HTTP security headers for any website. Get actionable recommendations to improve web security posture.",
   "price": 19,
+  "tech_stack": ["Next.js", "TypeScript", "Tailwind CSS"],
   "category": "security",
   "tags": [
     "security",
@@ -27,5 +29,6 @@
   ],
   "created_at": "2026-04-21T22:30:00Z",
   "updated_at": "2026-04-21T22:30:00Z",
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }

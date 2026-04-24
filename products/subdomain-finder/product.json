@@ -1,8 +1,10 @@
 {
   "name": "Subdomain Finder",
   "slug": "subdomain-finder",
+  "tagline": "Discover hidden subdomains for any domain",
   "description": "Discover subdomains for any domain. Security reconnaissance tool for penetration testers and security researchers.",
   "price": 19,
+  "tech_stack": ["Next.js", "TypeScript", "Tailwind CSS"],
   "category": "security",
   "tags": [
     "subdomain",
@@ -26,5 +28,6 @@
   ],
   "created_at": "2026-04-21T22:30:00Z",
   "updated_at": "2026-04-21T22:30:00Z",
-  "checkout_url": null
+  "checkout_url": null,
+  "spec_version": "1.0"
 }
