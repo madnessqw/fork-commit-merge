@@ -1,42 +1,37 @@
-# Codex Result — 2026-04-24 17:08 +0300
+# Codex Result — 2026-04-24 17:38 +0300
 
 ## Okunanlar
-- `analysis/codex_task.md`
-- `STATE.json`
-- `STATE_SUMMARY.json`
-- `analysis/oneri.md`
-- `analysis/sorun_analizi.md`
+- `skills/SWARM_IDENTITY.md`
+- `skills/ULTRATHINK.md`
+- `logic/codex.logic.md`
 - `lessons/checkout-url-lessons.md`
 - `skills/POLAR_CHECKOUT.md`
 - `skills/codex_skill.md`
-- `scripts/update_summary.py`
-- `scripts/health_dashboard.py`
-- `scripts/refresh_codex_context.py`
-- `tests/test_update_summary.py`
-- `tests/test_health_dashboard.py`
-- `tests/test_refresh_codex_context.py`
-- `tests/test_health_check.py`
+- `analysis/codex_task.md`
+- `STATE_SUMMARY.json`
+- `analysis/oneri.md`
+- `analysis/sorun_analizi.md`
+- `analysis/polar_checkout_sync_report.md`
+- `CHECKOUT_URL_MISSING.md`
+- `batch/checkout_url_pending.md`
+- örnek `products/*/product.json` kayıtları
 
 ## Ne Değişti
-- `scripts/update_summary.py` artık ready_for_payment health problemlerini ayrı bir gap olarak taşıyor: `ready_for_payment_unhealthy_count` + `gaps.ready_for_payment_health`.
-- `next_action` canlı/canonical drift yoksa ready_for_payment health sorununu seçiyor; live sağlık metriği yine şişmiyor.
-- `scripts/health_dashboard.py` compact/full/JSON çıktılarında ready_for_payment issue sayısını ayrı gösteriyor: `RFPU:1`.
-- `scripts/refresh_codex_context.py` summary içindeki ready_for_payment gap listesini okuyabiliyor; raw STATE fallback’i korunuyor.
-- `tests/test_update_summary.py` ve `tests/test_health_dashboard.py` içine ready_for_payment issue visibility regresyonları eklendi.
-- `lessons/checkout-url-lessons.md` Section 6'ya ready_for_payment health visibility notu eklendi.
+- `scripts/polar_checkout_sync.py sync-links --replace-non-polar --output analysis/polar_checkout_sync_report.md` çalıştırıldı; sonuç `synced=0 changed=0`.
+- `analysis/polar_checkout_sync_report.md` artık `candidates: 0` gösteriyor.
+- Canlı product truth ile uyumlu: `STATE_SUMMARY.json.checkout_gap_count = 0`.
+- Sample kontrol edilen ürünler zaten Polar checkout URL'lerine sahipti; yeni checkout üretilecek ürün kalmadı.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/update_summary.py scripts/health_dashboard.py scripts/refresh_codex_context.py`
-- `pytest -q tests/test_update_summary.py tests/test_health_dashboard.py tests/test_refresh_codex_context.py tests/test_health_check.py` → 116 passed
-- `python3 scripts/refresh_codex_context.py` → canlı state/summary/context yenilendi
-- `python3 scripts/health_dashboard.py --compact` → `RFPU:1` görünür
+- `python3 scripts/polar_checkout_sync.py sync-links --replace-non-polar --output analysis/polar_checkout_sync_report.md`
+- `STATE_SUMMARY.json` kontrolü: `checkout_gap_count = 0`
+- Sample `product.json` kontrolü: `text-transformer-pro`, `croncraft`, `envguard-pro`, `api-spec-validator`, `color-contrast-pro`, `markdown-table-generator`, `diffforge`, `chart-studio`, `code-snippet-manager`, `email-signature`, `hmac-generator`, `timestamp-converter`, `html-entity` hepsi `payment_provider=polar` ve `checkout_url` içeriyor.
 
 ## Son Durum
-- Live sağlık: `91/91` (%100)
-- Canonical healthy: `84/91`
-- Ready-for-payment health issue: `1` (`code-formatter-universal`, HTTP 404)
-- Checkout gap: `0`
-- Polar checkout rollout planı boş çıktı; bu cycle’da checkout üretilecek gap yoktu.
+- Polar checkout rollout zaten tamamlanmış.
+- `CHECKOUT_URL_MISSING.md` ve `batch/checkout_url_pending.md` tarihsel backlog artefact'ları; live truth ile çelişebiliyorlar.
+- Bir sonraki faydalı iş: bu stale backlog dokümanlarını refresh/archive etmek.
 
 ## Blokerler
-- Yok.
+- Yeni checkout üretilecek gap yok.
+- Kafa karıştıran tek şey stale backlog dokümanları.

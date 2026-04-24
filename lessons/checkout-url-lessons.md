@@ -241,6 +241,7 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 ---
 
 - 2026-04-24: Expanded `sync-links` kapsamı (`live` + `ready_for_payment` + `ready_to_deploy` + `spec_ready` + `building`) kalan 18 eksik checkout URL’yi kapattı; `vercel_url` olmayan ürünler reusable Polar checkout link ile sync edildi, checkout gap = 0.
+- 2026-04-24: Aynı `sync-links --replace-non-polar` komutu tekrar çalıştırıldığında `candidates: 0` / `changed: 0` döndü; eski backlog dosyaları (`CHECKOUT_URL_MISSING.md`, `batch/checkout_url_pending.md`) live truth değil, artık tarihsel referans.
 
 ## 6. Bilinen Polar API Sorunları + Çözümler
 
