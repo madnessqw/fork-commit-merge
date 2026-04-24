@@ -12,9 +12,12 @@ if str(ROOT) not in sys.path:
 
 from scripts.unhealthy_triage import (
     CANONICAL_DRIFT_FIXES,
+    HEALTH_GRADE_THRESHOLDS,
+    _grade_from_pct,
     _triage_entry,
     canonical_drift_fix_suggestions,
     generate_triage,
+    portfolio_health_score,
     quick_fix_suggestion,
     sort_by_severity,
     triage_summary,
@@ -395,3 +398,100 @@ def test_canonical_drift_fixes_dict_has_expected_keys():
     for key, template in CANONICAL_DRIFT_FIXES.items():
         formatted = template.format(slug="test-slug")
         assert "test-slug" in formatted
+
+
+def test_grade_from_pct_a():
+    assert _grade_from_pct(97.0) == "A"
+
+
+def test_grade_from_pct_b():
+    assert _grade_from_pct(90.0) == "B"
+
+
+def test_grade_from_pct_c():
+    assert _grade_from_pct(75.0) == "C"
+
+
+def test_grade_from_pct_d():
+    assert _grade_from_pct(60.0) == "D"
+
+
+def test_grade_from_pct_f():
+    assert _grade_from_pct(30.0) == "F"
+
+
+def test_grade_from_pct_boundary():
+    assert _grade_from_pct(94.9) == "B"
+    assert _grade_from_pct(100.0) == "A"
+
+
+def test_portfolio_health_score_full(tmp_path):
+    summary = {
+        "live_count": 90,
+        "healthy_count": 87,
+        "unhealthy_count": 3,
+        "checkout_gap_count": 0,
+        "deploy_missing_or_bad_url": 6,
+        "gaps": {
+            "canonical_url_drift": [
+                {"slug": "pdf-forge"},
+                {"slug": "webhook-tester"},
+            ]
+        },
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = portfolio_health_score(summary_path=summary_file)
+    assert result["live_count"] == 90
+    assert result["healthy_count"] == 87
+    assert result["unhealthy_count"] == 3
+    assert result["health_pct"] == 96.7
+    assert result["grade"] == "A"
+    assert result["checkout_covered"] is True
+    assert result["deploy_gap"] == 6
+    assert result["canonical_drift"] == 2
+
+
+def test_portfolio_health_score_zero_live(tmp_path):
+    summary = {"live_count": 0, "healthy_count": 0, "unhealthy_count": 0}
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = portfolio_health_score(summary_path=summary_file)
+    assert result["health_pct"] == 0.0
+    assert result["grade"] == "F"
+    assert result["checkout_covered"] is True
+
+
+def test_portfolio_health_score_missing_file(tmp_path):
+    result = portfolio_health_score(
+        summary_path=tmp_path / "nonexistent.json"
+    )
+    assert result["live_count"] == 0
+    assert result["grade"] == "F"
+
+
+def test_portfolio_health_score_checkout_uncovered(tmp_path):
+    summary = {
+        "live_count": 10,
+        "healthy_count": 8,
+        "unhealthy_count": 2,
+        "checkout_gap_count": 3,
+        "deploy_missing_or_bad_url": 0,
+        "gaps": {},
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    result = portfolio_health_score(summary_path=summary_file)
+    assert result["checkout_covered"] is False
+    assert result["health_pct"] == 80.0
+    assert result["grade"] == "C"
+
+
+def test_health_grade_thresholds_complete():
+    grades = set()
+    for (lo, hi), grade in HEALTH_GRADE_THRESHOLDS.items():
+        grades.add(grade)
+    assert grades == {"A", "B", "C", "D", "F"}

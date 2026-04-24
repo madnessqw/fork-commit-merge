@@ -287,6 +287,68 @@ def triage_summary(
     }
 
 
+HEALTH_GRADE_THRESHOLDS = {
+    (95, 101): "A",
+    (85, 95): "B",
+    (70, 85): "C",
+    (50, 70): "D",
+    (0, 50): "F",
+}
+
+
+def _grade_from_pct(pct: float) -> str:
+    for (lo, hi), grade in HEALTH_GRADE_THRESHOLDS.items():
+        if lo <= pct < hi:
+            return grade
+    return "F"
+
+
+def portfolio_health_score(summary_path: Path | None = None) -> dict:
+    """Compute overall portfolio health metrics from STATE_SUMMARY.json.
+
+    Returns a compact dict with live/healthy counts, health percentage,
+    checkout coverage, deploy gap, canonical drift count, and a letter
+    grade (A-F) for quick status assessment.
+    """
+    if summary_path is None:
+        summary_path = ROOT / "STATE_SUMMARY.json"
+    try:
+        with open(summary_path, encoding="utf-8") as f:
+            summary = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {
+            "live_count": 0,
+            "healthy_count": 0,
+            "health_pct": 0.0,
+            "grade": "F",
+            "checkout_covered": False,
+            "deploy_gap": 0,
+            "canonical_drift": 0,
+            "unhealthy_count": 0,
+        }
+
+    live = summary.get("live_count", 0)
+    healthy = summary.get("healthy_count", 0)
+    health_pct = round(healthy / live * 100, 1) if live > 0 else 0.0
+    grade = _grade_from_pct(health_pct)
+
+    checkout_gap = summary.get("checkout_gap_count", 0)
+    deploy_gap = summary.get("deploy_missing_or_bad_url", 0)
+    gaps = summary.get("gaps", {})
+    canonical_drift = len(gaps.get("canonical_url_drift", []))
+
+    return {
+        "live_count": live,
+        "healthy_count": healthy,
+        "unhealthy_count": summary.get("unhealthy_count", 0),
+        "health_pct": health_pct,
+        "grade": grade,
+        "checkout_covered": checkout_gap == 0,
+        "deploy_gap": deploy_gap,
+        "canonical_drift": canonical_drift,
+    }
+
+
 def main():
     entries = generate_triage()
     if not entries:
