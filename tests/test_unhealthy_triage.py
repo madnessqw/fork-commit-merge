@@ -603,6 +603,82 @@ def test_glm_brief_templates_have_placeholders():
         assert "{slug}" in template or "slug" in template
 
 
+def test_main_json_output_no_unhealthy(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.generate_triage",
+        lambda **kw: [],
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--json"])
+    assert result["unhealthy"] == 0
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert data["unhealthy"] == 0
+    assert data["entries"] == []
+
+
+def test_main_json_output_with_entries(tmp_path, monkeypatch, capsys):
+    fake_entries = [
+        _triage_entry("jwt-generator", 500),
+        _triage_entry("diffmaster", 401),
+    ]
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.generate_triage",
+        lambda **kw: fake_entries,
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--json"])
+    assert result["unhealthy"] == 2
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert data["unhealthy"] == 2
+    assert len(data["entries"]) == 2
+    slugs = {e["slug"] for e in data["entries"]}
+    assert slugs == {"jwt-generator", "diffmaster"}
+
+
+def test_main_json_output_with_summary(tmp_path, monkeypatch, capsys):
+    summary = {
+        "gaps": {
+            "unhealthy_live": [{"slug": "jwt-generator", "code": 500}],
+            "canonical_drift": [],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.ROOT", tmp_path
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main(["--json", "--summary"])
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert "summary" in data
+    assert data["summary"]["total_unhealthy"] == 1
+    assert data["summary"]["high"] == 1
+
+
+def test_main_default_output(tmp_path, monkeypatch, capsys):
+    fake_entries = [_triage_entry("jwt-generator", 500)]
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.generate_triage",
+        lambda **kw: fake_entries,
+    )
+    monkeypatch.setattr(
+        "scripts.unhealthy_triage.write_triage_report",
+        lambda *a, **kw: "# mock report",
+    )
+    from scripts.unhealthy_triage import main
+
+    result = main([])
+    assert result["unhealthy"] == 1
+    captured = capsys.readouterr()
+    assert "mock report" in captured.out
+
+
 def test_generate_glm_brief_sorted_by_severity(tmp_path):
     summary = {
         "gaps": {

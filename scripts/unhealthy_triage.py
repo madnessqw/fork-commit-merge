@@ -470,14 +470,42 @@ def generate_glm_brief(
     }
 
 
-def main():
+def main(argv: list[str] | None = None):
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Triage unhealthy live products from STATE_SUMMARY.json"
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        dest="json_output",
+        help="Output triage result as JSON",
+    )
+    parser.add_argument(
+        "--summary",
+        action="store_true",
+        help="Also output triage_summary() overview",
+    )
+    args = parser.parse_args(argv)
+
     entries = generate_triage()
     if not entries:
-        print("All live products healthy.")
+        if args.json_output:
+            print(json.dumps({"unhealthy": 0, "entries": []}))
+        else:
+            print("All live products healthy.")
         return {"unhealthy": 0}
 
-    report = write_triage_report(entries)
-    print(report)
+    if args.json_output:
+        output = {"unhealthy": len(entries), "entries": sort_by_severity(entries)}
+        if args.summary:
+            output["summary"] = triage_summary()
+        print(json.dumps(output, indent=2))
+    else:
+        report = write_triage_report(entries)
+        print(report)
+
     return {"unhealthy": len(entries)}
 
 
