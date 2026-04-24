@@ -78,3 +78,107 @@ class P2PSalesTrackerTests(unittest.TestCase):
         s2 = p2p_sales_tracker.add_sale("P2", 10, "c@d.com", "TX-2")
         self.assertEqual(s1["id"], 1)
         self.assertEqual(s2["id"], 2)
+
+
+class TestParsePriceInt(unittest.TestCase):
+    def test_none_returns_none(self):
+        self.assertIsNone(p2p_sales_tracker._parse_price_int(None))
+
+    def test_int_returns_int(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int(19), 19)
+
+    def test_float_string_returns_int(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int("19.99"), 19)
+
+    def test_dollar_prefix_stripped(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int("$29"), 29)
+
+    def test_dollar_float_stripped(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int("$9.99"), 9)
+
+    def test_whitespace_stripped(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int("  15  "), 15)
+
+    def test_invalid_string_returns_none(self):
+        self.assertIsNone(p2p_sales_tracker._parse_price_int("free"))
+
+    def test_zero_price(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int(0), 0)
+
+    def test_negative_price(self):
+        self.assertEqual(p2p_sales_tracker._parse_price_int(-5), -5)
+
+
+class TestListProductsEdgeCases(unittest.TestCase):
+    def test_custom_state_path_nonexistent(self):
+        result = p2p_sales_tracker.list_products(
+            state_path="/nonexistent/STATE.json"
+        )
+        self.assertEqual(result, p2p_sales_tracker._FALLBACK_PRODUCTS)
+
+    def test_custom_state_path_empty_active(self):
+        tmpdir = tempfile.mkdtemp()
+        state_file = os.path.join(tmpdir, "STATE.json")
+        with open(state_file, "w") as f:
+            json.dump({"products": {"active": []}}, f)
+        result = p2p_sales_tracker.list_products(state_path=state_file)
+        self.assertEqual(result, p2p_sales_tracker._FALLBACK_PRODUCTS)
+        os.unlink(state_file)
+        os.rmdir(tmpdir)
+
+    def test_custom_state_path_live_no_price(self):
+        tmpdir = tempfile.mkdtemp()
+        state_file = os.path.join(tmpdir, "STATE.json")
+        with open(state_file, "w") as f:
+            json.dump(
+                {
+                    "products": {
+                        "active": [
+                            {"slug": "free-tool", "status": "live", "price": None}
+                        ]
+                    }
+                },
+                f,
+            )
+        result = p2p_sales_tracker.list_products(state_path=state_file)
+        self.assertEqual(result, p2p_sales_tracker._FALLBACK_PRODUCTS)
+        os.unlink(state_file)
+        os.rmdir(tmpdir)
+
+    def test_custom_state_path_live_with_price(self):
+        tmpdir = tempfile.mkdtemp()
+        state_file = os.path.join(tmpdir, "STATE.json")
+        with open(state_file, "w") as f:
+            json.dump(
+                {
+                    "products": {
+                        "active": [
+                            {
+                                "slug": "paid-tool",
+                                "name": "Paid Tool",
+                                "status": "live",
+                                "price": "$25",
+                                "category": "dev",
+                            }
+                        ]
+                    }
+                },
+                f,
+            )
+        result = p2p_sales_tracker.list_products(state_path=state_file)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["price"], 25)
+        self.assertEqual(result[0]["name"], "Paid Tool")
+        self.assertEqual(result[0]["slug"], "paid-tool")
+        os.unlink(state_file)
+        os.rmdir(tmpdir)
+
+    def test_invalid_json_triggers_fallback(self):
+        tmpdir = tempfile.mkdtemp()
+        state_file = os.path.join(tmpdir, "STATE.json")
+        with open(state_file, "w") as f:
+            f.write("{bad json")
+        result = p2p_sales_tracker.list_products(state_path=state_file)
+        self.assertEqual(result, p2p_sales_tracker._FALLBACK_PRODUCTS)
+        os.unlink(state_file)
+        os.rmdir(tmpdir)
