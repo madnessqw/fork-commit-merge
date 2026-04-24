@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1110 | 2026-04-24 09:06 UTC
+# Sorun Analizi — Cycle 1110 | 2026-04-24 11:00 UTC
 
 ## Ana Darboğaz
 - **live_health** — 3 canlı ürün gerçekten sağlıksız. Ayrıca 4 canlı ürün fallback alias ile ayakta. İlk örnek `jwt-generator` (HTTP 500).
@@ -30,15 +30,15 @@
 
 ## Deploy Readiness Issues
 - Count: 15 | Manifest gaps: 0 | URL gaps: 15 | State gaps: 12
-- `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
-- `diff-checker-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
-- `mcp-inspector-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `yaml-validator-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
 - `api-mock-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
 - `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
+- `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
+- `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=deployed_cycle
+- `diff-checker-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=deployed_cycle
 - `docker-run-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
+- `mcp-inspector-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle, deployed_cycle
 - `subdomain-finder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
+- `yaml-validator-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=deployed_cycle
 - `favicon-generator-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url; state=created_cycle
 
 ## Açık Issue Kayıtları

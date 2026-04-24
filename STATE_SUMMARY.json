@@ -20,7 +20,7 @@
   "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T09:35:11.036994Z",
+  "last_updated": "2026-04-24T11:00:11.430981Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -468,7 +468,7 @@
       "s": "mcp-validator",
       "st": "building",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_N4k06TC4yPQfPrYiG5JZjAOdTdVazxOSub2sv0SLFt3"
     },
     {
       "n": "TOML Parser Pro",
@@ -797,28 +797,28 @@
       "s": "diff-checker-pro",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_nEsbJlKAQmx6HwsA7CXx5pS7K5bJT6OAvoxyv2FTOTC"
     },
     {
       "n": "YAML Validator Pro",
       "s": "yaml-validator-pro",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_eR63JyQsskhDPwqeqFAGJTWj1bRdTvIME4Wyl3unqYU"
     },
     {
       "n": "Case Converter Pro",
       "s": "case-converter-pro",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_T7ja7tYtgvdbTKP8rWQSHsxZ3jq6MHGaEkT4N3gXhgD"
     },
     {
       "n": "Htpasswd Generator Pro",
       "s": "htpasswd-generator",
       "st": "ready_to_deploy",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_zVwR4hrqX6PE08t8XBxLciDr2UOv2ppMWrwql4T9vP1"
     },
     {
       "n": "Docker Run Generator",
@@ -888,7 +888,7 @@
       "s": "mcp-inspector-pro",
       "st": "spec_ready",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_MFwQIHRNW1bhGv5ldOX79RHb6AIrtsb8pkd9a17yjJK"
     },
     {
       "n": "API Security Scanner",
@@ -958,7 +958,7 @@
       "s": "api-mock-generator",
       "st": "ready_to_deploy",
       "v": null,
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
+      "c": "https://buy.polar.sh/polar_cl_lTfuDqjnOTHsSNGdshCuT7rNPiAXBo7euUQLb4E8rN2"
     },
     {
       "n": "Cron Master",
@@ -1234,97 +1234,6 @@
     ],
     "deploy_readiness": [
       {
-        "slug": "htpasswd-generator",
-        "name": "Htpasswd Generator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/htpasswd-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "case-converter-pro",
-        "name": "Case Converter Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "diff-checker-pro",
-        "name": "Diff Checker Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "mcp-inspector-pro",
-        "name": "MCP Inspector Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/mcp-inspector-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "yaml-validator-pro",
-        "name": "YAML Validator Pro",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/yaml-validator-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "api-mock-generator",
         "name": "API Mock Generator",
         "manifest_path": "/home/gokhan/UniverseCreator/products/api-mock-generator/product.json",
@@ -1359,6 +1268,55 @@
         ]
       },
       {
+        "slug": "htpasswd-generator",
+        "name": "Htpasswd Generator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/htpasswd-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "case-converter-pro",
+        "name": "Case Converter Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/case-converter-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "diff-checker-pro",
+        "name": "Diff Checker Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/diff-checker-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "deployed_cycle"
+        ]
+      },
+      {
         "slug": "docker-run-generator",
         "name": "Docker Run Generator",
         "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
@@ -1375,6 +1333,22 @@
         ]
       },
       {
+        "slug": "mcp-inspector-pro",
+        "name": "MCP Inspector Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/mcp-inspector-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
         "slug": "subdomain-finder",
         "name": "Subdomain Finder",
         "manifest_path": "/home/gokhan/UniverseCreator/products/subdomain-finder/product.json",
@@ -1388,6 +1362,22 @@
         ],
         "missing_state_fields": [
           "created_cycle"
+        ]
+      },
+      {
+        "slug": "yaml-validator-pro",
+        "name": "YAML Validator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/yaml-validator-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "deployed_cycle"
         ]
       },
       {

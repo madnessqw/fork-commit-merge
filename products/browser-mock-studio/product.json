@@ -16,6 +16,10 @@
   "status": "spec_ready",
   "category": "design_tools",
   "spec_version": "1.0",
-  "checkout_url": null,
-  "vercel_url": "https://browser-mock-studio.vercel.app"
+  "checkout_url": "https://buy.polar.sh/polar_cl_HVhOznasoiRkXPMK7XTX9EPospigODCWnpTaa4fEDYy",
+  "vercel_url": "https://browser-mock-studio.vercel.app",
+  "payment_provider": "polar",
+  "polar_product_id": "efb1338a-389c-4bb1-bc0b-dcf63c1537d1",
+  "polar_product_price_id": "c8773391-8d7a-4d53-ade7-6b2ffea83768",
+  "polar_checkout_link_id": "6b4d1085-6e4d-43cb-91a5-ce79eb8ef2e1"
 }

@@ -40,10 +40,22 @@ printf '🤖 <b>Codex Cycle Bitti</b>\n🕐 %s\n\n%s' "$(date '+%d.%m %H:%M')" "
 Soru sorma, direkt çalış. 30-40 dakika boyunca derinlemesine çalışabilirsin.
 
 Mevcut iş önceliği:
-- Polar checkout rollout.
-- Polar checkout hattı gerçek `$1` smoke test ile doğrulandı; bunu varsayım değil, çalışan ray olarak kabul et.
-- Detayları prompt içine gömme; checkout/tool/scopes/operasyon kuralları için `skills/POLAR_CHECKOUT.md` dosyasını truth source kabul et.
-- `live` ve `ready_for_payment` ürünlerde checkout gap varsa bunu diğer polish işlerinin önüne koy.
-- Gerekirse mevcut non-Polar checkout'ları da Polar'a migrate et (`--replace-non-polar`).
+## Polar Checkout Oluşturma (PRIORITE)
+- **41 üründe checkout URL eksik** — hepsine Polar checkout oluştur.
+- Polar API Key: `POLAR_OAT` env var üzerinden yüklenir (`config/polar.json` kaynak).
+- **Polar Checkout Kuralları:**
+  - **Minimum fiyat:** $0.50 (cent: 50) — $0.10 çalışmaz, Polar reddeder
+  - **Price payload:** `amount_type: "fixed"`, `price_amount: 100`, `price_currency: "usd"`
+  - **OAT ile organization_id GÖNDERİLMEZ** — hata verir
+  - **Çalışan test:** deneme-test ürünü $1 ile başarılı checkout oluşturdu
+- Detaylı kurallar için `skills/POLAR_CHECKOUT.md` truth source kabul et.
+- `live` ve `ready_for_payment` ürünlerde checkout gap varsa önce onları yap.
 - Static ürünlerde reusable Polar checkout link üret; kısa ömürlü session URL'yi katalog checkout gibi kullanma.
-- Fiyat kaynağı olarak önce `products/<slug>/product.json`, parse edilemiyorsa ürünün site/kod dosyalarından (`index.html`, `public/index.html`, README, spec) fiyat keşfet.
+- Fiyat kaynağı: önce `products/<slug>/product.json`, parse edilemiyorsa site/kod dosyalarından fiyat keşfet.
+
+## Checkout Oluşturma Komutu
+```bash
+python3 scripts/polar_checkout_sync.py sync-links \
+  --replace-non-polar \
+  --output analysis/polar_checkout_sync_report.md
+```

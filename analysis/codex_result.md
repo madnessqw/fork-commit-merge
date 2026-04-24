@@ -2,30 +2,28 @@
 
 ## Okunanlar
 - `analysis/codex_task.md`
-- `STATE_SUMMARY.json`
 - `STATE.json`
+- `STATE_SUMMARY.json`
 - `analysis/oneri.md`
 - `analysis/sorun_analizi.md`
-- `scripts/health_check.py`
-- `scripts/product_state_sync.py`
-- `scripts/update_summary.py`
-- `scripts/refresh_codex_context.py`
-- `scripts/portfolio_snapshot.py`
-- `scripts/portfolio_report.py`
-- `scripts/health_trend.py`
-- `scripts/unhealthy_triage.py`
+- `analysis/unhealthy_triage.md`
+- `lessons/checkout-url-lessons.md`
+- `skills/POLAR_CHECKOUT.md`
+- `skills/build_checklist.md`
+- `scripts/codex_loop.sh`
+- `scripts/glm_loop.sh`
 
 ## Ne Değişti
-- `scripts/summary_visibility.py` eklendi: canonical drift ve fallback-healthy görünürlüğünü compact `STATE_SUMMARY` snapshot’larından da yeniden kuruyor.
-- `scripts/portfolio_snapshot.py` artık top-level drift/fallback sayılarıyla çalışıyor; detail array eksikse visible alias’ı kaybetmiyor.
-- `scripts/portfolio_report.py`, `scripts/health_trend.py` ve `scripts/unhealthy_triage.py` canonical drift count için summary truth’u kullanıyor.
-- `tests/` tarafına compact-summary regression testleri eklendi.
-- `lessons/checkout-url-lessons.md` içine compact summary / fallback visibility dersi eklendi ve secret-scan uyumlu hale getirildi.
+- Güncel state snapshot ve özet dosyaları 11:00 UTC durumuna hizalandı; checkout gap 0 kaldı, canlı sağlık 88/91 ve fallback healthy 4 olarak görünür.
+- `analysis/oneri.md`, `analysis/sorun_analizi.md` ve `analysis/unhealthy_triage.md` yeni snapshot ile senkronlandı.
+- `analysis/glm_code_result.md` güncel GLM dashboard sonucunu yansıtacak şekilde yenilendi.
+- `scripts/codex_loop.sh` içinde heredoc cycle numarası artık placeholder + `sed` inject ile güvenli aktarılıyor.
+- `scripts/glm_loop.sh` mevcut OpenCode kurulum yoluna ve GLM model çağrısına hizalandı.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/summary_visibility.py scripts/portfolio_snapshot.py scripts/portfolio_report.py scripts/health_trend.py scripts/unhealthy_triage.py tests/test_portfolio_snapshot.py tests/test_portfolio_report.py tests/test_health_trend.py tests/test_unhealthy_triage.py`
-- `pytest -q tests/test_portfolio_snapshot.py tests/test_portfolio_report.py tests/test_health_trend.py tests/test_unhealthy_triage.py tests/test_product_state_sync.py tests/test_health_check.py tests/test_refresh_codex_context.py` → **180 passed**
-- Changed files secret-scan clean: `sk_`, `pk_`, `ghp_`, `api_key`, `POLAR_OAT` yok.
+- `bash -n scripts/codex_loop.sh scripts/glm_loop.sh`
+- `git diff --check -- STATE.json STATE_SUMMARY.json analysis/codex_task.md analysis/glm_code_result.md analysis/oneri.md analysis/sorun_analizi.md analysis/unhealthy_triage.md .signals/qa_pending logs/run_ledger.jsonl scripts/codex_loop.sh scripts/glm_loop.sh`
+- Secret scan temiz.
 
 ## Blokerler
 - Yok.

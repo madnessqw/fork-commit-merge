@@ -22,7 +22,7 @@
   "payment_provider": "polar",
   "status": "ready_for_payment",
   "vercel_url": "https://base64-encoder-pro.vercel.app",
-  "deployment_url": "https://base64-encoder-5h1p1a4ns-madnessqws-projects.vercel.app",
+  "deployment_url": "https://base64-encoder-kclywa0b5-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/base64-encoder-pro",
   "webhook_url": "https://base64-encoder-pro.vercel.app/api/webhook",
   "checkout_url": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug",

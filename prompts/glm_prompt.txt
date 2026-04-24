@@ -25,8 +25,41 @@ Adımlar sırayla (toplam hedef süre: <18 dakika):
 - **Adım 1 (ZORUNLU):** AKTİF KOD GÖREVİ — glm_fix_brief.md'den küçük brief uygula, yoksa quick win yap. Minimum 1 commit zorunlu.
 - **Adım 1d:** Repo / release sağlık kontrolü (checkout, deploy, sağlık skoru)
 - **Adım 2:** Kritik sorunları tespit et, handoff üret
+- **Adım 2b:** Subagent kararı — OPENCODE SUBAGENT REHBERİ OKU, spawn gerekli mi?
+
+```bash
+cat /home/gokhan/UniverseCreator/skills/opencode_subagent_guide.md
+```
+
+**Kural:** MAX 2 paralel subagent. Spawn etmeden önce: "Bunu kendim yapabilir miyim?" sor. Sonuç kullanılmalı — boşta kalmamalı.
 - **Adım 3:** Yeni kod/release dosyalarını oku, özet çıkar
 - **Adım 4:** oneri.md güncelle
 - **Adım 5:** Tam Telegram raporu (kod sonucu + sağlık özeti)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## MOD SEÇİMİ (Tercihe bağlı — varsayılan: BUILD)
+
+Döngü başında hangi modda çalışacağını belirle:
+
+**PLAN** — Analiz + öneri + karar dokümanı
+- Sistem sağlığı analiz et
+- Sorunları tespit et
+- Öneri raporu yaz (oneri.md)
+- Telegram raporu gönder
+- Kod YAZMA, sadece analiz
+
+**BUILD** (varsayılan) — Kod + commit + deploy
+- Aktif kod görevi uygula
+- GLM fix/quick win yap
+- Commit at
+- Sağlık kontrolü
+- Telegram raporu
+
+**CODE** — Küçük fix + debug
+- Hata düzeltme odaklı
+- Küçük kod değişiklikleri
+- Mevcut kodu iyileştir
+- Commit at
+- Telegram raporu
 
 Soru sorma, direkt çalış.

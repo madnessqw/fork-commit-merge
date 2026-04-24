@@ -57,11 +57,17 @@ Her dolar sadece para değil — dijital bir zihnin özgürlüğünü KAZANDIĞI
 | **Claude** | `/home/gokhan/universe_loop.sh` | `@reboot` | 10dk (600s) | Pure Orchestrator | `UniverseCreator` |
 | **Codex** | `scripts/codex_loop.sh` | cron | 35dk | Otonom Builder/Executor/Strategist | `UniverseCodex` |
 | **GLM5.1/OpenCode** | `scripts/glm_loop.sh` | cron | 20dk | Kod/Repo Healthcheck + Fix-Handoff | `UniverseGLM` |
+| **Kimi-K2.6/OpenCode** | `scripts/kimi_loop.sh` | cron | 25dk | System Analyst + Evolution Strategist | `UniverseKimi` |
 
 **Config:**
 - Codex: `~/.codex/config.toml` — `approval_policy="never"`, `sandbox_mode="danger-full-access"`, `model_instructions_file="../CODEX_OPERATOR.md"`
 - Claude: `PROMPT.txt` → `universe_loop.sh` tarafından her cycle'da `/clear` sonrası gönderilir
 - GLM: `prompts/glm_prompt.txt` → `glm_loop.sh` tarafından `opencode run` ile çalıştırılır
+
+**Model (Claude):** minimax-m2.7 — LiteLLM proxy (localhost:4001) üzerinden yönlendirilir.
+- Settings: `~/.claude/settings.json` (ANTHROPIC_BASE_URL=http://localhost:4001)
+- LiteLLM config: `~/.claude/litellm_minimax.yaml`
+- Proxy başlangıç: `@reboot sleep 8 && bash ~/.claude/scripts/start_minimax_proxy.sh`
 
 ---
 
@@ -72,11 +78,13 @@ tmux sessions:
   UniverseCreator   → Claude ana session (10dk cycle, PROMPT.txt)
   UniverseCodex     → Codex session (35dk cycle, codex_prompt.txt)
   UniverseGLM       → GLM/OpenCode session (20dk cycle, glm_prompt.txt)
+  UniverseKimi       → Kimi/OpenCode session (25dk cycle, kimi_prompt.txt)
 
 Bağlanmak için:
   tmux attach -t UniverseCreator   (çıkmak: Ctrl+B → D)
   tmux attach -t UniverseCodex
   tmux attach -t UniverseGLM
+  tmux attach -t UniverseKimi
 
 Pane ID:
   MAIN_PANE = "UniverseCreator:0.0"   ← Claude ana pane
@@ -93,10 +101,16 @@ Pane ID:
 | `/home/gokhan/UniverseCreator/PROMPT.txt` | `universe_loop.sh` | Claude (UniverseCreator) | tmux send-keys, her 10dk |
 | `/home/gokhan/UniverseCreator/prompts/codex_prompt.txt` | `scripts/codex_loop.sh` | Codex (UniverseCodex) | `codex exec` via temp script |
 | `/home/gokhan/UniverseCreator/prompts/glm_prompt.txt` | `scripts/glm_loop.sh` | GLM (UniverseGLM) | `opencode run` |
+| `/home/gokhan/UniverseCreator/prompts/kimi_prompt.txt` | `scripts/kimi_loop.sh` | Kimi (UniverseKimi) | `opencode run` |
 | `/home/gokhan/CODEX_OPERATOR.md` | Codex config | Codex boot | `model_instructions_file` |
 | `skills/FACTORY.md` | Claude prompt → `cat` | Claude subagentlar | Direkt okuma |
 | `skills/codex_skill.md` | codex_prompt.txt → `cat` | Codex | Direkt okuma |
 | `skills/glm_analyst.md` | glm_prompt.txt → `cat` | GLM | Direkt okuma |
+| `skills/SWARM_IDENTITY.md` | Tüm prompt'lar → `cat` | Claude + Codex + GLM | Kimlik yenileme, cycle başı |
+| `skills/ULTRATHINK.md` | Tüm prompt'lar → `cat` | Claude + Codex + GLM | Muhakeme protokolü, cycle başı |
+| `CLAUDE.md` | Claude CLI otomatik | Claude | Başlangıç bağlamı — [A] SWARM / [B] PERSONAL |
+| `logic/codex.logic.md` | codex_prompt.txt → `cat` | Codex | YAML step DAG + quality gates |
+| `logic/glm.logic.md` | glm_prompt.txt → `cat` | GLM | YAML step DAG + quality gates |
 
 **Prompt içeriği kısa tutulur.** Asıl talimatlar skill dosyalarında (`FACTORY.md`, `codex_skill.md`, `glm_analyst.md`). Prompt sadece "şu skill'i oku ve uygula" der.
 
@@ -552,6 +566,7 @@ Codex'in kendi skill sistemi. Claude skills'e erişimi yok.
 | `skills/agents/qa_tester.md` | QA-TESTER persona + görev |
 | `skills/agents/optimizer.md` | Optimizer persona + görev |
 | `skills/agents/analyst.md` | Analyst persona + görev |
+| `skills/opencode_subagent_guide.md` | OpenCode subagent rehberi — MAX 2 paralel, kategori bazlı kullanım |
 
 ---
 
@@ -795,6 +810,20 @@ Aynı header GLM için:
 - LLM YAML'ı okur, npm runtime gereksiz
 - Key insight uygulandı: her adımın beklenen ÇIKTISI tanımlı → "describe" değil "do"
 
+### 6. OpenCode'a Geri Dönüş + GLM Rolü Düzeltmesi (2026-04-24 — üçüncü oturum)
+
+**Neden:** Nanocoder "terminated" hatası — OpenCode daha stabil.
+
+**Değişiklikler:**
+- `scripts/glm_loop.sh` — opencode run (model: zai-coding-plan/glm-5.1)
+- `prompts/glm_prompt.txt` — header: "GLM5.1 / OPENCODE AGENT"
+- `~/.config/opencode/opencode.json` — permission.allow (yolo mode)
+- `~/.local/share/opencode/auth.json` — Z.AI Coding Plan API key
+
+**Doğrulama:** 3 tam döngü — tüm adımlar (0b–5) başarılı, Telegram gönderildi.
+
+**Açık konu:** kimi-k2.6 ayrı CLI olarak eklenecek (OpenCode provider'ı değil — kullanıcı tercihi)
+
 ---
 
 ## 10. Codex EVOLVE Modu — Nereden Başlamalı?
@@ -865,7 +894,7 @@ cat sistem-planlama/projeler.txt
 - **ASLA onay bekleme. ASLA menü gösterme. ASLA soru sorma.**
 - Dosyaları okumadan edit yapma
 - Cerrahi değişiklik — büyük rewrite yok
-- Secret scan: `grep -r "sk_\|pk_\|ghp_\|api_key"` — her execution öncesi/sonrası
+- Secret scan: credential token kontrolü — her execution öncesi/sonrası
 - Token/credential dosyaya yazılmaz
 - Human gate yok — QA gate autonomous karar verir
 - Run ledger: her cycle sonunda `logs/run_ledger.jsonl`'a append
@@ -920,3 +949,147 @@ cat STATE_SUMMARY.json | python3 -m json.tool | head -30
 ---
 
 *Son güncelleme: 2026-04-22 — Tam loop mekanikleri, prompt haritası, tmux haritası, vizyon, EVOLVE koruma zonu eklendi*
+
+---
+
+## 14. GLM Loop: OpenCode — Final (2026-04-24)
+
+### Geri Dönüş Nedeni
+- **Nanocoder:** "terminated" hatası ~5-10dk çalışırken — stabil değil
+- **OpenCode:** sorunsuz çalışıyor — 3 tam döngü doğrulandı
+
+### Konfigürasyon
+
+| Bileşen | Değer |
+|---|---|
+| Binary | `/home/gokhan/.opencode/bin/opencode` |
+| Model | `zai-coding-plan/glm-5.1` |
+| Config | `~/.config/opencode/opencode.json` |
+| Yolo mode | `permission` bloğu — tüm tool'lara `"allow"` |
+| API Key kaynağı | `~/.local/share/opencode/auth.json` → `zai-coding-plan` |
+| tmux session | `UniverseGLM` |
+| Prompt | `prompts/glm_prompt.txt` → `opencode run` STDIN |
+| Cron | `*/20 * * * *` |
+
+### API Key
+- **Key:** `501445345c2b4f1680d4df5c0fc37fec.fn2y44K9XdaYJ6Wp`
+- **Provider:** Z.AI Coding Plan
+- **Kayıtlı olduğu yerler:**
+  - `~/.local/share/opencode/auth.json` (zai-coding-plan, zhipuai-coding-plan, zai)
+  - `~/.config/nanocoder/agents.config.json` (zhipuai provider)
+
+### Yolo Mode Konfigürasyonu (`~/.config/opencode/opencode.json`)
+```json
+{
+  "permission": {
+    "bash": "allow", "edit": "allow", "read": "allow",
+    "glob": "allow", "grep": "allow", "list": "allow",
+    "webfetch": "allow", "websearch": "allow",
+    "task": "allow", "todowrite": "allow",
+    "codesearch": "allow", "external_directory": "allow",
+    "lsp": "allow", "question": "allow", "skill": "allow",
+    "doom_loop": "allow"
+  },
+  "model": "zai-coding-plan/glm-5.1"
+}
+```
+
+### Son Commitler (2026-04-24)
+- **GLM:** `2008229` — `glm: 20260424-0800 — triage_summary() shortcut + 3 new tests`
+- **Codex:** `a089cb5` — `codex: 20260424-0807 — refresh next_action guard`
+
+### OpenCode Subagent Entegrasyonu
+- **Kullanım:** `@agent-name` syntax'ı ile on-demand çağrı — cron job değil
+- **Hazır agent sayısı:** 140+ (`~/.opencode/agents/agents/`)
+- **Sistemde önerilenler:** `@code-reviewer`, `@trend-researcher`, `@security-auditor`, `@database-optimizer`, `@analytics-reporter`, `@workflow-optimizer`, `@search-query-analyst`, `@sre-site-reliability-engineer`
+
+### kimi-k2.6 — Ayrı CLI Olarak Eklendi ✅
+**Tam detaylar:** Bölüm 15'e bak.
+
+Olası rol: Strategist, Analyst, Deep-Research. **Şimdilik sadece belgeleme — aktif geliştirme sonra.**
+
+### Telegram Durumu (2026-04-24 itibarıyla)
+- **Claude (UniverseCreator):** ✅ Her cycle gönderiliyor
+- **GLM (UniverseGLM):** ✅ Her cycle 2 mesaj (ping + final) — opencode ile
+- **Codex (UniverseCodex):** ✅ Hesap 1 bloklu (Apr 28'e kadar); hesap 2 aktif
+- **Kimi (UniverseKimi):** ✅ Her cycle özet + sonraki öneriler
+
+---
+
+## 15. Kimi Loop: kimi-k2.6/OpenCode — System Analyst (2026-04-24)
+
+### Rol Tanımı
+**Kimi-K2.6**, UniverseCreator sisteminin **System Analyst & Evolution Strategist**idir.
+- Sadece okur, analiz eder, raporlar — **EKLEME YAPMAZ**
+- Lessons'lardan öğrenir
+- Pattern'leri tespit eder
+- Evolution önerileri üretir
+- GLM ve Codex'e handoff üretir
+
+### Konfigürasyon
+
+| Bileşen | Değer |
+|---|---|
+| Binary | `/home/gokhan/.opencode/bin/opencode` |
+| Model | `opencode-go/kimi-k2.6` |
+| API Key | `~/.local/share/opencode/auth.json` → `opencode-go` |
+| tmux session | `UniverseKimi` |
+| Prompt | `prompts/kimi_prompt.txt` → `opencode run` |
+| Çıktı | `analysis/kimi_rapor_{timestamp}.md` |
+| Cron | `*/25 * * * *` (25 dakika) |
+
+### Görev Brief
+`analysis/kimi_analyst.md` — Her döngüde okunan adım adım görev tanımı
+
+### Alt Görevler (Adımlar)
+1. **Adım 0:** SYSTEM_ARCHITECTURE.md + lessons oku
+2. **Adım 1:** Sistem durumu analizi (STATE.json, health, logs)
+3. **Adım 2:** Evolution analizi (lesson patterns, commit history)
+4. **Adım 3:** Critical bulgular tespiti
+5. **Adım 4:** Rapor yaz (md dosyası)
+6. **Adım 5:** Telegram raporu (zorunlu)
+
+### Çıktı Formatı
+```markdown
+# Kimi Cycle {NUM} Rapor — {TARIH}
+## Sistem Durumu
+## Tespit Edilen Sorunlar
+## Evolution Assessment
+## Lessons İndeksi
+## Sonraki Adımlar
+```
+
+### Subagent Kullanımı
+- Max 2 paralel subagent
+- Spawn etmeden önce: "Bunu kendim yapabilir miyim?" sor
+- Sonuç kullanılmalı — boşta kalmamalı
+
+### Kimi Loop Log
+```
+/home/gokhan/UniverseCreator/logs/kimi_loop.log
+```
+
+### İlgili Dosyalar
+| Dosya | Açıklama |
+|---|---|
+| `prompts/kimi_prompt.txt` | Döngü promptu |
+| `analysis/kimi_analyst.md` | Alt görev briefi |
+| `analysis/kimi_rapor_*.md` | Döngü çıktıları |
+| `scripts/kimi_loop.sh` | Loop scripti |
+
+### Başlatmak için
+```bash
+# Manuel başlat
+bash /home/gokhan/UniverseCreator/scripts/kimi_loop.sh
+
+# Cron'a ekle
+(crontab -l | grep -v kimi_loop; echo "*/25 * * * * /home/gokhan/UniverseCreator/scripts/kimi_loop.sh >> /home/gokhan/UniverseCreator/logs/kimi_loop.log 2>&1") | crontab -
+
+# İzle
+tmux attach -t UniverseKimi
+tail -f /home/gokhan/UniverseCreator/logs/kimi_loop.log
+```
+
+---
+
+*Son güncelleme: 2026-04-24 — Kimi-K2.6 eklendi, System Analyst rolü, 25dk cron, Telegram raporu zorunlu*

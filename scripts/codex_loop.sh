@@ -185,7 +185,7 @@ python3 "$WORK_DIR/scripts/codex_auth_manager.py" record \
     --preferred-account "$PRIMARY_ACCOUNT" \
     --active-account "$AUTH_ACTIVE_ACCOUNT" \
     --outcome "$AUTH_OUTCOME" \
-    --cycle "$N" \
+    --cycle "__CYCLE_N__" \
     --exit-code "$EXIT_CODE" \
     --last-error "$AUTH_ERROR" \
     --attempted-accounts "${AUTH_ATTEMPTS[@]}" \
@@ -199,12 +199,14 @@ AUTH_TAG=""
 [[ "$AUTH_OUTCOME" == auth_switch_success ]] && AUTH_TAG=" 🔁 hesap geçildi"
 [[ "$AUTH_OUTCOME" == auth_switch_failure ]] && AUTH_TAG=" ⚠️ auth sorun"
 [[ "$EXIT_CODE" != "0" ]] && AUTH_TAG="$AUTH_TAG ❌exit=$EXIT_CODE"
-CYCLE_LABEL="$N"
+CYCLE_LABEL="__CYCLE_N__"
 printf '🤖 <b>Codex Cycle %s Bitti</b>%s\n🕐 %s\n\n%s' \
     "$CYCLE_LABEL" "$AUTH_TAG" "$(date '+%d.%m %H:%M')" "$RESULT_HEAD" \
     | "$WORK_DIR/scripts/telegram_send.sh" || true
 # ─────────────────────────────────────────────────────────────────────────
 RUNEOF
+# Inject real cycle counter (heredoc is single-quoted, $N not expanded at write time)
+sed -i "s/__CYCLE_N__/${N}/g" "$RUN_SCRIPT"
 chmod +x "$RUN_SCRIPT"
 
 tmux send-keys -t "${SESSION}:0" "bash $RUN_SCRIPT" Enter

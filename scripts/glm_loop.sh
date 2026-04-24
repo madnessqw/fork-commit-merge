@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # GLM Analyst Loop — UniverseGLM tmux session
-# opencode run (non-interactive) kullanır — her cycle fresh context
+# opencode run (permission.allow ile yolo mode) kullanır — her cycle fresh context
 # Cron: */20 * * * * /home/gokhan/UniverseCreator/scripts/glm_loop.sh >> /home/gokhan/UniverseCreator/logs/glm_loop.log 2>&1
 
 set -euo pipefail
@@ -10,8 +10,7 @@ PROMPT_FILE="$WORK_DIR/prompts/glm_prompt.txt"
 LOCK_FILE="/tmp/glm_loop.lock"
 LOG_FILE="$WORK_DIR/logs/glm_loop.log"
 SESSION="UniverseGLM"
-MODEL="zhipuai-coding-plan/glm-5.1"
-OPENCODE_BIN="/home/gokhan/.local/bin/opencode"
+OPENCODE_BIN="/home/gokhan/.opencode/bin/opencode"
 RUN_SCRIPT="/tmp/glm_run.sh"
 ONERI_FILE="$WORK_DIR/analysis/oneri.md"
 
@@ -60,15 +59,14 @@ cat > "$RUN_SCRIPT" << 'RUNEOF'
 set -euo pipefail
 WORK_DIR="/home/gokhan/UniverseCreator"
 LOG_FILE="$WORK_DIR/logs/glm_loop.log"
-OPENCODE_BIN="/home/gokhan/.local/bin/opencode"
-MODEL="zhipuai-coding-plan/glm-5.1"
+OPENCODE_BIN="/home/gokhan/.opencode/bin/opencode"
 
 cd "$WORK_DIR"
 PROMPT_CONTENT=$(cat prompts/glm_prompt.txt)
 
 echo "--- opencode run START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
 set +e
-"$OPENCODE_BIN" run -m "$MODEL" "$PROMPT_CONTENT" 2>&1 | tee -a "$LOG_FILE"
+"$OPENCODE_BIN" run --model zai-coding-plan/glm-5.1 "$PROMPT_CONTENT" 2>&1 | tee -a "$LOG_FILE"
 GLM_EXIT=${PIPESTATUS[0]}
 set -e
 echo "--- opencode run END $(date '+%Y-%m-%d %H:%M:%S') exit=$GLM_EXIT ---" | tee -a "$LOG_FILE"

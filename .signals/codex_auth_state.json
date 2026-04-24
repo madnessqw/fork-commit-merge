@@ -1,8 +1,21 @@
 {
   "preferred_account": 2,
-  "last_result": "auth_switch_1_to_2",
+  "last_result": "auth_switch_success",
   "reason": "Account 1 usage limit hit (blocked until ~Apr 28)",
   "ts": 1776997471,
   "account_1_status": "blocked_until_2026-04-28",
-  "account_2_status": "active"
+  "account_2_status": "active",
+  "last_active_account": 2,
+  "last_attempted_accounts": [
+    1,
+    2
+  ],
+  "last_error": "hook: SessionStart Completed ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ",
+  "last_exit_code": 0,
+  "cycle": 31,
+  "updated_at": "2026-04-24T10:46:45Z",
+  "last_switch_from_account": 1,
+  "last_switch_to_account": 2,
+  "last_switch_reason": "hook: SessionStart Completed ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ",
+  "switch_count": 14
 }
