@@ -6,7 +6,12 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 from scripts import refresh_codex_context
-from scripts.refresh_codex_context import determine_focus, render_codex_task, render_oneri, render_sorun_analizi
+from scripts.refresh_codex_context import (
+    determine_focus,
+    render_codex_task,
+    render_oneri,
+    render_sorun_analizi,
+)
 
 
 class RefreshCodexContextTests(unittest.TestCase):
@@ -150,7 +155,9 @@ class RefreshCodexContextTests(unittest.TestCase):
 
         self.assertEqual(focus.key, "deploy_readiness")
         self.assertIn("manifest=missing", focus.summary)
-        self.assertIn("Eksik manifest/URL/state alanlarını raporla", focus.codex_task_body)
+        self.assertIn(
+            "Eksik manifest/URL/state alanlarını raporla", focus.codex_task_body
+        )
 
     def test_focus_live_health_mentions_canonical_drift_when_present(self) -> None:
         summary = {
@@ -186,7 +193,9 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("fallback alias", focus.summary)
         self.assertIn("fallback alias", focus.codex_task_body)
 
-    def test_focus_live_health_uses_outage_title_when_canonical_drift_absent(self) -> None:
+    def test_focus_live_health_uses_outage_title_when_canonical_drift_absent(
+        self,
+    ) -> None:
         summary = {
             "live_count": 4,
             "healthy_count": 3,
@@ -214,7 +223,9 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.codex_task_title, "Canlı sağlık açığını düzelt")
         self.assertIn("Canonical drift yok", focus.codex_task_body)
 
-    def test_focus_uses_checkout_field_issue_when_live_portfolio_is_healthy(self) -> None:
+    def test_focus_uses_checkout_field_issue_when_live_portfolio_is_healthy(
+        self,
+    ) -> None:
         summary = {
             "live_count": 113,
             "healthy_count": 113,
@@ -242,7 +253,9 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "checkout_field_inconsistency")
         self.assertIn("metadata", focus.summary)
 
-    def test_load_summary_rebuilds_from_state_even_if_stale_summary_exists(self) -> None:
+    def test_load_summary_rebuilds_from_state_even_if_stale_summary_exists(
+        self,
+    ) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             state_file = tmp_path / "STATE.json"
@@ -288,8 +301,12 @@ class RefreshCodexContextTests(unittest.TestCase):
             with (
                 patch.object(refresh_codex_context, "STATE_FILE", state_file),
                 patch.object(refresh_codex_context, "SUMMARY_FILE", summary_file),
-                patch.object(refresh_codex_context, "refresh_live_health", return_value=None),
-                patch.object(refresh_codex_context, "load_product_catalog", return_value={}),
+                patch.object(
+                    refresh_codex_context, "refresh_live_health", return_value=None
+                ),
+                patch.object(
+                    refresh_codex_context, "load_product_catalog", return_value={}
+                ),
             ):
                 summary = refresh_codex_context.load_summary()
 
@@ -298,7 +315,9 @@ class RefreshCodexContextTests(unittest.TestCase):
             self.assertEqual(summary["fallback_healthy_count"], 1)
             self.assertEqual(summary["canonical_url_drift"], 1)
             self.assertEqual(summary["canonical_url_drift_products"], ["fallback-tool"])
-            self.assertEqual(summary["gaps"]["canonical_url_drift"][0]["slug"], "fallback-tool")
+            self.assertEqual(
+                summary["gaps"]["canonical_url_drift"][0]["slug"], "fallback-tool"
+            )
 
             persisted = json.loads(summary_file.read_text(encoding="utf-8"))
             self.assertEqual(persisted["healthy_count"], 1)
@@ -339,8 +358,12 @@ class RefreshCodexContextTests(unittest.TestCase):
         }
 
         focus = determine_focus(summary, [])
-        rendered_oneri = render_oneri(summary, [], focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc))
-        rendered_task = render_codex_task(summary, focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc))
+        rendered_oneri = render_oneri(
+            summary, [], focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc)
+        )
+        rendered_task = render_codex_task(
+            summary, focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc)
+        )
 
         self.assertIn("Deploy readiness gap", rendered_oneri)
         self.assertIn("Deploy Readiness Issues", rendered_oneri)
@@ -348,7 +371,9 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("Deploy readiness gap", rendered_task)
         self.assertIn("manifest/URL/state", rendered_task)
 
-    def test_rendered_sorun_analizi_shows_canonical_health_details_for_outages(self) -> None:
+    def test_rendered_sorun_analizi_shows_canonical_health_details_for_outages(
+        self,
+    ) -> None:
         summary = {
             "cycle": 1110,
             "live_count": 2,
@@ -389,7 +414,9 @@ class RefreshCodexContextTests(unittest.TestCase):
         )
 
         self.assertIn("canonical_url=https://fallback-stale-error.vercel.app", rendered)
-        self.assertIn("effective_url=https://fallback-stale-error-final.vercel.app", rendered)
+        self.assertIn(
+            "effective_url=https://fallback-stale-error-final.vercel.app", rendered
+        )
         self.assertIn("canonical_code=404", rendered)
         self.assertIn("canonical_status=not_found", rendered)
 
@@ -490,12 +517,14 @@ class RefreshCodexContextTests(unittest.TestCase):
             [],
         )
 
-        rendered = render_codex_task(summary, focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc))
+        rendered = render_codex_task(
+            summary, focus, datetime(2026, 4, 22, 12, 0, tzinfo=timezone.utc)
+        )
 
         self.assertIn("Generated 2026-04-22 12:00 UTC", rendered)
         self.assertIn("Canonical drift: 0", rendered)
         self.assertIn("Canonical healthy: 110/113", rendered)
-        self.assertIn("Manual Vercel/LemonSqueezy", rendered)
+        self.assertIn("Manual Vercel/ödeme-provider", rendered)
         self.assertIn("analysis/codex_result.md", rendered)
         self.assertIn("Health pending: 0", rendered)
         self.assertIn("Fallback healthy: 3", rendered)
@@ -556,8 +585,12 @@ class RefreshCodexContextTests(unittest.TestCase):
         }
 
         focus = determine_focus(summary, [])
-        rendered_oneri = render_oneri(summary, [], focus, datetime(2026, 4, 23, 6, 42, tzinfo=timezone.utc))
-        rendered_task = render_codex_task(summary, focus, datetime(2026, 4, 23, 6, 42, tzinfo=timezone.utc))
+        rendered_oneri = render_oneri(
+            summary, [], focus, datetime(2026, 4, 23, 6, 42, tzinfo=timezone.utc)
+        )
+        rendered_task = render_codex_task(
+            summary, focus, datetime(2026, 4, 23, 6, 42, tzinfo=timezone.utc)
+        )
 
         self.assertEqual(focus.key, "live_health")
         self.assertNotIn("manuel kontrol", rendered_oneri)
@@ -605,11 +638,18 @@ class RefreshCodexContextTests(unittest.TestCase):
             )
             summary_file.write_text(json.dumps(summary), encoding="utf-8")
 
-            with patch.object(refresh_codex_context, "STATE_FILE", state_file), patch.object(
-                refresh_codex_context, "SUMMARY_FILE", summary_file
-            ), patch.object(refresh_codex_context.subprocess, "run", return_value=Mock(returncode=1)) as run_mock, patch.object(
-                refresh_codex_context, "build_summary", return_value=summary
-            ) as build_mock:
+            with (
+                patch.object(refresh_codex_context, "STATE_FILE", state_file),
+                patch.object(refresh_codex_context, "SUMMARY_FILE", summary_file),
+                patch.object(
+                    refresh_codex_context.subprocess,
+                    "run",
+                    return_value=Mock(returncode=1),
+                ) as run_mock,
+                patch.object(
+                    refresh_codex_context, "build_summary", return_value=summary
+                ) as build_mock,
+            ):
                 loaded = refresh_codex_context.load_summary()
 
             self.assertEqual(loaded, summary)
@@ -617,8 +657,12 @@ class RefreshCodexContextTests(unittest.TestCase):
             self.assertTrue(run_mock.called)
             audit_args = run_mock.call_args[0][0]
             self.assertIn("audit_portfolio_health.py", audit_args[1])
-            self.assertEqual(run_mock.call_args.kwargs["cwd"], refresh_codex_context.ROOT)
-            self.assertEqual(json.loads(summary_file.read_text(encoding="utf-8")), summary)
+            self.assertEqual(
+                run_mock.call_args.kwargs["cwd"], refresh_codex_context.ROOT
+            )
+            self.assertEqual(
+                json.loads(summary_file.read_text(encoding="utf-8")), summary
+            )
 
 
 if __name__ == "__main__":
