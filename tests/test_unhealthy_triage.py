@@ -136,6 +136,34 @@ def test_generate_triage_canonical_drift_included(tmp_path):
     assert "fallback alias" in pf["suggested_action"]
 
 
+def test_generate_triage_canonical_url_drift_included(tmp_path):
+    """Current canonical_url_drift summaries should also be triaged."""
+    summary = {
+        "gaps": {
+            "unhealthy_live": [
+                {"slug": "jwt-generator", "code": 500},
+            ],
+            "canonical_url_drift": [
+                {
+                    "slug": "pdf-forge",
+                    "canonical_code": 500,
+                    "canonical_status": "error_500",
+                },
+            ],
+        }
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary))
+
+    entries = generate_triage(summary_path=summary_file)
+    assert len(entries) == 2
+    slugs = {e["slug"] for e in entries}
+    assert slugs == {"jwt-generator", "pdf-forge"}
+    pdf = next(e for e in entries if e["slug"] == "pdf-forge")
+    assert pdf["label"].startswith("canonical_drift/")
+    assert pdf["severity"] == "medium"
+
+
 def test_generate_triage_no_duplicate_on_overlap(tmp_path):
     """If a slug appears in both unhealthy_live and canonical_drift, only one entry."""
     summary = {

@@ -18,7 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.summary_visibility import canonical_drift_count
+from scripts.summary_visibility import (
+    canonical_drift_count,
+    canonical_drift_entries as visible_canonical_drift_entries,
+)
 
 TRIAGE_RULES = {
     401: {
@@ -89,6 +92,19 @@ def sort_by_severity(entries: list[dict]) -> list[dict]:
     )
 
 
+def _canonical_drift_items(summary: dict) -> list[dict]:
+    gaps = summary.get("gaps", {})
+    if isinstance(gaps, dict):
+        for key in ("canonical_url_drift", "canonical_drift"):
+            raw_entries = gaps.get(key)
+            if isinstance(raw_entries, list):
+                entries = [item for item in raw_entries if isinstance(item, dict)]
+                if entries:
+                    return entries
+
+    return visible_canonical_drift_entries(summary)
+
+
 def generate_triage(summary_path: Path | None = None) -> list[dict]:
     """Generate triage entries for unhealthy live products AND canonical-drift products.
 
@@ -114,7 +130,7 @@ def generate_triage(summary_path: Path | None = None) -> list[dict]:
         entries.append(_triage_entry(slug, code))
 
     # 2) Canonical-drift products (healthy via fallback, broken at canonical)
-    for item in gaps.get("canonical_drift", []):
+    for item in _canonical_drift_items(summary):
         slug = item.get("slug", "unknown")
         if slug in seen_slugs:
             continue
@@ -195,7 +211,7 @@ def canonical_drift_fix_suggestions(
     except (OSError, json.JSONDecodeError):
         return []
 
-    drift_items = summary.get("gaps", {}).get("canonical_url_drift", [])
+    drift_items = _canonical_drift_items(summary)
     suggestions: list[dict] = []
 
     for item in drift_items:

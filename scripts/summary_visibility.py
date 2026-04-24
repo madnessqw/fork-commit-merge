@@ -88,11 +88,12 @@ def _entry_from_product(
 def canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
     gaps = summary.get("gaps", {})
     if isinstance(gaps, dict):
-        raw_entries = gaps.get("canonical_url_drift")
-        if isinstance(raw_entries, list):
-            entries = [item for item in raw_entries if isinstance(item, dict)]
-            if entries:
-                return entries
+        for key in ("canonical_url_drift", "canonical_drift"):
+            raw_entries = gaps.get(key)
+            if isinstance(raw_entries, list):
+                entries = [item for item in raw_entries if isinstance(item, dict)]
+                if entries:
+                    return entries
 
     product_map = _summary_products_by_slug(summary)
     raw_slugs = summary.get("canonical_url_drift_products")
@@ -156,6 +157,8 @@ def fallback_healthy_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
 
 def canonical_drift_count(summary: dict[str, Any]) -> int:
     raw = summary.get("canonical_url_drift")
+    if raw is None:
+        raw = summary.get("canonical_drift")
     if raw is not None:
         if isinstance(raw, list):
             return len(raw)

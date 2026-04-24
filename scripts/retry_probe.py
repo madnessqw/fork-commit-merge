@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from scripts.summary_visibility import canonical_drift_entries
 from scripts.unhealthy_triage import generate_triage, sort_by_severity
 
 
@@ -66,12 +67,12 @@ def _slug_from_summary(summary: dict) -> list[dict]:
             "category": "unhealthy",
             "url": u.get("url", ""),
         })
-    for d in gaps.get("canonical_url_drift", []):
+    for d in canonical_drift_entries(summary):
         items.append({
             "slug": d.get("slug", "unknown"),
             "prior_code": d.get("canonical_code", 0),
             "category": "canonical_drift",
-            "url": d.get("ideal_url", f"https://{d.get('slug', '')}.vercel.app"),
+            "url": d.get("ideal_url") or d.get("url", f"https://{d.get('slug', '')}.vercel.app"),
         })
     return items
 

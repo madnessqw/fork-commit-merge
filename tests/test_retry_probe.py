@@ -99,6 +99,36 @@ class TestRetryProbe:
         assert diff["recovered"] is False
 
     @patch("scripts.retry_probe.probe_url")
+    def test_retry_uses_compact_canonical_drift_snapshot(self, mock_probe, tmp_path: Path):
+        summary = {
+            "gaps": {
+                "unhealthy_live": [],
+                "canonical_url_drift": [],
+            },
+            "canonical_url_drift": 1,
+            "canonical_url_drift_products": ["pdf-forge"],
+            "products": [
+                {
+                    "s": "pdf-forge",
+                    "v": "https://pdf-forge-five.vercel.app",
+                }
+            ],
+        }
+        p = tmp_path / "STATE_SUMMARY.json"
+        p.write_text(json.dumps(summary), encoding="utf-8")
+        mock_probe.return_value = {
+            "code": 200,
+            "effective_url": "https://pdf-forge.vercel.app",
+            "raw": "",
+        }
+
+        results = retry_probe(summary_path=p)
+        assert len(results) == 1
+        assert results[0]["slug"] == "pdf-forge"
+        assert results[0]["category"] == "canonical_drift"
+        assert results[0]["url"] == "https://pdf-forge.vercel.app"
+
+    @patch("scripts.retry_probe.probe_url")
     def test_slug_filter(self, mock_probe, sample_summary: Path):
         mock_probe.return_value = {"code": 200, "effective_url": "x", "raw": ""}
         results = retry_probe(summary_path=sample_summary, slug_filter="jwt")
@@ -133,6 +163,5 @@ class TestFormatTable:
         assert "test-prod" in table
         assert "YES" in table
         assert "**Recovered:** 1/1" in table
-
 
 

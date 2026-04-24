@@ -28,6 +28,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.retry_probe import probe_url
+from scripts.summary_visibility import canonical_drift_entries
 from scripts.unhealthy_triage import (
     TRIAGE_RULES,
     sort_by_severity,
@@ -288,8 +289,8 @@ def run_autofix(
     with open(summary_path, encoding="utf-8") as f:
         summary = json.load(f)
 
-    gaps = summary.get("gaps", {})
     targets: list[dict] = []
+    gaps = summary.get("gaps", {})
 
     for item in gaps.get("unhealthy_live", []):
         slug = item.get("slug", "")
@@ -301,7 +302,7 @@ def run_autofix(
             "url": item.get("url", f"https://{slug}.vercel.app"),
         })
 
-    for item in gaps.get("canonical_url_drift", []):
+    for item in canonical_drift_entries(summary):
         slug = item.get("slug", "")
         if slug_filter and slug_filter not in slug:
             continue

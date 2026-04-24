@@ -212,6 +212,46 @@ class TestRunAutofix:
     @patch("scripts.vercel_autofix.probe_url")
     @patch("scripts.vercel_autofix._inspect_product_dir")
     @patch("scripts.vercel_autofix._check_api_health")
+    def test_compact_summary_canonical_drift_targets_are_found(
+        self, mock_health, mock_inspect, mock_probe, tmp_path: Path
+    ):
+        mock_inspect.return_value = {
+            "exists": True,
+            "has_api_dir": False,
+            "config_issues": [],
+            "api_files": [],
+            "uses_deprecated_routes": False,
+        }
+        mock_health.return_value = {"has_health_endpoint": False}
+        mock_probe.return_value = {
+            "code": 404,
+            "effective_url": "https://pdf-forge.vercel.app",
+        }
+        summary = {
+            "gaps": {
+                "unhealthy_live": [],
+                "canonical_url_drift": [],
+            },
+            "canonical_url_drift": 1,
+            "canonical_url_drift_products": ["pdf-forge"],
+            "products": [
+                {
+                    "s": "pdf-forge",
+                    "v": "https://pdf-forge-five.vercel.app",
+                }
+            ],
+        }
+        p = tmp_path / "STATE_SUMMARY.json"
+        p.write_text(json.dumps(summary), encoding="utf-8")
+
+        results = run_autofix(summary_path=p)
+        assert len(results) == 1
+        assert results[0]["slug"] == "pdf-forge"
+        assert results[0]["url"] == "https://pdf-forge.vercel.app"
+
+    @patch("scripts.vercel_autofix.probe_url")
+    @patch("scripts.vercel_autofix._inspect_product_dir")
+    @patch("scripts.vercel_autofix._check_api_health")
     def test_no_targets(self, mock_health, mock_inspect, mock_probe, tmp_path: Path):
         p = tmp_path / "STATE_SUMMARY.json"
         p.write_text(json.dumps({"gaps": {}}))

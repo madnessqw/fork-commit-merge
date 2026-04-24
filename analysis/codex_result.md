@@ -1,26 +1,27 @@
-# Codex Result — 2026-04-24 14:40 +03
+# Codex Result — 2026-04-24 15:07 +0300
 
 ## Okunanlar
 - `analysis/codex_task.md`
 - `STATE_SUMMARY.json`
-- `analysis/oneri.md`
-- `analysis/sorun_analizi.md`
-- `scripts/health_dashboard.py`
 - `scripts/summary_visibility.py`
-- `tests/test_health_dashboard.py`
+- `scripts/unhealthy_triage.py`
+- `scripts/retry_probe.py`
+- `scripts/vercel_autofix.py`
+- `tests/test_unhealthy_triage.py`
+- `tests/test_retry_probe.py`
+- `tests/test_vercel_autofix.py`
 
 ## Ne Değişti
-- `scripts/health_dashboard.py` artık canonical healthy ve fallback healthy sayılarını açıkça gösteriyor; fallback alias’lar sağlık özetinde kaybolmuyor.
-- Compact görünüm `CH:<canonical>` ve `FH:<fallback>` etiketlerini ekledi.
-- Full görünümde ürün özetine canonical/fallback healthy satırları eklendi.
-- `compute_metrics` canonical healthy sayısını top-level alandan, yoksa healthy-fallback farkından türetiyor.
-- `tests/test_health_dashboard.py` yeni görünürlük davranışı ve türetilmiş canonical count için genişletildi.
+- `scripts/summary_visibility.py` artık canonical drift için hem current `canonical_url_drift` hem de legacy `canonical_drift` gap key'lerini kabul ediyor.
+- `scripts/unhealthy_triage.py` canonical drift triage/fix suggestion akışını ortak drift helper'ına bağladı; current ve compact snapshot'larda fallback alias görünürlüğü kaybolmuyor.
+- `scripts/retry_probe.py` ve `scripts/vercel_autofix.py` canonical drift hedeflerini shared visibility helper üzerinden yeniden kuruyor; compact summary snapshot'ları artık kör kalmıyor.
+- Yeni regression testleri current `canonical_url_drift` key'i ve compact product snapshot fallback'i için eklendi.
 
 ## Doğrulama
-- `python3 -m py_compile scripts/health_dashboard.py tests/test_health_dashboard.py`
-- `pytest -q tests/test_health_dashboard.py` → 24 passed
-- `python3 scripts/health_dashboard.py --compact`
+- `python3 -m py_compile scripts/summary_visibility.py scripts/unhealthy_triage.py scripts/retry_probe.py scripts/vercel_autofix.py tests/test_unhealthy_triage.py tests/test_retry_probe.py tests/test_vercel_autofix.py`
+- `pytest -q tests/test_unhealthy_triage.py tests/test_retry_probe.py tests/test_vercel_autofix.py` → 82 passed
+- `pytest -q tests/test_update_summary.py tests/test_refresh_codex_context.py tests/test_product_state_sync.py tests/test_health_check.py` → 139 passed
+- `pytest -q tests/test_health_dashboard.py tests/test_portfolio_snapshot.py tests/test_health_trend.py` → 54 passed
 
 ## Blokerler
-- Vercel kaynaklı 4 canonical drift ürünü hâlâ fallback alias ile ayakta; bu cycle’da kod tarafında görünürlük güçlendirildi, dış servis tarafı çözülmedi.
-- Checkout tarafında bu cycle için ek iş yapmadım; mevcut summary’de checkout gap zaten 0.
+- Kod tarafı tamam; kalan `--health-score` hunk'u bu cycle'ın dışındaki mevcut workspace kalıntısı olarak bırakıldı ve commit kapsamına alınmadı.
