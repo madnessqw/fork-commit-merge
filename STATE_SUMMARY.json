@@ -3,24 +3,24 @@
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 149,
-  "live_count": 89,
-  "healthy_count": 86,
-  "canonical_healthy_count": 82,
+  "live_count": 90,
+  "healthy_count": 87,
+  "canonical_healthy_count": 83,
   "fallback_healthy_count": 4,
   "unhealthy_count": 3,
   "pending_health_count": 0,
-  "checkout_gap_count": 1,
-  "deploy_missing_or_bad_url": 16,
+  "checkout_gap_count": 0,
+  "deploy_missing_or_bad_url": 6,
   "canonical_url_drift": 4,
-  "spec_ready_count": 22,
-  "deploy_readiness_count": 27,
+  "spec_ready_count": 12,
+  "deploy_readiness_count": 16,
   "deploy_readiness_manifest_gap_count": 0,
-  "deploy_readiness_url_gap_count": 27,
-  "deploy_readiness_state_gap_count": 24,
+  "deploy_readiness_url_gap_count": 16,
+  "deploy_readiness_state_gap_count": 13,
   "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T05:00:07.966423Z",
+  "last_updated": "2026-04-24T05:41:38.377685Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -760,8 +760,8 @@
     {
       "n": "Security Headers Checker",
       "s": "security-headers-checker",
-      "st": "ready_to_deploy",
-      "v": null,
+      "st": "live",
+      "v": "https://security-headers-checker.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_dDipNSG0OGpdPuJ6tsUQ9ZDNgGJO0sxkKmQg54cnnWM"
     },
     {
@@ -832,14 +832,14 @@
       "s": "sql-to-nosql",
       "st": "ready_for_payment",
       "v": "https://sql-to-nosql.vercel.app",
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_thd5uw8PKttnBq51UARVGnCEytJKUIEG3wrIa24dktJ"
     },
     {
       "n": "Binary Inspector Pro",
       "s": "binary-inspector",
       "st": "ready_for_payment",
       "v": "https://binary-inspector.vercel.app",
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/1f5103be-a76e-4b96-bb7e-3813c9b5ba6b"
+      "c": "https://buy.polar.sh/polar_cl_ifeHO0XG1VqRRhKDgearUvMUTWhlc8EVQ7RdS2Pc6si"
     },
     {
       "n": "Browser Mock Studio",
@@ -851,30 +851,30 @@
     {
       "n": "Docker Compose Builder",
       "s": "docker-compose-builder",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://docker-compose-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_gwluHxTLq7MlFexWtX5TVDz7sUCWqCzgtR3Q30N6Zxj"
     },
     {
       "n": "ENV File Manager",
       "s": "env-file-manager",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://env-file-manager.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_7ugX7GcMrzAGYkcUCPPMgQyH5A7IFPq8Um3Ot16fCUN"
     },
     {
       "n": "Git Diff Visualizer",
       "s": "git-diff-visualizer",
-      "st": "spec_ready",
-      "v": null,
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/git-diff-viz-001"
+      "st": "ready_for_payment",
+      "v": "https://git-diff-visualizer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_NAWE9YYCnSyS0Xl6CPFIroEOdKchEQZLEYxem3fe57O"
     },
     {
       "n": "Code Screenshot Beautifier",
       "s": "code-screenshot-beautifier",
-      "st": "spec_ready",
-      "v": null,
-      "c": "https://profitbridge.lemonsqueezy.com/checkout/buy/code-screenshot-beautifier"
+      "st": "ready_for_payment",
+      "v": "https://code-screenshot-beautifier.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_w6ByNH3jJOZHHMxoBojpmIhkp8GAG7bMguYRU4H8MIg"
     },
     {
       "n": "JSON Schema to TypeScript",
@@ -893,44 +893,44 @@
     {
       "n": "API Security Scanner",
       "s": "api-security-scanner",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://api-security-scanner.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_7I8KgZ4hUKiR4rOppJQ68uEBX8RgW25g6P7Xz2XoXyN"
     },
     {
       "n": "Docker Command Builder",
       "s": "docker-command-builder",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://docker-command-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_G4E0u2BGrixfLZc4Q3QpY8Jt91XWiLumOFPMl3gmxXo"
     },
     {
       "n": "MCP Server Scaffolder",
       "s": "mcp-server-scaffolder",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://mcp-server-scaffolder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_qpPjyY3vUsUJcVSIwearedVBl7V6TjYKTDcxl0HpIMX"
     },
     {
       "n": "Browser Use Studio",
       "s": "browser-use-studio",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://browser-use-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ZnglDtareq07k7gyOUGrAAleHYWDbS8Uefz5d02RlLE"
     },
     {
       "n": "Agent Prompt Engineer",
       "s": "agent-prompt-engineer",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://agent-prompt-engineer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_yAX8q8zCVXsgT4Vls87PpR4h49m48slD1WHfU0R6umq"
     },
     {
       "n": "API Mock Server",
       "s": "api-mock-server",
-      "st": "spec_ready",
-      "v": null,
-      "c": null
+      "st": "ready_for_payment",
+      "v": "https://api-mock-server.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_RD1umMPQTv9I1lKpcXfhnHEXpPqUehRgt5h881acntm"
     },
     {
       "n": "CSS Gradient Studio",
@@ -1069,18 +1069,8 @@
   "gaps": {
     "missing_url": [
       "browser-mock-studio",
-      "docker-compose-builder",
-      "env-file-manager",
-      "git-diff-visualizer",
-      "code-screenshot-beautifier",
       "json-schema-to-ts",
-      "mcp-inspector-pro",
-      "api-security-scanner",
-      "docker-command-builder",
-      "mcp-server-scaffolder",
-      "browser-use-studio",
-      "agent-prompt-engineer",
-      "api-mock-server"
+      "mcp-inspector-pro"
     ],
     "unhealthy_live": [
       {
@@ -1115,9 +1105,7 @@
       }
     ],
     "pending_health": [],
-    "missing_checkout": [
-      "sql-to-nosql"
-    ],
+    "missing_checkout": [],
     "canonical_url_drift": [
       {
         "slug": "pdf-forge",
@@ -1212,123 +1200,9 @@
     ],
     "deploy_readiness": [
       {
-        "slug": "agent-prompt-engineer",
-        "name": "Agent Prompt Engineer",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/agent-prompt-engineer/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "api-mock-server",
-        "name": "API Mock Server",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/api-mock-server/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "browser-mock-studio",
         "name": "Browser Mock Studio",
         "manifest_path": "/home/gokhan/UniverseCreator/products/browser-mock-studio/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "browser-use-studio",
-        "name": "Browser Use Studio",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/browser-use-studio/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "docker-command-builder",
-        "name": "Docker Command Builder",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-command-builder/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "docker-compose-builder",
-        "name": "Docker Compose Builder",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/docker-compose-builder/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "env-file-manager",
-        "name": "ENV File Manager",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/env-file-manager/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
@@ -1354,24 +1228,6 @@
           "vercel_url",
           "deployment_url",
           "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "api-security-scanner",
-        "name": "API Security Scanner",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/api-security-scanner/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
           "webhook_url",
           "checkout_url"
         ],
@@ -1421,24 +1277,6 @@
         "slug": "mcp-inspector-pro",
         "name": "MCP Inspector Pro",
         "manifest_path": "/home/gokhan/UniverseCreator/products/mcp-inspector-pro/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
-        "slug": "mcp-server-scaffolder",
-        "name": "MCP Server Scaffolder",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/mcp-server-scaffolder/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
@@ -1506,41 +1344,9 @@
         ]
       },
       {
-        "slug": "code-screenshot-beautifier",
-        "name": "Code Screenshot Beautifier",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/code-screenshot-beautifier/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "docker-run-generator",
         "name": "Docker Run Generator",
         "manifest_path": "/home/gokhan/UniverseCreator/products/docker-run-generator/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "created_cycle"
-        ]
-      },
-      {
-        "slug": "security-headers-checker",
-        "name": "Security Headers Checker",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/security-headers-checker/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [
@@ -1582,21 +1388,6 @@
         ],
         "missing_state_fields": [
           "created_cycle"
-        ]
-      },
-      {
-        "slug": "git-diff-visualizer",
-        "name": "Git Diff Visualizer",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/git-diff-visualizer/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "webhook_url"
-        ],
-        "missing_state_fields": [
-          "deployed_cycle"
         ]
       },
       {

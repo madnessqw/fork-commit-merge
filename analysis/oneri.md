@@ -1,17 +1,17 @@
-# Codex Analiz Özeti — 2026-04-24 05:00 UTC
+# Codex Analiz Özeti — 2026-04-24 05:41 UTC
 
 ## Canlı State
 - Cycle: **1109**
 - Mode: **OPTIMIZE**
-- Live sağlık: **86/89** (%96.6)
-- Canonical healthy: **82/89** (%92.1)
+- Live sağlık: **87/90** (%96.7)
+- Canonical healthy: **83/90** (%92.2)
 - Health pending: **0**
 - Fallback healthy: **4**
-- Checkout gap: **1**
-- Deploy readiness gap: **27**
-- Deploy/url gap: **16**
+- Checkout gap: **0**
+- Deploy readiness gap: **16**
+- Deploy/url gap: **6**
 - Canonical drift: **4**
-- Spec-ready: **22**
+- Spec-ready: **12**
 - Next action: `3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut`
 
 ## Ana Darboğaz
@@ -40,17 +40,17 @@
 - `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 
 ## Deploy Readiness Issues
-- Count: **27** | Manifest gaps: **0** | URL gaps: **27** | State gaps: **24**
-- `agent-prompt-engineer` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `api-mock-server` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- Count: **16** | Manifest gaps: **0** | URL gaps: **16** | State gaps: **13**
 - `browser-mock-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `browser-use-studio` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `docker-command-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `docker-compose-builder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `env-file-manager` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
 - `htpasswd-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
-- `api-security-scanner` — manifest=none; url=vercel_url, deployment_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
 - `case-converter-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
+- `diff-checker-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
+- `mcp-inspector-pro` — manifest=none; url=vercel_url, deployment_url, webhook_url, checkout_url; state=payment_provider, created_cycle, deployed_cycle
+- `yaml-validator-pro` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
+- `api-mock-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle, deployed_cycle
+- `json-schema-to-ts` — manifest=none; url=vercel_url, deployment_url, webhook_url, checkout_url; state=payment_provider, deployed_cycle
+- `docker-run-generator` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
+- `subdomain-finder` — manifest=none; url=vercel_url, deployment_url, github_url, webhook_url; state=created_cycle
 
 ## Deploy/URL Gap Preview
-- browser-mock-studio, docker-compose-builder, env-file-manager, git-diff-visualizer, code-screenshot-beautifier, json-schema-to-ts, ...
+- browser-mock-studio, json-schema-to-ts, mcp-inspector-pro

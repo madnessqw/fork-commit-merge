@@ -1299,6 +1299,48 @@ class UpdateSummaryTests(unittest.TestCase):
 
         self.assertEqual(public_health_url(product), "https://stale-preview-tool-preview.vercel.app")
 
+    def test_build_summary_keeps_successful_preview_alias_visible_when_rendered_url_is_canonical(
+        self,
+    ) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Preview Alias Tool",
+                        "slug": "preview-alias-tool",
+                        "status": "live",
+                        "vercel_url": "https://preview-alias-tool.vercel.app",
+                        "health_status": "healthy",
+                        "last_health_code": 200,
+                        "last_health_url": "https://preview-alias-tool.vercel.app",
+                        "effective_health_url": "https://preview-alias-tool.vercel.app",
+                    }
+                ],
+                "spec_ready": [],
+            }
+        }
+
+        with patch.object(
+            update_summary,
+            "successful_health_url",
+            return_value="https://preview-alias-tool-preview.vercel.app",
+        ):
+            summary = build_summary(state)
+
+        self.assertEqual(summary["healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift"], 1)
+        self.assertEqual(summary["fallback_healthy_count"], 1)
+        self.assertEqual(summary["canonical_url_drift_products"], ["preview-alias-tool"])
+        self.assertEqual(summary["fallback_healthy_products"], ["preview-alias-tool"])
+        self.assertEqual(
+            summary["gaps"]["canonical_url_drift"][0]["url"],
+            "https://preview-alias-tool-preview.vercel.app",
+        )
+        self.assertEqual(
+            summary["gaps"]["fallback_healthy"][0]["url"],
+            "https://preview-alias-tool-preview.vercel.app",
+        )
+
     def test_newer_canonical_success_drops_stale_drift_record(self) -> None:
         state = {
             "products": {

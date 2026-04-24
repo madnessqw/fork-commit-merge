@@ -83,6 +83,15 @@ def _normalize_url(value: Any) -> str | None:
     return str(value).strip().rstrip("/")
 
 
+def _looks_like_preview_alias_url(value: Any, product: dict[str, Any]) -> bool:
+    normalized = _normalize_url(value)
+    if normalized is None or not normalized.endswith(".vercel.app"):
+        return False
+
+    canonical_url = canonical_target_vercel_url(product)
+    return canonical_url is not None and normalized != canonical_url
+
+
 def _looks_like_manual_dashboard_action(value: Any) -> bool:
     text = str(value or "").strip().lower()
     if not text:
@@ -206,12 +215,15 @@ def public_health_url(product: dict[str, Any]) -> str | None:
     # should follow that same decision instead of re-deriving from stale raw
     # health fields first.
     selected = _normalize_url(display_vercel_url(product))
+    successful = _normalize_url(successful_health_url(product))
+
     if selected is not None:
+        if successful is not None and _looks_like_preview_alias_url(successful, product):
+            return successful
         return selected
 
-    selected = successful_health_url(product)
-    if selected is not None:
-        return selected
+    if successful is not None:
+        return successful
 
     for key in (
         "effective_health_url",
