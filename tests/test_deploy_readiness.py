@@ -7,6 +7,7 @@ from scripts.deploy_readiness import (
     auto_fix_suggestions,
     batch_suggest_vercel_urls,
     collect_spec_ready_deploy_readiness,
+    deploy_candidates,
     main,
     ready_for_payment_audit,
     readiness_summary,
@@ -608,6 +609,155 @@ class CLITests(unittest.TestCase):
     def test_main_invalid_command_exits(self) -> None:
         with self.assertRaises(SystemExit):
             main(["invalid"])
+
+    def test_main_deploy_candidates_returns_zero(self) -> None:
+        self.assertEqual(main(["deploy-candidates"]), 0)
+
+    def test_main_format_text_returns_zero(self) -> None:
+        self.assertEqual(main(["summary", "--format", "text"]), 0)
+
+    def test_main_deploy_candidates_text_returns_zero(self) -> None:
+        self.assertEqual(main(["deploy-candidates", "--format", "text"]), 0)
+
+    def test_main_invalid_format_exits(self) -> None:
+        with self.assertRaises(SystemExit):
+            main(["summary", "--format", "xml"])
+
+
+class DeployCandidatesTests(unittest.TestCase):
+    def test_no_ready_to_deploy(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"slug": "live-prod", "status": "live"},
+                ]
+            }
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            result = deploy_candidates(state, root=root)
+        self.assertEqual(result["deploy_ready_count"], 0)
+        self.assertEqual(result["manifest_blocked_count"], 0)
+
+    def test_ready_to_deploy_with_manifest(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"slug": "deploy-me", "status": "ready_to_deploy"},
+                ]
+            }
+        }
+        manifest = {
+            "name": "Deploy Me",
+            "slug": "deploy-me",
+            "tagline": "t",
+            "description": "d",
+            "price": "9",
+            "features": [],
+            "tech_stack": "Vercel",
+            "category": "tools",
+            "status": "ready_to_deploy",
+            "spec_version": "1.0",
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            product_path = root / "products" / "deploy-me" / "product.json"
+            product_path.parent.mkdir(parents=True, exist_ok=True)
+            product_path.write_text(json.dumps(manifest), encoding="utf-8")
+            result = deploy_candidates(state, root=root)
+        self.assertEqual(result["deploy_ready_count"], 1)
+        self.assertEqual(result["manifest_blocked_count"], 0)
+        self.assertEqual(result["deploy_ready"][0]["slug"], "deploy-me")
+
+    def test_ready_to_deploy_without_manifest(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"slug": "no-manifest", "status": "ready_to_deploy"},
+                ]
+            }
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            result = deploy_candidates(state, root=root)
+        self.assertEqual(result["deploy_ready_count"], 0)
+        self.assertEqual(result["manifest_blocked_count"], 1)
+        self.assertEqual(result["manifest_blocked"][0]["slug"], "no-manifest")
+
+    def test_spec_ready_excluded_from_candidates(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"slug": "spec-only", "status": "spec_ready"},
+                ]
+            }
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            result = deploy_candidates(state, root=root)
+        self.assertEqual(result["deploy_ready_count"], 0)
+        self.assertEqual(result["manifest_blocked_count"], 0)
+
+    def test_mixed_candidates(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"slug": "with-manifest", "status": "ready_to_deploy"},
+                    {"slug": "without-manifest", "status": "ready_to_deploy"},
+                ]
+            }
+        }
+        manifest = {
+            "name": "With Manifest",
+            "slug": "with-manifest",
+            "tagline": "t",
+            "description": "d",
+            "price": "9",
+            "features": [],
+            "tech_stack": "Vercel",
+            "category": "tools",
+            "status": "ready_to_deploy",
+            "spec_version": "1.0",
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            product_path = root / "products" / "with-manifest" / "product.json"
+            product_path.parent.mkdir(parents=True, exist_ok=True)
+            product_path.write_text(json.dumps(manifest), encoding="utf-8")
+            result = deploy_candidates(state, root=root)
+        self.assertEqual(result["deploy_ready_count"], 1)
+        self.assertEqual(result["manifest_blocked_count"], 1)
+
+    def test_suggested_vercel_url_in_output(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {"slug": "my-tool", "status": "ready_to_deploy"},
+                ]
+            }
+        }
+        manifest = {
+            "name": "My Tool",
+            "slug": "my-tool",
+            "tagline": "t",
+            "description": "d",
+            "price": "9",
+            "features": [],
+            "tech_stack": "Vercel",
+            "category": "tools",
+            "status": "ready_to_deploy",
+            "spec_version": "1.0",
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            product_path = root / "products" / "my-tool" / "product.json"
+            product_path.parent.mkdir(parents=True, exist_ok=True)
+            product_path.write_text(json.dumps(manifest), encoding="utf-8")
+            result = deploy_candidates(state, root=root)
+        self.assertEqual(
+            result["deploy_ready"][0]["suggested_vercel_url"],
+            "https://my-tool.vercel.app",
+        )
 
 
 if __name__ == "__main__":

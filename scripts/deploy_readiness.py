@@ -446,6 +446,104 @@ def ready_for_payment_audit(
     }
 
 
+def deploy_candidates(
+    state: dict[str, Any],
+    *,
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    """Return ready_to_deploy products grouped by manifest health.
+
+    Products with valid manifests and no structural problems are separated
+    from those that need manifest repair before Vercel deploy.
+    """
+    readiness = collect_spec_ready_deploy_readiness(state, root=root)
+
+    deploy_ready: list[dict[str, Any]] = []
+    manifest_blocked: list[dict[str, Any]] = []
+
+    for issue in readiness.get("issues", []):
+        slug = issue.get("slug", "unknown")
+        status_raw = None
+        products = state.get("products", {})
+        collections = [products.get("active", []), products.get("spec_ready", [])] if isinstance(products, dict) else [products] if isinstance(products, list) else []
+        for coll in collections:
+            if not isinstance(coll, list):
+                continue
+            for item in coll:
+                if not isinstance(item, dict):
+                    continue
+                if item.get("slug") == slug or item.get("s") == slug:
+                    status_raw = (item.get("status") or item.get("st") or "").strip()
+                    break
+
+        if status_raw != "ready_to_deploy":
+            continue
+
+        entry = {
+            "slug": slug,
+            "name": issue.get("name", slug),
+            "manifest_problem": issue.get("manifest_problem"),
+            "missing_url_count": len(issue.get("missing_url_fields", [])),
+            "missing_state_count": len(issue.get("missing_state_fields", [])),
+            "suggested_vercel_url": suggest_vercel_url(slug),
+        }
+
+        if issue.get("manifest_problem") is None:
+            deploy_ready.append(entry)
+        else:
+            manifest_blocked.append(entry)
+
+    deploy_ready.sort(key=lambda e: str(e["slug"]))
+    manifest_blocked.sort(key=lambda e: str(e["slug"]))
+
+    return {
+        "deploy_ready_count": len(deploy_ready),
+        "manifest_blocked_count": len(manifest_blocked),
+        "deploy_ready": deploy_ready,
+        "manifest_blocked": manifest_blocked,
+    }
+
+
+def _format_text_report(data: dict[str, Any], command: str) -> str:
+    lines: list[str] = []
+
+    if command == "summary":
+        lines.append("=== Deploy Readiness Summary ===")
+        lines.append(f"  Spec ready:     {data.get('total_spec_ready', 0)}")
+        lines.append(f"  Issues:         {data.get('issues_count', 0)}")
+        lines.append(f"  Manifest gaps:  {data.get('manifest_gap', 0)}")
+        lines.append(f"  URL gaps:       {data.get('url_gap', 0)}")
+        lines.append(f"  State gaps:     {data.get('state_gap', 0)}")
+        lines.append(f"  Deploy missing: {data.get('deploy_missing_or_bad_url', 0)}")
+        lines.append(f"  Live:           {data.get('live_count', 0)}")
+        lines.append(f"  Healthy:        {data.get('healthy_count', 0)} ({data.get('health_pct', 0)}%)")
+        top = data.get("top_url_gap_slugs", [])
+        if top:
+            lines.append(f"  Top URL gaps:   {', '.join(top)}")
+
+    elif command == "deploy-candidates":
+        lines.append("=== Deploy Candidates ===")
+        lines.append(f"  Ready to deploy:     {data.get('deploy_ready_count', 0)}")
+        lines.append(f"  Manifest blocked:    {data.get('manifest_blocked_count', 0)}")
+        for entry in data.get("deploy_ready", []):
+            lines.append(f"  [READY] {entry['slug']} → {entry['suggested_vercel_url']}")
+        for entry in data.get("manifest_blocked", []):
+            lines.append(f"  [BLOCKED] {entry['slug']} ({entry.get('manifest_problem', '?')})")
+
+    elif command == "audit":
+        lines.append("=== Payment Audit ===")
+        lines.append(f"  Total:        {data.get('total', 0)}")
+        lines.append(f"  Live ready:   {len(data.get('live_ready', []))}")
+        lines.append(f"  Blocked:      {len(data.get('blocked', []))}")
+        for entry in data.get("live_ready", []):
+            lines.append(f"  [LIVE-READY] {entry['slug']}")
+        for entry in data.get("blocked", []):
+            blockers = ", ".join(entry.get("blockers", []))
+            lines.append(f"  [BLOCKED] {entry['slug']}: {blockers}")
+
+    return "\n".join(lines)
+
+
 def main(argv: list[str] | None = None) -> int:
     import argparse
 
@@ -456,21 +554,35 @@ def main(argv: list[str] | None = None) -> int:
         "command",
         nargs="?",
         default="summary",
-        choices=["summary", "readiness", "audit", "suggestions"],
+        choices=["summary", "readiness", "audit", "suggestions", "deploy-candidates"],
         help="Subcommand to run (default: summary)",
+    )
+    parser.add_argument(
+        "--format",
+        dest="output_format",
+        default="json",
+        choices=["json", "text"],
+        help="Output format (default: json)",
     )
     args = parser.parse_args(argv)
 
     state = _load_json(STATE_PATH) or {}
+    use_text = args.output_format == "text"
 
     if args.command == "readiness":
         report = collect_spec_ready_deploy_readiness(state)
-        print(json.dumps(report, indent=2, ensure_ascii=False))
+        if use_text:
+            print(_format_text_report(report, "readiness"))
+        else:
+            print(json.dumps(report, indent=2, ensure_ascii=False))
         return 0
 
     if args.command == "audit":
         report = ready_for_payment_audit(STATE_PATH)
-        print(json.dumps(report, indent=2, ensure_ascii=False))
+        if use_text:
+            print(_format_text_report(report, "audit"))
+        else:
+            print(json.dumps(report, indent=2, ensure_ascii=False))
         return 0
 
     if args.command == "suggestions":
@@ -478,8 +590,19 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(suggestions, indent=2, ensure_ascii=False))
         return 0
 
+    if args.command == "deploy-candidates":
+        candidates = deploy_candidates(state)
+        if use_text:
+            print(_format_text_report(candidates, "deploy-candidates"))
+        else:
+            print(json.dumps(candidates, indent=2, ensure_ascii=False))
+        return 0
+
     result = readiness_summary()
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    if use_text:
+        print(_format_text_report(result, "summary"))
+    else:
+        print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0
 
 
