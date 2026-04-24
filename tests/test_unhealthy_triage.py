@@ -10,7 +10,12 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.unhealthy_triage import _triage_entry, generate_triage, write_triage_report
+from scripts.unhealthy_triage import (
+    _triage_entry,
+    generate_triage,
+    sort_by_severity,
+    write_triage_report,
+)
 
 
 def test_triage_entry_known_code():
@@ -18,13 +23,33 @@ def test_triage_entry_known_code():
     assert entry["slug"] == "jwt-generator"
     assert entry["http_code"] == 500
     assert entry["label"] == "server_error"
+    assert entry["severity"] == "high"
     assert "logs" in entry["suggested_action"]
+
+
+def test_triage_entry_geo_block_low_severity():
+    entry = _triage_entry("timestamp-converter", 451)
+    assert entry["label"] == "geo_block"
+    assert entry["severity"] == "low"
 
 
 def test_triage_entry_unknown_code():
     entry = _triage_entry("foo", 503)
     assert entry["label"] == "error_503"
     assert entry["http_code"] == 503
+    assert entry["severity"] == "medium"
+
+
+def test_sort_by_severity():
+    entries = [
+        _triage_entry("geo-product", 451),
+        _triage_entry("server-product", 500),
+        _triage_entry("notfound-product", 404),
+        _triage_entry("auth-product", 401),
+    ]
+    sorted_entries = sort_by_severity(entries)
+    assert sorted_entries[0]["slug"] in ("server-product", "auth-product")
+    assert sorted_entries[-1]["slug"] == "geo-product"
 
 
 def test_generate_triage_from_file(tmp_path):
@@ -69,6 +94,9 @@ def test_write_triage_report(tmp_path):
     assert "server_error" in report
     assert "sso_protection" in report
     assert "geo_block" in report
+    assert "high" in report
+    assert "low" in report
     assert out.exists()
     content = out.read_text()
     assert "| diffmaster |" in content
+    assert "Severity breakdown:" in content

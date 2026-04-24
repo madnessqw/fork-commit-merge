@@ -20,25 +20,36 @@ TRIAGE_RULES = {
     401: {
         "label": "sso_protection",
         "action": "Check Vercel project settings -> disable Vercel Authentication",
+        "severity": "high",
     },
     402: {
         "label": "deployment_disabled",
         "action": "Redeploy via Vercel CLI or dashboard; check billing",
+        "severity": "medium",
     },
     404: {
         "label": "not_found",
         "action": "Verify deployment exists; re-link Vercel project to correct slug",
+        "severity": "medium",
     },
     451: {
         "label": "geo_block",
         "action": "Check Vercel firewall/geo rules; may need region whitelist",
+        "severity": "low",
     },
     500: {
         "label": "server_error",
         "action": "Check Vercel build/runtime logs; redeploy if transient",
+        "severity": "high",
     },
-    0: {"label": "timeout", "action": "Increase timeout or verify DNS resolution"},
+    0: {
+        "label": "timeout",
+        "action": "Increase timeout or verify DNS resolution",
+        "severity": "medium",
+    },
 }
+
+SEVERITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 
 
 def _utc_now_iso() -> str:
@@ -47,14 +58,26 @@ def _utc_now_iso() -> str:
 
 def _triage_entry(slug: str, code: int) -> dict:
     rule = TRIAGE_RULES.get(
-        code, {"label": f"error_{code}", "action": "Investigate manually"}
+        code,
+        {
+            "label": f"error_{code}",
+            "action": "Investigate manually",
+            "severity": "medium",
+        },
     )
     return {
         "slug": slug,
         "http_code": code,
         "label": rule["label"],
         "suggested_action": rule["action"],
+        "severity": rule.get("severity", "medium"),
     }
+
+
+def sort_by_severity(entries: list[dict]) -> list[dict]:
+    return sorted(
+        entries, key=lambda e: SEVERITY_ORDER.get(e.get("severity", "medium"), 1)
+    )
 
 
 def generate_triage(summary_path: Path | None = None) -> list[dict]:
@@ -78,19 +101,28 @@ def write_triage_report(entries: list[dict], output_path: Path | None = None) ->
         output_path = ROOT / "analysis" / "unhealthy_triage.md"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    sorted_entries = sort_by_severity(entries)
     lines = [
         f"# Unhealthy Live Triage Report",
         f"**Generated:** {_utc_now_iso()} UTC",
-        f"**Count:** {len(entries)}",
+        f"**Count:** {len(sorted_entries)}",
         "",
-        "| Slug | HTTP | Label | Suggested Action |",
-        "|------|------|-------|-----------------|",
+        "| Slug | HTTP | Label | Severity | Suggested Action |",
+        "|------|------|-------|----------|-----------------|",
     ]
-    for e in entries:
+    for e in sorted_entries:
         lines.append(
-            f"| {e['slug']} | {e['http_code']} | {e['label']} | {e['suggested_action']} |"
+            f"| {e['slug']} | {e['http_code']} | {e['label']} | {e['severity']} | {e['suggested_action']} |"
         )
     lines.append("")
+    if sorted_entries:
+        high_count = sum(1 for e in sorted_entries if e.get("severity") == "high")
+        med_count = sum(1 for e in sorted_entries if e.get("severity") == "medium")
+        low_count = sum(1 for e in sorted_entries if e.get("severity") == "low")
+        lines.append(
+            f"**Severity breakdown:** {high_count} high / {med_count} medium / {low_count} low"
+        )
+        lines.append("")
 
     report = "\n".join(lines)
     output_path.write_text(report, encoding="utf-8")
