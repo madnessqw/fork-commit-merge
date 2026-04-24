@@ -678,6 +678,80 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertIn("1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut", rendered_task)
         self.assertIn("1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut", rendered_oneri)
 
+    def test_compact_state_still_surfaces_canonical_drift_slugs_when_gap_details_are_missing(
+        self,
+    ) -> None:
+        summary = {
+            "cycle": 1109,
+            "mode": "OPTIMIZE",
+            "live_count": 2,
+            "healthy_count": 1,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 1,
+            "deploy_readiness_count": 0,
+            "deploy_readiness_manifest_gap_count": 0,
+            "deploy_readiness_url_gap_count": 0,
+            "deploy_readiness_state_gap_count": 0,
+            "canonical_url_drift": 1,
+            "fallback_healthy_count": 1,
+            "spec_ready_count": 0,
+            "next_action": "prepare_new_products_wait_deploy",
+            "products": [
+                {
+                    "n": "Broken Tool",
+                    "s": "broken-tool",
+                    "st": "live",
+                    "v": "https://broken-tool.vercel.app",
+                    "c": None,
+                },
+                {
+                    "n": "Fallback Tool",
+                    "s": "fallback-tool",
+                    "st": "live",
+                    "v": "https://fallback-tool-preview.vercel.app",
+                    "c": None,
+                },
+            ],
+            "fallback_healthy_products": ["fallback-tool"],
+            "gaps": {
+                "unhealthy_live": [
+                    {
+                        "slug": "broken-tool",
+                        "code": 500,
+                        "health_status": "error_500",
+                        "url": "https://broken-tool.vercel.app",
+                    }
+                ],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "fallback_healthy": [],
+                "deploy_readiness": [],
+            },
+        }
+
+        focus = determine_focus(summary, [])
+        rendered_oneri = render_oneri(
+            summary, [], focus, datetime(2026, 4, 24, 5, 0, tzinfo=timezone.utc)
+        )
+        rendered_task = render_codex_task(
+            summary, focus, datetime(2026, 4, 24, 5, 0, tzinfo=timezone.utc)
+        )
+
+        self.assertEqual(focus.key, "live_health")
+        self.assertEqual(
+            effective_next_action(summary, focus),
+            "1 canlı ürünü düzelt; 1 fallback alias'ı görünür tut",
+        )
+        self.assertIn("## Canonical Drift Ürünleri", rendered_oneri)
+        self.assertIn(
+            "- `fallback-tool` — current=https://fallback-tool-preview.vercel.app ideal=https://fallback-tool.vercel.app",
+            rendered_oneri,
+        )
+        self.assertIn("- Canonical drift slugs: `fallback-tool`", rendered_task)
+        self.assertIn("- Fallback healthy slugs: `fallback-tool`", rendered_task)
+
     def test_load_summary_refreshes_live_health_before_rebuilding_context(self) -> None:
         summary = {
             "cycle": 1103,

@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-24 07:35 UTC
+# Codex Task — Generated 2026-04-24 08:07 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -20,6 +20,7 @@ Canlı ürünlerin health alanları ile canonical/vercel URL gerçekliğini senk
 - Deploy readiness gap: 16
 - Deploy/url gap: 6
 - Canonical drift: 4
+- Canonical drift slugs: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
 - Fallback healthy slugs: `pdf-forge`, `webhook-tester`, `email-validator-pro`, `html-entity-encoder`
 - Spec-ready count: 12
 - Next action: 3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut

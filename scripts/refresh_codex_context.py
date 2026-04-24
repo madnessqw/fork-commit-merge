@@ -124,12 +124,80 @@ def _looks_like_manual_dashboard_action(value: Any) -> bool:
     return "vercel dashboard" in text or "manuel" in text or "manual" in text
 
 
+def _summary_products_by_slug(summary: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    products = summary.get("products", [])
+    if not isinstance(products, list):
+        return {}
+
+    indexed: dict[str, dict[str, Any]] = {}
+    for item in products:
+        if not isinstance(item, dict):
+            continue
+        slug = str(item.get("s") or item.get("slug") or "").strip()
+        if slug:
+            indexed[slug] = item
+    return indexed
+
+
+def _canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
+    gaps = summary.get("gaps", {})
+    if isinstance(gaps, dict):
+        raw_entries = gaps.get("canonical_url_drift")
+        if isinstance(raw_entries, list):
+            entries = [item for item in raw_entries if isinstance(item, dict)]
+            if entries:
+                return entries
+
+    product_map = _summary_products_by_slug(summary)
+    if not product_map:
+        return []
+
+    candidate_slugs: list[str] = []
+    raw_slugs = summary.get("canonical_url_drift_products")
+    if isinstance(raw_slugs, list):
+        candidate_slugs = [str(slug).strip() for slug in raw_slugs if str(slug).strip()]
+
+    entries: list[dict[str, Any]] = []
+    if candidate_slugs:
+        for slug in candidate_slugs:
+            product = product_map.get(slug)
+            if product is None:
+                continue
+            current_url = product.get("v") or product.get("vercel_url")
+            ideal_url = f"https://{slug}.vercel.app"
+            if current_url and current_url != ideal_url:
+                entries.append(
+                    {
+                        "slug": slug,
+                        "url": current_url,
+                        "ideal_url": ideal_url,
+                    }
+                )
+        if entries:
+            return entries
+
+    # Final fallback: derive drift directly from compact product records so a
+    # slim summary snapshot can still reconstruct the visible alias truth.
+    for slug, product in product_map.items():
+        current_url = product.get("v") or product.get("vercel_url")
+        ideal_url = f"https://{slug}.vercel.app"
+        if current_url and current_url != ideal_url:
+            entries.append(
+                {
+                    "slug": slug,
+                    "url": current_url,
+                    "ideal_url": ideal_url,
+                }
+            )
+    return entries
+
+
 def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
     raw = summary.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
     gaps = summary.get("gaps", {})
     unhealthy_live = list(gaps.get("unhealthy_live", []))
-    canonical_drift = list(gaps.get("canonical_url_drift", []))
+    canonical_drift = _canonical_drift_entries(summary)
 
     if unhealthy_live:
         if canonical_drift:
@@ -165,7 +233,7 @@ def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Fo
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
-    canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    canonical_drift = _canonical_drift_entries(summary)
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
     if unhealthy_live:
@@ -360,7 +428,7 @@ def top_issues(issues: list[dict[str, Any]], limit: int = 5) -> list[dict[str, A
 def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
     health_percent = _health_percent(summary)
     unresolved = top_issues(issues)
-    canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    canonical_drift = _canonical_drift_entries(summary)
     fallback_healthy = list(summary.get("gaps", {}).get("fallback_healthy", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
@@ -529,7 +597,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
-    canonical_drift = list(summary.get("gaps", {}).get("canonical_url_drift", []))
+    canonical_drift = _canonical_drift_entries(summary)
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
     def format_unhealthy_item(item: dict[str, Any]) -> str:
@@ -681,6 +749,7 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
 def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> str:
     health_percent = _health_percent(summary)
     next_action = effective_next_action(summary, focus)
+    canonical_drift = _canonical_drift_entries(summary)
     fallback_source: list[Any] = []
     if isinstance(summary.get("fallback_healthy_products"), list):
         fallback_source = list(summary["fallback_healthy_products"])
@@ -705,11 +774,23 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
         f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
         f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
         f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
-        f"- Spec-ready count: {summary.get('spec_ready_count')}",
-        f"- Next action: {next_action}",
     ]
+    extra_summary_lines: list[str] = []
+    if canonical_drift:
+        drift_preview = ", ".join(
+            f"`{item.get('slug')}`" for item in canonical_drift[:8] if item.get("slug")
+        )
+        if drift_preview:
+            extra_summary_lines.append(f"- Canonical drift slugs: {drift_preview}")
     if fallback_line:
-        summary_lines.insert(9, fallback_line)
+        extra_summary_lines.append(fallback_line)
+    summary_lines.extend(extra_summary_lines)
+    summary_lines.extend(
+        [
+            f"- Spec-ready count: {summary.get('spec_ready_count')}",
+            f"- Next action: {next_action}",
+        ]
+    )
     return "\n".join(
         [
             f"# Codex Task — Generated {now.strftime('%Y-%m-%d %H:%M')} UTC",

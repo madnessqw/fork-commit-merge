@@ -20,7 +20,7 @@
   "needs_fix_count": 7,
   "next_action": "3 canlı ürünü düzelt; 4 fallback alias'ı görünür tut",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T07:35:12.101834Z",
+  "last_updated": "2026-04-24T08:07:27.297482Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -846,7 +846,7 @@
       "s": "browser-mock-studio",
       "st": "spec_ready",
       "v": null,
-      "c": null
+      "c": "https://buy.polar.sh/polar_cl_HVhOznasoiRkXPMK7XTX9EPospigODCWnpTaa4fEDYy"
     },
     {
       "n": "Docker Compose Builder",
@@ -1200,25 +1200,6 @@
     ],
     "deploy_readiness": [
       {
-        "slug": "browser-mock-studio",
-        "name": "Browser Mock Studio",
-        "manifest_path": "/home/gokhan/UniverseCreator/products/browser-mock-studio/product.json",
-        "manifest_problem": null,
-        "missing_manifest_fields": [],
-        "missing_url_fields": [
-          "vercel_url",
-          "deployment_url",
-          "github_url",
-          "webhook_url",
-          "checkout_url"
-        ],
-        "missing_state_fields": [
-          "payment_provider",
-          "created_cycle",
-          "deployed_cycle"
-        ]
-      },
-      {
         "slug": "htpasswd-generator",
         "name": "Htpasswd Generator Pro",
         "manifest_path": "/home/gokhan/UniverseCreator/products/htpasswd-generator/product.json",
@@ -1313,6 +1294,23 @@
         "slug": "api-mock-generator",
         "name": "API Mock Generator",
         "manifest_path": "/home/gokhan/UniverseCreator/products/api-mock-generator/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "browser-mock-studio",
+        "name": "Browser Mock Studio",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/browser-mock-studio/product.json",
         "manifest_problem": null,
         "missing_manifest_fields": [],
         "missing_url_fields": [

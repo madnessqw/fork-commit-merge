@@ -1,4 +1,4 @@
-# Codex Result — 2026-04-24 10:39 +0300
+# Codex Result — 2026-04-24 08:07 +0300
 
 ## Okunanlar
 - `skills/SWARM_IDENTITY.md`
@@ -13,15 +13,17 @@
 - `skills/codex_skill.md`
 
 ## Ne Değişti
-- Bu turda kod diff çıkmadı; fallback alias koruma fix'i zaten commit `4606ffa` içinde yaşıyor.
-- `STATE.json` ve `STATE_SUMMARY.json` yeni health snapshot ile güncellendi: `last_updated=2026-04-24T07:35:11Z`.
-- `table-to-csv` ve `html-to-markdown-pro` state tarafında Polar checkout'a hizalandı.
-- `analysis/codex_task.md`, `analysis/oneri.md` ve `analysis/sorun_analizi.md` aynı snapshot timestamp'i ile yenilendi.
+- `scripts/refresh_codex_context.py` güçlendirildi: canonical drift artık detaylı gap listesi eksik olsa bile compact `STATE_SUMMARY.json.products` snapshot'ından yeniden kurulabiliyor.
+- `render_codex_task()` içine canonical drift slug satırı eklendi; fallback alias görünürlüğü sadece counts'a değil, slug-level kanıta da bağlandı.
+- `tests/test_refresh_codex_context.py` içine compact summary regression testi eklendi.
+- `STATE.json`, `STATE_SUMMARY.json`, `analysis/codex_task.md`, `analysis/oneri.md`, `analysis/sorun_analizi.md` yeni health snapshot ile yenilendi.
 
 ## Doğrulama
+- `python3 -m py_compile scripts/refresh_codex_context.py` → OK
+- `python3 -m pytest tests/test_refresh_codex_context.py tests/test_update_summary.py tests/test_product_state_sync.py -q` → 113 passed
 - `python3 -m json.tool STATE.json` → OK
 - `python3 -m json.tool STATE_SUMMARY.json` → OK
-- `pytest -q tests/test_product_state_sync.py tests/test_update_summary.py tests/test_health_check.py tests/test_refresh_codex_context.py tests/test_unhealthy_triage.py` → 181 passed
+- Secret scan: değişen dosyalarda `sk_`, `pk_`, `ghp_`, `api_key`, `POLAR_OAT` bulunmadı
 
 ## Blokerler
 - Yok.
