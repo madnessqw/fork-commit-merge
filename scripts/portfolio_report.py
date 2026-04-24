@@ -29,6 +29,7 @@ from scripts.unhealthy_triage import (
 )
 from scripts.price_audit import audit_product_prices
 from scripts.checkout_duplicate_detector import detect_duplicates
+from scripts.summary_visibility import canonical_drift_count
 
 
 def _utc_now_iso() -> str:
@@ -73,7 +74,7 @@ def generate_report(summary_path: Path | None = None) -> dict:
         checkout_dups = {}
 
     deploy_gap = summary.get("deploy_missing_or_bad_url", 0)
-    canonical_drift = len(summary.get("gaps", {}).get("canonical_url_drift", []))
+    canonical_drift = canonical_drift_count(summary)
 
     return {
         "ts": _utc_now_iso(),

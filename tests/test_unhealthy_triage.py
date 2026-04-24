@@ -419,6 +419,26 @@ def test_grade_from_pct_d():
     assert _grade_from_pct(60.0) == "D"
 
 
+def test_portfolio_health_score_uses_top_level_canonical_drift_when_gap_detail_missing(tmp_path):
+    summary = {
+        "live_count": 10,
+        "healthy_count": 9,
+        "unhealthy_count": 1,
+        "checkout_gap_count": 0,
+        "deploy_missing_or_bad_url": 1,
+        "canonical_url_drift": 4,
+        "gaps": {
+            "unhealthy_live": [{"slug": "jwt-generator", "code": 500}],
+            "canonical_drift": [],
+        },
+    }
+    summary_file = tmp_path / "STATE_SUMMARY.json"
+    summary_file.write_text(json.dumps(summary), encoding="utf-8")
+
+    result = portfolio_health_score(summary_path=summary_file)
+    assert result["canonical_drift"] == 4
+
+
 def test_grade_from_pct_f():
     assert _grade_from_pct(30.0) == "F"
 

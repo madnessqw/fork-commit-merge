@@ -13,7 +13,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TREND_FILE = ROOT / "logs" / "health_trend.jsonl"
+
+from scripts.summary_visibility import canonical_drift_count
 
 SNAPSHOT_KEYS = (
     "live_count",
@@ -46,8 +50,8 @@ def record_snapshot(summary_path: Path | None = None) -> dict:
     live = summary.get("live_count", 0)
     healthy = summary.get("healthy_count", 0)
     health_pct = round(healthy / live * 100, 1) if live > 0 else 0.0
-    gaps = summary.get("gaps", {})
-    canonical_drift = len(gaps.get("canonical_url_drift", []))
+
+    canonical_drift = canonical_drift_count(summary)
 
     snapshot = {
         "ts": _utc_now_iso(),

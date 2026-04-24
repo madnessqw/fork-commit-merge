@@ -15,6 +15,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.summary_visibility import canonical_drift_count
 
 TRIAGE_RULES = {
     401: {
@@ -334,8 +338,7 @@ def portfolio_health_score(summary_path: Path | None = None) -> dict:
 
     checkout_gap = summary.get("checkout_gap_count", 0)
     deploy_gap = summary.get("deploy_missing_or_bad_url", 0)
-    gaps = summary.get("gaps", {})
-    canonical_drift = len(gaps.get("canonical_url_drift", []))
+    canonical_drift = canonical_drift_count(summary)
 
     return {
         "live_count": live,

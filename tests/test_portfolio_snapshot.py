@@ -168,6 +168,61 @@ def test_snapshot_fallback_slugs():
     assert "drift-app" in snap["fallback_slugs"]
 
 
+def test_snapshot_rebuilds_fallback_visibility_from_compact_summary():
+    compact = {
+        "cycle": 99,
+        "mode": "OPTIMIZE",
+        "active_count": 2,
+        "live_count": 2,
+        "healthy_count": 1,
+        "canonical_healthy_count": 0,
+        "unhealthy_count": 1,
+        "checkout_gap_count": 0,
+        "deploy_missing_or_bad_url": 1,
+        "spec_ready_count": 0,
+        "deploy_readiness_count": 0,
+        "canonical_url_drift_products": ["fallback-tool"],
+        "fallback_healthy_products": ["fallback-tool"],
+        "products": [
+            {
+                "n": "Broken Tool",
+                "s": "broken-tool",
+                "st": "live",
+                "v": "https://broken-tool.vercel.app",
+                "c": None,
+            },
+            {
+                "n": "Fallback Tool",
+                "s": "fallback-tool",
+                "st": "live",
+                "v": "https://fallback-tool-preview.vercel.app",
+                "c": None,
+            },
+        ],
+        "gaps": {
+            "unhealthy_live": [
+                {
+                    "slug": "broken-tool",
+                    "code": 500,
+                    "health_status": "error_500",
+                    "url": "https://broken-tool.vercel.app",
+                }
+            ],
+            "pending_health": [],
+            "missing_checkout": [],
+            "missing_url": [],
+            "deploy_readiness": [],
+        },
+    }
+
+    snap = snapshot(compact)
+    assert snap["fallback_healthy"] == 1
+    assert snap["codex_handoff"] is True
+    assert snap["drift_detail"][0]["slug"] == "fallback-tool"
+    assert snap["fallback_slugs"] == ["fallback-tool"]
+    assert any("Resolve 1 canonical URL drifts" in action for action in snap["next_actions"])
+
+
 def test_snapshot_ts_present():
     snap = snapshot(FAKE_SUMMARY)
     assert "ts" in snap

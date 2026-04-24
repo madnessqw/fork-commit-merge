@@ -111,6 +111,20 @@ class TestGenerateReport:
             report = generate_report(tmp_summary)
         assert report["price_issues_count"] == 0
 
+    def test_canonical_drift_uses_top_level_count_when_gap_detail_missing(self, tmp_path):
+        summary = _make_summary(
+            canonical_url_drift=2,
+            gaps={"missing_checkout": ["slug-a", "slug-b"]},
+        )
+        summary_file = tmp_path / "STATE_SUMMARY.json"
+        summary_file.write_text(json.dumps(summary), encoding="utf-8")
+
+        with patch("scripts.portfolio_report.audit_product_prices", return_value=[]), \
+             patch("scripts.portfolio_report.detect_duplicates", return_value={"duplicate_checkout_urls": {}}):
+            report = generate_report(summary_file)
+
+        assert report["canonical_drift"] == 2
+
 
 class TestFormatMarkdown:
     def test_basic_render(self):

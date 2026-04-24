@@ -230,9 +230,9 @@ Spec.json ile product.json arasında fark varsa → spec.json kullan + bu listey
 Aşağıdaki adımlar smoke test ile doğrulandı ($1 ödemesi alındı):
 
 ```
-Adım 1: POLAR_OAT ortam değişkeni yüklendi (config/polar.json → codex_loop.sh otomatik)
+Adım 1: Polar token ortam değişkeni yüklendi (config/polar.json → codex_loop.sh otomatik)
 Adım 2: Plan çıkar → python3 scripts/polar_checkout_sync.py plan --status live --status ready_for_payment --replace-non-polar
-Adım 3: Rollout → POLAR_OAT='...' python3 scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment --replace-non-polar --output analysis/polar_checkout_sync_report.md
+Adım 3: Rollout → token env var ile python3 scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment --replace-non-polar --output analysis/polar_checkout_sync_report.md
 Adım 4: product.json güncellendiğini doğrula (checkout_url, payment_provider: polar, polar_product_id, polar_product_price_id, polar_checkout_link_id)
 Adım 5: Değişen product.json dosyalarını commit et
 Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
@@ -256,6 +256,7 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 | Yeni ürün scaffold yanlış Polar anahtarları üretiyordu | `payment_*` yerine `polar_product_id`, `polar_product_price_id`, `polar_checkout_link_id` kullan | 2026-04-24 |
 | Legacy live checkout'lar `vercel_url` boşsa plan dışı kalıyordu | `--replace-non-polar` ile checkout_url olan legacy ürünleri landing page olmadan da aday say; `success_url`/`return_url` sadece varsa gönder | 2026-04-24 |
 | `vercel_url` missing ürünler checkout sync dışına düşüyordu | `load_local_products` artık checkout_url boş ama fiyatı çözülen ürünleri de aday sayıyor; `success_url` / `return_url` opsiyonel | 2026-04-24 |
+| Compact STATE/summary snapshot'ları gap detail olmadan da drift/fallback count taşıyabiliyor | Downstream report kodu top-level `canonical_url_drift` / `fallback_healthy_count` alanlarını kullanmalı; detail array boşsa `products` listesinden görünür alias'ı yeniden kurmalı | 2026-04-24 |
 
 ---
 

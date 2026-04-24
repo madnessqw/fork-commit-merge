@@ -106,6 +106,20 @@ class HealthTrendTests(unittest.TestCase):
         finally:
             ht.TREND_FILE = orig
 
+    def test_record_snapshot_uses_top_level_canonical_drift_when_detail_missing(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            self._write_summary(summary, canonical_url_drift=3, gaps={})
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["canonical_drift"], 3)
+        finally:
+            ht.TREND_FILE = orig
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -20,8 +20,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 SUMMARY_PATH = ROOT / "STATE_SUMMARY.json"
 OUTPUT_PATH = ROOT / "analysis" / "portfolio_snapshot.md"
+
+from scripts.summary_visibility import (
+    canonical_drift_entries,
+    canonical_drift_count,
+    fallback_healthy_count,
+    fallback_healthy_entries,
+)
 
 
 def _load_summary(path: Path = SUMMARY_PATH) -> dict:
@@ -56,7 +65,7 @@ def snapshot(summary: dict | None = None) -> dict:
     live = summary.get("live_count", 0)
     healthy = summary.get("healthy_count", 0)
     canonical_healthy = summary.get("canonical_healthy_count", 0)
-    fallback_healthy = summary.get("fallback_healthy_count", 0)
+    fallback_healthy = fallback_healthy_count(summary)
     active = summary.get("active_count", 0)
     unhealthy = summary.get("unhealthy_count", 0)
     checkout_gap = summary.get("checkout_gap_count", 0)
@@ -70,8 +79,9 @@ def snapshot(summary: dict | None = None) -> dict:
     canonical_pct = _pct(canonical_healthy, live)
 
     unhealthy_items = gaps.get("unhealthy_live", [])
-    drift_items = gaps.get("canonical_url_drift", [])
-    fallback_items = gaps.get("fallback_healthy", [])
+    drift_items = canonical_drift_entries(summary)
+    drift_count = canonical_drift_count(summary)
+    fallback_items = fallback_healthy_entries(summary)
     deploy_readiness_items = gaps.get("deploy_readiness", [])
 
     unhealthy_slugs = [
@@ -101,7 +111,11 @@ def snapshot(summary: dict | None = None) -> dict:
         for dr in deploy_readiness_items
     ]
 
-    needs_codex_handoff = len(unhealthy_items) > 0 or len(drift_items) > 0
+    if drift_count > len(drift_items):
+        drift_action_items = drift_items + ([{"slug": "unknown"}] * (drift_count - len(drift_items)))
+    else:
+        drift_action_items = drift_items
+    needs_codex_handoff = len(unhealthy_items) > 0 or drift_count > 0
 
     return {
         "ts": datetime.now(timezone.utc).isoformat(),
@@ -126,7 +140,7 @@ def snapshot(summary: dict | None = None) -> dict:
         "deploy_gap_detail": deploy_gap_slugs,
         "codex_handoff": needs_codex_handoff,
         "next_actions": _next_actions(
-            unhealthy, checkout_gap, deploy_gap, drift_items, fallback_healthy
+            unhealthy, checkout_gap, deploy_gap, drift_action_items, fallback_healthy
         ),
     }
 
