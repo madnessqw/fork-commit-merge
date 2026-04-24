@@ -198,7 +198,30 @@ Okunabilir ama şimdilik operasyon dışı:
 - `webhooks:write`
 - `user:write`
 
-## ⚠️ Polar API Quirks (canlı testten öğrenildi)
+## ⚠️ Fiyat Kaynağı Öncelik Kuralı
+
+**KURAL: Polar checkout fiyatı = website'deki fiyat = spec.json fiyatı**
+
+Fiyat şu sırayla alınır:
+1. **`spec.json["price"]`** — tasarım belgesi (en yetkili). "$15 one-time", "$29 one-time" gibi
+2. **`product.json["price"]`** — sayısal değer ("9", "19")
+3. **Dosya text arama** — index.html, README, spec.md içindeki "$XX" kalıpları
+
+spec.json ile product.json fiyatı farklıysa → spec.json kullan + `lessons/checkout-url-lessons.md` Section 3'e yaz.
+
+Bu mantık `scripts/polar_checkout_sync.py` içine gömülüdür.
+
+## 📓 Lessons Dosyası
+
+`lessons/checkout-url-lessons.md` — Codex'in checkout URL hafızası:
+- Aktif ürün tablosu (slug / status / price / checkout_url / polar_product_id)
+- Fiyat mismatch kaydı
+- Başarılı workflow adımları
+- Bilinen API sorunları + çözümler
+
+Her cycle başında oku. Yeni bilgi edinince güncelle ve commit et.
+
+
 - **Minimum fiyat: $0.50** — $0.10 rejected, $1 = güvenli alt sınır
 - **price create payload:** `amount_type: "fixed"` kullan — `type: "fixed"` çalışmıyor (422)
 - **OAT ile organization_id gönderme** — checkout/product create çağrılarında yasak (422)

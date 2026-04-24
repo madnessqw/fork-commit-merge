@@ -264,14 +264,48 @@ def load_local_products(
             else:
                 continue
 
-        price_source = "product.json:price"
+        # Price resolution: spec.json (authoritative) → product.json → file text discovery
+        # spec.json is the design document and matches what's displayed on the website
+        spec_price_cents: int | None = None
+        spec_price_raw: str | None = None
+        spec_path = path.parent / "spec.json"
+        if spec_path.exists():
+            try:
+                spec_raw = json.loads(spec_path.read_text(encoding="utf-8"))
+                spec_price_field = spec_raw.get("price")
+                if spec_price_field:
+                    spec_price_cents = parse_price_to_cents(spec_price_field)
+                    spec_price_raw = str(spec_price_field)
+            except (OSError, json.JSONDecodeError, ValueError):
+                pass
+
+        product_price_cents: int | None = None
         try:
-            price_cents = parse_price_to_cents(raw.get("price"))
+            product_price_cents = parse_price_to_cents(raw.get("price"))
         except ValueError:
+            pass
+
+        if spec_price_cents is not None and product_price_cents is not None:
+            if spec_price_cents != product_price_cents:
+                # spec.json is more authoritative (design document = website price)
+                price_cents = spec_price_cents
+                price_source = f"spec.json:price (product.json={raw.get('price')} overridden)"
+            else:
+                price_cents = spec_price_cents
+                price_source = "spec.json:price"
+        elif spec_price_cents is not None:
+            price_cents = spec_price_cents
+            price_source = "spec.json:price"
+        elif product_price_cents is not None:
+            price_cents = product_price_cents
+            price_source = "product.json:price"
+        else:
             discovered = discover_price_from_files(path.parent)
             if discovered is None:
                 continue
             price_cents, price_source = discovered
+
+        price_display = spec_price_raw if spec_price_raw else str(raw.get("price", ""))
 
         name = str(raw.get("name") or slug).strip()
         description = str(raw.get("description") or raw.get("tagline") or name).strip()
@@ -282,7 +316,7 @@ def load_local_products(
                 name=name,
                 description=description,
                 price_cents=price_cents,
-                price_display=str(raw.get("price")),
+                price_display=price_display,
                 price_source=price_source,
                 status=status,
                 vercel_url=str(raw.get("vercel_url") or "").strip() or None,
@@ -357,7 +391,7 @@ def link_matches_product(link: dict[str, Any], product_id: str, local_slug: str)
 def ensure_remote_product(client: PolarClient, remote_products: list[dict[str, Any]], local: LocalProduct) -> dict[str, Any]:
     remote = find_remote_product(remote_products, local)
     price_payload = {
-        "type": "fixed",
+        "amount_type": "fixed",
         "price_amount": local.price_cents,
         "price_currency": "usd",
     }

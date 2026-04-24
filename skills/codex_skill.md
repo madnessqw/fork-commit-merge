@@ -33,8 +33,14 @@ Codex `*/35` cron ile çalışır. Her cycle aşağıdaki 4 modu sırayla kontro
    - Kalan blokajlar
 8. Sadece kendi değiştirdiğin dosyaları git add ile stage et
 9. git commit -m "codex: YYYYMMDD-HHMM — <kısa sonuç>"
-10. .signals/qa_pending yaz: {"slug": "{slug}", "ts": "YYYY-MM-DDTHH:MM:SSZ"}
-11. logs/run_ledger.jsonl'a kaydet (format aşağıda)
+10. **lessons/checkout-url-lessons.md güncelle:**
+    - Yeni checkout bağlandıysa → Section 2 tablosunu güncelle (polar-ok, fiyat, polar_pid)
+    - Yeni Polar API sorunu / çözüm bulunduysa → Section 6'ya ekle
+    - Yeni ürün live/ready_for_payment olduysa → Section 1 sayılarını güncelle
+    - Fiyat mismatch tespiti → Section 3'e ekle
+    - `git add lessons/checkout-url-lessons.md && git commit -m "lessons: cycle — <özet>"`
+11. .signals/qa_pending yaz: {"slug": "{slug}", "ts": "YYYY-MM-DDTHH:MM:SSZ"}
+12. logs/run_ledger.jsonl'a kaydet (format aşağıda)
 ```
 
 **QA sonrası auto-deploy:**
@@ -61,7 +67,8 @@ if qa_result == "PASS":
    - >35dk → .signals/builder2_needed yaz (Claude'a eskalasyon)
 4. Küçük optimizasyon tespit edersen → .signals/optimizer_needed yaz
 5. Spec muğlak veya bilgi eksikse → analysis/codex_block.md yaz
-6. logs/run_ledger.jsonl'a kaydet
+6. lessons/checkout-url-lessons.md güncelle (gerekiyorsa)
+7. logs/run_ledger.jsonl'a kaydet
 ```
 
 ---
@@ -80,7 +87,8 @@ if qa_result == "PASS":
    - "Bloker var mı?"
 4. analysis/codex_strategy_input.md yaz (format aşağıda)
 5. .signals/codex_strategy_ready yaz
-6. logs/run_ledger.jsonl'a kaydet
+6. lessons/checkout-url-lessons.md güncelle (gerekiyorsa)
+7. logs/run_ledger.jsonl'a kaydet
 ```
 
 **codex_strategy_input.md formatı:**
@@ -106,7 +114,7 @@ if qa_result == "PASS":
 ```
 1. analysis/oneri.md oku
 2. Küçük bir sistem iyileştirmesi var mı?
-   - Varsa → cerrahi fix yap, commit et, run_ledger'a kaydet
+   - Varsa → cerrahi fix yap, commit et, lessons/checkout-url-lessons.md güncelle, run_ledger'a kaydet
    - Yoksa → analysis/codex_result.md'ye "IDLE — no pending tasks" yaz, çık
 ```
 
