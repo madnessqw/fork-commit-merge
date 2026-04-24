@@ -590,18 +590,33 @@ curl -sf https://{slug}.vercel.app/api/health
 # Telegram bildirimi
 ```
 
-### LemonSqueezy Checkout URL Akışı
+### Polar.sh Checkout URL Akışı (Aktif — LemonSqueezy devre dışı)
 ```
-1. Ürün Vercel'de canlı
-2. Claude → Gokhan'a Telegram bildir: "LemonSqueezy'de product oluştur"
-3. Gokhan → Checkout URL'yi Telegram'dan gönderir
-4. Claude/Codex → scripts/set_checkout_url.sh {slug} {url}
-5. STATE.json güncellenir → checkout_url aktif
-6. Landing page'de buy butonu aktif olur
+1. Ürün Vercel'de canlı (STATE.json status: live veya ready_for_payment)
+2. Codex → polar_checkout_sync.py sync-links çalıştırır (POLAR_OAT env var ile)
+   - Polar'da product yoksa oluşturur (amount_type: "fixed", min $0.50)
+   - Reusable checkout link üretir
+   - product.json alanlarını günceller (checkout_url, payment_provider: "polar")
+3. STATE.json checkout_url güncellenir → aktif
+4. Landing page buy butonu → checkout_url ile inject edilir
+
+Araçlar:
+  scripts/polar_checkout_sync.py  — plan + sync-links modları
+  skills/POLAR_CHECKOUT.md        — Codex için truth source (API quirks dahil)
+  config/polar.json               — OAT + org_id (gitignored, asla commit'leme)
+
+OAT yükleme (codex_loop.sh otomatik yapar):
+  export POLAR_OAT=$(python3 -c "import json; print(json.load(open('config/polar.json'))['polar_oat'])")
+
+Rollout komutu:
+  POLAR_OAT='...' python3 scripts/polar_checkout_sync.py sync-links \
+    --status live --status ready_for_payment \
+    --replace-non-polar \
+    --output analysis/polar_checkout_sync_report.md
 ```
 
-**Checkout URL listesi** (PROMPT.txt'te mevcut, STATE.json'a yazılır):
-`cat /home/gokhan/UniverseCreator/PROMPT.txt | grep -A 30 "CHECKOUT URL LİSTESİ"`
+**Polar Organization ID:** `ce28e75a-a8b4-4f3a-90e4-5df05cb6d18e`
+**Payout:** Polar → Stripe → IBAN (Türkiye destekleniyor)
 
 ---
 

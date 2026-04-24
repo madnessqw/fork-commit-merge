@@ -113,6 +113,16 @@ trap 'rm -f "$RUNNING_FLAG"; echo "[CODEX] Flag temizlendi." | tee -a "$LOG_FILE
 cd "$WORK_DIR"
 python3 scripts/update_summary.py | tee -a "$LOG_FILE"
 python3 scripts/refresh_codex_context.py | tee -a "$LOG_FILE"
+
+# Polar OAT — config/polar.json'dan oku, varsa export et
+if [[ -f "$WORK_DIR/config/polar.json" ]]; then
+    POLAR_OAT_VAL=$(python3 -c "import json,sys; d=json.load(open('$WORK_DIR/config/polar.json')); print(d.get('polar_oat',''))" 2>/dev/null || true)
+    if [[ -n "$POLAR_OAT_VAL" ]]; then
+        export POLAR_OAT="$POLAR_OAT_VAL"
+        echo "[CODEX] POLAR_OAT yüklendi (config/polar.json)" | tee -a "$LOG_FILE"
+    fi
+fi
+
 PROMPT_CONTENT=$(cat prompts/codex_prompt.txt)
 
 echo "--- codex exec START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
