@@ -18,6 +18,8 @@ from scripts.product_state_sync import normalize_record
 
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS_DIR = ROOT / "products"
+STATE_PATH = ROOT / "STATE.json"
+SUMMARY_PATH = ROOT / "STATE_SUMMARY.json"
 
 MANIFEST_REQUIRED_FIELDS = (
     "name",
@@ -42,7 +44,6 @@ STATE_REQUIRED_FIELDS = (
     "payment_provider",
     "created_cycle",
     "deployed_cycle",
-    "lemonsqueezy_product_id",
 )
 
 
@@ -205,3 +206,58 @@ def collect_spec_ready_deploy_readiness(
         "state_gap_count": state_gap_count,
         "issues": issues,
     }
+
+
+def readiness_summary(
+    state_path: Path = STATE_PATH,
+    summary_path: Path = SUMMARY_PATH,
+    *,
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    """One-call deploy-readiness overview merging STATE and STATE_SUMMARY data.
+
+    Returns a compact dict that downstream agents can use for quick triage
+    without parsing the full STATE_SUMMARY or running the full readiness check.
+
+    Example output::
+
+        {
+            "total_spec_ready": 24,
+            "issues_count": 20,
+            "manifest_gap": 0,
+            "url_gap": 20,
+            "state_gap": 20,
+            "deploy_missing_or_bad_url": 18,
+            "live_count": 89,
+            "healthy_count": 86,
+            "health_pct": 96.6,
+            "top_url_gap_slugs": ["slug-a", "slug-b"],
+        }
+    """
+    state = _load_json(state_path) or {}
+    summary = _load_json(summary_path) or {}
+
+    readiness = collect_spec_ready_deploy_readiness(state, root=root)
+
+    live_count = summary.get("live_count", 0)
+    healthy_count = summary.get("healthy_count", 0)
+    health_pct = round(healthy_count / live_count * 100, 1) if live_count else 0.0
+
+    top_url_gap_slugs: list[str] = []
+    for issue in readiness.get("issues", [])[:5]:
+        if issue.get("missing_url_fields"):
+            top_url_gap_slugs.append(issue.get("slug", "unknown"))
+
+    return {
+        "total_spec_ready": summary.get("spec_ready_count", 0),
+        "issues_count": readiness["count"],
+        "manifest_gap": readiness["manifest_gap_count"],
+        "url_gap": readiness["url_gap_count"],
+        "state_gap": readiness["state_gap_count"],
+        "deploy_missing_or_bad_url": summary.get("deploy_missing_or_bad_url", 0),
+        "live_count": live_count,
+        "healthy_count": healthy_count,
+        "health_pct": health_pct,
+        "top_url_gap_slugs": top_url_gap_slugs,
+    }
+

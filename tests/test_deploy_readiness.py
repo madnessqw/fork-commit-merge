@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.deploy_readiness import collect_spec_ready_deploy_readiness
+from scripts.deploy_readiness import collect_spec_ready_deploy_readiness, readiness_summary
 
 
 class DeployReadinessTests(unittest.TestCase):
@@ -98,7 +98,6 @@ class DeployReadinessTests(unittest.TestCase):
                 "payment_provider",
                 "created_cycle",
                 "deployed_cycle",
-                "lemonsqueezy_product_id",
             ],
         )
 
@@ -157,6 +156,98 @@ class DeployReadinessTests(unittest.TestCase):
         self.assertIn("deploy-prod", slugs)
         self.assertNotIn("live-prod", slugs)
         self.assertNotIn("building-prod", slugs)
+
+
+class ReadinessSummaryTests(unittest.TestCase):
+    """Tests for the readiness_summary shortcut function."""
+
+    def _write_json(self, path: Path, data: dict) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data), encoding="utf-8")
+
+    def test_summary_merges_state_and_summary(self) -> None:
+        state = {
+            "products": {
+                "spec_ready": [
+                    {"slug": "alpha-tool", "status": "spec_ready"},
+                    {"slug": "beta-tool", "status": "spec_ready"},
+                ]
+            }
+        }
+        summary = {
+            "live_count": 80,
+            "healthy_count": 78,
+            "spec_ready_count": 2,
+            "deploy_missing_or_bad_url": 12,
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            state_path = root / "STATE.json"
+            summary_path = root / "STATE_SUMMARY.json"
+            self._write_json(state_path, state)
+            self._write_json(summary_path, summary)
+
+            result = readiness_summary(state_path, summary_path, root=root)
+
+        self.assertEqual(result["live_count"], 80)
+        self.assertEqual(result["healthy_count"], 78)
+        self.assertAlmostEqual(result["health_pct"], 97.5)
+        self.assertEqual(result["total_spec_ready"], 2)
+        self.assertEqual(result["deploy_missing_or_bad_url"], 12)
+        self.assertEqual(result["issues_count"], 2)
+        self.assertEqual(result["url_gap"], 2)
+        self.assertEqual(result["state_gap"], 2)
+
+    def test_health_pct_zero_when_no_live(self) -> None:
+        state = {"products": {"spec_ready": []}}
+        summary = {"live_count": 0, "healthy_count": 0, "spec_ready_count": 0}
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            state_path = root / "STATE.json"
+            summary_path = root / "STATE_SUMMARY.json"
+            self._write_json(state_path, state)
+            self._write_json(summary_path, summary)
+
+            result = readiness_summary(state_path, summary_path, root=root)
+
+        self.assertEqual(result["health_pct"], 0.0)
+        self.assertEqual(result["issues_count"], 0)
+        self.assertEqual(result["top_url_gap_slugs"], [])
+
+    def test_top_url_gap_slugs_limited_to_five(self) -> None:
+        spec_ready = [
+            {"slug": f"tool-{i}", "status": "spec_ready"} for i in range(8)
+        ]
+        state = {"products": {"spec_ready": spec_ready}}
+        summary = {"live_count": 10, "healthy_count": 10, "spec_ready_count": 8}
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            state_path = root / "STATE.json"
+            summary_path = root / "STATE_SUMMARY.json"
+            self._write_json(state_path, state)
+            self._write_json(summary_path, summary)
+
+            result = readiness_summary(state_path, summary_path, root=root)
+
+        self.assertLessEqual(len(result["top_url_gap_slugs"]), 5)
+        self.assertEqual(result["issues_count"], 8)
+
+    def test_missing_files_returns_zeros(self) -> None:
+        """When STATE/STATE_SUMMARY don't exist, returns safe defaults."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            state_path = root / "STATE.json"
+            summary_path = root / "STATE_SUMMARY.json"
+
+            result = readiness_summary(state_path, summary_path, root=root)
+
+        self.assertEqual(result["live_count"], 0)
+        self.assertEqual(result["healthy_count"], 0)
+        self.assertEqual(result["health_pct"], 0.0)
+        self.assertEqual(result["issues_count"], 0)
 
 
 if __name__ == "__main__":
