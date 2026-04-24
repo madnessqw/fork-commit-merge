@@ -29,6 +29,7 @@ from scripts.update_summary import apply_summary_fields, build_summary, persist_
 HEALTH_CHECKABLE_STATUSES = {"live", "ready_for_payment"}
 SYNCED_HEALTH_STATUSES = {"healthy", "alternate_healthy"}
 CANONICAL_REDIRECTED_PREVIEW_STATUS = "redirected_preview_alias"
+HEALTH_AUDIT_BUCKETS = ("live", "ready_for_payment")
 
 
 def _utc_now_iso() -> str:
@@ -124,6 +125,37 @@ def _preferred_public_url(result, slug):
 
 def is_synced_health_result(result):
     return result.get("status") in SYNCED_HEALTH_STATUSES
+
+
+def _empty_health_bucket():
+    return {
+        "healthy": [],
+        "fallback_healthy": [],
+        "unhealthy": [],
+        "no_url": [],
+    }
+
+
+def summarize_health_audit_results(results, status_by_slug):
+    """Group audit results so live metrics stay separate from ready-for-payment issues."""
+    buckets = {bucket: _empty_health_bucket() for bucket in HEALTH_AUDIT_BUCKETS}
+
+    for result in results:
+        bucket_name = status_by_slug.get(result.get("slug"), "live")
+        if bucket_name not in buckets:
+            bucket_name = "live"
+
+        bucket = buckets[bucket_name]
+        if is_synced_health_result(result):
+            bucket["healthy"].append(result)
+            if result.get("status") == "alternate_healthy":
+                bucket["fallback_healthy"].append(result)
+        elif result.get("status") == "no_url":
+            bucket["no_url"].append(result)
+        else:
+            bucket["unhealthy"].append(result)
+
+    return buckets
 
 
 def apply_health_result(product, result):
@@ -381,57 +413,90 @@ def main():
             continue
         product.update(synced)
 
-    live_products = [
+    checkable_products = [
         p for p in synced_products if p.get("status") in HEALTH_CHECKABLE_STATUSES
     ]
+    live_products = [p for p in checkable_products if p.get("status") == "live"]
+    ready_for_payment_products = [
+        p for p in checkable_products if p.get("status") == "ready_for_payment"
+    ]
+    status_by_slug = {
+        (item.get("slug") or item.get("s")): item.get("status")
+        for item in checkable_products
+        if (item.get("slug") or item.get("s"))
+    }
 
     print(f"=== HEALTH CHECK ===")
     print(f"Total products: {len(products)}")
     print(f"Live products to check: {len(live_products)}")
+    if ready_for_payment_products:
+        print(f"Ready-for-payment products to check: {len(ready_for_payment_products)}")
     print()
 
-    healthy = []
-    fallback_healthy = []
-    unhealthy = []
-    no_url = []
+    all_results = []
 
     # Check products in parallel
     with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = {executor.submit(check_product_health, p): p for p in live_products}
+        futures = {executor.submit(check_product_health, p): p for p in checkable_products}
 
         for future in as_completed(futures):
             result = future.result()
+            all_results.append(result)
+
+            bucket_name = status_by_slug.get(result.get("slug"), "live")
+            if bucket_name not in HEALTH_AUDIT_BUCKETS:
+                bucket_name = "live"
+            bucket_label = "Live" if bucket_name == "live" else "Ready-for-payment"
+
             if is_synced_health_result(result):
-                healthy.append(result)
                 if result["status"] == "alternate_healthy":
-                    fallback_healthy.append(result)
                     print(
-                        f"⚠️  {result['name']}: ALTERNATE HEALTHY (HTTP {result['code']})"
+                        f"⚠️  [{bucket_label}] {result['name']}: ALTERNATE HEALTHY (HTTP {result['code']})"
                     )
                 else:
-                    print(f"✅ {result['name']}: HTTP {result['code']}")
+                    print(f"✅ [{bucket_label}] {result['name']}: HTTP {result['code']}")
             elif result["status"] == "no_url":
-                no_url.append(result)
-                print(f"⚠️  {result['name']}: NO URL")
+                print(f"⚠️  [{bucket_label}] {result['name']}: NO URL")
             else:
-                unhealthy.append(result)
                 icon = "⚠️" if result["status"] == "alternate_healthy" else "❌"
                 print(
-                    f"{icon} {result['name']}: {result['status'].upper()} (HTTP {result['code']})"
+                    f"{icon} [{bucket_label}] {result['name']}: {result['status'].upper()} (HTTP {result['code']})"
                 )
 
     print()
     print("=== SUMMARY ===")
-    print(f"✅ Healthy: {len(healthy)}")
-    print(f"❌ Unhealthy: {len(unhealthy)}")
-    print(f"⚠️  No URL: {len(no_url)}")
-    if fallback_healthy:
-        print(f"⚠️  Canonical drift but healthy via fallback: {len(fallback_healthy)}")
-    success_rate = (len(healthy) / len(live_products) * 100) if live_products else 0.0
-    print(f"Success rate: {success_rate:.1f}%")
+    audit_buckets = summarize_health_audit_results(all_results, status_by_slug)
+    live_bucket = audit_buckets["live"]
+    ready_bucket = audit_buckets["ready_for_payment"]
+
+    print(f"✅ Live healthy: {len(live_bucket['healthy'])}")
+    print(f"❌ Live unhealthy: {len(live_bucket['unhealthy'])}")
+    print(f"⚠️  Live no URL: {len(live_bucket['no_url'])}")
+    if live_bucket["fallback_healthy"]:
+        print(
+            f"⚠️  Live canonical drift but healthy via fallback: {len(live_bucket['fallback_healthy'])}"
+        )
+    success_rate = (
+        (len(live_bucket["healthy"]) / len(live_products) * 100)
+        if live_products
+        else 0.0
+    )
+    print(f"Live success rate: {success_rate:.1f}%")
+
+    if ready_for_payment_products:
+        print()
+        print("=== READY FOR PAYMENT ===")
+        print(f"✅ Ready-for-payment healthy: {len(ready_bucket['healthy'])}")
+        print(f"❌ Ready-for-payment issues: {len(ready_bucket['unhealthy'])}")
+        print(f"⚠️  Ready-for-payment no URL: {len(ready_bucket['no_url'])}")
+        if ready_bucket["fallback_healthy"]:
+            print(
+                "⚠️  Ready-for-payment canonical drift but healthy via fallback: "
+                f"{len(ready_bucket['fallback_healthy'])}"
+            )
 
     # Update state with health status
-    for result in healthy + unhealthy + no_url:
+    for result in all_results:
         for p in products:
             if p.get("slug") == result["slug"] or p.get("s") == result["slug"]:
                 apply_health_result(p, result)
@@ -455,11 +520,16 @@ def main():
 
     # Return summary for further processing
     return {
-        "healthy": summary["healthy_count"],
-        "unhealthy": summary["unhealthy_count"],
-        "no_url": len(no_url),
-        "fallback_healthy": len(fallback_healthy),
-        "total": summary["live_count"],
+        "healthy": len(live_bucket["healthy"]),
+        "unhealthy": len(live_bucket["unhealthy"]),
+        "no_url": len(live_bucket["no_url"]),
+        "fallback_healthy": len(live_bucket["fallback_healthy"]),
+        "total": len(live_products),
+        "ready_for_payment_healthy": len(ready_bucket["healthy"]),
+        "ready_for_payment_unhealthy": len(ready_bucket["unhealthy"]),
+        "ready_for_payment_no_url": len(ready_bucket["no_url"]),
+        "ready_for_payment_fallback_healthy": len(ready_bucket["fallback_healthy"]),
+        "ready_for_payment_total": len(ready_for_payment_products),
     }
 
 

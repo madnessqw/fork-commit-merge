@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1110 | 2026-04-24 13:07 UTC
+# Sorun Analizi — Cycle 1113 | 2026-04-24 13:46 UTC
 
 ## Ana Darboğaz
 - **ready_for_payment_health** — 1 ready_for_payment ürün health-check'te sorunlu; ilk örnek `code-formatter-universal` (HTTP 404, not_found).
@@ -45,6 +45,7 @@
 ## Açık Issue Kayıtları
 - **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
 - **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
+- **None** [None/None] — None
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.

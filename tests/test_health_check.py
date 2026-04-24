@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import os
 import unittest
@@ -10,6 +12,7 @@ from scripts.health_check import (
     apply_health_result,
     check_product_health,
     is_synced_health_result,
+    summarize_health_audit_results,
 )
 
 
@@ -274,6 +277,95 @@ class HealthCheckTests(unittest.TestCase):
         self.assertEqual(
             result["canonical_probe_url"], "https://fallback-tool.vercel.app"
         )
+
+    def test_summarize_health_audit_results_keeps_ready_for_payment_separate(
+        self,
+    ) -> None:
+        buckets = summarize_health_audit_results(
+            [
+                {
+                    "slug": "live-tool",
+                    "status": "healthy",
+                    "code": 200,
+                },
+                {
+                    "slug": "rfp-tool",
+                    "status": "no_url",
+                    "code": None,
+                },
+            ],
+            {
+                "live-tool": "live",
+                "rfp-tool": "ready_for_payment",
+            },
+        )
+
+        self.assertEqual(len(buckets["live"]["healthy"]), 1)
+        self.assertEqual(len(buckets["live"]["unhealthy"]), 0)
+        self.assertEqual(len(buckets["live"]["no_url"]), 0)
+        self.assertEqual(len(buckets["ready_for_payment"]["healthy"]), 0)
+        self.assertEqual(len(buckets["ready_for_payment"]["no_url"]), 1)
+        self.assertEqual(len(buckets["ready_for_payment"]["unhealthy"]), 0)
+
+    def test_main_reports_live_success_rate_without_ready_for_payment_noise(
+        self,
+    ) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "name": "Live Tool",
+                        "slug": "live-tool",
+                        "status": "live",
+                        "vercel_url": "https://live-tool.vercel.app",
+                    },
+                    {
+                        "name": "Ready Tool",
+                        "slug": "ready-tool",
+                        "status": "ready_for_payment",
+                        "vercel_url": "https://ready-tool.vercel.app",
+                    },
+                ]
+            }
+        }
+
+        def run_side_effect(cmd, *args, **kwargs):
+            url = cmd[-1]
+            if url == "https://live-tool.vercel.app":
+                return Mock(stdout="200")
+            if url == "https://ready-tool.vercel.app":
+                return Mock(stdout="404")
+            return Mock(stdout="500")
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            (tmp_path / "STATE.json").write_text(json.dumps(state), encoding="utf-8")
+            cwd = os.getcwd()
+            os.chdir(tmp_path)
+            try:
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf), patch.object(
+                    health_check, "load_product_catalog", return_value={}
+                ), patch.object(
+                    health_check,
+                    "sync_state_products",
+                    side_effect=lambda products, catalog: [dict(product) for product in products],
+                ), patch.object(
+                    health_check.subprocess, "run", side_effect=run_side_effect
+                ), patch.object(
+                    health_check, "persist_summary", side_effect=lambda summary: None
+                ):
+                    result = health_check.main()
+
+                out = buf.getvalue()
+                self.assertEqual(result["healthy"], 1)
+                self.assertEqual(result["unhealthy"], 0)
+                self.assertEqual(result["ready_for_payment_unhealthy"], 1)
+                self.assertIn("Live products to check: 1", out)
+                self.assertIn("Ready-for-payment products to check: 1", out)
+                self.assertIn("Live success rate: 100.0%", out)
+            finally:
+                os.chdir(cwd)
 
     @patch("scripts.health_check.subprocess.run")
     def test_manifest_preview_alias_probe_success_is_marked_as_alternate_healthy(
