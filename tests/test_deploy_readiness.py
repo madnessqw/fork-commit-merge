@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.deploy_readiness import (
+    auto_fix_suggestions,
     batch_suggest_vercel_urls,
     collect_spec_ready_deploy_readiness,
     readiness_summary,
@@ -285,6 +286,124 @@ class SuggestVercelUrlTests(unittest.TestCase):
 
     def test_batch_empty_list(self) -> None:
         self.assertEqual(batch_suggest_vercel_urls([]), {})
+
+
+class AutoFixSuggestionsTests(unittest.TestCase):
+    """Tests for auto_fix_suggestions."""
+
+    def test_suggests_vercel_url_for_url_gaps(self) -> None:
+        state = {
+            "products": {
+                "spec_ready": [
+                    {"slug": "cool-tool", "status": "spec_ready"},
+                ]
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            result = auto_fix_suggestions(state, root=root)
+
+        self.assertEqual(len(result), 1)
+        fix = result[0]
+        self.assertEqual(fix["slug"], "cool-tool")
+        self.assertEqual(fix["suggested_vercel_url"], "https://cool-tool.vercel.app")
+        self.assertIn("vercel_url", fix["auto_fillable"])
+        self.assertEqual(fix["auto_fillable"]["vercel_url"], "https://cool-tool.vercel.app")
+
+    def test_auto_fills_from_manifest(self) -> None:
+        state = {
+            "products": {
+                "spec_ready": [
+                    {"slug": "paid-tool", "status": "spec_ready"},
+                ]
+            }
+        }
+        manifest = {
+            "name": "Paid Tool",
+            "slug": "paid-tool",
+            "tagline": "t",
+            "description": "d",
+            "price": "9",
+            "features": [],
+            "tech_stack": "Vercel",
+            "category": "tools",
+            "status": "spec_ready",
+            "spec_version": "1.0",
+            "github_url": "https://github.com/example/paid-tool",
+            "checkout_url": "https://buy.polar.sh/test",
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            product_path = root / "products" / "paid-tool" / "product.json"
+            product_path.parent.mkdir(parents=True, exist_ok=True)
+            product_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            result = auto_fix_suggestions(state, root=root)
+
+        self.assertEqual(len(result), 1)
+        fix = result[0]
+        self.assertTrue(fix["manifest_ok"])
+        self.assertIn("checkout_url", fix["auto_fillable"])
+        self.assertEqual(fix["auto_fillable"]["checkout_url"], "https://buy.polar.sh/test")
+
+    def test_skips_products_with_no_gaps(self) -> None:
+        state = {
+            "products": {
+                "active": [
+                    {
+                        "slug": "complete-tool",
+                        "status": "spec_ready",
+                        "payment_provider": "polar",
+                        "created_cycle": 100,
+                        "deployed_cycle": 101,
+                        "vercel_url": "https://complete-tool.vercel.app",
+                        "deployment_url": "https://complete-tool.vercel.app",
+                        "github_url": "https://github.com/test",
+                        "webhook_url": "https://hook.test",
+                        "checkout_url": "https://buy.polar.sh/test",
+                    },
+                ]
+            }
+        }
+        manifest = {
+            "name": "Complete Tool",
+            "slug": "complete-tool",
+            "tagline": "t",
+            "description": "d",
+            "price": "9",
+            "features": [],
+            "tech_stack": "Vercel",
+            "category": "tools",
+            "status": "spec_ready",
+            "spec_version": "1.0",
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            product_path = root / "products" / "complete-tool" / "product.json"
+            product_path.parent.mkdir(parents=True, exist_ok=True)
+            product_path.write_text(json.dumps(manifest), encoding="utf-8")
+            result = auto_fix_suggestions(state, root=root)
+
+        self.assertEqual(len(result), 0)
+
+    def test_manifest_ok_false_when_manifest_problem(self) -> None:
+        state = {
+            "products": {
+                "spec_ready": [
+                    {"slug": "broken-tool", "status": "spec_ready"},
+                ]
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            result = auto_fix_suggestions(state, root=root)
+
+        self.assertEqual(len(result), 1)
+        self.assertFalse(result[0]["manifest_ok"])
 
 
 if __name__ == "__main__":

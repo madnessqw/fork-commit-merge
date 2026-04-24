@@ -226,6 +226,64 @@ def batch_suggest_vercel_urls(slugs: list[str]) -> dict[str, str]:
     return {slug: suggest_vercel_url(slug) for slug in slugs}
 
 
+def auto_fix_suggestions(
+    state: dict[str, Any],
+    *,
+    root: Path = ROOT,
+) -> list[dict[str, Any]]:
+    """Generate concrete auto-fix suggestions for spec-ready products.
+
+    For each spec-ready product missing URL fields, produces a list of
+    vercel_url suggestions and identifies which STATE fields can be
+    auto-populated from the product manifest.
+
+    Returns a list of fix records suitable for downstream agents to apply.
+    """
+    readiness = collect_spec_ready_deploy_readiness(state, root=root)
+    suggestions: list[dict[str, Any]] = []
+
+    for issue in readiness.get("issues", []):
+        slug = issue.get("slug", "unknown")
+        url_gaps = issue.get("missing_url_fields", [])
+        state_gaps = issue.get("missing_state_fields", [])
+        manifest_gaps = issue.get("missing_manifest_fields", [])
+
+        if not (url_gaps or state_gaps):
+            continue
+
+        fix: dict[str, Any] = {
+            "slug": slug,
+            "suggested_vercel_url": suggest_vercel_url(slug),
+            "url_fields_missing": url_gaps,
+            "state_fields_missing": state_gaps,
+            "manifest_ok": not manifest_gaps and issue.get("manifest_problem") is None,
+            "auto_fillable": {},
+        }
+
+        if "vercel_url" in url_gaps or "deployment_url" in url_gaps:
+            url = suggest_vercel_url(slug)
+            fillable = {}
+            if "vercel_url" in url_gaps:
+                fillable["vercel_url"] = url
+            if "deployment_url" in url_gaps:
+                fillable["deployment_url"] = url
+            fix["auto_fillable"].update(fillable)
+
+        manifest_path = root / "products" / slug / "product.json"
+        raw_manifest = _load_json(manifest_path)
+        if isinstance(raw_manifest, dict):
+            manifest = normalize_record(raw_manifest)
+            if "github_url" in url_gaps and has_value(manifest.get("github_url")):
+                fix["auto_fillable"]["github_url"] = manifest["github_url"]
+            if "checkout_url" in url_gaps and has_value(manifest.get("checkout_url")):
+                fix["auto_fillable"]["checkout_url"] = manifest["checkout_url"]
+
+        suggestions.append(fix)
+
+    suggestions.sort(key=lambda s: (0 if s["manifest_ok"] else 1, str(s["slug"])))
+    return suggestions
+
+
 def readiness_summary(
     state_path: Path = STATE_PATH,
     summary_path: Path = SUMMARY_PATH,
