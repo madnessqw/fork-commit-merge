@@ -9,14 +9,19 @@ pretending manual deploy/payment steps are already done.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts.checkout_metadata import has_value
 from scripts.product_state_sync import normalize_record
 
 
-ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS_DIR = ROOT / "products"
 STATE_PATH = ROOT / "STATE.json"
 SUMMARY_PATH = ROOT / "STATE_SUMMARY.json"
