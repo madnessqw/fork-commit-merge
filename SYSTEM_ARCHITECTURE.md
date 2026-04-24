@@ -307,10 +307,14 @@ scripts/codex_loop.sh (cron: */35 * * * *):
 
 **Prompt içeriği (codex_prompt.txt):**
 ```
-1. skills/codex_skill.md oku
-2. analysis/codex_task.md oku — güncel görevi öğren
-3. STATE_SUMMARY.json, analysis/oneri.md, analysis/sorun_analizi.md oku
-4. Görevi uygula → analysis/codex_result.md yaz → git commit
+1. lessons/checkout-url-lessons.md oku  ← Codex memory: aktif ürün tablosu + öğrenilmiş workflow
+2. skills/POLAR_CHECKOUT.md oku         ← Checkout truth source
+3. skills/codex_skill.md oku            ← 5-mod operasyonel kılavuz
+4. analysis/codex_task.md oku — güncel görevi öğren
+5. STATE_SUMMARY.json, analysis/oneri.md, analysis/sorun_analizi.md oku
+6. Görevi uygula → analysis/codex_result.md yaz → git commit
+7. lessons/checkout-url-lessons.md güncelle → commit
+8. Telegram ZORUNLU (her cycle)
 ```
 
 ### Codex Çalışma Modları (Öncelik Sırası)
@@ -332,6 +336,13 @@ scripts/codex_loop.sh (cron: */35 * * * *):
 - `.signals/codex_auth_state.json` yazar → preferred account ve son auth-switch durumu saklanır
 - Strategy modunda `analysis/codex_strategy_input.md` yazar → Strategist tetikler
 - EVOLVE modunda `analysis/codex_selfevolve_report.md` yazar
+- **Her cycle `lessons/checkout-url-lessons.md` günceller** — yeni checkout, fiyat mismatch, sorun/çözüm
+- **Her cycle Telegram özeti gönderir (shell-level garanti + LLM-level)**
+
+**Codex Ortam Değişkenleri (codex_loop.sh otomatik yükler):**
+```bash
+POLAR_OAT  # config/polar.json'dan okunur → polar_checkout_sync.py çalıştırmak için
+```
 
 **Codex'in kullandığı MCP'ler** (CODEX_OPERATOR.md'de tanımlı):
 - Web search
@@ -417,10 +428,15 @@ curl -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
 | `analysis/codex_selfevolve_report.md` | Codex (EVOLVE) | Claude, ANALYST | Sistem evrim kaydı |
 | `analysis/glm_fix_brief.md` | GLM5.1 | Codex, OPTIMIZER | Spesifik kod/polish briefi |
 | `analysis/glm_code_result.md` | GLM5.1 | Claude, ANALYST | GLM'nin her cycle yaptığı kod değişikliği özeti |
+| `analysis/polar_checkout_sync_report.md` | Codex (`polar_checkout_sync.py sync-links`) | Claude, ANALYST | Polar rollout sonucu |
+| `analysis/polar_checkout_plan.md` | Codex (`polar_checkout_sync.py plan`) | Codex | Rollout adayları listesi |
 | `analysis/seo_report.md` | OPTIMIZER | Claude | SEO durumu |
 | `analysis/weekly_digest.md` | ANALYST | Claude | Haftalık özet |
+| `lessons/checkout-url-lessons.md` | Codex (her cycle günceller) | Codex | **Codex memory:** aktif ürün tablosu, başarılı workflow adımları, Polar API quirks + çözümleri, fiyat mismatch kaydı |
 | `research/YYYY-MM-DD.md` | RESEARCHER | Claude, STRATEGIST, BUILDER | Günlük araştırma |
 | `products/{slug}/spec.md` | BUILDER | Codex, QA | Ürün spec'i |
+| `products/{slug}/spec.json` | BUILDER/GLM | `polar_checkout_sync.py`, Codex | Ürün fiyatı + metadata (yetkili fiyat kaynağı) |
+| `products/{slug}/product.json` | Codex/GLM | Herkes | Canlı state: status, checkout_url, vercel_url, polar_product_id |
 | `products/{slug}/optimization.md` | OPTIMIZER | Claude | Ürün iyileştirme |
 | `memory/daily_reports/YYYY-MM-DD.md` | ANALYST | Claude | Günlük rapor |
 | `STATE_SUMMARY.json` | `scripts/product_state_sync.py` | Herkes | Portföy ground truth |
@@ -447,6 +463,11 @@ SİSTEM SAĞLIĞI
   Öneriler                    → analysis/oneri.md
   Sorun kaydı                 → analysis/sorun_analizi.md
   SİNYALLER                   → .signals/
+
+CHECKOUT & ÖDEME HAFIZASI
+  Codex memory (aktif ürün)   → lessons/checkout-url-lessons.md
+  Rollout adayları            → analysis/polar_checkout_plan.md
+  Rollout sonucu              → analysis/polar_checkout_sync_report.md
 ```
 
 ---
@@ -508,7 +529,8 @@ Codex'in kendi skill sistemi. Claude skills'e erişimi yok.
 | Dosya | Açıklama |
 |---|---|
 | `skills/codex_skill.md` | Codex operasyonel kılavuz (5 mod) |
-| `skills/glm_analyst.md` | GLM operasyonel kılavuz |
+| `skills/glm_analyst.md` | GLM operasyonel kılavuz (Micro-Coder önce, analist ikinci) |
+| `skills/POLAR_CHECKOUT.md` | **Checkout truth source:** Polar API quirks, fiyat kaynağı kuralı, sync-links komutu, OAT scopes |
 | `skills/SKILL_MAP.md` | Master routing — hangi agent, hangi skill |
 | `skills/build_checklist.md` | Build öncesi/sonrası kontrol listesi |
 | `skills/landing_page_template.md` | Landing page şablonu |
@@ -528,23 +550,25 @@ Codex'in kendi skill sistemi. Claude skills'e erişimi yok.
 
 ---
 
-## 8. Mevcut Sistem Durumu (cycle 1074 itibarıyla)
+## 8. Mevcut Sistem Durumu (cycle 1108 itibarıyla)
 
 ```
-Aktif ürün: 142
-Live ürün:  77
-Sağlıklı:   75
+Aktif ürün: 144
+Live ürün:  88
+Sağlıklı:   85  (canonical: 81, fallback: 4)
+Checkout gap: 0 (hesaplanan)
 Deploy bekleyen: 20
-Spec-ready: 45
-Bakiye:     $0
-Mod:        DEPLOY_WAIT
+Spec-ready: 26
+Bakiye:     $0  (checkout rollout yapılıyor)
+Mod:        POLAR_CHECKOUT_ROLLOUT
 ```
 
 **Bilinen açık sorunlar:**
-- Deploy gap: 20 ürün deploy bekliyor
-- Universe-prague stale: cycle 773'ten beri reconnect yok (cycle 1074'te 301 cycle gecikme)
-- QA-TESTER trigger mekanizması: inbox dispatch ile deterministic hale getirildi
-- Run ledger sahipliği: Codex mu GLM mi append eder?
+- 70 ürün LemonSqueezy checkout → Polar'a migrate edilecek (`--replace-non-polar`)
+- 28 ürün checkout URL yok → Polar'dan oluşturulacak
+- 4 fiyat mismatch (spec.json vs product.json): chmod-calculator, hash-generator-pro, http-pulse, og-forge
+  → `polar_checkout_sync.py` spec.json'ı otomatik tercih eder, mismatch'i lessons'a yazar
+- Landing page buy butonları: checkout_url güncellendikten sonra HTML inject gerekiyor
 
 ---
 
@@ -596,7 +620,7 @@ curl -sf https://{slug}.vercel.app/api/health
 2. Codex → polar_checkout_sync.py sync-links çalıştırır (POLAR_OAT env var ile)
    - Polar'da product yoksa oluşturur (amount_type: "fixed", min $0.50)
    - Reusable checkout link üretir
-   - product.json alanlarını günceller (checkout_url, payment_provider: "polar")
+   - product.json alanlarını günceller (checkout_url, payment_provider: "polar", polar_product_id)
 3. STATE.json checkout_url güncellenir → aktif
 4. Landing page buy butonu → checkout_url ile inject edilir
 
@@ -604,8 +628,9 @@ Araçlar:
   scripts/polar_checkout_sync.py  — plan + sync-links modları
   skills/POLAR_CHECKOUT.md        — Codex için truth source (API quirks dahil)
   config/polar.json               — OAT + org_id (gitignored, asla commit'leme)
+  lessons/checkout-url-lessons.md — Codex memory: 160 ürün tablosu + öğrenilmiş workflow
 
-OAT yükleme (codex_loop.sh otomatik yapar):
+OAT yükleme (codex_loop.sh her cycle otomatik yapar):
   export POLAR_OAT=$(python3 -c "import json; print(json.load(open('config/polar.json'))['polar_oat'])")
 
 Rollout komutu:
@@ -615,8 +640,83 @@ Rollout komutu:
     --output analysis/polar_checkout_sync_report.md
 ```
 
-**Polar Organization ID:** `ce28e75a-a8b4-4f3a-90e4-5df05cb6d18e`
-**Payout:** Polar → Stripe → IBAN (Türkiye destekleniyor)
+**Fiyat Kaynağı Önceliği (polar_checkout_sync.py içinde uygulanır):**
+```
+1. spec.json["price"]  ← tasarım belgesi = website fiyatı (EN YETKİLİ)
+2. product.json["price"]
+3. Dosya text arama (index.html, README, spec.md)
+Mismatch → spec.json kazanır + lessons'a yazar
+```
+
+**Polar Organization ID:** `ce28e75a-a8b4-4f3a-90e4-5df05cb6d18e`  
+**Payout:** Polar → Stripe → IBAN (Türkiye destekleniyor)  
+**Onaylanan smoke test:** 2x $1 ödeme alındı (`deneme-test` + `API Spec Validator`)
+
+**Rollout Kapsamı (2026-04-24 itibarıyla):**
+- 70 ürün: `replace_non_polar` (LemonSqueezy → Polar)
+- 28 ürün: `missing_checkout` (hiç URL yok → Polar'dan oluşturulacak)
+- Toplam: 98 aday
+
+---
+
+## 9.5 Bu Oturumda Yapılan Değişiklikler (2026-04-24)
+
+Aşağıdaki değişiklikler bu session'da Copilot CLI tarafından yapıldı ve commit edildi.
+
+### 1. Telegram Zorunlu Mesaj (commit: c48bef5)
+**Sorun:** Codex ve GLM'den Telegram mesajları azalmıştı (`codex_skill.md`'de "Telegram default kapalı" kuralı vardı).  
+**Çözüm:**
+- `skills/codex_skill.md` — "kapalı" kuralı silindi, ZORUNLU yapıldı
+- `scripts/codex_loop.sh` — RUN_SCRIPT sonunda shell-level Telegram çağrısı eklendi
+- `scripts/glm_loop.sh` — shell-level Telegram çağrısı eklendi
+- `universe_loop.sh` — mevcut Telegram iyileştirildi
+
+### 2. GLM Micro-Coder Rolü (commit: c2441b6)
+**Sorun:** Z.AI Coding Plan politikası — non-coding kullanım → ban riski.  
+**Çözüm:**
+- `skills/glm_analyst.md` — "MICRO-CODER + ANALYST" olarak yeniden yazıldı
+- **Adım 1 ZORUNLU:** Her cycle aktif kod değişikliği + commit
+- Healthcheck + analiz ikincil adımlara alındı
+
+### 3. Polar.sh Checkout Altyapısı (commit: 52c1a1f)
+**Sorun:** LemonSqueezy Türkiye hesabı reddetti. Payout yok. $0 gelir.  
+**Çözüm:**
+- `config/polar.json` oluşturuldu (gitignored) — POLAR_OAT + org_id
+- `scripts/codex_loop.sh` — her cycle başında `POLAR_OAT` otomatik export
+- `skills/POLAR_CHECKOUT.md` oluşturuldu — Codex için checkout truth source
+  - API quirks (amount_type fix, min $0.50, org_id yasağı, requests vs urllib)
+  - Smoke test sonuçları, rollout komutu, fiyat kuralları
+- `scripts/polar_checkout_sync.py` — price payload bug fix (`"type"` → `"amount_type"`)
+- `SYSTEM_ARCHITECTURE.md` — Section 9 Polar'a güncellendi
+- `prompts/codex_prompt.txt` — POLAR_CHECKOUT.md'yi okuma talimatı
+- `skills/FACTORY.md`, `scripts/create_product.sh`, `scripts/deploy_product.sh` — LemonSqueezy kaldırıldı, Polar default
+
+**Doğrulama:** 2x $1 smoke test başarılı. 16/16 test geçti.
+
+### 4. Codex Memory Sistemi + Fiyat Doğrulama (commit: cb67035)
+**Sorun:** Codex her cycle sıfırdan başlıyordu. Fiyatlar website ile tutarsız olabiliyordu.  
+**Çözüm:**
+- `lessons/checkout-url-lessons.md` oluşturuldu — **Codex'in kalıcı hafızası:**
+  - 160 ürün tablosu (slug / status / price / price_source / checkout durumu)
+  - 4 bilinen fiyat mismatch (chmod-calculator, hash-generator-pro, http-pulse, og-forge)
+  - Başarılı Polar workflow (adım adım, smoke test doğrulamalı)
+  - 5 Polar API sorunu + çözümü
+  - Codex güncelleme talimatı (Section 7)
+- `scripts/polar_checkout_sync.py` — fiyat kaynak sırası iyileştirildi:
+  - `spec.json["price"]` → yetkili kaynak (= website fiyatı)
+  - `product.json["price"]` → fallback
+  - Mismatch → spec.json kazanır, log'a yazar
+- `prompts/codex_prompt.txt` — lessons okuma + güncelleme talimatı eklendi
+- `skills/codex_skill.md` — 4 modda da lessons update adımı
+- `skills/POLAR_CHECKOUT.md` — fiyat öncelik bölümü + lessons referansı
+
+### Aktif Commit Listesi (Bu Session)
+```
+cb67035  feat: Codex lessons memory + price accuracy (spec.json authority)
+52c1a1f  feat: Polar OAT injection + API quirks doc + architecture update
+c2441b6  feat: GLM micro-coder role refactor (Z.AI policy compliance)
+c48bef5  feat: Telegram enforcement — shell-level guarantee for all 3 loops
+```
 
 ---
 
