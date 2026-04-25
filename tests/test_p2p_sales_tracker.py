@@ -502,3 +502,62 @@ class TestSalesByPeriod(unittest.TestCase):
         p2p_sales_tracker.save_sales(data)
         result = p2p_sales_tracker.sales_by_period()
         self.assertEqual(result, [])
+
+
+class TestExportSalesCSV(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_empty_sales_produces_header_only(self):
+        result = p2p_sales_tracker.export_sales_csv()
+        self.assertEqual(result["row_count"], 0)
+        lines = result["csv"].strip().split("\n")
+        self.assertEqual(len(lines), 1)
+        self.assertIn("id", lines[0])
+
+    def test_export_includes_all_sales(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        result = p2p_sales_tracker.export_sales_csv()
+        self.assertEqual(result["row_count"], 2)
+        lines = result["csv"].strip().split("\n")
+        self.assertEqual(len(lines), 3)
+
+    def test_export_filters_by_status(self):
+        s1 = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        result = p2p_sales_tracker.export_sales_csv(status="verified")
+        self.assertEqual(result["row_count"], 1)
+        self.assertIn("P1", result["csv"])
+
+    def test_export_filters_by_product(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("Dev Kit", 20, "c@d.com", "TX-2")
+        result = p2p_sales_tracker.export_sales_csv(product="SEO Tool")
+        self.assertEqual(result["row_count"], 1)
+        self.assertIn("SEO Tool", result["csv"])
+
+    def test_export_writes_to_file(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        csv_path = os.path.join(self.tmpdir, "export.csv")
+        result = p2p_sales_tracker.export_sales_csv(output_path=csv_path)
+        self.assertTrue(os.path.exists(csv_path))
+        with open(csv_path) as f:
+            content = f.read()
+        self.assertIn("P1", content)
+        self.assertEqual(result["path"], csv_path)
+
+    def test_export_csv_has_correct_columns(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        result = p2p_sales_tracker.export_sales_csv()
+        header = result["csv"].split("\n")[0].strip()
+        for field in ["id", "product", "amount", "buyer_email", "transaction_id", "date", "status"]:
+            self.assertIn(field, header)

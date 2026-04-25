@@ -4,6 +4,8 @@ P2P Sales Tracker - UniverseCreator
 Direct payment tracking for PayPal/Akbank
 """
 
+import csv
+import io
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -204,6 +206,40 @@ def delete_sale(sale_id):
     data["sales"] = [s for s in data["sales"] if s["id"] != sale_id]
     save_sales(data)
     return {"deleted": sale, "remaining": len(data["sales"])}
+
+
+CSV_FIELDS = (
+    "id",
+    "product",
+    "amount",
+    "buyer_email",
+    "transaction_id",
+    "date",
+    "status",
+)
+
+
+def export_sales_csv(status=None, product=None, output_path=None):
+    data = load_sales()
+    sales = data.get("sales", [])
+    if status:
+        sales = [s for s in sales if s.get("status") == status]
+    if product:
+        sales = [s for s in sales if s.get("product") == product]
+
+    buf = io.StringIO()
+    writer = csv.DictWriter(buf, fieldnames=CSV_FIELDS, extrasaction="ignore")
+    writer.writeheader()
+    for s in sales:
+        writer.writerow({k: s.get(k, "") for k in CSV_FIELDS})
+
+    csv_text = buf.getvalue()
+    if output_path:
+        out = Path(output_path)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(csv_text, encoding="utf-8")
+
+    return {"row_count": len(sales), "csv": csv_text, "path": str(output_path) if output_path else None}
 
 
 def verify_sale(sale_id):
