@@ -133,6 +133,22 @@ AUTH_INFO=$(python3 "$WORK_DIR/scripts/codex_auth_manager.py" choose --state-fil
 read -r PRIMARY_ACCOUNT FALLBACK_ACCOUNT <<< "$AUTH_INFO"
 echo "[CODEX] Auth preference: first=$PRIMARY_ACCOUNT fallback=$FALLBACK_ACCOUNT state=$AUTH_STATE_FILE" | tee -a "$LOG_FILE"
 
+if echo "$FALLBACK_ACCOUNT" | grep -q "BLOCKED"; then
+    echo "[CODEX] SKIP: All accounts blocked — skipping codex exec this cycle." | tee -a "$LOG_FILE"
+    python3 "$WORK_DIR/scripts/codex_auth_manager.py" record \
+        --state-file "$AUTH_STATE_FILE" \
+        --preferred-account "$PRIMARY_ACCOUNT" \
+        --active-account "$PRIMARY_ACCOUNT" \
+        --outcome "skipped_all_blocked" \
+        --cycle "__CYCLE_N__" \
+        --exit-code 0 \
+        --last-error "Both accounts usage-limited" \
+        --attempted-accounts "$PRIMARY_ACCOUNT" "$FALLBACK_ACCOUNT" \
+        | tee -a "$LOG_FILE"
+    rm -f "$RUNNING_FLAG"
+    exit 0
+fi
+
 AUTH_ATTEMPTS=()
 AUTH_OUTCOME="failure"
 AUTH_ACTIVE_ACCOUNT="$PRIMARY_ACCOUNT"

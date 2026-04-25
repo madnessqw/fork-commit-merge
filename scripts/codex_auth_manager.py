@@ -188,7 +188,24 @@ def parse_limit_until(output: str) -> str | None:
 
 def account_blocked_until(state: dict[str, Any], account: int) -> str | None:
     key = f"account_{account}_blocked_until"
-    return state.get(key)
+    val = state.get(key)
+    if val:
+        return val
+    status_key = f"account_{account}_status"
+    status = state.get(status_key, "")
+    if isinstance(status, str) and status.startswith("blocked_until_"):
+        return status.replace("blocked_until_", "")
+    return None
+
+
+def _parse_aware_datetime(raw: str) -> dt.datetime | None:
+    try:
+        until = dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except (ValueError, TypeError):
+        return None
+    if until.tzinfo is None:
+        until = until.replace(tzinfo=dt.timezone.utc)
+    return until
 
 
 def all_accounts_blocked(state: dict[str, Any]) -> bool:
@@ -197,11 +214,8 @@ def all_accounts_blocked(state: dict[str, Any]) -> bool:
         raw = account_blocked_until(state, account)
         if not raw:
             return False
-        try:
-            until = dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
-            if until <= now:
-                return False
-        except (ValueError, TypeError):
+        until = _parse_aware_datetime(raw)
+        if until is None or until <= now:
             return False
     return True
 
@@ -212,11 +226,8 @@ def next_available_account(state: dict[str, Any]) -> int | None:
         raw = account_blocked_until(state, account)
         if not raw:
             return account
-        try:
-            until = dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
-            if until <= now:
-                return account
-        except (ValueError, TypeError):
+        until = _parse_aware_datetime(raw)
+        if until is None or until <= now:
             return account
     return None
 
