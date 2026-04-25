@@ -10,6 +10,7 @@ from unittest.mock import patch
 from scripts.price_audit import (
     audit_product_prices,
     detect_price_format,
+    fix_product_prices,
     format_price_dollars,
     parse_price,
     price_coverage_report,
@@ -326,3 +327,128 @@ class TestPriceCoverageReport:
         assert "str_dollar_integer" in result["format_distribution"]
         assert "str_integer" in result["format_distribution"]
         assert "int_bare" in result["format_distribution"]
+
+
+class TestFixProductPrices:
+    def _make_state(self, products):
+        return {"products": {"active": products}}
+
+    def test_dry_run_no_write(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "9"},
+            {"slug": "b", "price": "$19"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = fix_product_prices(state_path=state_file, dry_run=True)
+        assert result["fixed_count"] == 1
+        assert result["dry_run"] is True
+        state = json.loads(state_file.read_text())
+        assert state["products"]["active"][0]["price"] == "9"
+
+    def test_fix_writes_normalized(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "9"},
+            {"slug": "b", "price": 12},
+            {"slug": "c", "price": "$19"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = fix_product_prices(state_path=state_file)
+        assert result["fixed_count"] == 2
+        assert result["dry_run"] is False
+        assert result["already_canonical"] == 1
+        state = json.loads(state_file.read_text())
+        assert state["products"]["active"][0]["price"] == "$9"
+        assert state["products"]["active"][1]["price"] == "$12"
+        assert state["products"]["active"][2]["price"] == "$19"
+
+    def test_fix_preserves_other_fields(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "9", "status": "live", "url": "https://a.vercel.app"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        fix_product_prices(state_path=state_file)
+        state = json.loads(state_file.read_text())
+        p = state["products"]["active"][0]
+        assert p["price"] == "$9"
+        assert p["status"] == "live"
+        assert p["url"] == "https://a.vercel.app"
+
+    def test_fix_skips_missing_price(self, tmp_path):
+        products = [
+            {"slug": "a"},
+            {"slug": "b", "price": "9"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = fix_product_prices(state_path=state_file)
+        assert result["skipped"] == 1
+        assert result["fixed_count"] == 1
+
+    def test_fix_skips_unparseable(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "call_us"},
+            {"slug": "b", "price": "9"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = fix_product_prices(state_path=state_file)
+        assert result["skipped"] == 1
+
+    def test_fix_no_changes_no_write(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "$9"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        original = json.dumps(self._make_state(products))
+        state_file.write_text(original)
+        result = fix_product_prices(state_path=state_file)
+        assert result["fixed_count"] == 0
+        assert result["already_canonical"] == 1
+        assert state_file.read_text() == original
+
+    def test_fix_invalid_state(self, tmp_path):
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text("bad json")
+        result = fix_product_prices(state_path=state_file)
+        assert result["fixed_count"] == 0
+        assert "error" in result
+
+    def test_fix_products_as_list(self, tmp_path):
+        products = [
+            {"slug": "list-prod", "price": "19"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps({"products": products}))
+        result = fix_product_prices(state_path=state_file)
+        assert result["fixed_count"] == 1
+
+    def test_fix_spec_ready_included(self, tmp_path):
+        state = {
+            "products": {
+                "active": [{"slug": "a", "price": "$9"}],
+                "spec_ready": [{"slug": "b", "price": "19"}],
+            }
+        }
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(state))
+        result = fix_product_prices(state_path=state_file)
+        assert result["fixed_count"] == 1
+        assert result["already_canonical"] == 1
+
+    def test_fixed_products_detail(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "9"},
+            {"slug": "b", "price": 14},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = fix_product_prices(state_path=state_file, dry_run=True)
+        assert len(result["fixed_products"]) == 2
+        fp = result["fixed_products"]
+        slugs = {x["slug"] for x in fp}
+        assert slugs == {"a", "b"}
+        for entry in fp:
+            assert entry["new_price"].startswith("$")
