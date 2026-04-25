@@ -26,6 +26,7 @@ if str(ROOT) not in sys.path:
 from scripts.summary_visibility import (
     canonical_drift_count,
     canonical_drift_entries,
+    drift_severity_breakdown,
     fallback_healthy_count,
 )
 
@@ -140,6 +141,7 @@ def compute_metrics(summary: dict) -> dict:
         "ready_for_payment_unhealthy": ready_for_payment_unhealthy,
         "unhealthy_live": unhealthy_live,
         "drift_entries": drift_entries,
+        "drift_severity": drift_severity_breakdown(summary),
         "ready_for_payment_entries": [
             item for item in ready_for_payment_entries if isinstance(item, dict)
         ],
@@ -152,6 +154,8 @@ def render_compact(m: dict) -> str:
     gc = GRADE_COLORS.get(m["grade"], RESET)
     check = _status_icon(m["checkout_ok"])
     health = f"{m['healthy']}/{m['live']}"
+    sev = m.get("drift_severity", {})
+    sev_str = " ".join(f"{k}:{v}" for k, v in sorted(sev.items())) if sev else ""
     return (
         f"{BOLD}Portfolio{RESET} {gc}{m['grade']}{RESET} "
         f"{_bar(m['health_pct'], 10)} "
@@ -161,7 +165,8 @@ def render_compact(m: dict) -> str:
         f"FH:{m['fallback_healthy']} "
         f"RFPU:{m['ready_for_payment_unhealthy']} "
         f"DG:{m['deploy_gap']} "
-        f"CD:{m['canonical_drift']} "
+        f"CD:{m['canonical_drift']}"
+        f"{(' ' + sev_str) if sev_str else ''} "
         f"NF:{m['needs_fix']}"
     )
 
@@ -211,6 +216,10 @@ def render_full(m: dict) -> str:
 
     if m["drift_entries"]:
         lines.append(f"  {BOLD}{YELLOW}CANONICAL DRIFT{RESET}")
+        severity = m.get("drift_severity", {})
+        if severity:
+            sev_parts = [f"{k}: {v}" for k, v in sorted(severity.items())]
+            lines.append(f"    {DIM}Severity: {', '.join(sev_parts)}{RESET}")
         for item in m["drift_entries"][:6]:
             slug = item.get("slug", "?")
             url = item.get("url", "")

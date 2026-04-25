@@ -17,6 +17,7 @@ from scripts.summary_visibility import (
     canonical_drift_entries,
     deploy_readiness_report,
     drift_products_from_state,
+    drift_severity_breakdown,
     fallback_healthy_count,
     fallback_healthy_entries,
     _has_value,
@@ -382,3 +383,59 @@ class TestDeployReadinessReport:
         assert report["total"] == 1
         assert report["url_gap"] == 0
         assert report["items"][0]["missing_url"] == []
+
+
+class TestDriftSeverityBreakdown:
+    def test_empty_summary(self):
+        assert drift_severity_breakdown({}) == {}
+
+    def test_counts_by_canonical_status(self):
+        summary = {
+            "gaps": {
+                "canonical_url_drift": [
+                    {"slug": "a", "canonical_status": "not_found"},
+                    {"slug": "b", "canonical_status": "error_500"},
+                    {"slug": "c", "canonical_status": "not_found"},
+                    {"slug": "d", "canonical_status": "deployment_disabled"},
+                ]
+            }
+        }
+        result = drift_severity_breakdown(summary)
+        assert result == {"not_found": 2, "error_500": 1, "deployment_disabled": 1}
+
+    def test_missing_canonical_status_defaults_unknown(self):
+        summary = {
+            "gaps": {
+                "canonical_url_drift": [
+                    {"slug": "a"},
+                    {"slug": "b", "canonical_status": "error_500"},
+                ]
+            }
+        }
+        result = drift_severity_breakdown(summary)
+        assert result == {"unknown": 1, "error_500": 1}
+
+    def test_skips_non_dict_entries(self):
+        summary = {
+            "gaps": {
+                "canonical_url_drift": [
+                    "bad",
+                    {"slug": "a", "canonical_status": "not_found"},
+                    42,
+                ]
+            }
+        }
+        result = drift_severity_breakdown(summary)
+        assert result == {"not_found": 1}
+
+    def test_falls_back_to_product_list(self):
+        summary = {
+            "canonical_url_drift_products": ["croncraft", "terminal-os"],
+            "products": [
+                {"s": "croncraft", "v": "https://quickcron.vercel.app"},
+                {"s": "terminal-os", "v": "https://terminal-os-green.vercel.app"},
+            ],
+        }
+        result = drift_severity_breakdown(summary)
+        assert "unknown" in result
+        assert result["unknown"] == 2

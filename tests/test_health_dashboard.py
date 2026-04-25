@@ -293,3 +293,43 @@ def test_render_full_no_drift():
     m = compute_metrics({"live_count": 10, "healthy_count": 10})
     result = render_full(m)
     assert "CANONICAL DRIFT" not in result
+
+
+def test_compute_metrics_drift_severity():
+    summary = _sample_summary()
+    m = compute_metrics(summary)
+    assert "drift_severity" in m
+    assert isinstance(m["drift_severity"], dict)
+
+
+def test_render_full_drift_severity_displayed():
+    summary = _sample_summary(gaps={
+        "canonical_url_drift": [
+            {"slug": "a", "url": "https://a-alt.vercel.app", "ideal_url": "https://a.vercel.app", "canonical_status": "not_found"},
+            {"slug": "b", "url": "https://b-alt.vercel.app", "ideal_url": "https://b.vercel.app", "canonical_status": "error_500"},
+        ],
+    })
+    m = compute_metrics(summary)
+    result = render_full(m)
+    assert "Severity:" in result
+    assert "not_found: 1" in result
+    assert "error_500: 1" in result
+
+
+def test_render_compact_drift_severity():
+    summary = _sample_summary(gaps={
+        "canonical_url_drift": [
+            {"slug": "a", "url": "https://a-alt.vercel.app", "ideal_url": "https://a.vercel.app", "canonical_status": "not_found"},
+        ],
+    })
+    m = compute_metrics(summary)
+    result = render_compact(m)
+    assert "not_found:1" in result
+
+
+def test_render_json_includes_drift_severity():
+    summary = _sample_summary()
+    m = compute_metrics(summary)
+    result = render_json(m)
+    data = json.loads(result)
+    assert "drift_severity" in data

@@ -252,6 +252,17 @@ def apply_drift_fix_to_state(
     return report
 
 
+def drift_severity_breakdown(summary: dict[str, Any]) -> dict[str, int]:
+    entries = canonical_drift_entries(summary)
+    breakdown: dict[str, int] = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        status = str(entry.get("canonical_status", "unknown"))
+        breakdown[status] = breakdown.get(status, 0) + 1
+    return breakdown
+
+
 def deploy_readiness_report(summary: dict[str, Any]) -> dict[str, Any]:
     """Summarize deploy readiness gaps from STATE_SUMMARY.
 
