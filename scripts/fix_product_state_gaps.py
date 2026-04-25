@@ -2,6 +2,8 @@
 """
 Fix missing state fields (created_cycle, deployed_cycle) in product.json files.
 Scans products/ directory and patches products with null/missing state fields.
+
+Supports --dry-run to preview changes without writing.
 """
 import json
 import os
@@ -9,7 +11,7 @@ import sys
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRODUCTS_DIR = os.path.join(REPO_ROOT, "products")
-CURRENT_CYCLE = 1116
+SUMMARY_PATH = os.path.join(REPO_ROOT, "STATE_SUMMARY.json")
 BATCH_DEPLOY_CYCLE = 1108
 
 DATE_CYCLE_MAP = {
@@ -17,7 +19,19 @@ DATE_CYCLE_MAP = {
     "2026-04-22": 1000,
     "2026-04-23": 1050,
     "2026-04-24": 1100,
+    "2026-04-25": 1164,
 }
+
+
+def _current_cycle():
+    try:
+        with open(SUMMARY_PATH, "r") as f:
+            return json.load(f).get("cycle", 1164)
+    except (OSError, json.JSONDecodeError):
+        return 1164
+
+
+CURRENT_CYCLE = _current_cycle()
 
 
 def load_json(path):
@@ -45,7 +59,9 @@ def estimate_created_cycle(product):
     return None
 
 
-def main():
+def main(argv=None):
+    dry_run = "--dry-run" in (argv or sys.argv)
+
     if not os.path.isdir(PRODUCTS_DIR):
         print(f"ERROR: {PRODUCTS_DIR} not found")
         return 1
@@ -80,10 +96,14 @@ def main():
                 print(f"  {slug}: deployed_cycle={BATCH_DEPLOY_CYCLE}")
 
         if changed:
-            save_json(pj, product)
+            if dry_run:
+                print(f"  [DRY-RUN] would patch {slug}")
+            else:
+                save_json(pj, product)
             patched += 1
 
-    print(f"\nPatched: {patched} products")
+    suffix = " (dry-run)" if dry_run else ""
+    print(f"\nPatched{suffix}: {patched} products")
     return 0
 
 

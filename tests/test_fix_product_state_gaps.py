@@ -117,6 +117,20 @@ class TestMain(unittest.TestCase):
             self.assertEqual(updated["created_cycle"], 100)
             self.assertEqual(updated["deployed_cycle"], 200)
 
+    def test_dry_run_does_not_write(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            self._make_product(tmpdir, "dry-prod", status="live")
+            import scripts.fix_product_state_gaps as mod
+            orig = mod.PRODUCTS_DIR
+            mod.PRODUCTS_DIR = str(Path(tmpdir) / "products")
+            try:
+                rc = main(argv=["--dry-run"])
+            finally:
+                mod.PRODUCTS_DIR = orig
+            self.assertEqual(rc, 0)
+            updated = load_json(str(Path(tmpdir) / "products" / "dry-prod" / "product.json"))
+            self.assertNotIn("created_cycle", updated)
+
 
 if __name__ == "__main__":
     unittest.main()
