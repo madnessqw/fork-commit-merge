@@ -1,15 +1,17 @@
 # GLM Code Result
-**Tarih:** 2026-04-25 12:50 | **Cycle:** 1134
+**Tarih:** 2026-04-25 14:47 | **Cycle:** 1170
 
 ## Ne Yapıldı
-terraink ürününün canonical URL drift'i düzeltildi. product.json + STATE.json'a canonical_url_override eklendi.
+drift_severity_breakdown() fonksiyonu summary_visibility.py'ye eklendi. Health dashboard'da canonical drift ürünlerinin severity'leri (not_found, error_500, deployment_disabled, vs.) artık görünür. Compact, full ve JSON çıktılarında severity breakdown mevcut.
 
 ## Değişen Dosyalar
-- `products/terraink/product.json` — canonical_url_override: https://terraink-flax.vercel.app eklendi
-- `STATE.json` — terraink ürününe canonical_url_override set edildi, drift listesi temizlendi
+- `scripts/summary_visibility.py` — drift_severity_breakdown() fonksiyonu eklendi
+- `scripts/health_dashboard.py` — severity breakdown compact/full/JSON render'larda gösteriliyor
+- `tests/test_summary_visibility.py` — 5 yeni test (drift severity)
+- `tests/test_health_dashboard.py` — 4 yeni test (dashboard severity display)
 
 ## Test Sonucu
-704/704 passed (tüm test suite)
+84 passed (tüm testler geçti)
 
 ## Commit
-9d06c00 — glm: 20260425-1250 — fix terraink canonical drift, add canonical_url_override to product.json + STATE.json
+ae16ab6 — glm: 20260425-1447 — drift_severity_breakdown() in summary_visibility, health dashboard severity display, 9 new tests

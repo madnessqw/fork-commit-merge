@@ -1,9 +1,9 @@
 # Polar Checkout Sync Report
 
 - candidates: 0
-- statuses: live
+- statuses: live, ready_for_payment
 - include_existing: False
-- replace_non_polar: False
+- replace_non_polar: True
 
 | Slug | Action | Price Source | Checkout URL |
 |---|---|---|---|

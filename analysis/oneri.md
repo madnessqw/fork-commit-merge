@@ -1,22 +1,22 @@
-# Codex Analiz Özeti — 2026-04-25 07:35 UTC
+# Codex Analiz Özeti — 2026-04-25 15:00 UTC
 
 ## Canlı State
-- Cycle: **1156**
+- Cycle: **1170**
 - Mode: **OPTIMIZE**
-- Live sağlık: **168/168** (%100.0)
-- Canonical healthy: **168/168** (%100.0)
+- Live sağlık: **169/169** (%100.0)
+- Canonical healthy: **163/169** (%96.4)
 - Health pending: **0**
-- Fallback healthy: **0**
+- Fallback healthy: **6**
 - Checkout gap: **0**
 - Deploy readiness gap: **0**
 - Deploy/url gap: **0**
-- Canonical drift: **4**
+- Canonical drift: **5**
 - Spec-ready: **0**
-- Accepted canonical drift: **7**
-- Next action: `4 canonical URL drift'ini düzelt; fallback alias'ı ezme`
+- Accepted canonical drift: **1**
+- Next action: `5 canonical URL drift'ini düzelt; fallback alias'ı ezme`
 
 ## Ana Darboğaz
-- **Canonical URL drift:** 4 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://croncraft-37cz7b6yo-madnessqws-projects.vercel.app → https://croncraft.vercel.app).
+- **Canonical URL drift:** 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
 
 ## Kod için Öneri
 1. **Canonical URL drift düzeltmesi**
@@ -29,22 +29,19 @@
 - **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
 
 ## Canonical Drift Ürünleri
-- `croncraft` — current=https://croncraft-37cz7b6yo-madnessqws-projects.vercel.app ideal=https://croncraft.vercel.app
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
+- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app health=alternate_healthy code=200 probe=https://croncraft.vercel.app canonical_code=200 canonical_status=redirected_preview_alias
+- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app health=alternate_healthy code=200 canonical_code=307 canonical_status=error_307
+- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
+- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
 
 ## Kabul Edilmiş Canonical Drift
-- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
-- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
-- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
-- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
-- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
-- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
 
 ## Fallback Alias Ürünleri
-- `croncraft` — current=https://croncraft-37cz7b6yo-madnessqws-projects.vercel.app ideal=https://croncraft.vercel.app
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
+- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app health=alternate_healthy code=200 probe=https://croncraft.vercel.app canonical_code=200 canonical_status=redirected_preview_alias
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
+- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app health=alternate_healthy code=200 canonical_code=307 canonical_status=error_307
+- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
+- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found

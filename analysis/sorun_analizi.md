@@ -1,7 +1,7 @@
-# Sorun Analizi — Cycle 1170 | 2026-04-25 14:29 UTC
+# Sorun Analizi — Cycle 1170 | 2026-04-25 15:00 UTC
 
 ## Ana Darboğaz
-- **canonical_url_drift** — 6 ürün canonical URL'den sapmış (5 aktif + 1 kabul edilmiş); ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
+- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -11,7 +11,7 @@
 - Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 6 (5 aktif + 1 kabul edilmis)
+- Canonical drift: 5
 - Spec-ready backlog: 0
 - Accepted canonical drift: 1
 

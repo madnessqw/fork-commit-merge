@@ -1,21 +1,21 @@
 {
-  "preferred_account": 2,
-  "last_result": "auth_switch_success",
+  "preferred_account": 1,
+  "last_result": "auth_switch_failure",
   "reason": "Account 1 usage limit hit (blocked until ~Apr 28)",
   "ts": 1776997471,
   "account_1_status": "blocked_until_2026-04-28",
   "account_2_status": "active",
-  "last_active_account": 2,
+  "last_active_account": 1,
   "last_attempted_accounts": [
-    1,
-    2
+    2,
+    1
   ],
-  "last_error": "hook: SessionStart Completed ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ",
-  "last_exit_code": 0,
+  "last_error": "ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 11:20 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 11:20 PM. 2026-04-25T15:00:43.265429Z ERROR codex_core::session: failed to record rollout items: thread 019dc527-d22a-7ae3-8fe3-1f986cf53f4d not found  | fallback=ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. 2026-04-25T15:01:10.246908Z ERROR codex_core::session: failed to record rollout items: thread 019dc528-52cf-7813-a4e2-54fc627a715d not found ",
+  "last_exit_code": 1,
   "cycle": 31,
-  "updated_at": "2026-04-24T14:40:15Z",
-  "last_switch_from_account": 1,
-  "last_switch_to_account": 2,
-  "last_switch_reason": "hook: SessionStart Completed ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ",
-  "switch_count": 22
+  "updated_at": "2026-04-25T15:01:10Z",
+  "last_switch_from_account": 2,
+  "last_switch_to_account": 1,
+  "last_switch_reason": "ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 11:20 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 11:20 PM. 2026-04-25T15:00:43.265429Z ERROR codex_core::session: failed to record rollout items: thread 019dc527-d22a-7ae3-8fe3-1f986cf53f4d not found  | fallback=ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. ERROR: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Apr 28th, 2026 9:35 PM. 2026-04-25T15:01:10.246908Z ERROR codex_core::session: failed to record rollout items: thread 019dc528-52cf-7813-a4e2-54fc627a715d not found ",
+  "switch_count": 68
 }
