@@ -43,6 +43,8 @@ DIAGNOSIS_MAP: dict[int, dict] = {
 
 SEVERITY_ORDER = {"high": 0, "medium": 1, "low": 2, "info": 3}
 
+TREND_FILE = ROOT / "logs" / "health_trend.jsonl"
+
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
@@ -229,6 +231,49 @@ def write_codex_task(products: list[dict], output_path: Path = CODEX_TASK_PATH) 
     return f"Written: {output_path}"
 
 
+def drift_history_summary(trend_file: Path = TREND_FILE, limit: int = 20) -> str:
+    try:
+        lines = trend_file.read_text(encoding="utf-8").strip().splitlines()
+    except OSError:
+        return "Drift trend verisi yok"
+    recent = lines[-limit:]
+    entries = []
+    for line in recent:
+        try:
+            entries.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    if not entries:
+        return "Drift trend verisi yok"
+    drift_values = [e.get("canonical_drift", 0) for e in entries]
+    fb_values = [e.get("fallback_healthy", 0) for e in entries]
+    cycles = [e.get("cycle", 0) for e in entries]
+    non_zero_drift = [v for v in drift_values if v > 0]
+    peaks = max(drift_values) if drift_values else 0
+    lines_out = [
+        f"Drift Trend (cycle {cycles[0]}→{cycles[-1]}, {len(entries)} snapshots)",
+        f"  Peak drift: {peaks} | Current: {drift_values[-1]}",
+        f"  Avg drift: {sum(drift_values)/len(drift_values):.1f} | Avg fallback: {sum(fb_values)/len(fb_values):.1f}",
+    ]
+    if non_zero_drift:
+        first_nonzero = next((i for i, v in enumerate(drift_values) if v > 0), -1)
+        if first_nonzero >= 0:
+            lines_out.append(f"  First drift at cycle {cycles[first_nonzero]} (value: {drift_values[first_nonzero]})")
+    if drift_values[-1] == 0 and any(v > 0 for v in drift_values[:-1]):
+        lines_out.append("  Status: DRIFT CLEARED (was non-zero earlier)")
+    elif drift_values[-1] > 0:
+        consecutive = 0
+        for v in reversed(drift_values):
+            if v > 0:
+                consecutive += 1
+            else:
+                break
+        lines_out.append(f"  Status: ACTIVE DRIFT ({consecutive} consecutive snapshots)")
+    else:
+        lines_out.append("  Status: NO DRIFT")
+    return "\n".join(lines_out)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Canonical drift fix plan generator")
     parser.add_argument("--json", action="store_true", dest="as_json")
@@ -236,12 +281,18 @@ def main() -> int:
     parser.add_argument("--apply-brief", action="store_true", dest="apply_brief")
     parser.add_argument("--from-summary", action="store_true", dest="from_summary",
                         help="Load drift data from STATE_SUMMARY.json instead of STATE.json")
+    parser.add_argument("--trend", action="store_true",
+                        help="Show drift history trend from health_trend.jsonl")
     args = parser.parse_args()
 
     if args.from_summary:
         products = load_drift_from_summary()
     else:
         products = load_drift_products()
+
+    if args.trend:
+        print(drift_history_summary())
+        return 0
 
     if args.as_json:
         print(json.dumps(products, indent=2, ensure_ascii=False))

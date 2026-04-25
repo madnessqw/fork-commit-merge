@@ -231,3 +231,44 @@ def test_load_drift_from_summary_handles_missing_file():
     from scripts.canonical_drift_report import load_drift_from_summary
     products = load_drift_from_summary(Path("/nonexistent/summary.json"))
     assert products == []
+
+
+MOCK_TREND_LINES = (
+    '{"ts":"2026-04-25T10:00:00Z","cycle":1155,"canonical_drift":4,"fallback_healthy":4}\n'
+    '{"ts":"2026-04-25T11:00:00Z","cycle":1156,"canonical_drift":6,"fallback_healthy":6}\n'
+    '{"ts":"2026-04-25T12:00:00Z","cycle":1157,"canonical_drift":0,"fallback_healthy":6}\n'
+)
+
+
+def test_drift_history_summary_active_drift(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_TREND_LINES)
+    from scripts.canonical_drift_report import drift_history_summary
+    result = drift_history_summary(trend_file=trend_file)
+    assert "Peak drift: 6" in result
+    assert "cycle 1155" in result
+
+
+def test_drift_history_summary_cleared_drift(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_TREND_LINES)
+    from scripts.canonical_drift_report import drift_history_summary
+    result = drift_history_summary(trend_file=trend_file)
+    assert "Current: 0" in result
+
+
+def test_drift_history_summary_no_file(tmp_path):
+    from scripts.canonical_drift_report import drift_history_summary
+    result = drift_history_summary(trend_file=tmp_path / "nonexistent.jsonl")
+    assert "yok" in result
+
+
+def test_drift_history_summary_all_zero(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(
+        '{"ts":"2026-04-25T10:00:00Z","cycle":1155,"canonical_drift":0,"fallback_healthy":0}\n'
+        '{"ts":"2026-04-25T11:00:00Z","cycle":1156,"canonical_drift":0,"fallback_healthy":0}\n'
+    )
+    from scripts.canonical_drift_report import drift_history_summary
+    result = drift_history_summary(trend_file=trend_file)
+    assert "NO DRIFT" in result
