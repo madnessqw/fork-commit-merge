@@ -1,8 +1,8 @@
-# Sorun Analizi — Cycle 1186 | 2026-04-26 01:30 UTC
+# Sorun Analizi — Cycle 1189 | 2026-04-26 02:27 UTC
 
-## Ana Durum
-- **Sistem stabil** — 169/169 ürün healthy, checkout gap 0, canonical drift 0.
-- **Polar plan modu doğrulaması** — `total_candidates: 0`, tüm ürünlerde checkout_url mevcut.
+## Ana Darboğaz
+- **Codex offline** — Both accounts usage limit hit, Apr 28'e kadar offline.
+- **Vercel auth invalid** — Yeni deploy ve alias fix yapılamıyor.
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -14,15 +14,23 @@
 - Deploy/url gap: 0
 - Canonical drift: 0
 - Spec-ready backlog: 0
-- Accepted canonical drift: 7 (değişmedi — jwt-generator, pdf-forge, webhook-tester, email-validator-pro, diffmaster, html-entity-encoder, timestamp-converter)
+
+## Canonical Drift Ürünleri
+- Yok (0 drift — önceki cycle'larda düzeltilmiş veya kabul edilmiş).
+
+## Kabul Edilmiş Canonical Drift
+- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
+- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
+- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
+- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
+- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
+- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **state_drift** [low/resolved] — STATE.json cycle numarası senkron. Capture files cycle 9 eski kalıntı, etkisiz.
-- **agent_missing** [low/pending] — Toolsmith agent not spawned; şu an kritik olmayan kapasite boşluğu.
-
-## Bilinen Blokajlar
-- **Codex offline** — Both Polar accounts blocked until Apr 28. Deploy/Checkout yeni ürün ekleme Codex'e bağlı.
-- **Vercel auth invalid** — Alias fix ve yeni deploy şu an mümkün değil. Auth yenilenene kadar beklemedeyiz.
+- **codex_offline** [high/in_progress] — Both accounts usage limit, Apr 28'e kadar bekleniyor.
+- **vercel_auth_invalid** [high/blocked] — Manuel token refresh gerekli.
+- **zero_revenue** [medium/ongoing] — 169 live ürün, aktif checkout, ama satış yok.
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
