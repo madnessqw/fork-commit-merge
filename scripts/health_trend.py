@@ -260,6 +260,38 @@ def health_plateau(entries: list[dict] | None = None, *, tolerance: float = 0.5)
     }
 
 
+def rolling_health_stats(entries: list[dict] | None = None, *, window: int = 10) -> dict:
+    if entries is None:
+        entries = load_trend(limit=max(window, 50))
+
+    if len(entries) < 2:
+        return {"available": False, "reason": "insufficient_data", "snapshots": len(entries)}
+
+    recent = entries[-window:]
+    pcts = [e.get("health_pct", 0) for e in recent]
+
+    min_val = min(pcts)
+    max_val = max(pcts)
+    avg_val = round(sum(pcts) / len(pcts), 2)
+    variance = sum((p - avg_val) ** 2 for p in pcts) / len(pcts)
+    std_val = round(variance ** 0.5, 2)
+    volatility = "high" if std_val > 2.0 else "medium" if std_val > 0.5 else "low"
+
+    return {
+        "available": True,
+        "window": len(recent),
+        "min": min_val,
+        "max": max_val,
+        "range": round(max_val - min_val, 2),
+        "avg": avg_val,
+        "std": std_val,
+        "volatility": volatility,
+        "latest": pcts[-1],
+        "from_cycle": recent[0].get("cycle", 0),
+        "to_cycle": recent[-1].get("cycle", 0),
+    }
+
+
 def drift_slug_history(limit: int = 100) -> dict:
     entries = load_trend(limit=limit)
     slug_first_seen: dict[str, str] = {}
@@ -335,6 +367,10 @@ def main() -> int:
 
     if len(sys.argv) > 1 and sys.argv[1] == "plateau":
         print(json.dumps(health_plateau(), indent=2, ensure_ascii=False))
+        return 0
+
+    if len(sys.argv) > 1 and sys.argv[1] == "rolling":
+        print(json.dumps(rolling_health_stats(), indent=2, ensure_ascii=False))
         return 0
 
     if len(sys.argv) > 1 and sys.argv[1] == "grade":

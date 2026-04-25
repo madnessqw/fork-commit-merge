@@ -13,6 +13,7 @@ from scripts.health_trend import (
     drift_slug_history,
     cycle_delta_report,
     health_plateau,
+    rolling_health_stats,
 )
 
 
@@ -750,6 +751,97 @@ class HealthTrendTests(unittest.TestCase):
             output = json.loads(captured.getvalue())
             self.assertIn("plateau", output)
             self.assertIn("streak", output)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+
+    def test_rolling_health_stats_insufficient_data(self) -> None:
+        result = rolling_health_stats([{"health_pct": 95.0}])
+        self.assertFalse(result["available"])
+        self.assertEqual(result["reason"], "insufficient_data")
+
+    def test_rolling_health_stats_basic(self) -> None:
+        entries = [
+            {"health_pct": 90.0, "cycle": i} for i in range(10)
+        ]
+        result = rolling_health_stats(entries, window=5)
+        self.assertTrue(result["available"])
+        self.assertEqual(result["window"], 5)
+        self.assertEqual(result["min"], 90.0)
+        self.assertEqual(result["max"], 90.0)
+        self.assertEqual(result["avg"], 90.0)
+        self.assertEqual(result["std"], 0.0)
+        self.assertEqual(result["range"], 0.0)
+        self.assertEqual(result["volatility"], "low")
+
+    def test_rolling_health_stats_varying(self) -> None:
+        entries = [
+            {"health_pct": 90.0, "cycle": 1},
+            {"health_pct": 92.0, "cycle": 2},
+            {"health_pct": 88.0, "cycle": 3},
+            {"health_pct": 95.0, "cycle": 4},
+            {"health_pct": 91.0, "cycle": 5},
+        ]
+        result = rolling_health_stats(entries, window=5)
+        self.assertTrue(result["available"])
+        self.assertEqual(result["min"], 88.0)
+        self.assertEqual(result["max"], 95.0)
+        self.assertAlmostEqual(result["range"], 7.0)
+        self.assertAlmostEqual(result["avg"], 91.2)
+        self.assertEqual(result["latest"], 91.0)
+        self.assertEqual(result["from_cycle"], 1)
+        self.assertEqual(result["to_cycle"], 5)
+
+    def test_rolling_health_stats_volatility_medium(self) -> None:
+        entries = [
+            {"health_pct": float(90 + i), "cycle": i} for i in range(10)
+        ]
+        result = rolling_health_stats(entries, window=10)
+        self.assertIn(result["volatility"], ("medium", "high"))
+
+    def test_rolling_health_stats_empty_entries(self) -> None:
+        result = rolling_health_stats([])
+        self.assertFalse(result["available"])
+
+    def test_rolling_health_stats_window_smaller_than_entries(self) -> None:
+        entries = [
+            {"health_pct": 80.0, "cycle": 1},
+            {"health_pct": 85.0, "cycle": 2},
+            {"health_pct": 90.0, "cycle": 3},
+            {"health_pct": 95.0, "cycle": 4},
+            {"health_pct": 100.0, "cycle": 5},
+        ]
+        result = rolling_health_stats(entries, window=3)
+        self.assertTrue(result["available"])
+        self.assertEqual(result["window"], 3)
+        self.assertEqual(result["min"], 90.0)
+        self.assertEqual(result["max"], 100.0)
+
+    def test_main_rolling_subcommand(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            from scripts.health_trend import main
+            import io, contextlib
+            captured = io.StringIO()
+            with contextlib.redirect_stdout(captured):
+                orig_argv = sys.argv
+                sys.argv = ["health_trend.py", "rolling"]
+                try:
+                    ret = main()
+                finally:
+                    sys.argv = orig_argv
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertIn("available", output)
         finally:
             ht.TREND_FILE = orig_trend
             ht.ROOT = orig_root
