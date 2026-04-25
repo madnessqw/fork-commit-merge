@@ -1,0 +1,28 @@
+{
+  "name": "MCP Hub",
+  "slug": "mcphub",
+  "tagline": "Model Context Protocol Registry & Manager",
+  "description": "Discover, manage, and monitor MCP servers. The central registry for Model Context Protocol tools with config management and health monitoring.",
+  "price": "24",
+  "features": [
+    "MCP server registry",
+    "Server discovery",
+    "Config management",
+    "Health monitoring",
+    "Analytics dashboard",
+    "Rating system",
+    "One-click install",
+    "Categories and search"
+  ],
+  "tech_stack": "Vercel + Node.js",
+  "status": "spec_ready",
+  "category": "developer_tools",
+  "spec_version": "1.0",
+  "created_cycle": 1140,
+  "mvp_complexity": "2 cycles",
+  "target_audience": [
+    "developer",
+    "ai_engineer",
+    "prompt_engineer"
+  ]
+}

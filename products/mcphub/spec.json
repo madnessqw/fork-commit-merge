@@ -1,0 +1,118 @@
+{
+  "name": "MCP Hub",
+  "tagline": "Model Context Protocol Registry & Manager",
+  "slug": "mcphub",
+  "version": "1.0.0",
+  "price": "$24 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "ai_engineer", "prompt_engineer", "saas_founder"],
+  "problem": "MCP (Model Context Protocol) tool'ları scattered. Registry yok. MCP server'ları discovery zor. Local MCP management karmaşık. Config management yok",
+  "solution": "Vercel Edge ile MCP registry ve manager. MCP discovery, config management, health monitoring, analytics",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "registry": "Vercel KV",
+    "sse": "Server-Sent Events",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://mcphub.io/",
+    "endpoints": [
+      {
+        "path": "/api/servers",
+        "method": "GET",
+        "description": "List all MCP servers",
+        "response": {
+          "servers": [
+            {
+              "id": "filesystem-mcp",
+              "name": "Filesystem MCP",
+              "description": "File operations",
+              "installs": 15234,
+              "rating": 4.5
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/servers/:id",
+        "method": "GET",
+        "description": "Get MCP server details",
+        "response": {
+          "id": "filesystem-mcp",
+          "config": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem"]},
+          "tools": ["read_file", "write_file", "list_directory"],
+          "readme": "..."
+        }
+      },
+      {
+        "path": "/api/registry",
+        "method": "POST",
+        "description": "Register new MCP server",
+        "body": {
+          "name": "string",
+          "description": "string",
+          "config": {},
+          "tools": []
+        }
+      },
+      {
+        "path": "/api/config/:userId",
+        "method": "GET",
+        "description": "Get user's MCP config",
+        "response": {
+          "mcpServers": {
+            "filesystem": {"command": "npx", "args": [...]},
+            "github": {"command": "npx", "args": [...]}
+          }
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Official MCP GitHub",
+      "price": "Free",
+      "pros": ["Official", "Free"],
+      "cons": ["No registry", "Manual discovery", "No management"]
+    },
+    {
+      "name": "glama.ai",
+      "price": "Free/Unknown",
+      "pros": ["MCP registry"],
+      "cons": ["Limited", "No management features"]
+    }
+  ],
+  "advantage": "One-time $24. Centralized registry. Config management. Health monitoring.",
+  "features": [
+    "MCP server registry",
+    "Server discovery",
+    "Config management",
+    "Health monitoring",
+    "Analytics",
+    "Rating system",
+    "Categories/tags",
+    "Search",
+    "Config export",
+    "Integration guides"
+  ],
+  "use_cases": [
+    "AI agent development",
+    "Claude Desktop setup",
+    "MCP discovery",
+    "Team MCP management",
+    "MCP testing",
+    "Documentation"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $1,200",
+    "moderate": "100 sales/month = $2,400",
+    "optimistic": "200 sales/month = $4,800"
+  },
+  "why_best": [
+    "MCP trend yükselişte (ismcpdead.com)",
+    "Registry boş alan",
+    "Claude Desktop popüler",
+    "Edge compatible",
+    "Erken pazar"
+  ]
+}

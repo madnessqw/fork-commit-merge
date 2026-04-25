@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Hub — Model Context Protocol Registry & Manager</title>
+  <meta name="description" content="Discover, manage, and monitor MCP servers. The central registry for Model Context Protocol tools.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f;
+      --surface: #14141f;
+      --border: #1e1e2e;
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --green: #10b981;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .hero { text-align: center; padding: 80px 20px; background: linear-gradient(180deg, #1a1a2e 0%, var(--bg) 100%); }
+    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.25rem; color: var(--muted); max-width: 600px; margin: 0 auto 32px; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); color: var(--accent); font-size: 0.85rem; margin-bottom: 16px; }
+    .cta { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+    .feature { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+    .feature h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text); }
+    .feature p { color: var(--muted); line-height: 1.6; }
+    .price-banner { text-align: center; padding: 40px; background: var(--surface); border-top: 1px solid var(--border); }
+    .price { font-size: 2.5rem; font-weight: 800; color: var(--green); }
+    .price span { font-size: 1rem; color: var(--muted); font-weight: 400; }
+    .servers-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+    .servers-section h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; }
+    .server-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .server-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .server-card .name { font-weight: 600; margin-bottom: 4px; }
+    .server-card .desc { color: var(--muted); font-size: 0.9rem; }
+    .footer { text-align: center; padding: 30px; color: var(--muted); border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="badge">MCP — Model Context Protocol</div>
+    <h1>MCP Hub</h1>
+    <p>The central registry for Model Context Protocol servers. Discover, configure, and monitor MCP tools for your AI agents.</p>
+    <a href="#" class="cta">Get Started — $24 one-time</a>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <h3>Server Registry</h3>
+      <p>Browse and discover MCP servers from the community. Search by category, tools, or use case.</p>
+    </div>
+    <div class="feature">
+      <h3>Config Management</h3>
+      <p>Generate and manage MCP server configurations for Claude Desktop, Cursor, and other clients.</p>
+    </div>
+    <div class="feature">
+      <h3>Health Monitoring</h3>
+      <p>Track server uptime, response times, and availability. Get notified when servers go down.</p>
+    </div>
+    <div class="feature">
+      <h3>One-Click Install</h3>
+      <p>Copy-paste ready configuration snippets. No manual setup required.</p>
+    </div>
+    <div class="feature">
+      <h3>Analytics</h3>
+      <p>See which MCP servers are most popular, most reliable, and best rated by the community.</p>
+    </div>
+    <div class="feature">
+      <h3>Rating System</h3>
+      <p>Rate and review MCP servers. Help the community find the best tools.</p>
+    </div>
+  </div>
+  <div class="servers-section">
+    <h2>Popular MCP Servers</h2>
+    <div class="server-grid" id="serverGrid">
+      <div class="server-card"><div class="name">Loading...</div></div>
+    </div>
+  </div>
+  <div class="price-banner">
+    <div class="price">$24 <span>one-time · lifetime access</span></div>
+    <p style="color: var(--muted); margin-top: 8px;">One-time payment · No subscription · Lifetime updates</p>
+  </div>
+  <div class="footer">
+    <p>MCP Hub — Built for AI agent developers</p>
+  </div>
+  <script>
+    // Load popular servers
+    fetch('/api/servers').then(r => r.json()).then(data => {
+      const grid = document.getElementById('serverGrid');
+      if (data.servers && data.servers.length) {
+        grid.innerHTML = data.servers.map(s => '<div class="server-card"><div class="name">'+s.name+'</div><div class="desc">'+s.description+'</div></div>').join('');
+      }
+    }).catch(() => {});
+  </script>
+</body>
+</html>
