@@ -12,6 +12,7 @@ from scripts.price_audit import (
     detect_price_format,
     format_price_dollars,
     parse_price,
+    price_coverage_report,
 )
 
 
@@ -258,3 +259,70 @@ class TestParsePriceEdgeCases:
 
     def test_string_only_dollar_sign(self):
         assert parse_price("$") is None
+
+
+class TestPriceCoverageReport:
+    def _make_state(self, products):
+        return {"products": {"active": products}}
+
+    def test_empty_state(self, tmp_path):
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state([])))
+        result = price_coverage_report(state_path=state_file)
+        assert result["total"] == 0
+        assert result["coverage_pct"] == 0.0
+
+    def test_full_coverage(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "$9"},
+            {"slug": "b", "price": "$19"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = price_coverage_report(state_path=state_file)
+        assert result["total"] == 2
+        assert result["coverage_pct"] == 100.0
+        assert result["canonical_pct"] == 100.0
+        assert result["missing_count"] == 0
+
+    def test_partial_coverage(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "$9"},
+            {"slug": "b"},
+            {"slug": "c", "price": "$19"},
+            {"slug": "d"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = price_coverage_report(state_path=state_file)
+        assert result["total"] == 4
+        assert result["coverage_pct"] == 50.0
+        assert result["missing_count"] == 2
+
+    def test_mixed_formats(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "$9"},
+            {"slug": "b", "price": "19"},
+            {"slug": "c", "price": 12},
+            {"slug": "d"},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = price_coverage_report(state_path=state_file)
+        assert result["total"] == 4
+        assert result["coverage_pct"] == 75.0
+        assert result["inconsistency_count"] == 2
+        assert result["canonical_pct"] == 25.0
+
+    def test_format_distribution_present(self, tmp_path):
+        products = [
+            {"slug": "a", "price": "$9"},
+            {"slug": "b", "price": "19"},
+            {"slug": "c", "price": 12},
+        ]
+        state_file = tmp_path / "STATE.json"
+        state_file.write_text(json.dumps(self._make_state(products)))
+        result = price_coverage_report(state_path=state_file)
+        assert "str_dollar_integer" in result["format_distribution"]
+        assert "str_integer" in result["format_distribution"]
+        assert "int_bare" in result["format_distribution"]

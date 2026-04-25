@@ -160,3 +160,38 @@ def audit_product_prices(
         "missing_price": missing_price,
         "suggested_fixes": suggested_fixes,
     }
+
+
+def price_coverage_report(
+    state_path: Path = STATE_PATH,
+) -> dict[str, Any]:
+    """Generate a price coverage summary from audit results.
+
+    Returns a dict with coverage percentage, format distribution,
+    canonical compliance rate, and top format breakdown.
+    """
+    audit = audit_product_prices(state_path)
+    total = audit["total"]
+    if total == 0:
+        return {
+            "total": 0,
+            "coverage_pct": 0.0,
+            "canonical_pct": 0.0,
+            "format_distribution": {},
+            "missing_count": 0,
+            "inconsistency_count": 0,
+        }
+
+    missing_count = len(audit["missing_price"])
+    inconsistency_count = len(audit["inconsistencies"])
+    priced = total - missing_count
+    canonical_count = total - inconsistency_count - missing_count
+
+    return {
+        "total": total,
+        "coverage_pct": round(priced / total * 100, 1),
+        "canonical_pct": round(max(canonical_count, 0) / total * 100, 1),
+        "format_distribution": audit["format_counts"],
+        "missing_count": missing_count,
+        "inconsistency_count": inconsistency_count,
+    }
