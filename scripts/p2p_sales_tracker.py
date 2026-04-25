@@ -97,10 +97,54 @@ def list_products(state_path: Path | None = None):
         return _FALLBACK_PRODUCTS
 
 
+def get_sales_summary():
+    data = load_sales()
+    sales = data.get("sales", [])
+    by_status = {}
+    for s in sales:
+        st = s.get("status", "unknown")
+        by_status[st] = by_status.get(st, 0) + 1
+    verified_revenue = sum(s["amount"] for s in sales if s.get("status") == "verified")
+    last_date = max((s["date"] for s in sales if s.get("date")), default=None)
+    return {
+        "total_sales": len(sales),
+        "total_revenue": data.get("total_revenue", 0),
+        "verified_revenue": verified_revenue,
+        "by_status": by_status,
+        "last_sale_date": last_date,
+    }
+
+
+def update_sale_status(sale_id, new_status):
+    data = load_sales()
+    for s in data["sales"]:
+        if s["id"] == sale_id:
+            old_status = s.get("status")
+            s["status"] = new_status
+            if old_status != "rejected" and new_status == "rejected":
+                data["total_revenue"] = max(0, data["total_revenue"] - s["amount"])
+            save_sales(data)
+            return s
+    return None
+
+
+def verify_sale(sale_id):
+    return update_sale_status(sale_id, "verified")
+
+
+def reject_sale(sale_id):
+    return update_sale_status(sale_id, "rejected")
+
+
 if __name__ == "__main__":
     print(PAYMENT_INFO)
     print("\nAvailable Products:")
     for p in list_products():
         print(f"  {p['id']}. {p['name']} - ${p['price']}")
 
-    print(f"\nTotal Sales: ${load_sales()['total_revenue']}")
+    summary = get_sales_summary()
+    print(f"\nTotal Sales: {summary['total_sales']}")
+    print(f"Total Revenue: ${summary['total_revenue']}")
+    print(f"Verified Revenue: ${summary['verified_revenue']}")
+    if summary["by_status"]:
+        print(f"By Status: {summary['by_status']}")

@@ -182,3 +182,80 @@ class TestListProductsEdgeCases(unittest.TestCase):
         self.assertEqual(result, p2p_sales_tracker._FALLBACK_PRODUCTS)
         os.unlink(state_file)
         os.rmdir(tmpdir)
+
+
+class TestGetSalesSummary(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_empty_sales(self):
+        summary = p2p_sales_tracker.get_sales_summary()
+        self.assertEqual(summary["total_sales"], 0)
+        self.assertEqual(summary["total_revenue"], 0)
+        self.assertEqual(summary["verified_revenue"], 0)
+        self.assertIsNone(summary["last_sale_date"])
+
+    def test_with_sales(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        summary = p2p_sales_tracker.get_sales_summary()
+        self.assertEqual(summary["total_sales"], 2)
+        self.assertEqual(summary["total_revenue"], 30)
+        self.assertEqual(summary["verified_revenue"], 0)
+        self.assertEqual(summary["by_status"]["pending_verification"], 2)
+        self.assertIsNotNone(summary["last_sale_date"])
+
+
+class TestVerifyRejectSale(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_verify_sale_updates_status(self):
+        sale = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        result = p2p_sales_tracker.verify_sale(sale["id"])
+        self.assertEqual(result["status"], "verified")
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 10)
+
+    def test_reject_sale_deducts_revenue(self):
+        sale = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        result = p2p_sales_tracker.reject_sale(sale["id"])
+        self.assertEqual(result["status"], "rejected")
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
+
+    def test_verify_nonexistent_returns_none(self):
+        result = p2p_sales_tracker.verify_sale(999)
+        self.assertIsNone(result)
+
+    def test_reject_nonexistent_returns_none(self):
+        result = p2p_sales_tracker.reject_sale(999)
+        self.assertIsNone(result)
+
+    def test_verified_revenue_only_counts_verified(self):
+        s1 = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        summary = p2p_sales_tracker.get_sales_summary()
+        self.assertEqual(summary["verified_revenue"], 10)
+        self.assertEqual(summary["total_revenue"], 30)
+
+    def test_reject_does_not_go_negative(self):
+        sale = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.reject_sale(sale["id"])
+        p2p_sales_tracker.reject_sale(sale["id"])
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
