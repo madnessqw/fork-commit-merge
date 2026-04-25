@@ -5,11 +5,12 @@ Direct payment tracking for PayPal/Akbank
 """
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SALES_FILE = str(ROOT / "data" / "p2p_sales.json")
+SALES_DIR = ROOT / "data"
+SALES_FILE = SALES_DIR / "p2p_sales.json"
 STATE_FILE = ROOT / "STATE.json"
 
 _FALLBACK_PRODUCTS = [
@@ -31,17 +32,22 @@ Send payment and email universe7creator@gmail.com with:
 """
 
 
+def _ensure_data_dir():
+    SALES_DIR.mkdir(parents=True, exist_ok=True)
+
+
 def load_sales():
     try:
-        with open(SALES_FILE, "r") as f:
+        with open(SALES_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"sales": [], "total_revenue": 0}
 
 
 def save_sales(data):
-    with open(SALES_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+    _ensure_data_dir()
+    with open(SALES_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 def add_sale(product, amount, buyer_email, transaction_id):
@@ -52,7 +58,7 @@ def add_sale(product, amount, buyer_email, transaction_id):
         "amount": amount,
         "buyer_email": buyer_email,
         "transaction_id": transaction_id,
-        "date": datetime.now().isoformat(),
+        "date": datetime.now(timezone.utc).isoformat(),
         "status": "pending_verification",
     }
     data["sales"].append(sale)
