@@ -1,27 +1,27 @@
 {
-  "cycle": 1143,
-  "mode": "INNOVATE",
+  "cycle": 1151,
+  "mode": "OPTIMIZE",
   "balance": 0.0,
-  "active_count": 159,
-  "live_count": 159,
-  "healthy_count": 159,
-  "canonical_healthy_count": 159,
+  "active_count": 167,
+  "live_count": 160,
+  "healthy_count": 160,
+  "canonical_healthy_count": 160,
   "fallback_healthy_count": 0,
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 0,
   "checkout_gap_count": 0,
-  "deploy_missing_or_bad_url": 0,
+  "deploy_missing_or_bad_url": 1,
   "canonical_url_drift": 0,
-  "spec_ready_count": 0,
-  "deploy_readiness_count": 0,
-  "deploy_readiness_manifest_gap_count": 0,
-  "deploy_readiness_url_gap_count": 0,
-  "deploy_readiness_state_gap_count": 0,
+  "spec_ready_count": 1,
+  "deploy_readiness_count": 4,
+  "deploy_readiness_manifest_gap_count": 4,
+  "deploy_readiness_url_gap_count": 4,
+  "deploy_readiness_state_gap_count": 4,
   "needs_fix_count": 0,
-  "next_action": "1 canl\u0131 \u00fcr\u00fcn\u00fc d\u00fczelt",
+  "next_action": "Tüm ürünler sağlıklı",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-25T01:31:01.320040Z",
+  "last_updated": "2026-04-25T04:51:11.713756Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1135,24 +1135,161 @@
       "st": "live",
       "v": "https://mcphub.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_2vCGGSeZz33ftcfLa27l0JrS76IEKW26Q6HP93VbOau"
+    },
+    {
+      "n": "API to MCP Converter",
+      "s": "api-to-mcp",
+      "st": "live",
+      "v": "https://api-to-mcp.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_OJwPdnYkmK8LdHaK692Ko6rn5IABSnAaaCi5V0pBxpk"
+    },
+    {
+      "n": "JSON Compare Pro",
+      "s": "json-compare-pro",
+      "st": "building",
+      "v": null,
+      "c": "https://buy.polar.sh/polar_cl_oCDhQRUcL4tQ3N1mveezznJILTjqbnzIlUdfy0tKRL6"
+    },
+    {
+      "n": "JSON Formatter Pro",
+      "s": "json-formatter",
+      "st": "ready_to_deploy",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "CSV Converter Pro",
+      "s": "csv-converter-pro",
+      "st": "ready_to_deploy",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Cron Expression Tester",
+      "s": "cron-expression-tester",
+      "st": "building",
+      "v": null,
+      "c": "https://buy.polar.sh/polar_cl_gqbBU6PbLYEkrPNfAmlMMllXo4Js20u74Y5eP1THHB3"
+    },
+    {
+      "n": "CSV to Markdown Pro",
+      "s": "csv-to-markdown",
+      "st": "building",
+      "v": null,
+      "c": "https://buy.polar.sh/polar_cl_q5yvmRLaDm8Z4L1YFoGlSn7LtKFQCPKf2YGcU4YNDL1"
+    },
+    {
+      "n": "CSV Validator Pro",
+      "s": "csv-validator-pro",
+      "st": "spec_ready",
+      "v": null,
+      "c": "https://buy.polar.sh/polar_cl_xfPwLDlKpqDEKLyPzApqOIJRuzBwNrhIPU8I71qUdgV"
+    },
+    {
+      "n": "SVG Optimizer Pro",
+      "s": "svg-optimizer-pro",
+      "st": "ready_to_deploy",
+      "v": null,
+      "c": "https://buy.polar.sh/polar_cl_vmByVwBRGJgDxR2YqUpogZRoO67LYsjH5AoTU4UiGcV"
     }
   ],
   "gaps": {
-    "missing_url": [],
+    "missing_url": [
+      "csv-validator-pro"
+    ],
     "unhealthy_live": [],
     "pending_health": [],
     "missing_checkout": [],
     "canonical_url_drift": [],
     "fallback_healthy": [],
     "ready_for_payment_health": [],
-    "deploy_readiness": []
+    "deploy_readiness": [
+      {
+        "slug": "csv-converter-pro",
+        "name": "CSV Converter Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/csv-converter-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "features",
+          "tech_stack",
+          "spec_version"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "json-formatter",
+        "name": "JSON Formatter Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/json-formatter/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "features",
+          "tech_stack",
+          "spec_version"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url",
+          "checkout_url"
+        ],
+        "missing_state_fields": [
+          "payment_provider",
+          "created_cycle"
+        ]
+      },
+      {
+        "slug": "csv-validator-pro",
+        "name": "CSV Validator Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/csv-validator-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "tagline"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      },
+      {
+        "slug": "svg-optimizer-pro",
+        "name": "SVG Optimizer Pro",
+        "manifest_path": "/home/gokhan/UniverseCreator/products/svg-optimizer-pro/product.json",
+        "manifest_problem": null,
+        "missing_manifest_fields": [
+          "spec_version"
+        ],
+        "missing_url_fields": [
+          "vercel_url",
+          "deployment_url",
+          "github_url",
+          "webhook_url"
+        ],
+        "missing_state_fields": [
+          "created_cycle",
+          "deployed_cycle"
+        ]
+      }
+    ]
   },
   "canonical_url_drift_products": [],
   "fallback_healthy_products": [],
-  "ready_for_payment_unhealthy_products": [],
-  "canonical_drift": 0,
-  "accepted_canonical_drift": 11,
-  "unhealthy": 0,
-  "checkout_gap": 0,
-  "vercel_rate_limit": true
+  "ready_for_payment_unhealthy_products": []
 }
