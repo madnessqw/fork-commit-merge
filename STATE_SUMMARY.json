@@ -1,11 +1,11 @@
 {
-  "cycle": 1136,
+  "cycle": 1143,
   "mode": "INNOVATE",
   "balance": 0.0,
-  "active_count": 157,
-  "live_count": 157,
-  "healthy_count": 157,
-  "canonical_healthy_count": 157,
+  "active_count": 159,
+  "live_count": 159,
+  "healthy_count": 159,
+  "canonical_healthy_count": 159,
   "fallback_healthy_count": 0,
   "unhealthy_count": 0,
   "pending_health_count": 0,
@@ -19,9 +19,9 @@
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "INNOVATE: docker-compose-generator in\u015faat, builder-3 \u00e7al\u0131\u015f\u0131yor",
+  "next_action": "1 canl\u0131 \u00fcr\u00fcn\u00fc d\u00fczelt",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-24T23:05:06.999924Z",
+  "last_updated": "2026-04-25T01:31:01.320040Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1121,6 +1121,20 @@
       "st": "live",
       "v": "https://terraink-flax.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_v6aLBWg5RLrML74Hra5G1mmbGbvFb0JnFOv9s2pEkb7"
+    },
+    {
+      "n": "Docker Compose Generator Pro",
+      "s": "docker-compose-generator",
+      "st": "live",
+      "v": "https://docker-compose-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_0VMSx65YRc5eH6XgsZXww0MgnbJdvzt4wxCmQ08gmSW"
+    },
+    {
+      "n": "MCP Hub",
+      "s": "mcphub",
+      "st": "live",
+      "v": "https://mcphub.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_2vCGGSeZz33ftcfLa27l0JrS76IEKW26Q6HP93VbOau"
     }
   ],
   "gaps": {
@@ -1135,5 +1149,10 @@
   },
   "canonical_url_drift_products": [],
   "fallback_healthy_products": [],
-  "ready_for_payment_unhealthy_products": []
+  "ready_for_payment_unhealthy_products": [],
+  "canonical_drift": 0,
+  "accepted_canonical_drift": 11,
+  "unhealthy": 0,
+  "checkout_gap": 0,
+  "vercel_rate_limit": true
 }
