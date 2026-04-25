@@ -29,5 +29,6 @@
   "polar_product_price_id": "bab7e461-029c-4960-aaf6-e38c52698e82",
   "polar_checkout_link_id": "94ed64b6-527a-4bcb-a606-7594eaf8232a",
   "created_cycle": 988,
-  "deployed_cycle": 1108
+  "deployed_cycle": 1108,
+  "vercel_url": "https://api-mock-generator.vercel.app"
 }
