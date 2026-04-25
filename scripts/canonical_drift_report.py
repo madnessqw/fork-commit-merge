@@ -318,6 +318,138 @@ def drift_persistence_text(trend_file: Path = TREND_FILE, limit: int = 100) -> s
     return "\n".join(lines)
 
 
+RESOLUTION_GROUPS: dict[str, dict] = {
+    "redeploy": {
+        "codes": {404, 500, 502},
+        "label": "Redeploy needed",
+        "description": "Canonical URL broken — redeploy to canonical slug",
+    },
+    "billing": {
+        "codes": {402},
+        "label": "Billing/suspension",
+        "description": "Project suspended or billing issue — check Vercel billing",
+    },
+    "redirect": {
+        "codes": {301, 302, 307},
+        "label": "Redirect/alias",
+        "description": "Canonical redirects — may accept alias or redeploy",
+    },
+    "auth": {
+        "codes": {401},
+        "label": "SSO/Auth protection",
+        "description": "Vercel Authentication blocking access — disable in settings",
+    },
+    "timeout": {
+        "codes": {0},
+        "label": "Timeout/DNS",
+        "description": "DNS or network issue — verify domain and retry",
+    },
+    "ok": {
+        "codes": {200},
+        "label": "Healthy alias",
+        "description": "Canonical reachable but via alias — accept or normalize",
+    },
+}
+
+
+def drift_resolution_strategy(products: list[dict]) -> dict[str, list[dict]]:
+    groups: dict[str, list[dict]] = {g: [] for g in RESOLUTION_GROUPS}
+    groups["unknown"] = []
+
+    for p in products:
+        code = p.get("canonical_health_code", 0)
+        matched = False
+        for group_key, group_info in RESOLUTION_GROUPS.items():
+            if code in group_info["codes"]:
+                entry = {
+                    **p,
+                    "resolution_group": group_key,
+                    "resolution_label": group_info["label"],
+                    "resolution_description": group_info["description"],
+                }
+                groups[group_key].append(entry)
+                matched = True
+                break
+        if not matched:
+            entry = {
+                **p,
+                "resolution_group": "unknown",
+                "resolution_label": f"Unknown (HTTP {code})",
+                "resolution_description": "Investigate manually",
+            }
+            groups["unknown"].append(entry)
+
+    groups = {k: v for k, v in groups.items() if v}
+    return groups
+
+
+def generate_fix_script(products: list[dict]) -> str:
+    groups = drift_resolution_strategy(products)
+    ts = _utc_now_iso()
+
+    lines = [
+        "#!/bin/bash",
+        f"# Canonical Drift Auto-Fix Script — generated {ts} UTC",
+        f"# Products: {len(products)} | Groups: {', '.join(groups.keys())}",
+        "",
+    ]
+
+    redeploy_slugs = [p["slug"] for p in groups.get("redeploy", [])]
+    if redeploy_slugs:
+        lines.append("# === REDEPLOY (broken canonical) ===")
+        for slug in redeploy_slugs:
+            lines.append(f"echo '>> Redeploying {slug} ...'")
+            lines.append(f"cd products/{slug} && vercel --prod --yes 2>&1 || echo 'FAIL: {slug}'")
+            lines.append("cd - > /dev/null")
+            lines.append("")
+        lines.append(f"echo 'Redeployed: {len(redeploy_slugs)} products'")
+        lines.append("")
+
+    auth_slugs = [p["slug"] for p in groups.get("auth", [])]
+    if auth_slugs:
+        lines.append("# === AUTH FIX (disable Vercel Authentication) ===")
+        for slug in auth_slugs:
+            lines.append(f"echo '>> Fix auth for {slug} — disable Vercel Authentication in project settings'")
+        lines.append(f"echo 'Auth fix needed: {len(auth_slugs)} products'")
+        lines.append("")
+
+    billing_slugs = [p["slug"] for p in groups.get("billing", [])]
+    if billing_slugs:
+        lines.append("# === BILLING (manual check needed) ===")
+        for slug in billing_slugs:
+            lines.append(f"echo '>> {slug}: Check Vercel billing — project may be suspended'")
+        lines.append("")
+
+    redirect_slugs = [p["slug"] for p in groups.get("redirect", [])]
+    if redirect_slugs:
+        lines.append("# === REDIRECT (accept alias or redeploy) ===")
+        for slug in redirect_slugs:
+            lines.append(f"echo '>> {slug}: Canonical redirects — redeploy if needed'")
+            lines.append(f"# cd products/{slug} && vercel --prod --yes")
+        lines.append("")
+
+    ok_slugs = [p["slug"] for p in groups.get("ok", [])]
+    if ok_slugs:
+        lines.append("# === OK (alias works, consider accepting) ===")
+        for slug in ok_slugs:
+            lines.append(f"echo '>> {slug}: Alias works, consider normalizing URL in STATE.json'")
+        lines.append("")
+
+    unknown_slugs = [p["slug"] for p in groups.get("unknown", [])]
+    if unknown_slugs:
+        lines.append("# === UNKNOWN (investigate manually) ===")
+        for slug in unknown_slugs:
+            lines.append(f"echo '>> {slug}: Unknown issue — investigate manually'")
+        lines.append("")
+
+    lines.append("echo '=== Fix script complete ==='")
+
+    return "\n".join(lines)
+
+
+FIX_SCRIPT_PATH = ROOT / "analysis" / "fix_drift.sh"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Canonical drift fix plan generator")
     parser.add_argument("--json", action="store_true", dest="as_json")
@@ -331,6 +463,10 @@ def main() -> int:
                         help="Export drift trend data as JSON array")
     parser.add_argument("--persistence", action="store_true",
                         help="Show per-slug drift persistence from health_trend.jsonl")
+    parser.add_argument("--strategy", action="store_true",
+                        help="Group drift products by resolution strategy")
+    parser.add_argument("--fix-script", action="store_true", dest="fix_script",
+                        help="Generate shell script with Vercel fix commands")
     args = parser.parse_args()
 
     if args.from_summary:
@@ -349,6 +485,22 @@ def main() -> int:
 
     if args.persistence:
         print(drift_persistence_text())
+        return 0
+
+    if args.strategy:
+        groups = drift_resolution_strategy(products)
+        for group_key, group_products in groups.items():
+            label = RESOLUTION_GROUPS.get(group_key, {}).get("label", group_key)
+            print(f"\n== {label} ({len(group_products)}) ==")
+            for p in group_products:
+                print(f"  {p['slug']} — HTTP {p['canonical_health_code']}")
+        return 0
+
+    if args.fix_script:
+        script = generate_fix_script(products)
+        FIX_SCRIPT_PATH.parent.mkdir(parents=True, exist_ok=True)
+        FIX_SCRIPT_PATH.write_text(script, encoding="utf-8")
+        print(f"Written: {FIX_SCRIPT_PATH}")
         return 0
 
     if args.as_json:

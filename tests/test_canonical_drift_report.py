@@ -360,3 +360,136 @@ def test_main_export_trend_json_no_file(tmp_path):
     assert entries == []
     json_output = json.dumps(entries)
     assert json_output == "[]"
+
+
+MOCK_DRIFT_PRODUCTS = [
+    {
+        "slug": "terraink",
+        "name": "Terraink",
+        "vercel_url": "https://terraink-flax.vercel.app",
+        "ideal_vercel_url": "https://terraink.vercel.app",
+        "canonical_health_code": 404,
+        "canonical_health_status": "not_found",
+        "severity": "high",
+        "fix_command": "cd products/terraink && vercel --prod --yes",
+    },
+    {
+        "slug": "terminal-os",
+        "name": "Terminal OS",
+        "vercel_url": "https://terminal-os-green.vercel.app",
+        "ideal_vercel_url": "https://terminal-os.vercel.app",
+        "canonical_health_code": 500,
+        "canonical_health_status": "error_500",
+        "severity": "high",
+        "fix_command": "cd products/terminal-os && vercel --prod --yes",
+    },
+    {
+        "slug": "html-entity-encoder",
+        "name": "HTML Entity Encoder",
+        "vercel_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "ideal_vercel_url": "https://html-entity-encoder.vercel.app",
+        "canonical_health_code": 402,
+        "canonical_health_status": "deployment_disabled",
+        "severity": "high",
+        "fix_command": "cd products/html-entity-encoder && vercel --prod --yes",
+    },
+    {
+        "slug": "chmod-calculator",
+        "name": "Chmod Calculator",
+        "vercel_url": "https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app",
+        "ideal_vercel_url": "https://chmod-calculator.vercel.app",
+        "canonical_health_code": 307,
+        "canonical_health_status": "error_307",
+        "severity": "low",
+        "fix_command": "cd products/chmod-calculator && vercel --prod --yes",
+    },
+    {
+        "slug": "croncraft",
+        "name": "CronCraft",
+        "vercel_url": "https://quickcron.vercel.app",
+        "ideal_vercel_url": "https://croncraft.vercel.app",
+        "canonical_health_code": 200,
+        "canonical_health_status": "redirected_preview_alias",
+        "severity": "info",
+        "fix_command": "No fix needed",
+    },
+]
+
+
+def test_drift_resolution_strategy_groups_by_code():
+    from scripts.canonical_drift_report import drift_resolution_strategy
+    groups = drift_resolution_strategy(MOCK_DRIFT_PRODUCTS)
+
+    assert "redeploy" in groups
+    assert "billing" in groups
+    assert "redirect" in groups
+    assert "ok" in groups
+
+    redeploy_slugs = [p["slug"] for p in groups["redeploy"]]
+    assert "terraink" in redeploy_slugs
+    assert "terminal-os" in redeploy_slugs
+
+    billing_slugs = [p["slug"] for p in groups["billing"]]
+    assert "html-entity-encoder" in billing_slugs
+
+    redirect_slugs = [p["slug"] for p in groups["redirect"]]
+    assert "chmod-calculator" in redirect_slugs
+
+    ok_slugs = [p["slug"] for p in groups["ok"]]
+    assert "croncraft" in ok_slugs
+
+
+def test_drift_resolution_strategy_empty_products():
+    from scripts.canonical_drift_report import drift_resolution_strategy
+    groups = drift_resolution_strategy([])
+    assert groups == {}
+
+
+def test_drift_resolution_strategy_unknown_code():
+    from scripts.canonical_drift_report import drift_resolution_strategy
+    products = [{
+        "slug": "mystery-prod",
+        "canonical_health_code": 999,
+        "severity": "medium",
+        "fix_command": "investigate",
+    }]
+    groups = drift_resolution_strategy(products)
+    assert "unknown" in groups
+    assert groups["unknown"][0]["slug"] == "mystery-prod"
+
+
+def test_drift_resolution_strategy_adds_resolution_fields():
+    from scripts.canonical_drift_report import drift_resolution_strategy
+    groups = drift_resolution_strategy(MOCK_DRIFT_PRODUCTS)
+    for group_products in groups.values():
+        for p in group_products:
+            assert "resolution_group" in p
+            assert "resolution_label" in p
+            assert "resolution_description" in p
+
+
+def test_generate_fix_script_contains_redeploy_commands():
+    from scripts.canonical_drift_report import generate_fix_script
+    script = generate_fix_script(MOCK_DRIFT_PRODUCTS)
+    assert "#!/bin/bash" in script
+    assert "terraink" in script
+    assert "terminal-os" in script
+    assert "vercel --prod --yes" in script
+    assert "BILLING" in script
+    assert "html-entity-encoder" in script
+    assert "REDIRECT" in script
+    assert "chmod-calculator" in script
+
+
+def test_generate_fix_script_empty_products():
+    from scripts.canonical_drift_report import generate_fix_script
+    script = generate_fix_script([])
+    assert "#!/bin/bash" in script
+    assert "Products: 0" in script
+
+
+def test_generate_fix_script_has_header():
+    from scripts.canonical_drift_report import generate_fix_script
+    script = generate_fix_script(MOCK_DRIFT_PRODUCTS)
+    assert "Canonical Drift Auto-Fix Script" in script
+    assert "Groups:" in script
