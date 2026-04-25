@@ -1,15 +1,14 @@
 # GLM Code Result
-**Tarih:** 2026-04-25 17:40 | **Cycle:** 1173+
+**Tarih:** 2026-04-25 21:30 | **Cycle:** 1182
 
 ## Ne Yapıldı
-p2p_sales_tracker.py'ye `export_sales_csv()` fonksiyonu eklendi. Satış verilerini CSV formatında dışa aktarmayı sağlar. Status/product filtreleri ve dosyaya yazma desteği var.
+`CODEBASE_MAP.md` cycle 1156'dan 1182'ye güncellendi. 12 yeni script (health_dashboard, portfolio_snapshot, canonical_drift_report, canonical_override, health_trend, cycle_delta, unhealthy_triage, portfolio_report, kimi_loop, check_evolution, ledger_summary, fix_hash_urls) ve 5 skill dokümanı (glm_analyst, opencode_subagent_guide, SWARM_IDENTITY, ULTRATHINK, POLAR_CHECKOUT) eklendi. Canonical drift sayısı 0 olarak güncellendi.
 
 ## Değişen Dosyalar
-- `scripts/p2p_sales_tracker.py` — export_sales_csv() fonksiyonu + csv/io import
-- `tests/test_p2p_sales_tracker.py` — 6 yeni test (TestExportSalesCSV)
+- `CODEBASE_MAP.md` — cycle 1182 güncelleme, 12 yeni script, 5 skill dokümanı, drift metrik düzeltme
 
 ## Test Sonucu
-60/60 passed (0.20s)
+857 passed (tüm testler yeşil)
 
 ## Commit
-a186602 — glm: 20260425-1740 — p2p_sales_tracker: add export_sales_csv() with status/product filter + file output + 6 tests
+f2ae47e — glm: 20260425-2130 — CODEBASE_MAP.md updated to cycle 1182, added 12 new scripts + 5 skills docs

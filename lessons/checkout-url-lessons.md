@@ -61,7 +61,7 @@
 | cron-express | ready_for_payment | $19 | product.json | ✅ | dd1d145c-a23d-4c75-b093-fc1d8925f299 |
 | cron-expression-builder | live | $9 | product.json | ✅ | 670fb449-47f3-4add-9f61-5b6390fab57c |
 | cron-expression-parser | live | $19 | product.json | ✅ | e11a030e-c7ea-423b-bbad-73481b46ec2a |
-| cron-expression-tester | building | $9 | product.json | ✅ | 248d7093-205b-4ed7-91f4-ca23e54e4306 |
+| cron-expression-tester | live | $9 | product.json | ✅ | 248d7093-205b-4ed7-91f4-ca23e54e4306 |
 | cron-master | ready_for_payment | $9 | product.json | ✅ | e441f50a-13a8-47c6-ac3b-50d6fb1bd0e2 |
 | croncraft | ready_for_payment | $9 | product.json | ✅ | 5cc279f8-3efa-44c5-a923-02391e8c2ccc |
 | cronmaster | live | $9 | product.json | ✅ | d1d34d7d-4efe-4673-9afb-b887c8b9f47e |
@@ -70,7 +70,7 @@
 | css-shadow-studio | live | $19 | product.json | ✅ | bf861d4d-1a6d-46b9-ab51-578fc0a2459e |
 | css-to-tailwind | live | $19 | product.json | ✅ | fcd0cedb-7578-42ae-ab86-cf48cbcf8d62 |
 | csv-to-json-pro | live | $19 | product.json | ✅ | 60bf4cda-f359-4fee-9ee3-5929335dc732 |
-| csv-to-markdown | building | $9 | product.json | ✅ | 2cc274e9-9c0a-43ed-93fb-fb171b8593ab |
+| csv-to-markdown | live | $9 | product.json | ✅ | 2cc274e9-9c0a-43ed-93fb-fb171b8593ab |
 | csv-to-sql-pro | ready_for_payment | $19 | product.json | ✅ | 75a095d3-7037-4ec6-a552-2c0ba3a6a3f3 |
 | csv-validator-pro | spec_ready | $19 | product.json | ✅ | 237d2a52-2e8d-4561-8f1f-4fd7b3344b42 |
 | curl2code | ready_for_payment | $12 | product.json | ✅ | 8ff1b9f7-ea85-4f8d-b72f-861a84b97ea1 |
@@ -103,7 +103,7 @@
 | html-entities | live | $9 | product.json | ✅ | 0ae734e3-3fc0-4461-8612-059231972259 |
 | html-entity | ready_for_payment | $9 | product.json | ✅ | 64c968e7-4bb0-4ba5-9bab-d62c9ab85197 |
 | html-entity-encoder | live | $9 | product.json | ✅ | f5edd770-4bec-4cc1-9055-0ad79a5e70e6 |
-| html-entity-pro | building | $19 | product.json | ✅ | 19aa7ec0-63a0-4076-8e72-cf754d961a3f |
+| html-entity-pro | live | $19 | product.json | ✅ | 19aa7ec0-63a0-4076-8e72-cf754d961a3f |
 | html-minifier-pro | live | $9 | product.json | ✅ | 1c408368-2bb9-4276-9f68-8aeb87c65309 |
 | html-to-markdown | live | $9 | product.json | ✅ | b8cfa831-3edb-4205-aba4-dc2cfd549163 |
 | html-to-markdown-pro | live | $9 | product.json | ✅ | b8cfa831-3edb-4205-aba4-dc2cfd549163 |
@@ -138,10 +138,10 @@
 | markdown-to-pdf | ready_for_payment | $9 | product.json | ✅ | 389d9401-05b1-4c90-9b7a-5fcacf675c6f |
 | mcp-inspector-pro | spec_ready | $19 | product.json | ✅ | 742e41f4-2cc3-46da-953b-d55636b7034d |
 | mcp-server-scaffolder | ready_for_payment | $19 | product.json | ✅ | 020aaa7d-da02-4b52-9e09-2e45542420b2 |
-| mcp-validator | building | $9 | product.json | ✅ | 722d1fc4-da4c-484e-9546-2f4417ec5669 |
+| mcp-validator | live | $9 | product.json | ✅ | 722d1fc4-da4c-484e-9546-2f4417ec5669 |
 | mock-data-pro | live | $9 | product.json | ✅ | a74db76c-ae8d-451d-899b-600acfd0d835 |
 | nanoid-generator | ready_for_payment | $9 | product.json | ✅ | 0e41364e-c719-4535-ad3b-329bebfcb189 |
-| nginx-config | building | $9 | product.json | ✅ | 39ff382d-df67-416c-ad01-8106d02e352a |
+| nginx-config | live | $9 | product.json | ✅ | 39ff382d-df67-416c-ad01-8106d02e352a |
 | nginx-config-generator | live | $19 | product.json | ✅ | 7db4fddf-88cb-488f-baee-467731b1d2f8 |
 | nginx-config-tester | ready_to_deploy | $19 | product.json | ✅ | 79e80c85-3dab-4020-a87e-17d3f28a99a2 |
 | number-base-converter | live | $9 | product.json | ✅ | 0d81a271-d720-47ca-b9da-a5d008511596 |
@@ -167,7 +167,7 @@
 | svg-pattern-generator | live | $19 | product.json | ✅ | c9905a73-84a6-4d99-b2c4-cb48526c4f24 |
 | table-to-csv | live | $19 | product.json | ✅ | b5094e1f-3457-4589-8cb3-f1c7c4a30099 |
 | techstack | live | $19 | product.json | ✅ | 6ff67c46-396c-4c0f-ae5f-6ab97d631a4c |
-| terminal-os | building | $9 | product.json | ✅ | 564854bd-2bf6-412f-b5f4-eaaded114ecd |
+| terminal-os | live | $9 | product.json | ✅ | 564854bd-2bf6-412f-b5f4-eaaded114ecd |
 | terminal-theme-studio | ready_for_payment | $9 | product.json | ✅ | 821a8e54-7ce6-4a3f-afd3-a53207e42cfc |
 | text-case-converter | ready_for_payment | $19 | product.json | ✅ | 69046712-98c5-43b9-be1a-2e027187f535 |
 | text-diff-pro | ready_for_payment | $9 | product.json | ✅ | 162566f0-ed77-46f8-892d-e9cb9c96460d |

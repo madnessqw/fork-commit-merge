@@ -1,8 +1,8 @@
-# Sorun Analizi — Cycle 1182 | 2026-04-25 22:29 UTC
+# Sorun Analizi — Cycle 1183 | 2026-04-25 20:26 UTC
 
-## Durum Özeti
-- **Sistem stabil.** 169/169 ürün sağlıklı. Checkout gap: 0. Canonical drift: 0. Deploy gap: 0.
-- Önceki cycle'da (1181) tespit edilen sorunlar değişmedi; checkout gap 0 olarak doğrulandı.
+## Ana Darboğaz
+- **$0 revenue** — 169 live ürün, hiçbiri satış yapmıyor. Marketing/trafik kaynağı eksik.
+- **vercel auth invalid** — Codex offline Apr 28'e kadar, yeni deploy yapılamıyor.
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -12,21 +12,26 @@
 - Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 0
+- Canonical drift: 0 (çözüldü — cycle 1174+)
 - Spec-ready backlog: 0
-- Accepted canonical drift: 7 (jwt-generator, pdf-forge, webhook-tester, email-validator-pro, diffmaster, html-entity-encoder, timestamp-converter)
+- Accepted canonical drift: 7
 
-## Çözülen Sorunlar (Son Cycles)
-- ✅ canonical_url_drift: 5 → 0 (croncraft, chmod-calculator, terminal-os, terraink, nginx-config — canonical_url_override ile çözüldü)
-- ✅ STATE.json inconsistency: 12 eksik live ürün eklendi, 1 duplicate (terraink) temizlendi
-- ✅ price mismatch: 4/4 çözüldü (chmod-calculator, hash-generator-pro, http-pulse, og-forge)
-- ✅ deploy_gap: 9 → 0 (düzeltildi)
-- ✅ checkout_gap: 0 (Polar rollout tamamlandı, 169/169 üründe aktif)
+## Canonical Drift Ürünleri
+- **Yok** — cycle 1174'ten bu yana canonical drift 0. Eski drift ürünleri (croncraft, chmod-calculator, terminal-os, terraink, nginx-config) çözüldü veya kabul edildi.
+
+## Kabul Edilmiş Canonical Drift
+- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
+- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
+- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
+- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
+- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
+- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **codex_offline** [medium/known] — Codex her iki hesap da Apr 28'e kadar bloklu. Builder kapasitesi düşük.
-- **vercel_auth_invalid** [medium/known] — Vercel auth token geçersiz. Yeni deploy gerektiğinde manuel müdahale gerekir.
-- **$0_revenue** [high/persistent] — Checkout entegrasyonu tamamlandı ancak henüz satış yok. Trafik/dönüşüm kaynağı eksik.
+- **state_drift** [resolved] — Cycle 1177'de STATE.json inconsistency çözüldü (12 eksik live ürün eklendi, 1 duplicate terraink silindi). Artık live_count=169 tutarlı.
+- **agent_missing** [stale] — Toolsmith agent spawn edilmedi; ancak Codex offline olduğu için geçici olarak düşük öncelik.
+- **revenue_zero** [critical/open] — 169 live ürün, checkout aktif, $0 satış. Trafik/SEO/pazarlama stratejisi eksik.
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
