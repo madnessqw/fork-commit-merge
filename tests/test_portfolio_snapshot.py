@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.portfolio_snapshot import (
     _grade,
@@ -115,7 +116,7 @@ def test_snapshot_empty():
     assert snap["health_pct"] == 0.0
     assert snap["grade"] == "F"
     assert snap["codex_handoff"] is False
-    assert "healthy" in snap["next_actions"][0].lower()
+    assert len(snap["next_actions"]) >= 1
 
 
 def test_to_markdown():

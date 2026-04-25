@@ -31,6 +31,7 @@ from scripts.summary_visibility import (
     fallback_healthy_count,
     fallback_healthy_entries,
 )
+from scripts.price_audit import audit_product_prices
 
 
 def _load_summary(path: Path = SUMMARY_PATH) -> dict:
@@ -117,6 +118,8 @@ def snapshot(summary: dict | None = None) -> dict:
         drift_action_items = drift_items
     needs_codex_handoff = len(unhealthy_items) > 0 or drift_count > 0
 
+    price_result = audit_product_prices()
+
     return {
         "ts": datetime.now(timezone.utc).isoformat(),
         "cycle": cycle,
@@ -138,9 +141,13 @@ def snapshot(summary: dict | None = None) -> dict:
         "drift_detail": drift_slugs,
         "fallback_slugs": fallback_slugs,
         "deploy_gap_detail": deploy_gap_slugs,
+        "price_inconsistencies": len(price_result.get("inconsistencies", [])),
+        "price_missing": len(price_result.get("missing_price", [])),
         "codex_handoff": needs_codex_handoff,
         "next_actions": _next_actions(
-            unhealthy, checkout_gap, deploy_gap, drift_action_items, fallback_healthy
+            unhealthy, checkout_gap, deploy_gap, drift_action_items, fallback_healthy,
+            len(price_result.get("inconsistencies", [])),
+            len(price_result.get("missing_price", [])),
         ),
     }
 
@@ -151,6 +158,8 @@ def _next_actions(
     deploy_gap: int,
     drift: list,
     fallback: int,
+    price_inconsistencies: int = 0,
+    price_missing: int = 0,
 ) -> list[str]:
     actions = []
     if unhealthy > 0:
@@ -163,6 +172,10 @@ def _next_actions(
         actions.append(f"Resolve {len(drift)} canonical URL drifts")
     if fallback > 0:
         actions.append(f"Normalize {fallback} fallback alias products")
+    if price_inconsistencies > 0:
+        actions.append(f"Normalize {price_inconsistencies} non-canonical prices")
+    if price_missing > 0:
+        actions.append(f"Set prices for {price_missing} products")
     if not actions:
         actions.append("Portfolio healthy — focus on new products")
     return actions
@@ -216,6 +229,18 @@ def to_markdown(snap: dict) -> str:
         for dg in snap["deploy_gap_detail"]:
             missing = ", ".join(dg.get("missing_urls", [])[:3])
             lines.append(f"- **{dg['slug']}** — missing: {missing}")
+        lines.append("")
+
+    price_inc = snap.get("price_inconsistencies", 0)
+    price_miss = snap.get("price_missing", 0)
+    if price_inc > 0 or price_miss > 0:
+        lines.append("## Price Audit")
+        lines.append(f"| Metric | Count |")
+        lines.append(f"|--------|-------|")
+        if price_inc > 0:
+            lines.append(f"| Non-canonical format | {price_inc} |")
+        if price_miss > 0:
+            lines.append(f"| Missing price | {price_miss} |")
         lines.append("")
 
     lines.append("## Next Actions")
