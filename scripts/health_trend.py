@@ -147,6 +147,57 @@ STUCK_METRIC_KEYS = (
     "checkout_gap",
 )
 
+DELTA_METRIC_KEYS = (
+    ("live", "live"),
+    ("healthy", "healthy"),
+    ("unhealthy", "unhealthy"),
+    ("health_pct", "health_pct"),
+    ("checkout_gap", "checkout_gap"),
+    ("deploy_gap", "deploy_gap"),
+    ("canonical_drift", "canonical_drift"),
+    ("fallback_healthy", "fallback_healthy"),
+)
+
+
+def cycle_delta_report(entries: list[dict] | None = None) -> dict:
+    if entries is None:
+        entries = load_trend(limit=50)
+
+    if len(entries) < 2:
+        return {"available": False, "reason": "insufficient_snapshots", "snapshots": len(entries)}
+
+    prev = entries[-2]
+    curr = entries[-1]
+
+    deltas: list[dict] = []
+    for key, label in DELTA_METRIC_KEYS:
+        p = prev.get(key, 0)
+        c = curr.get(key, 0)
+        d = round(c - p, 1) if isinstance(p, float) or isinstance(c, float) else c - p
+        if d != 0:
+            deltas.append({"metric": label, "prev": p, "curr": c, "delta": d})
+
+    grade_change = None
+    pg = prev.get("grade", "")
+    cg = curr.get("grade", "")
+    if pg and cg and pg != cg:
+        grade_change = {"from": pg, "to": cg}
+
+    new_drift = set(curr.get("drift_slugs", [])) - set(prev.get("drift_slugs", []))
+    resolved_drift = set(prev.get("drift_slugs", [])) - set(curr.get("drift_slugs", []))
+
+    return {
+        "available": True,
+        "from_cycle": prev.get("cycle", 0),
+        "to_cycle": curr.get("cycle", 0),
+        "deltas": deltas,
+        "changed": len(deltas) > 0,
+        "grade_change": grade_change,
+        "new_drift_slugs": sorted(new_drift),
+        "resolved_drift_slugs": sorted(resolved_drift),
+        "snapshots": len(entries),
+    }
+
 
 def stuck_metrics(entries: list[dict] | None = None, *, window: int = 5) -> dict:
     if entries is None:
@@ -248,6 +299,10 @@ def main() -> int:
     if len(sys.argv) > 1 and sys.argv[1] == "trend":
         trend = compute_trend()
         print(json.dumps(trend, indent=2, ensure_ascii=False))
+        return 0
+
+    if len(sys.argv) > 1 and sys.argv[1] == "delta":
+        print(json.dumps(cycle_delta_report(), indent=2, ensure_ascii=False))
         return 0
 
     if len(sys.argv) > 1 and sys.argv[1] == "grade":

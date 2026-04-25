@@ -11,6 +11,7 @@ from scripts.health_trend import (
     trend_summary_text,
     stuck_metrics,
     drift_slug_history,
+    cycle_delta_report,
 )
 
 
@@ -550,6 +551,119 @@ class HealthTrendTests(unittest.TestCase):
             self.assertEqual(ret, 0)
             output = json.loads(captured.getvalue())
             self.assertIn("drift_slug_count", output)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_cycle_delta_report_insufficient_snapshots(self) -> None:
+        result = cycle_delta_report([{"health_pct": 95.0, "cycle": 1}])
+        self.assertFalse(result["available"])
+        self.assertEqual(result["reason"], "insufficient_snapshots")
+
+    def test_cycle_delta_report_no_changes(self) -> None:
+        entries = [
+            {"live": 100, "healthy": 95, "unhealthy": 5, "health_pct": 95.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 1, "grade": "A", "drift_slugs": []},
+            {"live": 100, "healthy": 95, "unhealthy": 5, "health_pct": 95.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 2, "grade": "A", "drift_slugs": []},
+        ]
+        result = cycle_delta_report(entries)
+        self.assertTrue(result["available"])
+        self.assertFalse(result["changed"])
+        self.assertEqual(result["deltas"], [])
+        self.assertIsNone(result["grade_change"])
+
+    def test_cycle_delta_report_detects_changes(self) -> None:
+        entries = [
+            {"live": 100, "healthy": 90, "unhealthy": 10, "health_pct": 90.0,
+             "checkout_gap": 3, "deploy_gap": 5, "canonical_drift": 2,
+             "fallback_healthy": 1, "cycle": 1, "grade": "B", "drift_slugs": []},
+            {"live": 100, "healthy": 95, "unhealthy": 5, "health_pct": 95.0,
+             "checkout_gap": 0, "deploy_gap": 2, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 2, "grade": "A", "drift_slugs": []},
+        ]
+        result = cycle_delta_report(entries)
+        self.assertTrue(result["available"])
+        self.assertTrue(result["changed"])
+        self.assertEqual(result["from_cycle"], 1)
+        self.assertEqual(result["to_cycle"], 2)
+        self.assertEqual(result["grade_change"], {"from": "B", "to": "A"})
+
+        delta_metrics = {d["metric"]: d["delta"] for d in result["deltas"]}
+        self.assertEqual(delta_metrics["healthy"], 5)
+        self.assertEqual(delta_metrics["unhealthy"], -5)
+        self.assertEqual(delta_metrics["deploy_gap"], -3)
+        self.assertEqual(delta_metrics["canonical_drift"], -2)
+
+    def test_cycle_delta_report_drift_slug_changes(self) -> None:
+        entries = [
+            {"live": 100, "healthy": 95, "unhealthy": 5, "health_pct": 95.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 2,
+             "fallback_healthy": 0, "cycle": 1, "drift_slugs": ["a", "b"]},
+            {"live": 100, "healthy": 95, "unhealthy": 5, "health_pct": 95.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 2,
+             "fallback_healthy": 0, "cycle": 2, "drift_slugs": ["b", "c"]},
+        ]
+        result = cycle_delta_report(entries)
+        self.assertEqual(result["new_drift_slugs"], ["c"])
+        self.assertEqual(result["resolved_drift_slugs"], ["a"])
+
+    def test_cycle_delta_report_float_delta(self) -> None:
+        entries = [
+            {"live": 100, "healthy": 90, "unhealthy": 10, "health_pct": 90.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 1, "drift_slugs": []},
+            {"live": 100, "healthy": 92, "unhealthy": 8, "health_pct": 92.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 2, "drift_slugs": []},
+        ]
+        result = cycle_delta_report(entries)
+        delta_metrics = {d["metric"]: d["delta"] for d in result["deltas"]}
+        self.assertEqual(delta_metrics["health_pct"], 2.0)
+        self.assertEqual(delta_metrics["healthy"], 2)
+
+    def test_cycle_delta_report_empty_entries(self) -> None:
+        result = cycle_delta_report([])
+        self.assertFalse(result["available"])
+
+    def test_cycle_delta_report_same_grade_no_change(self) -> None:
+        entries = [
+            {"live": 100, "healthy": 97, "unhealthy": 3, "health_pct": 97.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 1, "grade": "A", "drift_slugs": []},
+            {"live": 100, "healthy": 96, "unhealthy": 4, "health_pct": 96.0,
+             "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0,
+             "fallback_healthy": 0, "cycle": 2, "grade": "A", "drift_slugs": []},
+        ]
+        result = cycle_delta_report(entries)
+        self.assertIsNone(result["grade_change"])
+
+    def test_main_delta_subcommand(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            from scripts.health_trend import main
+            import io, contextlib
+            captured = io.StringIO()
+            with contextlib.redirect_stdout(captured):
+                orig_argv = sys.argv
+                sys.argv = ["health_trend.py", "delta"]
+                try:
+                    ret = main()
+                finally:
+                    sys.argv = orig_argv
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertIn("available", output)
         finally:
             ht.TREND_FILE = orig_trend
             ht.ROOT = orig_root
