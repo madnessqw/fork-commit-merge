@@ -1,14 +1,16 @@
 # GLM Code Result
-**Tarih:** 2026-04-25 21:30 | **Cycle:** 1182
+**Tarih:** 2026-04-26 00:01 | **Cycle:** 1184
 
 ## Ne Yapıldı
-`CODEBASE_MAP.md` cycle 1156'dan 1182'ye güncellendi. 12 yeni script (health_dashboard, portfolio_snapshot, canonical_drift_report, canonical_override, health_trend, cycle_delta, unhealthy_triage, portfolio_report, kimi_loop, check_evolution, ledger_summary, fix_hash_urls) ve 5 skill dokümanı (glm_analyst, opencode_subagent_guide, SWARM_IDENTITY, ULTRATHINK, POLAR_CHECKOUT) eklendi. Canonical drift sayısı 0 olarak güncellendi.
+`cycle_delta.py`'ye `health_streak_analysis()` fonksiyonu eklendi — health_trend.jsonl'den art arda %100 sağlık döngülerini, en uzun seriyi ve son degradation event'ini hesaplar. `--streak` CLI flag eklendi. 8 yeni test yazıldı (toplam 29 test passed).
 
 ## Değişen Dosyalar
-- `CODEBASE_MAP.md` — cycle 1182 güncelleme, 12 yeni script, 5 skill dokümanı, drift metrik düzeltme
+- `scripts/cycle_delta.py` — health_streak_analysis() + format_streak_markdown() + --streak CLI flag
+- `tests/test_cycle_delta.py` — 8 yeni test (all_perfect, with_degradation, empty, degradation_at_end, custom_threshold, format_with/without_degradation)
 
 ## Test Sonucu
-857 passed (tüm testler yeşil)
+29 passed in 0.11s
 
-## Commit
-f2ae47e — glm: 20260425-2130 — CODEBASE_MAP.md updated to cycle 1182, added 12 new scripts + 5 skills docs
+## Sonuç
+Current streak: 18 cycles @ 100% | Longest: 18 | 19/26 snapshots perfect (73.1%)
+Last degradation: cycle 1162 @ 2026-04-25T11:27:31Z

@@ -185,6 +185,91 @@ def format_delta_telegram(delta: dict[str, Any]) -> str:
 DELTA_OUTPUT_PATH = ROOT / "analysis" / "cycle_delta.md"
 
 
+def health_streak_analysis(
+    threshold: float = 100.0,
+    trend_path: Path = TREND_FILE,
+) -> dict[str, Any]:
+    """Analyse health streaks from the trend log.
+
+    Returns:
+        current_streak: consecutive cycles at or above *threshold*
+        longest_streak: longest such run
+        total_perfect: total snapshots at or above threshold
+        total_snapshots: total snapshots analysed
+        pct_perfect: percentage of snapshots at threshold
+        last_degradation: most recent snapshot below threshold (or None)
+        first_snapshot_ts / last_snapshot_ts: time range
+    """
+    snapshots = _load_snapshots(trend_path)
+    if not snapshots:
+        return {
+            "current_streak": 0,
+            "longest_streak": 0,
+            "total_perfect": 0,
+            "total_snapshots": 0,
+            "pct_perfect": 0.0,
+            "last_degradation": None,
+            "first_snapshot_ts": None,
+            "last_snapshot_ts": None,
+        }
+
+    current = 0
+    longest = 0
+    total_perfect = 0
+    last_degradation = None
+
+    for snap in snapshots:
+        pct = snap.get("health_pct", 0.0)
+        if pct >= threshold:
+            current += 1
+            total_perfect += 1
+        else:
+            if current > longest:
+                longest = current
+            current = 0
+            last_degradation = {
+                "cycle": snap.get("cycle"),
+                "ts": snap.get("ts"),
+                "health_pct": pct,
+                "unhealthy": snap.get("unhealthy", 0),
+            }
+
+    if current > longest:
+        longest = current
+
+    total = len(snapshots)
+    return {
+        "current_streak": current,
+        "longest_streak": longest,
+        "total_perfect": total_perfect,
+        "total_snapshots": total,
+        "pct_perfect": round(total_perfect / total * 100, 1) if total else 0.0,
+        "last_degradation": last_degradation,
+        "first_snapshot_ts": snapshots[0].get("ts"),
+        "last_snapshot_ts": snapshots[-1].get("ts"),
+    }
+
+
+def format_streak_markdown(analysis: dict[str, Any]) -> str:
+    lines = [
+        "## Health Streak Analysis",
+        f"**Snapshots:** {analysis['total_snapshots']} | "
+        f"**Perfect:** {analysis['total_perfect']} ({analysis['pct_perfect']}%)",
+        f"**Current streak:** {analysis['current_streak']} cycles @ 100%",
+        f"**Longest streak:** {analysis['longest_streak']} cycles",
+    ]
+    deg = analysis.get("last_degradation")
+    if deg:
+        lines.append(
+            f"**Last degradation:** cycle {deg['cycle']} "
+            f"({deg['health_pct']}%, {deg.get('unhealthy', '?')} unhealthy) "
+            f"@ {deg.get('ts', '?')}"
+        )
+    else:
+        lines.append("**Last degradation:** none (all perfect)")
+    return "\n".join(lines)
+
+
 def main() -> dict[str, Any]:
     import argparse
 
@@ -193,7 +278,16 @@ def main() -> dict[str, Any]:
     parser.add_argument("--write", action="store_true", help="Write markdown report to analysis/cycle_delta.md")
     parser.add_argument("--json", action="store_true", help="Output as JSON instead of markdown")
     parser.add_argument("--telegram", action="store_true", help="Compact Telegram-friendly output")
+    parser.add_argument("--streak", action="store_true", help="Show health streak analysis")
     args = parser.parse_args()
+
+    if args.streak:
+        analysis = health_streak_analysis()
+        if args.json:
+            print(json.dumps(analysis, indent=2, ensure_ascii=False))
+        else:
+            print(format_streak_markdown(analysis))
+        return analysis
 
     n = args.last
     deltas = last_n_deltas(n)

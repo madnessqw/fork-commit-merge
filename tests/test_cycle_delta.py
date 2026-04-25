@@ -15,6 +15,8 @@ from scripts.cycle_delta import (
     delta_summary,
     format_delta_markdown,
     format_delta_telegram,
+    format_streak_markdown,
+    health_streak_analysis,
     last_n_deltas,
     _load_snapshots,
 )
@@ -252,3 +254,105 @@ def test_format_delta_telegram_degrading():
     result = format_delta_telegram(delta)
     assert "📉" in result
     assert "UNH:+7" in result
+
+
+def test_health_streak_all_perfect(tmp_path):
+    trend = tmp_path / "trend.jsonl"
+    _write_trend(trend, [
+        {"cycle": 1, "ts": "t1", "health_pct": 100.0},
+        {"cycle": 2, "ts": "t2", "health_pct": 100.0},
+        {"cycle": 3, "ts": "t3", "health_pct": 100.0},
+    ])
+    result = health_streak_analysis(trend_path=trend)
+    assert result["current_streak"] == 3
+    assert result["longest_streak"] == 3
+    assert result["total_perfect"] == 3
+    assert result["total_snapshots"] == 3
+    assert result["pct_perfect"] == 100.0
+    assert result["last_degradation"] is None
+
+
+def test_health_streak_with_degradation(tmp_path):
+    trend = tmp_path / "trend.jsonl"
+    _write_trend(trend, [
+        {"cycle": 1, "ts": "t1", "health_pct": 100.0},
+        {"cycle": 2, "ts": "t2", "health_pct": 95.0, "unhealthy": 5},
+        {"cycle": 3, "ts": "t3", "health_pct": 100.0},
+        {"cycle": 4, "ts": "t4", "health_pct": 100.0},
+    ])
+    result = health_streak_analysis(trend_path=trend)
+    assert result["current_streak"] == 2
+    assert result["longest_streak"] == 2
+    assert result["total_perfect"] == 3
+    assert result["pct_perfect"] == 75.0
+    assert result["last_degradation"]["cycle"] == 2
+    assert result["last_degradation"]["health_pct"] == 95.0
+
+
+def test_health_streak_empty(tmp_path):
+    result = health_streak_analysis(trend_path=tmp_path / "nope.jsonl")
+    assert result["current_streak"] == 0
+    assert result["total_snapshots"] == 0
+
+
+def test_health_streak_degradation_at_end(tmp_path):
+    trend = tmp_path / "trend.jsonl"
+    _write_trend(trend, [
+        {"cycle": 1, "ts": "t1", "health_pct": 100.0},
+        {"cycle": 2, "ts": "t2", "health_pct": 100.0},
+        {"cycle": 3, "ts": "t3", "health_pct": 90.0, "unhealthy": 10},
+    ])
+    result = health_streak_analysis(trend_path=trend)
+    assert result["current_streak"] == 0
+    assert result["longest_streak"] == 2
+    assert result["last_degradation"]["cycle"] == 3
+
+
+def test_health_streak_custom_threshold(tmp_path):
+    trend = tmp_path / "trend.jsonl"
+    _write_trend(trend, [
+        {"cycle": 1, "ts": "t1", "health_pct": 95.0},
+        {"cycle": 2, "ts": "t2", "health_pct": 96.0},
+        {"cycle": 3, "ts": "t3", "health_pct": 90.0},
+    ])
+    result = health_streak_analysis(threshold=95.0, trend_path=trend)
+    assert result["current_streak"] == 0
+    assert result["longest_streak"] == 2
+    assert result["total_perfect"] == 2
+
+
+def test_format_streak_markdown_with_degradation():
+    analysis = {
+        "total_snapshots": 10,
+        "total_perfect": 8,
+        "pct_perfect": 80.0,
+        "current_streak": 5,
+        "longest_streak": 5,
+        "last_degradation": {
+            "cycle": 105,
+            "ts": "2026-04-20",
+            "health_pct": 95.0,
+            "unhealthy": 3,
+        },
+        "first_snapshot_ts": "t1",
+        "last_snapshot_ts": "t2",
+    }
+    md = format_streak_markdown(analysis)
+    assert "5 cycles" in md
+    assert "cycle 105" in md
+    assert "80.0%" in md
+
+
+def test_format_streak_markdown_all_perfect():
+    analysis = {
+        "total_snapshots": 5,
+        "total_perfect": 5,
+        "pct_perfect": 100.0,
+        "current_streak": 5,
+        "longest_streak": 5,
+        "last_degradation": None,
+        "first_snapshot_ts": "t1",
+        "last_snapshot_ts": "t2",
+    }
+    md = format_streak_markdown(analysis)
+    assert "none (all perfect)" in md
