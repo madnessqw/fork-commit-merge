@@ -1,4 +1,5 @@
 import json
+import sys
 import textwrap
 from pathlib import Path
 from unittest.mock import mock_open, patch
@@ -272,3 +273,38 @@ def test_drift_history_summary_all_zero(tmp_path):
     from scripts.canonical_drift_report import drift_history_summary
     result = drift_history_summary(trend_file=trend_file)
     assert "NO DRIFT" in result
+
+
+def test_drift_history_data_returns_entries(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_TREND_LINES)
+    from scripts.canonical_drift_report import drift_history_data
+    entries = drift_history_data(trend_file=trend_file)
+    assert len(entries) == 3
+    assert entries[0]["cycle"] == 1155
+    assert entries[1]["canonical_drift"] == 6
+
+
+def test_drift_history_data_missing_file(tmp_path):
+    from scripts.canonical_drift_report import drift_history_data
+    entries = drift_history_data(trend_file=tmp_path / "nonexistent.jsonl")
+    assert entries == []
+
+
+def test_export_trend_json_flag(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_TREND_LINES)
+    from scripts.canonical_drift_report import drift_history_data
+    entries = drift_history_data(trend_file=trend_file)
+    assert len(entries) == 3
+    json_output = json.dumps(entries, ensure_ascii=False)
+    parsed = json.loads(json_output)
+    assert parsed[0]["cycle"] == 1155
+
+
+def test_main_export_trend_json_no_file(tmp_path):
+    from scripts.canonical_drift_report import drift_history_data
+    entries = drift_history_data(trend_file=tmp_path / "nonexistent.jsonl")
+    assert entries == []
+    json_output = json.dumps(entries)
+    assert json_output == "[]"

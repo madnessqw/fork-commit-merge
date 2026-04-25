@@ -231,18 +231,22 @@ def write_codex_task(products: list[dict], output_path: Path = CODEX_TASK_PATH) 
     return f"Written: {output_path}"
 
 
-def drift_history_summary(trend_file: Path = TREND_FILE, limit: int = 20) -> str:
+def drift_history_data(trend_file: Path = TREND_FILE, limit: int = 20) -> list[dict]:
     try:
-        lines = trend_file.read_text(encoding="utf-8").strip().splitlines()
+        raw = trend_file.read_text(encoding="utf-8").strip().splitlines()
     except OSError:
-        return "Drift trend verisi yok"
-    recent = lines[-limit:]
+        return []
     entries = []
-    for line in recent:
+    for line in raw[-limit:]:
         try:
             entries.append(json.loads(line))
         except json.JSONDecodeError:
             continue
+    return entries
+
+
+def drift_history_summary(trend_file: Path = TREND_FILE, limit: int = 20) -> str:
+    entries = drift_history_data(trend_file, limit)
     if not entries:
         return "Drift trend verisi yok"
     drift_values = [e.get("canonical_drift", 0) for e in entries]
@@ -283,6 +287,8 @@ def main() -> int:
                         help="Load drift data from STATE_SUMMARY.json instead of STATE.json")
     parser.add_argument("--trend", action="store_true",
                         help="Show drift history trend from health_trend.jsonl")
+    parser.add_argument("--export-trend-json", action="store_true", dest="export_trend_json",
+                        help="Export drift trend data as JSON array")
     args = parser.parse_args()
 
     if args.from_summary:
@@ -292,6 +298,11 @@ def main() -> int:
 
     if args.trend:
         print(drift_history_summary())
+        return 0
+
+    if args.export_trend_json:
+        entries = drift_history_data()
+        print(json.dumps(entries, indent=2, ensure_ascii=False))
         return 0
 
     if args.as_json:
