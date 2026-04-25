@@ -1,7 +1,7 @@
 # CODEBASE_MAP.md — UniverseCreator
 
 **Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
-Cycle 1156 itibarıyla: 169 aktif, 169 canlı, 169 sağlıklı (%100).
+Cycle 1182 itibarıyla: 169 aktif, 169 canlı, 169 sağlıklı (%100).
 Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
@@ -87,6 +87,17 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `sync_from_vercel.py` | Vercel'den STATE.json senkronizasyonu |
 | `refresh_codex_context.py` | Codex context dosyalarını yeniler |
 | `log_rotation.sh` | Log dosyalarını sıkıştırır/temizler |
+| `health_dashboard.py` | Portföy sağlık dashboard — renkli terminal CLI |
+| `portfolio_snapshot.py` | Portföy anlık durum kaydı (JSON/Markdown) |
+| `canonical_drift_report.py` | Canonical URL drift tespiti + fix planı üretici |
+| `canonical_override.py` | Canonical URL override yönetimi |
+| `health_trend.py` | Sağlık trend analizi (rolling stats) |
+| `cycle_delta.py` | Cycle'lar arası değişim raporu |
+| `unhealthy_triage.py` | Unhealthy ürün triage CLI aracı |
+| `portfolio_report.py` | Portföy rapor üretici |
+| `kimi_loop.sh` | Kimi tabanlı alternatif loop |
+| `check_evolution.sh` | Capability evolution kontrol |
+| `ledger_summary.sh` | Run ledger özet raporu |
 
 ---
 
@@ -112,6 +123,11 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `content_creator/` | Ürün için landing page / blog içeriği |
 | `code_executor/` | Güvenli kod çalıştırma |
 | `ultrathink/` | Derin analiz modu |
+| `glm_analyst.md` | GLM micro-coder + analyst skill |
+| `opencode_subagent_guide.md` | OpenCode subagent seçim rehberi |
+| `SWARM_IDENTITY.md` | Agent kimlik + şirket misyon |
+| `ULTRATHINK.md` | Düşünme protokolü |
+| `POLAR_CHECKOUT.md` | Polar checkout entegrasyon rehberi |
 
 ---
 
@@ -153,7 +169,7 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
 
-## 📊 Mevcut Durum (Cycle 1156)
+## 📊 Mevcut Durum (Cycle 1182)
 
 | Metrik | Değer |
 |---|---|
@@ -161,7 +177,7 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | Canlı (live) | 169 |
 | Sağlıklı | 169 (%100) |
 | Unhealthy | 0 |
-| Canonical drift | 1 (nginx-config — fallback alias ile erişilebilir) |
+| Canonical drift | 0 |
 | Deploy gap | 0 |
 | Spec hazır | 0 |
 | Checkout gap | 0 |
