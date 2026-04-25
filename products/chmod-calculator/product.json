@@ -26,5 +26,7 @@
   "polar_product_price_id": "794d1c4d-9084-4f53-b2e3-3fe21f4bbf94",
   "polar_checkout_link_id": "246d2a5d-bd95-422f-8f33-8a20f97350b2",
   "created_cycle": 1116,
-  "deployed_cycle": 1108
+  "deployed_cycle": 1108,
+  "canonical_url": "https://chmod-calculator.vercel.app",
+  "canonical_url_override": "https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app"
 }
