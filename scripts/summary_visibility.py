@@ -263,6 +263,162 @@ def drift_severity_breakdown(summary: dict[str, Any]) -> dict[str, int]:
     return breakdown
 
 
+CATEGORY_RULES: list[tuple[str, str]] = [
+    ("nginx", "DevOps"),
+    ("docker", "DevOps"),
+    ("htaccess", "DevOps"),
+    ("htpasswd", "DevOps"),
+    ("ssl", "DevOps"),
+    ("chmod", "DevOps"),
+    ("env file", "DevOps"),
+    ("envguard", "DevOps"),
+    ("jwt", "Auth"),
+    ("hmac", "Auth"),
+    ("password", "Auth"),
+    ("secret", "Auth"),
+    ("keyforge", "Auth"),
+    ("cron", "Scheduling"),
+    ("graphql", "API"),
+    ("webhook", "API"),
+    ("curl", "API"),
+    ("mcp", "API"),
+    ("api", "API"),
+    ("ai ", "AI"),
+    ("llm", "AI"),
+    ("token", "AI"),
+    ("agent", "AI"),
+    ("validator", "Validation"),
+    ("checker", "Validation"),
+    ("inspector", "Validation"),
+    ("scanner", "Validation"),
+    ("encoder", "Encoding"),
+    ("decoder", "Encoding"),
+    ("base64", "Encoding"),
+    ("hash", "Encoding"),
+    ("beautifier", "Formatting"),
+    ("formatter", "Formatting"),
+    ("minifier", "Formatting"),
+    ("compressor", "Formatting"),
+    ("optimizer", "Optimization"),
+    ("converter", "Conversion"),
+    ("parser", "Conversion"),
+    ("transformer", "Conversion"),
+    ("tester", "Testing"),
+    ("mock", "Testing"),
+    ("diff", "Comparison"),
+    ("compare", "Comparison"),
+    ("monitor", "Monitoring"),
+    ("dashboard", "Visualization"),
+    ("studio", "Visualization"),
+    ("visualizer", "Visualization"),
+    ("snapshot", "Visualization"),
+    ("chart", "Visualization"),
+    ("generator", "Generation"),
+    ("builder", "Generation"),
+    ("forge", "Generation"),
+    ("scaffolder", "Generation"),
+    ("nanoid", "Generation"),
+    ("uuid", "Generation"),
+    ("manager", "Management"),
+    ("guard", "Security"),
+    ("security", "Security"),
+    ("seo", "Marketing"),
+    ("og ", "Marketing"),
+    ("og-", "Marketing"),
+    ("email", "Communication"),
+    ("signature", "Communication"),
+    ("geo", "Networking"),
+    ("ip ", "Networking"),
+    ("ip-", "Networking"),
+    ("http", "Networking"),
+    ("json", "Data"),
+    ("csv", "Data"),
+    ("xml", "Data"),
+    ("yaml", "Data"),
+    ("toml", "Data"),
+    ("sql", "Data"),
+    ("markdown", "Content"),
+    ("html", "Content"),
+    ("svg", "Content"),
+    ("pdf", "Content"),
+    ("image", "Content"),
+    ("ascii", "Content"),
+    ("qr", "Design"),
+    ("color", "Design"),
+    ("css", "Design"),
+    ("terminal", "Developer Tools"),
+    ("git", "Developer Tools"),
+    ("code", "Developer Tools"),
+    ("browser", "Developer Tools"),
+    ("binary", "Developer Tools"),
+    ("regex", "Developer Tools"),
+    ("text", "Text Processing"),
+    ("lorem", "Text Processing"),
+    ("number", "Math"),
+    ("timestamp", "Time"),
+    ("id ", "Generation"),
+    ("terraink", "Visualization"),
+]
+
+
+def category_breakdown(summary: dict[str, Any]) -> dict[str, list[str]]:
+    """Categorize portfolio products by name pattern.
+
+    Scans product names (``n`` field) in STATE_SUMMARY.json and groups
+    them into categories like "Validation", "Encoding", "DevOps", etc.
+
+    Each product is assigned to the first matching category rule.
+    Products matching no rule fall into "Other".
+
+    Returns a dict mapping category name to a sorted list of slugs.
+    """
+    products = summary.get("products", [])
+    if not isinstance(products, list):
+        return {}
+
+    result: dict[str, list[str]] = {}
+    assigned: set[str] = set()
+
+    for item in products:
+        if not isinstance(item, dict):
+            continue
+        name = str(item.get("n", "")).lower()
+        slug = str(item.get("s", item.get("slug", ""))).strip()
+        if not slug:
+            continue
+
+        matched = False
+        for keyword, category in CATEGORY_RULES:
+            if keyword in name:
+                result.setdefault(category, []).append(slug)
+                assigned.add(slug)
+                matched = True
+                break
+
+        if not matched:
+            result.setdefault("Other", []).append(slug)
+
+    for key in result:
+        result[key].sort()
+
+    return result
+
+
+def category_summary(summary: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return sorted category breakdown with counts and slugs.
+
+    Useful for one-line reports showing portfolio composition.
+    Sorted by count descending.
+    """
+    breakdown = category_breakdown(summary)
+    rows = [
+        {"category": cat, "count": len(slugs), "slugs": slugs}
+        for cat, slugs in breakdown.items()
+    ]
+    rows.sort(key=lambda r: r["count"], reverse=True)
+    return rows
+
+
 def deploy_readiness_report(summary: dict[str, Any]) -> dict[str, Any]:
     """Summarize deploy readiness gaps from STATE_SUMMARY.
 

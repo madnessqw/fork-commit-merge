@@ -15,6 +15,8 @@ from scripts.summary_visibility import (
     apply_drift_fix_to_state,
     canonical_drift_count,
     canonical_drift_entries,
+    category_breakdown,
+    category_summary,
     deploy_readiness_report,
     drift_products_from_state,
     drift_severity_breakdown,
@@ -439,3 +441,110 @@ class TestDriftSeverityBreakdown:
         result = drift_severity_breakdown(summary)
         assert "unknown" in result
         assert result["unknown"] == 2
+
+
+class TestCategoryBreakdown:
+    def test_empty_summary(self):
+        assert category_breakdown({}) == {}
+
+    def test_no_products_key(self):
+        assert category_breakdown({"live_count": 5}) == {}
+
+    def test_categorizes_generator(self):
+        summary = {"products": [{"n": "UUID Generator Pro", "s": "uuid-gen"}]}
+        result = category_breakdown(summary)
+        assert "Generation" in result
+        assert "uuid-gen" in result["Generation"]
+
+    def test_categorizes_validator(self):
+        summary = {"products": [{"n": "YAML Validator Pro", "s": "yvp"}]}
+        result = category_breakdown(summary)
+        assert "Validation" in result
+        assert "yvp" in result["Validation"]
+
+    def test_categorizes_formatter(self):
+        summary = {"products": [{"n": "SQL Query Formatter", "s": "sqf"}]}
+        result = category_breakdown(summary)
+        assert "Formatting" in result
+        assert "sqf" in result["Formatting"]
+
+    def test_categorizes_converter(self):
+        summary = {"products": [{"n": "TOML Converter Pro", "s": "c2j"}]}
+        result = category_breakdown(summary)
+        assert "Conversion" in result
+        assert "c2j" in result["Conversion"]
+
+    def test_categorizes_devops(self):
+        summary = {"products": [{"n": "Nginx Config Generator", "s": "ncg"}]}
+        result = category_breakdown(summary)
+        assert "DevOps" in result
+        assert "ncg" in result["DevOps"]
+
+    def test_categorizes_auth(self):
+        summary = {"products": [{"n": "JWT Inspector", "s": "jwt-ins"}]}
+        result = category_breakdown(summary)
+        assert "Auth" in result
+        assert "jwt-ins" in result["Auth"]
+
+    def test_other_for_uncategorized(self):
+        summary = {"products": [{"n": "Terraink - Cartographic Poster Engine", "s": "terraink"}]}
+        result = category_breakdown(summary)
+        assert "Visualization" in result
+        assert "terraink" in result["Visualization"]
+
+    def test_multiple_products_multiple_categories(self):
+        summary = {
+            "products": [
+                {"n": "UUID Generator Pro", "s": "uuid-gen"},
+                {"n": "YAML Validator Pro", "s": "yvp"},
+                {"n": "Cron Expression Builder", "s": "ceb"},
+            ]
+        }
+        result = category_breakdown(summary)
+        assert "Generation" in result
+        assert "Validation" in result
+        assert "Scheduling" in result
+
+    def test_slugs_sorted_within_category(self):
+        summary = {
+            "products": [
+                {"n": "Zebra Generator", "s": "zebra-gen"},
+                {"n": "Alpha Generator", "s": "alpha-gen"},
+            ]
+        }
+        result = category_breakdown(summary)
+        assert result["Generation"] == ["alpha-gen", "zebra-gen"]
+
+    def test_skips_non_dict_products(self):
+        summary = {"products": ["not-a-dict", {"n": "Test Generator", "s": "tg"}]}
+        result = category_breakdown(summary)
+        assert "Generation" in result
+
+    def test_skips_empty_slug(self):
+        summary = {"products": [{"n": "Test Generator", "s": ""}]}
+        result = category_breakdown(summary)
+        assert result == {}
+
+
+class TestCategorySummary:
+    def test_empty(self):
+        assert category_summary({}) == []
+
+    def test_sorted_by_count_descending(self):
+        summary = {
+            "products": [
+                {"n": "UUID Generator", "s": "u1"},
+                {"n": "ID Generator", "s": "i1"},
+                {"n": "YAML Validator", "s": "y1"},
+            ]
+        }
+        result = category_summary(summary)
+        assert result[0]["category"] == "Generation"
+        assert result[0]["count"] == 2
+        assert result[1]["category"] == "Validation"
+        assert result[1]["count"] == 1
+
+    def test_includes_slugs(self):
+        summary = {"products": [{"n": "Hash Generator", "s": "hg"}]}
+        result = category_summary(summary)
+        assert result[0]["slugs"] == ["hg"]
