@@ -1,7 +1,7 @@
 # CODEBASE_MAP.md — UniverseCreator
 
 **Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
-Cycle 1182 itibarıyla: 169 aktif, 169 canlı, 169 sağlıklı (%100).
+Cycle 1183 itibarıyla: 169 aktif, 169 canlı, 169 sağlıklı (%100).
 Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
@@ -87,17 +87,14 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `sync_from_vercel.py` | Vercel'den STATE.json senkronizasyonu |
 | `refresh_codex_context.py` | Codex context dosyalarını yeniler |
 | `log_rotation.sh` | Log dosyalarını sıkıştırır/temizler |
-| `health_dashboard.py` | Portföy sağlık dashboard — renkli terminal CLI |
-| `portfolio_snapshot.py` | Portföy anlık durum kaydı (JSON/Markdown) |
 | `canonical_drift_report.py` | Canonical URL drift tespiti + fix planı üretici |
 | `canonical_override.py` | Canonical URL override yönetimi |
-| `health_trend.py` | Sağlık trend analizi (rolling stats) |
-| `cycle_delta.py` | Cycle'lar arası değişim raporu |
-| `unhealthy_triage.py` | Unhealthy ürün triage CLI aracı |
-| `portfolio_report.py` | Portföy rapor üretici |
 | `kimi_loop.sh` | Kimi tabanlı alternatif loop |
 | `check_evolution.sh` | Capability evolution kontrol |
 | `ledger_summary.sh` | Run ledger özet raporu |
+| `fix_product_state_gaps.py` | Ürün STATE.json boşluklarını tamir eder |
+| `fix_vercel_protection.sh` | Vercel SSO protection sorunlarını düzeltir |
+| `polar_checkout_sync.py` | Polar checkout URL senkronizasyonu |
 
 ---
 
@@ -128,6 +125,12 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `SWARM_IDENTITY.md` | Agent kimlik + şirket misyon |
 | `ULTRATHINK.md` | Düşünme protokolü |
 | `POLAR_CHECKOUT.md` | Polar checkout entegrasyon rehberi |
+| `codex_skill.md` | Codex loop çalışma protokolü |
+| `kimi_SWARM_IDENTITY.md` | Kimi agent kimliği |
+| `build_checklist.md` | Ürün inşa checklist |
+| `self_improvement_log.md` | Agent kendini geliştirme günlüğü |
+| `market_research.md` | Pazar araştırma metodolojisi |
+| `ARASTIRMA_MODU.md` | Araştırma modu talimatları |
 
 ---
 
@@ -169,7 +172,7 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
 
-## 📊 Mevcut Durum (Cycle 1182)
+## 📊 Mevcut Durum (Cycle 1183)
 
 | Metrik | Değer |
 |---|---|
@@ -182,3 +185,4 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | Spec hazır | 0 |
 | Checkout gap | 0 |
 | Mod | `OPTIMIZE` |
+| Codex auth | Her iki hesap usage limitinde (Apr 28'e kadar) |
