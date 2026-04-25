@@ -348,3 +348,107 @@ class TestSearchSales(unittest.TestCase):
         p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
         results = p2p_sales_tracker.search_sales(query="nonexistent")
         self.assertEqual(len(results), 0)
+
+
+class TestSalesByPeriod(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def _inject_sale_with_date(self, product, amount, email, tx_id, date_str):
+        data = p2p_sales_tracker.load_sales()
+        sale = {
+            "id": len(data["sales"]) + 1,
+            "product": product,
+            "amount": amount,
+            "buyer_email": email,
+            "transaction_id": tx_id,
+            "date": date_str,
+            "status": "pending_verification",
+        }
+        data["sales"].append(sale)
+        data["total_revenue"] += amount
+        p2p_sales_tracker.save_sales(data)
+        return sale
+
+    def test_empty_returns_empty(self):
+        result = p2p_sales_tracker.sales_by_period()
+        self.assertEqual(result, [])
+
+    def test_daily_grouping(self):
+        self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-25T10:00:00")
+        self._inject_sale_with_date("P2", 20, "c@d.com", "TX-2", "2026-04-25T14:00:00")
+        self._inject_sale_with_date("P3", 15, "e@f.com", "TX-3", "2026-04-24T10:00:00")
+        result = p2p_sales_tracker.sales_by_period(period="daily")
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result[0]["period"], "2026-04-24")
+        self.assertEqual(result[0]["count"], 1)
+        self.assertEqual(result[0]["revenue"], 15)
+        self.assertEqual(result[1]["period"], "2026-04-25")
+        self.assertEqual(result[1]["count"], 2)
+        self.assertEqual(result[1]["revenue"], 30)
+
+    def test_monthly_grouping(self):
+        self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-01T10:00:00")
+        self._inject_sale_with_date("P2", 20, "c@d.com", "TX-2", "2026-04-15T10:00:00")
+        self._inject_sale_with_date("P3", 30, "e@f.com", "TX-3", "2026-03-20T10:00:00")
+        result = p2p_sales_tracker.sales_by_period(period="monthly")
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result[0]["period"], "2026-03")
+        self.assertEqual(result[0]["revenue"], 30)
+        self.assertEqual(result[1]["period"], "2026-04")
+        self.assertEqual(result[1]["revenue"], 30)
+
+    def test_weekly_grouping(self):
+        self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-20T10:00:00")
+        self._inject_sale_with_date("P2", 25, "c@d.com", "TX-2", "2026-04-21T10:00:00")
+        result = p2p_sales_tracker.sales_by_period(period="weekly")
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["count"], 2)
+        self.assertEqual(result[0]["revenue"], 35)
+
+    def test_status_filter(self):
+        sale = self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-25T10:00:00")
+        self._inject_sale_with_date("P2", 20, "c@d.com", "TX-2", "2026-04-25T14:00:00")
+        p2p_sales_tracker.verify_sale(sale["id"])
+        result = p2p_sales_tracker.sales_by_period(status="verified")
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["count"], 1)
+        self.assertEqual(result[0]["verified_revenue"], 10)
+
+    def test_verified_revenue_per_period(self):
+        s1 = self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-25T10:00:00")
+        self._inject_sale_with_date("P2", 20, "c@d.com", "TX-2", "2026-04-25T14:00:00")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        result = p2p_sales_tracker.sales_by_period(period="daily")
+        self.assertEqual(result[0]["revenue"], 30)
+        self.assertEqual(result[0]["verified_revenue"], 10)
+
+    def test_invalid_date_skipped(self):
+        self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-25T10:00:00")
+        data = p2p_sales_tracker.load_sales()
+        data["sales"].append({"id": 2, "product": "X", "amount": 5, "date": "bad-date", "status": "pending_verification"})
+        p2p_sales_tracker.save_sales(data)
+        result = p2p_sales_tracker.sales_by_period(period="daily")
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["revenue"], 10)
+
+    def test_invalid_period_defaults_daily(self):
+        self._inject_sale_with_date("P1", 10, "a@b.com", "TX-1", "2026-04-25T10:00:00")
+        result = p2p_sales_tracker.sales_by_period(period="yearly")
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["period"], "2026-04-25")
+
+    def test_missing_date_skipped(self):
+        data = p2p_sales_tracker.load_sales()
+        data["sales"].append({"id": 1, "product": "X", "amount": 5, "status": "pending_verification"})
+        p2p_sales_tracker.save_sales(data)
+        result = p2p_sales_tracker.sales_by_period()
+        self.assertEqual(result, [])

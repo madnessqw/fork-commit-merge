@@ -130,6 +130,40 @@ def update_sale_status(sale_id, new_status):
     return None
 
 
+def sales_by_period(period="daily", status=None):
+    data = load_sales()
+    sales = data.get("sales", [])
+    if status:
+        sales = [s for s in sales if s.get("status") == status]
+    buckets: dict[str, list] = {}
+    for s in sales:
+        try:
+            dt = datetime.fromisoformat(s["date"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        if period == "daily":
+            key = dt.strftime("%Y-%m-%d")
+        elif period == "weekly":
+            key = f"{dt.isocalendar()[0]}-W{dt.isocalendar()[1]:02d}"
+        elif period == "monthly":
+            key = dt.strftime("%Y-%m")
+        else:
+            key = dt.strftime("%Y-%m-%d")
+        buckets.setdefault(key, []).append(s)
+    result = []
+    for key in sorted(buckets):
+        bucket = buckets[key]
+        revenue = sum(s["amount"] for s in bucket)
+        verified = sum(s["amount"] for s in bucket if s.get("status") == "verified")
+        result.append({
+            "period": key,
+            "count": len(bucket),
+            "revenue": revenue,
+            "verified_revenue": verified,
+        })
+    return result
+
+
 def search_sales(query="", status=None, product=None):
     data = load_sales()
     results = data.get("sales", [])
