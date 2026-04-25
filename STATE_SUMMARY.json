@@ -3,10 +3,10 @@
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 169,
-  "live_count": 168,
-  "healthy_count": 168,
+  "live_count": 169,
+  "healthy_count": 169,
   "canonical_healthy_count": 168,
-  "fallback_healthy_count": 0,
+  "fallback_healthy_count": 1,
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 0,
@@ -19,9 +19,9 @@
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "json-compare-pro deploy edildi (164). csv-validator-pro live (165). cron-expression-tester + csv-to-markdown rate-limited (24s). Portföy sağlıklı.",
+  "next_action": "all clear — portfolio healthy",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-25T07:35:10.420337Z",
+  "last_updated": "2026-04-25T10:00:11.849332Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -850,13 +850,6 @@
       "c": "https://buy.polar.sh/polar_cl_HVhOznasoiRkXPMK7XTX9EPospigODCWnpTaa4fEDYy"
     },
     {
-      "n": "Docker Compose Builder",
-      "s": "docker-compose-builder",
-      "st": "live",
-      "v": "https://docker-compose-builder.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg"
-    },
-    {
       "n": "ENV File Manager",
       "s": "env-file-manager",
       "st": "live",
@@ -1202,9 +1195,16 @@
     {
       "n": "Nginx Config Generator",
       "s": "nginx-config",
-      "st": "building",
-      "v": null,
+      "st": "live",
+      "v": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_Zqjo5mpJusbPDqekATkPDFlLwLdPo1zJDClpm0BVy7d"
+    },
+    {
+      "n": "Docker Compose Builder",
+      "s": "docker-compose-builder",
+      "st": "live",
+      "v": "https://docker-compose-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg"
     }
   ],
   "gaps": {
@@ -1212,12 +1212,40 @@
     "unhealthy_live": [],
     "pending_health": [],
     "missing_checkout": [],
-    "canonical_url_drift": [],
-    "fallback_healthy": [],
+    "canonical_url_drift": [
+      {
+        "slug": "nginx-config",
+        "url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "ideal_url": "https://nginx-config.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "canonical_url": "https://nginx-config.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      }
+    ],
+    "fallback_healthy": [
+      {
+        "slug": "nginx-config",
+        "url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "ideal_url": "https://nginx-config.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "canonical_url": "https://nginx-config.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      }
+    ],
     "ready_for_payment_health": [],
     "deploy_readiness": []
   },
-  "canonical_url_drift_products": [],
-  "fallback_healthy_products": [],
+  "canonical_url_drift_products": [
+    "nginx-config"
+  ],
+  "fallback_healthy_products": [
+    "nginx-config"
+  ],
   "ready_for_payment_unhealthy_products": []
 }
