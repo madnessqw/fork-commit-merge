@@ -302,6 +302,58 @@ def test_export_trend_json_flag(tmp_path):
     assert parsed[0]["cycle"] == 1155
 
 
+MOCK_TREND_WITH_SLUGS = (
+    '{"ts":"2026-04-25T10:00:00Z","cycle":1155,"canonical_drift":2,"fallback_healthy":2,"drift_slugs":["terraink","terminal-os"]}\n'
+    '{"ts":"2026-04-25T11:00:00Z","cycle":1156,"canonical_drift":3,"fallback_healthy":3,"drift_slugs":["terraink","terminal-os","nginx-config"]}\n'
+    '{"ts":"2026-04-25T12:00:00Z","cycle":1157,"canonical_drift":2,"fallback_healthy":2,"drift_slugs":["terraink","terminal-os"]}\n'
+)
+
+
+def test_drift_persistence_counts_consecutive(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_TREND_WITH_SLUGS)
+    from scripts.canonical_drift_report import drift_persistence
+    result = drift_persistence(trend_file=trend_file)
+    assert result["total_persistent"] == 2
+    assert "terraink" in result["slugs"]
+    assert "terminal-os" in result["slugs"]
+    assert result["slugs"]["terraink"] == 3
+    assert result["slugs"]["terminal-os"] == 3
+    assert "nginx-config" not in result["slugs"]
+
+
+def test_drift_persistence_empty_file(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text("")
+    from scripts.canonical_drift_report import drift_persistence
+    result = drift_persistence(trend_file=trend_file)
+    assert result["total_persistent"] == 0
+    assert result["slugs"] == {}
+
+
+def test_drift_persistence_text_format(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_TREND_WITH_SLUGS)
+    from scripts.canonical_drift_report import drift_persistence_text
+    text = drift_persistence_text(trend_file=trend_file)
+    assert "terraink" in text
+    assert "3 consecutive" in text
+    assert "Persistent slugs: 2" in text
+
+
+def test_drift_persistence_no_persistent(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(
+        '{"ts":"2026-04-25T10:00:00Z","cycle":1155,"canonical_drift":0,"drift_slugs":[]}\n'
+        '{"ts":"2026-04-25T11:00:00Z","cycle":1156,"canonical_drift":0,"drift_slugs":[]}\n'
+    )
+    from scripts.canonical_drift_report import drift_persistence, drift_persistence_text
+    result = drift_persistence(trend_file=trend_file)
+    assert result["total_persistent"] == 0
+    text = drift_persistence_text(trend_file=trend_file)
+    assert "No persistent" in text
+
+
 def test_main_export_trend_json_no_file(tmp_path):
     from scripts.canonical_drift_report import drift_history_data
     entries = drift_history_data(trend_file=tmp_path / "nonexistent.jsonl")

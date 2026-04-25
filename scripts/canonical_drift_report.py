@@ -278,6 +278,46 @@ def drift_history_summary(trend_file: Path = TREND_FILE, limit: int = 20) -> str
     return "\n".join(lines_out)
 
 
+def drift_persistence(trend_file: Path = TREND_FILE, limit: int = 100) -> dict:
+    entries = drift_history_data(trend_file, limit)
+    if not entries:
+        return {"slugs": {}, "total_persistent": 0, "snapshots": 0}
+
+    slug_consecutive: dict[str, int] = {}
+    for entry in reversed(entries):
+        drift_slugs = entry.get("drift_slugs", [])
+        for slug in drift_slugs:
+            slug_consecutive[slug] = slug_consecutive.get(slug, 0) + 1
+        for slug in list(slug_consecutive.keys()):
+            if slug not in drift_slugs:
+                slug_consecutive[slug] = 0
+
+    active = {s: c for s, c in slug_consecutive.items() if c > 0}
+    cycles = [e.get("cycle", 0) for e in entries]
+    return {
+        "slugs": active,
+        "total_persistent": len(active),
+        "max_consecutive": max(active.values()) if active else 0,
+        "snapshots": len(entries),
+        "from_cycle": cycles[0] if cycles else 0,
+        "to_cycle": cycles[-1] if cycles else 0,
+    }
+
+
+def drift_persistence_text(trend_file: Path = TREND_FILE, limit: int = 100) -> str:
+    data = drift_persistence(trend_file, limit)
+    if not data["slugs"]:
+        return "No persistent drift slugs found."
+    lines = [
+        f"Drift Persistence (cycle {data['from_cycle']}→{data['to_cycle']}, {data['snapshots']} snapshots)",
+        f"Persistent slugs: {data['total_persistent']} | Max consecutive: {data['max_consecutive']}",
+        "",
+    ]
+    for slug, count in sorted(data["slugs"].items(), key=lambda x: -x[1]):
+        lines.append(f"  {slug}: {count} consecutive snapshots")
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Canonical drift fix plan generator")
     parser.add_argument("--json", action="store_true", dest="as_json")
@@ -289,6 +329,8 @@ def main() -> int:
                         help="Show drift history trend from health_trend.jsonl")
     parser.add_argument("--export-trend-json", action="store_true", dest="export_trend_json",
                         help="Export drift trend data as JSON array")
+    parser.add_argument("--persistence", action="store_true",
+                        help="Show per-slug drift persistence from health_trend.jsonl")
     args = parser.parse_args()
 
     if args.from_summary:
@@ -303,6 +345,10 @@ def main() -> int:
     if args.export_trend_json:
         entries = drift_history_data()
         print(json.dumps(entries, indent=2, ensure_ascii=False))
+        return 0
+
+    if args.persistence:
+        print(drift_persistence_text())
         return 0
 
     if args.as_json:
