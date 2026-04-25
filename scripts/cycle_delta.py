@@ -26,6 +26,8 @@ METRIC_KEYS = (
     "checkout_gap",
     "deploy_gap",
     "canonical_drift",
+    "needs_fix",
+    "fallback_healthy",
 )
 
 
@@ -163,6 +165,23 @@ def format_delta_markdown(delta: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def format_delta_telegram(delta: dict[str, Any]) -> str:
+    """Format a delta dict as a compact Telegram-friendly line."""
+    parts: list[str] = []
+    direction = delta.get("direction", "?")
+    emoji = "📈" if direction == "improving" else "📉" if direction == "degrading" else "➡️"
+    parts.append(f"{emoji} {delta.get('older_cycle', '?')}→{delta.get('newer_cycle', '?')}")
+    parts.append(f"HP {delta.get('health_pct_delta', 0):+.1f}%")
+    changes = delta.get("changes", {})
+    for key in METRIC_KEYS:
+        if key in changes:
+            c = changes[key]
+            sign = "+" if c["delta"] > 0 else ""
+            short = key[:3].upper()
+            parts.append(f"{short}:{sign}{c['delta']}")
+    return " | ".join(parts)
+
+
 DELTA_OUTPUT_PATH = ROOT / "analysis" / "cycle_delta.md"
 
 
@@ -173,6 +192,7 @@ def main() -> dict[str, Any]:
     parser.add_argument("--last", type=int, default=2, help="Number of recent snapshots to compare (default: 2)")
     parser.add_argument("--write", action="store_true", help="Write markdown report to analysis/cycle_delta.md")
     parser.add_argument("--json", action="store_true", help="Output as JSON instead of markdown")
+    parser.add_argument("--telegram", action="store_true", help="Compact Telegram-friendly output")
     args = parser.parse_args()
 
     n = args.last
@@ -185,6 +205,11 @@ def main() -> dict[str, Any]:
         summary = delta_summary(n)
         print(json.dumps({"deltas": deltas, "summary": summary}, indent=2, ensure_ascii=False))
         return summary
+
+    if args.telegram:
+        for delta in deltas:
+            print(format_delta_telegram(delta))
+        return delta_summary(n)
 
     md_parts: list[str] = []
     for delta in deltas:

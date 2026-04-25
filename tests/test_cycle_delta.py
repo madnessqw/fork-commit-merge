@@ -14,6 +14,7 @@ from scripts.cycle_delta import (
     compute_delta,
     delta_summary,
     format_delta_markdown,
+    format_delta_telegram,
     last_n_deltas,
     _load_snapshots,
 )
@@ -202,3 +203,52 @@ def test_compute_delta_boundary_improving_exact():
     newer = {"cycle": 2, "ts": "t2", "health_pct": 90.6}
     delta = compute_delta(older, newer)
     assert delta["direction"] == "improving"
+
+
+def test_compute_delta_needs_fix_and_fallback():
+    older = {
+        "cycle": 1, "ts": "t1", "health_pct": 90.0,
+        "needs_fix": 10, "fallback_healthy": 3,
+    }
+    newer = {
+        "cycle": 2, "ts": "t2", "health_pct": 95.0,
+        "needs_fix": 5, "fallback_healthy": 1,
+    }
+    delta = compute_delta(older, newer)
+    assert "needs_fix" in delta["changes"]
+    assert delta["changes"]["needs_fix"]["delta"] == -5
+    assert "fallback_healthy" in delta["changes"]
+    assert delta["changes"]["fallback_healthy"]["delta"] == -2
+
+
+def test_format_delta_telegram_improving():
+    delta = compute_delta(
+        {"cycle": 100, "ts": "t1", "health_pct": 90.0, "healthy": 70, "unhealthy": 10},
+        {"cycle": 101, "ts": "t2", "health_pct": 95.0, "healthy": 74, "unhealthy": 6},
+    )
+    result = format_delta_telegram(delta)
+    assert "📈" in result
+    assert "100→101" in result
+    assert "HP +5.0%" in result
+    assert "HEA:+4" in result
+    assert "UNH:-4" in result
+
+
+def test_format_delta_telegram_stable():
+    delta = compute_delta(
+        {"cycle": 50, "ts": "t1", "health_pct": 95.0},
+        {"cycle": 51, "ts": "t2", "health_pct": 95.0},
+    )
+    result = format_delta_telegram(delta)
+    assert "➡️" in result
+    assert "HP +0.0%" in result
+
+
+def test_format_delta_telegram_degrading():
+    delta = compute_delta(
+        {"cycle": 200, "ts": "t1", "health_pct": 97.0, "unhealthy": 2},
+        {"cycle": 201, "ts": "t2", "health_pct": 90.0, "unhealthy": 9},
+    )
+    result = format_delta_telegram(delta)
+    assert "📉" in result
+    assert "UNH:+7" in result
