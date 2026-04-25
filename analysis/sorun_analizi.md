@@ -1,34 +1,25 @@
-# Sorun Analizi — Cycle 1170 | 2026-04-25 15:00 UTC
+# Sorun Analizi — Cycle 1175 | 2026-04-25 19:29 UTC
 
-## Ana Darboğaz
-- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
+## Ana Durum
+- **Sistem sağlığı:** 169/169 healthy (%100)
+- **Checkout gap:** 0
+- **Canonical drift:** 0
+- **Deploy gap:** 0
+- **Fallback healthy:** 0
 
-## Summary'den Gelen Gerçekler
-- Healthy live: 169/169
-- Canonical healthy: 163/169
-- Health pending: 0
-- Fallback healthy: 6
-- Checkout gap: 0
-- Deploy readiness gap: 0
-- Deploy/url gap: 0
-- Canonical drift: 5
-- Spec-ready backlog: 0
-- Accepted canonical drift: 1
+## Bilinen Bloklayıcılar
+1. **Codex offline** [kritik/devam] — Her iki hesap usage limit hit, ~Apr 28 21:35 UTC'ye kadar bekleniyor.
+2. **Vercel auth token invalid** [orta/devam] — Yeni deploy ve ideal URL'ye gerçek redeploy engelleniyor.
 
-## Canonical Drift Ürünleri
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app health=alternate_healthy code=200 probe=https://croncraft.vercel.app canonical_code=200 canonical_status=redirected_preview_alias
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app health=alternate_healthy code=200 canonical_code=307 canonical_status=error_307
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+## Çözülmüş Sorunlar (Son Cycle)
+- Canonical drift: cycle 1172'de 6 ürün fix'lendi, override kalıcı.
+- Fiyat mismatch: 4 ürün (chmod-calculator, hash-generator-pro, http-pulse, og-forge) spec.json ile sync edildi.
+- STATE.json tutarlılık: products.live listesi (169) = top-level live_count (169).
 
-## Kabul Edilmiş Canonical Drift
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
-
-## Açık Issue Kayıtları
-- **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
-- **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
+## Açık Issue Kayıtları (Tarihsel)
+- **state_drift** [high/resolved] — Önceki cycle'larda STATE.json cycle vs git log cycle farkı vardı; sync sonrası tutarlı.
+- **agent_missing** [high/tarihsel] — Toolsmith agent not spawned — pasif.
 
 ## Not
-- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
+- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretilir.
 - Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.

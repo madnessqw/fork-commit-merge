@@ -1,21 +1,21 @@
 # Checkout URL Lessons — UniverseCreator
 
 > **Living document.** Codex her cycle başında okur, cycle sonunda günceller.
-> Son güncelleme: 2026-04-24
+> Son güncelleme: 2026-04-25
 
 ---
 
 ## 1. Aktif Ürün Durumu (Snapshot)
 
-**Toplam:** 165 ürün
+**Toplam:** 169 ürün
 
 | Status | Adet |
 |---|---|
-| live | 91 |
-| spec_ready | 8 |
-| ready_to_deploy | 13 |
-| ready_for_payment | 47 |
-| building | 6 |
+| live | 169 |
+| spec_ready | 0 |
+| ready_to_deploy | 0 |
+| ready_for_payment | 0 |
+| building | 0 |
 
 | Checkout Durumu | Adet |
 |---|---|
@@ -201,14 +201,14 @@
 
 ## 3. Fiyat Mismatch Uyarıları
 
-Aşağıdaki ürünlerde `spec.json["price"]` ≠ `product.json["price"]`. **spec.json yetkili, o fiyat kullanılır.**
+Aktif fiyat mismatch yok. Tüm ürünlerde `spec.json["price"]` = `product.json["price"]`.
 
-| Slug | spec.json | product.json |
-|---|---|---|
-| chmod-calculator | $9 | 19 |
-| hash-generator-pro | 19 | 9 |
-| http-pulse | $14 one-time | 9 |
-| og-forge | $29 one-time | $19 |
+| Slug | spec.json | product.json | Durum |
+|---|---|---|---|
+| chmod-calculator | $9 | $9 | ✅ Çözüldü |
+| hash-generator-pro | 19 | 19 | ✅ Çözüldü |
+| http-pulse | $14 one-time | $14 | ✅ Çözüldü |
+| og-forge | $29 one-time | $29 | ✅ Çözüldü |
 
 ---
 
@@ -243,6 +243,7 @@ Adım 6: Vercel auto-redeploy → landing page buy butonu aktif
 
 - 2026-04-24: Expanded `sync-links` kapsamı (`live` + `ready_for_payment` + `ready_to_deploy` + `spec_ready` + `building`) kalan 18 eksik checkout URL’yi kapattı; `vercel_url` olmayan ürünler reusable Polar checkout link ile sync edildi, checkout gap = 0.
 - 2026-04-24: Aynı `sync-links --replace-non-polar` komutu tekrar çalıştırıldığında `candidates: 0` / `changed: 0` döndü; eski backlog dosyaları (`CHECKOUT_URL_MISSING.md`, `batch/checkout_url_pending.md`) live truth değil, artık tarihsel referans.
+- 2026-04-25: Fiyat mismatch'lar %100 çözüldü (4/4). Toplam ürün sayısı 169 olarak güncellendi. Tüm ürünler `live` status'te.
 
 ## 6. Bilinen Polar API Sorunları + Çözümler
 
