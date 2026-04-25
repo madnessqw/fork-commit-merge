@@ -12,6 +12,7 @@ from scripts.health_trend import (
     stuck_metrics,
     drift_slug_history,
     cycle_delta_report,
+    health_plateau,
 )
 
 
@@ -664,6 +665,91 @@ class HealthTrendTests(unittest.TestCase):
             self.assertEqual(ret, 0)
             output = json.loads(captured.getvalue())
             self.assertIn("available", output)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_health_plateau_empty_entries(self) -> None:
+        result = health_plateau([])
+        self.assertFalse(result["plateau"])
+        self.assertEqual(result["streak"], 0)
+
+    def test_health_plateau_single_entry(self) -> None:
+        result = health_plateau([{"health_pct": 95.0}])
+        self.assertFalse(result["plateau"])
+        self.assertEqual(result["streak"], 1)
+
+    def test_health_plateau_detects_plateau(self) -> None:
+        entries = [{"health_pct": 100.0, "cycle": i} for i in range(8)]
+        result = health_plateau(entries)
+        self.assertTrue(result["plateau"])
+        self.assertEqual(result["streak"], 8)
+        self.assertEqual(result["health_pct"], 100.0)
+        self.assertIsNotNone(result["warning"])
+
+    def test_health_plateau_no_plateau_when_changing(self) -> None:
+        entries = [{"health_pct": float(90 + i), "cycle": i} for i in range(8)]
+        result = health_plateau(entries)
+        self.assertFalse(result["plateau"])
+        self.assertEqual(result["streak"], 1)
+
+    def test_health_plateau_tolerance(self) -> None:
+        entries = [
+            {"health_pct": 95.0, "cycle": 1},
+            {"health_pct": 95.2, "cycle": 2},
+            {"health_pct": 95.1, "cycle": 3},
+            {"health_pct": 95.3, "cycle": 4},
+            {"health_pct": 95.0, "cycle": 5},
+            {"health_pct": 94.9, "cycle": 6},
+        ]
+        result = health_plateau(entries, tolerance=0.5)
+        self.assertTrue(result["plateau"])
+        self.assertEqual(result["streak"], 6)
+
+    def test_health_plateau_breaks_on_significant_change(self) -> None:
+        entries = [
+            {"health_pct": 95.0, "cycle": 1},
+            {"health_pct": 95.1, "cycle": 2},
+            {"health_pct": 95.0, "cycle": 3},
+            {"health_pct": 90.0, "cycle": 4},
+            {"health_pct": 90.1, "cycle": 5},
+            {"health_pct": 90.0, "cycle": 6},
+        ]
+        result = health_plateau(entries, tolerance=0.5)
+        self.assertFalse(result["plateau"])
+        self.assertEqual(result["streak"], 3)
+        self.assertAlmostEqual(result["health_pct"], 90.0)
+
+    def test_health_plateau_pct_of_total(self) -> None:
+        entries = [{"health_pct": 100.0, "cycle": i} for i in range(10)]
+        result = health_plateau(entries)
+        self.assertAlmostEqual(result["pct_of_total"], 100.0)
+
+    def test_main_plateau_subcommand(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            from scripts.health_trend import main
+            import io, contextlib
+            captured = io.StringIO()
+            with contextlib.redirect_stdout(captured):
+                orig_argv = sys.argv
+                sys.argv = ["health_trend.py", "plateau"]
+                try:
+                    ret = main()
+                finally:
+                    sys.argv = orig_argv
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertIn("plateau", output)
+            self.assertIn("streak", output)
         finally:
             ht.TREND_FILE = orig_trend
             ht.ROOT = orig_root

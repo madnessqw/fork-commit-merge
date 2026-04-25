@@ -232,6 +232,34 @@ def stuck_metrics(entries: list[dict] | None = None, *, window: int = 5) -> dict
     }
 
 
+def health_plateau(entries: list[dict] | None = None, *, tolerance: float = 0.5) -> dict:
+    if entries is None:
+        entries = load_trend(limit=50)
+
+    if not entries:
+        return {"plateau": False, "streak": 0, "snapshots": 0}
+
+    latest_pct = entries[-1].get("health_pct", 0)
+    streak = 0
+    for entry in reversed(entries):
+        if abs(entry.get("health_pct", 0) - latest_pct) <= tolerance:
+            streak += 1
+        else:
+            break
+
+    total = len(entries)
+    pct_of_total = round(streak / total * 100, 1) if total > 0 else 0
+
+    return {
+        "plateau": streak >= 5,
+        "streak": streak,
+        "health_pct": latest_pct,
+        "pct_of_total": pct_of_total,
+        "snapshots": total,
+        "warning": f"Health stuck at {latest_pct}% for {streak} cycles" if streak >= 5 else None,
+    }
+
+
 def drift_slug_history(limit: int = 100) -> dict:
     entries = load_trend(limit=limit)
     slug_first_seen: dict[str, str] = {}
@@ -303,6 +331,10 @@ def main() -> int:
 
     if len(sys.argv) > 1 and sys.argv[1] == "delta":
         print(json.dumps(cycle_delta_report(), indent=2, ensure_ascii=False))
+        return 0
+
+    if len(sys.argv) > 1 and sys.argv[1] == "plateau":
+        print(json.dumps(health_plateau(), indent=2, ensure_ascii=False))
         return 0
 
     if len(sys.argv) > 1 and sys.argv[1] == "grade":
