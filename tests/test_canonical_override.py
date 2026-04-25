@@ -56,3 +56,34 @@ def test_chmod_calculator_override_set():
     assert ch is not None, "chmod-calculator not found"
     assert ch.get('canonical_url_override') is not None, "chmod-calculator missing override"
     assert 'chmod-calculator' in ch['canonical_url_override']
+
+
+FALLBACK_URL_PATTERNS = [
+    "-37cz7b6yo-",
+    "-azjwwgvl6-",
+    "-egj3ho5tp-",
+    "-1p2e2xs77-",
+]
+
+
+def _is_fallback_vercel_url(url: str) -> bool:
+    if not url:
+        return False
+    host = url.split("//")[-1].split("/")[0].lower()
+    base = host.replace(".vercel.app", "")
+    return any(pat in base for pat in FALLBACK_URL_PATTERNS) or "." in base
+
+
+def test_canonical_overrides_are_not_fallback_urls():
+    state = _load_state()
+    products = state.get('products', {}).get('active', [])
+    violations = []
+    for p in products:
+        override = p.get('canonical_url_override', '')
+        slug = p.get('slug', '')
+        if override and _is_fallback_vercel_url(override):
+            violations.append(f"{slug}: {override}")
+    assert not violations, (
+        f"canonical_url_override should be the ideal/canonical URL, not a fallback. "
+        f"Violations: {violations}"
+    )
