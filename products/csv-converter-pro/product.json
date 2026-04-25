@@ -1,0 +1,29 @@
+{
+  "name": "CSV Converter Pro",
+  "slug": "csv-converter-pro",
+  "tagline": "Professional data transformation tool for developers. Convert between CSV, JSON, TSV, Markdown, HTML, and SQL formats instantly.",
+  "version": "1.0.0",
+  "description": "Professional data transformation tool for developers. Convert between CSV, JSON, TSV, Markdown, HTML, and SQL formats instantly.",
+  "price": 9,
+  "currency": "USD",
+  "category": "developer-tools",
+  "status": "ready_for_payment",
+  "payment_provider": "polar",
+  "checkout_url": null,
+  "vercel_url": "https://csv-converter-pro.vercel.app",
+  "deployment_url": "https://csv-converter-m8h0zs1o3-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/csv-converter-pro",
+  "webhook_url": "https://csv-converter-pro.vercel.app/api/webhook",
+  "features": [
+    "CSV to JSON conversion",
+    "CSV to TSV conversion",
+    "CSV to Markdown table conversion",
+    "CSV to HTML table conversion",
+    "CSV to SQL INSERT statements",
+    "Delimiter auto-detection",
+    "Batch file processing",
+    "Drag and drop upload"
+  ],
+  "tech_stack": "Vanilla HTML + Tailwind CDN + JavaScript",
+  "spec_version": "1.0"
+}

@@ -2,8 +2,16 @@
   "name": "SVG Optimizer Pro",
   "slug": "svg-optimizer-pro",
   "tagline": "Compress and optimize SVG files instantly with precision controls",
+  "version": "1.0.0",
   "description": "Advanced SVG optimization tool that reduces file size while preserving quality. Features precision control, batch processing, and visual comparison.",
-  "price": "19",
+  "price": 19,
+  "currency": "USD",
+  "category": "developer-tools",
+  "status": "ready_to_deploy",
+  "payment_provider": "polar",
+  "checkout_url": "https://buy.polar.sh/polar_cl_vmByVwBRGJgDxR2YqUpogZRoO67LYsjH5AoTU4UiGcV",
+  "polar_product_id": "7e02e660-3ca0-48d9-9aa0-383f38f23b0c",
+  "spec_version": "1.0",
   "features": [
     "Smart SVG compression",
     "Precision level control",
@@ -14,14 +22,5 @@
     "Metadata removal",
     "ViewBox optimization"
   ],
-  "tech_stack": "Vanilla HTML + Tailwind CDN",
-  "status": "spec_ready",
-  "created_cycle": 1052,
-  "seo_optimized": false,
-  "checkout_url": "https://buy.polar.sh/polar_cl_vmByVwBRGJgDxR2YqUpogZRoO67LYsjH5AoTU4UiGcV",
-  "spec_version": "1.0",
-  "payment_provider": "polar",
-  "polar_product_id": "7e02e660-3ca0-48d9-9aa0-383f38f23b0c",
-  "polar_product_price_id": "9a24c8a3-e05d-492a-b626-8d2f85b3464e",
-  "polar_checkout_link_id": "d7a8ffcd-f98a-440c-b8ed-fa746e1574c3"
+  "tech_stack": "Vanilla HTML + Tailwind CDN"
 }

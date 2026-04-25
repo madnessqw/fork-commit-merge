@@ -1,6 +1,7 @@
 {
   "name": "CSV Validator Pro",
   "slug": "csv-validator-pro",
+  "tagline": "Validate CSV files with auto-detection, schema rules, and detailed error reports",
   "description": "Advanced CSV validation with delimiter detection, schema validation, and error reporting",
   "price": "$19",
   "category": "developer-tools",
