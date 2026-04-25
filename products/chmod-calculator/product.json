@@ -3,7 +3,7 @@
   "slug": "chmod-calculator",
   "tagline": "Visual permission calculator for Linux/macOS",
   "description": "Calculate and visualize Linux file permissions with octal, symbolic, and checkbox interfaces. Generate chmod commands instantly.",
-  "price": "19",
+  "price": "$9",
   "features": [
     "Octal to symbolic conversion",
     "Visual permission grid",
@@ -28,5 +28,5 @@
   "created_cycle": 1116,
   "deployed_cycle": 1108,
   "canonical_url": "https://chmod-calculator.vercel.app",
-  "canonical_url_override": "https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app"
+  "canonical_url_override": "https://chmod-calculator.vercel.app"
 }
