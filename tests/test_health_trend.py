@@ -10,6 +10,7 @@ from scripts.health_trend import (
     compute_trend,
     trend_summary_text,
     stuck_metrics,
+    drift_slug_history,
 )
 
 
@@ -448,6 +449,110 @@ class HealthTrendTests(unittest.TestCase):
             self.assertEqual(entries[1]["health_pct"], 95)
         finally:
             ht.TREND_FILE = orig
+
+    def test_record_snapshot_includes_drift_slugs(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(
+                summary,
+                gaps={"canonical_url_drift": [{"slug": "alpha"}, {"slug": "beta"}]},
+            )
+            snap = record_snapshot(summary)
+            self.assertEqual(snap["drift_slugs"], ["alpha", "beta"])
+        finally:
+            ht.TREND_FILE = orig
+            ht.ROOT = orig_root
+
+    def test_drift_slug_history_empty(self) -> None:
+        import scripts.health_trend as ht
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = Path("/tmp/nonexistent_drift_history_test.jsonl")
+        try:
+            result = drift_slug_history()
+            self.assertEqual(result["drift_slug_count"], 0)
+            self.assertEqual(result["slugs"], {})
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_drift_slug_history_tracks_slugs(self) -> None:
+        import scripts.health_trend as ht
+
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        trend_file.parent.mkdir(parents=True, exist_ok=True)
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            trend_file.write_text(
+                '{"ts":"2026-01-01T00:00Z","drift_slugs":["a","b"]}\n'
+                '{"ts":"2026-01-01T01:00Z","drift_slugs":["a","c"]}\n',
+                encoding="utf-8",
+            )
+            result = drift_slug_history()
+            self.assertEqual(result["drift_slug_count"], 3)
+            self.assertEqual(result["slugs"]["a"]["first_seen"], "2026-01-01T00:00Z")
+            self.assertEqual(result["slugs"]["a"]["last_seen"], "2026-01-01T01:00Z")
+            self.assertEqual(result["slugs"]["b"]["first_seen"], "2026-01-01T00:00Z")
+            self.assertEqual(result["slugs"]["c"]["first_seen"], "2026-01-01T01:00Z")
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_drift_slug_history_no_slugs_in_entries(self) -> None:
+        import scripts.health_trend as ht
+
+        root, _summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        trend_file.parent.mkdir(parents=True, exist_ok=True)
+
+        orig = ht.TREND_FILE
+        ht.TREND_FILE = trend_file
+        try:
+            trend_file.write_text(
+                '{"ts":"2026-01-01T00:00Z","health_pct":100}\n'
+                '{"ts":"2026-01-01T01:00Z","health_pct":99}\n',
+                encoding="utf-8",
+            )
+            result = drift_slug_history()
+            self.assertEqual(result["drift_slug_count"], 0)
+        finally:
+            ht.TREND_FILE = orig
+
+    def test_main_drift_history_subcommand(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            from scripts.health_trend import main
+            import io, contextlib
+            captured = io.StringIO()
+            with contextlib.redirect_stdout(captured):
+                orig_argv = sys.argv
+                sys.argv = ["health_trend.py", "drift-history"]
+                try:
+                    ret = main()
+                finally:
+                    sys.argv = orig_argv
+            self.assertEqual(ret, 0)
+            output = json.loads(captured.getvalue())
+            self.assertIn("drift_slug_count", output)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
 
 
 if __name__ == "__main__":

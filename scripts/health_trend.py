@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 TREND_FILE = ROOT / "logs" / "health_trend.jsonl"
 
-from scripts.summary_visibility import canonical_drift_count
+from scripts.summary_visibility import canonical_drift_count, canonical_drift_entries
 from scripts.unhealthy_triage import portfolio_health_score, _grade_from_pct
 
 SNAPSHOT_KEYS = (
@@ -55,6 +55,9 @@ def record_snapshot(summary_path: Path | None = None) -> dict:
 
     canonical_drift = canonical_drift_count(summary)
 
+    drift_items = canonical_drift_entries(summary)
+    drift_slugs = [d.get("slug", "") for d in drift_items if d.get("slug")]
+
     fallback_healthy = summary.get("fallback_healthy_count", len(summary.get("gaps", {}).get("fallback_healthy", [])))
 
     grade = _grade_from_pct(health_pct)
@@ -71,6 +74,7 @@ def record_snapshot(summary_path: Path | None = None) -> dict:
         "deploy_gap": summary.get("deploy_missing_or_bad_url", 0),
         "canonical_drift": canonical_drift,
         "fallback_healthy": fallback_healthy,
+        "drift_slugs": drift_slugs,
     }
 
     TREND_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -177,6 +181,27 @@ def stuck_metrics(entries: list[dict] | None = None, *, window: int = 5) -> dict
     }
 
 
+def drift_slug_history(limit: int = 100) -> dict:
+    entries = load_trend(limit=limit)
+    slug_first_seen: dict[str, str] = {}
+    slug_last_seen: dict[str, str] = {}
+    for entry in entries:
+        drift_slugs = entry.get("drift_slugs", [])
+        ts = entry.get("ts", "")
+        for slug in drift_slugs:
+            if slug not in slug_first_seen:
+                slug_first_seen[slug] = ts
+            slug_last_seen[slug] = ts
+
+    result: dict[str, dict] = {}
+    for slug in sorted(slug_first_seen):
+        result[slug] = {
+            "first_seen": slug_first_seen[slug],
+            "last_seen": slug_last_seen[slug],
+        }
+    return {"drift_slug_count": len(result), "slugs": result}
+
+
 def trend_summary_text() -> str:
     snapshot = record_snapshot()
     if not snapshot:
@@ -210,6 +235,10 @@ def trend_summary_text() -> str:
 def main() -> int:
     if len(sys.argv) > 1 and sys.argv[1] == "stuck":
         print(json.dumps(stuck_metrics(), indent=2, ensure_ascii=False))
+        return 0
+
+    if len(sys.argv) > 1 and sys.argv[1] == "drift-history":
+        print(json.dumps(drift_slug_history(), indent=2, ensure_ascii=False))
         return 0
 
     if len(sys.argv) > 1 and sys.argv[1] == "summary":
