@@ -259,6 +259,29 @@ def top_products(limit=10, status=None):
     return ranked[:limit]
 
 
+def buyer_history(email, status=None):
+    data = load_sales()
+    sales = data.get("sales", [])
+    q = email.lower().strip()
+    matched = [
+        s for s in sales
+        if s.get("buyer_email", "").lower().strip() == q
+    ]
+    if status:
+        matched = [s for s in matched if s.get("status") == status]
+    total = sum(s.get("amount", 0) for s in matched)
+    verified = sum(s.get("amount", 0) for s in matched if s.get("status") == "verified")
+    products = sorted({s.get("product", "") for s in matched if s.get("product")})
+    return {
+        "email": q,
+        "total_purchases": len(matched),
+        "total_spent": total,
+        "verified_spent": verified,
+        "products": products,
+        "sales": matched,
+    }
+
+
 def verify_sale(sale_id):
     return update_sale_status(sale_id, "verified")
 

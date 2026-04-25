@@ -571,6 +571,72 @@ class TestTopProducts(unittest.TestCase):
         self.assertEqual(result, [])
 
 
+class TestBuyerHistory(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_empty_history(self):
+        result = p2p_sales_tracker.buyer_history("nobody@test.com")
+        self.assertEqual(result["total_purchases"], 0)
+        self.assertEqual(result["total_spent"], 0)
+        self.assertEqual(result["verified_spent"], 0)
+        self.assertEqual(result["products"], [])
+        self.assertEqual(result["sales"], [])
+
+    def test_single_buyer_multiple_purchases(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "alice@test.com", "TX-1")
+        p2p_sales_tracker.add_sale("Dev Kit", 25, "alice@test.com", "TX-2")
+        p2p_sales_tracker.add_sale("Other", 5, "bob@test.com", "TX-3")
+        result = p2p_sales_tracker.buyer_history("alice@test.com")
+        self.assertEqual(result["total_purchases"], 2)
+        self.assertEqual(result["total_spent"], 35)
+        self.assertEqual(result["verified_spent"], 0)
+        self.assertEqual(sorted(result["products"]), ["Dev Kit", "SEO Tool"])
+
+    def test_case_insensitive_email(self):
+        p2p_sales_tracker.add_sale("P1", 10, "Alice@Test.COM", "TX-1")
+        result = p2p_sales_tracker.buyer_history("alice@test.com")
+        self.assertEqual(result["total_purchases"], 1)
+        self.assertEqual(result["total_spent"], 10)
+
+    def test_status_filter(self):
+        s1 = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "a@b.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        result = p2p_sales_tracker.buyer_history("a@b.com", status="verified")
+        self.assertEqual(result["total_purchases"], 1)
+        self.assertEqual(result["total_spent"], 10)
+        self.assertEqual(result["verified_spent"], 10)
+
+    def test_verified_spent_calculation(self):
+        s1 = p2p_sales_tracker.add_sale("P1", 15, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 30, "a@b.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        result = p2p_sales_tracker.buyer_history("a@b.com")
+        self.assertEqual(result["total_spent"], 45)
+        self.assertEqual(result["verified_spent"], 15)
+
+    def test_email_whitespace_trimmed(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        result = p2p_sales_tracker.buyer_history("  a@b.com  ")
+        self.assertEqual(result["total_purchases"], 1)
+
+    def test_no_duplicate_products(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("SEO Tool", 15, "a@b.com", "TX-2")
+        result = p2p_sales_tracker.buyer_history("a@b.com")
+        self.assertEqual(result["products"], ["SEO Tool"])
+        self.assertEqual(result["total_purchases"], 2)
+
+
 class TestExportSalesCSV(unittest.TestCase):
     def setUp(self):
         self.tmpdir = tempfile.mkdtemp()
