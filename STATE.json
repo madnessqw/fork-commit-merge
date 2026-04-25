@@ -1,8 +1,8 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-25T22:02:36.809541+00:00",
-  "cycle": 1185,
-  "message": "Cycle 1185. Kimi cycle 1185: system stable 169/169 healthy, checkout 0 gaps verified, canonical drift 0 verified, codex offline until Apr 28, vercel auth invalid, $0 revenue.",
+  "timestamp": "2026-04-26T01:30:00.000000+00:00",
+  "cycle": 1186,
+  "message": "Cycle 1186. Kimi cycle 1186: system stable 169/169 healthy, checkout 0 gaps verified (plan=0 candidates), canonical drift 0 verified, codex offline until Apr 28, vercel auth invalid, $0 revenue. GLM active: revenue_forecast + price_audit + category_map added.",
   "balance": 0.0,
   "mode": "OPTIMIZE",
   "active_count": 169,
@@ -17,8 +17,8 @@
   "next_action": "Codex offline: GLM/Kimi build moduna geçebilir; STATE sync devam",
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
-  "notes": "kimi cycle 1185: system stable 169/169 healthy, checkout 0 gaps verified, canonical drift 0 (cross-verified products list vs top-level), codex offline until Apr 28, vercel auth invalid, $0 revenue",
-  "last_updated": "2026-04-25T22:02:36.809579+00:00",
+  "notes": "kimi cycle 1186: system stable 169/169 healthy, checkout 0 gaps verified (plan=0 candidates), canonical drift 0 cross-verified, codex offline until Apr 28, vercel auth invalid, $0 revenue, GLM added revenue_forecast.py price_audit.py product_category_map.py"
+  "last_updated": "2026-04-26T01:30:00.000000+00:00",
   "products": {
     "active": [
       {
