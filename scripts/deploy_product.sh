@@ -96,12 +96,10 @@ echo "  ✅ GitHub: $GITHUB_URL"
 echo ""
 echo "🌐 Step 2: Vercel Deploy..."
 cd "$PRODUCT_DIR"
-VERCEL_CMD=(vercel --yes --prod)
+VERCEL_SCOPE="${VERCEL_SCOPE:-madnessqws-projects}"
+VERCEL_CMD=(vercel --yes --prod --scope "$VERCEL_SCOPE")
 if [ -n "${VERCEL_TOKEN:-}" ]; then
   VERCEL_CMD+=(--token "$VERCEL_TOKEN")
-fi
-if [ -n "$VERCEL_SCOPE" ]; then
-  VERCEL_CMD+=(--scope "$VERCEL_SCOPE")
 fi
 VERCEL_OUTPUT=$("${VERCEL_CMD[@]}" 2>&1) || true
 DEPLOYMENT_URL=$(echo "$VERCEL_OUTPUT" | grep -oP 'https://[^\s]+\.vercel\.app' | head -1)
@@ -276,7 +274,8 @@ state['products']['active'] = active
 state['products']['active_count'] = len(active)
 
 # Clear building if it's this product
-if state['products'].get('building', {}).get('slug') == '$SLUG':
+building_val = state['products'].get('building')
+if isinstance(building_val, dict) and building_val.get('slug') == '$SLUG':
     state['products']['building'] = None
 
 with open(state_file, 'w', encoding='utf-8') as f:
