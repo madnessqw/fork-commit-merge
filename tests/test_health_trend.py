@@ -389,6 +389,48 @@ class HealthTrendTests(unittest.TestCase):
         finally:
             ht.TREND_FILE = orig
 
+    def test_trend_summary_text_includes_stuck_tag(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(
+                summary,
+                deploy_missing_or_bad_url=6,
+                gaps={"canonical_url_drift": [{"slug": "a"}, {"slug": "b"}, {"slug": "c"}]},
+            )
+            for _ in range(6):
+                ht.TREND_FILE = trend_file
+                record_snapshot(summary)
+            text = trend_summary_text()
+            if "STUCK:" in text:
+                self.assertIn("deploy_gap=6", text)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
+    def test_trend_summary_text_no_stuck_when_zero(self) -> None:
+        root, summary = self._workspace()
+        trend_file = root / "logs" / "health_trend.jsonl"
+        import scripts.health_trend as ht
+
+        orig_trend = ht.TREND_FILE
+        orig_root = ht.ROOT
+        ht.TREND_FILE = trend_file
+        ht.ROOT = root
+        try:
+            self._write_summary(summary)
+            text = trend_summary_text()
+            self.assertNotIn("STUCK:", text)
+        finally:
+            ht.TREND_FILE = orig_trend
+            ht.ROOT = orig_root
+
     def test_load_trend_corrupt_line_skipped(self) -> None:
         import scripts.health_trend as ht
 

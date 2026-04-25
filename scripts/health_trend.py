@@ -189,12 +189,21 @@ def trend_summary_text() -> str:
     grade = snapshot.get("grade", _grade_from_pct(snapshot["health_pct"]))
     fallback = snapshot.get("fallback_healthy", 0)
     fb_tag = f" | Fallback: {fallback}" if fallback else ""
+
+    stuck = stuck_metrics()
+    stuck_tag = ""
+    if stuck.get("stuck_count", 0) > 0:
+        items = ", ".join(
+            f"{m['metric']}={m['value']}" for m in stuck.get("stuck_metrics", [])
+        )
+        stuck_tag = f" | STUCK: {items}"
+
     return (
         f"[{grade}] Sağlık: {snapshot['health_pct']}% {arrow} "
         f"(trend: {trend['direction']}, Δ{trend['health_delta']:+.1f}%) | "
         f"Unhealthy: {snapshot['unhealthy']} | "
         f"Drift: {snapshot['canonical_drift']}{fb_tag} | "
-        f"Deploy gap: {snapshot['deploy_gap']}"
+        f"Deploy gap: {snapshot['deploy_gap']}{stuck_tag}"
     )
 
 
