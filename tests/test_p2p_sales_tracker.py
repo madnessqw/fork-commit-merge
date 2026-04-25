@@ -350,6 +350,56 @@ class TestSearchSales(unittest.TestCase):
         self.assertEqual(len(results), 0)
 
 
+class TestDeleteSale(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_delete_sale_removes_entry(self):
+        sale = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        result = p2p_sales_tracker.delete_sale(sale["id"])
+        self.assertIsNotNone(result)
+        self.assertEqual(result["remaining"], 0)
+        self.assertEqual(result["deleted"]["product"], "P1")
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
+
+    def test_delete_sale_deducts_revenue_if_not_rejected(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        sale2 = p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        p2p_sales_tracker.delete_sale(sale2["id"])
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 10)
+
+    def test_delete_rejected_sale_no_double_deduct(self):
+        sale = p2p_sales_tracker.add_sale("P1", 15, "a@b.com", "TX-1")
+        p2p_sales_tracker.reject_sale(sale["id"])
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
+        p2p_sales_tracker.delete_sale(sale["id"])
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
+
+    def test_delete_nonexistent_returns_none(self):
+        result = p2p_sales_tracker.delete_sale(999)
+        self.assertIsNone(result)
+
+    def test_delete_sale_preserves_others(self):
+        s1 = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        s2 = p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        s3 = p2p_sales_tracker.add_sale("P3", 30, "e@f.com", "TX-3")
+        p2p_sales_tracker.delete_sale(s2["id"])
+        saved = p2p_sales_tracker.load_sales()
+        self.assertEqual(len(saved["sales"]), 2)
+        self.assertEqual(saved["total_revenue"], 40)
+        ids = [s["id"] for s in saved["sales"]]
+        self.assertIn(s1["id"], ids)
+        self.assertIn(s3["id"], ids)
+
+
 class TestSalesByPeriod(unittest.TestCase):
     def setUp(self):
         self.tmpdir = tempfile.mkdtemp()

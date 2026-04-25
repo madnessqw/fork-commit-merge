@@ -189,6 +189,23 @@ def search_sales(query="", status=None, product=None):
     return results
 
 
+def delete_sale(sale_id):
+    data = load_sales()
+    original_len = len(data["sales"])
+    sale = None
+    for s in data["sales"]:
+        if s["id"] == sale_id:
+            sale = s
+            break
+    if sale is None:
+        return None
+    if sale.get("status") != "rejected":
+        data["total_revenue"] = max(0, data["total_revenue"] - sale["amount"])
+    data["sales"] = [s for s in data["sales"] if s["id"] != sale_id]
+    save_sales(data)
+    return {"deleted": sale, "remaining": len(data["sales"])}
+
+
 def verify_sale(sale_id):
     return update_sale_status(sale_id, "verified")
 
