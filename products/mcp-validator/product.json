@@ -8,7 +8,7 @@
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://mcp-validator.vercel.app",
-  "github_url": null,
+  "github_url": "https://github.com/universe7creator/mcp-validator",
   "lemonsqueezy_product_id": null,
   "webhook_url": null,
   "created_cycle": 990,

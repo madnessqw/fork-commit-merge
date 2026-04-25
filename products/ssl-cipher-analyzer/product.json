@@ -23,7 +23,7 @@
     "Industry compliance checking (PCI DSS, HIPAA)",
     "Remediation recommendations"
   ],
-  "status": "ready_to_deploy",
+  "status": "live",
   "created_cycle": 1058,
   "target_audience": "Security engineers, DevOps professionals, compliance officers",
   "seo_keywords": [

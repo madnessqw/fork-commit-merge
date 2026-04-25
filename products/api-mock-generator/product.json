@@ -3,7 +3,7 @@
   "slug": "api-mock-generator",
   "description": "Generate realistic mock API responses for testing. Create REST and GraphQL mocks instantly.",
   "price": 19,
-  "status": "ready_to_deploy",
+  "status": "live",
   "tagline": "Generate realistic mock API responses for testing REST and GraphQL endpoints",
   "category": "Developer Tools",
   "features": [

@@ -23,7 +23,7 @@
     "Rate limiting and caching recommendations",
     "Configuration explanation and tips"
   ],
-  "status": "ready_to_deploy",
+  "status": "live",
   "created_cycle": 1058,
   "target_audience": "DevOps engineers, system administrators, backend developers",
   "seo_keywords": [
