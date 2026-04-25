@@ -1,7 +1,7 @@
 # CODEBASE_MAP.md — UniverseCreator
 
 **Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
-Cycle 1113 itibarıyla: 154 aktif, 91 canlı, 91 sağlıklı (%100).
+Cycle 1156 itibarıyla: 169 aktif, 169 canlı, 169 sağlıklı (%100).
 Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
@@ -153,16 +153,16 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
 
-## 📊 Mevcut Durum (Cycle 1113)
+## 📊 Mevcut Durum (Cycle 1156)
 
 | Metrik | Değer |
 |---|---|
-| Toplam ürün | 154 aktif |
-| Canlı (live) | 91 |
-| Sağlıklı | 91 (%100) |
+| Toplam ürün | 169 aktif |
+| Canlı (live) | 169 |
+| Sağlıklı | 169 (%100) |
 | Unhealthy | 0 |
-| Canonical drift | 7 (fallback alias ile erişilebilir) |
-| Deploy gap | 2 |
-| Spec hazır | 2 |
+| Canonical drift | 1 (nginx-config — fallback alias ile erişilebilir) |
+| Deploy gap | 0 |
+| Spec hazır | 0 |
 | Checkout gap | 0 |
 | Mod | `OPTIMIZE` |
