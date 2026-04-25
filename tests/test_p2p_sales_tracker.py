@@ -259,3 +259,92 @@ class TestVerifyRejectSale(unittest.TestCase):
         p2p_sales_tracker.reject_sale(sale["id"])
         p2p_sales_tracker.reject_sale(sale["id"])
         self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
+
+    def test_reject_then_verify_restores_revenue(self):
+        sale = p2p_sales_tracker.add_sale("P1", 25, "a@b.com", "TX-1")
+        p2p_sales_tracker.reject_sale(sale["id"])
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 0)
+        p2p_sales_tracker.verify_sale(sale["id"])
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 25)
+
+    def test_reject_then_reopen_restores_revenue(self):
+        sale = p2p_sales_tracker.add_sale("P1", 15, "a@b.com", "TX-1")
+        p2p_sales_tracker.reject_sale(sale["id"])
+        p2p_sales_tracker.update_sale_status(sale["id"], "pending_verification")
+        self.assertEqual(p2p_sales_tracker.load_sales()["total_revenue"], 15)
+
+
+class TestSearchSales(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_search_empty_returns_all(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        results = p2p_sales_tracker.search_sales()
+        self.assertEqual(len(results), 2)
+
+    def test_search_by_product_name(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("Dev Kit", 20, "c@d.com", "TX-2")
+        results = p2p_sales_tracker.search_sales(query="seo")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["product"], "SEO Tool")
+
+    def test_search_by_buyer_email(self):
+        p2p_sales_tracker.add_sale("P1", 10, "alice@test.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "bob@test.com", "TX-2")
+        results = p2p_sales_tracker.search_sales(query="bob")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["buyer_email"], "bob@test.com")
+
+    def test_search_by_transaction_id(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-ALPHA")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-BETA")
+        results = p2p_sales_tracker.search_sales(query="ALPHA")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["transaction_id"], "TX-ALPHA")
+
+    def test_search_by_status(self):
+        s1 = p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("P2", 20, "c@d.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        results = p2p_sales_tracker.search_sales(status="verified")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["status"], "verified")
+
+    def test_search_by_product_exact(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("Dev Kit", 20, "c@d.com", "TX-2")
+        results = p2p_sales_tracker.search_sales(product="SEO Tool")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["product"], "SEO Tool")
+
+    def test_search_combined_filters(self):
+        s1 = p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("Dev Kit", 20, "c@d.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        results = p2p_sales_tracker.search_sales(query="seo", status="verified")
+        self.assertEqual(len(results), 1)
+        results2 = p2p_sales_tracker.search_sales(query="seo", status="pending_verification")
+        self.assertEqual(len(results2), 0)
+
+    def test_search_case_insensitive(self):
+        p2p_sales_tracker.add_sale("My Product", 10, "a@b.com", "TX-1")
+        results = p2p_sales_tracker.search_sales(query="MY PRODUCT")
+        self.assertEqual(len(results), 1)
+        results2 = p2p_sales_tracker.search_sales(query="my product")
+        self.assertEqual(len(results2), 1)
+
+    def test_search_no_match(self):
+        p2p_sales_tracker.add_sale("P1", 10, "a@b.com", "TX-1")
+        results = p2p_sales_tracker.search_sales(query="nonexistent")
+        self.assertEqual(len(results), 0)

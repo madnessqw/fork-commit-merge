@@ -123,9 +123,30 @@ def update_sale_status(sale_id, new_status):
             s["status"] = new_status
             if old_status != "rejected" and new_status == "rejected":
                 data["total_revenue"] = max(0, data["total_revenue"] - s["amount"])
+            elif old_status == "rejected" and new_status != "rejected":
+                data["total_revenue"] += s["amount"]
             save_sales(data)
             return s
     return None
+
+
+def search_sales(query="", status=None, product=None):
+    data = load_sales()
+    results = data.get("sales", [])
+    if query:
+        q = query.lower()
+        results = [
+            s
+            for s in results
+            if q in s.get("product", "").lower()
+            or q in s.get("buyer_email", "").lower()
+            or q in s.get("transaction_id", "").lower()
+        ]
+    if status:
+        results = [s for s in results if s.get("status") == status]
+    if product:
+        results = [s for s in results if s.get("product") == product]
+    return results
 
 
 def verify_sale(sale_id):
