@@ -242,6 +242,23 @@ def export_sales_csv(status=None, product=None, output_path=None):
     return {"row_count": len(sales), "csv": csv_text, "path": str(output_path) if output_path else None}
 
 
+def top_products(limit=10, status=None):
+    data = load_sales()
+    sales = data.get("sales", [])
+    if status:
+        sales = [s for s in sales if s.get("status") == status]
+    agg: dict[str, dict] = {}
+    for s in sales:
+        name = s.get("product", "")
+        if not name:
+            continue
+        entry = agg.setdefault(name, {"product": name, "count": 0, "revenue": 0})
+        entry["count"] += 1
+        entry["revenue"] += s.get("amount", 0)
+    ranked = sorted(agg.values(), key=lambda x: x["revenue"], reverse=True)
+    return ranked[:limit]
+
+
 def verify_sale(sale_id):
     return update_sale_status(sale_id, "verified")
 

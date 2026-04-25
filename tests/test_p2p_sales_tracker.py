@@ -504,6 +504,73 @@ class TestSalesByPeriod(unittest.TestCase):
         self.assertEqual(result, [])
 
 
+class TestTopProducts(unittest.TestCase):
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.sales_file = os.path.join(self.tmpdir, "p2p_sales.json")
+        p2p_sales_tracker.SALES_FILE = self.sales_file
+
+    def tearDown(self):
+        if os.path.exists(self.sales_file):
+            os.unlink(self.sales_file)
+        os.rmdir(self.tmpdir)
+        p2p_sales_tracker.SALES_FILE = "/home/gokhan/UniverseCreator/data/p2p_sales.json"
+
+    def test_empty_returns_empty(self):
+        result = p2p_sales_tracker.top_products()
+        self.assertEqual(result, [])
+
+    def test_single_product(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        result = p2p_sales_tracker.top_products()
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["product"], "SEO Tool")
+        self.assertEqual(result[0]["count"], 1)
+        self.assertEqual(result[0]["revenue"], 10)
+
+    def test_multiple_products_ranked_by_revenue(self):
+        p2p_sales_tracker.add_sale("Cheap", 5, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("Expensive", 50, "c@d.com", "TX-2")
+        p2p_sales_tracker.add_sale("Mid", 25, "e@f.com", "TX-3")
+        result = p2p_sales_tracker.top_products()
+        self.assertEqual(len(result), 3)
+        self.assertEqual(result[0]["product"], "Expensive")
+        self.assertEqual(result[0]["revenue"], 50)
+        self.assertEqual(result[2]["product"], "Cheap")
+        self.assertEqual(result[2]["revenue"], 5)
+
+    def test_aggregates_same_product(self):
+        p2p_sales_tracker.add_sale("SEO Tool", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("SEO Tool", 15, "c@d.com", "TX-2")
+        p2p_sales_tracker.add_sale("Dev Kit", 5, "e@f.com", "TX-3")
+        result = p2p_sales_tracker.top_products()
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result[0]["product"], "SEO Tool")
+        self.assertEqual(result[0]["count"], 2)
+        self.assertEqual(result[0]["revenue"], 25)
+
+    def test_limit_works(self):
+        for i in range(5):
+            p2p_sales_tracker.add_sale(f"P{i}", 10 * (i + 1), "a@b.com", f"TX-{i}")
+        result = p2p_sales_tracker.top_products(limit=3)
+        self.assertEqual(len(result), 3)
+
+    def test_status_filter(self):
+        s1 = p2p_sales_tracker.add_sale("Verified", 10, "a@b.com", "TX-1")
+        p2p_sales_tracker.add_sale("Pending", 20, "c@d.com", "TX-2")
+        p2p_sales_tracker.verify_sale(s1["id"])
+        result = p2p_sales_tracker.top_products(status="verified")
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["product"], "Verified")
+
+    def test_empty_product_name_skipped(self):
+        data = p2p_sales_tracker.load_sales()
+        data["sales"].append({"id": 1, "product": "", "amount": 10, "status": "pending_verification"})
+        p2p_sales_tracker.save_sales(data)
+        result = p2p_sales_tracker.top_products()
+        self.assertEqual(result, [])
+
+
 class TestExportSalesCSV(unittest.TestCase):
     def setUp(self):
         self.tmpdir = tempfile.mkdtemp()
