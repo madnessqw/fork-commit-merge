@@ -167,3 +167,67 @@ def test_severity_order():
     assert SEVERITY_ORDER["high"] < SEVERITY_ORDER["medium"]
     assert SEVERITY_ORDER["medium"] < SEVERITY_ORDER["low"]
     assert SEVERITY_ORDER["low"] < SEVERITY_ORDER["info"]
+
+
+MOCK_SUMMARY = {
+    "gaps": {
+        "canonical_url_drift": [
+            {
+                "slug": "terraink",
+                "url": "https://terraink-flax.vercel.app",
+                "ideal_url": "https://terraink.vercel.app",
+                "health_code": 200,
+                "health_status": "alternate_healthy",
+                "canonical_url": "https://terraink.vercel.app",
+                "canonical_code": 404,
+                "canonical_status": "not_found",
+            },
+            {
+                "slug": "terminal-os",
+                "url": "https://terminal-os-green.vercel.app",
+                "ideal_url": "https://terminal-os.vercel.app",
+                "health_code": 200,
+                "health_status": "alternate_healthy",
+                "canonical_url": "https://terminal-os.vercel.app",
+                "canonical_code": 500,
+                "canonical_status": "error_500",
+            },
+        ]
+    }
+}
+
+
+def test_load_drift_from_summary_filters_drift_entries():
+    with patch("builtins.open", mock_open(read_data=json.dumps(MOCK_SUMMARY))):
+        from scripts.canonical_drift_report import load_drift_from_summary
+        products = load_drift_from_summary(Path("/fake/summary.json"))
+
+    slugs = [p["slug"] for p in products]
+    assert "terraink" in slugs
+    assert "terminal-os" in slugs
+    assert len(products) == 2
+
+
+def test_load_drift_from_summary_sorts_by_severity():
+    with patch("builtins.open", mock_open(read_data=json.dumps(MOCK_SUMMARY))):
+        from scripts.canonical_drift_report import load_drift_from_summary
+        products = load_drift_from_summary(Path("/fake/summary.json"))
+
+    for p in products:
+        assert p["severity"] == "high"
+
+
+def test_load_drift_from_summary_diagnosis():
+    with patch("builtins.open", mock_open(read_data=json.dumps(MOCK_SUMMARY))):
+        from scripts.canonical_drift_report import load_drift_from_summary
+        products = load_drift_from_summary(Path("/fake/summary.json"))
+
+    terraink = [p for p in products if p["slug"] == "terraink"][0]
+    assert terraink["diagnosis_label"] == "not_found"
+    assert terraink["canonical_health_code"] == 404
+
+
+def test_load_drift_from_summary_handles_missing_file():
+    from scripts.canonical_drift_report import load_drift_from_summary
+    products = load_drift_from_summary(Path("/nonexistent/summary.json"))
+    assert products == []

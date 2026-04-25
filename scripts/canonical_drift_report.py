@@ -24,6 +24,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 STATE_PATH = ROOT / "STATE.json"
+SUMMARY_PATH = ROOT / "STATE_SUMMARY.json"
 OUTPUT_PATH = ROOT / "analysis" / "canonical_drift_plan.md"
 CODEX_TASK_PATH = ROOT / "analysis" / "codex_task.md"
 
@@ -51,6 +52,42 @@ def _normalize_url(val: str | None) -> str:
     if not val:
         return ""
     return str(val).strip().rstrip("/")
+
+
+def load_drift_from_summary(summary_path: Path = SUMMARY_PATH) -> list[dict]:
+    try:
+        with open(summary_path, encoding="utf-8") as f:
+            summary = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+
+    drift_entries = summary.get("gaps", {}).get("canonical_url_drift", [])
+    results: list[dict] = []
+    for d in drift_entries:
+        canonical_code = d.get("canonical_code", 0)
+        diagnosis = DIAGNOSIS_MAP.get(canonical_code, {
+            "label": f"error_{canonical_code}",
+            "severity": "medium",
+            "fix": f"Investigate HTTP {canonical_code} on canonical URL",
+        })
+        results.append({
+            "slug": d.get("slug", ""),
+            "name": d.get("slug", ""),
+            "vercel_url": _normalize_url(d.get("url")),
+            "ideal_vercel_url": _normalize_url(d.get("ideal_url")),
+            "canonical_health_url": _normalize_url(d.get("canonical_url")),
+            "canonical_health_code": canonical_code,
+            "canonical_health_status": d.get("canonical_status", "unknown"),
+            "last_health_code": d.get("health_code", 0),
+            "checkout_url": "",
+            "checkout_status": "unknown",
+            "diagnosis_label": diagnosis["label"],
+            "severity": diagnosis["severity"],
+            "fix_command": diagnosis["fix"].format(slug=d.get("slug", "")),
+        })
+
+    results.sort(key=lambda r: SEVERITY_ORDER.get(r["severity"], 2))
+    return results
 
 
 def load_drift_products(state_path: Path = STATE_PATH) -> list[dict]:
@@ -197,9 +234,14 @@ def main() -> int:
     parser.add_argument("--json", action="store_true", dest="as_json")
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--apply-brief", action="store_true", dest="apply_brief")
+    parser.add_argument("--from-summary", action="store_true", dest="from_summary",
+                        help="Load drift data from STATE_SUMMARY.json instead of STATE.json")
     args = parser.parse_args()
 
-    products = load_drift_products()
+    if args.from_summary:
+        products = load_drift_from_summary()
+    else:
+        products = load_drift_products()
 
     if args.as_json:
         print(json.dumps(products, indent=2, ensure_ascii=False))
