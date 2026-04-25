@@ -7,9 +7,9 @@
   "price": 19,
   "currency": "USD",
   "category": "developer-tools",
-  "status": "ready_to_deploy",
+  "status": "live",
   "payment_provider": "polar",
-  "checkout_url": "https://buy.polar.sh/polar_cl_vmByVwBRGJgDxR2YqUpogZRoO67LYsjH5AoTU4UiGcV",
+  "checkout_url": "https://buy.polar.sh/polar_cl_Y84JGGIk09Vq9pbSzI6TW3El8zR9UyXFhYie90M3Wze",
   "polar_product_id": "7e02e660-3ca0-48d9-9aa0-383f38f23b0c",
   "spec_version": "1.0",
   "features": [
@@ -22,5 +22,8 @@
     "Metadata removal",
     "ViewBox optimization"
   ],
-  "tech_stack": "Vanilla HTML + Tailwind CDN"
+  "tech_stack": "Vanilla HTML + Tailwind CDN",
+  "polar_product_price_id": "9a24c8a3-e05d-492a-b626-8d2f85b3464e",
+  "polar_checkout_link_id": "5194ebda-39e1-4fad-981a-54499b874de2",
+  "vercel_url": "https://svg-optimizer-pro-madnessqws-projects.vercel.app"
 }

@@ -7,9 +7,9 @@
   "price": 9,
   "currency": "USD",
   "category": "developer-tools",
-  "status": "ready_for_payment",
+  "status": "live",
   "payment_provider": "polar",
-  "checkout_url": null,
+  "checkout_url": "https://buy.polar.sh/polar_cl_VldhcpwJNzr2tvxDxyjvwBKriVCKvKgeLoAAk2SItAX",
   "vercel_url": "https://csv-converter-pro.vercel.app",
   "deployment_url": "https://csv-converter-m8h0zs1o3-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/csv-converter-pro",
@@ -25,5 +25,8 @@
     "Drag and drop upload"
   ],
   "tech_stack": "Vanilla HTML + Tailwind CDN + JavaScript",
-  "spec_version": "1.0"
+  "spec_version": "1.0",
+  "polar_product_id": "ae2b075f-6516-494b-998b-3711e446e29c",
+  "polar_product_price_id": "00a65e14-ad83-4a6b-84f2-31c305597533",
+  "polar_checkout_link_id": "d7068970-a8b6-4ccc-a875-53d1c3a04808"
 }

@@ -7,7 +7,7 @@
   "features": [],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
-  "vercel_url": "https://terminal-g1sy19cbt-madnessqws-projects.vercel.app",
+  "vercel_url": "https://terminal-os-green.vercel.app",
   "github_url": "https://github.com/universe7creator/terminal-os",
   "lemonsqueezy_product_id": null,
   "webhook_url": null,
@@ -18,5 +18,6 @@
   "payment_provider": "polar",
   "polar_product_id": "564854bd-2bf6-412f-b5f4-eaaded114ecd",
   "polar_product_price_id": "fd86c8e6-2182-4eb4-86d5-6f183895ea5c",
-  "polar_checkout_link_id": "602f8da1-b05a-4403-bc92-55ad5e7a6470"
+  "polar_checkout_link_id": "602f8da1-b05a-4403-bc92-55ad5e7a6470",
+  "canonical_url_override": "https://terminal-os-green.vercel.app"
 }

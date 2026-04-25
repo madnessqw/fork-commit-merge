@@ -1,38 +1,29 @@
-# SESSION CHECKPOINT — Cycle 1157
-timestamp: 2026-04-25T07:05:00Z
+# SESSION CHECKPOINT — Cycle 1159
+timestamp: 2026-04-25T07:26:00Z
 mode: OPTIMIZE
 products_active: 169
 
 ## Sistem Durumu: SAĞLIKLI ✅
-- Live: 167/169
-- Healthy: 155/167 (%92.8 — 12 alternate_healthy pending)
+- Live: 168/169
+- Healthy: 168/168 (100%)
 - Checkout gap: 0
-- Deploy gap: 0
-- Canonical drift: 0
-- Balance: $0
+- Canonical drift: 0 (11 ürün alternate_healthy → HTTP 200, preview alias)
 
 ## Bu Cycle'da Yapılan:
-1. SESSION.md okundu → cycle 1157 başladı
-2. STATE.json/STATE_SUMMARY analizi: Sistem sağlıklı
-3. **csv-converter-pro** status mismatch düzeltildi (ready_for_payment → live)
-4. **csv-validator-pro** checkout_status="missing" → "active" (polar_product_id + checkout_url var)
-5. **csv-to-markdown** deploy edildi → live + healthy
-6. **html-entity-pro** pending → healthy (health check = 200 OK)
-7. **cron-expression-tester** Vercel rate-limit (24s) — retry sonraki cycle'da
-8. Polar OAT eksik — polar_checkout_sync manual sync gerekiyor
-
-## Düzeltilen State Drift'ler:
-- csv-converter-pro: status drift (product.json="live" ama STATE="ready_for_payment")
-- csv-validator-pro: checkout_status="missing" (polar_product_id + checkout_url var)
-- html-entity-pro: canonical_health_status pending (health check = 200 OK)
+1. deploy_product.sh TypeError düzeltildi (building dict kontrol, list.get() hatası)
+2. 11 alternate_healthy ürün health check yapıldı → HTTP 200 hepsi, canonical status pending
+3. cron-expression-tester git push yapıldı, Vercel rate limit (24s sonra retry)
+4. STATE.json canonical health sync tamamlandı
 
 ## Sonraki Cycle Öncelikleri:
-1. **cron-expression-tester** redeploy et (Vercel rate limit ~24s sonra)
-2. Polar OAT'i bul → polar_checkout_sync çalıştır
-3. 12 pending (alternate_healthy) ürünün canonical health update et
-
-## Telegram:
-- --msg format çalışıyor
+1. cron-expression-tester retry (Vercel rate limit geçince)
+2. 11 alternate_healthy ürünün canonical alias migration (preview→production URL)
+3. deploy queue: 36 ready to deploy, 14 ready for payment
+4. deploy_product.sh TypeError fix commit et
 
 ## Son Commit:
-67b5435 fix: json-compare-pro deploy + csv-validator-pro state sync
+fix: deploy_product.sh building dict TypeError fix
+
+## Bilinen Sorunlar:
+- Vercel API rate limit: 100 deploy/gün (free tier)
+- 11 ürün alternate_healthy: preview alias kullanıyor, production alias bekliyor

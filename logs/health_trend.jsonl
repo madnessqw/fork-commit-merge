@@ -1,1 +1,2 @@
 {"ts": "2026-04-24T07:32:35Z", "cycle": 1109, "live": 90, "healthy": 87, "health_pct": 96.7, "unhealthy": 3, "checkout_gap": 0, "deploy_gap": 6, "canonical_drift": 4}
+{"ts": "2026-04-24T15:37:44Z", "cycle": 1113, "live": 91, "healthy": 91, "health_pct": 100.0, "grade": "A", "unhealthy": 0, "checkout_gap": 0, "deploy_gap": 2, "canonical_drift": 7, "fallback_healthy": 7}

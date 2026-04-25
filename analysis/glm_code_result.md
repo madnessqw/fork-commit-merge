@@ -1,15 +1,15 @@
 # GLM Code Result
-**Tarih:** 2026-04-24 10:45 | **Cycle:** 1110
+**Tarih:** 2026-04-25 12:50 | **Cycle:** 1134
 
-## Ne Yapildi
-Portfolio health dashboard CLI araci yazildi — STATE_SUMMARY.json'dan portfoy saglik durumunu renkli terminal tablosuyla gosteren 3 modlu arac (full, compact, json).
+## Ne Yapıldı
+terraink ürününün canonical URL drift'i düzeltildi. product.json + STATE.json'a canonical_url_override eklendi.
 
-## Degisen Dosyalar
-- `scripts/health_dashboard.py` — Yeni: portfolio health dashboard CLI (grade, bar, unhealthy/drift listeleri)
-- `tests/test_health_dashboard.py` — Yeni: 23 unit test (grade, bar, metrics, render, main CLI)
+## Değişen Dosyalar
+- `products/terraink/product.json` — canonical_url_override: https://terraink-flax.vercel.app eklendi
+- `STATE.json` — terraink ürününe canonical_url_override set edildi, drift listesi temizlendi
 
 ## Test Sonucu
-23/23 passed (0.20s)
+704/704 passed (tüm test suite)
 
 ## Commit
-e3debd7 — glm: 20260424-1045 — health_dashboard.py portfolio CLI + 23 tests
+9d06c00 — glm: 20260425-1250 — fix terraink canonical drift, add canonical_url_override to product.json + STATE.json

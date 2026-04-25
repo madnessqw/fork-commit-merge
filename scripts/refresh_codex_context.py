@@ -34,7 +34,8 @@ ONERI_FILE = ANALYSIS_DIR / "oneri.md"
 SORUN_FILE = ANALYSIS_DIR / "sorun_analizi.md"
 CODEX_TASK_FILE = ANALYSIS_DIR / "codex_task.md"
 
-RESOLVED_STATUSES = {"resolved", "closed", "done"}
+RESOLVED_STATUSES = {"resolved", "closed", "done", "accepted"}
+ACCEPTED_ISSUE_TYPES = {"canonical_drift_accepted"}
 
 
 @dataclass(frozen=True)
@@ -74,11 +75,56 @@ def load_summary() -> dict[str, Any]:
     return summary
 
 
-def load_unresolved_issues(path: Path = ISSUES_FILE) -> list[dict[str, Any]]:
-    if not path.exists():
-        return []
+def _issue_type(item: dict[str, Any]) -> str:
+    raw_type = item.get("issue_type")
+    if raw_type is None:
+        raw_type = item.get("type")
+    return str(raw_type or "").strip()
 
-    issues: list[dict[str, Any]] = []
+
+def _issue_description(item: dict[str, Any]) -> str | None:
+    for key in ("description", "desc"):
+        value = item.get(key)
+        if value is None:
+            continue
+        text = str(value).strip()
+        if text:
+            return text
+    return None
+
+
+def _issue_products(item: dict[str, Any]) -> list[str]:
+    raw_products = item.get("products")
+    if not isinstance(raw_products, list):
+        return []
+    products: list[str] = []
+    for raw in raw_products:
+        slug = str(raw or "").strip()
+        if slug:
+            products.append(slug)
+    return products
+
+
+def _normalize_issue_record(item: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(item)
+    normalized["issue_type"] = _issue_type(item) or "unknown"
+    normalized["description"] = _issue_description(item)
+    status = str(item.get("status") or "").strip().lower()
+    if not status:
+        status = "accepted" if normalized["issue_type"] in ACCEPTED_ISSUE_TYPES else "open"
+    normalized["status"] = status
+    if "products" in item:
+        normalized["products"] = _issue_products(item)
+    return normalized
+
+
+def _load_issue_records(path: Path = ISSUES_FILE) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    unresolved: list[dict[str, Any]] = []
+    accepted: list[dict[str, Any]] = []
+
+    if not path.exists():
+        return unresolved, accepted
+
     for raw_line in path.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
         if not line:
@@ -87,11 +133,43 @@ def load_unresolved_issues(path: Path = ISSUES_FILE) -> list[dict[str, Any]]:
             item = json.loads(line)
         except json.JSONDecodeError:
             continue
-        status = str(item.get("status", "")).strip().lower()
+        if not isinstance(item, dict):
+            continue
+
+        normalized = _normalize_issue_record(item)
+        issue_type = normalized["issue_type"]
+        status = str(normalized.get("status") or "").strip().lower()
+
+        if issue_type in ACCEPTED_ISSUE_TYPES:
+            accepted.append(normalized)
+            continue
+
         if status in RESOLVED_STATUSES:
             continue
-        issues.append(item)
-    return issues
+
+        unresolved.append(normalized)
+
+    return unresolved, accepted
+
+
+def load_unresolved_issues(path: Path = ISSUES_FILE) -> list[dict[str, Any]]:
+    unresolved, _ = _load_issue_records(path)
+    return unresolved
+
+
+def load_accepted_canonical_drift_issues(path: Path = ISSUES_FILE) -> list[dict[str, Any]]:
+    _, accepted = _load_issue_records(path)
+    return accepted
+
+
+def _accepted_canonical_drift_slugs(issues: list[dict[str, Any]]) -> set[str]:
+    slugs: set[str] = set()
+    for issue in issues:
+        if _issue_type(issue) not in ACCEPTED_ISSUE_TYPES:
+            continue
+        for slug in _issue_products(issue):
+            slugs.add(slug)
+    return slugs
 
 
 def _health_percent(summary: dict[str, Any]) -> float:
@@ -129,6 +207,13 @@ def _looks_like_manual_dashboard_action(value: Any) -> bool:
     return "vercel dashboard" in text or "manuel" in text or "manual" in text
 
 
+def _looks_like_stale_canonical_drift_action(value: Any) -> bool:
+    text = str(value or "").strip().lower()
+    if not text:
+        return False
+    return "canonical url drift" in text or "fallback alias" in text
+
+
 def _summary_products_by_slug(summary: dict[str, Any]) -> dict[str, dict[str, Any]]:
     products = summary.get("products", [])
     if not isinstance(products, list):
@@ -144,7 +229,7 @@ def _summary_products_by_slug(summary: dict[str, Any]) -> dict[str, dict[str, An
     return indexed
 
 
-def _canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
+def _raw_canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
     gaps = summary.get("gaps", {})
     if isinstance(gaps, dict):
         raw_entries = gaps.get("canonical_url_drift")
@@ -177,7 +262,7 @@ def _canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
                         "url": current_url,
                         "ideal_url": ideal_url,
                     }
-                )
+            )
         if entries:
             return entries
 
@@ -197,7 +282,39 @@ def _canonical_drift_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
     return entries
 
 
-def _fallback_healthy_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
+def _canonical_drift_entries(
+    summary: dict[str, Any],
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> list[dict[str, Any]]:
+    entries = _raw_canonical_drift_entries(summary)
+    if not accepted_canonical_drift_slugs:
+        return entries
+    return [
+        item
+        for item in entries
+        if str(item.get("slug") or "").strip() not in accepted_canonical_drift_slugs
+    ]
+
+
+def _accepted_canonical_drift_entries(
+    summary: dict[str, Any],
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> list[dict[str, Any]]:
+    if not accepted_canonical_drift_slugs:
+        return []
+
+    entries = _raw_canonical_drift_entries(summary)
+    return [
+        item
+        for item in entries
+        if str(item.get("slug") or "").strip() in accepted_canonical_drift_slugs
+    ]
+
+
+def _fallback_healthy_entries(
+    summary: dict[str, Any],
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> list[dict[str, Any]]:
     gaps = summary.get("gaps", {})
     if isinstance(gaps, dict):
         raw_entries = gaps.get("fallback_healthy")
@@ -206,7 +323,7 @@ def _fallback_healthy_entries(summary: dict[str, Any]) -> list[dict[str, Any]]:
             if entries:
                 return entries
 
-    canonical_drift = _canonical_drift_entries(summary)
+    canonical_drift = _canonical_drift_entries(summary, accepted_canonical_drift_slugs)
     if canonical_drift:
         return canonical_drift
 
@@ -277,12 +394,16 @@ def _ready_for_payment_health_issues(state: dict[str, Any]) -> list[dict[str, An
     return issues
 
 
-def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
+def effective_next_action(
+    summary: dict[str, Any],
+    focus: Focus,
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> str | None:
     raw = summary.get("next_action")
     raw_text = str(raw).strip() if raw is not None else ""
     gaps = summary.get("gaps", {})
     unhealthy_live = list(gaps.get("unhealthy_live", []))
-    canonical_drift = _canonical_drift_entries(summary)
+    canonical_drift = _canonical_drift_entries(summary, accepted_canonical_drift_slugs)
     non_live_health = list(summary.get("_non_live_health_issues", []))
 
     if unhealthy_live:
@@ -306,6 +427,8 @@ def effective_next_action(summary: dict[str, Any], focus: Focus) -> str | None:
         )
 
     if raw_text and not _looks_like_manual_dashboard_action(raw_text):
+        if focus.key != "live_health" and _looks_like_stale_canonical_drift_action(raw_text):
+            return focus.codex_task_title
         return raw_text
 
     return raw_text or None
@@ -319,14 +442,18 @@ def _issue_map(issues: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     return grouped
 
 
-def determine_focus(summary: dict[str, Any], issues: list[dict[str, Any]]) -> Focus:
+def determine_focus(
+    summary: dict[str, Any],
+    issues: list[dict[str, Any]],
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> Focus:
     grouped = _issue_map(issues)
     unhealthy_live = list(summary.get("gaps", {}).get("unhealthy_live", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     non_live_health = list(summary.get("_non_live_health_issues", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
-    canonical_drift = _canonical_drift_entries(summary)
+    canonical_drift = _canonical_drift_entries(summary, accepted_canonical_drift_slugs)
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
     if unhealthy_live:
@@ -537,15 +664,23 @@ def top_issues(issues: list[dict[str, Any]], limit: int = 5) -> list[dict[str, A
     return sorted(issues, key=sort_key)[:limit]
 
 
-def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
+def render_oneri(
+    summary: dict[str, Any],
+    issues: list[dict[str, Any]],
+    focus: Focus,
+    now: datetime,
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> str:
     health_percent = _health_percent(summary)
     unresolved = top_issues(issues)
-    canonical_drift = _canonical_drift_entries(summary)
-    fallback_healthy = list(summary.get("gaps", {}).get("fallback_healthy", []))
+    canonical_drift = _canonical_drift_entries(summary, accepted_canonical_drift_slugs)
+    accepted_canonical_drift = _accepted_canonical_drift_entries(
+        summary, accepted_canonical_drift_slugs
+    )
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     non_live_health = list(summary.get("_non_live_health_issues", []))
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
-    next_action = effective_next_action(summary, focus)
+    next_action = effective_next_action(summary, focus, accepted_canonical_drift_slugs)
     lines = [
         f"# Codex Analiz Özeti — {now.strftime('%Y-%m-%d %H:%M')} UTC",
         "",
@@ -559,19 +694,25 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
         f"- Checkout gap: **{summary.get('checkout_gap_count')}**",
         f"- Deploy readiness gap: **{summary.get('deploy_readiness_count', 0)}**",
         f"- Deploy/url gap: **{summary.get('deploy_missing_or_bad_url')}**",
-        f"- Canonical drift: **{summary.get('canonical_url_drift', 0)}**",
+        f"- Canonical drift: **{len(canonical_drift)}**",
         f"- Spec-ready: **{summary.get('spec_ready_count')}**",
-        f"- Next action: `{next_action}`",
-        "",
-        "## Ana Darboğaz",
-        f"- **{focus.title}:** {focus.summary}",
-        "",
-        "## Kod için Öneri",
-        f"1. **{focus.codex_task_title}**",
-        f"   - {focus.codex_task_body}",
-        "2. Production'da manuel Vercel/ödeme-provider adımlarını script ile 'çözüldü' gibi göstermeden bırak.",
-        "3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.",
     ]
+    if accepted_canonical_drift:
+        lines.append(f"- Accepted canonical drift: **{len(accepted_canonical_drift)}**")
+    lines.extend(
+        [
+            f"- Next action: `{next_action}`",
+            "",
+            "## Ana Darboğaz",
+            f"- **{focus.title}:** {focus.summary}",
+            "",
+            "## Kod için Öneri",
+            f"1. **{focus.codex_task_title}**",
+            f"   - {focus.codex_task_body}",
+            "2. Production'da manuel Vercel/ödeme-provider adımlarını script ile 'çözüldü' gibi göstermeden bırak.",
+            "3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.",
+        ]
+    )
 
     if unresolved:
         lines.extend(["", "## Açık Issue Sinyalleri"])
@@ -613,7 +754,40 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
                 f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
             )
 
-    fallback_healthy_entries = _fallback_healthy_entries(summary)
+    if accepted_canonical_drift:
+        lines.extend(["", "## Kabul Edilmiş Canonical Drift"])
+        for item in accepted_canonical_drift[:10]:
+            drift_bits: list[str] = []
+            health_status = item.get("health_status")
+            if health_status:
+                drift_bits.append(f"health={health_status}")
+
+            health_code = item.get("health_code")
+            if health_code is not None:
+                drift_bits.append(f"code={health_code}")
+
+            probe_url = item.get("probe_url")
+            if probe_url and probe_url != item.get("url"):
+                drift_bits.append(f"probe={probe_url}")
+
+            effective_url = item.get("effective_url")
+            if effective_url and effective_url not in {item.get("url"), probe_url}:
+                drift_bits.append(f"effective={effective_url}")
+
+            canonical_code = item.get("canonical_code")
+            if canonical_code is not None:
+                drift_bits.append(f"canonical_code={canonical_code}")
+
+            canonical_status = item.get("canonical_status")
+            if canonical_status:
+                drift_bits.append(f"canonical_status={canonical_status}")
+
+            drift_suffix = f" {' '.join(drift_bits)}" if drift_bits else ""
+            lines.append(
+                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
+            )
+
+    fallback_healthy_entries = _fallback_healthy_entries(summary, accepted_canonical_drift_slugs)
     if fallback_healthy_entries:
         detailed_fallback = any(
             item.get("url") or item.get("ideal_url") for item in fallback_healthy_entries
@@ -726,13 +900,22 @@ def render_oneri(summary: dict[str, Any], issues: list[dict[str, Any]], focus: F
     return "\n".join(lines) + "\n"
 
 
-def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], focus: Focus, now: datetime) -> str:
+def render_sorun_analizi(
+    summary: dict[str, Any],
+    issues: list[dict[str, Any]],
+    focus: Focus,
+    now: datetime,
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> str:
     unhealthy = list(summary.get("gaps", {}).get("unhealthy_live", []))
     pending_health = list(summary.get("gaps", {}).get("pending_health", []))
     non_live_health = list(summary.get("_non_live_health_issues", []))
     missing_checkout = list(summary.get("gaps", {}).get("missing_checkout", []))
     missing_url = list(summary.get("gaps", {}).get("missing_url", []))
-    canonical_drift = _canonical_drift_entries(summary)
+    canonical_drift = _canonical_drift_entries(summary, accepted_canonical_drift_slugs)
+    accepted_canonical_drift = _accepted_canonical_drift_entries(
+        summary, accepted_canonical_drift_slugs
+    )
     deploy_readiness = list(summary.get("gaps", {}).get("deploy_readiness", []))
 
     def format_unhealthy_item(item: dict[str, Any]) -> str:
@@ -783,9 +966,11 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
         f"- Checkout gap: {summary.get('checkout_gap_count')}",
         f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
         f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
-        f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
+        f"- Canonical drift: {len(canonical_drift)}",
         f"- Spec-ready backlog: {summary.get('spec_ready_count')}",
     ]
+    if accepted_canonical_drift:
+        lines.append(f"- Accepted canonical drift: {len(accepted_canonical_drift)}")
 
     if unhealthy:
         lines.extend(["", "## Canlı Sağlıksız Ürünler"])
@@ -814,6 +999,39 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     if canonical_drift:
         lines.extend(["", "## Canonical Drift Ürünleri"])
         for item in canonical_drift[:10]:
+            drift_bits: list[str] = []
+            health_status = item.get("health_status")
+            if health_status:
+                drift_bits.append(f"health={health_status}")
+
+            health_code = item.get("health_code")
+            if health_code is not None:
+                drift_bits.append(f"code={health_code}")
+
+            probe_url = item.get("probe_url")
+            if probe_url and probe_url != item.get("url"):
+                drift_bits.append(f"probe={probe_url}")
+
+            effective_url = item.get("effective_url")
+            if effective_url and effective_url not in {item.get("url"), probe_url}:
+                drift_bits.append(f"effective={effective_url}")
+
+            canonical_code = item.get("canonical_code")
+            if canonical_code is not None:
+                drift_bits.append(f"canonical_code={canonical_code}")
+
+            canonical_status = item.get("canonical_status")
+            if canonical_status:
+                drift_bits.append(f"canonical_status={canonical_status}")
+
+            drift_suffix = f" {' '.join(drift_bits)}" if drift_bits else ""
+            lines.append(
+                f"- `{item.get('slug')}` — current={item.get('url')} ideal={item.get('ideal_url')}{drift_suffix}"
+            )
+
+    if accepted_canonical_drift:
+        lines.extend(["", "## Kabul Edilmiş Canonical Drift"])
+        for item in accepted_canonical_drift[:10]:
             drift_bits: list[str] = []
             health_status = item.get("health_status")
             if health_status:
@@ -898,11 +1116,19 @@ def render_sorun_analizi(summary: dict[str, Any], issues: list[dict[str, Any]], 
     return "\n".join(lines) + "\n"
 
 
-def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> str:
+def render_codex_task(
+    summary: dict[str, Any],
+    focus: Focus,
+    now: datetime,
+    accepted_canonical_drift_slugs: set[str] | None = None,
+) -> str:
     health_percent = _health_percent(summary)
-    next_action = effective_next_action(summary, focus)
-    canonical_drift = _canonical_drift_entries(summary)
-    fallback_entries = _fallback_healthy_entries(summary)
+    next_action = effective_next_action(summary, focus, accepted_canonical_drift_slugs)
+    canonical_drift = _canonical_drift_entries(summary, accepted_canonical_drift_slugs)
+    accepted_canonical_drift = _accepted_canonical_drift_entries(
+        summary, accepted_canonical_drift_slugs
+    )
+    fallback_entries = _fallback_healthy_entries(summary, accepted_canonical_drift_slugs)
     fallback_products = [str(item.get("slug")).strip() for item in fallback_entries if str(item.get("slug")).strip()]
     fallback_line = None
     if fallback_products:
@@ -919,7 +1145,7 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
         f"- Checkout gap: {summary.get('checkout_gap_count')}",
         f"- Deploy readiness gap: {summary.get('deploy_readiness_count', 0)}",
         f"- Deploy/url gap: {summary.get('deploy_missing_or_bad_url')}",
-        f"- Canonical drift: {summary.get('canonical_url_drift', 0)}",
+        f"- Canonical drift: {len(canonical_drift)}",
     ]
     extra_summary_lines: list[str] = []
     if canonical_drift:
@@ -928,6 +1154,13 @@ def render_codex_task(summary: dict[str, Any], focus: Focus, now: datetime) -> s
         )
         if drift_preview:
             extra_summary_lines.append(f"- Canonical drift slugs: {drift_preview}")
+    if accepted_canonical_drift:
+        accepted_preview = ", ".join(
+            f"`{item.get('slug')}`" for item in accepted_canonical_drift[:8] if item.get("slug")
+        )
+        extra_summary_lines.append(f"- Accepted canonical drift: {len(accepted_canonical_drift)}")
+        if accepted_preview:
+            extra_summary_lines.append(f"- Accepted canonical drift slugs: {accepted_preview}")
     if fallback_line:
         extra_summary_lines.append(fallback_line)
     summary_lines.extend(extra_summary_lines)
@@ -972,16 +1205,51 @@ def refresh_context(now: datetime | None = None) -> dict[str, Any]:
     current_time = now or datetime.now(timezone.utc)
     summary = load_summary()
     issues = load_unresolved_issues()
-    focus = determine_focus(summary, issues)
+    accepted_canonical_drift_issues = load_accepted_canonical_drift_issues()
+    accepted_canonical_drift_slugs = _accepted_canonical_drift_slugs(
+        accepted_canonical_drift_issues
+    )
+    focus = determine_focus(
+        summary,
+        issues,
+        accepted_canonical_drift_slugs=accepted_canonical_drift_slugs,
+    )
 
-    write_file(ONERI_FILE, render_oneri(summary, issues, focus, current_time))
-    write_file(SORUN_FILE, render_sorun_analizi(summary, issues, focus, current_time))
-    write_file(CODEX_TASK_FILE, render_codex_task(summary, focus, current_time))
+    write_file(
+        ONERI_FILE,
+        render_oneri(
+            summary,
+            issues,
+            focus,
+            current_time,
+            accepted_canonical_drift_slugs=accepted_canonical_drift_slugs,
+        ),
+    )
+    write_file(
+        SORUN_FILE,
+        render_sorun_analizi(
+            summary,
+            issues,
+            focus,
+            current_time,
+            accepted_canonical_drift_slugs=accepted_canonical_drift_slugs,
+        ),
+    )
+    write_file(
+        CODEX_TASK_FILE,
+        render_codex_task(
+            summary,
+            focus,
+            current_time,
+            accepted_canonical_drift_slugs=accepted_canonical_drift_slugs,
+        ),
+    )
 
     return {
         "focus": focus,
         "summary": summary,
         "issues": issues,
+        "accepted_canonical_drift_issues": accepted_canonical_drift_issues,
     }
 
 

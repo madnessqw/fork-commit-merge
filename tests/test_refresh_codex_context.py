@@ -9,6 +9,7 @@ from scripts import refresh_codex_context
 from scripts.refresh_codex_context import (
     determine_focus,
     effective_next_action,
+    load_unresolved_issues,
     render_codex_task,
     render_oneri,
     render_sorun_analizi,
@@ -193,6 +194,93 @@ class RefreshCodexContextTests(unittest.TestCase):
         self.assertEqual(focus.key, "live_health")
         self.assertIn("fallback alias", focus.summary)
         self.assertIn("fallback alias", focus.codex_task_body)
+
+    def test_focus_ignores_accepted_canonical_drift_when_other_gaps_remain(self) -> None:
+        summary = {
+            "live_count": 10,
+            "healthy_count": 10,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 2,
+            "deploy_readiness_count": 1,
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "fallback-tool",
+                        "url": "https://fallback-tool-preview.vercel.app",
+                        "ideal_url": "https://fallback-tool.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "health_code": 200,
+                        "canonical_code": 404,
+                        "canonical_status": "not_found",
+                    }
+                ],
+                "deploy_readiness": [
+                    {
+                        "slug": "deploy-tool",
+                        "manifest_problem": "missing",
+                        "missing_manifest_fields": ["tagline"],
+                        "missing_url_fields": ["vercel_url"],
+                        "missing_state_fields": ["deployed_cycle"],
+                    }
+                ],
+            },
+            "next_action": "7 canonical URL drift'ini düzelt; fallback alias'ı ezme",
+        }
+
+        focus = determine_focus(
+            summary,
+            [],
+            accepted_canonical_drift_slugs={"fallback-tool"},
+        )
+
+        self.assertEqual(focus.key, "deploy_readiness")
+        self.assertIn("deploy-tool", focus.summary)
+
+        next_action = effective_next_action(
+            summary,
+            focus,
+            accepted_canonical_drift_slugs={"fallback-tool"},
+        )
+        self.assertEqual(next_action, "Spec-ready deploy readiness doğrulaması")
+
+    def test_load_unresolved_issues_ignores_accepted_canonical_drift_issue(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            issues_path = Path(tmpdir) / "issues.jsonl"
+            issues_path.write_text(
+                "\n".join(
+                    [
+                        json.dumps(
+                            {
+                                "ts": "2026-04-24T16:20:06+03:00",
+                                "type": "canonical_drift_accepted",
+                                "desc": "Accepted alias state",
+                                "products": ["fallback-tool"],
+                            }
+                        ),
+                        json.dumps(
+                            {
+                                "ts": "2026-04-24T16:25:06+03:00",
+                                "issue_type": "state_drift",
+                                "severity": "high",
+                                "description": "STATE sync drift",
+                            }
+                        ),
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            issues = load_unresolved_issues(issues_path)
+
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["issue_type"], "state_drift")
+        self.assertEqual(issues[0]["description"], "STATE sync drift")
+        self.assertEqual(issues[0]["status"], "open")
 
     def test_focus_live_health_uses_outage_title_when_canonical_drift_absent(
         self,
@@ -861,6 +949,91 @@ class RefreshCodexContextTests(unittest.TestCase):
         )
         self.assertIn("- Canonical drift slugs: `fallback-tool`", rendered_task)
         self.assertIn("- Fallback healthy slugs: `fallback-tool`", rendered_task)
+
+    def test_accepted_canonical_drift_is_rendered_as_accepted_state(self) -> None:
+        summary = {
+            "cycle": 1113,
+            "mode": "OPTIMIZE",
+            "live_count": 10,
+            "healthy_count": 10,
+            "pending_health_count": 0,
+            "checkout_gap_count": 0,
+            "deploy_missing_or_bad_url": 2,
+            "deploy_readiness_count": 1,
+            "deploy_readiness_manifest_gap_count": 1,
+            "deploy_readiness_url_gap_count": 1,
+            "deploy_readiness_state_gap_count": 1,
+            "canonical_url_drift": 1,
+            "fallback_healthy_count": 1,
+            "spec_ready_count": 1,
+            "next_action": "7 canonical URL drift'ini düzelt; fallback alias'ı ezme",
+            "gaps": {
+                "unhealthy_live": [],
+                "pending_health": [],
+                "missing_checkout": [],
+                "missing_url": [],
+                "canonical_url_drift": [
+                    {
+                        "slug": "fallback-tool",
+                        "url": "https://fallback-tool-preview.vercel.app",
+                        "ideal_url": "https://fallback-tool.vercel.app",
+                        "health_status": "alternate_healthy",
+                        "health_code": 200,
+                        "canonical_code": 404,
+                        "canonical_status": "not_found",
+                    }
+                ],
+                "deploy_readiness": [
+                    {
+                        "slug": "deploy-tool",
+                        "manifest_problem": "missing",
+                        "missing_manifest_fields": ["tagline"],
+                        "missing_url_fields": ["vercel_url"],
+                        "missing_state_fields": ["deployed_cycle"],
+                    }
+                ],
+            },
+        }
+
+        accepted_slugs = {"fallback-tool"}
+        focus = determine_focus(summary, [], accepted_canonical_drift_slugs=accepted_slugs)
+        rendered_oneri = render_oneri(
+            summary,
+            [],
+            focus,
+            datetime(2026, 4, 24, 13, 30, tzinfo=timezone.utc),
+            accepted_canonical_drift_slugs=accepted_slugs,
+        )
+        rendered_task = render_codex_task(
+            summary,
+            focus,
+            datetime(2026, 4, 24, 13, 30, tzinfo=timezone.utc),
+            accepted_canonical_drift_slugs=accepted_slugs,
+        )
+        rendered_sorun = render_sorun_analizi(
+            summary,
+            [],
+            focus,
+            datetime(2026, 4, 24, 13, 30, tzinfo=timezone.utc),
+            accepted_canonical_drift_slugs=accepted_slugs,
+        )
+
+        self.assertEqual(focus.key, "deploy_readiness")
+        self.assertEqual(
+            effective_next_action(
+                summary,
+                focus,
+                accepted_canonical_drift_slugs=accepted_slugs,
+            ),
+            "Spec-ready deploy readiness doğrulaması",
+        )
+        self.assertIn("## Kabul Edilmiş Canonical Drift", rendered_oneri)
+        self.assertNotIn("## Canonical Drift Ürünleri", rendered_oneri)
+        self.assertIn("Accepted canonical drift: 1", rendered_task)
+        self.assertIn("Accepted canonical drift", rendered_oneri)
+        self.assertIn("Accepted canonical drift: 1", rendered_sorun)
+        self.assertIn("Spec-ready deploy readiness doğrulaması", rendered_task)
+        self.assertIn("Spec-ready deploy readiness doğrulaması", rendered_oneri)
 
     def test_compact_state_rebuilds_fallback_alias_visibility_without_explicit_lists(
         self,
