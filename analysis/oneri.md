@@ -1,47 +1,40 @@
-# Codex Analiz Özeti — 2026-04-25 15:00 UTC
+# UniverseCreator Analiz Raporu
+**Tarih:** 2026-04-25 17:40 UTC | **Cycle:** 1173+ (GLM cycle)
 
-## Canlı State
-- Cycle: **1170**
-- Mode: **OPTIMIZE**
-- Live sağlık: **169/169** (%100.0)
-- Canonical healthy: **163/169** (%96.4)
-- Health pending: **0**
-- Fallback healthy: **6**
-- Checkout gap: **0**
-- Deploy readiness gap: **0**
-- Deploy/url gap: **0**
-- Canonical drift: **5**
-- Spec-ready: **0**
-- Accepted canonical drift: **1**
-- Next action: `5 canonical URL drift'ini düzelt; fallback alias'ı ezme`
+## Codex Durumu
+- Son mode: OPTIMIZE
+- codex_task.md: fresh (1692s)
+- Son run: başarısız — her iki hesap usage limitinde
+- Auth: Account 1 blocked until ~Apr 28, Account 2 also limit hit
+- Switch count: 72 (gereksiz deneme, early-skip mekanizması eklendi)
 
-## Ana Darboğaz
-- **Canonical URL drift:** 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
+## QA Durumu
+- Son QA: YOK
+- Tekrar eden FAIL: yok
 
-## Kod için Öneri
-1. **Canonical URL drift düzeltmesi**
-   - Live ürünlerin public URL'si ile ideal canonical URL'sini aynı tut. Önce health pipeline'ını ve summary sync'ini doğrula; alias/redirect farkını manuel Vercel fix gibi saklamaya çalışma.
-2. Production'da manuel Vercel/ödeme-provider adımlarını script ile 'çözüldü' gibi göstermeden bırak.
-3. Kod değişikliği sonrası summary/context jenerasyonunu tekrar çalıştır; stale rapor bırakma.
+## Portföy Özeti
+- Toplam: 169 | Live: 169 | Healthy: 169 (%100)
+- Deploy gap: 0
+- Checkout gap: 0
+- Canonical drift: 0
+- Run ledger: Son 20 cycle 0 fail, modlar: EXECUTION, OPTIMIZE
+- URL format: STATE.json'da vercel_url alanı mevcut, 169/169 URL aktif
 
-## Açık Issue Sinyalleri
-- **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
-- **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
+## GLM Bu Cycle
+- Commit: a186602 — export_sales_csv() + 6 test (60/60 passed)
+- Fonksiyon: Satışları CSV olarak dışa aktarma, status/product filtre, dosya yazma
 
-## Canonical Drift Ürünleri
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app health=alternate_healthy code=200 probe=https://croncraft.vercel.app canonical_code=200 canonical_status=redirected_preview_alias
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app health=alternate_healthy code=200 canonical_code=307 canonical_status=error_307
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+## Kritik Öncelikler
+1. Codex Pro upgrade — hesaplar Apr 28'e kadar bloklu, insan kararı gerekli
+2. GLM/Kimi cycle'ları üretken: commit devam ediyor
+3. Researcher signal atıldı (research_stale > 3 saat)
 
-## Kabul Edilmiş Canonical Drift
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
+## Araştırma Durumu
+- Researcher sinyali: GÖNDERİLDİ (research_stale)
+- Deploy gap 0, spec_ready 0 — trigger reason: 3+ saat araştırma yapılmadı
 
-## Fallback Alias Ürünleri
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app health=alternate_healthy code=200 probe=https://croncraft.vercel.app canonical_code=200 canonical_status=redirected_preview_alias
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app health=alternate_healthy code=200 canonical_code=402 canonical_status=deployment_disabled
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app health=alternate_healthy code=200 canonical_code=307 canonical_status=error_307
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app health=alternate_healthy code=200 canonical_code=500 canonical_status=error_500
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app health=alternate_healthy code=200 canonical_code=404 canonical_status=not_found
+## Öneriler
+1. Codex hesaplarının Apr 28'de otomatik yenilenmesini bekle
+2. GLM/Kimi ajanları aktif kod yazmaya devam etmeli
+3. System tam sağlıklı — 169/169, 0 gap, 0 drift
+4. p2p_sales_tracker CSV export özelliği eklendi — satış raporlama için hazır

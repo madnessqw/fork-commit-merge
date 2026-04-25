@@ -1,17 +1,15 @@
 # GLM Code Result
-**Tarih:** 2026-04-25 14:47 | **Cycle:** 1170
+**Tarih:** 2026-04-25 17:40 | **Cycle:** 1173+
 
 ## Ne Yapıldı
-drift_severity_breakdown() fonksiyonu summary_visibility.py'ye eklendi. Health dashboard'da canonical drift ürünlerinin severity'leri (not_found, error_500, deployment_disabled, vs.) artık görünür. Compact, full ve JSON çıktılarında severity breakdown mevcut.
+p2p_sales_tracker.py'ye `export_sales_csv()` fonksiyonu eklendi. Satış verilerini CSV formatında dışa aktarmayı sağlar. Status/product filtreleri ve dosyaya yazma desteği var.
 
 ## Değişen Dosyalar
-- `scripts/summary_visibility.py` — drift_severity_breakdown() fonksiyonu eklendi
-- `scripts/health_dashboard.py` — severity breakdown compact/full/JSON render'larda gösteriliyor
-- `tests/test_summary_visibility.py` — 5 yeni test (drift severity)
-- `tests/test_health_dashboard.py` — 4 yeni test (dashboard severity display)
+- `scripts/p2p_sales_tracker.py` — export_sales_csv() fonksiyonu + csv/io import
+- `tests/test_p2p_sales_tracker.py` — 6 yeni test (TestExportSalesCSV)
 
 ## Test Sonucu
-84 passed (tüm testler geçti)
+60/60 passed (0.20s)
 
 ## Commit
-ae16ab6 — glm: 20260425-1447 — drift_severity_breakdown() in summary_visibility, health dashboard severity display, 9 new tests
+a186602 — glm: 20260425-1740 — p2p_sales_tracker: add export_sales_csv() with status/product filter + file output + 6 tests
