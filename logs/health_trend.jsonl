@@ -1,3 +1,4 @@
 {"ts": "2026-04-24T07:32:35Z", "cycle": 1109, "live": 90, "healthy": 87, "health_pct": 96.7, "unhealthy": 3, "checkout_gap": 0, "deploy_gap": 6, "canonical_drift": 4}
 {"ts": "2026-04-24T15:37:44Z", "cycle": 1113, "live": 91, "healthy": 91, "health_pct": 100.0, "grade": "A", "unhealthy": 0, "checkout_gap": 0, "deploy_gap": 2, "canonical_drift": 7, "fallback_healthy": 7}
 {"ts": "2026-04-25T09:56:00Z", "cycle": 1157, "live": 169, "healthy": 157, "health_pct": 92.9, "grade": "A", "unhealthy": 12, "checkout_gap": 0, "deploy_gap": 0, "canonical_drift": 0, "fallback_healthy": 11, "pending_canonical": 11}
+{"ts": "2026-04-25T10:05:35Z", "cycle": 1158, "live": 158, "healthy": 148, "health_pct": 93.7, "grade": "A", "unhealthy": 0, "checkout_gap": 0, "deploy_gap": 9, "canonical_drift": 1, "fallback_healthy": 10, "pending_canonical": 10}
