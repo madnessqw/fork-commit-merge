@@ -1,0 +1,34 @@
+{
+  "name": "Lyra",
+  "slug": "lyra",
+  "tagline": "Your MCP agents, visualized. Control 2,700+ agents from one dashboard.",
+  "description": "Visual command center for MCP agent orchestration. Connect to MCP clients, monitor running agents in real-time, execute tool calls, and track token usage from a sleek dashboard.",
+  "price": 19,
+  "price_display": "$19",
+  "payment_provider": "polar",
+  "category": "developer_tools",
+  "tech_stack": ["HTML", "Tailwind CSS", "Vanilla JS", "@modelcontextprotocol/sdk"],
+  "features": [
+    "MCP server connection manager with auth support",
+    "Real-time agent cluster view with status indicators",
+    "Tool runner with JSON parameter input and live responses",
+    "Token usage tracking with visual counters",
+    "Aggregated log stream with level filtering",
+    "Demo agents pre-loaded for instant preview"
+  ],
+  "target_audience": "AI developers, agent orchestrators, DevOps teams managing MCP-powered workflows",
+  "use_cases": [
+    "Monitor multiple MCP agents from single dashboard",
+    "Execute tool calls without CLI",
+    "Track token usage across agent clusters",
+    "Debug MCP server connections",
+    "Demo MCP client capabilities to stakeholders"
+  ],
+  "seo_keywords": [
+    "MCP dashboard", "MCP client", "agent monitoring", "MCP visualizer",
+    "agent orchestration", "LLM tools", "MCP server manager"
+  ],
+  "status": "building",
+  "created_cycle": 1236,
+  "ideal_vercel_url": "https://lyra.vercel.app"
+}
