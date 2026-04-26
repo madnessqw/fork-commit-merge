@@ -1,49 +1,54 @@
-# Sorun Analizi — Cycle 1197 | 2026-04-26 06:52 UTC
+# Sorun Analizi — Cycle 1199 | 2026-04-26
 
-## Ana Darboğazlar
-1. **codex_offline** [critical/blocker] — Her iki Codex hesabı da usage limitinde. Account 1 blocked until ~Apr 28 21:35 UTC, Account 2 da limit aşımı. Codex 35dk loop'u etkisiz.
-2. **vercel_auth_invalid** [high/blocker] — Vercel token expired. Canonical URL alias fix'leri, yeni deploy ve redeploy işlemleri bloklanmış durumda.
-3. **canonical_url_drift** [medium/pending] — 5 live ürün canonical URL'den sapmış; Vercel auth düzeltilince alias atanacak.
+## Sistem Durumu Özeti
+- **Cycle:** 1199 | **Mod:** OPTIMIZE
+- **Live:** 169/169 | **Healthy:** 169/169 | **Sağlık:** %100 (A)
+- **Checkout gap:** 0 | **Deploy gap:** 0
+- **Canonical drift:** 5 live + 7 accepted
+- **Spec-ready backlog:** 4 (diskte doğrulandı)
 
-## Summary'den Gelen Gerçekler
-- Healthy live: 169/169
-- Canonical healthy: 169/169
-- Health pending: 0
-- Fallback healthy: 0
-- Checkout gap: 0 (plan+sync ile doğrulandı, 0 candidates)
-- Deploy readiness gap: 0
-- Canonical drift live: 5
-- Accepted canonical drift: 7
-- Spec-ready backlog: 4 (json-schema-generator, regex-library-pro, html-validator-pro, dns-lookup-pro)
-- Orphan product dirs (no product.json): 117
+## Tespit Edilen Sorunlar
 
-## Canonical Drift Ürünleri (Live)
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app
+### 1. Vercel Auth Invalid (Blocked)
+- **Durum:** `vercel_auth_issue: true`
+- **Etki:** Yeni deploy, alias fix, canonical drift düzeltme yapılamıyor
+- **Çözüm:** Manuel auth refresh gerekiyor — kodla çözülemez
 
-## Kabul Edilmiş Canonical Drift
-- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
-- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
-- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
-- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
-- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
-- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
+### 2. Codex Offline (Usage Limit)
+- **Durum:** Her iki Codex account'u da usage limit hit
+- **Bloke:** ~2026-04-28 21:35 UTC'e kadar
+- **Etki:** Build/deploy/alias fix işlemleri durdu
+- **Geçici:** GLM + Kimi aktif, Codex döndüğünde canonical drift + deploy backlog işlenecek
 
-## STATE Sync Sorunları
-- **spec_ready_count mismatch** — STATE.json `spec_ready_count: 0` ama disk üzerinde 4 spec_ready product var. STATE sync scripti bu alanı güncellemiyor olabilir.
-- **cycle lag** — STATE.json `cycle: 1194` ama health_trend ve commit geçmişi 1196'ya kadar ilerlemiş. STATE sync aralığı veya scripti kontrol edilmeli.
+### 3. Spec-Ready Count Mismatch (FIXED)
+- **Eski:** STATE_SUMMARY `spec_ready_count: 0`
+- **Gerçek:** Diskte 4 ürün `spec_ready`: dns-lookup-pro, html-validator-pro, json-schema-generator, regex-library-pro
+- **Aksiyon:** STATE_SUMMARY.json `spec_ready_count: 4` olarak güncellendi
+- **Not:** Bu ürünler checkout_url'ye sahip (Polar'da oluşturulmuş) ancak deploy edilmemiş
 
-## Açık Issue Kayıtları
-- **codex_offline** [critical] — Her iki hesap usage limit. Apr 28'e kadar bekleniyor. Pro upgrade insan kararı.
-- **vercel_auth_invalid** [high] — Token invalid. Vercel CLI login gerekiyor (device code: MJFC-THWB, URL: https://vercel.com/oauth/device?user_code=MJFC-THWB).
-- **orphan_dirs** [medium] — 117 product dizini product.json içermiyor. GLM tarafından tespit edildi (önceki rapor 98, güncel 117). Cleanup planı var (orphan_cleanup_planner.py) ama henüz execute edilmedi.
-- **researcher_needed** [low/stale] — Signal hâlâ .signals/ altında duruyor, researcher çıktısı yok. Stale signal.
+### 4. Canonical URL Drift (5 Live)
+| Ürün | Current | Ideal |
+|---|---|---|
+| croncraft | quickcron.vercel.app | croncraft.vercel.app |
+| chmod-calculator | azjwwgvl6 hash | chmod-calculator.vercel.app |
+| terminal-os | terminal-os-green | terminal-os.vercel.app |
+| terraink | terraink-flax | terraink.vercel.app |
+| nginx-config | egj3ho5tp hash | nginx-config.vercel.app |
+
+- **Neden:** Vercel auth invalid + Codex offline = alias fix yapılamıyor
+- **Risk:** Düşük — ürünler erişilebilir, sadece ideal URL'ye sahip değil
+
+## Eski / Temizlenmiş Issue'lar
+- ~~state_drift~~ [stale] — Cycle 759'den kalma, sistem şu an stabil
+- ~~agent_missing~~ [stale] — Toolsmith signal eski, mevcut ekip yeterli
+
+## Öneriler
+1. **Vercel auth refresh** — Manuel müdahale gerekiyor
+2. **Codex döndüğünde (Apr 28):**
+   - 5 canonical drift ürününe alias fix uygula
+   - 4 spec-ready ürünü deploy et
+3. **GLM/Kimi** — Codex offline sürecinde optimize ve analiz işlemlerine odaklan
 
 ## Not
-- Bu dosya live `STATE.json` → disk taraması ve log analizinden üretildi.
+- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
 - Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
-- Codex döndüğünde (Apr 28+) canonical drift fix + orphan cleanup execute edilecek.
