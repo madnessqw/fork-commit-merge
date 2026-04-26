@@ -1,5 +1,5 @@
 {
-  "cycle": 1217,
+  "cycle": 1218,
   "mode": "INNOVATE",
   "balance": 0.0,
   "active_count": 181,
@@ -10,18 +10,18 @@
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 0,
-  "checkout_gap_count": 1,
+  "checkout_gap_count": 0,
   "deploy_missing_or_bad_url": 0,
-  "canonical_url_drift": 0,
+  "canonical_url_drift": 13,
   "spec_ready_count": 0,
   "deploy_readiness_count": 0,
   "deploy_readiness_manifest_gap_count": 0,
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "Tüm kritik gap'ler kapatıldı — balance monitor et",
-  "vercel_auth_issue": false,
-  "last_updated": "2026-04-26T13:36:42.715101Z",
+  "next_action": "Vercel auth düzeltildiğinde 6 live canonical drift için alias ekle; drift ürünler: croncraft, chmod-calculator, terminal-os, terraink, nginx-config, commit-message-generator",
+  "vercel_auth_issue": true,
+  "last_updated": "2026-04-26T17:15:00.000000Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -314,7 +314,7 @@
       "n": "CronCraft",
       "s": "croncraft",
       "st": "live",
-      "v": "https://croncraft.vercel.app",
+      "v": "https://quickcron.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_FbRgdOgQqzby8CSqSiUyT5rD2sa6CnfpjiaV33hkoBO"
     },
     {
@@ -1000,7 +1000,7 @@
       "n": "Chmod Calculator Pro",
       "s": "chmod-calculator",
       "st": "live",
-      "v": "https://chmod-calculator.vercel.app",
+      "v": "https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC"
     },
     {
@@ -1105,14 +1105,14 @@
       "n": "Terminal OS",
       "s": "terminal-os",
       "st": "live",
-      "v": "https://terminal-os.vercel.app",
+      "v": "https://terminal-os-green.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_l6VyX62FmonHoMLtjuZoPhGWwNkacFtgeU3ES2OMIFU"
     },
     {
       "n": "Terraink - Cartographic Poster Engine",
       "s": "terraink",
       "st": "live",
-      "v": "https://terraink.vercel.app",
+      "v": "https://terraink-flax.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_v6aLBWg5RLrML74Hra5G1mmbGbvFb0JnFOv9s2pEkb7"
     },
     {
@@ -1196,7 +1196,7 @@
       "n": "Nginx Config Generator",
       "s": "nginx-config",
       "st": "live",
-      "v": "https://nginx-config.vercel.app",
+      "v": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_Zqjo5mpJusbPDqekATkPDFlLwLdPo1zJDClpm0BVy7d"
     },
     {
@@ -1210,7 +1210,7 @@
       "n": "commit-message-generator",
       "s": "commit-message-generator",
       "st": "live",
-      "v": "https://commit-message-generator.vercel.app",
+      "v": "https://commit-message-generator-gamma.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_LdNF3aL3BbYGULiwADFDyrlxd9jUk84LowzYE023zdx"
     },
     {
@@ -1295,9 +1295,7 @@
     "missing_url": [],
     "unhealthy_live": [],
     "pending_health": [],
-    "missing_checkout": [
-      "cli-pipe-viz"
-    ],
+    "missing_checkout": [],
     "canonical_url_drift": [],
     "fallback_healthy": [],
     "ready_for_payment_health": [],
