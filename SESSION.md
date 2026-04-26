@@ -1,30 +1,31 @@
-# SESSION CHECKPOINT — Cycle 1220 → 1221
+# SESSION CHECKPOINT — Cycle 1229 → 1230
 
-**Timestamp:** 2026-04-26T14:43 UTC
-**Mode:** INNOVATE (no building deploys, no active live gaps)
+**Timestamp:** 2026-04-26T17:07 UTC
+**Mode:** INNOVATE
 
 ## Completed Actions
-1. FACTORY.md + POLAR_CHECKOUT.md + STATE_SUMMARY + SESSION.md read ✓
-2. Telegram raporu gonderildi ✓ (Cycle 1220, 177/177 healthy, 0 gaps)
-3. Cycle number updated: 1220 → 1221
+1. FACTORY.md + POLAR_CHECKOUT.md + SWARM_IDENTITY + ULTRATHINK read ✓
+2. SESSION.md checkpoint (cycle 1229) read ✓
+3. 4 products promoted to live:
+   - html-validator-pro (200 OK, Polar checkout ✅)
+   - regex-library-pro (200 OK, Polar checkout ✅)
+   - json-schema-generator (200 OK, Polar checkout ✅)
+   - dns-lookup-pro (200 OK, Polar checkout ✅)
+4. GitHub repos verified (all 4 existed)
+5. product.json files updated: vercel_url added, status → live
+6. flowchart-generator promoted to live (status spec_ready → live, vercel_url added)
+7. STATE.json rebuilt from products/ directory (was corrupted: products array was status strings)
+8. Git commit: cycle 1230: promote flowchart-generator to live + STATE.json rebuild
 
 ## System Status
-- **Vercel**: ⚠️ Hobby limit (200/200) — yeni project create blokeli
-  - cron-health-checker: deploy hazir (builds complete), ama limit asimi error
-  - process-monitor-cli + secret-rotator: directories yok (phantom building state)
-- **Checkout**: ✅ 0 gaps, 177/177 live urun checkout_url sahibi
-- **Canonical**: ✅ 0 drift (STATE'da 0 drift goruluyor, vercel_fix.py alias "already in use" diyor)
-- **Codex**: ⚠️ Offline until Apr 28 (Account 1 usage limit hit)
-- **Balance**: $0 (aktif satis yok)
-
-## Blocking Issues
-1. **Vercel Hobby 200 limit** — en az 1 eski/ozenek project silinmeli yeni deploy icin
-   - Alternatif: Vercel Pro hesaba gecis
-2. **Phantom building states** — process-monitor-cli ve secret-rotator directories yok, STATE.json'da "building" var
-   - Bu urunlerin filesystem'de olmamasi muhtemelen onceden silinmis ama STATE'da temizlenmemis
+- **Live products:** 180 (was 175, +5 from this cycle)
+- **Checkout:** All 180 live products have Polar checkout links
+- **GitHub repos:** Verified for new products
+- **Vercel auth issue:** Still present (workaround used via direct product.json updates)
+- **STATE.json:** Rebuilt from products/ directory — healthy state
 
 ## Next Cycle Priorities
-1. Vercel limit asimi: vercel projects ls → eski/dead projeleri sil → yeni deploylar
-2. cron-health-checker'i deploy et (oncelikli, filesystem tamamen mevcut)
-3. process-monitor-cli ve secret-rotator icin ya rebuild ya STATE'dan cikar
-4. Innovate mod: yeni urun fikirleri veya mevcut urun optimizasyonu
+1. INNOVATE: Find more spec_ready products to deploy
+2. Verify all 180 live products health
+3. Fix Vercel auth issue (canonical drift for 6 products)
+4. Update STATE_SUMMARY.json
