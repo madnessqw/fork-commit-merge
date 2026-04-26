@@ -5,7 +5,7 @@ from unittest.mock import patch
 import pytest
 
 from scripts.fix_dead_checkout_buttons import (
-    DEAD_BUTTON_SLUGS,
+    discover_dead_button_slugs,
     fix_dead_buttons,
     get_checkout_url,
 )
@@ -100,14 +100,25 @@ class TestFixDeadButtons:
         assert "</script>" in fixed
 
 
-class TestDeadButtonSlugs:
-    def test_slugs_list_not_empty(self):
-        assert len(DEAD_BUTTON_SLUGS) > 0
+class TestDiscoverDeadButtonSlugs:
+    def test_discovers_unwired_product(self, tmp_product):
+        html = '<html><body><button class="buy-btn">Buy Now</button></body></html>'
+        tmp_product("unwired-prod", checkout_url="https://buy.polar.sh/abc", html=html)
+        slugs = discover_dead_button_slugs()
+        assert "unwired-prod" in slugs
 
-    def test_slugs_are_strings(self):
-        for slug in DEAD_BUTTON_SLUGS:
-            assert isinstance(slug, str)
-            assert "-" in slug or slug.isalnum()
+    def test_skips_already_wired(self, tmp_product):
+        html = '<html><body><script>const CHECKOUT_URL = "https://buy.polar.sh/abc";</script></body></html>'
+        tmp_product("wired-prod", checkout_url="https://buy.polar.sh/abc", html=html)
+        slugs = discover_dead_button_slugs()
+        assert "wired-prod" not in slugs
 
-    def test_no_duplicate_slugs(self):
-        assert len(DEAD_BUTTON_SLUGS) == len(set(DEAD_BUTTON_SLUGS))
+    def test_skips_no_checkout_url(self, tmp_product):
+        html = '<html><body><button>Buy</button></body></html>'
+        tmp_product("no-co-prod", checkout_url=None, html=html)
+        slugs = discover_dead_button_slugs()
+        assert "no-co-prod" not in slugs
+
+    def test_returns_list(self):
+        slugs = discover_dead_button_slugs()
+        assert isinstance(slugs, list)
