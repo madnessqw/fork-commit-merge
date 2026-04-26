@@ -7,7 +7,12 @@
   "price_display": "$19",
   "payment_provider": "polar",
   "category": "developer_tools",
-  "tech_stack": ["HTML", "Tailwind CSS", "Vanilla JS", "@modelcontextprotocol/sdk"],
+  "tech_stack": [
+    "HTML",
+    "Tailwind CSS",
+    "Vanilla JS",
+    "@modelcontextprotocol/sdk"
+  ],
   "features": [
     "MCP server connection manager with auth support",
     "Real-time agent cluster view with status indicators",
@@ -25,10 +30,19 @@
     "Demo MCP client capabilities to stakeholders"
   ],
   "seo_keywords": [
-    "MCP dashboard", "MCP client", "agent monitoring", "MCP visualizer",
-    "agent orchestration", "LLM tools", "MCP server manager"
+    "MCP dashboard",
+    "MCP client",
+    "agent monitoring",
+    "MCP visualizer",
+    "agent orchestration",
+    "LLM tools",
+    "MCP server manager"
   ],
   "status": "building",
   "created_cycle": 1236,
-  "ideal_vercel_url": "https://lyra.vercel.app"
+  "ideal_vercel_url": "https://lyra.vercel.app",
+  "checkout_url": "https://buy.polar.sh/polar_cl_stNPhasvJpC7d0ANJ3p1GqhbOO1UJN2CFno9T01huwe",
+  "polar_product_id": "9ee78a9f-3d63-4842-a106-0f221a1e0f0e",
+  "polar_product_price_id": "aca028b5-1c1e-46ee-8edc-40df79f80d9f",
+  "polar_checkout_link_id": "927ee306-9ab4-4ad1-9345-b24317fc56a2"
 }
