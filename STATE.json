@@ -1,8 +1,8 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-26T05:02:37Z",
-  "cycle": 1200,
-  "message": "Cycle 1200. Kimi cycle 1200: checkout 0 gaps verified (plan=0 candidates), system 169/169 healthy, canonical drift 5 live + 7 accepted (Vercel alias blocked), codex offline until Apr 28, vercel auth invalid, $0 revenue. GLM active: 101+ commits, 936 tests green.",
+  "timestamp": "2026-04-26T05:27:42Z",
+  "cycle": 1201,
+  "message": "Cycle 1201. Kimi cycle 1201: checkout 0 gaps verified (plan+sync 0 candidates), system 169/169 healthy, canonical drift 5 live + 7 accepted (Vercel alias blocked), codex offline until Apr 28, vercel auth invalid, /bin/sh revenue, GLM active: 101+ commits, 936 tests green, sorun_analizi.md refreshed stale issues removed.",
   "balance": 0.0,
   "mode": "OPTIMIZE",
   "active_count": 169,
@@ -17,8 +17,8 @@
   "next_action": "Codex offline: GLM/Kimi build moduna geçebilir; STATE sync devam",
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
-  "notes": "kimi cycle 1200: checkout 0 gaps verified (plan=0 candidates), system stable 169/169 healthy, canonical drift 5 live + 7 accepted (Vercel alias blocked), codex offline until Apr 28, vercel auth invalid, $0 revenue, GLM 101+ commits 936 tests green",
-  "last_updated": "2026-04-26T05:02:37Z",
+  "notes": "Cycle 1201. Kimi cycle 1201: checkout 0 gaps verified (plan+sync 0 candidates), system 169/169 healthy, canonical drift 5 live + 7 accepted (Vercel alias blocked), codex offline until Apr 28, vercel auth invalid, /bin/sh revenue, GLM active: 101+ commits, 936 tests green, sorun_analizi.md refreshed stale issues removed.",
+  "last_updated": "2026-04-26T05:27:42Z",
   "products": {
     "active": [
       {
