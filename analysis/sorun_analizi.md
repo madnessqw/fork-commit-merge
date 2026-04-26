@@ -1,7 +1,8 @@
-# Sorun Analizi — Cycle 1206 | 2026-04-26 07:35 UTC
+# Sorun Analizi — Cycle 1208 | 2026-04-26 08:02 UTC
 
 ## Ana Darboğaz
-- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
+- **vercel_auth_invalid** — 10+ cycle'dır tekrarlanıyor. Deploy yapılamıyor, canonical drift düzeltilemiyor.
+- **codex_offline** — Her iki account da limit aşımında. Apr 28'e kadar offline.
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -11,11 +12,12 @@
 - Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 5
+- Canonical drift: 5 live + 7 accepted
 - Spec-ready backlog: 0
-- Accepted canonical drift: 7
+- Orphan dirs: 0
+- Revenue: $0
 
-## Canonical Drift Ürünleri
+## Canonical Drift Ürünleri (Live — Düzeltilmesi Gereken)
 - `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
 - `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
 - `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
@@ -32,8 +34,13 @@
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
-- **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
+- **vercel_auth_invalid** [critical/open] — Vercel token expired/invalid. Deploy ve alias fix engelleniyor. Manuel token refresh gerekiyor.
+- **codex_offline** [high/open] — Both accounts rate limited until Apr 28. No builder available.
+- **zero_revenue** [medium/open] — Checkout infrastructure complete (169/169 Polar) but $0 sales. Traffic/conversion issue suspected.
+
+## Çözülen Issue'lar (Eski Kayıtlar Temizlendi)
+- ~~state_drift~~ — STATE.json cycle 1208'e sync edildi. Eski cycle 759 kaydı artık geçerli değil.
+- ~~agent_missing~~ — Toolsmith agent kaydı eski, mevcut sistemde bu agent rolü Claude subagent'ları tarafından karşılanıyor.
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
