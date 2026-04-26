@@ -28,10 +28,10 @@ PROTECTED_DIRS = {".archived", ".git", "__pycache__", "node_modules", ".next"}
 def load_state_slugs():
     state = json.load(open(STATE_PATH))
     slugs = set()
-    for p in state.get("products", {}).get("active", []):
-        slugs.add(p.get("slug", ""))
-    for p in state.get("products", {}).get("archived", []):
-        slugs.add(p.get("slug", ""))
+    products = state.get("products", {})
+    for key in ("active", "live", "spec_ready", "ready_to_deploy", "building", "archived"):
+        for p in products.get(key, []):
+            slugs.add(p.get("slug", ""))
     slugs.discard("")
     return slugs
 
@@ -39,11 +39,25 @@ def load_state_slugs():
 def get_dir_slugs():
     if not PRODUCTS_DIR.is_dir():
         return set()
-    return {
-        d
-        for d in os.listdir(PRODUCTS_DIR)
-        if (PRODUCTS_DIR / d).is_dir() and d not in PROTECTED_DIRS
-    }
+    slugs = set()
+    for d in os.listdir(PRODUCTS_DIR):
+        if d in PROTECTED_DIRS:
+            continue
+        p = PRODUCTS_DIR / d
+        if not p.is_dir():
+            continue
+        # Skip dirs with product.json that has a build/deployment status
+        product_json = p / "product.json"
+        if product_json.exists():
+            try:
+                data = json.load(open(product_json))
+                status = data.get("status", "")
+                if status in ("spec_ready", "ready_to_deploy", "building"):
+                    continue
+            except Exception:
+                pass
+        slugs.add(d)
+    return slugs
 
 
 def dir_size(path):
