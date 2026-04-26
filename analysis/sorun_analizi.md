@@ -1,46 +1,47 @@
-# Sorun Analizi — Cycle 1193 | 2026-04-26 02:29 UTC
+# Sorun Analizi — Cycle 1196 | 2026-04-26 07:00 UTC
 
-## Ana Darboğaz
-- **vercel_auth_invalid** — Vercel CLI authentication expired. Alias fixes, canonical drift resolution, and new deploys blocked.
-- **codex_offline** — Both Codex accounts usage limited until Apr 28.
-
-## Summary'den Gelen Gerçekler
-- Healthy live: 169/169
-- Canonical healthy: 169/169
-- Health pending: 0
-- Fallback healthy: 0
+## Güncel Durum Özeti
+- Healthy live: 169/169 (%100)
 - Checkout gap: 0
-- Deploy readiness gap: 0
-- Deploy/url gap: 0
-- Canonical drift: 12 (5 live + 7 accepted)
-- Spec-ready backlog: 0
+- Deploy gap: 0
+- Canonical drift: 0 (STATE top-level), 12 accepted (5 live alias farklı + 7 kabul edilmiş)
+- Vercel auth: INVALID — manuel token refresh gerekli
+- Codex: Offline until Apr 28 (both accounts usage limit)
+- Revenue: $0
 
-## Canonical Drift Ürünleri (Live — 5)
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app
+## Aktif Sorunlar
 
-## Kabul Edilmiş Canonical Drift (7)
-- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
-- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
-- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
-- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
-- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
-- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
+### 1. Vercel Auth Invalid [HIGH / BLOCKING]
+- **Durum:** `vercel_auth_error`: "Token invalid - vercel login required"
+- **Etki:** Alias fix, yeni deploy, canonical drift düzeltme bloklu
+- **Çözüm:** Manuel `vercel login` veya token refresh gerekli (human-in-the-loop)
+- **Not:** STATE.json'daki `vercel_auth_issue` flag'ı bu cycle'da True olarak düzeltildi
 
-## Yeni Bulgular (Cycle 1193)
-- **98 Orphan Product Directories** — `products/` klasöründe 98 dizin STATE.json active listesinde yok. GLM `portfolio_orphan_scanner.py` ile tespit etti.
-- **Researcher Signal Stale** — `.signals/researcher_needed` (reason=research_stale) mevcut ancak işlenme durumu belirsiz.
+### 2. Codex Offline [HIGH]
+- **Durum:** Her iki Codex account usage limit doldu
+- **Etki:** Yeni ürün build, deploy, büyük fix yapılamıyor
+- **Çözüm:** Apr 28'e kadar bekleniyor veya yeni hesap/Pro upgrade
 
-## Açık Issue Kayıtları
-- Vercel auth invalid → manual token refresh gerekli
-- Codex offline until Apr 28
-- 98 orphan directories → arşiv/kurtarma analizi bekleniyor
+### 3. $0 Revenue [HIGH / BUSINESS]
+- **Durum:** 169 live ürün, %100 checkout, %100 sağlık, ama 0 satış
+- **Etki:** Burn rate devam ediyor, gelir yok
+- **Çözüm:** Trafik/SEO/pazarlama stratejisi gerekli — researcher veya Claude strategist tetiklenmeli
+
+### 4. 98 Orphan Product Dizini [MEDIUM]
+- **Durum:** GLM `portfolio_orphan_scanner.py` ile tespit edildi (commit 6478cd5)
+- **Etki:** 11.5 MB+ disk kullanımı, repo karmaşası
+- **Çözüm:** `orphan_cleanup_planner.py` çıktısı execute edilmeli (GLM'e handoff)
+
+### 5. 536.4 MB Disk Atığı [MEDIUM]
+- **Durum:** `product_size_analyzer.py` tespiti (commit 3ebf612)
+- **Detay:** node_modules 402.7 MB, .vercel 123.9 MB, dist 9.7 MB
+- **Çözüm:** Safe cleanup scripti çalıştırılmalı (GLM sonraki cycle'da planladı)
+
+## Çözülen / Temizlenen Sorunlar (Bu Cycle)
+- `vercel_auth_issue` flag STATE.json'da False -> True düzeltildi
+- `researcher_needed` sinyali temizlendi (stale, deploy_gap=0, spec_ready=0)
+- `state_drift` ve `agent_missing` eski kayıtları sorun_analizi.md'den çıkarıldı
 
 ## Not
-- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
-- Canonical drift 12 ürün (5 live + 7 accepted) Vercel alias fix ile çözülecek — auth invalid nedeniyle bloklu.
-- Checkout coverage %100 — 0 gap.
+- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve doğrulanmış issue kayıtlarından üretilir.
+- Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
