@@ -1,9 +1,7 @@
 {
-  "cycle": 1231,
+  "cycle": 1232,
   "mode": "INNOVATE",
   "balance": 0.0,
-  "active_count": 181,
-  "live_count": 181,
   "products": {
     "active": [
       {
@@ -53,7 +51,8 @@
         "s": "api-request-builder",
         "st": "live",
         "v": "https://api-request-builder.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_izcPWpkX9nL19G4FuqHc0nlPJS0jzID1OtFPH00FQmM"
+        "c": "https://buy.polar.sh/polar_cl_izcPWpkX9nL19G4FuqHc0nlPJS0jzID1OtFPH00FQmM",
+        "g": "https://github.com/universe7creator/api-request-builder"
       },
       {
         "n": "API Security Scanner",
@@ -74,21 +73,24 @@
         "s": "api-to-mcp",
         "st": "live",
         "v": "https://api-to-mcp.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_OJwPdnYkmK8LdHaK692Ko6rn5IABSnAaaCi5V0pBxpk"
+        "c": "https://buy.polar.sh/polar_cl_OJwPdnYkmK8LdHaK692Ko6rn5IABSnAaaCi5V0pBxpk",
+        "g": "https://github.com/universe7creator/api-to-mcp"
       },
       {
         "n": "ASCII Art Generator Pro",
         "s": "ascii-art-generator",
         "st": "live",
         "v": "https://ascii-art-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_uq7Kb6EosP4DXa1UFY2AECBew2Pt8sn4AGAbV2dUL6S"
+        "c": "https://buy.polar.sh/polar_cl_uq7Kb6EosP4DXa1UFY2AECBew2Pt8sn4AGAbV2dUL6S",
+        "g": "https://github.com/universe7creator/ascii-art-generator"
       },
       {
         "n": "Base64 Encoder/Decoder Pro",
         "s": "base64-encoder-pro",
         "st": "live",
         "v": "https://base64-encoder-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug"
+        "c": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug",
+        "g": "https://github.com/universe7creator/base64-encoder-pro"
       },
       {
         "n": "Base64 Pro",
@@ -102,7 +104,8 @@
         "s": "binary-inspector",
         "st": "live",
         "v": "https://binary-inspector.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_M5OekeHDFA27GQau9ZeakKBgsnCT9UgKnyZIx2I7qGM"
+        "c": "https://buy.polar.sh/polar_cl_M5OekeHDFA27GQau9ZeakKBgsnCT9UgKnyZIx2I7qGM",
+        "g": "https://github.com/universe7creator/binary-inspector"
       },
       {
         "n": "Browser Mock Studio",
@@ -123,112 +126,128 @@
         "s": "carbonlite",
         "st": "live",
         "v": "https://carbonlite.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_QBBZhgPvaO9tTCUdJJNACtT4hhuDtHl5Lnd9q2enRc0"
+        "c": "https://buy.polar.sh/polar_cl_QBBZhgPvaO9tTCUdJJNACtT4hhuDtHl5Lnd9q2enRc0",
+        "g": "https://github.com/universe7creator/carbonlite"
       },
       {
         "n": "Case Converter Pro",
         "s": "case-converter-pro",
         "st": "live",
         "v": "https://case-converter-e78h1utoo-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_T7ja7tYtgvdbTKP8rWQSHsxZ3jq6MHGaEkT4N3gXhgD"
+        "c": "https://buy.polar.sh/polar_cl_T7ja7tYtgvdbTKP8rWQSHsxZ3jq6MHGaEkT4N3gXhgD",
+        "g": "https://github.com/universe7creator/case-converter-pro"
       },
       {
         "n": "Chart Studio",
         "s": "chart-studio",
         "st": "live",
         "v": "https://chart-studio.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_HK36ti0BiK3toadzPrn0X3J9A1PYB5dHuIZlR0tXFIx"
+        "c": "https://buy.polar.sh/polar_cl_HK36ti0BiK3toadzPrn0X3J9A1PYB5dHuIZlR0tXFIx",
+        "g": "https://github.com/universe7creator/chart-studio"
       },
       {
         "n": "Chmod Calculator Pro",
         "s": "chmod-calculator",
         "st": "live",
         "v": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC"
+        "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC",
+        "g": "https://github.com/universe7creator/chmod-calculator"
       },
       {
         "n": "CLI Pipe Viz",
         "s": "cli-pipe-viz",
         "st": "live",
         "v": "https://cli-pipe-viz.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_Ip5hffodrZaP1SBdxuJlb1kfRa08dHMHjx4xV2O6yl1"
+        "c": "https://buy.polar.sh/polar_cl_Ip5hffodrZaP1SBdxuJlb1kfRa08dHMHjx4xV2O6yl1",
+        "g": "https://github.com/universe7creator/cli-pipe-viz"
       },
       {
         "n": "Code Complexity Analyzer",
         "s": "code-complexity-analyzer",
         "st": "live",
         "v": "https://code-complexity-analyzer-apcmtx65d-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_jeuGPZLj7WQXyoRVK1vbLHs1liPR8UXicV39t2hlGoR"
+        "c": "https://buy.polar.sh/polar_cl_jeuGPZLj7WQXyoRVK1vbLHs1liPR8UXicV39t2hlGoR",
+        "g": "https://github.com/universe7creator/code-complexity-analyzer"
       },
       {
         "n": "Code Formatter Universal",
         "s": "code-formatter-universal",
         "st": "live",
         "v": "https://code-formatter-universal.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_JCQ0MYuXuo6477e1GWoPvMNXvTnLiVOEdhFLZ2AyDsm"
+        "c": "https://buy.polar.sh/polar_cl_JCQ0MYuXuo6477e1GWoPvMNXvTnLiVOEdhFLZ2AyDsm",
+        "g": "https://github.com/universe7creator/code-formatter-universal"
       },
       {
         "n": "Code Minifier Pro",
         "s": "code-minifier-pro",
         "st": "live",
         "v": "https://code-minifier-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_lsIXtqxBzH7Xyd2jjveCLYZRH8sanTkepAIhu2fOSJ3"
+        "c": "https://buy.polar.sh/polar_cl_lsIXtqxBzH7Xyd2jjveCLYZRH8sanTkepAIhu2fOSJ3",
+        "g": "https://github.com/universe7creator/code-minifier-pro"
       },
       {
         "n": "Code Screenshot Beautifier",
         "s": "code-screenshot-beautifier",
         "st": "live",
         "v": "https://code-screenshot-beautifier.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ"
+        "c": "https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ",
+        "g": "https://github.com/universe7creator/code-screenshot-beautifier"
       },
       {
         "n": "Code Snippet Manager",
         "s": "code-snippet-manager",
         "st": "live",
         "v": "https://code-snippet-manager.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_s144XGHeuFvnvAwK9qejgXSEjoeqaarcmU7ko1v4zza"
+        "c": "https://buy.polar.sh/polar_cl_s144XGHeuFvnvAwK9qejgXSEjoeqaarcmU7ko1v4zza",
+        "g": "https://github.com/universe7creator/code-snippet-manager"
       },
       {
         "n": "CodeSnap",
         "s": "codesnap",
         "st": "live",
         "v": "https://codesnap.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_RJdU7XxEFKQvRtnoyv1jVhSmLIxwTYFRySrC60HtQaH"
+        "c": "https://buy.polar.sh/polar_cl_RJdU7XxEFKQvRtnoyv1jVhSmLIxwTYFRySrC60HtQaH",
+        "g": "https://github.com/universe7creator/codesnap"
       },
       {
         "n": "Color Contrast Pro",
         "s": "color-contrast-pro",
         "st": "live",
         "v": "https://color-contrast-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_RdsAw3cge4hMKJ8HT3W5lrDPVZw5OIElhYQra3dMyu2"
+        "c": "https://buy.polar.sh/polar_cl_RdsAw3cge4hMKJ8HT3W5lrDPVZw5OIElhYQra3dMyu2",
+        "g": "https://github.com/universe7creator/color-contrast-pro"
       },
       {
         "n": "Color Palette Extractor",
         "s": "color-palette-extractor",
         "st": "live",
         "v": "https://color-palette-extractor.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_rZbQezdT6PLGvDMNlofExKS0TldXDwCdwBjrz1bMNBE"
+        "c": "https://buy.polar.sh/polar_cl_rZbQezdT6PLGvDMNlofExKS0TldXDwCdwBjrz1bMNBE",
+        "g": "https://github.com/universe7creator/color-palette-extractor"
       },
       {
         "n": "ColorMine",
         "s": "colormine",
         "st": "live",
         "v": "https://colormine.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_jfo6xWTEQy62mcdQELYklg39834jtMOZkmWzl4ZJjfi"
+        "c": "https://buy.polar.sh/polar_cl_jfo6xWTEQy62mcdQELYklg39834jtMOZkmWzl4ZJjfi",
+        "g": "https://github.com/universe7creator/colormine"
       },
       {
         "n": "commit-message-generator",
         "s": "commit-message-generator",
         "st": "live",
         "v": "https://commit-message-generator-gamma.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_LdNF3aL3BbYGULiwADFDyrlxd9jUk84LowzYE023zdx"
+        "c": "https://buy.polar.sh/polar_cl_LdNF3aL3BbYGULiwADFDyrlxd9jUk84LowzYE023zdx",
+        "g": "https://github.com/universe7creator/commit-message-generator"
       },
       {
         "n": "Cron Express",
         "s": "cron-express",
         "st": "live",
         "v": "https://cron-express.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_jWYgsmgGnWo6u4AV9z02vmhLY8KcXTP4pAga23YNeBN"
+        "c": "https://buy.polar.sh/polar_cl_jWYgsmgGnWo6u4AV9z02vmhLY8KcXTP4pAga23YNeBN",
+        "g": "https://github.com/universe7creator/cron-express"
       },
       {
         "n": "Cron Expression Builder",
@@ -249,7 +268,8 @@
         "s": "cron-expression-tester",
         "st": "live",
         "v": "https://cron-expression-tester-b8wtjofmi-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_gqbBU6PbLYEkrPNfAmlMMllXo4Js20u74Y5eP1THHB3"
+        "c": "https://buy.polar.sh/polar_cl_gqbBU6PbLYEkrPNfAmlMMllXo4Js20u74Y5eP1THHB3",
+        "g": "https://github.com/universe7creator/cron-expression-tester"
       },
       {
         "n": "Cron Health Checker",
@@ -263,14 +283,16 @@
         "s": "cron-master",
         "st": "live",
         "v": "https://cron-master.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_MPISgTSo7gTIFTwOgP1TQKWrlAMfQK3mbgtF83X8ORF"
+        "c": "https://buy.polar.sh/polar_cl_MPISgTSo7gTIFTwOgP1TQKWrlAMfQK3mbgtF83X8ORF",
+        "g": "https://github.com/universe7creator/cron-master"
       },
       {
         "n": "CronCraft",
         "s": "croncraft",
         "st": "live",
         "v": "https://quickcron.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_FbRgdOgQqzby8CSqSiUyT5rD2sa6CnfpjiaV33hkoBO"
+        "c": "https://buy.polar.sh/polar_cl_FbRgdOgQqzby8CSqSiUyT5rD2sa6CnfpjiaV33hkoBO",
+        "g": "https://github.com/universe7creator/croncraft"
       },
       {
         "n": "CronMaster",
@@ -284,7 +306,8 @@
         "s": "css-gradient-studio",
         "st": "live",
         "v": "https://css-gradient-studio.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_HLCsi5dYw3cFoqIwQlR1Z5LYlMcwcBghSF30l4ALmne"
+        "c": "https://buy.polar.sh/polar_cl_HLCsi5dYw3cFoqIwQlR1Z5LYlMcwcBghSF30l4ALmne",
+        "g": "https://github.com/universe7creator/css-gradient-studio"
       },
       {
         "n": "CSS Grid Generator",
@@ -298,7 +321,8 @@
         "s": "css-shadow-studio",
         "st": "live",
         "v": "https://css-shadow-studio.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_i9ejmboFVDVWHyUUIpxh6apGYKcPYWFnqiZJI49AzhE"
+        "c": "https://buy.polar.sh/polar_cl_i9ejmboFVDVWHyUUIpxh6apGYKcPYWFnqiZJI49AzhE",
+        "g": "https://github.com/universe7creator/css-shadow-studio"
       },
       {
         "n": "CSS to Tailwind",
@@ -312,7 +336,8 @@
         "s": "csv-converter-pro",
         "st": "live",
         "v": "https://csv-converter-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_VldhcpwJNzr2tvxDxyjvwBKriVCKvKgeLoAAk2SItAX"
+        "c": "https://buy.polar.sh/polar_cl_VldhcpwJNzr2tvxDxyjvwBKriVCKvKgeLoAAk2SItAX",
+        "g": "https://github.com/universe7creator/csv-converter-pro"
       },
       {
         "n": "CSV to JSON Pro",
@@ -326,14 +351,16 @@
         "s": "csv-to-markdown",
         "st": "live",
         "v": "https://csv-to-markdown.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_q5yvmRLaDm8Z4L1YFoGlSn7LtKFQCPKf2YGcU4YNDL1"
+        "c": "https://buy.polar.sh/polar_cl_q5yvmRLaDm8Z4L1YFoGlSn7LtKFQCPKf2YGcU4YNDL1",
+        "g": "https://github.com/universe7creator/csv-to-markdown"
       },
       {
         "n": "CSV to SQL Pro",
         "s": "csv-to-sql-pro",
         "st": "live",
         "v": "https://csv-to-sql-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_5TlXlD2xB8l5hdpt0Kf7KGDDVfMZjU8QSPUCv0nXQl4"
+        "c": "https://buy.polar.sh/polar_cl_5TlXlD2xB8l5hdpt0Kf7KGDDVfMZjU8QSPUCv0nXQl4",
+        "g": "https://github.com/universe7creator/csv-to-sql-pro"
       },
       {
         "n": "CSV Validator Pro",
@@ -347,7 +374,8 @@
         "s": "curl2code",
         "st": "live",
         "v": "https://curl2code.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_XrNyYGbDmjZKqUXs3ogZKWlZkN7jmCO9YN9Ht0yKrfb"
+        "c": "https://buy.polar.sh/polar_cl_XrNyYGbDmjZKqUXs3ogZKWlZkN7jmCO9YN9Ht0yKrfb",
+        "g": "https://github.com/universe7creator/curl2code"
       },
       {
         "n": "DataFlip",
@@ -361,14 +389,16 @@
         "s": "diff-checker-pro",
         "st": "live",
         "v": "https://diff-checker-jpjx32qi6-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_nEsbJlKAQmx6HwsA7CXx5pS7K5bJT6OAvoxyv2FTOTC"
+        "c": "https://buy.polar.sh/polar_cl_nEsbJlKAQmx6HwsA7CXx5pS7K5bJT6OAvoxyv2FTOTC",
+        "g": "https://github.com/universe7creator/diff-checker-pro"
       },
       {
         "n": "DiffForge",
         "s": "diffforge",
         "st": "live",
         "v": "https://diffforge.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_DNWeoUVWeQjstBfZ6FIvjKhu7cTRXCgioI1RR41zGmN"
+        "c": "https://buy.polar.sh/polar_cl_DNWeoUVWeQjstBfZ6FIvjKhu7cTRXCgioI1RR41zGmN",
+        "g": "https://github.com/universe7creator/diffforge"
       },
       {
         "n": "DiffMaster Pro",
@@ -389,28 +419,32 @@
         "s": "docker-command-builder",
         "st": "live",
         "v": "https://docker-command-builder.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz"
+        "c": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz",
+        "g": "https://github.com/universe7creator/docker-command-builder"
       },
       {
         "n": "Docker Compose Builder",
         "s": "docker-compose-builder",
         "st": "live",
         "v": "https://docker-compose-builder.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg"
+        "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg",
+        "g": "https://github.com/universe7creator/docker-compose-builder"
       },
       {
         "n": "Docker Compose Generator Pro",
         "s": "docker-compose-generator",
         "st": "live",
         "v": "https://docker-compose-generator-mu.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_0VMSx65YRc5eH6XgsZXww0MgnbJdvzt4wxCmQ08gmSW"
+        "c": "https://buy.polar.sh/polar_cl_0VMSx65YRc5eH6XgsZXww0MgnbJdvzt4wxCmQ08gmSW",
+        "g": "https://github.com/universe7creator/docker-compose-generator"
       },
       {
         "n": "Docker Compose Validator",
         "s": "docker-compose-validator",
         "st": "live",
         "v": "https://docker-compose-validator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_2hXn4jnDKtuORnvi4KcV9rv5y1KQ3lGskuiHG0Zsnpi"
+        "c": "https://buy.polar.sh/polar_cl_2hXn4jnDKtuORnvi4KcV9rv5y1KQ3lGskuiHG0Zsnpi",
+        "g": "https://github.com/universe7creator/docker-compose-validator"
       },
       {
         "n": "Docker Run Generator",
@@ -431,7 +465,8 @@
         "s": "email-signature",
         "st": "live",
         "v": "https://email-signature.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_hsFUZLfXEpiSfKdeAWn0uOr5uEzTLrqeZBsXv1KppHL"
+        "c": "https://buy.polar.sh/polar_cl_hsFUZLfXEpiSfKdeAWn0uOr5uEzTLrqeZBsXv1KppHL",
+        "g": "https://github.com/universe7creator/email-signature"
       },
       {
         "n": "Email Signature Pro",
@@ -459,7 +494,8 @@
         "s": "envguard-pro",
         "st": "live",
         "v": "https://envguard-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_4tR1pNsTnYsQjLARUP4rz9HnpfFOsYJcLgB0L4HAMbI"
+        "c": "https://buy.polar.sh/polar_cl_4tR1pNsTnYsQjLARUP4rz9HnpfFOsYJcLgB0L4HAMbI",
+        "g": "https://github.com/universe7creator/envguard-pro"
       },
       {
         "n": "Favicon Generator Pro",
@@ -473,21 +509,23 @@
         "s": "flowchart-generator",
         "st": "live",
         "v": "https://flowchart-generator.vercel.app",
-        "c": ""
+        "c": "https://buy.polar.sh/polar_cl_QNv7eenG5UO7BMrDZU9283IFH6acKgaS8YUoK3m8ne2"
       },
       {
         "n": "GeoIP Lite",
         "s": "geoip-lite",
         "st": "live",
         "v": "https://geoip-lite.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_nLWnEkfr8WYOPnIkysHCnPo2ATQ2lSBDcyCuZ1uYEqG"
+        "c": "https://buy.polar.sh/polar_cl_nLWnEkfr8WYOPnIkysHCnPo2ATQ2lSBDcyCuZ1uYEqG",
+        "g": "https://github.com/universe7creator/geoip-lite"
       },
       {
         "n": "Git Command Builder",
         "s": "git-command-builder",
         "st": "live",
         "v": "https://git-command-builder.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_uOjkFRM7BS9eQ1G0WrK8rGrTFsOfWluNSS9tl0ta2HZ"
+        "c": "https://buy.polar.sh/polar_cl_uOjkFRM7BS9eQ1G0WrK8rGrTFsOfWluNSS9tl0ta2HZ",
+        "g": "https://github.com/universe7creator/git-command-builder"
       },
       {
         "n": "Git Diff Visualizer",
@@ -508,28 +546,32 @@
         "s": "graphql-schema-validator",
         "st": "live",
         "v": "https://graphql-schema-validator-bv4sk4jgj-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_YrUJM2j1W0hZOTHYTDKz0GtmbMohuIxvfpvBe1wBaR9"
+        "c": "https://buy.polar.sh/polar_cl_YrUJM2j1W0hZOTHYTDKz0GtmbMohuIxvfpvBe1wBaR9",
+        "g": "https://github.com/universe7creator/graphql-schema-validator"
       },
       {
         "n": "Hash Generator",
         "s": "hash-generator",
         "st": "live",
         "v": "https://hash-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_3tPvwLebxbEVEcWDQ409gA9wfsfC2M8MytmqA3IajgK"
+        "c": "https://buy.polar.sh/polar_cl_3tPvwLebxbEVEcWDQ409gA9wfsfC2M8MytmqA3IajgK",
+        "g": "https://github.com/universe7creator/hash-generator"
       },
       {
         "n": "Hash Generator Pro",
         "s": "hash-generator-pro",
         "st": "live",
         "v": "https://hash-generator-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_562gbKSezwp2wRwOQM65x7WKfnweBISlHY4li2Wko1a"
+        "c": "https://buy.polar.sh/polar_cl_562gbKSezwp2wRwOQM65x7WKfnweBISlHY4li2Wko1a",
+        "g": "https://github.com/universe7creator/hash-generator-pro"
       },
       {
         "n": "HMAC Generator Pro",
         "s": "hmac-generator",
         "st": "live",
         "v": "https://hmac-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_4PBaINXvEJ5DuHzHIiObg72O6vBWpSujZtkIS15cuPl"
+        "c": "https://buy.polar.sh/polar_cl_4PBaINXvEJ5DuHzHIiObg72O6vBWpSujZtkIS15cuPl",
+        "g": "https://github.com/universe7creator/hmac-generator"
       },
       {
         "n": "HMAC Generator Pro",
@@ -550,21 +592,24 @@
         "s": "html-beautifier",
         "st": "live",
         "v": "https://html-beautifier.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_9PcVbpVjXK9TsF3erPm9VNePEfoAFbeCx2wVs4Odz07"
+        "c": "https://buy.polar.sh/polar_cl_9PcVbpVjXK9TsF3erPm9VNePEfoAFbeCx2wVs4Odz07",
+        "g": "https://github.com/universe7creator/html-beautifier"
       },
       {
         "n": "HTML Entities Pro",
         "s": "html-entities",
         "st": "live",
         "v": "https://html-entities.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_Ekxs1s6IJEOcoyTNLLmzlcCWBh53lg9KTvuij23kv7g"
+        "c": "https://buy.polar.sh/polar_cl_Ekxs1s6IJEOcoyTNLLmzlcCWBh53lg9KTvuij23kv7g",
+        "g": "https://github.com/universe7creator/html-entities"
       },
       {
         "n": "HTML Entity Encoder/Decoder",
         "s": "html-entity",
         "st": "live",
         "v": "https://html-entity.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_GLYrN79GSYNSc0RbbqjbMeJvuf9sthUj7zOK70qWy9H"
+        "c": "https://buy.polar.sh/polar_cl_GLYrN79GSYNSc0RbbqjbMeJvuf9sthUj7zOK70qWy9H",
+        "g": "https://github.com/universe7creator/html-entity"
       },
       {
         "n": "HTML Entity Encoder/Decoder Pro",
@@ -578,7 +623,8 @@
         "s": "html-entity-pro",
         "st": "live",
         "v": "https://html-entity-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_YvKjv4Q486qjS7PrvcC69kFmFx7PJnSbpPdRU1NhbH5"
+        "c": "https://buy.polar.sh/polar_cl_YvKjv4Q486qjS7PrvcC69kFmFx7PJnSbpPdRU1NhbH5",
+        "g": "https://github.com/universe7creator/html-entity-pro"
       },
       {
         "n": "HTML Minifier Pro",
@@ -592,7 +638,8 @@
         "s": "html-to-markdown",
         "st": "live",
         "v": "https://html-to-markdown.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_uTeOkm3qjTmxHxJvOO9sexWzhTIVCSDFSqInr1Sy1Ty"
+        "c": "https://buy.polar.sh/polar_cl_uTeOkm3qjTmxHxJvOO9sexWzhTIVCSDFSqInr1Sy1Ty",
+        "g": "https://github.com/universe7creator/html-to-markdown"
       },
       {
         "n": "HTML to Markdown Pro",
@@ -613,7 +660,8 @@
         "s": "html2jsx",
         "st": "live",
         "v": "https://html2jsx.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_ZP2aUtmUzesqRztZGV15ybi5LR1bHU4wYMpfu3JBfcC"
+        "c": "https://buy.polar.sh/polar_cl_ZP2aUtmUzesqRztZGV15ybi5LR1bHU4wYMpfu3JBfcC",
+        "g": "https://github.com/universe7creator/html2jsx"
       },
       {
         "n": "HTML2Markdown Pro",
@@ -627,21 +675,24 @@
         "s": "htpasswd-generator",
         "st": "live",
         "v": "https://htpasswd-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_zVwR4hrqX6PE08t8XBxLciDr2UOv2ppMWrwql4T9vP1"
+        "c": "https://buy.polar.sh/polar_cl_zVwR4hrqX6PE08t8XBxLciDr2UOv2ppMWrwql4T9vP1",
+        "g": "https://github.com/universe7creator/htpasswd-generator"
       },
       {
         "n": "HTTP API Client",
         "s": "http-api-client",
         "st": "live",
         "v": "https://http-api-client.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_QJMRuyYZtQVra9NlWvCv14EsB9cSKIkgnOd7f3ChkzV"
+        "c": "https://buy.polar.sh/polar_cl_QJMRuyYZtQVra9NlWvCv14EsB9cSKIkgnOd7f3ChkzV",
+        "g": "https://github.com/universe7creator/http-api-client"
       },
       {
         "n": "HTTP Load Tester Pro",
         "s": "http-load-tester-pro",
         "st": "live",
         "v": "https://http-load-tester-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_TB4NdlpfcxVG2pT3nBtZj5jRGdQTGLCgah3vf15kC3F"
+        "c": "https://buy.polar.sh/polar_cl_TB4NdlpfcxVG2pT3nBtZj5jRGdQTGLCgah3vf15kC3F",
+        "g": "https://github.com/universe7creator/http-load-tester-pro"
       },
       {
         "n": "HTTP Pulse",
@@ -655,7 +706,8 @@
         "s": "id-generator-pro",
         "st": "live",
         "v": "https://id-generator-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_aJUjX3tDVdWu5lzMFn8gow7PMzV9d2a0liFJ60XRT9b"
+        "c": "https://buy.polar.sh/polar_cl_aJUjX3tDVdWu5lzMFn8gow7PMzV9d2a0liFJ60XRT9b",
+        "g": "https://github.com/universe7creator/id-generator-pro"
       },
       {
         "n": "Image Compressor Pro",
@@ -676,14 +728,16 @@
         "s": "json-compare-pro",
         "st": "live",
         "v": "https://json-compare-j3kdrgvot-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_oCDhQRUcL4tQ3N1mveezznJILTjqbnzIlUdfy0tKRL6"
+        "c": "https://buy.polar.sh/polar_cl_oCDhQRUcL4tQ3N1mveezznJILTjqbnzIlUdfy0tKRL6",
+        "g": "https://github.com/universe7creator/json-compare-pro"
       },
       {
         "n": "JSON Diff Pro",
         "s": "json-diff-pro",
         "st": "live",
         "v": "https://json-diff-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe"
+        "c": "https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe",
+        "g": "https://github.com/universe7creator/json-diff-pro"
       },
       {
         "n": "JSON Formatter Pro",
@@ -704,14 +758,16 @@
         "s": "json-schema-to-ts",
         "st": "live",
         "v": "https://json-schema-to-ts.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_R5W98j2AAYtEqN8uGMHKLOKA5oVSuOv9xx7ZO24y8oV"
+        "c": "https://buy.polar.sh/polar_cl_R5W98j2AAYtEqN8uGMHKLOKA5oVSuOv9xx7ZO24y8oV",
+        "g": "https://github.com/universe7creator/json-schema-to-ts"
       },
       {
         "n": "JSON to CSV Pro",
         "s": "json-to-csv-pro",
         "st": "live",
         "v": "https://json-to-csv-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7"
+        "c": "https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7",
+        "g": "https://github.com/universe7creator/json-to-csv-pro"
       },
       {
         "n": "JSONPath Tester",
@@ -725,14 +781,16 @@
         "s": "jwt-debugger-pro",
         "st": "live",
         "v": "https://jwt-debugger-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU"
+        "c": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU",
+        "g": "https://github.com/universe7creator/jwt-debugger-pro"
       },
       {
         "n": "JWT Decoder Pro",
         "s": "jwt-decoder-pro",
         "st": "live",
         "v": "https://jwt-decoder-liyurccmi-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof"
+        "c": "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof",
+        "g": "https://github.com/universe7creator/jwt-decoder-pro"
       },
       {
         "n": "JWT Generator",
@@ -753,14 +811,16 @@
         "s": "jwtinspector",
         "st": "live",
         "v": "https://jwtinspector.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_WJC849vPueBI5fU0TqBB26Ard9ezKI6RDMqPm283wgg"
+        "c": "https://buy.polar.sh/polar_cl_WJC849vPueBI5fU0TqBB26Ard9ezKI6RDMqPm283wgg",
+        "g": "https://github.com/universe7creator/jwtinspector"
       },
       {
         "n": "KeyForge",
         "s": "keyforge",
         "st": "live",
         "v": "https://keyforge.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_EYR87kQ40XK5EHEIKpqDCXBezwSH7AZB6pv572bCAXU"
+        "c": "https://buy.polar.sh/polar_cl_EYR87kQ40XK5EHEIKpqDCXBezwSH7AZB6pv572bCAXU",
+        "g": "https://github.com/universe7creator/keyforge"
       },
       {
         "n": "LLM TokenLens",
@@ -781,14 +841,16 @@
         "s": "lorem-ipsum-pro",
         "st": "live",
         "v": "https://lorem-ipsum-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_wnUZwLSOBpc7XLuZqVdP3DdlUsMiUoXInit0N1wDQ1G"
+        "c": "https://buy.polar.sh/polar_cl_wnUZwLSOBpc7XLuZqVdP3DdlUsMiUoXInit0N1wDQ1G",
+        "g": "https://github.com/universe7creator/lorem-ipsum-pro"
       },
       {
         "n": "Markdown Previewer Pro",
         "s": "markdown-previewer",
         "st": "live",
         "v": "https://markdown-previewer.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_vYVvtenG7kUyXc68mp0TM9S19GqXsjcXx10XC0hxiFU"
+        "c": "https://buy.polar.sh/polar_cl_vYVvtenG7kUyXc68mp0TM9S19GqXsjcXx10XC0hxiFU",
+        "g": "https://github.com/universe7creator/markdown-previewer"
       },
       {
         "n": "Markdown Previewer Pro",
@@ -802,21 +864,24 @@
         "s": "markdown-table-generator",
         "st": "live",
         "v": "https://markdown-table-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_BHSydnmsi0nQSiuQJxpNq5vv1CuqFdZG44N0P2dn1mb"
+        "c": "https://buy.polar.sh/polar_cl_BHSydnmsi0nQSiuQJxpNq5vv1CuqFdZG44N0P2dn1mb",
+        "g": "https://github.com/universe7creator/markdown-table-generator"
       },
       {
         "n": "Markdown to HTML Pro",
         "s": "markdown-to-html-pro",
         "st": "live",
         "v": "https://markdown-to-html-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_HgMHYjJwLYAPeqh7oKCNW4bm8Cr6ZqqFaqR253E75vz"
+        "c": "https://buy.polar.sh/polar_cl_HgMHYjJwLYAPeqh7oKCNW4bm8Cr6ZqqFaqR253E75vz",
+        "g": "https://github.com/universe7creator/markdown-to-html-pro"
       },
       {
         "n": "Markdown to PDF",
         "s": "markdown-to-pdf",
         "st": "live",
         "v": "https://markdown-to-pdf.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_uUkn3U5Ril8LVLyUV8pVfXfRBqmBZ5c9yrQBJ2fmQPn"
+        "c": "https://buy.polar.sh/polar_cl_uUkn3U5Ril8LVLyUV8pVfXfRBqmBZ5c9yrQBJ2fmQPn",
+        "g": "https://github.com/universe7creator/markdown-to-pdf"
       },
       {
         "n": "MCP Inspector Pro",
@@ -830,7 +895,8 @@
         "s": "mcp-marketplace",
         "st": "live",
         "v": "https://mcp-marketplace.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_SwvVyQD7WIAwL3NS4oyQiHSARBa6DAcZJUj4I0B91TZ"
+        "c": "https://buy.polar.sh/polar_cl_SwvVyQD7WIAwL3NS4oyQiHSARBa6DAcZJUj4I0B91TZ",
+        "g": "https://github.com/universe7creator/mcp-marketplace"
       },
       {
         "n": "MCP Server Scaffolder",
@@ -844,42 +910,48 @@
         "s": "mcp-validator",
         "st": "live",
         "v": "https://mcp-validator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_N4k06TC4yPQfPrYiG5JZjAOdTdVazxOSub2sv0SLFt3"
+        "c": "https://buy.polar.sh/polar_cl_N4k06TC4yPQfPrYiG5JZjAOdTdVazxOSub2sv0SLFt3",
+        "g": "https://github.com/universe7creator/mcp-validator"
       },
       {
         "n": "MCP Hub",
         "s": "mcphub",
         "st": "live",
         "v": "https://mcphub-p3v7veq0n-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_2vCGGSeZz33ftcfLa27l0JrS76IEKW26Q6HP93VbOau"
+        "c": "https://buy.polar.sh/polar_cl_2vCGGSeZz33ftcfLa27l0JrS76IEKW26Q6HP93VbOau",
+        "g": "https://github.com/universe7creator/mcphub"
       },
       {
         "n": "Mock Data Pro",
         "s": "mock-data-pro",
         "st": "live",
         "v": "https://mock-data-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_x6JBA77ZXmnDwgx0yNwwzjI8ogvjBHGK0damQ0CSeSB"
+        "c": "https://buy.polar.sh/polar_cl_x6JBA77ZXmnDwgx0yNwwzjI8ogvjBHGK0damQ0CSeSB",
+        "g": "https://github.com/universe7creator/mock-data-pro"
       },
       {
         "n": "NanoID Generator Pro",
         "s": "nanoid-generator",
         "st": "live",
         "v": "https://nanoid-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_zhuiVwpMU7DBeFvY043Pd3JFHKSmTOew8T4lp08jtOR"
+        "c": "https://buy.polar.sh/polar_cl_zhuiVwpMU7DBeFvY043Pd3JFHKSmTOew8T4lp08jtOR",
+        "g": "https://github.com/universe7creator/nanoid-generator"
       },
       {
         "n": "Nginx Config Generator",
         "s": "nginx-config",
         "st": "live",
         "v": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_Zqjo5mpJusbPDqekATkPDFlLwLdPo1zJDClpm0BVy7d"
+        "c": "https://buy.polar.sh/polar_cl_Zqjo5mpJusbPDqekATkPDFlLwLdPo1zJDClpm0BVy7d",
+        "g": "https://github.com/universe7creator/nginx-config"
       },
       {
         "n": "Nginx Config Generator",
         "s": "nginx-config-generator",
         "st": "live",
         "v": "https://nginx-config-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_NWgCKtCN0pn73PJX4bRGZP8LAkbeOfl5pmOAd14heRt"
+        "c": "https://buy.polar.sh/polar_cl_NWgCKtCN0pn73PJX4bRGZP8LAkbeOfl5pmOAd14heRt",
+        "g": "https://github.com/universe7creator/nginx-config-generator"
       },
       {
         "n": "Nginx Config Tester",
@@ -900,7 +972,8 @@
         "s": "og-forge",
         "st": "live",
         "v": "https://og-forge.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_ypHFTvr55itGoPEJYWb5w8cGOuEjftV4nykbZ09oBKP"
+        "c": "https://buy.polar.sh/polar_cl_ypHFTvr55itGoPEJYWb5w8cGOuEjftV4nykbZ09oBKP",
+        "g": "https://github.com/universe7creator/og-forge"
       },
       {
         "n": "OpenAPI Validator",
@@ -921,7 +994,8 @@
         "s": "password-strength-checker",
         "st": "live",
         "v": "https://password-strength-checker.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_UoqXI4Qs1nsqXU3dkczjpfgznpwwmDV5qnjnD1BSZ4k"
+        "c": "https://buy.polar.sh/polar_cl_UoqXI4Qs1nsqXU3dkczjpfgznpwwmDV5qnjnD1BSZ4k",
+        "g": "https://github.com/universe7creator/password-strength-checker"
       },
       {
         "n": "PDF Forge",
@@ -935,14 +1009,16 @@
         "s": "pr-review-agent",
         "st": "live",
         "v": "https://pr-review-agent-1cidd5t41-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_j8yBGNWv6pwqxXXfiS5Tswtck2A8JnzUO3psX4Uj1o4"
+        "c": "https://buy.polar.sh/polar_cl_j8yBGNWv6pwqxXXfiS5Tswtck2A8JnzUO3psX4Uj1o4",
+        "g": "https://github.com/universe7creator/pr-review-agent"
       },
       {
         "n": "QR Forge",
         "s": "qr-forge",
         "st": "live",
         "v": "https://qr-forge.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_YnHyj2qQTI6yIKS8qqm5L1DdkwVGZ2JhgPrJC3bRSlQ"
+        "c": "https://buy.polar.sh/polar_cl_YnHyj2qQTI6yIKS8qqm5L1DdkwVGZ2JhgPrJC3bRSlQ",
+        "g": "https://github.com/universe7creator/qr-forge"
       },
       {
         "n": "Regex Library Pro",
@@ -963,28 +1039,32 @@
         "s": "regex-visualizer-pro",
         "st": "live",
         "v": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_x0ZMumCo534zwcD2psufJbmOQ6V6TVfjdhx5V4FZifC"
+        "c": "https://buy.polar.sh/polar_cl_x0ZMumCo534zwcD2psufJbmOQ6V6TVfjdhx5V4FZifC",
+        "g": "https://github.com/universe7creator/regex-visualizer-pro"
       },
       {
         "n": "SecretGuard",
         "s": "secretguard",
         "st": "live",
         "v": "https://secretguard.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_Y7LbbTH2WPkxxQtUiNh68XcsLomfIUtPLHnRD3wWgcp"
+        "c": "https://buy.polar.sh/polar_cl_Y7LbbTH2WPkxxQtUiNh68XcsLomfIUtPLHnRD3wWgcp",
+        "g": "https://github.com/universe7creator/secretguard"
       },
       {
         "n": "Security Headers Checker",
         "s": "security-headers-checker",
         "st": "live",
         "v": "https://security-headers-checker.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_dDipNSG0OGpdPuJ6tsUQ9ZDNgGJO0sxkKmQg54cnnWM"
+        "c": "https://buy.polar.sh/polar_cl_dDipNSG0OGpdPuJ6tsUQ9ZDNgGJO0sxkKmQg54cnnWM",
+        "g": "https://github.com/universe7creator/security-headers-checker"
       },
       {
         "n": "SQL Query Builder Pro",
         "s": "sql-query-builder",
         "st": "live",
         "v": "https://sql-query-builder.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW"
+        "c": "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW",
+        "g": "https://github.com/universe7creator/sql-query-builder"
       },
       {
         "n": "SQL Query Formatter",
@@ -998,7 +1078,8 @@
         "s": "sql-to-nosql",
         "st": "live",
         "v": "https://sql-to-nosql.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_thd5uw8PKttnBq51UARVGnCEytJKUIEG3wrIa24dktJ"
+        "c": "https://buy.polar.sh/polar_cl_thd5uw8PKttnBq51UARVGnCEytJKUIEG3wrIa24dktJ",
+        "g": "https://github.com/universe7creator/sql-to-nosql"
       },
       {
         "n": "SSL Cert Checker",
@@ -1019,7 +1100,8 @@
         "s": "ssl-config-generator",
         "st": "live",
         "v": "https://ssl-config-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_paRLFk43opFv2okCWDcOjr0rB1SYl7PPxOVJD3WdhVR"
+        "c": "https://buy.polar.sh/polar_cl_paRLFk43opFv2okCWDcOjr0rB1SYl7PPxOVJD3WdhVR",
+        "g": "https://github.com/universe7creator/ssl-config-generator"
       },
       {
         "n": "Subdomain Finder",
@@ -1047,63 +1129,72 @@
         "s": "table-to-csv",
         "st": "live",
         "v": "https://table-to-csv.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_dBcJXMPMdvIbGa44j8cChc0RCQ38iARTPUKTc148J8K"
+        "c": "https://buy.polar.sh/polar_cl_dBcJXMPMdvIbGa44j8cChc0RCQ38iARTPUKTc148J8K",
+        "g": "https://github.com/universe7creator/table-to-csv"
       },
       {
         "n": "TechStack Analyzer",
         "s": "techstack",
         "st": "live",
         "v": "https://techstack.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_qfvyvsuFB3VvffEuMXzy4Z9H2E0XWqA3sFau61Azwoe"
+        "c": "https://buy.polar.sh/polar_cl_qfvyvsuFB3VvffEuMXzy4Z9H2E0XWqA3sFau61Azwoe",
+        "g": "https://github.com/universe7creator/techstack"
       },
       {
         "n": "Terminal OS",
         "s": "terminal-os",
         "st": "live",
         "v": "https://terminal-os-green.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_l6VyX62FmonHoMLtjuZoPhGWwNkacFtgeU3ES2OMIFU"
+        "c": "https://buy.polar.sh/polar_cl_l6VyX62FmonHoMLtjuZoPhGWwNkacFtgeU3ES2OMIFU",
+        "g": "https://github.com/universe7creator/terminal-os"
       },
       {
         "n": "Terminal Theme Studio",
         "s": "terminal-theme-studio",
         "st": "live",
         "v": "https://terminal-theme-studio.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_jvKKEgjBrwRJ4SHuankRdmUV0nnvyPDCKv3ED0Ovcno"
+        "c": "https://buy.polar.sh/polar_cl_jvKKEgjBrwRJ4SHuankRdmUV0nnvyPDCKv3ED0Ovcno",
+        "g": "https://github.com/universe7creator/terminal-theme-studio"
       },
       {
         "n": "Terraink - Cartographic Poster Engine",
         "s": "terraink",
         "st": "live",
         "v": "https://terraink-flax.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_v6aLBWg5RLrML74Hra5G1mmbGbvFb0JnFOv9s2pEkb7"
+        "c": "https://buy.polar.sh/polar_cl_v6aLBWg5RLrML74Hra5G1mmbGbvFb0JnFOv9s2pEkb7",
+        "g": "https://github.com/universe7creator/terraink"
       },
       {
         "n": "Text Case Converter Pro",
         "s": "text-case-converter",
         "st": "live",
         "v": "https://text-case-converter.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_ZR1png9Lzq2oaU7kZhESy7hKSgF0zIX1hKEHG1sBAjI"
+        "c": "https://buy.polar.sh/polar_cl_ZR1png9Lzq2oaU7kZhESy7hKSgF0zIX1hKEHG1sBAjI",
+        "g": "https://github.com/universe7creator/text-case-converter"
       },
       {
         "n": "Text Diff Pro",
         "s": "text-diff-pro",
         "st": "live",
         "v": "https://text-diff-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_BLEyiNAUxrDtR77JmEIQHJ8BpxeZDLdaVqtO63WHU6H"
+        "c": "https://buy.polar.sh/polar_cl_BLEyiNAUxrDtR77JmEIQHJ8BpxeZDLdaVqtO63WHU6H",
+        "g": "https://github.com/universe7creator/text-diff-pro"
       },
       {
         "n": "Text Transformer Pro",
         "s": "text-transformer-pro",
         "st": "live",
         "v": "https://text-transformer-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_aoQt6kQ3BPJi6wd9I1imsQ57dbwxx5rt5VqsG07xBRd"
+        "c": "https://buy.polar.sh/polar_cl_aoQt6kQ3BPJi6wd9I1imsQ57dbwxx5rt5VqsG07xBRd",
+        "g": "https://github.com/universe7creator/text-transformer-pro"
       },
       {
         "n": "Timestamp Converter Pro",
         "s": "timestamp-converter",
         "st": "live",
         "v": "https://timestamp-converter-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
+        "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH",
+        "g": "https://github.com/universe7creator/timestamp-converter"
       },
       {
         "n": "Timestamp Converter Pro",
@@ -1124,7 +1215,8 @@
         "s": "toml-converter-pro",
         "st": "live",
         "v": "https://toml-converter-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_s24ySxW8RZx5OE478j7s863n9Y8CKgfzMNYjq3M3WpI"
+        "c": "https://buy.polar.sh/polar_cl_s24ySxW8RZx5OE478j7s863n9Y8CKgfzMNYjq3M3WpI",
+        "g": "https://github.com/universe7creator/toml-converter-pro"
       },
       {
         "n": "TOML Parser Pro",
@@ -1138,35 +1230,40 @@
         "s": "toml-parser-pro",
         "st": "live",
         "v": "https://toml-parser-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_lLbJzJP9xUrqmpi7tRRzF5Ruht6a1Jj9rrdDn1pfkvs"
+        "c": "https://buy.polar.sh/polar_cl_lLbJzJP9xUrqmpi7tRRzF5Ruht6a1Jj9rrdDn1pfkvs",
+        "g": "https://github.com/universe7creator/toml-parser-pro"
       },
       {
         "n": "TOML Toolkit",
         "s": "toml-toolkit",
         "st": "live",
         "v": "https://toml-toolkit.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_ojtgirUiBuZJ8SpW9qG6Hoky0Uyvr8z3gsem02ZqFmX"
+        "c": "https://buy.polar.sh/polar_cl_ojtgirUiBuZJ8SpW9qG6Hoky0Uyvr8z3gsem02ZqFmX",
+        "g": "https://github.com/universe7creator/toml-toolkit"
       },
       {
         "n": "TOML Validator",
         "s": "toml-validator",
         "st": "live",
         "v": "https://toml-validator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_lMZwfUkVU6e82cb5Hvr9GuOrRuubHR2EbfCes3Y0zxf"
+        "c": "https://buy.polar.sh/polar_cl_lMZwfUkVU6e82cb5Hvr9GuOrRuubHR2EbfCes3Y0zxf",
+        "g": "https://github.com/universe7creator/toml-validator"
       },
       {
         "n": "Unit Test Generator",
         "s": "unit-test-generator",
         "st": "live",
         "v": "https://unit-test-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_aJDmAUq27Caohnpsz3yybGUH0bq91i71kP3bS1RnQ4T"
+        "c": "https://buy.polar.sh/polar_cl_aJDmAUq27Caohnpsz3yybGUH0bq91i71kP3bS1RnQ4T",
+        "g": "https://github.com/universe7creator/unit-test-generator"
       },
       {
         "n": "URL Builder Pro",
         "s": "url-builder-pro",
         "st": "live",
         "v": "https://url-builder-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_0b4CtBFxLHmjydEXxFV46xz9KZ8LkIAgHLkAm2KISQi"
+        "c": "https://buy.polar.sh/polar_cl_0b4CtBFxLHmjydEXxFV46xz9KZ8LkIAgHLkAm2KISQi",
+        "g": "https://github.com/universe7creator/url-builder-pro"
       },
       {
         "n": "URL Encoder/Decoder Pro",
@@ -1180,56 +1277,64 @@
         "s": "url-forge",
         "st": "live",
         "v": "https://url-forge.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_dLTXUj2HsJJfQiqQDCUb5uuP4B184QK2TKXOa0iSZ9P"
+        "c": "https://buy.polar.sh/polar_cl_dLTXUj2HsJJfQiqQDCUb5uuP4B184QK2TKXOa0iSZ9P",
+        "g": "https://github.com/universe7creator/url-forge"
       },
       {
         "n": "URL Parser Pro",
         "s": "url-parser-pro",
         "st": "live",
         "v": "https://url-parser-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa"
+        "c": "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa",
+        "g": "https://github.com/universe7creator/url-parser-pro"
       },
       {
         "n": "UUID Generator Pro",
         "s": "uuid-generator",
         "st": "live",
         "v": "https://uuid-generator.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_LITjFT1XdMD9kD9nw1Gbxr4YV5la5dYdbKY5x1TPXq2"
+        "c": "https://buy.polar.sh/polar_cl_LITjFT1XdMD9kD9nw1Gbxr4YV5la5dYdbKY5x1TPXq2",
+        "g": "https://github.com/universe7creator/uuid-generator"
       },
       {
         "n": "UUID Generator Pro",
         "s": "uuid-generator-pro",
         "st": "live",
         "v": "https://uuid-generator-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_xuPaEIMkM9JdGsEw26I7KURaUTU1JwAM9hDRQ2zFc64"
+        "c": "https://buy.polar.sh/polar_cl_xuPaEIMkM9JdGsEw26I7KURaUTU1JwAM9hDRQ2zFc64",
+        "g": "https://github.com/universe7creator/uuid-generator-pro"
       },
       {
         "n": "Webhook Tester",
         "s": "webhook-tester",
         "st": "live",
         "v": "https://webhook-tester-beryl.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_tS8bLsxTE5qh2GcSupsgTVLb0XLQtTvkR43vY3nxdfu"
+        "c": "https://buy.polar.sh/polar_cl_tS8bLsxTE5qh2GcSupsgTVLb0XLQtTvkR43vY3nxdfu",
+        "g": "https://github.com/universe7creator/webhook-tester"
       },
       {
         "n": "WebTerminal Pro",
         "s": "webterminal-pro",
         "st": "live",
         "v": "https://webterminal-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_loGLhcccbNCm1blOaV8X9dh0uL1ptTJeFdfDv3NYIvg"
+        "c": "https://buy.polar.sh/polar_cl_loGLhcccbNCm1blOaV8X9dh0uL1ptTJeFdfDv3NYIvg",
+        "g": "https://github.com/universe7creator/webterminal-pro"
       },
       {
         "n": "Workflow Chain Builder",
         "s": "workflow-chain-builder",
         "st": "live",
         "v": "https://workflow-chain-builder.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_v84QNSXDphSdozspwP2dP9rKTmLAOC67A2q6D3Re640"
+        "c": "https://buy.polar.sh/polar_cl_v84QNSXDphSdozspwP2dP9rKTmLAOC67A2q6D3Re640",
+        "g": "https://github.com/universe7creator/workflow-chain-builder"
       },
       {
         "n": "XML Formatter & Validator",
         "s": "xml-formatter",
         "st": "live",
         "v": "https://xml-formatter.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_vjecE6yib7RzalnTBrklyJJoQalaDGrpjDoIK3JxfFK"
+        "c": "https://buy.polar.sh/polar_cl_vjecE6yib7RzalnTBrklyJJoQalaDGrpjDoIK3JxfFK",
+        "g": "https://github.com/universe7creator/xml-formatter"
       },
       {
         "n": "XML Formatter Pro",
@@ -1243,35 +1348,40 @@
         "s": "xml-master-pro",
         "st": "live",
         "v": "https://xml-master-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_etBCr0mlL8ZBKl1fNwXS8FZchgMTwyICegt7I0ngfxY"
+        "c": "https://buy.polar.sh/polar_cl_etBCr0mlL8ZBKl1fNwXS8FZchgMTwyICegt7I0ngfxY",
+        "g": "https://github.com/universe7creator/xml-master-pro"
       },
       {
         "n": "XML to JSON",
         "s": "xml-to-json",
         "st": "live",
         "v": "https://xml-to-json.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_T0AuUCZ01laMkAJZhvBv3EDJXemznjjGXfAFV22PIVD"
+        "c": "https://buy.polar.sh/polar_cl_T0AuUCZ01laMkAJZhvBv3EDJXemznjjGXfAFV22PIVD",
+        "g": "https://github.com/universe7creator/xml-to-json"
       },
       {
         "n": "YAML Converter Pro",
         "s": "yaml-converter-pro",
         "st": "live",
         "v": "https://yaml-converter-pro.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_HzFJYQa4hWlESoAeoWKytAhcPxYAc941EMIqu27xy3t"
+        "c": "https://buy.polar.sh/polar_cl_HzFJYQa4hWlESoAeoWKytAhcPxYAc941EMIqu27xy3t",
+        "g": "https://github.com/universe7creator/yaml-converter-pro"
       },
       {
         "n": "YAML to JSON Converter",
         "s": "yaml-json-converter",
         "st": "live",
         "v": "https://yaml-json-converter.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_OxRkEUfuUtHaIgQLMxZ9UfndFJ5146d68HP584aXZpa"
+        "c": "https://buy.polar.sh/polar_cl_OxRkEUfuUtHaIgQLMxZ9UfndFJ5146d68HP584aXZpa",
+        "g": "https://github.com/universe7creator/yaml-json-converter"
       },
       {
         "n": "YAML Validator Pro",
         "s": "yaml-validator-pro",
         "st": "live",
         "v": "https://yaml-validator-4usxnsnmd-madnessqws-projects.vercel.app",
-        "c": "https://buy.polar.sh/polar_cl_eR63JyQsskhDPwqeqFAGJTWj1bRdTvIME4Wyl3unqYU"
+        "c": "https://buy.polar.sh/polar_cl_eR63JyQsskhDPwqeqFAGJTWj1bRdTvIME4Wyl3unqYU",
+        "g": "https://github.com/universe7creator/yaml-validator-pro"
       }
     ]
   }

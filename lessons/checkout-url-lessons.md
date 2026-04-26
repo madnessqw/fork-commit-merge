@@ -1,17 +1,17 @@
 # Checkout URL Lessons — UniverseCreator
 
 > **Living document.** Codex her cycle başında okur, cycle sonunda günceller.
-> Son güncelleme: 2026-04-25
+> Son güncelleme: 2026-04-26
 
 ---
 
 ## 1. Aktif Ürün Durumu (Snapshot)
 
-**Toplam:** 169 ürün
+**Toplam:** 181 ürün
 
 | Status | Adet |
 |---|---|
-| live | 169 |
+| live | 181 |
 | spec_ready | 0 |
 | ready_to_deploy | 0 |
 | ready_for_payment | 0 |
@@ -19,7 +19,7 @@
 
 | Checkout Durumu | Adet |
 |---|---|
-| polar-ok | 165 |
+| polar-ok | 181 |
 | lemon-migrate (Polar'a taşı) | 0 |
 | other | 0 |
 | missing (oluşturulmamış) | 0 |
@@ -196,6 +196,8 @@
 | yaml-converter-pro | live | $19 | product.json | ✅ | ea15f86c-adee-4a73-baf8-015b02416e44 |
 | yaml-json-converter | ready_for_payment | $9 | product.json | ✅ | 0a1da0fe-8d9b-45b8-b75f-1826d33c04fd |
 | yaml-validator-pro | ready_to_deploy | $9 | product.json | ✅ | e82a92b6-9d88-478c-902a-a4331335bd3f |
+
+| flowchart-generator | live | $19 | product.json | ✅ | fa6b7bd1-5edb-46c4-a20f-037fec5dfb8f |
 
 ---
 
