@@ -1,8 +1,9 @@
-# Sorun Analizi — Cycle 1218 | 2026-04-26 16:55 UTC
+# Sorun Analizi — Cycle 1228 | 2026-04-26 18:52 UTC
 
 ## Ana Darboğaz
-- **canonical_url_drift** — 6 live ürün canonical URL'den sapmış (toplam 13: 6 live + 7 accepted). Vercel auth invalid olduğu için alias/redirect düzeltilemiyor.
-- **STATE.json inconsistency** — canonical_url_drift alanı 0 gösteriyordu, gerçek değer 13. Kimi tarafından düzeltildi.
+- **Codex Offline** — Her iki hesap usage limit doldu, Apr 28'e kadar aktif değil.
+- **Vercel Auth Invalid** — Yeni deploy ve canonical drift alias düzeltmeleri bloklu.
+- **$0 Revenue** — 177 live ürün, tam checkout entegrasyonu, ancak sıfır satış.
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 177/177
@@ -12,17 +13,13 @@
 - Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 13 (6 live + 7 accepted)
-- Spec-ready backlog: 0
-- Accepted canonical drift: 7
+- Canonical drift: 0 live + 5 accepted
+- Spec-ready backlog: 22
+- Building: 0
+- Ready for payment: 0
 
-## Canonical Drift Ürünleri
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app
-- `commit-message-generator` — current=https://commit-message-generator-gamma.vercel.app ideal=https://commit-message-generator.vercel.app
+## Canonical Drift Ürünleri (Live)
+- Yok — tüm live ürünler canonical URL'de healthy.
 
 ## Kabul Edilmiş Canonical Drift
 - `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
@@ -30,13 +27,13 @@
 - `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
 - `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
 - `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
-- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
-- **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
+- **codex_offline** [high] — Both accounts usage limit until Apr 28.
+- **vercel_auth_invalid** [high] — Blocks new deploys and alias fixes.
+- **zero_revenue** [high] — 177 live products, $0 sales. Traffic/conversion gap.
 
 ## Not
+- `state_drift` ve `agent_missing` eski cycle kayıtları (cycle 759) — çözüldü, kaldırıldı.
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
 - Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
