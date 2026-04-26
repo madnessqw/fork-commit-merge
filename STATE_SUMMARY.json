@@ -1,21 +1,27 @@
 {
-  "cycle": 1232,
+  "cycle": 1233,
   "mode": "INNOVATE",
   "balance": 0.0,
-  "active_count": 181,
+  "active_count": 182,
   "live_count": 181,
   "healthy_count": 181,
-  "canonical_healthy_count": 181,
-  "fallback_healthy_count": 0,
+  "canonical_healthy_count": 168,
+  "fallback_healthy_count": 13,
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 0,
   "checkout_gap_count": 0,
   "deploy_missing_or_bad_url": 0,
-  "canonical_url_drift": 0,
-  "next_action": "diffmaster fixed: canonical 401 -> coral alias. 6 other drift products require Vercel dashboard auth fix (manual intervention required).",
-  "vercel_auth_issue": false,
-  "last_updated": "2026-04-26T20:35:00Z",
+  "canonical_url_drift": 13,
+  "spec_ready_count": 0,
+  "deploy_readiness_count": 0,
+  "deploy_readiness_manifest_gap_count": 0,
+  "deploy_readiness_url_gap_count": 0,
+  "deploy_readiness_state_gap_count": 0,
+  "needs_fix_count": 13,
+  "next_action": "13 canonical URL drift'ini düzelt; fallback alias'ı ezme",
+  "vercel_auth_issue": null,
+  "last_updated": "2026-04-26T18:37:16.256313Z",
   "products": [
     {
       "n": "Agent Prompt Engineer",
@@ -51,6 +57,1576 @@
       "st": "live",
       "v": "https://api-mock-generator.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_lTfuDqjnOTHsSNGdshCuT7rNPiAXBo7euUQLb4E8rN2"
+    },
+    {
+      "n": "API Mock Server",
+      "s": "api-mock-server",
+      "st": "live",
+      "v": "https://api-mock-server.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jOKhder8lrfEIrXKXy48SgRgXQOI9cn1Z0rs30Lzwcy"
+    },
+    {
+      "n": "API Request Builder",
+      "s": "api-request-builder",
+      "st": "live",
+      "v": "https://api-request-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_izcPWpkX9nL19G4FuqHc0nlPJS0jzID1OtFPH00FQmM"
+    },
+    {
+      "n": "API Security Scanner",
+      "s": "api-security-scanner",
+      "st": "live",
+      "v": "https://api-security-scanner.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_0gYWdHmAc5bx0rnESOwmN33A5WoBZFUttdbdc2Ph7Up"
+    },
+    {
+      "n": "API Spec Validator",
+      "s": "api-spec-validator",
+      "st": "live",
+      "v": "https://api-spec-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_erxMNWkQZAOWMMwcDkNOEOwWe7nL79LderUeL2qetb2"
+    },
+    {
+      "n": "API to MCP Converter",
+      "s": "api-to-mcp",
+      "st": "live",
+      "v": "https://api-to-mcp.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_OJwPdnYkmK8LdHaK692Ko6rn5IABSnAaaCi5V0pBxpk"
+    },
+    {
+      "n": "ASCII Art Generator Pro",
+      "s": "ascii-art-generator",
+      "st": "live",
+      "v": "https://ascii-art-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_uq7Kb6EosP4DXa1UFY2AECBew2Pt8sn4AGAbV2dUL6S"
+    },
+    {
+      "n": "Base64 Encoder/Decoder Pro",
+      "s": "base64-encoder-pro",
+      "st": "live",
+      "v": "https://base64-encoder-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_73kHcGhmsC5KcsuctbM4WmeNiB3nWTzQGPJfH1uGMug"
+    },
+    {
+      "n": "Base64 Pro",
+      "s": "base64-pro",
+      "st": "live",
+      "v": "https://base64-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_K0MoRlJpjzzt3q1SexCfi7YGn2sYuI6ZYo5ow0j0I3M"
+    },
+    {
+      "n": "Binary Inspector Pro",
+      "s": "binary-inspector",
+      "st": "live",
+      "v": "https://binary-inspector.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_M5OekeHDFA27GQau9ZeakKBgsnCT9UgKnyZIx2I7qGM"
+    },
+    {
+      "n": "Browser Mock Studio",
+      "s": "browser-mock-studio",
+      "st": "live",
+      "v": "https://browser-mock-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_HVhOznasoiRkXPMK7XTX9EPospigODCWnpTaa4fEDYy"
+    },
+    {
+      "n": "Browser Use Studio",
+      "s": "browser-use-studio",
+      "st": "live",
+      "v": "https://browser-use-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_q3FcyaWh5Oc4sLhJrC8vJFsiJ3W4UYxAax0Qo3TekK2"
+    },
+    {
+      "n": "CarbonLite",
+      "s": "carbonlite",
+      "st": "live",
+      "v": "https://carbonlite.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_QBBZhgPvaO9tTCUdJJNACtT4hhuDtHl5Lnd9q2enRc0"
+    },
+    {
+      "n": "Case Converter Pro",
+      "s": "case-converter-pro",
+      "st": "live",
+      "v": "https://case-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_T7ja7tYtgvdbTKP8rWQSHsxZ3jq6MHGaEkT4N3gXhgD"
+    },
+    {
+      "n": "Chart Studio",
+      "s": "chart-studio",
+      "st": "live",
+      "v": "https://chart-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_HK36ti0BiK3toadzPrn0X3J9A1PYB5dHuIZlR0tXFIx"
+    },
+    {
+      "n": "Chmod Calculator Pro",
+      "s": "chmod-calculator",
+      "st": "live",
+      "v": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC"
+    },
+    {
+      "n": "CLI Pipe Viz",
+      "s": "cli-pipe-viz",
+      "st": "live",
+      "v": "https://cli-pipe-viz.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_Ip5hffodrZaP1SBdxuJlb1kfRa08dHMHjx4xV2O6yl1"
+    },
+    {
+      "n": "Code Complexity Analyzer",
+      "s": "code-complexity-analyzer",
+      "st": "live",
+      "v": "https://code-complexity-analyzer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jeuGPZLj7WQXyoRVK1vbLHs1liPR8UXicV39t2hlGoR"
+    },
+    {
+      "n": "Code Formatter Universal",
+      "s": "code-formatter-universal",
+      "st": "live",
+      "v": "https://code-formatter-universal.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_JCQ0MYuXuo6477e1GWoPvMNXvTnLiVOEdhFLZ2AyDsm"
+    },
+    {
+      "n": "Code Minifier Pro",
+      "s": "code-minifier-pro",
+      "st": "live",
+      "v": "https://code-minifier-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_lsIXtqxBzH7Xyd2jjveCLYZRH8sanTkepAIhu2fOSJ3"
+    },
+    {
+      "n": "Code Screenshot Beautifier",
+      "s": "code-screenshot-beautifier",
+      "st": "live",
+      "v": "https://code-screenshot-beautifier.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ"
+    },
+    {
+      "n": "Code Snippet Manager",
+      "s": "code-snippet-manager",
+      "st": "live",
+      "v": "https://code-snippet-manager.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_s144XGHeuFvnvAwK9qejgXSEjoeqaarcmU7ko1v4zza"
+    },
+    {
+      "n": "CodeSnap",
+      "s": "codesnap",
+      "st": "live",
+      "v": "https://codesnap.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_RJdU7XxEFKQvRtnoyv1jVhSmLIxwTYFRySrC60HtQaH"
+    },
+    {
+      "n": "Color Contrast Pro",
+      "s": "color-contrast-pro",
+      "st": "live",
+      "v": "https://color-contrast-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_RdsAw3cge4hMKJ8HT3W5lrDPVZw5OIElhYQra3dMyu2"
+    },
+    {
+      "n": "Color Palette Extractor",
+      "s": "color-palette-extractor",
+      "st": "live",
+      "v": "https://color-palette-extractor.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_rZbQezdT6PLGvDMNlofExKS0TldXDwCdwBjrz1bMNBE"
+    },
+    {
+      "n": "ColorMine",
+      "s": "colormine",
+      "st": "live",
+      "v": "https://colormine.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jfo6xWTEQy62mcdQELYklg39834jtMOZkmWzl4ZJjfi"
+    },
+    {
+      "n": "commit-message-generator",
+      "s": "commit-message-generator",
+      "st": "live",
+      "v": "https://commit-message-generator-gamma.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_LdNF3aL3BbYGULiwADFDyrlxd9jUk84LowzYE023zdx"
+    },
+    {
+      "n": "Cron Express",
+      "s": "cron-express",
+      "st": "live",
+      "v": "https://cron-express.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jWYgsmgGnWo6u4AV9z02vmhLY8KcXTP4pAga23YNeBN"
+    },
+    {
+      "n": "Cron Expression Builder",
+      "s": "cron-expression-builder",
+      "st": "live",
+      "v": "https://cron-expression-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_N4bByH55hpw9jzjpK6jwbeyjUTdWJSqCItF3F0Hwiin"
+    },
+    {
+      "n": "Cron Expression Parser",
+      "s": "cron-expression-parser",
+      "st": "live",
+      "v": "https://cron-expression-parser.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_eFMf60OIBHzjKcsLskew5YFBMdJgdy18fDXp24bZwhh"
+    },
+    {
+      "n": "Cron Expression Tester",
+      "s": "cron-expression-tester",
+      "st": "live",
+      "v": "https://cron-expression-tester.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_gqbBU6PbLYEkrPNfAmlMMllXo4Js20u74Y5eP1THHB3"
+    },
+    {
+      "n": "Cron Health Checker",
+      "s": "cron-health-checker",
+      "st": "live",
+      "v": "https://cron-health-checker.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_rasjvqpGRhFkdyZUf0GQfwhqoUc4V1zRSrHX72CJNg4"
+    },
+    {
+      "n": "Cron Master",
+      "s": "cron-master",
+      "st": "live",
+      "v": "https://cron-master.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_MPISgTSo7gTIFTwOgP1TQKWrlAMfQK3mbgtF83X8ORF"
+    },
+    {
+      "n": "CronCraft",
+      "s": "croncraft",
+      "st": "live",
+      "v": "https://quickcron.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_FbRgdOgQqzby8CSqSiUyT5rD2sa6CnfpjiaV33hkoBO"
+    },
+    {
+      "n": "CronMaster",
+      "s": "cronmaster",
+      "st": "live",
+      "v": "https://cronmaster.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_W6b6ybZA8GuYtKPkrZtoOSCs1aZZ00jmqNsa22Bkaiu"
+    },
+    {
+      "n": "CSS Gradient Studio",
+      "s": "css-gradient-studio",
+      "st": "live",
+      "v": "https://css-gradient-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_HLCsi5dYw3cFoqIwQlR1Z5LYlMcwcBghSF30l4ALmne"
+    },
+    {
+      "n": "CSS Grid Generator",
+      "s": "css-grid-gen",
+      "st": "live",
+      "v": "https://css-grid-gen.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_PYtQi4o3J5tnNHHwgR00m3MT9nre9SDFno6bI3Ksc0W"
+    },
+    {
+      "n": "CSS Shadow Studio",
+      "s": "css-shadow-studio",
+      "st": "live",
+      "v": "https://css-shadow-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_i9ejmboFVDVWHyUUIpxh6apGYKcPYWFnqiZJI49AzhE"
+    },
+    {
+      "n": "CSS to Tailwind",
+      "s": "css-to-tailwind",
+      "st": "live",
+      "v": "https://css-to-tailwind.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ecBTwl2bqHg1Wm9X5H5DGhgssHPdtlwwIewP33mknRp"
+    },
+    {
+      "n": "CSV Converter Pro",
+      "s": "csv-converter-pro",
+      "st": "live",
+      "v": "https://csv-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_VldhcpwJNzr2tvxDxyjvwBKriVCKvKgeLoAAk2SItAX"
+    },
+    {
+      "n": "CSV to JSON Pro",
+      "s": "csv-to-json-pro",
+      "st": "live",
+      "v": "https://csv-to-json-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_enNlqo2OzS4tWshl68yiPgZv7Osgj6WWzuoda3No0bq"
+    },
+    {
+      "n": "CSV to Markdown Pro",
+      "s": "csv-to-markdown",
+      "st": "live",
+      "v": "https://csv-to-markdown.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_q5yvmRLaDm8Z4L1YFoGlSn7LtKFQCPKf2YGcU4YNDL1"
+    },
+    {
+      "n": "CSV to SQL Pro",
+      "s": "csv-to-sql-pro",
+      "st": "live",
+      "v": "https://csv-to-sql-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_5TlXlD2xB8l5hdpt0Kf7KGDDVfMZjU8QSPUCv0nXQl4"
+    },
+    {
+      "n": "CSV Validator Pro",
+      "s": "csv-validator-pro",
+      "st": "live",
+      "v": "https://csv-validator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_xfPwLDlKpqDEKLyPzApqOIJRuzBwNrhIPU8I71qUdgV"
+    },
+    {
+      "n": "Curl2Code",
+      "s": "curl2code",
+      "st": "live",
+      "v": "https://curl2code.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_XrNyYGbDmjZKqUXs3ogZKWlZkN7jmCO9YN9Ht0yKrfb"
+    },
+    {
+      "n": "DataFlip",
+      "s": "dataflip",
+      "st": "live",
+      "v": "https://dataflip.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_FPuabfxe1yxFuGAbd391gjsqrzbBuqs0dSDuS1JzU4B"
+    },
+    {
+      "n": "Diff Checker Pro",
+      "s": "diff-checker-pro",
+      "st": "live",
+      "v": "https://diff-checker-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_nEsbJlKAQmx6HwsA7CXx5pS7K5bJT6OAvoxyv2FTOTC"
+    },
+    {
+      "n": "DiffForge",
+      "s": "diffforge",
+      "st": "live",
+      "v": "https://diffforge.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_DNWeoUVWeQjstBfZ6FIvjKhu7cTRXCgioI1RR41zGmN"
+    },
+    {
+      "n": "DiffMaster Pro",
+      "s": "diffmaster",
+      "st": "live",
+      "v": "https://diffmaster-coral.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_p6giwneYr0MejhtHnb1BbqLgt6rTWcb2Uj5hy0PYrdn"
+    },
+    {
+      "n": "DNS Lookup Pro",
+      "s": "dns-lookup-pro",
+      "st": "live",
+      "v": "https://dns-lookup-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ZhKLL5D01MS5fpJCeMOv9oSFww5gHCTW57v1i219OAI"
+    },
+    {
+      "n": "Docker Command Builder",
+      "s": "docker-command-builder",
+      "st": "live",
+      "v": "https://docker-command-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz"
+    },
+    {
+      "n": "Docker Compose Builder",
+      "s": "docker-compose-builder",
+      "st": "live",
+      "v": "https://docker-compose-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg"
+    },
+    {
+      "n": "Docker Compose Generator Pro",
+      "s": "docker-compose-generator",
+      "st": "live",
+      "v": "https://docker-compose-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_0VMSx65YRc5eH6XgsZXww0MgnbJdvzt4wxCmQ08gmSW"
+    },
+    {
+      "n": "Docker Compose Validator",
+      "s": "docker-compose-validator",
+      "st": "live",
+      "v": "https://docker-compose-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_2hXn4jnDKtuORnvi4KcV9rv5y1KQ3lGskuiHG0Zsnpi"
+    },
+    {
+      "n": "Docker Run Generator",
+      "s": "docker-run-generator",
+      "st": "live",
+      "v": "https://docker-run-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_USUu81FPAWsLZtQOwzrPk8KtYxYdmeB5S5VvF2PLaFg"
+    },
+    {
+      "n": "Dockerfile Generator",
+      "s": "dockerfile-generator",
+      "st": "live",
+      "v": "https://dockerfile-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_betbJmbiyzzcTnf3REoyJ0VRGD98oL03tZyUp027IN5"
+    },
+    {
+      "n": "Email Signature Generator",
+      "s": "email-signature",
+      "st": "live",
+      "v": "https://email-signature.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_hsFUZLfXEpiSfKdeAWn0uOr5uEzTLrqeZBsXv1KppHL"
+    },
+    {
+      "n": "Email Signature Pro",
+      "s": "email-signature-pro",
+      "st": "live",
+      "v": "https://email-signature-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ijtr72KOTZT7Cz9nlBm4vAtyeCGVZLT04ASRX3EmK8P"
+    },
+    {
+      "n": "Email Validator Pro",
+      "s": "email-validator-pro",
+      "st": "live",
+      "v": "https://email-validator-pro-smoky.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_g3zhBLpxH7Ot16hgAxsZX5vmvXLqiuI9cd1rU1PaYPy"
+    },
+    {
+      "n": "ENV File Manager",
+      "s": "env-file-manager",
+      "st": "live",
+      "v": "https://env-file-manager.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_zMXK2xQkz1dUTor0OZxI8sPugmHrKMwuKS13D1iGRgh"
+    },
+    {
+      "n": "EnvGuard Pro",
+      "s": "envguard-pro",
+      "st": "live",
+      "v": "https://envguard-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_4tR1pNsTnYsQjLARUP4rz9HnpfFOsYJcLgB0L4HAMbI"
+    },
+    {
+      "n": "Favicon Generator Pro",
+      "s": "favicon-generator-pro",
+      "st": "live",
+      "v": "https://favicon-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_se6xPe8oiLloheAXLHr6PkbDMe31fDGzmcqPf1QszxC"
+    },
+    {
+      "n": "Flowchart Generator Pro",
+      "s": "flowchart-generator",
+      "st": "live",
+      "v": "https://flowchart-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_QNv7eenG5UO7BMrDZU9283IFH6acKgaS8YUoK3m8ne2"
+    },
+    {
+      "n": "GeoIP Lite",
+      "s": "geoip-lite",
+      "st": "live",
+      "v": "https://geoip-lite.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_nLWnEkfr8WYOPnIkysHCnPo2ATQ2lSBDcyCuZ1uYEqG"
+    },
+    {
+      "n": "Git Command Builder",
+      "s": "git-command-builder",
+      "st": "live",
+      "v": "https://git-command-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_uOjkFRM7BS9eQ1G0WrK8rGrTFsOfWluNSS9tl0ta2HZ"
+    },
+    {
+      "n": "Git Diff Visualizer",
+      "s": "git-diff-visualizer",
+      "st": "live",
+      "v": "https://git-diff-visualizer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_tJujKpPKzDfFiifrDzi4VFfwPd6BO4KA423UY3JZK39"
+    },
+    {
+      "n": "GraphQL Query Builder",
+      "s": "graphql-query-builder",
+      "st": "live",
+      "v": "https://graphql-query-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_xnVybQVlPAmESvP4hbhuixq57G2GIbG4Wa3DR3CfMP9"
+    },
+    {
+      "n": "GraphQL Schema Validator",
+      "s": "graphql-schema-validator",
+      "st": "live",
+      "v": "https://graphql-schema-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_YrUJM2j1W0hZOTHYTDKz0GtmbMohuIxvfpvBe1wBaR9"
+    },
+    {
+      "n": "Hash Generator",
+      "s": "hash-generator",
+      "st": "live",
+      "v": "https://hash-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_3tPvwLebxbEVEcWDQ409gA9wfsfC2M8MytmqA3IajgK"
+    },
+    {
+      "n": "Hash Generator Pro",
+      "s": "hash-generator-pro",
+      "st": "live",
+      "v": "https://hash-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_562gbKSezwp2wRwOQM65x7WKfnweBISlHY4li2Wko1a"
+    },
+    {
+      "n": "HMAC Generator Pro",
+      "s": "hmac-generator",
+      "st": "live",
+      "v": "https://hmac-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_4PBaINXvEJ5DuHzHIiObg72O6vBWpSujZtkIS15cuPl"
+    },
+    {
+      "n": "HMAC Generator Pro",
+      "s": "hmac-generator-pro",
+      "st": "live",
+      "v": "https://hmac-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_MFHcO6ruG8Ljx0VhhXLjN29moIPdCtidbE1hy3PfACz"
+    },
+    {
+      "n": "Htaccess Generator Pro",
+      "s": "htaccess-generator",
+      "st": "live",
+      "v": "https://htaccess-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_mBF5fjnCVQeppqqYeCL5Wrc2ClWAvaWaxO3Wm3vwUFs"
+    },
+    {
+      "n": "HTML Beautifier Pro",
+      "s": "html-beautifier",
+      "st": "live",
+      "v": "https://html-beautifier.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_9PcVbpVjXK9TsF3erPm9VNePEfoAFbeCx2wVs4Odz07"
+    },
+    {
+      "n": "HTML Entities Pro",
+      "s": "html-entities",
+      "st": "live",
+      "v": "https://html-entities.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_Ekxs1s6IJEOcoyTNLLmzlcCWBh53lg9KTvuij23kv7g"
+    },
+    {
+      "n": "HTML Entity Encoder/Decoder",
+      "s": "html-entity",
+      "st": "live",
+      "v": "https://html-entity.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_GLYrN79GSYNSc0RbbqjbMeJvuf9sthUj7zOK70qWy9H"
+    },
+    {
+      "n": "HTML Entity Encoder/Decoder Pro",
+      "s": "html-entity-encoder",
+      "st": "live",
+      "v": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_olWSUa4C8xKUfufNq3mQ9TmfdTO6kr7C1xMEe0l5BKt"
+    },
+    {
+      "n": "HTML Entity Encoder Pro",
+      "s": "html-entity-pro",
+      "st": "live",
+      "v": "https://html-entity-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_YvKjv4Q486qjS7PrvcC69kFmFx7PJnSbpPdRU1NhbH5"
+    },
+    {
+      "n": "HTML Minifier Pro",
+      "s": "html-minifier-pro",
+      "st": "live",
+      "v": "https://html-minifier-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_1EFp18agU9PF89q1OF7xSmjl2DmNVY8vy96dq0gFd68"
+    },
+    {
+      "n": "HTML to Markdown Pro",
+      "s": "html-to-markdown",
+      "st": "live",
+      "v": "https://html-to-markdown.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_uTeOkm3qjTmxHxJvOO9sexWzhTIVCSDFSqInr1Sy1Ty"
+    },
+    {
+      "n": "HTML to Markdown Pro",
+      "s": "html-to-markdown-pro",
+      "st": "live",
+      "v": "https://html-to-markdown-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_I59NmkCiR8cxVtqWfwPFgvCiWbxc3tEg8Bgv23COvXZ"
+    },
+    {
+      "n": "HTML Validator Pro",
+      "s": "html-validator-pro",
+      "st": "live",
+      "v": "https://html-validator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_JZ2C5xSutNPqibg6HGiPkeYoxnm8tHMF12j5N00YXoD"
+    },
+    {
+      "n": "HTML to JSX",
+      "s": "html2jsx",
+      "st": "live",
+      "v": "https://html2jsx.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ZP2aUtmUzesqRztZGV15ybi5LR1bHU4wYMpfu3JBfcC"
+    },
+    {
+      "n": "HTML2Markdown Pro",
+      "s": "html2markdown",
+      "st": "live",
+      "v": "https://html2markdown.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_c0sbO71DorUHW5V7N5RHAOkksi0XMABIQHvg52LQ1Jv"
+    },
+    {
+      "n": "Htpasswd Generator Pro",
+      "s": "htpasswd-generator",
+      "st": "live",
+      "v": "https://htpasswd-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_zVwR4hrqX6PE08t8XBxLciDr2UOv2ppMWrwql4T9vP1"
+    },
+    {
+      "n": "HTTP API Client",
+      "s": "http-api-client",
+      "st": "live",
+      "v": "https://http-api-client.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_QJMRuyYZtQVra9NlWvCv14EsB9cSKIkgnOd7f3ChkzV"
+    },
+    {
+      "n": "HTTP Load Tester Pro",
+      "s": "http-load-tester-pro",
+      "st": "live",
+      "v": "https://http-load-tester-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_TB4NdlpfcxVG2pT3nBtZj5jRGdQTGLCgah3vf15kC3F"
+    },
+    {
+      "n": "HTTP Pulse",
+      "s": "http-pulse",
+      "st": "live",
+      "v": "https://http-pulse.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_uysX88B6S83mLGLLbBB0xaIYVZftcZy2W493i4QtYZa"
+    },
+    {
+      "n": "ID Generator Pro",
+      "s": "id-generator-pro",
+      "st": "live",
+      "v": "https://id-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_aJUjX3tDVdWu5lzMFn8gow7PMzV9d2a0liFJ60XRT9b"
+    },
+    {
+      "n": "Image Compressor Pro",
+      "s": "image-compressor-pro",
+      "st": "live",
+      "v": "https://image-compressor-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_uZ3vDkgRvLnzeasMM0A8A3BFmW6sRqoazHM3j0Eel8x"
+    },
+    {
+      "n": "IP Network Tools",
+      "s": "ip-network-tools",
+      "st": "live",
+      "v": "https://ip-network-tools.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_fJ1ZHEZUHTYo1KsH4v85BdTPhwij7mf8n7t5H1aKYUt"
+    },
+    {
+      "n": "JSON Compare Pro",
+      "s": "json-compare-pro",
+      "st": "live",
+      "v": "https://json-compare-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_oCDhQRUcL4tQ3N1mveezznJILTjqbnzIlUdfy0tKRL6"
+    },
+    {
+      "n": "JSON Diff Pro",
+      "s": "json-diff-pro",
+      "st": "live",
+      "v": "https://json-diff-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_G7fu1VEOmeGh685RFOFdl1HSO772sMxZ9cAPr4BwuCe"
+    },
+    {
+      "n": "JSON Formatter Pro",
+      "s": "json-formatter",
+      "st": "live",
+      "v": "https://json-formatter.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_1DbG1h2WtRmIX9LgijPIueFaD5DKcZ8QJ8VPS1kCnIf"
+    },
+    {
+      "n": "JSON Schema Generator",
+      "s": "json-schema-generator",
+      "st": "live",
+      "v": "https://json-schema-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_9eJ89VFYV1ZJUUquwzgP8a4s1GqT01gFXy1Zd0KmTrG"
+    },
+    {
+      "n": "JSON Schema to TypeScript",
+      "s": "json-schema-to-ts",
+      "st": "live",
+      "v": "https://json-schema-to-ts.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_R5W98j2AAYtEqN8uGMHKLOKA5oVSuOv9xx7ZO24y8oV"
+    },
+    {
+      "n": "JSON to CSV Pro",
+      "s": "json-to-csv-pro",
+      "st": "live",
+      "v": "https://json-to-csv-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7"
+    },
+    {
+      "n": "JSONPath Tester",
+      "s": "jsonpath-tester",
+      "st": "live",
+      "v": "https://jsonpath-tester.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_rvH8SA0YessVXSb8vM8caF7xrGUhnbqKO39Mq1N2dKU"
+    },
+    {
+      "n": "JWT Debugger Pro",
+      "s": "jwt-debugger-pro",
+      "st": "live",
+      "v": "https://jwt-debugger-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU"
+    },
+    {
+      "n": "JWT Decoder Pro",
+      "s": "jwt-decoder-pro",
+      "st": "live",
+      "v": "https://jwt-decoder-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof"
+    },
+    {
+      "n": "JWT Generator",
+      "s": "jwt-generator",
+      "st": "live",
+      "v": "https://jwt-generator-rho.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_kFuZ2FESbeQqeKMXmzYoFG4SRyhgw7lImbRIT0GeYPJ"
+    },
+    {
+      "n": "JWT Generator Pro",
+      "s": "jwt-generator-pro",
+      "st": "live",
+      "v": "https://jwt-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_iWQFhxbiGyHJNj0F6bWKOwlTaNCAAixhuw4tI3h4NQy"
+    },
+    {
+      "n": "JWT Inspector",
+      "s": "jwtinspector",
+      "st": "live",
+      "v": "https://jwtinspector.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_WJC849vPueBI5fU0TqBB26Ard9ezKI6RDMqPm283wgg"
+    },
+    {
+      "n": "KeyForge",
+      "s": "keyforge",
+      "st": "live",
+      "v": "https://keyforge.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_EYR87kQ40XK5EHEIKpqDCXBezwSH7AZB6pv572bCAXU"
+    },
+    {
+      "n": "LLM TokenLens",
+      "s": "llm-token-lens",
+      "st": "live",
+      "v": "https://llm-token-lens.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_LVKHaDo4K4ldgUZNgtob4ScAIInu2eNEdzfwK0qIoJm"
+    },
+    {
+      "n": "Lorem Ipsum Generator Pro",
+      "s": "lorem-ipsum-generator",
+      "st": "live",
+      "v": "https://lorem-ipsum-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_zwEkiloMNGsRqD51LrwJRS7NIhXWcdUbeAV8G05N9zl"
+    },
+    {
+      "n": "Lorem Ipsum Pro",
+      "s": "lorem-ipsum-pro",
+      "st": "live",
+      "v": "https://lorem-ipsum-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_wnUZwLSOBpc7XLuZqVdP3DdlUsMiUoXInit0N1wDQ1G"
+    },
+    {
+      "n": "Markdown Previewer Pro",
+      "s": "markdown-previewer",
+      "st": "live",
+      "v": "https://markdown-previewer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_vYVvtenG7kUyXc68mp0TM9S19GqXsjcXx10XC0hxiFU"
+    },
+    {
+      "n": "Markdown Previewer Pro",
+      "s": "markdown-previewer-pro",
+      "st": "live",
+      "v": "https://markdown-previewer-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_xYUTJxl02tqDiyf18bg4yYBsdhKbTBM3jKKJT4ei6ir"
+    },
+    {
+      "n": "Markdown Table Generator",
+      "s": "markdown-table-generator",
+      "st": "live",
+      "v": "https://markdown-table-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_BHSydnmsi0nQSiuQJxpNq5vv1CuqFdZG44N0P2dn1mb"
+    },
+    {
+      "n": "Markdown to HTML Pro",
+      "s": "markdown-to-html-pro",
+      "st": "live",
+      "v": "https://markdown-to-html-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_HgMHYjJwLYAPeqh7oKCNW4bm8Cr6ZqqFaqR253E75vz"
+    },
+    {
+      "n": "Markdown to PDF",
+      "s": "markdown-to-pdf",
+      "st": "live",
+      "v": "https://markdown-to-pdf.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_uUkn3U5Ril8LVLyUV8pVfXfRBqmBZ5c9yrQBJ2fmQPn"
+    },
+    {
+      "n": "MCP Inspector Pro",
+      "s": "mcp-inspector-pro",
+      "st": "live",
+      "v": "https://mcp-inspector-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_MFwQIHRNW1bhGv5ldOX79RHb6AIrtsb8pkd9a17yjJK"
+    },
+    {
+      "n": "MCP Marketplace",
+      "s": "mcp-marketplace",
+      "st": "live",
+      "v": "https://mcp-marketplace.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_SwvVyQD7WIAwL3NS4oyQiHSARBa6DAcZJUj4I0B91TZ"
+    },
+    {
+      "n": "MCP Server Scaffolder",
+      "s": "mcp-server-scaffolder",
+      "st": "live",
+      "v": "https://mcp-server-scaffolder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_qpPjyY3vUsUJcVSIwearedVBl7V6TjYKTDcxl0HpIMX"
+    },
+    {
+      "n": "MCP Server Validator",
+      "s": "mcp-validator",
+      "st": "live",
+      "v": "https://mcp-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_N4k06TC4yPQfPrYiG5JZjAOdTdVazxOSub2sv0SLFt3"
+    },
+    {
+      "n": "MCP Hub",
+      "s": "mcphub",
+      "st": "live",
+      "v": "https://mcphub.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_2vCGGSeZz33ftcfLa27l0JrS76IEKW26Q6HP93VbOau"
+    },
+    {
+      "n": "Mock Data Pro",
+      "s": "mock-data-pro",
+      "st": "live",
+      "v": "https://mock-data-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_x6JBA77ZXmnDwgx0yNwwzjI8ogvjBHGK0damQ0CSeSB"
+    },
+    {
+      "n": "NanoID Generator Pro",
+      "s": "nanoid-generator",
+      "st": "live",
+      "v": "https://nanoid-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_zhuiVwpMU7DBeFvY043Pd3JFHKSmTOew8T4lp08jtOR"
+    },
+    {
+      "n": "Nginx Config Generator",
+      "s": "nginx-config",
+      "st": "live",
+      "v": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_Zqjo5mpJusbPDqekATkPDFlLwLdPo1zJDClpm0BVy7d"
+    },
+    {
+      "n": "Nginx Config Generator",
+      "s": "nginx-config-generator",
+      "st": "live",
+      "v": "https://nginx-config-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_NWgCKtCN0pn73PJX4bRGZP8LAkbeOfl5pmOAd14heRt"
+    },
+    {
+      "n": "Nginx Config Tester",
+      "s": "nginx-config-tester",
+      "st": "live",
+      "v": "https://nginx-config-tester.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_trCJDYRxOvzVZL7yM3yRjepH9Hq0ar7hJaYNu1iYLn0"
+    },
+    {
+      "n": "Number Base Converter",
+      "s": "number-base-converter",
+      "st": "live",
+      "v": "https://number-base-converter.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_dIHF8rN5Ez9TfoSJg8MN3XzVYwsUMAs5KgwUv2BlibD"
+    },
+    {
+      "n": "OG Forge",
+      "s": "og-forge",
+      "st": "live",
+      "v": "https://og-forge.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ypHFTvr55itGoPEJYWb5w8cGOuEjftV4nykbZ09oBKP"
+    },
+    {
+      "n": "OpenAPI Validator",
+      "s": "openapi-validator",
+      "st": "live",
+      "v": "https://openapi-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_PJG3vjGunfn8HfzZEH7RmA5rpFnTx5s4isq8s0E7AFg"
+    },
+    {
+      "n": "Password Generator Pro",
+      "s": "password-generator-pro",
+      "st": "live",
+      "v": "https://password-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_hyzpqskaz9eADJtv5p4WHAxOjbk2ugiOVmEB22BtarO"
+    },
+    {
+      "n": "Password Strength Checker Pro",
+      "s": "password-strength-checker",
+      "st": "live",
+      "v": "https://password-strength-checker.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_UoqXI4Qs1nsqXU3dkczjpfgznpwwmDV5qnjnD1BSZ4k"
+    },
+    {
+      "n": "PDF Forge",
+      "s": "pdf-forge",
+      "st": "live",
+      "v": "https://pdf-forge-five.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_vCswYFsXyGJ6w8PAioKHmvPKfwccdX39flPCN3D4MaT"
+    },
+    {
+      "n": "PR Review Agent",
+      "s": "pr-review-agent",
+      "st": "live",
+      "v": "https://pr-review-agent.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_j8yBGNWv6pwqxXXfiS5Tswtck2A8JnzUO3psX4Uj1o4"
+    },
+    {
+      "n": "QR Forge",
+      "s": "qr-forge",
+      "st": "live",
+      "v": "https://qr-forge.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_YnHyj2qQTI6yIKS8qqm5L1DdkwVGZ2JhgPrJC3bRSlQ"
+    },
+    {
+      "n": "Regex Library Pro",
+      "s": "regex-library-pro",
+      "st": "live",
+      "v": "https://regex-library-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_yPucVWXGMfS2AHO49eBMncwauvBpBhYvm4Qzk39w4tI"
+    },
+    {
+      "n": "Regex Tester Pro",
+      "s": "regex-tester-pro",
+      "st": "live",
+      "v": "https://regex-tester-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_HhIOESlDnsjOHBSPLjsnLEkkT8YXimYsVsc6934FD3z"
+    },
+    {
+      "n": "Regex Visualizer Pro",
+      "s": "regex-visualizer-pro",
+      "st": "live",
+      "v": "https://regex-visualizer-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_x0ZMumCo534zwcD2psufJbmOQ6V6TVfjdhx5V4FZifC"
+    },
+    {
+      "n": "SecretGuard",
+      "s": "secretguard",
+      "st": "live",
+      "v": "https://secretguard.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_Y7LbbTH2WPkxxQtUiNh68XcsLomfIUtPLHnRD3wWgcp"
+    },
+    {
+      "n": "Security Headers Checker",
+      "s": "security-headers-checker",
+      "st": "live",
+      "v": "https://security-headers-checker.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_dDipNSG0OGpdPuJ6tsUQ9ZDNgGJO0sxkKmQg54cnnWM"
+    },
+    {
+      "n": "SQL Query Builder Pro",
+      "s": "sql-query-builder",
+      "st": "live",
+      "v": "https://sql-query-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW"
+    },
+    {
+      "n": "SQL Query Formatter",
+      "s": "sql-query-formatter",
+      "st": "live",
+      "v": "https://sql-query-formatter.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_BJS2IQBZicJuo4lFgRaEx3uW789SKKHoZ5PCB30tJOw"
+    },
+    {
+      "n": "SQL to NoSQL Converter",
+      "s": "sql-to-nosql",
+      "st": "live",
+      "v": "https://sql-to-nosql.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_thd5uw8PKttnBq51UARVGnCEytJKUIEG3wrIa24dktJ"
+    },
+    {
+      "n": "SSL Cert Checker",
+      "s": "ssl-cert-checker",
+      "st": "live",
+      "v": "https://ssl-cert-checker.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_YpC4xsXpLSvoIhUCJVdOP0PAc5SgL3OpCzkUp46y3xV"
+    },
+    {
+      "n": "SSL Cipher Analyzer",
+      "s": "ssl-cipher-analyzer",
+      "st": "live",
+      "v": "https://ssl-cipher-analyzer.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_7P7U6me2BeWPXhFXwhzKGAIWq0FXF4OE7PqdU2jn0QE"
+    },
+    {
+      "n": "SSL Config Generator",
+      "s": "ssl-config-generator",
+      "st": "live",
+      "v": "https://ssl-config-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_paRLFk43opFv2okCWDcOjr0rB1SYl7PPxOVJD3WdhVR"
+    },
+    {
+      "n": "Subdomain Finder",
+      "s": "subdomain-finder",
+      "st": "live",
+      "v": "https://subdomain-finder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_LIcp0EWuDJvbPa56gAT98eCNeu5RwHNmv5Mjv2NhQlR"
+    },
+    {
+      "n": "SVG Optimizer Pro",
+      "s": "svg-optimizer-pro",
+      "st": "live",
+      "v": "https://svg-optimizer-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_Y84JGGIk09Vq9pbSzI6TW3El8zR9UyXFhYie90M3Wze"
+    },
+    {
+      "n": "SVG Pattern Generator",
+      "s": "svg-pattern-generator",
+      "st": "live",
+      "v": "https://svg-pattern-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_gpLJlEqV7KMxHAIKCj8zpV1r4iLMsrbyJci7h0mw9ue"
+    },
+    {
+      "n": "HTML Table to CSV Pro",
+      "s": "table-to-csv",
+      "st": "live",
+      "v": "https://table-to-csv.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_dBcJXMPMdvIbGa44j8cChc0RCQ38iARTPUKTc148J8K"
+    },
+    {
+      "n": "TechStack Analyzer",
+      "s": "techstack",
+      "st": "live",
+      "v": "https://techstack.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_qfvyvsuFB3VvffEuMXzy4Z9H2E0XWqA3sFau61Azwoe"
+    },
+    {
+      "n": "Terminal OS",
+      "s": "terminal-os",
+      "st": "live",
+      "v": "https://terminal-os-green.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_l6VyX62FmonHoMLtjuZoPhGWwNkacFtgeU3ES2OMIFU"
+    },
+    {
+      "n": "Terminal Theme Studio",
+      "s": "terminal-theme-studio",
+      "st": "live",
+      "v": "https://terminal-theme-studio.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jvKKEgjBrwRJ4SHuankRdmUV0nnvyPDCKv3ED0Ovcno"
+    },
+    {
+      "n": "Terraink - Cartographic Poster Engine",
+      "s": "terraink",
+      "st": "live",
+      "v": "https://terraink-flax.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_v6aLBWg5RLrML74Hra5G1mmbGbvFb0JnFOv9s2pEkb7"
+    },
+    {
+      "n": "Text Case Converter Pro",
+      "s": "text-case-converter",
+      "st": "live",
+      "v": "https://text-case-converter.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ZR1png9Lzq2oaU7kZhESy7hKSgF0zIX1hKEHG1sBAjI"
+    },
+    {
+      "n": "Text Diff Pro",
+      "s": "text-diff-pro",
+      "st": "live",
+      "v": "https://text-diff-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_BLEyiNAUxrDtR77JmEIQHJ8BpxeZDLdaVqtO63WHU6H"
+    },
+    {
+      "n": "Text Transformer Pro",
+      "s": "text-transformer-pro",
+      "st": "live",
+      "v": "https://text-transformer-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_aoQt6kQ3BPJi6wd9I1imsQ57dbwxx5rt5VqsG07xBRd"
+    },
+    {
+      "n": "Timestamp Converter Pro",
+      "s": "timestamp-converter",
+      "st": "live",
+      "v": "https://timestamp-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
+    },
+    {
+      "n": "Timestamp Converter Pro",
+      "s": "timestamp-converter-pro",
+      "st": "live",
+      "v": "https://timestamp-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_cUBEBaKkf0gDxqcIfpSCT0Kh1PBFpTPhqhc0p4eRovi"
+    },
+    {
+      "n": "Timestamp Master",
+      "s": "timestamp-master",
+      "st": "live",
+      "v": "https://timestamp-master.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_aDv6inuk3bH9Ce3HyhXrVWJxg8wJOgxKImMlk2Di22H"
+    },
+    {
+      "n": "TOML Converter Pro",
+      "s": "toml-converter-pro",
+      "st": "live",
+      "v": "https://toml-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_s24ySxW8RZx5OE478j7s863n9Y8CKgfzMNYjq3M3WpI"
+    },
+    {
+      "n": "TOML Parser Pro",
+      "s": "toml-parser",
+      "st": "live",
+      "v": "https://toml-parser.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_LaOVl4Xtiho03vdc1rDVOH30N0lYheGO5iKdc0pqbXR"
+    },
+    {
+      "n": "TOML Parser Pro",
+      "s": "toml-parser-pro",
+      "st": "live",
+      "v": "https://toml-parser-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_lLbJzJP9xUrqmpi7tRRzF5Ruht6a1Jj9rrdDn1pfkvs"
+    },
+    {
+      "n": "TOML Toolkit",
+      "s": "toml-toolkit",
+      "st": "live",
+      "v": "https://toml-toolkit.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ojtgirUiBuZJ8SpW9qG6Hoky0Uyvr8z3gsem02ZqFmX"
+    },
+    {
+      "n": "TOML Validator",
+      "s": "toml-validator",
+      "st": "live",
+      "v": "https://toml-validator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_lMZwfUkVU6e82cb5Hvr9GuOrRuubHR2EbfCes3Y0zxf"
+    },
+    {
+      "n": "Unit Test Generator",
+      "s": "unit-test-generator",
+      "st": "live",
+      "v": "https://unit-test-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_aJDmAUq27Caohnpsz3yybGUH0bq91i71kP3bS1RnQ4T"
+    },
+    {
+      "n": "URL Builder Pro",
+      "s": "url-builder-pro",
+      "st": "live",
+      "v": "https://url-builder-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_0b4CtBFxLHmjydEXxFV46xz9KZ8LkIAgHLkAm2KISQi"
+    },
+    {
+      "n": "URL Encoder/Decoder Pro",
+      "s": "url-encoder-decoder",
+      "st": "live",
+      "v": "https://url-encoder-decoder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_IKqoSeBYBgidHpsDBrIZuMQM8xz6SQuxZ7St71fyDcl"
+    },
+    {
+      "n": "URL Forge",
+      "s": "url-forge",
+      "st": "live",
+      "v": "https://url-forge.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_dLTXUj2HsJJfQiqQDCUb5uuP4B184QK2TKXOa0iSZ9P"
+    },
+    {
+      "n": "URL Parser Pro",
+      "s": "url-parser-pro",
+      "st": "live",
+      "v": "https://url-parser-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa"
+    },
+    {
+      "n": "UUID Generator Pro",
+      "s": "uuid-generator",
+      "st": "live",
+      "v": "https://uuid-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_LITjFT1XdMD9kD9nw1Gbxr4YV5la5dYdbKY5x1TPXq2"
+    },
+    {
+      "n": "UUID Generator Pro",
+      "s": "uuid-generator-pro",
+      "st": "live",
+      "v": "https://uuid-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_xuPaEIMkM9JdGsEw26I7KURaUTU1JwAM9hDRQ2zFc64"
+    },
+    {
+      "n": "Webhook Tester",
+      "s": "webhook-tester",
+      "st": "live",
+      "v": "https://webhook-tester-beryl.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_tS8bLsxTE5qh2GcSupsgTVLb0XLQtTvkR43vY3nxdfu"
+    },
+    {
+      "n": "WebTerminal Pro",
+      "s": "webterminal-pro",
+      "st": "live",
+      "v": "https://webterminal-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_loGLhcccbNCm1blOaV8X9dh0uL1ptTJeFdfDv3NYIvg"
+    },
+    {
+      "n": "Workflow Chain Builder",
+      "s": "workflow-chain-builder",
+      "st": "live",
+      "v": "https://workflow-chain-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_v84QNSXDphSdozspwP2dP9rKTmLAOC67A2q6D3Re640"
+    },
+    {
+      "n": "XML Formatter & Validator",
+      "s": "xml-formatter",
+      "st": "live",
+      "v": "https://xml-formatter.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_vjecE6yib7RzalnTBrklyJJoQalaDGrpjDoIK3JxfFK"
+    },
+    {
+      "n": "XML Formatter Pro",
+      "s": "xml-formatter-pro",
+      "st": "live",
+      "v": "https://xml-formatter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_xu7FzMzGSPIAdis1YUaWVwD2cej8mONbN2HZt28yzYh"
+    },
+    {
+      "n": "XML Master Pro",
+      "s": "xml-master-pro",
+      "st": "live",
+      "v": "https://xml-master-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_etBCr0mlL8ZBKl1fNwXS8FZchgMTwyICegt7I0ngfxY"
+    },
+    {
+      "n": "XML to JSON",
+      "s": "xml-to-json",
+      "st": "live",
+      "v": "https://xml-to-json.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_T0AuUCZ01laMkAJZhvBv3EDJXemznjjGXfAFV22PIVD"
+    },
+    {
+      "n": "YAML Converter Pro",
+      "s": "yaml-converter-pro",
+      "st": "live",
+      "v": "https://yaml-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_HzFJYQa4hWlESoAeoWKytAhcPxYAc941EMIqu27xy3t"
+    },
+    {
+      "n": "YAML to JSON Converter",
+      "s": "yaml-json-converter",
+      "st": "live",
+      "v": "https://yaml-json-converter.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_OxRkEUfuUtHaIgQLMxZ9UfndFJ5146d68HP584aXZpa"
+    },
+    {
+      "n": "YAML Validator Pro",
+      "s": "yaml-validator-pro",
+      "st": "live",
+      "v": "https://yaml-validator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_eR63JyQsskhDPwqeqFAGJTWj1bRdTvIME4Wyl3unqYU"
+    },
+    {
+      "n": "xTerm Web Terminal",
+      "s": "xterm-web",
+      "st": "building",
+      "v": null,
+      "c": null
     }
-  ]
+  ],
+  "gaps": {
+    "missing_url": [],
+    "unhealthy_live": [],
+    "pending_health": [],
+    "missing_checkout": [],
+    "canonical_url_drift": [
+      {
+        "slug": "chmod-calculator",
+        "url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "ideal_url": "https://chmod-calculator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "canonical_url": "https://chmod-calculator.vercel.app",
+        "canonical_code": 307,
+        "canonical_status": "error_307"
+      },
+      {
+        "slug": "commit-message-generator",
+        "url": "https://commit-message-generator-gamma.vercel.app",
+        "ideal_url": "https://commit-message-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://commit-message-generator-gamma.vercel.app",
+        "canonical_url": "https://commit-message-generator.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "croncraft",
+        "url": "https://quickcron.vercel.app",
+        "ideal_url": "https://croncraft.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://croncraft.vercel.app",
+        "effective_url": "https://quickcron.vercel.app",
+        "canonical_url": "https://croncraft.vercel.app",
+        "canonical_code": 200,
+        "canonical_status": "redirected_preview_alias"
+      },
+      {
+        "slug": "diffmaster",
+        "url": "https://diffmaster-coral.vercel.app",
+        "ideal_url": "https://diffmaster.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://diffmaster-coral.vercel.app",
+        "canonical_url": "https://diffmaster.vercel.app",
+        "canonical_code": 401,
+        "canonical_status": "unauthorized"
+      },
+      {
+        "slug": "email-validator-pro",
+        "url": "https://email-validator-pro-smoky.vercel.app",
+        "ideal_url": "https://email-validator-pro.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://email-validator-pro-smoky.vercel.app",
+        "canonical_url": "https://email-validator-pro.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "html-entity-encoder",
+        "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "ideal_url": "https://html-entity-encoder.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "canonical_url": "https://html-entity-encoder.vercel.app",
+        "canonical_code": 402,
+        "canonical_status": "deployment_disabled"
+      },
+      {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator-rho.vercel.app",
+        "ideal_url": "https://jwt-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://jwt-generator-rho.vercel.app",
+        "canonical_url": "https://jwt-generator.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "nginx-config",
+        "url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "ideal_url": "https://nginx-config.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "canonical_url": "https://nginx-config.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "pdf-forge",
+        "url": "https://pdf-forge-five.vercel.app",
+        "ideal_url": "https://pdf-forge.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://pdf-forge-five.vercel.app",
+        "canonical_url": "https://pdf-forge.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "terminal-os",
+        "url": "https://terminal-os-green.vercel.app",
+        "ideal_url": "https://terminal-os.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terminal-os-green.vercel.app",
+        "canonical_url": "https://terminal-os.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "terraink",
+        "url": "https://terraink-flax.vercel.app",
+        "ideal_url": "https://terraink.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terraink-flax.vercel.app",
+        "canonical_url": "https://terraink.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-pro.vercel.app",
+        "ideal_url": "https://timestamp-converter.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://timestamp-converter-pro.vercel.app",
+        "canonical_url": "https://timestamp-converter.vercel.app",
+        "canonical_code": 451,
+        "canonical_status": "error_451"
+      },
+      {
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_url": "https://webhook-tester.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://webhook-tester-beryl.vercel.app",
+        "canonical_url": "https://webhook-tester.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      }
+    ],
+    "fallback_healthy": [
+      {
+        "slug": "chmod-calculator",
+        "url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "ideal_url": "https://chmod-calculator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "canonical_url": "https://chmod-calculator.vercel.app",
+        "canonical_code": 307,
+        "canonical_status": "error_307"
+      },
+      {
+        "slug": "commit-message-generator",
+        "url": "https://commit-message-generator-gamma.vercel.app",
+        "ideal_url": "https://commit-message-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://commit-message-generator-gamma.vercel.app",
+        "canonical_url": "https://commit-message-generator.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "croncraft",
+        "url": "https://quickcron.vercel.app",
+        "ideal_url": "https://croncraft.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://croncraft.vercel.app",
+        "effective_url": "https://quickcron.vercel.app",
+        "canonical_url": "https://croncraft.vercel.app",
+        "canonical_code": 200,
+        "canonical_status": "redirected_preview_alias"
+      },
+      {
+        "slug": "diffmaster",
+        "url": "https://diffmaster-coral.vercel.app",
+        "ideal_url": "https://diffmaster.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://diffmaster-coral.vercel.app",
+        "canonical_url": "https://diffmaster.vercel.app",
+        "canonical_code": 401,
+        "canonical_status": "unauthorized"
+      },
+      {
+        "slug": "email-validator-pro",
+        "url": "https://email-validator-pro-smoky.vercel.app",
+        "ideal_url": "https://email-validator-pro.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://email-validator-pro-smoky.vercel.app",
+        "canonical_url": "https://email-validator-pro.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "html-entity-encoder",
+        "url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "ideal_url": "https://html-entity-encoder.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+        "canonical_url": "https://html-entity-encoder.vercel.app",
+        "canonical_code": 402,
+        "canonical_status": "deployment_disabled"
+      },
+      {
+        "slug": "jwt-generator",
+        "url": "https://jwt-generator-rho.vercel.app",
+        "ideal_url": "https://jwt-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://jwt-generator-rho.vercel.app",
+        "canonical_url": "https://jwt-generator.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "nginx-config",
+        "url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "ideal_url": "https://nginx-config.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
+        "canonical_url": "https://nginx-config.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "pdf-forge",
+        "url": "https://pdf-forge-five.vercel.app",
+        "ideal_url": "https://pdf-forge.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://pdf-forge-five.vercel.app",
+        "canonical_url": "https://pdf-forge.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "terminal-os",
+        "url": "https://terminal-os-green.vercel.app",
+        "ideal_url": "https://terminal-os.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terminal-os-green.vercel.app",
+        "canonical_url": "https://terminal-os.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "terraink",
+        "url": "https://terraink-flax.vercel.app",
+        "ideal_url": "https://terraink.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terraink-flax.vercel.app",
+        "canonical_url": "https://terraink.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "timestamp-converter",
+        "url": "https://timestamp-converter-pro.vercel.app",
+        "ideal_url": "https://timestamp-converter.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://timestamp-converter-pro.vercel.app",
+        "canonical_url": "https://timestamp-converter.vercel.app",
+        "canonical_code": 451,
+        "canonical_status": "error_451"
+      },
+      {
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_url": "https://webhook-tester.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://webhook-tester-beryl.vercel.app",
+        "canonical_url": "https://webhook-tester.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      }
+    ],
+    "ready_for_payment_health": [],
+    "deploy_readiness": []
+  },
+  "canonical_url_drift_products": [
+    "chmod-calculator",
+    "commit-message-generator",
+    "croncraft",
+    "diffmaster",
+    "email-validator-pro",
+    "html-entity-encoder",
+    "jwt-generator",
+    "nginx-config",
+    "pdf-forge",
+    "terminal-os",
+    "terraink",
+    "timestamp-converter",
+    "webhook-tester"
+  ],
+  "fallback_healthy_products": [
+    "chmod-calculator",
+    "commit-message-generator",
+    "croncraft",
+    "diffmaster",
+    "email-validator-pro",
+    "html-entity-encoder",
+    "jwt-generator",
+    "nginx-config",
+    "pdf-forge",
+    "terminal-os",
+    "terraink",
+    "timestamp-converter",
+    "webhook-tester"
+  ],
+  "ready_for_payment_unhealthy_products": []
 }
