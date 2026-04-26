@@ -1,5 +1,5 @@
 {
-  "cycle": 1218,
+  "cycle": 1221,
   "mode": "INNOVATE",
   "balance": 0.0,
   "active_count": 181,
@@ -12,16 +12,16 @@
   "ready_for_payment_unhealthy_count": 0,
   "checkout_gap_count": 0,
   "deploy_missing_or_bad_url": 0,
-  "canonical_url_drift": 13,
+  "canonical_url_drift": 0,
   "spec_ready_count": 0,
   "deploy_readiness_count": 0,
   "deploy_readiness_manifest_gap_count": 0,
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "Vercel auth düzeltildiğinde 6 live canonical drift için alias ekle; drift ürünler: croncraft, chmod-calculator, terminal-os, terraink, nginx-config, commit-message-generator",
+  "next_action": "Vercel hobby limit (200) blokeli — eski projeleri sil veya Account yukselt. 3 building urun var. Codex offline until Apr 28.",
   "vercel_auth_issue": true,
-  "last_updated": "2026-04-26T17:15:00.000000Z",
+  "last_updated": "2026-04-26T14:43:00.000000Z",
   "products": [
     {
       "n": "UUID Generator Pro",
