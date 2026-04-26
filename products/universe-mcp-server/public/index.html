@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniverseCreator MCP Server</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --border: #30363d;
+      --blue: #58a6ff;
+      --green: #7ee787;
+      --red: #f85149;
+      --yellow: #d29922;
+      --text: #c9d1d9;
+      --text-dim: #8b949e;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--blue);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(126, 231, 135, 0.15);
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+
+    .subtitle {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 { margin-bottom: 1rem; }
+
+    .endpoint-box {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+    }
+
+    .endpoint-box .method {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .endpoint-box .url { color: var(--blue); }
+
+    .json-block {
+      background: #0d1117;
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--text-dim);
+      margin-top: 0.75rem;
+    }
+
+    .json-key { color: var(--blue); }
+    .json-string { color: var(--green); }
+    .json-number { color: #d2a8ff; }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .tool-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .tool-item:hover {
+      border-color: var(--blue);
+      background: rgba(88, 166, 255, 0.05);
+    }
+
+    .tool-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(88, 166, 255, 0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--blue);
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .tool-info { flex: 1; min-width: 0; }
+    .tool-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--green);
+      font-weight: 500;
+    }
+    .tool-desc {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Test Panel */
+    .test-panel {
+      display: none;
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .test-panel.active { display: block; }
+
+    .test-form {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .btn {
+      background: var(--blue);
+      color: #0d1117;
+      border: none;
+      border-radius: 6px;
+      padding: 0.6rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+    .btn:active { opacity: 0.7; }
+
+    .result-box {
+      margin-top: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      min-height: 60px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .result-box.error { border-color: var(--red); color: var(--red); }
+    .result-box.success { border-color: var(--green); color: var(--green); }
+
+    .tool-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .category-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>&#9673; UniverseCreator MCP Server <span class="badge">20 Tools</span></h1>
+  <p class="subtitle">182+ developer tools via Model Context Protocol &mdash; no install, no config</p>
+</header>
+
+<div class="card">
+  <h2>How to Connect</h2>
+  <p style="color: var(--text-dim); font-size: 0.875rem; margin-bottom: 1rem;">
+    Add this to your Claude Desktop or any MCP client config:
+  </p>
+  <div class="endpoint-box">
+    <span class="method">POST</span>&nbsp;&nbsp;<span class="url">https://universe-mcp-server.vercel.app/mcp</span>
+  </div>
+
+  <h3 style="margin-top: 1rem;">Claude Desktop Config (claude_desktop_config.json)</h3>
+  <div class="json-block"><span class="json-string">"mcpServers"</span>: {
+  <span class="json-string">"universe"</span>: {
+    <span class="json-string">"command"</span>: <span class="json-string">"fetch"</span>,
+    <span class="json-string">"url"</span>: <span class="json-string">"https://universe-mcp-server.vercel.app/mcp"</span>
+  }
+}</div>
+
+  <h3 style="margin-top: 1rem;">Test the connection</h3>
+  <div class="json-block">curl -X POST https://universe-mcp-server.vercel.app/mcp \
+  -H <span class="json-string">"Content-Type: application/json"</span> \
+  -d <span class="json-string">'{"jsonrpc":"2.0","id":1,"method":"tools/list"}'</span></div>
+</div>
+
+<div class="card">
+  <h2>Test Tools</h2>
+  <p style="color: var(--text-dim); font-size: 0.875rem; margin-bottom: 1rem;">Click a tool to test it directly in your browser</p>
+
+  <div class="tool-category">
+    <div class="category-label">Encoding &amp; Decoding</div>
+    <div class="tool-grid" id="tools-encoding"></div>
+  </div>
+
+  <div class="tool-category">
+    <div class="category-label">JSON &amp; Data</div>
+    <div class="tool-grid" id="tools-json"></div>
+  </div>
+
+  <div class="tool-category">
+    <div class="category-label">Security &amp; Auth</div>
+    <div class="tool-grid" id="tools-security"></div>
+  </div>
+
+  <div class="tool-category">
+    <div class="category-label">Scheduling</div>
+    <div class="tool-grid" id="tools-scheduling"></div>
+  </div>
+
+  <div class="tool-category">
+    <div class="category-label">Colors &amp; Units</div>
+    <div class="tool-grid" id="tools-convert"></div>
+  </div>
+
+  <!-- Dynamic test panel -->
+  <div class="test-panel" id="test-panel"></div>
+</div>
+
+<footer>
+  UniverseCreator MCP Server &mdash; 182+ tools, one endpoint &mdash;
+  <a href="https://github.com/universe7creator/universe-mcp-server" style="color: var(--blue);">GitHub</a>
+</footer>
+
+</div>
+
+<script>
+const TOOLS = [
+  // Encoding
+  { name: 'base64_encode', desc: 'Encode text to base64', cat: 'encoding', params: [{ name: 'text', label: 'Text to encode', type: 'textarea' }] },
+  { name: 'base64_decode', desc: 'Decode base64 to text', cat: 'encoding', params: [{ name: 'encoded', label: 'Base64 string', type: 'textarea' }] },
+  { name: 'url_encode', desc: 'URL-encode text', cat: 'encoding', params: [{ name: 'text', label: 'Text to encode', type: 'textarea' }] },
+  { name: 'url_decode', desc: 'URL-decode text', cat: 'encoding', params: [{ name: 'encoded', label: 'URL-encoded string', type: 'textarea' }] },
+  { name: 'html_encode', desc: 'HTML-encode special chars', cat: 'encoding', params: [{ name: 'text', label: 'Text to encode', type: 'textarea' }] },
+  { name: 'html_decode', desc: 'Decode HTML entities', cat: 'encoding', params: [{ name: 'encoded', label: 'HTML-encoded string', type: 'textarea' }] },
+  // JSON & Data
+  { name: 'json_format', desc: 'Pretty-print JSON', cat: 'json', params: [{ name: 'json', label: 'JSON string', type: 'textarea' }] },
+  { name: 'json_minify', desc: 'Minify JSON', cat: 'json', params: [{ name: 'json', label: 'JSON string', type: 'textarea' }] },
+  { name: 'csv_to_json', desc: 'Convert CSV to JSON', cat: 'json', params: [{ name: 'csv', label: 'CSV text (first row = headers)', type: 'textarea' }] },
+  { name: 'xml_format', desc: 'Pretty-print XML', cat: 'json', params: [{ name: 'xml', label: 'XML string', type: 'textarea' }] },
+  { name: 'yaml_validate', desc: 'Validate YAML syntax', cat: 'json', params: [{ name: 'yaml', label: 'YAML string', type: 'textarea' }] },
+  // Security
+  { name: 'uuid_generate', desc: 'Generate UUID v4', cat: 'security', params: [] },
+  { name: 'hash_generate', desc: 'Generate hash (md5/sha1/sha256)', cat: 'security', params: [
+    { name: 'text', label: 'Text to hash', type: 'textarea' },
+    { name: 'algorithm', label: 'Algorithm', type: 'select', options: ['sha256','md5','sha1','sha512'] }
+  ]},
+  { name: 'jwt_decode', desc: 'Decode JWT (no verify)', cat: 'security', params: [{ name: 'token', label: 'JWT token', type: 'textarea' }] },
+  { name: 'jwt_generate', desc: 'Generate JWT (test only)', cat: 'security', params: [
+    { name: 'payload', label: 'Payload (JSON object)', type: 'textarea' },
+    { name: 'secret', label: 'Secret (optional)', type: 'input', default: 'universe-mcp-default-secret' }
+  ]},
+  // Scheduling
+  { name: 'cron_validate', desc: 'Validate cron expression', cat: 'scheduling', params: [{ name: 'expression', label: 'Cron (e.g. "0 9 * * *")', type: 'input' }] },
+  { name: 'cron_next', desc: 'Next N cron run times', cat: 'scheduling', params: [
+    { name: 'expression', label: 'Cron expression', type: 'input' },
+    { name: 'count', label: 'Count (default 5)', type: 'input', default: '5' }
+  ]},
+  // Converters
+  { name: 'color_convert', desc: 'Convert hex/rgb/hsl', cat: 'convert', params: [
+    { name: 'color', label: 'Color (e.g. #ff0000, rgb(255,0,0))', type: 'input' },
+    { name: 'to', label: 'To format', type: 'select', options: ['hex','rgb','hsl'] }
+  ]},
+  { name: 'unit_convert', desc: 'Convert units (length/weight/time)', cat: 'convert', params: [
+    { name: 'value', label: 'Value', type: 'input' },
+    { name: 'from', label: 'From unit (e.g. m, kg, sec)', type: 'input' },
+    { name: 'to', label: 'To unit (e.g. ft, lb, min)', type: 'input' }
+  ]},
+  { name: 'timestamp_now', desc: 'Current timestamp', cat: 'convert', params: [{ name: 'format', label: 'Format', type: 'select', options: ['iso','unix','date'] }] },
+];
+
+const BASE_URL = window.location.origin;
+
+// Render tool grids
+const cats = { encoding: 'tools-encoding', json: 'tools-json', security: 'tools-security', scheduling: 'tools-scheduling', convert: 'tools-convert' };
+for (const tool of TOOLS) {
+  const container = document.getElementById(cats[tool.cat]);
+  if (!container) continue;
+  const icon = tool.name.split('_')[0].slice(0,3).toUpperCase();
+  const div = document.createElement('div');
+  div.className = 'tool-item';
+  div.innerHTML = `<div class="tool-icon">${icon}</div><div class="tool-info"><div class="tool-name">${tool.name}</div><div class="tool-desc">${tool.desc}</div></div>`;
+  div.onclick = () => showTestPanel(tool);
+  container.appendChild(div);
+}
+
+let activeTool = null;
+
+function showTestPanel(tool) {
+  activeTool = tool;
+  const panel = document.getElementById('test-panel');
+  panel.classList.add('active');
+
+  let paramsHtml = '';
+  for (const p of tool.params) {
+    const val = p.default || '';
+    if (p.type === 'textarea') {
+      paramsHtml += `<div class="form-group"><label>${p.label}</label><textarea name="${p.name}" placeholder="...">${val}</textarea></div>`;
+    } else if (p.type === 'select') {
+      const opts = p.options.map(o => `<option value="${o}">${o}</option>`).join('');
+      paramsHtml += `<div class="form-group"><label>${p.label}</label><select name="${p.name}">${opts}</select></div>`;
+    } else {
+      paramsHtml += `<div class="form-group"><label>${p.label}</label><input name="${p.name}" type="text" value="${val}" placeholder="..."></div>`;
+    }
+  }
+
+  panel.innerHTML = `
+    <h3 style="color: var(--green); font-family: JetBrains Mono, monospace;">${tool.name}</h3>
+    <p style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 1rem;">${tool.desc}</p>
+    <form class="test-form" onsubmit="runTool(event)">
+      ${paramsHtml}
+      <button type="submit" class="btn">Run Tool</button>
+    </form>
+    <div class="result-box" id="result-box" style="display:none;"></div>
+  `;
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function runTool(e) {
+  e.preventDefault();
+  if (!activeTool) return;
+
+  const form = e.target;
+  const args = {};
+  for (const p of activeTool.params) {
+    const el = form.elements[p.name];
+    if (el) args[p.name] = el.value;
+  }
+
+  const resultBox = document.getElementById('result-box');
+  resultBox.style.display = 'block';
+  resultBox.className = 'result-box';
+  resultBox.textContent = 'Running...';
+
+  try {
+    const response = await fetch(`${BASE_URL}/mcp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/call',
+        params: { name: activeTool.name, arguments: args }
+      })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+      resultBox.className = 'result-box error';
+      resultBox.textContent = 'Error: ' + data.error.message;
+    } else {
+      const text = data.result?.content?.[0]?.text || '(no output)';
+      resultBox.className = 'result-box success';
+      resultBox.textContent = text;
+    }
+  } catch (err) {
+    resultBox.className = 'result-box error';
+    resultBox.textContent = 'Network error: ' + err.message;
+  }
+}
+</script>
+</body>
+</html>

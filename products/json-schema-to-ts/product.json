@@ -16,7 +16,7 @@
   "status": "live",
   "category": "developer-tools",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_R5W98j2AAYtEqN8uGMHKLOKA5oVSuOv9xx7ZO24y8oV",
+  "checkout_url": "https://buy.polar.sh/polar_cl_2b9Bd4mAJ4TddQjPn3OVIiitEPm4guvvsVX7j0vEwlv",
   "vercel_url": "https://json-schema-to-ts.vercel.app",
   "deployment_url": "https://json-schema-to-agf206kqw-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/json-schema-to-ts",
@@ -24,7 +24,7 @@
   "payment_provider": "polar",
   "polar_product_id": "eaa25798-7f3b-4acb-91d1-35e5041e5264",
   "polar_product_price_id": "72cdc52a-5f02-4379-9aa0-5b341665a0db",
-  "polar_checkout_link_id": "7321b55e-73d4-4bd3-ac3e-f20c9a2e0ee2",
+  "polar_checkout_link_id": "a1d783fe-824a-4dd5-a709-4834fa6558de",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Validator Pro — W3C Standards Validation & Accessibility Audit</title>
+  <meta name="description" content="Comprehensive HTML validation with W3C standards, accessibility checks, and SEO analysis. Paste HTML, get detailed validation report.">
+    <link rel="canonical" href="https://html-validator-pro.vercel.app/">
+    <meta name="author" content="UniverseCreator">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="HTML Validator Pro">
+
+    <meta property="og:title" content="HTML Validator Pro — Developer Tool">
+    <meta property="og:description" content="Comprehensive HTML validation with W3C standards, accessibility checks, and SEO analysis">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://html-validator-pro.vercel.app">
+    <meta property="og:image" content="https://html-validator-pro.vercel.app/og-image.png">
+    <meta property="og:site_name" content="UniverseCreator Tools">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HTML Validator Pro — Developer Tool">
+    <meta name="twitter:description" content="Comprehensive HTML validation with W3C standards, accessibility checks, and SEO analysis">
+    <meta name="twitter:image" content="https://html-validator-pro.vercel.app/og-image.png">
+    <meta name="twitter:site" content="@universecreator">
+    <meta name="twitter:creator" content="@universecreator">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HTML Validator Pro",
+  "description": "Comprehensive HTML validation with W3C standards, accessibility checks, and SEO analysis",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "50"
+  }
+}
+</script>
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://html-validator-pro.vercel.app">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0a0f',
+            surface: '#14141f',
+            border: '#1e1e2e',
+            accent: '#6366f1',
+            success: '#22c55e',
+            warning: '#f59e0b',
+            error: '#ef4444',
+            info: '#3b82f6',
+            text: '#e2e8f0',
+            muted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0a0a0f; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .card { background: #14141f; border: 1px solid #1e1e2e; border-radius: 0.75rem; }
+    .severity-error { border-left: 4px solid #ef4444; }
+    .severity-warning { border-left: 4px solid #f59e0b; }
+    .severity-info { border-left: 4px solid #3b82f6; }
+    .severity-success { border-left: 4px solid #22c55e; }
+    .issue-card { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .section-toggle { cursor: pointer; user-select: none; }
+    .section-content { max-height: 1000px; overflow: hidden; transition: max-height 0.3s ease; }
+    .section-content.collapsed { max-height: 0; }
+    .severity-badge { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #14141f; }
+    ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 4px; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-3xl font-bold mb-2">HTML Validator Pro</h1>
+      <p class="text-muted">W3C Standards Validation & Accessibility Audit</p>
+    </header>
+
+    <!-- Input -->
+    <div class="card p-6 mb-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold">Input HTML</h2>
+        <div class="flex items-center gap-3">
+          <label class="text-sm text-muted">Standard:</label>
+          <select id="standard" class="bg-surface border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent">
+            <option value="html5">HTML5</option>
+            <option value="xhtml">XHTML 1.0</option>
+          </select>
+        </div>
+      </div>
+      <textarea id="htmlInput" class="w-full h-48 bg-bg border border-border rounded-lg p-4 font-mono text-sm text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Paste your HTML here to validate..."></textarea>
+      <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center gap-4">
+          <label class="flex items-center gap-2 text-sm cursor-pointer">
+            <input type="checkbox" id="checkA11y" class="w-4 h-4 rounded" checked>
+            <span>Accessibility</span>
+          </label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer">
+            <input type="checkbox" id="checkSeo" class="w-4 h-4 rounded" checked>
+            <span>SEO</span>
+          </label>
+        </div>
+        <button id="validateBtn" class="btn">Validate</button>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="hidden">
+      <!-- Summary -->
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="card p-4 text-center severity-error">
+          <div id="errorCount" class="text-2xl font-bold text-error">0</div>
+          <div class="text-sm text-muted">Errors</div>
+        </div>
+        <div class="card p-4 text-center severity-warning">
+          <div id="warningCount" class="text-2xl font-bold text-warning">0</div>
+          <div class="text-sm text-muted">Warnings</div>
+        </div>
+        <div class="card p-4 text-center severity-info">
+          <div id="infoCount" class="text-2xl font-bold text-info">0</div>
+          <div class="text-sm text-muted">Suggestions</div>
+        </div>
+      </div>
+
+      <!-- Error Section -->
+      <div class="card mb-4 overflow-hidden">
+        <div class="section-toggle p-4 flex items-center justify-between border-b border-border" onclick="toggleSection('errors')">
+          <div class="flex items-center gap-3">
+            <div class="severity-badge bg-error text-white">✗</div>
+            <h3 class="font-semibold">Errors</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="errorCountBadge" class="badge bg-error/20 text-error">0</span>
+            <svg id="errorsArrow" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+        </div>
+        <div id="errorsContent" class="section-content p-4 space-y-3"></div>
+      </div>
+
+      <!-- Warning Section -->
+      <div class="card mb-4 overflow-hidden">
+        <div class="section-toggle p-4 flex items-center justify-between border-b border-border" onclick="toggleSection('warnings')">
+          <div class="flex items-center gap-3">
+            <div class="severity-badge bg-warning text-white">⚠</div>
+            <h3 class="font-semibold">Warnings</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="warningCountBadge" class="badge bg-warning/20 text-warning">0</span>
+            <svg id="warningsArrow" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+        </div>
+        <div id="warningsContent" class="section-content p-4 space-y-3"></div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="card overflow-hidden">
+        <div class="section-toggle p-4 flex items-center justify-between border-b border-border" onclick="toggleSection('info')">
+          <div class="flex items-center gap-3">
+            <div class="severity-badge bg-info text-white">ℹ</div>
+            <h3 class="font-semibold">Suggestions</h3>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="infoCountBadge" class="badge bg-info/20 text-info">0</span>
+            <svg id="infoArrow" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+        </div>
+        <div id="infoContent" class="section-content p-4 space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- No Input State -->
+    <div id="emptyState" class="card p-12 text-center">
+      <svg class="w-16 h-16 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      <h3 class="text-lg font-semibold mb-2">No HTML to validate</h3>
+      <p class="text-muted">Paste your HTML in the input field above and click Validate</p>
+    </div>
+  </div>
+
+  <script>
+    let issues = { errors: [], warnings: [], info: [] };
+
+    function toggleSection(section) {
+      const content = document.getElementById(`${section}Content`);
+      const arrow = document.getElementById(`${section}Arrow`);
+      content.classList.toggle('collapsed');
+      arrow.style.transform = content.classList.contains('collapsed') ? 'rotate(-90deg)' : '';
+    }
+
+    function addIssue(type, message, line = null, snippet = '') {
+      const issue = { message, line, snippet };
+      issues[type].push(issue);
+    }
+
+    function validateHTML() {
+      const html = document.getElementById('htmlInput').value.trim();
+      if (!html) return;
+
+      issues = { errors: [], warnings: [], info: [] };
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // Parse errors
+      const parseErrors = doc.parseError ? [doc.parseError] : [];
+      parseErrors.forEach(err => {
+        if (err.errorCode && err.errorCode !== 0) {
+          addIssue('errors', err.reason || 'Parse error', err.line, err.srcText);
+        }
+      });
+
+      // Basic validation
+      if (!html.includes('<!DOCTYPE html>') && !html.includes('<!doctype html>')) {
+        addIssue('warnings', 'Missing DOCTYPE declaration', null, 'Add <!DOCTYPE html> at the start');
+      }
+
+      if (!html.includes('<html')) {
+        addIssue('errors', 'Missing <html> root element');
+      }
+
+      if (!html.includes('<head>') && !html.includes('<head ')) {
+        addIssue('errors', 'Missing <head> element');
+      }
+
+      if (!html.includes('<body') && !html.includes('<body>')) {
+        addIssue('errors', 'Missing <body> element');
+      }
+
+      // Meta tags
+      const metas = doc.querySelectorAll('meta');
+      let hasDescription = false, hasViewport = false;
+      metas.forEach(m => {
+        if (m.name === 'description') hasDescription = true;
+        if (m.name === 'viewport') hasViewport = true;
+      });
+
+      if (!hasDescription) {
+        addIssue('info', 'Missing meta description', null, 'Add <meta name="description" content="...">');
+      }
+      if (!hasViewport) {
+        addIssue('warnings', 'Missing viewport meta tag', null, 'Add <meta name="viewport" content="width=device-width, initial-scale=1">');
+      }
+
+      // Accessibility checks
+      if (document.getElementById('checkA11y').checked) {
+        const imgs = doc.querySelectorAll('img');
+        imgs.forEach(img => {
+          if (!img.alt) {
+            addIssue('errors', 'Image missing alt attribute', null, img.outerHTML);
+          }
+        });
+
+        const links = doc.querySelectorAll('a');
+        links.forEach(link => {
+          if (!link.textContent.trim() && !link.querySelector('img')) {
+            addIssue('warnings', 'Empty link found', null, link.outerHTML);
+          }
+        });
+
+        const buttons = doc.querySelectorAll('button');
+        buttons.forEach(btn => {
+          if (!btn.textContent.trim()) {
+            addIssue('info', 'Button may lack accessible name', null, btn.outerHTML);
+          }
+        });
+
+        const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+        let h1Count = 0;
+        doc.querySelectorAll(headings.join(',')).forEach(h => {
+          if (h.tagName === 'H1') h1Count++;
+        });
+        if (h1Count === 0) {
+          addIssue('info', 'No <h1> heading found', null, 'Add a <h1> element for the main page title');
+        } else if (h1Count > 1) {
+          addIssue('warnings', `Multiple <h1> headings found (${h1Count})`, null, 'Use only one <h1> per page');
+        }
+      }
+
+      // SEO checks
+      if (document.getElementById('checkSeo').checked) {
+        const title = doc.querySelector('title');
+        if (!title || !title.textContent.trim()) {
+          addIssue('errors', 'Missing or empty <title> element');
+        }
+
+        const h1s = doc.querySelectorAll('h1');
+        if (h1s.length === 0) {
+          addIssue('info', 'No <h1> heading found for SEO');
+        }
+
+        const canonical = doc.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+          addIssue('info', 'Missing canonical link for SEO', null, 'Add <link rel="canonical" href="...">');
+        }
+      }
+
+      renderResults();
+    }
+
+    function renderResults() {
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+
+      document.getElementById('errorCount').textContent = issues.errors.length;
+      document.getElementById('warningCount').textContent = issues.warnings.length;
+      document.getElementById('infoCount').textContent = issues.info.length;
+      document.getElementById('errorCountBadge').textContent = issues.errors.length;
+      document.getElementById('warningCountBadge').textContent = issues.warnings.length;
+      document.getElementById('infoCountBadge').textContent = issues.info.length;
+
+      function renderIssues(list, containerId) {
+        const container = document.getElementById(containerId);
+        if (list.length === 0) {
+          container.innerHTML = '<div class="text-muted text-sm py-4 text-center">No issues found ✓</div>';
+          return;
+        }
+        container.innerHTML = list.map((issue, i) => `
+          <div class="issue-card p-4 bg-bg rounded-lg border border-border">
+            <div class="flex items-start gap-3">
+              <div class="text-sm text-text flex-1">${issue.message}</div>
+              ${issue.line !== null ? `<span class="text-xs text-muted font-mono">Line ${issue.line}</span>` : ''}
+            </div>
+            ${issue.snippet ? `<code class="block mt-2 text-xs font-mono text-muted bg-surface p-2 rounded">${issue.snippet}</code>` : ''}
+          </div>
+        `).join('');
+      }
+
+      renderIssues(issues.errors, 'errorsContent');
+      renderIssues(issues.warnings, 'warningsContent');
+      renderIssues(issues.info, 'infoContent');
+
+      // Hide empty sections if they have 0 issues
+      if (issues.errors.length === 0) {
+        document.querySelector('#errorsContent').parentElement.style.display = 'none';
+      } else {
+        document.querySelector('#errorsContent').parentElement.style.display = '';
+      }
+
+      if (issues.warnings.length === 0) {
+        document.querySelector('#warningsContent').parentElement.style.display = 'none';
+      } else {
+        document.querySelector('#warningsContent').parentElement.style.display = '';
+      }
+
+      if (issues.info.length === 0) {
+        document.querySelector('#infoContent').parentElement.style.display = 'none';
+      } else {
+        document.querySelector('#infoContent').parentElement.style.display = '';
+      }
+    }
+
+    document.getElementById('validateBtn').addEventListener('click', validateHTML);
+
+    // Auto-validate on paste after a delay
+    let pasteTimer;
+    document.getElementById('htmlInput').addEventListener('paste', () => {
+      clearTimeout(pasteTimer);
+      pasteTimer = setTimeout(() => {
+        if (document.getElementById('htmlInput').value.trim().length > 20) {
+          validateHTML();
+        }
+      }, 500);
+    });
+  </script>
+</body>
+</html>

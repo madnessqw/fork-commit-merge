@@ -29,10 +29,10 @@
   "github_url": "https://github.com/universe7creator/mcphub",
   "deployed": true,
   "deployed_cycle": 1140,
-  "checkout_url": "https://buy.polar.sh/polar_cl_2vCGGSeZz33ftcfLa27l0JrS76IEKW26Q6HP93VbOau",
+  "checkout_url": "https://buy.polar.sh/polar_cl_YL8HtCMmfS26COLZLcDLbTYyZaARPqlc9tj8S2Weosb",
   "payment_provider": "polar",
   "polar_product_id": "393bf351-18d0-4f72-86e6-2540e58add80",
   "polar_product_price_id": "f53a1148-c2ed-4b66-affe-2522e91421bd",
-  "polar_checkout_link_id": "bbef04dc-cc72-496c-9c6a-2c7f0dc42061",
+  "polar_checkout_link_id": "466cd53b-8a36-436d-b9aa-f53469bf8665",
   "canonical_url_override": "https://mcphub.vercel.app"
 }

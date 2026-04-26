@@ -16,7 +16,7 @@
   "status": "live",
   "category": "devops",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz",
+  "checkout_url": "https://buy.polar.sh/polar_cl_ww3evwVFsDGnI1MLuoQqdq1GklJzNCN8VDPOy32XRbc",
   "vercel_url": "https://docker-command-builder.vercel.app",
   "deployment_url": "https://docker-command-builder-bkk6qvb7e-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/docker-command-builder",
@@ -24,7 +24,7 @@
   "payment_provider": "polar",
   "polar_product_id": "d34b5872-a36f-4218-902b-5128d17dbc6c",
   "polar_product_price_id": "29404873-9ea2-4c32-899d-ddd5503979d1",
-  "polar_checkout_link_id": "96e88ac0-8344-4e65-9bb3-46152503747a",
+  "polar_checkout_link_id": "13c58524-6f6b-44aa-92ed-aa17fee8f086",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

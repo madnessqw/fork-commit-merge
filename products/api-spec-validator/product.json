@@ -16,7 +16,7 @@
   "target_audience": "API developers, backend engineers, DevOps teams",
   "problem": "OpenAPI specs often have subtle errors that break client generation and documentation",
   "solution": "Instant validation with clear error messages and actionable fixes",
-  "checkout_url": "https://buy.polar.sh/polar_cl_erxMNWkQZAOWMMwcDkNOEOwWe7nL79LderUeL2qetb2",
+  "checkout_url": "https://buy.polar.sh/polar_cl_bvYb3x9LMXUIo16NSgPS146awvqOnse0rmPgz2p1thf",
   "checkout_status": "pending_lemonsqueezy_creation",
   "vercel_url": "https://api-spec-validator.vercel.app",
   "status": "live",
@@ -24,9 +24,9 @@
   "seo_optimized_at": "2026-04-21T17:47:00Z",
   "payment_provider": "polar",
   "spec_version": "1.0",
-  "polar_product_id": "28a8be78-1e8e-44fa-b290-0e1efb331768",
-  "polar_product_price_id": "990ca307-5bdb-4e07-bbfe-a906fffee133",
-  "polar_checkout_link_id": "6702292f-f7a7-4bac-b9c0-a38af55398eb",
+  "polar_product_id": "525ac3c5-b78d-487a-863f-3d607c2ec0ed",
+  "polar_product_price_id": "1da31ac6-6e7c-439b-a2ce-a97051b5606f",
+  "polar_checkout_link_id": "0f9d53d8-304b-4382-b96a-5e82a61fa05d",
   "created_cycle": 990,
   "deployed_cycle": 1108
 }

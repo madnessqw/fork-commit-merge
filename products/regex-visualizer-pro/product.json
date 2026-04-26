@@ -6,7 +6,7 @@
   "price": "$19",
   "payment_provider": "polar",
   "category": "developer-tools",
-  "checkout_url": "https://buy.polar.sh/polar_cl_x0ZMumCo534zwcD2psufJbmOQ6V6TVfjdhx5V4FZifC",
+  "checkout_url": "https://buy.polar.sh/polar_cl_9yKVQljJIxruJKaNhMocdmR3eC4v6VC5RsM694ZMytk",
   "features": [
     "Real-time regex pattern matching",
     "Visual match highlighting with color-coded capture groups",
@@ -39,7 +39,7 @@
   "webhook_url": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app/api/webhook",
   "polar_product_id": "258c092a-7417-4e84-8a25-30ca64c7922e",
   "polar_product_price_id": "61e04dc9-4679-4ae9-896b-9a02a62b40b3",
-  "polar_checkout_link_id": "ba24047f-79d3-44dc-af87-a6d4047412ad",
+  "polar_checkout_link_id": "9f66b0e0-7e65-4f37-a71d-0b5565deba91",
   "created_cycle": 988,
   "deployed_cycle": 1108
 }

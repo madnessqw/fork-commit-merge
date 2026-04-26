@@ -37,12 +37,12 @@
     "TypeScript",
     "Tailwind CSS"
   ],
-  "checkout_url": "https://buy.polar.sh/polar_cl_trCJDYRxOvzVZL7yM3yRjepH9Hq0ar7hJaYNu1iYLn0",
+  "checkout_url": "https://buy.polar.sh/polar_cl_Bzq04ZfLEKyBBKrDh2ZhryXTIcfO338S1vZSA1JF316",
   "spec_version": "1.0",
   "vercel_url": "https://nginx-config-tester.vercel.app",
   "deployed_cycle": 1108,
   "payment_provider": "polar",
   "polar_product_id": "79e80c85-3dab-4020-a87e-17d3f28a99a2",
   "polar_product_price_id": "fce4808d-15fc-4b97-a2ba-2554c72577c6",
-  "polar_checkout_link_id": "6a6040c1-5c14-434a-8c62-87ba640b0870"
+  "polar_checkout_link_id": "b9f4d433-8b46-4a42-8475-8b2acf16fddb"
 }

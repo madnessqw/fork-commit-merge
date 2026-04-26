@@ -38,11 +38,11 @@
     "LLM tools",
     "MCP server manager"
   ],
-  "status": "building",
+  "status": "live",
   "created_cycle": 1236,
   "ideal_vercel_url": "https://lyra.vercel.app",
-  "checkout_url": "https://buy.polar.sh/polar_cl_stNPhasvJpC7d0ANJ3p1GqhbOO1UJN2CFno9T01huwe",
+  "checkout_url": "https://buy.polar.sh/polar_cl_usRLIqUGVmNoFwv4IRPPZs7lIHmSGyHqaT9gE1aumhw",
   "polar_product_id": "9ee78a9f-3d63-4842-a106-0f221a1e0f0e",
   "polar_product_price_id": "aca028b5-1c1e-46ee-8edc-40df79f80d9f",
-  "polar_checkout_link_id": "927ee306-9ab4-4ad1-9345-b24317fc56a2"
+  "polar_checkout_link_id": "5895f28f-f728-443a-bacd-316a707919de"
 }

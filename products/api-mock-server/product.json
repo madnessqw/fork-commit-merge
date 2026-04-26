@@ -16,12 +16,12 @@
   "status": "live",
   "category": "developer-tools",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_jOKhder8lrfEIrXKXy48SgRgXQOI9cn1Z0rs30Lzwcy",
+  "checkout_url": "https://buy.polar.sh/polar_cl_5eCpwp5tIgjSPkp3SIn84p9ejm1doz6K2CvYD3Gxog5",
   "vercel_url": "https://api-mock-server.vercel.app",
   "payment_provider": "polar",
   "polar_product_id": "74485063-af2e-42a2-a1f3-462c1fbc8634",
   "polar_product_price_id": "ac10e29b-e611-446d-a022-5f5860ad6d00",
-  "polar_checkout_link_id": "ec41e007-6108-4a40-ae96-c89880b32d72",
+  "polar_checkout_link_id": "9a3d980a-ff48-4aa3-a764-b0c3786d3f65",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

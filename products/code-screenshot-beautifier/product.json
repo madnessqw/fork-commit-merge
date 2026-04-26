@@ -16,7 +16,7 @@
   "status": "live",
   "category": "design-tools",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ",
+  "checkout_url": "https://buy.polar.sh/polar_cl_9xbdBkZzLt9uQwIhMtSjR3xSqYNpCqIveBG8O1N8GLP",
   "vercel_url": "https://code-screenshot-beautifier.vercel.app",
   "payment_provider": "polar",
   "deployment_url": "https://code-screenshot-beautifier-hl5t6j2n1-madnessqws-projects.vercel.app",
@@ -24,7 +24,7 @@
   "webhook_url": "https://code-screenshot-beautifier.vercel.app/api/webhook",
   "polar_product_id": "450ab4f4-cde9-454f-9b57-4977a0ed0f3b",
   "polar_product_price_id": "8f486154-fa57-4897-9e21-09174b5bc812",
-  "polar_checkout_link_id": "52ced4ae-c0ed-4f2e-8d28-5386b1444d50",
+  "polar_checkout_link_id": "6ef57a96-266e-493d-b9cf-30cba5d4318f",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

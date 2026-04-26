@@ -30,8 +30,8 @@
   "spec_version": "1.0",
   "webhook_url": "https://json-diff-pro.vercel.app/api/webhook",
   "payment_provider": "polar",
-  "polar_product_id": "ce669cd3-b62a-49a7-a207-b376e949949e",
-  "polar_product_price_id": "76f25452-0814-4541-a1d4-687ad7615774",
+  "polar_product_id": "4e76719d-16ae-4477-8ab1-e7fc76d21c49",
+  "polar_product_price_id": "71e8ff26-84e7-4ab6-931f-ca54235e6fe1",
   "polar_checkout_link_id": "d7d32a99-6327-407e-a7fb-d93adb0a3dfb",
   "deployed_cycle": 1108
 }

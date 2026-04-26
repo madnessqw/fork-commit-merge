@@ -22,8 +22,8 @@
   "github_url": "https://github.com/universe7creator/ssl-config-generator",
   "webhook_url": "https://ssl-config-generator.vercel.app/api/webhook",
   "payment_provider": "polar",
-  "polar_product_id": "d6b210ef-5f66-42ef-9027-645869971212",
-  "polar_product_price_id": "3c425ac9-ba16-45d5-91d8-81d3f85f4d84",
+  "polar_product_id": "6be6b1da-f087-444c-9e0c-4951770d890b",
+  "polar_product_price_id": "c0342922-630f-4de6-8793-a67e1ad6ed8b",
   "polar_checkout_link_id": "a767e815-b58d-4d8a-9731-cfadf5823dab",
   "created_cycle": 1116,
   "deployed_cycle": 1108

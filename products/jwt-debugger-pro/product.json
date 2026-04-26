@@ -22,8 +22,8 @@
   "github_url": "https://github.com/universe7creator/jwt-debugger-pro",
   "webhook_url": "https://jwt-debugger-pro.vercel.app/api/webhook",
   "payment_provider": "polar",
-  "polar_product_id": "feee5cf3-fc04-49b0-a464-6d42396c61cd",
-  "polar_product_price_id": "42b9cd6a-36a5-49a0-b267-99e26922563a",
+  "polar_product_id": "ae107f2e-cc68-4333-9601-7d0bb8700d69",
+  "polar_product_price_id": "8db7574a-56a2-4e63-8d9c-113e20d48167",
   "polar_checkout_link_id": "35a309b1-3f9e-4f2f-b15b-160569fc8f67",
   "created_cycle": 1116,
   "deployed_cycle": 1108

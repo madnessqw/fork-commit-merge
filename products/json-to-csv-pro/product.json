@@ -48,8 +48,8 @@
   "github_url": "https://github.com/universe7creator/json-to-csv-pro",
   "webhook_url": "https://json-to-csv-pro.vercel.app/api/webhook",
   "payment_provider": "polar",
-  "polar_product_id": "d322b1f1-d854-4d38-b4f8-efc64535b0d8",
-  "polar_product_price_id": "c42bf3f9-1a63-4e50-8b5f-3623cfd1b894",
+  "polar_product_id": "52497e89-fbd7-4020-a731-0ebf438655d1",
+  "polar_product_price_id": "3bd32e31-537a-4ed1-a56b-249c7c07c861",
   "polar_checkout_link_id": "0dfe8f54-3e0d-42fd-a525-eed05a1c4512",
   "created_cycle": 1116,
   "deployed_cycle": 1108

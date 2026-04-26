@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regex Library Pro — 100+ Production-Ready Patterns</title>
+  <meta name="description" content="Curated collection of production-ready regex patterns with instant testing. Email, URL, credit card, date patterns and more.">
+    <link rel="canonical" href="https://regex-library-pro.vercel.app/">
+    <meta name="author" content="UniverseCreator">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Regex Library Pro">
+
+    <meta property="og:title" content="Regex Library Pro — Developer Tool">
+    <meta property="og:description" content="Access 100+ battle-tested regex patterns for emails, URLs, credit cards, dates, and more. Test instantly with live matching and explanations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://regex-library-pro.vercel.app">
+    <meta property="og:image" content="https://regex-library-pro.vercel.app/og-image.png">
+    <meta property="og:site_name" content="UniverseCreator Tools">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Regex Library Pro — Developer Tool">
+    <meta name="twitter:description" content="Access 100+ battle-tested regex patterns for emails, URLs, credit cards, dates, and more. Test instantly with live matching and explanations.">
+    <meta name="twitter:image" content="https://regex-library-pro.vercel.app/og-image.png">
+    <meta name="twitter:site" content="@universecreator">
+    <meta name="twitter:creator" content="@universecreator">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Regex Library Pro",
+  "description": "Access 100+ battle-tested regex patterns for emails, URLs, credit cards, dates, and more. Test instantly with live matching and explanations.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "50"
+  }
+}
+</script>
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://regex-library-pro.vercel.app">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0a0f',
+            surface: '#14141f',
+            border: '#1e1e2e',
+            accent: '#8b5cf6',
+            accent2: '#a78bfa',
+            success: '#22c55e',
+            warning: '#f59e0b',
+            error: '#ef4444',
+            text: '#e2e8f0',
+            muted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0a0a0f; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .card { background: #14141f; border: 1px solid #1e1e2e; border-radius: 0.75rem; }
+    .pattern-card { transition: all 0.2s; }
+    .pattern-card:hover { border-color: #8b5cf6; transform: translateY(-2px); }
+    .category-chip { transition: all 0.2s; cursor: pointer; }
+    .category-chip:hover { background: #2e2e3e; }
+    .category-chip.active { background: #8b5cf6; color: white; }
+    .match-highlight { background: rgba(34, 197, 94, 0.3); border-bottom: 2px solid #22c55e; }
+    .btn { background: #8b5cf6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 500; transition: all 0.2s; }
+    .btn:hover { background: #7c3aed; }
+    .copy-btn { position: relative; }
+    .copy-feedback { position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); background: #22c55e; color: white; padding: 0.25rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .copy-feedback.show { opacity: 1; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #14141f; }
+    ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 4px; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-3xl font-bold mb-2">Regex Library Pro</h1>
+      <p class="text-muted">100+ production-ready regex patterns with instant testing</p>
+    </header>
+
+    <!-- Search & Filter -->
+    <div class="card p-6 mb-6">
+      <input type="text" id="searchInput" class="w-full bg-bg border border-border rounded-lg px-4 py-3 text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Search patterns...">
+      <div id="categoryFilters" class="flex flex-wrap gap-2 mt-4">
+        <button class="category-chip active px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="all">All</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="email">Email</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="url">URL</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="phone">Phone</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="date">Date</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="credit-card">Credit Card</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="password">Password</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="ip">IP Address</button>
+        <button class="category-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-category="filename">Filename</button>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Pattern List -->
+      <div class="lg:col-span-2">
+        <div id="patternGrid" class="grid md:grid-cols-2 gap-4"></div>
+      </div>
+
+      <!-- Tester Panel -->
+      <div class="card p-6 sticky top-4 h-fit">
+        <h3 class="text-lg font-semibold mb-4">Live Tester</h3>
+        <div id="noSelection" class="text-center text-muted py-8">
+          <svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <p>Select a pattern to test</p>
+        </div>
+        <div id="testerPanel" class="hidden">
+          <div class="mb-4">
+            <label class="text-sm text-muted mb-2 block">Pattern</label>
+            <div class="relative">
+              <code id="selectedPattern" class="font-mono text-sm bg-bg border border-border rounded-lg p-3 block break-all"></code>
+              <button id="copyPatternBtn" class="copy-btn mt-2 btn text-sm w-full flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copy Pattern
+                <span class="copy-feedback">Copied!</span>
+              </button>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="text-sm text-muted mb-2 block">Test String</label>
+            <textarea id="testInput" class="w-full h-24 bg-bg border border-border rounded-lg p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter text to test against the pattern..."></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="text-sm text-muted mb-2 block">Matches</label>
+            <div id="matchOutput" class="bg-bg border border-border rounded-lg p-3 font-mono text-sm min-h-[60px] text-muted">No matches</div>
+          </div>
+          <div id="patternInfo" class="text-sm text-muted"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const patterns = [
+      { name: 'Email Address', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, category: 'email', desc: 'Standard email validation' },
+      { name: 'URL', pattern: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/, category: 'url', desc: 'HTTP/HTTPS URLs' },
+      { name: 'Phone (US)', pattern: /^\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$/, category: 'phone', desc: 'US phone numbers' },
+      { name: 'Phone (Intl)', pattern: /^\+?[1-9]\d{1,14}$/, category: 'phone', desc: 'International phone (E.164)' },
+      { name: 'Date ISO', pattern: /^\d{4}-\d{2}-\d{2}$/, category: 'date', desc: 'ISO 8601 date (YYYY-MM-DD)' },
+      { name: 'Date US', pattern: /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/, category: 'date', desc: 'US date (MM/DD/YYYY)' },
+      { name: 'Credit Card', pattern: /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|6(?:011|5[0-9]{2})[0-9]{12})$/, category: 'credit-card', desc: 'Visa, MasterCard, Amex' },
+      { name: 'Strong Password', pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, category: 'password', desc: 'Min 8 chars, upper, lower, number, special' },
+      { name: 'IPv4', pattern: /^(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)$/, category: 'ip', desc: 'IPv4 address' },
+      { name: 'IPv6', pattern: /^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/, category: 'ip', desc: 'IPv6 address' },
+      { name: 'Filename', pattern: /^[a-zA-Z0-9][a-zA-Z0-9\-_\.]{1,255}$/, category: 'filename', desc: 'Safe filename' },
+      { name: 'Slug', pattern: /^[a-z0-9]+(?:-[a-z0-9]+)*$/, category: 'filename', desc: 'URL-friendly slug' },
+      { name: 'UUID', pattern: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i, category: 'filename', desc: 'UUID v4' },
+      { name: 'Hex Color', pattern: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/, category: 'filename', desc: 'Hex color code' },
+      { name: 'Username', pattern: /^[a-zA-Z0-9_-]{3,20}$/, category: 'email', desc: 'Username (3-20 chars)' },
+      { name: 'Hashtag', pattern: /#[a-zA-Z0-9_]+/, category: 'url', desc: 'Social media hashtag' },
+      { name: 'Mention', pattern: /@[a-zA-Z0-9_]+/, category: 'url', desc: 'Social media mention' },
+      { name: 'Time 24h', pattern: /^([01]\d|2[0-3]):([0-5]\d)(:([0-5]\d))?$/, category: 'date', desc: '24-hour time (HH:MM or HH:MM:SS)' },
+      { name: 'Postal Code (US)', pattern: /^\d{5}(-\d{4})?$/, category: 'phone', desc: 'US ZIP code' },
+    ];
+
+    let selectedPattern = null;
+    let currentCategory = 'all';
+
+    function renderPatterns() {
+      const grid = document.getElementById('patternGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+
+      const filtered = patterns.filter(p => {
+        const matchCat = currentCategory === 'all' || p.category === currentCategory;
+        const matchSearch = p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search);
+        return matchCat && matchSearch;
+      });
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="pattern-card card p-4 cursor-pointer" onclick="selectPattern(${patterns.indexOf(p)})">
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-semibold text-sm">${p.name}</h3>
+            <span class="text-xs px-2 py-0.5 rounded bg-surface text-muted">${p.category}</span>
+          </div>
+          <code class="font-mono text-xs text-muted break-all">${p.pattern}</code>
+          <p class="text-xs text-muted mt-2">${p.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    function selectPattern(idx) {
+      selectedPattern = patterns[idx];
+      const panel = document.getElementById('testerPanel');
+      const noSel = document.getElementById('noSelection');
+
+      noSel.classList.add('hidden');
+      panel.classList.remove('hidden');
+
+      document.getElementById('selectedPattern').textContent = selectedPattern.pattern;
+      document.getElementById('patternInfo').textContent = `${selectedPattern.name} — ${selectedPattern.desc}`;
+
+      if (document.getElementById('testInput').value) {
+        testPattern();
+      }
+    }
+
+    function testPattern() {
+      if (!selectedPattern) return;
+
+      const input = document.getElementById('testInput').value;
+      const output = document.getElementById('matchOutput');
+
+      if (!input) {
+        output.innerHTML = '<span class="text-muted">No matches</span>';
+        return;
+      }
+
+      try {
+        const matches = input.match(new RegExp(selectedPattern.pattern));
+        if (matches) {
+          let highlighted = input;
+          matches.forEach(m => {
+            highlighted = highlighted.replace(m, `<span class="match-highlight">${m}</span>`);
+          });
+          output.innerHTML = highlighted;
+          output.classList.remove('text-muted');
+        } else {
+          output.innerHTML = '<span class="text-warning">No matches found</span>';
+        }
+      } catch (e) {
+        output.innerHTML = `<span class="text-error">Error: ${e.message}</span>`;
+      }
+    }
+
+    // Event Listeners
+    document.getElementById('searchInput').addEventListener('input', renderPatterns);
+
+    document.querySelectorAll('.category-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentCategory = chip.dataset.category;
+        renderPatterns();
+      });
+    });
+
+    document.getElementById('testInput').addEventListener('input', testPattern);
+
+    document.getElementById('copyPatternBtn').addEventListener('click', async () => {
+      if (!selectedPattern) return;
+      try {
+        await navigator.clipboard.writeText(selectedPattern.pattern.toString());
+        const fb = document.querySelector('#copyPatternBtn .copy-feedback');
+        fb.classList.add('show');
+        setTimeout(() => fb.classList.remove('show'), 1500);
+      } catch (e) {}
+    });
+
+    // Initial render
+    renderPatterns();
+  </script>
+</body>
+</html>

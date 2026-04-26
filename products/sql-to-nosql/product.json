@@ -16,7 +16,7 @@
   "status": "live",
   "category": "developer-tools",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_thd5uw8PKttnBq51UARVGnCEytJKUIEG3wrIa24dktJ",
+  "checkout_url": "https://buy.polar.sh/polar_cl_njeCztRQmyT40fgbIxXDgXK0d8rCf5ALcmjpW2B1ACY",
   "vercel_url": "https://sql-to-nosql.vercel.app",
   "deployment_url": "https://sql-to-nosql-jcn0y6ztq-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/sql-to-nosql",
@@ -24,7 +24,7 @@
   "payment_provider": "polar",
   "polar_product_id": "8ab04ad3-ba2b-4277-9a01-b4ae5a83d6d8",
   "polar_product_price_id": "55c52903-d734-45aa-9f1e-c376c90c76c3",
-  "polar_checkout_link_id": "14207f5a-d7a0-447f-9394-7d9a55a99598",
+  "polar_checkout_link_id": "d3eb1133-3a15-4d6f-8fdf-32b8ad7a3927",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

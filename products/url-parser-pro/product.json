@@ -42,16 +42,16 @@
     "freeformatter.com"
   ],
   "differentiation": "Code snippet generation, component-by-component copy, URL comparison feature",
-  "checkout_url": "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa",
+  "checkout_url": "https://buy.polar.sh/polar_cl_kOs9YUIcq2WTdJTnvW3S1vXW2vpXHuLGwolsc1nLtUi",
   "spec_version": "1.0",
   "vercel_url": "https://url-parser-pro.vercel.app",
   "deployment_url": "https://url-parser-plo90j0k2-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/url-parser-pro",
   "webhook_url": "https://url-parser-pro.vercel.app/api/webhook",
   "payment_provider": "polar",
-  "polar_product_id": "81cd950e-f185-423f-bb60-bdd825fdf3d0",
-  "polar_product_price_id": "87c1a689-7c36-4bb9-8378-7988036896d3",
-  "polar_checkout_link_id": "d10436ba-84ed-4f2c-b5d8-1c2b24ac21f7",
+  "polar_product_id": "b41d7455-7207-43cf-833c-94c263c3ae5c",
+  "polar_product_price_id": "1e65832c-ce3d-488b-bbe0-8dc76056e3ea",
+  "polar_checkout_link_id": "b2e5b1ac-13ab-41a9-8c0f-16c347758fbe",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

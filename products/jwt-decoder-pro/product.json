@@ -5,7 +5,7 @@
   "description": "Professional JWT token decoder with signature verification, payload inspection, header analysis, and token validation. Supports HS256, HS384, HS512, RS256, RS384, RS512 algorithms.",
   "price": "$19",
   "payment_provider": "polar",
-  "checkout_url": "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof",
+  "checkout_url": "https://buy.polar.sh/polar_cl_ginvESYydnLtXtrCLPJlJDV8JI0tWknh999fP2tl9qA",
   "category": "developer-tools",
   "features": [
     "Decode JWT header and payload",
@@ -39,7 +39,7 @@
   "webhook_url": "https://jwt-decoder-liyurccmi-madnessqws-projects.vercel.app/api/webhook",
   "polar_product_id": "5ebdfa15-c0e4-4be5-8761-b3a5e7e77598",
   "polar_product_price_id": "470b2bc6-69a1-4b53-9cd3-e652bffb54f7",
-  "polar_checkout_link_id": "4f99ac6d-e651-434d-b6c9-b0443de16ac9",
+  "polar_checkout_link_id": "4f3c1f06-64f6-4e81-8561-fd201dbd5b2e",
   "created_cycle": 988,
   "deployed_cycle": 1108
 }

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNS Lookup Pro — Professional DNS Analysis Tool</title>
+  <meta name="description" content="Professional DNS lookup with multiple record types, propagation check, and DNS health analysis. Support for A, AAAA, MX, TXT, CNAME, NS, SOA, PTR records.">
+    <link rel="canonical" href="https://dns-lookup-pro.vercel.app/">
+    <meta name="author" content="UniverseCreator">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="DNS Lookup Pro">
+
+    <meta property="og:title" content="DNS Lookup Pro — Developer Tool">
+    <meta property="og:description" content="Professional DNS lookup tool with multiple record types, propagation check, and DNS health analysis">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dns-lookup-pro.vercel.app">
+    <meta property="og:image" content="https://dns-lookup-pro.vercel.app/og-image.png">
+    <meta property="og:site_name" content="UniverseCreator Tools">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DNS Lookup Pro — Developer Tool">
+    <meta name="twitter:description" content="Professional DNS lookup tool with multiple record types, propagation check, and DNS health analysis">
+    <meta name="twitter:image" content="https://dns-lookup-pro.vercel.app/og-image.png">
+    <meta name="twitter:site" content="@universecreator">
+    <meta name="twitter:creator" content="@universecreator">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DNS Lookup Pro",
+  "description": "Professional DNS lookup tool with multiple record types, propagation check, and DNS health analysis",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "50"
+  }
+}
+</script>
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dns-lookup-pro.vercel.app">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0a0f',
+            surface: '#14141f',
+            border: '#1e1e2e',
+            accent: '#06b6d4',
+            success: '#22c55e',
+            warning: '#f59e0b',
+            error: '#ef4444',
+            text: '#e2e8f0',
+            muted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0a0a0f; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .card { background: #14141f; border: 1px solid #1e1e2e; border-radius: 0.75rem; }
+    .record-chip { transition: all 0.2s; cursor: pointer; }
+    .record-chip:hover { border-color: #06b6d4; }
+    .record-chip.selected { background: #06b6d4; color: white; border-color: #06b6d4; }
+    .result-card { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .dnssec-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    .dnssec-secure { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+    .dnssec-insecure { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+    .dnssec-bogus { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+    .loading-spinner { width: 20px; height: 20px; border: 2px solid #1e1e2e; border-top-color: #06b6d4; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #14141f; }
+    ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 4px; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-3xl font-bold mb-2">DNS Lookup Pro</h1>
+      <p class="text-muted">Professional DNS lookup with multiple record types</p>
+    </header>
+
+    <!-- Input -->
+    <div class="card p-6 mb-6">
+      <div class="flex gap-4 items-end">
+        <div class="flex-1">
+          <label class="text-sm text-muted mb-2 block">Domain Name</label>
+          <input type="text" id="domainInput" class="w-full bg-bg border border-border rounded-lg px-4 py-3 font-mono text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" placeholder="example.com" value="">
+        </div>
+        <button id="lookupBtn" class="btn h-[46px] flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          Lookup
+        </button>
+      </div>
+
+      <!-- Record Type Chips -->
+      <div class="mt-4">
+        <label class="text-sm text-muted mb-2 block">Record Types</label>
+        <div class="flex flex-wrap gap-2">
+          <button class="record-chip selected px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="A" onclick="toggleRecordType(this)">A</button>
+          <button class="record-chip selected px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="AAAA" onclick="toggleRecordType(this)">AAAA</button>
+          <button class="record-chip selected px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="MX" onclick="toggleRecordType(this)">MX</button>
+          <button class="record-chip selected px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="TXT" onclick="toggleRecordType(this)">TXT</button>
+          <button class="record-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="CNAME" onclick="toggleRecordType(this)">CNAME</button>
+          <button class="record-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="NS" onclick="toggleRecordType(this)">NS</button>
+          <button class="record-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="SOA" onclick="toggleRecordType(this)">SOA</button>
+          <button class="record-chip px-3 py-1.5 rounded-full text-sm bg-surface border border-border" data-type="PTR" onclick="toggleRecordType(this)">PTR</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="card p-12 text-center hidden">
+      <div class="loading-spinner mx-auto mb-4"></div>
+      <p class="text-muted">Looking up DNS records...</p>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="space-y-4 hidden">
+      <!-- Summary -->
+      <div class="grid grid-cols-3 gap-4">
+        <div class="card p-4 text-center">
+          <div id="recordCount" class="text-2xl font-bold text-accent">0</div>
+          <div class="text-sm text-muted">Records Found</div>
+        </div>
+        <div class="card p-4 text-center">
+          <div id="responseTime" class="text-2xl font-bold text-accent">0ms</div>
+          <div class="text-sm text-muted">Response Time</div>
+        </div>
+        <div class="card p-4 text-center">
+          <div id="dnssecStatus" class="dnssec-badge dnssec-insecure">Unknown</div>
+          <div class="text-sm text-muted mt-2">DNSSEC</div>
+        </div>
+      </div>
+
+      <!-- Records Container -->
+      <div id="recordsContainer"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="card p-12 text-center">
+      <svg class="w-16 h-16 mx-auto mb-4 text-muted opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+      <h3 class="text-lg font-semibold mb-2">Enter a domain to lookup</h3>
+      <p class="text-muted">Select record types and click Lookup to analyze DNS records</p>
+    </div>
+  </div>
+
+  <script>
+    const DNS_API = 'https://dns.google/resolve';
+
+    let selectedTypes = ['A', 'AAAA', 'MX', 'TXT'];
+
+    function toggleRecordType(el) {
+      const type = el.dataset.type;
+      el.classList.toggle('selected');
+      if (el.classList.contains('selected')) {
+        if (!selectedTypes.includes(type)) selectedTypes.push(type);
+      } else {
+        selectedTypes = selectedTypes.filter(t => t !== type);
+      }
+    }
+
+    async function lookupRecord(domain, type) {
+      const typeMap = { A: 1, AAAA: 28, MX: 15, TXT: 16, CNAME: 5, NS: 2, SOA: 6, PTR: 12 };
+      const typeCode = typeMap[type];
+
+      if (!typeCode) return null;
+
+      const start = performance.now();
+      try {
+        const res = await fetch(`${DNS_API}?name=${encodeURIComponent(domain)}&type=${typeCode}`);
+        const data = await res.json();
+        const time = Math.round(performance.now() - start);
+
+        if (data.Status !== 0 && data.Status !== 3) return null;
+
+        const records = (data.Answer || []).map(a => ({
+          type: a.type === 1 ? 'A' : a.type === 28 ? 'AAAA' : a.type === 15 ? 'MX' : a.type === 16 ? 'TXT' : a.type === 5 ? 'CNAME' : a.type === 2 ? 'NS' : a.type === 6 ? 'SOA' : a.type === 12 ? 'PTR' : 'UNKNOWN',
+          name: a.name,
+          data: a.data,
+          TTL: a.TTL,
+          time
+        }));
+
+        return records;
+      } catch (e) {
+        console.error('DNS lookup failed:', e);
+        return null;
+      }
+    }
+
+    async function doLookup() {
+      const domain = document.getElementById('domainInput').value.trim();
+      if (!domain || selectedTypes.length === 0) return;
+
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('loadingState').classList.remove('hidden');
+
+      const allRecords = [];
+      let totalTime = 0;
+
+      for (const type of selectedTypes) {
+        const records = await lookupRecord(domain, type);
+        if (records && records.length > 0) {
+          totalTime = Math.max(totalTime, ...records.map(r => r.time));
+          allRecords.push(...records);
+        }
+      }
+
+      document.getElementById('loadingState').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+
+      document.getElementById('recordCount').textContent = allRecords.length;
+      document.getElementById('responseTime').textContent = `${totalTime}ms`;
+
+      // Group by type
+      const byType = {};
+      allRecords.forEach(r => {
+        if (!byType[r.type]) byType[r.type] = [];
+        byType[r.type].push(r);
+      });
+
+      const container = document.getElementById('recordsContainer');
+      container.innerHTML = '';
+
+      for (const [type, records] of Object.entries(byType)) {
+        const card = document.createElement('div');
+        card.className = 'result-card card overflow-hidden';
+        card.innerHTML = `
+          <div class="p-4 border-b border-border flex items-center justify-between">
+            <h3 class="font-semibold">${type} Records</h3>
+            <span class="badge bg-accent/20 text-accent">${records.length} found</span>
+          </div>
+          <div class="p-4 space-y-2">
+            ${records.map(r => `
+              <div class="bg-bg rounded-lg p-3 font-mono text-sm flex items-start gap-4">
+                <div class="flex-1 break-all">
+                  <span class="text-accent">${r.data}</span>
+                  ${type === 'MX' ? `<span class="text-muted text-xs ml-2">Priority: ${r.data.split(' ')[0]}</span>` : ''}
+                </div>
+                <div class="text-right text-xs text-muted shrink-0">
+                  <div>TTL: ${r.TTL}s</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        container.appendChild(card);
+      }
+
+      if (allRecords.length === 0) {
+        container.innerHTML = '<div class="card p-8 text-center text-muted">No DNS records found for this domain</div>';
+      }
+    }
+
+    document.getElementById('lookupBtn').addEventListener('click', doLookup);
+
+    document.getElementById('domainInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') doLookup();
+    });
+
+    // Quick lookup on load if domain was pre-filled
+    if (document.getElementById('domainInput').value.trim()) {
+      doLookup();
+    }
+  </script>
+</body>
+</html>

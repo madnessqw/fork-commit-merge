@@ -1,0 +1,13 @@
+{
+  "name": "universe-mcp-server",
+  "version": "1.0.0",
+  "description": "UniverseCreator MCP Server — access 182+ developer tools via MCP protocol",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": ["mcp", "model-context-protocol", "developer-tools", "api-gateway"],
+  "license": "MIT"
+}
