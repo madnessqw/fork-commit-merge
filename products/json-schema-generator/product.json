@@ -15,7 +15,7 @@
     "Validate against schema"
   ],
   "tech_stack": "Vanilla HTML + Tailwind CDN",
-  "status": "spec_ready",
+  "status": "live",
   "created_cycle": 1052,
   "seo_optimized": false,
   "checkout_url": "https://buy.polar.sh/polar_cl_9eJ89VFYV1ZJUUquwzgP8a4s1GqT01gFXy1Zd0KmTrG",
@@ -23,5 +23,6 @@
   "payment_provider": "polar",
   "polar_product_id": "c6489c82-79a7-4520-bf4e-e71f569395f7",
   "polar_product_price_id": "fb9222cc-01c5-4bfb-be45-8031a7bfe935",
-  "polar_checkout_link_id": "65d3eb13-17a9-478d-bd65-1ab60aee3929"
+  "polar_checkout_link_id": "65d3eb13-17a9-478d-bd65-1ab60aee3929",
+  "vercel_url": "https://json-schema-generator-824w87j5v-madnessqws-projects.vercel.app"
 }

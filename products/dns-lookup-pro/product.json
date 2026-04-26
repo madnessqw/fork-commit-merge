@@ -4,7 +4,7 @@
   "description": "Professional DNS lookup tool with multiple record types, propagation check, and DNS health analysis",
   "price": "$19",
   "category": "developer-tools",
-  "status": "spec_ready",
+  "status": "live",
   "features": [
     "Multiple record types: A, AAAA, MX, TXT, CNAME, NS, SOA, PTR",
     "DNS propagation check across global resolvers",
@@ -31,5 +31,6 @@
   "polar_product_price_id": "68fc6eeb-2dcc-40d7-ba48-5adbffaf8260",
   "polar_checkout_link_id": "bd5c5a0c-e11e-4929-96db-9c1880aa7b28",
   "created_cycle": 988,
-  "tagline": "Professional-grade dns tool"
+  "tagline": "Professional-grade dns tool",
+  "vercel_url": "https://dns-lookup-37eldci5h-madnessqws-projects.vercel.app"
 }

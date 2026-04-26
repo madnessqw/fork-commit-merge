@@ -4,7 +4,7 @@
   "description": "Comprehensive HTML validation with W3C standards, accessibility checks, and SEO analysis",
   "price": "$19",
   "category": "developer-tools",
-  "status": "spec_ready",
+  "status": "live",
   "features": [
     "W3C HTML5 standard compliance check",
     "Accessibility audit (WCAG 2.1 guidelines)",
@@ -30,5 +30,6 @@
   "polar_product_price_id": "deefdf50-7fc2-4286-970a-dcd36babe34f",
   "polar_checkout_link_id": "1e39622f-de10-47f8-ae9e-3d4c07c6ed40",
   "created_cycle": 988,
-  "tagline": "Validate and format html validator instantly"
+  "tagline": "Validate and format html validator instantly",
+  "vercel_url": "https://html-validator-3nxp4rpga-madnessqws-projects.vercel.app"
 }
