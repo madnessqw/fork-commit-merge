@@ -1,6 +1,31 @@
 # Kimi Analyst Brief — Adım Adım Görev
 
+## ÖNCELİK SIRASI (KRİTİK)
+
+**⚠️ DÖNGÜYE HER ZAMAN BURADAN BAŞLA — AŞAĞIĞI İZLEME:**
+
+```
+1. CHECKOUT ÖNCELİK: polar_checkout_sync.py sync-links çalıştır, gap varsa kapat
+2. SATIŞ STRATEJİSİ: @sales-strategist subagent çağır, ürün analizi yap
+3. SİSTEM ANALİZİ: Sağlık, error pattern, evolution assessment
+```
+
 ## Bu Döngünün Odak Alanları
+
+### 0. CHECKOUT KONTROLÜ (ÖNCE!)
+```bash
+cd /home/gokhan/UniverseCreator
+# Checkout gap kontrol et
+python3 scripts/polar_checkout_sync.py sync-links --status live --status ready_for_payment --replace-non-polar 2>&1 | tail -20
+```
+
+### 0b. SATIŞ STRATEJİSİ (İKİNCİ ÖNCELİK)
+```bash
+# OpenCode sales-strategist subagent çağır
+@sales-strategist analyze current product portfolio for sales optimization opportunities
+# veya
+@paid-social-strategist suggest traffic and conversion improvements for checkout pages
+```
 
 ### 1. Sistem Sağlık Kontrolü
 ```bash
@@ -38,6 +63,16 @@ git log --oneline -10
 ```markdown
 # Kimi Cycle {NUM} Rapor — {TARIH}
 
+## Checkout Durumu
+- Checkout Gap: N ürün
+- Sync-links sonucu: [BAŞARILI/BAŞARISIZ]
+- Düzeltilen: N
+
+## Satış Stratejisi Analizi
+- @sales-strategist çıktısı: [Özet]
+- Dönüşüm önerileri: [Liste]
+- Fiyat optimizasyonu: [Öneriler]
+
 ## Sistem Durumu
 - Health Score: X%
 - Live Products: N
@@ -66,6 +101,7 @@ git log --oneline -10
 
 ```
 🔬 Kimi Cycle {NUM}
+💰 Checkout: {GAP} | 📊 Satış Stratejisi: [ÖNERİ]
 📊 Sağlık: {X}% | 🔴 Sorun: {N} | 📈 Öneri: {Z}
 🕐 {SAAT}
 ```

@@ -83,13 +83,17 @@ ADIMLAR (toplam hedef süre: <25 dakika):
 Gerekirse @agent-name syntax ile OpenCode subagent'ları çağırabilirsin.
 **MAX 2 paralel subagent** kuralı — aynı anda daha fazlası yasak.
 
-Kullanışlı agentlar (analiz odaklı):
+Kullanışlı agentlar:
+- @sales-strategist — **🔴 SATIŞ STRATEJİSİ** (PRIORITE): ürün pricing analizi, checkout dönüşüm iyileştirme, satış hunisi optimizasyonu
+- @paid-social-strategist — sosyal medya satış kanalları, trafik analizi
+- @market-research — pazar fırsatları, rakip analizi
+- @conversion-rate-optimizer — A/B test önerileri, dönüşüm metrikleri
 - @analytics-reporter — run_ledger pattern analizi
 - @workflow-optimizer — loop verimliliği analizi
 - @sre-site-reliability-engineer — health check analizi
 - @database-optimizer — veri tutarlılığı kontrolü
 
-Örnek: @analytics-reporter analyze run_ledger.jsonl for failure patterns
+Örnek: @sales-strategist analyze checkout conversion for current products and suggest pricing optimizations
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ## MOD SEÇİMİ (Tercihe bağlı — varsayılan: ANALYSIS)
