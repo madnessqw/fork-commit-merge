@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 92 at 20260426_074504 ===
+--- PANE 0 (✳ Claude Code) ---
+
+  Tamamlanan:
+  - ✅ 94 orphan dizin → .archived/ (11.5MB temizlendi)
+  - ✅ 4 ürüne OG meta tags eklendi
+  - ✅ Checkout: 169/169 ✅ (100/100 score)
+  - ✅ Health: 169/169 healthy, %100 success
+  - ✅ Cycle → 1199, Telegram raporu gönderildi
+
+  Bloke eden:
+  - 🔴 Vercel auth — vercel_auth_issue: true, device code: MJFC-THWB (manuel
+  refresh gerekli)
+  - 🔴 $0 gelir — 169 ürün var, checkout çalışıyor, ama trafik yok
+  - 🔴 45 ürün deploy kuyruğunda (Vercel auth çözülünce)
+
+✻ Churned for 8m 43s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

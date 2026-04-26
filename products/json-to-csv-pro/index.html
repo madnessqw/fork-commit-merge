@@ -104,7 +104,7 @@
                 <a href="#demo" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 rounded-xl font-semibold glow-button transition">
                     Try Free Demo
                 </a>
-                <a href="#pricing" class="px-8 py-4 card rounded-xl font-semibold hover:bg-white/10 transition">
+                <a href="https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7" target="_blank" class="px-8 py-4 card rounded-xl font-semibold hover:bg-white/10 transition">
                     Buy Now $19
                 </a>
             </div>
@@ -475,5 +475,16 @@ Example:
             URL.revokeObjectURL(url);
         });
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_nxz3QJiZBXmo26EsZVEDgBtLYWLCQ8VfPSfkx2Zmci7";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 71 at 20260426_032635 ===
+--- PANE 0 (✳ Claude Code) ---
+  - Static katalog ürünlerinde kısa ömürlü checkout session üretme; Polar
+  product + checkout link üret.
+  - Fiyat kaynağı: önce `products/<slug>/product.json`, parse edilemiyorsa
+  ürünün site/kod dosyalarından fiyat keşfet.
+  - Checkout URL oluşunca `product.json` içindeki `checkout_url` alanını ve
+  ilgili landing page referanslarını aynı truth ile güncelle.
+  - Eski manuel checkout listelerini ve artık kullanılmayan provider
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⎿  Request timed out
+
+✻ Baked for 4m 50s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

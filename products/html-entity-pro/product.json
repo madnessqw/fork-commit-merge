@@ -4,7 +4,11 @@
   "tagline": "Convert special characters to HTML entities and back. Perfect for web developers and content creators.",
   "description": "Convert special characters to HTML entities and back. Perfect for web developers and content creators.",
   "price": "$19",
-  "features": [],
+  "features": [
+    "Professional-grade features",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://html-entity-pro.vercel.app",

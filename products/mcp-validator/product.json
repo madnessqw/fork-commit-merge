@@ -4,7 +4,11 @@
   "tagline": "Validate MCP server manifests, test tool endpoints, and debug Model Context Protocol implementations instantly",
   "description": "Validate MCP server manifests, test tool endpoints, and debug Model Context Protocol implementations instantly",
   "price": "9",
-  "features": [],
+  "features": [
+    "Real-time validation",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://mcp-validator.vercel.app",

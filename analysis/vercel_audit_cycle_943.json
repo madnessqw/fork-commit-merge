@@ -1,0 +1,733 @@
+{
+  "cycle": 943,
+  "timestamp": "2026-04-20T04:57:45Z",
+  "source": "curl -4 -L -sS -o /dev/null -w %{http_code}",
+  "results": [
+    {
+      "slug": "ai-cost-dashboard",
+      "url": "https://ai-cost-dashboard-jade.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://ai-cost-dashboard.vercel.app",
+        "https://ai-cost-dashboard-jade.vercel.app"
+      ],
+      "canonical_url": "https://ai-cost-dashboard.vercel.app",
+      "canonical_http_code": 404
+    },
+    {
+      "slug": "api-compare",
+      "url": "https://api-compare.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://api-compare.vercel.app",
+        "https://api-compare-zqgb3slal-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://api-compare.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "api-doc-generator",
+      "url": "https://api-doc-generator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://api-doc-generator.vercel.app",
+        "https://api-doc-generator-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://api-doc-generator.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "base64-pro",
+      "url": "https://base64-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://base64-pro.vercel.app"
+      ],
+      "canonical_url": "https://base64-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "carbonlite",
+      "url": "https://carbonlite.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://carbonlite.vercel.app"
+      ],
+      "canonical_url": "https://carbonlite.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "code-minifier-pro",
+      "url": "https://code-minifier-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://code-minifier-pro.vercel.app",
+        "https://code-minifier-o0v5tty26-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://code-minifier-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "codesnap",
+      "url": "https://codesnap.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://codesnap.vercel.app"
+      ],
+      "canonical_url": "https://codesnap.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "colormine",
+      "url": "https://colormine.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://colormine.vercel.app"
+      ],
+      "canonical_url": "https://colormine.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "cron-expression-parser",
+      "url": "https://cron-expression-parser.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://cron-expression-parser.vercel.app",
+        "https://cron-expression-parser-ciuzk1rl0-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://cron-expression-parser.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "css-to-tailwind",
+      "url": "https://css-to-tailwind.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://css-to-tailwind.vercel.app",
+        "https://css-to-tailwind-9scptoo41-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://css-to-tailwind.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "csv-to-json-pro",
+      "url": "https://csv-to-json-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://csv-to-json-pro.vercel.app"
+      ],
+      "canonical_url": "https://csv-to-json-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "curl2code",
+      "url": "https://curl2code.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://curl2code.vercel.app"
+      ],
+      "canonical_url": "https://curl2code.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "dataflip",
+      "url": "https://dataflip.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://dataflip.vercel.app",
+        "https://dataflip-c75m3wvzn-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://dataflip.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "diffmaster",
+      "url": "https://diffmaster-rose.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://diffmaster.vercel.app",
+        "https://diffmaster-rose.vercel.app",
+        "https://diffmaster-jm384m18j-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://diffmaster.vercel.app",
+      "canonical_http_code": 401
+    },
+    {
+      "slug": "docker-compose-validator",
+      "url": "https://docker-compose-validator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://docker-compose-validator.vercel.app"
+      ],
+      "canonical_url": "https://docker-compose-validator.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "function-call-debugger",
+      "url": "https://function-call-debugger.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://function-call-debugger.vercel.app"
+      ],
+      "canonical_url": "https://function-call-debugger.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "geoip-lite",
+      "url": "https://geoip-lite.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://geoip-lite.vercel.app"
+      ],
+      "canonical_url": "https://geoip-lite.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "git-command-builder",
+      "url": "https://git-command-builder.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://git-command-builder.vercel.app",
+        "https://git-command-builder-iyhed8myl-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://git-command-builder.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "graphql-query-builder",
+      "url": "https://graphql-query-builder.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://graphql-query-builder.vercel.app"
+      ],
+      "canonical_url": "https://graphql-query-builder.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "hash-generator-pro",
+      "url": "https://hash-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://hash-generator-pro.vercel.app",
+        "https://hash-generator-af87mmxk5-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://hash-generator-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "hmac-generator-pro",
+      "url": "https://hmac-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://hmac-generator-pro.vercel.app"
+      ],
+      "canonical_url": "https://hmac-generator-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "html-beautifier",
+      "url": "https://html-beautifier.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://html-beautifier.vercel.app"
+      ],
+      "canonical_url": "https://html-beautifier.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "html-to-markdown-pro",
+      "url": "https://html-to-markdown-pro.vercel.app",
+      "http_code": 404,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://html-to-markdown-pro.vercel.app"
+      ],
+      "canonical_url": "https://html-to-markdown-pro.vercel.app",
+      "canonical_http_code": 404
+    },
+    {
+      "slug": "http-api-client",
+      "url": "https://http-api-client.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://http-api-client.vercel.app",
+        "https://http-api-client-8zjlvpgrt-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://http-api-client.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "http-pulse",
+      "url": "https://http-pulse.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://http-pulse.vercel.app",
+        "https://http-pulse-3t76r1qiu-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://http-pulse.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "ip-network-tools",
+      "url": "https://ip-network-tools.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://ip-network-tools.vercel.app"
+      ],
+      "canonical_url": "https://ip-network-tools.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "json-formatter-pro",
+      "url": "https://json-formatter-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://json-formatter-pro.vercel.app"
+      ],
+      "canonical_url": "https://json-formatter-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "json-schema-validator",
+      "url": "https://json-schema-validator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://json-schema-validator.vercel.app"
+      ],
+      "canonical_url": "https://json-schema-validator.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "jsonpath-tester",
+      "url": "https://jsonpath-tester.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://jsonpath-tester.vercel.app"
+      ],
+      "canonical_url": "https://jsonpath-tester.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "jwt-generator-pro",
+      "url": "https://jwt-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://jwt-generator-pro.vercel.app",
+        "https://jwt-generator-57oscnia7-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://jwt-generator-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "jwtinspector",
+      "url": "https://jwtinspector.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://jwtinspector.vercel.app"
+      ],
+      "canonical_url": "https://jwtinspector.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "llm-token-lens",
+      "url": "https://llm-token-lens.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://llm-token-lens.vercel.app"
+      ],
+      "canonical_url": "https://llm-token-lens.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "url": "https://lorem-ipsum-generator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://lorem-ipsum-generator.vercel.app",
+        "https://lorem-ipsum-generator-c503ye0j3-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://lorem-ipsum-generator.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "markdown-to-html-pro",
+      "url": "https://markdown-to-html-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://markdown-to-html-pro.vercel.app",
+        "https://markdown-to-html-fpcye6zyx-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://markdown-to-html-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "meta-fetch",
+      "url": "https://meta-fetch.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://meta-fetch.vercel.app"
+      ],
+      "canonical_url": "https://meta-fetch.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "mockforge",
+      "url": "https://mockforge.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://mockforge.vercel.app"
+      ],
+      "canonical_url": "https://mockforge.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "number-base-converter",
+      "url": "https://number-base-converter.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://number-base-converter.vercel.app",
+        "https://number-base-converter-i5yvjtavw-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://number-base-converter.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "og-forge",
+      "url": "https://og-forge.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://og-forge.vercel.app"
+      ],
+      "canonical_url": "https://og-forge.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "password-generator-pro",
+      "url": "https://password-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://password-generator-pro.vercel.app",
+        "https://password-generator-cimgypb4h-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://password-generator-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "pdf-forge",
+      "url": "https://pdf-forge-five.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://pdf-forge.vercel.app",
+        "https://pdf-forge-five.vercel.app"
+      ],
+      "canonical_url": "https://pdf-forge.vercel.app",
+      "canonical_http_code": 500
+    },
+    {
+      "slug": "qr-forge",
+      "url": "https://qr-forge.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://qr-forge.vercel.app"
+      ],
+      "canonical_url": "https://qr-forge.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "rateguard",
+      "url": "https://rateguard.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://rateguard.vercel.app"
+      ],
+      "canonical_url": "https://rateguard.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "regex-tester-pro",
+      "url": "https://regex-tester-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://regex-tester-pro.vercel.app",
+        "https://regex-tester-4bp9bfjq3-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://regex-tester-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "secretguard",
+      "url": "https://secretguard-kappa.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://secretguard.vercel.app",
+        "https://secretguard-kappa.vercel.app"
+      ],
+      "canonical_url": "https://secretguard.vercel.app",
+      "canonical_http_code": 401
+    },
+    {
+      "slug": "sql-query-formatter",
+      "url": "https://sql-query-formatter.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://sql-query-formatter.vercel.app"
+      ],
+      "canonical_url": "https://sql-query-formatter.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "statusbeacon",
+      "url": "https://statusbeacon.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://statusbeacon.vercel.app"
+      ],
+      "canonical_url": "https://statusbeacon.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "svg-pattern-generator",
+      "url": "https://svg-pattern-generator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://svg-pattern-generator.vercel.app",
+        "https://svg-pattern-generator-jjp1oyfdr-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://svg-pattern-generator.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "table-to-csv",
+      "url": "https://table-to-csv.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://table-to-csv.vercel.app"
+      ],
+      "canonical_url": "https://table-to-csv.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "techstack",
+      "url": "https://techstack.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://techstack.vercel.app"
+      ],
+      "canonical_url": "https://techstack.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "text-case-converter",
+      "url": "https://text-case-converter.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://text-case-converter.vercel.app",
+        "https://text-case-converter-9gpdfie6l-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://text-case-converter.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "timestamp-converter-pro",
+      "url": "https://timestamp-converter-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://timestamp-converter-pro.vercel.app",
+        "https://timestamp-converter-o7e0ybwu1-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://timestamp-converter-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "universe-hub",
+      "url": "https://universe-hub.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://universe-hub.vercel.app"
+      ],
+      "canonical_url": "https://universe-hub.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "url-builder-pro",
+      "url": "https://url-builder-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://url-builder-pro.vercel.app",
+        "https://url-builder-eao4vjep0-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://url-builder-pro.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "url": "https://url-encoder-decoder.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://url-encoder-decoder.vercel.app",
+        "https://url-encoder-decoder-dk7ncudl0-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://url-encoder-decoder.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "url-forge",
+      "url": "https://url-forge.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://url-forge.vercel.app"
+      ],
+      "canonical_url": "https://url-forge.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "webhook-tester",
+      "url": "https://webhook-tester-beryl.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://webhook-tester.vercel.app",
+        "https://webhook-tester-beryl.vercel.app",
+        "https://webhook-tester-2dl7d2vs3-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://webhook-tester.vercel.app",
+      "canonical_http_code": 404
+    },
+    {
+      "slug": "xml-to-json",
+      "url": "https://xml-to-json.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://xml-to-json.vercel.app",
+        "https://xml-to-json-dpl92mv5y-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://xml-to-json.vercel.app",
+      "canonical_http_code": 200
+    },
+    {
+      "slug": "yaml-converter-pro",
+      "url": "https://yaml-converter-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": "",
+      "checked_urls": [
+        "https://yaml-converter-pro.vercel.app",
+        "https://yaml-converter-bp6oy4ke5-madnessqws-projects.vercel.app"
+      ],
+      "canonical_url": "https://yaml-converter-pro.vercel.app",
+      "canonical_http_code": 200
+    }
+  ]
+}

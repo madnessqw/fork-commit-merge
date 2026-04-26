@@ -4,7 +4,11 @@
   "tagline": "Compare two texts and see differences instantly with syntax highlighting",
   "description": "Compare two texts and see differences instantly with syntax highlighting",
   "price": "9",
-  "features": [],
+  "features": [
+    "Professional-grade features",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://text-diff-pro.vercel.app",

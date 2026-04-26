@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Parser Pro</title>
-    <meta name="description" content="The ultimate URL Parser tool. Powerful features with an intuitive interface designed for developers and power users.">
+    <meta name="description" content="The ultimate URL Parser tool. Powerful features with an intuitive interface designed for developers and power users."
+    <meta property="og:title" content="URL Parser Pro">
+    <meta property="og:description" content="Parse and analyze any URL with detailed component breakdown">>
     <meta name="keywords" content="url, parser, URL encoder, URL decoder, URL tool, web utility, developer tools, online tool, web utility">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="Universe7Creator">
@@ -50,7 +52,7 @@
                 <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center font-bold">U</div>
                 <span class="font-semibold">URL Parser Pro</span>
             </div>
-            <a href="#pricing" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition">Get Pro</a>
+            <a href="https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition">Get Pro</a>
         </div>
     </header>
 
@@ -196,5 +198,16 @@
             if (e.key === 'Enter') parseURL();
         });
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_KEZEfLm37jrUEoVDgyUEckWCrAnll4QtU0B0R0dPWOa";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

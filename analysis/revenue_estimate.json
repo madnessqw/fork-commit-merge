@@ -1,0 +1,173 @@
+{
+  "summary": {
+    "total_products": 169,
+    "checkout_active": 169,
+    "checkout_inactive": 0,
+    "estimated_monthly_revenue": 26516.9,
+    "estimated_annual_revenue": 318202.8
+  },
+  "top_earners": [
+    {
+      "slug": "mcphub",
+      "name": "MCP Hub",
+      "price": 24.0,
+      "tier": "premium",
+      "category": "developer-tools",
+      "multiplier": 1.2,
+      "est_monthly_units": 8,
+      "est_monthly_revenue": 230.4,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "agent-prompt-engineer",
+      "name": "Agent Prompt Engineer",
+      "price": 19.0,
+      "tier": "premium",
+      "category": "ai-tools",
+      "multiplier": 1.5,
+      "est_monthly_units": 8,
+      "est_monthly_revenue": 228.0,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "jwtinspector",
+      "name": "JWT Inspector",
+      "price": 12.0,
+      "tier": "standard",
+      "category": "developer-tools",
+      "multiplier": 1.2,
+      "est_monthly_units": 15,
+      "est_monthly_revenue": 216.0,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "htaccess-generator",
+      "name": "Htaccess Generator Pro",
+      "price": 19.0,
+      "tier": "premium",
+      "category": "devops",
+      "multiplier": 1.4,
+      "est_monthly_units": 8,
+      "est_monthly_revenue": 212.8,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "nginx-config-tester",
+      "name": "Nginx Config Tester",
+      "price": 19.0,
+      "tier": "premium",
+      "category": "devops",
+      "multiplier": 1.4,
+      "est_monthly_units": 8,
+      "est_monthly_revenue": 212.8,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "docker-command-builder",
+      "name": "Docker Command Builder",
+      "price": 19.0,
+      "tier": "premium",
+      "category": "devops",
+      "multiplier": 1.4,
+      "est_monthly_units": 8,
+      "est_monthly_revenue": 212.8,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "docker-compose-builder",
+      "name": "Docker Compose Builder",
+      "price": 19.0,
+      "tier": "premium",
+      "category": "devops",
+      "multiplier": 1.4,
+      "est_monthly_units": 8,
+      "est_monthly_revenue": 212.8,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "dataflip",
+      "name": "DataFlip",
+      "price": 14.0,
+      "tier": "standard",
+      "category": "uncategorized",
+      "multiplier": 1.0,
+      "est_monthly_units": 15,
+      "est_monthly_revenue": 210.0,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "http-pulse",
+      "name": "HTTP Pulse",
+      "price": 14.0,
+      "tier": "standard",
+      "category": "uncategorized",
+      "multiplier": 1.0,
+      "est_monthly_units": 15,
+      "est_monthly_revenue": 210.0,
+      "status": "live",
+      "checkout_active": true
+    },
+    {
+      "slug": "webhook-tester",
+      "name": "Webhook Tester",
+      "price": 14.0,
+      "tier": "standard",
+      "category": "uncategorized",
+      "multiplier": 1.0,
+      "est_monthly_units": 15,
+      "est_monthly_revenue": 210.0,
+      "status": "live",
+      "checkout_active": true
+    }
+  ],
+  "category_breakdown": {
+    "uncategorized": {
+      "count": 108,
+      "monthly_revenue": 15464.0,
+      "avg_price": 13.94
+    },
+    "developer-tools": {
+      "count": 44,
+      "monthly_revenue": 7923.6,
+      "avg_price": 16.91
+    },
+    "security": {
+      "count": 7,
+      "monthly_revenue": 1383.2,
+      "avg_price": 19.0
+    },
+    "devops": {
+      "count": 4,
+      "monthly_revenue": 851.2,
+      "avg_price": 19.0
+    },
+    "design-tools": {
+      "count": 3,
+      "monthly_revenue": 410.4,
+      "avg_price": 19.0
+    },
+    "ai-tools": {
+      "count": 1,
+      "monthly_revenue": 228.0,
+      "avg_price": 19.0
+    },
+    "api-services": {
+      "count": 1,
+      "monthly_revenue": 148.5,
+      "avg_price": 9.0
+    },
+    "utilities": {
+      "count": 1,
+      "monthly_revenue": 108.0,
+      "avg_price": 9.0
+    }
+  }
+}

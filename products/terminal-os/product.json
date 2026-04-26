@@ -4,7 +4,11 @@
   "tagline": "Web-based terminal emulator with xterm.js for developers",
   "description": "Web-based terminal emulator with xterm.js for developers",
   "price": "9",
-  "features": [],
+  "features": [
+    "Instant results",
+    "No signup required",
+    "Browser-based"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://terminal-os-green.vercel.app",

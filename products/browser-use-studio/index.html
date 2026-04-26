@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browser Use Studio</title>
-    <meta name="description" content="Advanced Browser Use Studio utility for developers. Fast, secure, and completely client-side processing for maximum privacy.">
+    <meta name="description" content="Advanced Browser Use Studio utility for developers. Fast, secure, and completely client-side processing for maximum privacy."
+    <meta property="og:title" content="Browser Use Studio">
+    <meta property="og:description" content="Test browser automation scripts">>
     <meta name="keywords" content="browser, use, studio, design studio, creator tool, visual editor, developer tools, online tool, web utility">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="Universe7Creator">
@@ -196,5 +198,16 @@
             <p>&copy; 2025 Browser Use Studio. All rights reserved.</p>
         </div>
     </footer>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_q3FcyaWh5Oc4sLhJrC8vJFsiJ3W4UYxAax0Qo3TekK2";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

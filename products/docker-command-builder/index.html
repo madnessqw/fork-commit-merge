@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker Command Builder</title>
     <meta name="description" content="Docker Command Builder made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta property="og:title" content="Docker Command Builder">
+    <meta property="og:description" content="Docker Command Builder made simple. Professional-grade tool with instant results.">
+    <meta property="og:type" content="website">
     <meta name="keywords" content="docker, command, builder, Docker tool, Docker Compose, container tool, builder tool, generator, creator, developer tools, online tool, web utility">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="Universe7Creator">
@@ -59,7 +62,7 @@
                 <p class="text-xl text-gray-400 mb-8">Generate Docker commands visually without memorizing complex syntax</p>
                 <div class="flex gap-4 justify-center">
                     <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
-                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all">Get Pro - $19</a>
+                    <a href="https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz" target="_blank" class="px-8 py-4 rounded-lg font-semibold border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all">Get Pro - $19</a>
                 </div>
             </div>
         </div>
@@ -161,7 +164,7 @@
                     <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Save & share configs</li>
                     <li class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Priority support</li>
                 </ul>
-                <a href="#" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold text-white">Buy Now - $19</a>
+                <a href="https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz" target="_blank" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold text-white">Buy Now - $19</a>
             </div>
         </div>
     </section>
@@ -216,5 +219,16 @@
         // Initial generation
         generateCommand();
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

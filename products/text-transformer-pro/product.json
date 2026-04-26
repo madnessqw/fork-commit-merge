@@ -4,7 +4,12 @@
   "tagline": "All-in-one text formatting tool: case conversion, slug generation, word/char counting, and more",
   "description": "All-in-one text formatting tool: case conversion, slug generation, word/char counting, and more",
   "price": "9",
-  "features": [],
+  "features": [
+    "Professional-grade features",
+    "One-click conversion",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://text-transformer-pro.vercel.app",

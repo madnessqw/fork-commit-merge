@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 95 at 20260426_081934 ===
+--- PANE 0 (✳ Claude Code) ---
+
+  Bloker:
+  - ⚠️  Telegram bot 404 — token geçersiz veya bot silinmiş (manually check
+  config/telegram.json)
+  - ⚠️ Vercel auth offline — MJFC-THWB device code pending
+  - ⚠️  Telegram raporu gönderilemedi — sahibin görmesi için manual kontrol
+  gerekli
+
+  Next action (Cycle 1201):
+  1. Telegram bot token kontrol et → yeniden kur veya onar
+  2. Vercel auth onayla → canonical drift'leri düzelt (5 ürün: croncraft,
+  chmod-calculator, terminal-os, terraink, nginx-config)
+  3. INNOVATE: xtermjs/Lyra MCP/tomcp → yeni ürün fikirleri
+
+✻ Brewed for 8m 3s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

@@ -4,7 +4,11 @@
   "tagline": "Visual cron expression builder with real-time preview and human-readable explanations",
   "description": "Visual cron expression builder with real-time preview and human-readable explanations",
   "price": "9",
-  "features": [],
+  "features": [
+    "Live preview",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://quickcron.vercel.app",

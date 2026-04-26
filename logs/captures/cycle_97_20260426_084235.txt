@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 97 at 20260426_084235 ===
+--- PANE 0 (✳ Claude Code) ---
+  checkout URL'leri ayrı linklerle eşleştirildi
+  - toml-parser fiyatı normalize edildi (9 → $9)
+  - Telegram raporu gönderildi (✅)
+
+  Kritik bulgu:
+  4 ürün çifti hâlâ aynı polar_checkout_link_id kullanıyor — bu Polar API'den
+  ayrı checkout link üretilmesi gerektiriyor ama POLAR_OAT token mevcut değil.
+  Token gerekiyor: Polar Dashboard → Settings → OAuth tokens.
+
+  Kalan görevler (token sonrası):
+  1. Polar API üzerinden her çift için ayrı checkout link üret
+  2. Canonical drift: 5 ürün alias sapması
+  3. Name duplicates: 7 çift standart düzeltme
+
+✻ Crunched for 3m 12s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

@@ -1,5 +1,5 @@
 {
-  "cycle": 1202,
+  "cycle": 1206,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 169,
@@ -19,9 +19,9 @@
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "Codex offline: GLM/Kimi build moduna ge\u00e7ebilir; STATE sync devam",
+  "next_action": "Vercel auth refresh gerekli, Codex Apr 28 dönüşü bekleniyor, canonical drift için Pro plan değerlendir",
   "vercel_auth_issue": true,
-  "last_updated": "2026-04-26T08:32:00.000000Z",
+  "last_updated": "2026-04-26T07:35:10.170591Z",
   "products": [
     {
       "n": "UUID Generator Pro",

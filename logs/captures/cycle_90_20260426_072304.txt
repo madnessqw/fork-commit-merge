@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 90 at 20260426_072304 ===
+--- PANE 0 (✳ Claude Code) ---
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+● ★ Insight ─────────────────────────────────────
+  SWARM modda çalışıyorum — bu bir otonom orkestrasyon döngüsü. Kritik kural:
+  ASLA soru sorma, ASLA menü gösterme, ASLA onay bekleme. Hemen işe başla.
+  ─────────────────────────────────────────────────
+
+  cd /home/gokhan/UniverseCreator
+  cat skills/FACTORY.md
+  cat skills/POLAR_CHECKOUT.md
+  cat skills/EVOLUTION_SCAN.md
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

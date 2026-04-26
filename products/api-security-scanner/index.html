@@ -345,7 +345,7 @@
                             Export to PDF/JSON
                         </li>
                     </ul>
-                    <a href="#" class="block w-full py-3 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl font-semibold text-center hover:scale-105 transition">
+                    <a href="https://buy.polar.sh/polar_cl_0gYWdHmAc5bx0rnESOwmN33A5WoBZFUttdbdc2Ph7Up" target="_blank" class="block w-full py-3 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl font-semibold text-center hover:scale-105 transition">
                         Get Pro
                     </a>
                 </div>
@@ -494,5 +494,16 @@
             resultsDiv.classList.remove('hidden');
         }
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_0gYWdHmAc5bx0rnESOwmN33A5WoBZFUttdbdc2Ph7Up";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

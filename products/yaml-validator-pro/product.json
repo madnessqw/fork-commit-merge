@@ -5,7 +5,12 @@
   "description": "Validate YAML syntax, detect errors, and format YAML files with proper indentation",
   "price": "9",
   "category": "developer-tools",
-  "features": [],
+  "features": [
+    "Real-time validation",
+    "Professional-grade features",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://yaml-validator-4usxnsnmd-madnessqws-projects.vercel.app",

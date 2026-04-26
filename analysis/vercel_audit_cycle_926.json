@@ -1,0 +1,378 @@
+{
+  "cycle": 926,
+  "timestamp": "2026-04-19T22:34:53Z",
+  "source": "curl -4 -L -sS -o /dev/null -w %{http_code}",
+  "results": [
+    {
+      "slug": "ai-cost-dashboard",
+      "url": "https://ai-cost-dashboard-jade.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "api-compare",
+      "url": "https://api-compare.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "api-doc-generator",
+      "url": "https://api-doc-generator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "base64-pro",
+      "url": "https://base64-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "carbonlite",
+      "url": "https://carbonlite-gamma.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "code-minifier-pro",
+      "url": "https://code-minifier-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "codesnap",
+      "url": "https://codesnap-ai.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "colormine",
+      "url": "https://colormine-three.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "cron-expression-parser",
+      "url": "https://cron-expression-parser.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "css-to-tailwind",
+      "url": "https://css-to-tailwind.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "curl2code",
+      "url": "https://curl2code.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "dataflip",
+      "url": "https://dataflip.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "diffmaster",
+      "url": "https://diffmaster-rose.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "docker-compose-validator",
+      "url": "https://docker-compose-validator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "function-call-debugger",
+      "url": "https://function-call-debugger.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "geoip-lite",
+      "url": "https://geoip-lite.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "git-command-builder",
+      "url": "https://git-command-builder-lyart.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "hash-generator-pro",
+      "url": "https://hash-generator-pro-nine.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "hmac-generator-pro",
+      "url": "https://hmac-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "html-beautifier",
+      "url": "https://html-beautifier-lac.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "http-api-client",
+      "url": "https://http-api-client.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "http-pulse",
+      "url": "https://http-pulse.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "json-formatter-pro",
+      "url": "https://json-formatter-pro-tau.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "json-schema-validator",
+      "url": "https://json-schema-validator.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "jsonpath-tester",
+      "url": "https://jsonpath-tester.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "jwt-generator-pro",
+      "url": "https://jwt-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "jwtinspector",
+      "url": "https://jwtinspector.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "llm-token-lens",
+      "url": "https://llm-token-lens.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "url": "https://lorem-ipsum-generator-amber-eight.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "markdown-to-html-pro",
+      "url": "https://markdown-to-html-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "meta-fetch",
+      "url": "https://meta-fetch-seven.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "mockforge",
+      "url": "https://mockforge-livid.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "number-base-converter",
+      "url": "https://number-base-converter-beige.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "og-forge",
+      "url": "https://og-forge.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "password-generator-pro",
+      "url": "https://password-generator-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "pdf-forge",
+      "url": "https://pdf-forge-five.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "qr-forge",
+      "url": "https://qr-forge-pied.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "rateguard",
+      "url": "https://rateguard-seven.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "regex-tester-pro",
+      "url": "https://regex-tester-pro-phi.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "secretguard",
+      "url": "https://secretguard-kappa.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "sql-query-formatter",
+      "url": "https://sql-query-formatter.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "statusbeacon",
+      "url": "https://statusbeacon.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "svg-pattern-generator",
+      "url": "https://svg-pattern-generator-three.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "techstack",
+      "url": "https://techstack.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "text-case-converter",
+      "url": "https://text-case-converter.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "timestamp-converter-pro",
+      "url": "https://timestamp-converter-pro-blond.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "universe-hub",
+      "url": "https://universe-hub.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "url-builder-pro",
+      "url": "https://url-builder-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "url": "https://url-encoder-decoder.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "url-forge",
+      "url": "https://url-forge.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "webhook-tester",
+      "url": "https://webhook-tester-beryl.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "xml-to-json",
+      "url": "https://xml-to-json-roan.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    },
+    {
+      "slug": "yaml-converter-pro",
+      "url": "https://yaml-converter-pro.vercel.app",
+      "http_code": 200,
+      "curl_returncode": 0,
+      "stderr": ""
+    }
+  ]
+}

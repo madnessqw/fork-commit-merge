@@ -4,7 +4,11 @@
   "tagline": "Environment variable manager with validation, format conversion, and secret detection",
   "description": "Environment variable manager with validation, format conversion, and secret detection",
   "price": "9",
-  "features": [],
+  "features": [
+    "Professional-grade features",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://envguard-pro.vercel.app",

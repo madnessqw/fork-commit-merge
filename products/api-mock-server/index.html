@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Mock Server</title>
-    <meta name="description" content="Advanced API Mock Server utility for developers. Fast, secure, and completely client-side processing for maximum privacy.">
+    <meta name="description" content="Advanced API Mock Server utility for developers. Fast, secure, and completely client-side processing for maximum privacy."
+    <meta property="og:title" content="API Mock Server">
+    <meta property="og:description" content="Generate mock APIs for testing">>
     <meta name="keywords" content="api, mock, server, API tool, API tester, REST API, API development, developer tools, online tool, web utility">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="Universe7Creator">
@@ -55,7 +57,7 @@
                 <p class="text-xl text-gray-400 mb-8">Generate mock REST and GraphQL APIs for testing and development</p>
                 <div class="flex gap-4 justify-center">
                     <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
-                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all">Get Pro - $19</a>
+                    <a href="https://buy.polar.sh/polar_cl_jOKhder8lrfEIrXKXy48SgRgXQOI9cn1Z0rs30Lzwcy" target="_blank" class="px-8 py-4 rounded-lg font-semibold border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all">Get Pro - $19</a>
                 </div>
             </div>
         </div>
@@ -151,7 +153,7 @@
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Request proxying</li>
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Priority support</li>
                 </ul>
-                <a href="#" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold text-white">Buy Now - $19</a>
+                <a href="https://buy.polar.sh/polar_cl_jOKhder8lrfEIrXKXy48SgRgXQOI9cn1Z0rs30Lzwcy" target="_blank" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold text-white">Buy Now - $19</a>
             </div>
         </div>
     </section>
@@ -178,5 +180,16 @@
             alert('Config copied to clipboard!');
         }
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_jOKhder8lrfEIrXKXy48SgRgXQOI9cn1Z0rs30Lzwcy";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

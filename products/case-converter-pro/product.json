@@ -5,7 +5,12 @@
   "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case, and more instantly",
   "price": "9",
   "category": "developer-tools",
-  "features": [],
+  "features": [
+    "Professional-grade features",
+    "One-click conversion",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://case-converter-e78h1utoo-madnessqws-projects.vercel.app",

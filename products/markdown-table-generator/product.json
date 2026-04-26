@@ -4,7 +4,11 @@
   "tagline": "Create beautiful markdown tables with visual editor, CSV import, and formatting options",
   "description": "Create beautiful markdown tables with visual editor, CSV import, and formatting options",
   "price": "9",
-  "features": [],
+  "features": [
+    "Instant generation",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://markdown-table-generator.vercel.app",

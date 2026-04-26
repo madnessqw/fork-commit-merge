@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 93 at 20260426_075614 ===
+--- PANE 0 (✳ Claude Code) ---
+  │ SEO düzeltmesi    │ 4 ürüne meta description + og:description eklendi   │
+  ├───────────────────┼─────────────────────────────────────────────────────┤
+  │ SEO düzeltmesi    │ 5 ürüne og:title + og:description eklendi           │
+  ├───────────────────┼─────────────────────────────────────────────────────┤
+  │ Toplam            │ 9 ürün (+ SEO覆盖面: description 141→146, OG tags   │
+  │ iyileştirme       │ 118→123)                                            │
+  └───────────────────┴─────────────────────────────────────────────────────┘
+
+  Bloke eden: Vercel auth — Gokhan'ın vercel login ile device code MJFC-THWB'yi
+  onaylaması gerekiyor. Bu olmadan 45 ürün deploy edilemiyor.
+
+  Asıl sorun: Teknik altyapı mükemmel (169/169 healthy, checkout çalışıyor), ama
+   $0 gelir = trafik yok. Sonraki adım bir tanıtım/content stratejisi olmalı.
+
+✻ Sautéed for 5m 45s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

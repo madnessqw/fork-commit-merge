@@ -4,7 +4,12 @@
   "tagline": "Test and validate cron expressions with next run preview and human-readable explanations.",
   "description": "Test and validate cron expressions with next run preview and human-readable explanations.",
   "price": "9",
-  "features": [],
+  "features": [
+    "Real-time validation",
+    "Live preview",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://cron-expression-tester-b8wtjofmi-madnessqws-projects.vercel.app",

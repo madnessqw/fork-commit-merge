@@ -4,7 +4,11 @@
   "tagline": "Generate beautiful terminal color schemes for iTerm2, VS Code, Windows Terminal, Alacritty, and more. Preview, customize, and export your perfect terminal look.",
   "description": "Generate beautiful terminal color schemes for iTerm2, VS Code, Windows Terminal, Alacritty, and more. Preview, customize, and export your perfect terminal look.",
   "price": "9",
-  "features": [],
+  "features": [
+    "Live preview",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://terminal-theme-studio.vercel.app",

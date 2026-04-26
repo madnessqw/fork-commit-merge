@@ -1,0 +1,95 @@
+# Legacy Checkout Reference Audit
+
+This is a migration aid, not a historical purge report.
+
+- total_files_with_legacy_refs: 401
+
+## By extension
+- `.921`: 1
+- `.html`: 89
+- `.js`: 130
+- `.json`: 120
+- `.md`: 60
+- `.py`: 1
+
+## First 80 files
+- `analysis/kullanici_gereksinim.md`
+- `analysis/codex_result.md`
+- `analysis/sorun_analizi.md`
+- `analysis/cozum_planlama.md`
+- `analysis/oneri_cycle967.md`
+- `skills/content_publisher/SKILL.md`
+- `skills/build_checklist.md`
+- `skills/agents/optimizer.md`
+- `skills/agents/sorun_analizi.md`
+- `skills/agents/builder.md`
+- `scripts/checkout_metadata.py`
+- `products/envguard/api/webhook.js`
+- `products/html-entities/product.json`
+- `products/url-encoder-decoder/public/index.html`
+- `products/url-encoder-decoder/product.json`
+- `products/html-entities/api/webhook.js`
+- `products/url-encoder-decoder/api/webhook.js`
+- `products/url-encoder-decoder/README.md`
+- `products/data-flip/public/index.html`
+- `products/uuid-generator-pro/api/webhook.js`
+- `products/webterminal-pro/index.html`
+- `products/webterminal-pro/public/index.html`
+- `products/webterminal-pro/product.json`
+- `products/html-entity/api/webhook.js`
+- `products/css-to-tailwind/SESSION.md`
+- `products/css-to-tailwind/index.html`
+- `products/css-to-tailwind/product.json`
+- `products/webterminal-pro/api/webhook.js`
+- `products/timestamp-converter/index.html`
+- `products/css-to-tailwind/README.md`
+- `products/timestamp-converter/product.json`
+- `products/html-entity/product.json`
+- `products/timestamp-converter/api/webhook.js`
+- `products/git-command-builder/public/index.html`
+- `products/git-command-builder/product.json`
+- `products/timestamp-converter-pro/public/index.html`
+- `products/timestamp-converter-pro/product.json`
+- `products/regex-visualizer-pro/spec.json`
+- `products/git-command-builder/api/webhook.js`
+- `products/docker-compose-validator/index.html`
+- `products/timestamp-converter-pro/README.md`
+- `products/git-command-builder/README.md`
+- `products/docker-compose-validator/public/index.html`
+- `products/url-forge/index.html`
+- `products/docker-compose-validator/product.json`
+- `products/browser-mock-studio/index.html`
+- `products/url-forge/public/index.html`
+- `products/docker-compose-validator/api/webhook.js`
+- `products/url-forge/product.json`
+- `products/docker-compose-validator/README.md`
+- `products/url-forge/api/webhook.js`
+- `products/browser-mock-studio/api/webhook.js`
+- `products/url-forge/README.md`
+- `products/browser-mock-studio/api/process.js`
+- `products/jwt-decoder-pro/spec.json`
+- `products/color-palette-extractor/product.json`
+- `products/timestamp-converter-pro/api/webhook.js`
+- `products/color-palette-extractor/api/webhook.js`
+- `products/toml-toolkit/index.html`
+- `products/toml-toolkit/public/index.html`
+- `products/api-doc-generator/public/index.html`
+- `products/toml-toolkit/product.json`
+- `products/api-doc-generator/product.json`
+- `products/toml-toolkit/api/webhook.js`
+- `products/api-doc-generator/api/webhook.js`
+- `products/api-doc-generator/README.md`
+- `products/lorem-ipsum-pro/product.json`
+- `products/lorem-ipsum-pro/api/webhook.js`
+- `products/og-forge/public/index.html`
+- `products/yaml-json-converter/product.json`
+- `products/og-forge/product.json`
+- `products/og-forge/api/webhook.js`
+- `products/yaml-json-converter/api/webhook.js`
+- `products/og-forge/README.md`
+- `products/cron-expression-builder/public/index.html`
+- `products/cron-expression-builder/product.json`
+- `products/password-strength-checker/product.json`
+- `products/cron-expression-builder/api/webhook.js`
+- `products/password-strength-checker/api/webhook.js`
+- `products/css-gradient-studio/product.json`
