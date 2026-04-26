@@ -1,0 +1,2 @@
+- Direct monetization (PayPal/IBAN) is the only viable path due to KYC blocks on Stripe/LemonSqueezy.
+- Swarm V11 orchestration is active.

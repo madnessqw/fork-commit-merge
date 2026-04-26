@@ -1,0 +1,13 @@
+{
+  "name": "binary-inspector",
+  "version": "1.0.0",
+  "description": "Binary file analyzer and hex dump viewer",
+  "main": "index.html",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["binary", "hex", "analyzer", "developer-tools"],
+  "author": "UniverseCreator",
+  "license": "MIT"
+}

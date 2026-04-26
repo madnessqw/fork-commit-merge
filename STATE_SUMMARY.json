@@ -19,9 +19,9 @@
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "Vercel auth refresh gerekli, Codex Apr 28 dönüşü bekleniyor, canonical drift için Pro plan değerlendir",
+  "next_action": "Vercel auth refresh gerekli, Codex Apr 28 donus bekleniyor, canonical drift icin Pro plan degerlendir",
   "vercel_auth_issue": true,
-  "last_updated": "2026-04-26T07:40:00.474544Z",
+  "last_updated": "2026-04-26T08:00:14.252198Z",
   "products": [
     {
       "n": "UUID Generator Pro",

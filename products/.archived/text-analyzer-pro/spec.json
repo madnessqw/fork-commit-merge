@@ -1,0 +1,84 @@
+{
+  "slug": "text-analyzer-pro",
+  "name": "Text Analyzer Pro",
+  "tagline": "Deep text analysis - word count, readability, sentiment, and insights in seconds",
+  "description": "Comprehensive text analysis tool for writers, SEO specialists, and content creators. Analyze readability, sentiment, keyword density, and get actionable insights to improve your content.",
+  "price": 19,
+  "category": "content-tools",
+  "features": [
+    "Detailed word and character statistics",
+    "Readability scoring (Flesch-Kincaid, Gunning Fog, Coleman-Liau)",
+    "Estimated reading and speaking time",
+    "Keyword density analysis",
+    "Sentiment analysis (positive/negative/neutral)",
+    "Sentence and paragraph structure",
+    "Unique word count and vocabulary richness",
+    "Export detailed reports as PDF/JSON"
+  ],
+  "tech_stack": {
+    "frontend": "Vanilla HTML + Tailwind CSS",
+    "analysis": "Custom algorithms + sentiment.js",
+    "deployment": "Vercel"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "Analyze Your Text Like a Pro",
+        "subheadline": "Get deep insights into your content. Readability scores, sentiment analysis, keyword density, and more - all in one powerful tool.",
+        "demo_placeholder": "Paste your text here to analyze..."
+      },
+      "features_section": {
+        "title": "Powerful Text Analysis Features",
+        "features": [
+          {
+            "icon": "📊",
+            "title": "Detailed Statistics",
+            "desc": "Word count, characters, sentences, paragraphs, reading time, and more"
+          },
+          {
+            "icon": "📖",
+            "title": "Readability Scores",
+            "desc": "Flesch-Kincaid, Gunning Fog, Coleman-Liau, and SMOG readability indices"
+          },
+          {
+            "icon": "🎯",
+            "title": "Keyword Analysis",
+            "desc": "Keyword density, top phrases, and SEO optimization suggestions"
+          },
+          {
+            "icon": "💭",
+            "title": "Sentiment Detection",
+            "desc": "Understand the emotional tone of your content with AI-powered sentiment analysis"
+          }
+        ]
+      },
+      "demo_section": {
+        "title": "See It In Action",
+        "description": "Paste any text to get instant analysis and insights"
+      },
+      "use_cases": [
+        "Optimize blog posts and articles for readability",
+        "Analyze content for SEO keyword density",
+        "Check academic papers for complexity scores",
+        "Evaluate marketing copy sentiment",
+        "Improve writing clarity and engagement"
+      ]
+    }
+  },
+  "api_endpoints": [
+    {
+      "path": "/api/health",
+      "method": "GET",
+      "description": "Health check endpoint"
+    }
+  ],
+  "design": {
+    "theme": "dark",
+    "primary_color": "#8b5cf6",
+    "accent_color": "#ec4899",
+    "font": "Inter"
+  },
+  "status": "spec_ready",
+  "created_at": "2026-04-21T17:52:00Z",
+  "priority": "high"
+}

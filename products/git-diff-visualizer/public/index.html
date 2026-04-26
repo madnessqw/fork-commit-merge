@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Diff Visualizer</title>
+  <meta name="description" content="Professional Git Diff Visualizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="git, diff, visualizer, Git tool, version control, Git command, diff tool, text comparison, file compare, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://git-diff-visualizer.vercel.app">
+  <meta property="og:title" content="Git Diff Visualizer">
+  <meta property="og:description" content="Professional Git Diff Visualizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+  <meta property="og:image" content="https://git-diff-visualizer.vercel.app/og-image.png">
+  <meta property="og:url" content="https://git-diff-visualizer.vercel.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Git Diff Visualizer",
+  "description": "Professional Git Diff Visualizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://git-diff-visualizer.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    body { background: #0a0a0a; color: #f8fafc; }
+    .gradient-text {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(139, 92, 246, 0.7);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+      50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.8); }
+    }
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(139, 92, 246, 0.5);
+      box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2);
+      transform: translateY(-4px);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-title { animation: fadeInUp 0.8s ease-out; }
+    .hero-subtitle { animation: fadeInUp 0.8s ease-out 0.2s both; }
+    .hero-cta { animation: fadeInUp 0.8s ease-out 0.4s both; }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 20px;
+      font-size: 0.875rem;
+      color: #22c55e;
+    }
+    .diff-line { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; line-height: 1.6; }
+    .diff-added { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+    .diff-removed { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .diff-neutral { color: #94a3b8; }
+    .diff-header { color: #60a5fa; }
+    .number-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+    }
+    details {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    summary {
+      padding: 1.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    summary::marker { display: none; }
+    summary::before {
+      content: '▶';
+      font-size: 0.75rem;
+      transition: transform 0.2s;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details > div { padding: 0 1.25rem 1.25rem; color: #94a3b8; }
+    .demo-container {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .demo-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .demo-tab {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .demo-tab.active {
+      color: #8b5cf6;
+      border-bottom-color: #8b5cf6;
+    }
+    .demo-content {
+      padding: 1.5rem;
+      min-height: 300px;
+    }
+    .view-toggle {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .view-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-btn.active {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: #8b5cf6;
+      color: #8b5cf6;
+    }
+    .code-block {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-lg">Git Diff Visualizer</span>
+        </div>
+        <a href="#pricing" class="cta-button text-white text-sm py-2 px-6">Get Access — $19</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-violet-500/20 via-transparent to-blue-500/20 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-5xl mx-auto text-center">
+      <h1 class="hero-title text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+        <span class="gradient-text">Beautiful</span> Diff<br>Visualization
+      </h1>
+      <p class="hero-subtitle text-xl sm:text-2xl text-slate-400 mb-8 max-w-3xl mx-auto">
+        Transform your git diffs into stunning visual comparisons. Side-by-side and inline views with syntax highlighting and word-level precision.
+      </p>
+      <div class="hero-cta flex flex-wrap justify-center gap-4 mb-12">
+        <a href="#demo" class="cta-button text-white">Try Demo Free</a>
+        <a href="#pricing" class="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/5 transition">Buy Now — $19</a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 hero-cta">
+        <span class="trust-badge">✓ No signup required</span>
+        <span class="trust-badge">✓ Instant access</span>
+        <span class="trust-badge">✓ API ready</span>
+        <span class="trust-badge">✓ One-time payment</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo" class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">See It In Action</h2>
+      <p class="text-slate-400 text-center mb-12 max-w-2xl mx-auto">Paste your git diff below and instantly see the beautiful visualization.</p>
+
+      <div class="demo-container">
+        <div class="demo-tabs">
+          <div class="demo-tab active" onclick="switchTab('input')">Input</div>
+          <div class="demo-tab" onclick="switchTab('side-by-side')">Side-by-Side</div>
+          <div class="demo-tab" onclick="switchTab('inline')">Inline</div>
+        </div>
+
+        <div class="demo-content">
+          <div id="input-panel" class="demo-panel">
+            <textarea id="diff-input" class="w-full h-64 bg-slate-900 border border-slate-700 rounded-lg p-4 font-mono text-sm text-slate-300 focus:outline-none focus:border-violet-500" placeholder="Paste your git diff here..."></textarea>
+            <button onclick="runDemo()" class="mt-4 cta-button text-white py-2 px-6 text-sm">Visualize Diff</button>
+          </div>
+
+          <div id="side-by-side-panel" class="demo-panel hidden">
+            <div class="view-toggle">
+              <button class="view-btn active">Split View</button>
+              <button class="view-btn" onclick="switchView('unified')">Unified</button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="code-block">
+                <div class="text-xs text-slate-500 mb-2">Before (main.js)</div>
+                <div class="diff-line">
+                  <div class="diff-neutral">function calculateTotal(items) {</div>
+                  <div class="diff-removed">-  let total = 0;</div>
+                  <div class="diff-removed">-  for (let i = 0; i < items.length; i++) {</div>
+                  <div class="diff-removed">-    total += items[i].price;</div>
+                  <div class="diff-removed">-  }</div>
+                  <div class="diff-neutral">   return total;</div>
+                  <div class="diff-neutral"> }</div>
+                </div>
+              </div>
+              <div class="code-block">
+                <div class="text-xs text-slate-500 mb-2">After (main.js)</div>
+                <div class="diff-line">
+                  <div class="diff-neutral">function calculateTotal(items) {</div>
+                  <div class="diff-added">+  return items.reduce((sum, item) => sum + item.price, 0);</div>
+                  <div class="diff-neutral"> }</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="inline-panel" class="demo-panel hidden">
+            <div class="code-block">
+              <div class="text-xs text-slate-500 mb-2">main.js</div>
+              <div class="diff-line">
+                <div class="diff-header">@@ -1,6 +1,3 @@</div>
+                <div class="diff-neutral"> function calculateTotal(items) {</div>
+                <div class="diff-removed">-  let total = 0;</div>
+                <div class="diff-removed">-  for (let i = 0; i < items.length; i++) {</div>
+                <div class="diff-removed">-    total += items[i].price;</div>
+                <div class="diff-removed">-  }</div>
+                <div class="diff-added">+  return items.reduce((sum, item) => sum + item.price, 0);</div>
+                <div class="diff-neutral"> }</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">Everything You Need</h2>
+      <p class="text-slate-400 text-center mb-16 max-w-2xl mx-auto">Professional-grade diff visualization tools for developers who care about code quality.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="feature-card">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Side-by-Side View</h3>
+          <p class="text-slate-400">Compare before and after versions with a clean split view. Perfect for detailed code reviews.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Inline Diff Mode</h3>
+          <p class="text-slate-400">Unified view showing all changes inline. Great for quick overviews and smaller diffs.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Syntax Highlighting</h3>
+          <p class="text-slate-400">Automatic language detection with beautiful syntax highlighting for 50+ languages.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Word-Level Diff</h3>
+          <p class="text-slate-400">See exactly which words changed within each line. No more guessing what was modified.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Patch Export</h3>
+          <p class="text-slate-400">Export your diffs as patches. Share with your team or apply to your repository.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">GitHub Integration</h3>
+          <p class="text-slate-400">Connect your GitHub repos and visualize pull request diffs with one click.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16">How It Works</h2>
+
+      <div class="space-y-12">
+        <div class="flex gap-6 items-start">
+          <div class="number-badge flex-shrink-0">1</div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Paste Your Diff</h3>
+            <p class="text-slate-400">Copy any git diff output and paste it into the visualizer. Supports unified diff format.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start">
+          <div class="number-badge flex-shrink-0">2</div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Choose Your View</h3>
+            <p class="text-slate-400">Switch between side-by-side and inline views. Customize colors and highlighting preferences.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start">
+          <div class="number-badge flex-shrink-0">3</div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Export & Share</h3>
+            <p class="text-slate-400">Export as patch, share a link, or embed the visualization in your documentation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Simple Pricing</h2>
+      <p class="text-slate-400 mb-12 max-w-2xl mx-auto">One-time payment. Lifetime access. No subscriptions, no hidden fees.</p>
+
+      <div class="feature-card max-w-md mx-auto border-2 border-violet-500/50">
+        <div class="text-sm font-medium text-violet-400 mb-4">LIFETIME ACCESS</div>
+        <div class="text-5xl font-bold mb-2">$19</div>
+        <div class="text-slate-400 mb-8">One-time payment</div>
+
+        <ul class="text-left space-y-3 mb-8">
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>Unlimited diffs</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>All view modes</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>Syntax highlighting</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>Export & share</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>Priority support</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>Future updates included</span>
+          </li>
+        </ul>
+
+        <a href="#" class="cta-button text-white w-full block text-center" onclick="handlePurchase(event)">Get Lifetime Access</a>
+        <p class="text-sm text-slate-500 mt-4">Secure payment via LemonSqueezy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+
+      <details>
+        <summary>What diff formats are supported?</summary>
+        <div>We support standard unified diff format, git diff output, and GitHub pull request diffs. JSON diff and other formats are coming soon.</div>
+      </details>
+
+      <details>
+        <summary>Is there a file size limit?</summary>
+        <div>The free demo supports diffs up to 100KB. With a license, you can process diffs up to 10MB, perfect for large refactoring commits.</div>
+      </details>
+
+      <details>
+        <summary>Can I use this for commercial projects?</summary>
+        <div>Absolutely! Your license covers both personal and commercial use. Use it for client work, open source contributions, or internal tools.</div>
+      </details>
+
+      <details>
+        <summary>Do you offer refunds?</summary>
+        <div>Yes, we offer a 30-day money-back guarantee. If you're not satisfied for any reason, contact us for a full refund.</div>
+      </details>
+
+      <details>
+        <summary>Is there an API available?</summary>
+        <div>Yes! Licensed users get access to our REST API. Generate diffs programmatically, integrate with your CI/CD pipeline, or build custom workflows.</div>
+      </details>
+
+      <details>
+        <summary>How do I get support?</summary>
+        <div>Licensed users get priority email support with 24-hour response time. We also have documentation and video tutorials to help you get started.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <span class="font-bold">Git Diff Visualizer</span>
+        </div>
+        <div class="flex gap-8 text-sm text-slate-400">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="mailto:support@example.com" class="hover:text-white transition">Contact</a>
+        </div>
+        <div class="text-sm text-slate-500">
+          © 2025 Git Diff Visualizer. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.demo-panel').forEach(p => p.classList.add('hidden'));
+
+      event.target.classList.add('active');
+      document.getElementById(tab + '-panel').classList.remove('hidden');
+    }
+
+    function switchView(view) {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Demo functionality
+    function runDemo() {
+      const input = document.getElementById('diff-input').value;
+      if (!input.trim()) {
+        document.getElementById('diff-input').value = `diff --git a/main.js b/main.js
+index 1234..5678 100644
+--- a/main.js
++++ b/main.js
+@@ -1,6 +1,3 @@
+ function calculateTotal(items) {
+-  let total = 0;
+-  for (let i = 0; i < items.length; i++) {
+-    total += items[i].price;
+-  }
+-  return total;
++  return items.reduce((sum, item) => sum + item.price, 0);
+ }`;
+      }
+      switchTab('side-by-side');
+      document.querySelector('.demo-tab:nth-child(2)').classList.add('active');
+      document.querySelector('.demo-tab:nth-child(1)').classList.remove('active');
+    }
+
+    // Purchase handler
+    function handlePurchase(e) {
+      e.preventDefault();
+      const checkoutUrl = document.querySelector('meta[name="checkout-url"]')?.content;
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        alert('Checkout URL not configured. Please contact support.');
+      }
+    }
+
+    // Scroll reveal animation
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "4be80669",
+    "title": "Adım 0b: Hızlı Telegram ping",
+    "description": "STATE_SUMMARY oku, Telegram'a başlangıç ping gönder",
+    "status": "completed",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:41:13.371Z",
+    "completedAt": "2026-04-24T04:41:13.371Z"
+  },
+  {
+    "id": "8cc09ad8",
+    "title": "Adım 1: AKTİF KOD GÖREVİ — commit zorunlu",
+    "description": "glm_fix_brief.md'den küçük brief uygula veya quick win yap",
+    "status": "completed",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:44:51.543Z",
+    "completedAt": "2026-04-24T04:44:51.543Z"
+  },
+  {
+    "id": "8c602bc3",
+    "title": "Adım 1d: Repo/release sağlık kontrolü",
+    "description": "STATE_SUMMARY, issues, run_ledger, codex_task staleness",
+    "status": "in_progress",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:44:51.543Z"
+  },
+  {
+    "id": "37ac816f",
+    "title": "Adım 2: Kritik sorun tespiti + handoff",
+    "description": "Checkout eksik, unhealthy, deploy gap kontrolü",
+    "status": "pending",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:40:45.527Z"
+  },
+  {
+    "id": "e7068d33",
+    "title": "Adım 3: Yeni dosya özet + QA + researcher signal",
+    "description": "Yeni planlama dosyaları, qa_result, researcher_needed signal",
+    "status": "pending",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:40:45.527Z"
+  },
+  {
+    "id": "4784fa24",
+    "title": "Adım 4: oneri.md güncelle",
+    "description": "Tam analiz raporu yaz",
+    "status": "pending",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:40:45.527Z"
+  },
+  {
+    "id": "44711531",
+    "title": "Adım 5: Telegram raporu",
+    "description": "Sonuç özetini Telegram'a gönder",
+    "status": "pending",
+    "createdAt": "2026-04-24T04:40:45.527Z",
+    "updatedAt": "2026-04-24T04:40:45.527Z"
+  }
+]

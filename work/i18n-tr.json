@@ -1,0 +1,66 @@
+{
+  "errors": {
+    "node_connection_failed": "Tüm RustChain düğümleri başarısız oldu",
+    "node_connection_failed_details": "Tüm RustChain düğümleri {method} {path} için başarısız oldu: {error}",
+    "transfer_not_implemented": "rustchain_transfer henüz uygulanmadı",
+    "transfer_not_implemented_details": "rustchain_transfer henüz uygulanmadı: imzalama/yayınlama API'si ödül şartnamesinde sağlanmadı. RustChain bir transfer uç noktası sunarsa, paylaşın ve bu araç tamamlanacaktır.",
+    "health_check_failed": "Sağlık kontrolü başarısız oldu",
+    "miner_not_found": "Madenci bulunamadı",
+    "invalid_miner_id": "Geçersiz madenci kimliği",
+    "balance_fetch_failed": "Bakiye alınamadı",
+    "epoch_fetch_failed": "Dönem bilgisi alınamadı",
+    "network_timeout": "Ağ zaman aşımı",
+    "connection_refused": "Bağlantı reddedildi",
+    "invalid_response": "Geçersiz sunucu yanıtı",
+    "authentication_failed": "Kimlik doğrulama başarısız oldu",
+    "rate_limit_exceeded": "Hız sınırı aşıldı, lütfen bekleyin",
+    "server_error": "Sunucu hatası",
+    "unknown_error": "Bilinmeyen hata"
+  },
+  "status": {
+    "connected": "Bağlandı",
+    "disconnected": "Bağlantı kesildi",
+    "syncing": "Senkronize ediliyor",
+    "mining": "Madencilik yapılıyor",
+    "idle": "Boşta",
+    "error": "Hata"
+  },
+  "wallet": {
+    "balance": "Bakiye",
+    "address": "Adres",
+    "transactions": "İşlemler",
+    "send": "Gönder",
+    "receive": "Al",
+    "pending": "Beklemede",
+    "confirmed": "Onaylandı"
+  },
+  "mining": {
+    "start": "Madenciliği başlat",
+    "stop": "Madenciliği durdur",
+    "status": "Madencilik durumu",
+    "hashrate": "Hash oranı",
+    "shares": "Paylar",
+    "rewards": "Ödüller",
+    "epoch": "Dönem",
+    "slot": "Slot"
+  },
+  "ui": {
+    "loading": "Yükleniyor...",
+    "success": "Başarılı!",
+    "error": "Hata!",
+    "warning": "Uyarı",
+    "info": "Bilgi",
+    "confirm": "Onayla",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "submit": "Gönder",
+    "refresh": "Yenile"
+  },
+  "metadata": {
+    "language": "Türkçe",
+    "language_code": "tr",
+    "translator": "UniverseCreator (universe7creator)",
+    "date": "2026-03-24",
+    "version": "1.0.0"
+  }
+}

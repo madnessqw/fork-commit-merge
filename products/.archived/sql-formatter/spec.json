@@ -1,0 +1,54 @@
+{
+  "slug": "sql-formatter",
+  "name": "SQL Formatter Pro",
+  "tagline": "Beautify and format SQL queries instantly",
+  "description": "Professional SQL query formatter that beautifies messy SQL into clean, readable code. Supports multiple SQL dialects with customizable formatting options.",
+  "price": 19,
+  "category": "developer-tools",
+  "features": [
+    "Multi-dialect support (MySQL, PostgreSQL, SQLite, SQL Server)",
+    "Customizable indentation",
+    "Uppercase/lowercase keyword options",
+    "Line break controls",
+    "Syntax highlighting",
+    "Copy formatted SQL to clipboard",
+    "Download formatted SQL file",
+    "Error detection and highlighting"
+  ],
+  "tech_stack": {
+    "frontend": "vanilla-html-tailwind",
+    "backend": "vercel-serverless",
+    "processing": "client-side-sql-formatter"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "Make Your SQL Beautiful",
+        "subheadline": "Transform messy SQL queries into clean, professional code. Support for all major SQL dialects with customizable formatting.",
+        "cta": "Format SQL Now"
+      },
+      "demo": {
+        "type": "interactive",
+        "description": "Live SQL formatter with syntax highlighting"
+      },
+      "features_section": true,
+      "how_it_works": [
+        "Paste your messy SQL query",
+        "Select your SQL dialect",
+        "Get beautifully formatted SQL"
+      ],
+      "testimonials": true,
+      "faq_count": 6,
+      "trust_badges": ["privacy", "accuracy", "developer-friendly"]
+    }
+  },
+  "seo": {
+    "title": "SQL Formatter Pro - Beautify SQL Queries",
+    "description": "Format and beautify SQL queries instantly. Supports MySQL, PostgreSQL, SQLite, and more. Customizable formatting options. Free online tool.",
+    "keywords": ["sql formatter", "sql beautifier", "format sql", "sql parser", "sql pretty print"]
+  },
+  "status": "spec_ready",
+  "priority": "high",
+  "cycle_created": 1046,
+  "notes": "High-demand developer tool, widely used"
+}

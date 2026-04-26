@@ -1,0 +1,7 @@
+# Python Automation Toolkit
+# No external dependencies required!
+# All tools use Python standard library only
+
+# Optional: For enhanced functionality (not required)
+# colorama>=0.4.4  # Windows color support
+# tqdm>=4.62.0     # Progress bars for large operations

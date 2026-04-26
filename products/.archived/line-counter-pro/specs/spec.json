@@ -1,0 +1,40 @@
+{
+  "slug": "line-counter-pro",
+  "name": "Line Counter Pro",
+  "tagline": "Count lines, words, characters and more in your text and code",
+  "description": "A professional text analysis tool that counts lines, words, characters, bytes, and code metrics. Perfect for developers, writers, and content creators who need precise text statistics.",
+  "price": "$19",
+  "category": "developer-tools",
+  "features": [
+    "Line count with customizable line ending detection",
+    "Word count with multi-language support",
+    "Character count (with and without spaces)",
+    "Byte size calculation",
+    "Code metrics: comments, blank lines, code lines",
+    "Support for 50+ programming languages",
+    "Drag & drop file support",
+    "Copy statistics to clipboard",
+    "Export results as JSON/CSV"
+  ],
+  "tech_stack": {
+    "frontend": "Vanilla HTML + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "deployment": "Vercel"
+  },
+  "pages": [
+    "Landing page with live demo",
+    "Privacy policy",
+    "Terms of service"
+  ],
+  "api_endpoints": [
+    "/api/analyze - POST text/file for analysis"
+  ],
+  "design": {
+    "theme": "dark",
+    "primary_color": "#6366f1",
+    "style": "modern glassmorphism"
+  },
+  "batch": 23,
+  "status": "spec_ready",
+  "created_at": "2026-04-21T22:15:00Z"
+}

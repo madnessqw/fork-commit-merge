@@ -1,0 +1,151 @@
+{
+  "name": "PDF Forge",
+  "tagline": "PDF Manipulation & Generation API",
+  "slug": "pdfforge",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "saas_founder", "content_manager", "enterprise"],
+  "problem": "PDF merge/split için Adobe Acrobat pahalı ($20/ay). PDF generation için Puppeteer kurmak zor. Basit PDF işlemleri için API yok. PDF.co pahalı ($19/ay)",
+  "solution": "Vercel Edge + PDF-lib.js ile PDF manipulation API. Merge, split, compress, rotate, extract text. HTML to PDF (Playwright)",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "pdf_library": "pdf-lib (npm)",
+    "html_to_pdf": "Playwright (serverless)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://pdfforge.io/",
+    "endpoints": [
+      {
+        "path": "/api/merge",
+        "method": "POST",
+        "description": "Merge multiple PDFs",
+        "body": {
+          "files": {
+            "type": "array",
+            "items": "string (base64 or URL)",
+            "required": true
+          }
+        },
+        "response": {
+          "pdf": "base64 string",
+          "pageCount": 15,
+          "size": 245000
+        }
+      },
+      {
+        "path": "/api/split",
+        "method": "POST",
+        "description": "Split PDF into pages",
+        "body": {
+          "file": "string (base64 or URL)",
+          "pages": "array of page numbers or 'all'"
+        }
+      },
+      {
+        "path": "/api/compress",
+        "method": "POST",
+        "description": "Compress PDF file",
+        "body": {
+          "file": "string (base64 or URL)",
+          "quality": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "default": "medium"
+          }
+        },
+        "response": {
+          "originalSize": 2500000,
+          "compressedSize": 450000,
+          "savings": "82%",
+          "pdf": "base64"
+        }
+      },
+      {
+        "path": "/api/html-to-pdf",
+        "method": "POST",
+        "description": "Convert HTML to PDF",
+        "body": {
+          "html": "string (required)",
+          "options": {
+            "format": "A4 | Letter | Legal",
+            "margin": {"top": "1cm", "bottom": "1cm"},
+            "headerTemplate": "string",
+            "footerTemplate": "string"
+          }
+        }
+      },
+      {
+        "path": "/api/extract-text",
+        "method": "POST",
+        "description": "Extract text from PDF",
+        "body": {
+          "file": "string (base64 or URL)"
+        },
+        "response": {
+          "pages": [
+            {"page": 1, "text": "extracted text..."}
+          ],
+          "totalPages": 5
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "PDF.co",
+      "price": "$19/month",
+      "url": "https://pdf.co",
+      "pros": ["Full featured"],
+      "cons": ["Monthly cost", "API limits"]
+    },
+    {
+      "name": "Adobe Acrobat",
+      "price": "$20/month",
+      "url": "https://acrobat.adobe.com",
+      "pros": ["Professional"],
+      "cons": ["Expensive", "Desktop focused"]
+    },
+    {
+      "name": "pdf-lib (library)",
+      "price": "Free",
+      "url": "https://pdf-lib.js.org",
+      "pros": ["Free", "Powerful"],
+      "cons": ["Setup required", "No API", "Node only"]
+    }
+  ],
+  "advantage": "One-time $29 vs monthly $19+. No API limits. Edge compatible. Simple REST API.",
+  "features": [
+    "PDF merge",
+    "PDF split",
+    "PDF compress",
+    "PDF rotate",
+    "HTML to PDF",
+    "Text extraction",
+    "Page manipulation",
+    "Form filling",
+    "PDF metadata"
+  ],
+  "use_cases": [
+    "Invoice generation",
+    "Report creation",
+    "Document merging",
+    "PDF compression",
+    "Contract generation",
+    "Receipt PDFs"
+  ],
+  "estimated_revenue": {
+    "conservative": "30 sales/month = $870",
+    "moderate": "60 sales/month = $1,740",
+    "optimistic": "100 sales/month = $2,900"
+  },
+  "why_best": [
+    "PDF.co $19/mo vs $29 one-time",
+    "Every SaaS needs PDF generation",
+    "pdf-lib 7k+ stars - proven",
+    "Edge compatible",
+    "Higher value ($29)"
+  ]
+}

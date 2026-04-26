@@ -1,0 +1,22 @@
+{
+  "slug": "env-file-parser",
+  "name": "ENV File Parser",
+  "tagline": "Parse, validate and convert .env files instantly",
+  "description": "Parse, validate, and convert environment variable files between formats. Support for .env, JSON, YAML, and Docker Compose formats. Detect duplicates, validate syntax, and export to multiple formats.",
+  "price": "$19",
+  "category": "developer-tools",
+  "tech_stack": ["dotenv", "js-yaml"],
+  "features": [
+    "Parse .env files with comments preserved",
+    "Convert to JSON, YAML, Docker format",
+    "Detect duplicate keys",
+    "Syntax validation with error highlighting",
+    "Secret masking for sensitive values",
+    "Export to multiple formats",
+    "Variable interpolation support",
+    "Bulk conversion"
+  ],
+  "target_audience": ["devops engineers", "backend developers", "fullstack developers"],
+  "keywords": ["env", "environment", "parser", "converter", "dotenv"],
+  "status": "spec_ready"
+}

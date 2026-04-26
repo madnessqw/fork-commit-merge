@@ -1,0 +1,104 @@
+{
+  "name": "Agent Prompt Engineer",
+  "slug": "agent-prompt-engineer",
+  "description": "Engineer production-grade system prompts for AI agents with role templates and tool calling",
+  "long_description": "Agent Prompt Engineer helps you craft optimized system prompts for AI agents. Built-in templates for ReAct, Plan-and-Execute, and Tool-using agents with proper JSON schema definitions and few-shot examples.",
+  "price": "$19",
+  "category": "ai-tools",
+  "tags": ["ai", "prompt-engineering", "agents", "llm", "system-prompts", "tools"],
+  "features": [
+    "ReAct & Plan-and-Execute templates",
+    "Tool calling schemas",
+    "Few-shot example generation",
+    "Token optimization",
+    "Multi-framework support",
+    "Prompt versioning"
+  ],
+  "tech_stack": {
+    "frontend": "Vanilla HTML + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "processing": "Client-side generation"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "Engineer Agent Prompts That Work",
+        "subheadline": "Production-grade system prompts with proper tool calling, reasoning chains, and optimal token usage",
+        "cta": "Build Agent Prompt"
+      },
+      "demo": {
+        "type": "generator",
+        "inputs": [
+          {"name": "agent_role", "type": "text", "placeholder": "Data Analysis Assistant"},
+          {"name": "pattern", "type": "select", "options": ["ReAct", "Plan-and-Execute", "Direct Tool Use"]},
+          {"name": "tools", "type": "textarea", "placeholder": "search, calculator, file_reader"}
+        ],
+        "output": "generated_prompt_preview"
+      },
+      "features": [
+        {"icon": "🧠", "title": "ReAct Pattern", "desc": "Reasoning + Acting loop templates"},
+        {"icon": "🔧", "title": "Tool Schemas", "desc": "Proper function calling definitions"},
+        {"icon": "💡", "title": "Few-Shot Examples", "desc": "Auto-generated examples"},
+        {"icon": "⚡", "title": "Token Optimized", "desc": "Minimal token usage, maximum performance"}
+      ],
+      "how_it_works": [
+        "Define your agent's role",
+        "Select reasoning pattern",
+        "Add available tools",
+        "Export optimized prompt"
+      ],
+      "faq": [
+        {"q": "What patterns are supported?", "a": "ReAct, Plan-and-Execute, Direct Tool Use, and more"},
+        {"q": "Which LLMs work best?", "a": "Optimized for Claude, GPT-4, and Llama models"},
+        {"q": "Can I save my prompts?", "a": "Yes, with local browser storage"}
+      ],
+      "testimonials": [
+        {"name": "Mike Johnson", "role": "AI Engineer", "text": "Finally, prompts that actually follow instructions."}
+      ]
+    }
+  },
+  "api": {
+    "routes": [
+      {
+        "path": "/api/generate",
+        "method": "POST",
+        "description": "Generate agent system prompt",
+        "request": {
+          "agent_role": "string",
+          "pattern": "react|plan|direct",
+          "tools": ["string"],
+          "constraints": ["string"]
+        },
+        "response": {
+          "system_prompt": "string",
+          "tool_schemas": [{}],
+          "examples": ["string"],
+          "token_estimate": "number"
+        }
+      },
+      {
+        "path": "/api/health",
+        "method": "GET",
+        "description": "Health check"
+      },
+      {
+        "path": "/api/webhook",
+        "method": "POST",
+        "description": "LemonSqueezy webhook handler"
+      }
+    ]
+  },
+  "payment": {
+    "provider": "lemonsqueezy",
+    "price": 19,
+    "currency": "USD",
+    "license_type": "perpetual"
+  },
+  "deployment": {
+    "platform": "vercel",
+    "region": "iad1"
+  },
+  "status": "spec_ready",
+  "created_at": "2026-04-22T00:20:00Z",
+  "spec_version": "1.0"
+}

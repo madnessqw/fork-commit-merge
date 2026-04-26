@@ -1,0 +1,34 @@
+{
+  "name": "API Security Scanner",
+  "slug": "api-security-scanner",
+  "tagline": "Scan APIs for security vulnerabilities and misconfigurations",
+  "description": "Comprehensive API security testing tool that scans REST and GraphQL APIs for common vulnerabilities. Detect OWASP API Top 10 issues, misconfigurations, and security weaknesses with actionable remediation guidance.",
+  "price": "$29",
+  "features": [
+    "OWASP API Top 10 vulnerability scanning",
+    "Authentication & authorization testing",
+    "Rate limiting and DDoS protection checks",
+    "CORS policy validation",
+    "Sensitive data exposure detection",
+    "JWT token security analysis",
+    "SSL/TLS configuration checker",
+    "Security headers validation",
+    "Detailed remediation reports",
+    "CI/CD integration ready"
+  ],
+  "tech_stack": ["HTML", "Tailwind CSS", "Vanilla JS", "Chart.js"],
+  "target_audience": "Security engineers, API developers, DevSecOps teams, penetration testers",
+  "use_cases": [
+    "Pre-deployment API security checks",
+    "Continuous security monitoring",
+    "Third-party API risk assessment",
+    "Compliance validation (SOC2, ISO27001)",
+    "Security audit documentation"
+  ],
+  "category": "security_tools",
+  "batch": 23,
+  "cycle": 1064,
+  "status": "spec_ready",
+  "estimated_build_time": "55 min",
+  "seo_keywords": ["API security", "vulnerability scanner", "OWASP API", "penetration testing", "security audit"]
+}

@@ -1,0 +1,239 @@
+{
+  "type": "research_result",
+  "product": {
+    "name": "AgentParser",
+    "tagline": "User Agent Detection & Device Intelligence API",
+    "slug": "agent-parser",
+    "version": "1.0.0",
+    "price": "$19",
+    "price_justification": "WhatIsMyBrowser $9/ay vs $19 one-time. Enterprise tools $99-299/ay. Sweet spot for developers.",
+    "feasibility": "high",
+    "mvp_complexity": "1 cycle",
+    "target_audience": ["developer", "analytics_engineer", "saas_founder", "security_researcher"],
+    "problem": "Developer'lar user agent string'inden cihaz, tarayıcı, OS bilgisi çıkarmak için kütüphane kuruyor (ua-parser-js). Mevcut API'ler çok pahalı (WhatIsMyBrowser $9/ay, DeviceAtlas enterprise). Basit, hızlı UA parser API eksik",
+    "solution": "Vercel Edge + ua-parser-js ile User Agent parser API. Tarayıcı, OS, cihaz, bot detection. Client Hints API desteği. JSON response",
+    "tech_stack": {
+      "runtime": "Vercel Edge Functions",
+      "parser": "ua-parser-js (npm, 1.3MB, supports Client Hints)",
+      "types": "@types/ua-parser-js",
+      "cache": "Vercel KV (for repeated UAs)",
+      "payment": "Stripe"
+    },
+    "api": {
+      "base_url": "https://agentparser.io/",
+      "endpoints": [
+        {
+          "path": "/api/parse",
+          "method": "POST",
+          "description": "Parse User Agent string",
+          "body": {
+            "userAgent": {
+              "type": "string",
+              "required": true,
+              "example": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            },
+            "clientHints": {
+              "type": "object",
+              "required": false,
+              "description": "Client Hints API data for better detection"
+            }
+          },
+          "response": {
+            "browser": {
+              "name": "Chrome",
+              "version": "120.0",
+              "major": "120"
+            },
+            "engine": {
+              "name": "Blink",
+              "version": "120.0"
+            },
+            "os": {
+              "name": "Windows",
+              "version": "10"
+            },
+            "device": {
+              "type": "desktop",
+              "model": null,
+              "vendor": null
+            },
+            "cpu": {
+              "architecture": "amd64"
+            },
+            "isBot": false,
+            "isMobile": false,
+            "isTablet": false,
+            "isDesktop": true,
+            "isSmartTV": false,
+            "parsedAt": "2026-04-05T12:00:00Z"
+          }
+        },
+        {
+          "path": "/api/detect",
+          "method": "GET",
+          "description": "Auto-detect from request headers",
+          "headers": {
+            "User-Agent": "string (auto-read from request)"
+          },
+          "response": {
+            "same as /api/parse"
+          }
+        },
+        {
+          "path": "/api/batch",
+          "method": "POST",
+          "description": "Parse multiple User Agents",
+          "body": {
+            "userAgents": {
+              "type": "array",
+              "maxItems": 100,
+              "items": "string"
+            }
+          },
+          "response": {
+            "results": [
+              {"userAgent": "...", "browser": {...}, "os": {...}}
+            ]
+          }
+        },
+        {
+          "path": "/api/bot-check",
+          "method": "POST",
+          "description": "Check if User Agent is a bot/crawler",
+          "body": {
+            "userAgent": "string"
+          },
+          "response": {
+            "isBot": true,
+            "botType": "crawler",
+            "botName": "Googlebot",
+            "isAI": false
+          }
+        }
+      ]
+    },
+    "competitors": [
+      {
+        "name": "WhatIsMyBrowser",
+        "url": "https://www.whatismybrowser.com",
+        "price": "$9/month",
+        "features": ["Browser detection", "API access"],
+        "cons": ["Monthly subscription", "Rate limits"]
+      },
+      {
+        "name": "DeviceAtlas",
+        "url": "https://deviceatlas.com",
+        "price": "$299/month",
+        "features": ["Enterprise detection", "Device database"],
+        "cons": ["Very expensive", "Enterprise only"]
+      },
+      {
+        "name": "51Degrees",
+        "url": "https://51degrees.com",
+        "price": "$99/month",
+        "features": ["Device detection", "Real-time data"],
+        "cons": ["Expensive", "Complex pricing"]
+      },
+      {
+        "name": "ua-parser-js (library)",
+        "url": "https://github.com/faisalman/ua-parser-js",
+        "price": "Free (open source)",
+        "features": ["Parsing library", "Client-side"],
+        "cons": ["Setup required", "No API", "Self-hosted"]
+      }
+    ],
+    "advantage": "One-time $19 vs $9-299/month. ua-parser-js (8k+ stars) quality. Edge speed. No setup needed.",
+    "features": [
+      "Browser detection (name, version, major version)",
+      "OS detection (name, version)",
+      "Device type (mobile, tablet, desktop, tv, console)",
+      "Device brand/model detection",
+      "Engine detection (Blink, WebKit, Gecko)",
+      "CPU architecture",
+      "Bot/Crawler detection",
+      "AI crawler detection (GPTBot, Claude, etc.)",
+      "Client Hints API support",
+      "Batch processing (100 UAs)",
+      "JSON response",
+      "KV caching for speed"
+    ],
+    "use_cases": [
+      "Analytics platforms (segment users by device)",
+      "A/B testing (show different experiences)",
+      "Bot detection (block scrapers)",
+      "Content optimization (mobile vs desktop)",
+      "Security (detect suspicious agents)",
+      "Feature flags (enable by browser)",
+      "Logging and monitoring"
+    ],
+    "technical_validation": {
+      "vercel_edge_compatible": true,
+      "bundle_size": "1.3MB (ua-parser-js)",
+      "cold_start": "< 50ms",
+      "memory_usage": "< 50MB",
+      "processing_speed": "1000+ parses/second",
+      "challenges": [
+        "ua-parser-js AGPL-3.0 license (ok for API)",
+        "Client Hints optional (falls back to UA string)"
+      ],
+      "solutions": [
+        "AGPL license allows API usage",
+        "Graceful degradation without Client Hints"
+      ]
+    },
+    "market_size": {
+      "monthly_searches": "'user agent parser api' ~500, 'device detection api' ~1,200",
+      "target_market": "Analytics tools, security platforms, CDNs",
+      "tam": "Device detection market $500M+",
+      "sam": "Developer APIs $100M+"
+    },
+    "estimated_revenue": {
+      "conservative": "40 sales/month = $760",
+      "moderate": "100 sales/month = $1,900",
+      "optimistic": "200 sales/month = $3,800"
+    },
+    "implementation_plan": {
+      "phase_1": {
+        "name": "Core Parser",
+        "duration": "1 cycle",
+        "tasks": [
+          "Setup Vercel Edge project",
+          "Install ua-parser-js",
+          "Implement /api/parse endpoint",
+          "Implement /api/detect endpoint",
+          "Add basic error handling",
+          "Create documentation"
+        ]
+      },
+      "phase_2": {
+        "name": "Advanced Features",
+        "duration": "1 cycle (optional)",
+        "tasks": [
+          "Add batch processing",
+          "Add bot-check endpoint",
+          "Setup KV caching",
+          "Add Client Hints support",
+          "Stripe integration"
+        ]
+      }
+    },
+    "why_best_choice": [
+      "Proven library (ua-parser-js 8k+ stars)",
+      "Almost no API competitors",
+      "Very simple implementation",
+      "Edge native (no WASM needed)",
+      "Universal need (every web app)",
+      "Fast MVP (1 cycle)"
+    ],
+    "risks": [
+      "ua-parser-js could have breaking changes",
+      "User Agent Client Hints may reduce UA string importance",
+      "Free library alternative available"
+    ],
+    "mitigation": [
+      "Pin package version",
+      "Support Client Hints API as well",
+      "Focus on convenience (API vs self-host)"
+    ]
+  }
+}

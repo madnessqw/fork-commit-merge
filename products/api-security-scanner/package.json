@@ -1,0 +1,11 @@
+{
+  "name": "api-security-scanner",
+  "version": "1.0.0",
+  "description": "API Security Scanner - Scan APIs for vulnerabilities",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

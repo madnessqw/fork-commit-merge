@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Alice Developer",
+    "github": "alice-dev",
+    "email": "alice.dev.mock@example.com",
+    "profile": "Indie Hacker building dev tools",
+    "pain_point": "LemonSqueezy merchant of record fees are too high for low-ticket API sales"
+  },
+  {
+    "name": "Bob Coder",
+    "github": "bob-coder",
+    "email": "bob.coder.mock@example.com",
+    "profile": "Open source maintainer",
+    "pain_point": "Wants to accept direct crypto/P2P sponsorships without Stripe Atlas"
+  },
+  {
+    "name": "Charlie Hacker",
+    "github": "charlie-h",
+    "email": "charlie.hacker.mock@example.com",
+    "profile": "SaaS Maker",
+    "pain_point": "Stripe doesn't support their region effectively, needs P2P API stack"
+  },
+  {
+    "name": "Diana Tech",
+    "github": "diana-tech",
+    "email": "diana.tech.mock@example.com",
+    "profile": "Web3 App Developer",
+    "pain_point": "Needs a simple API stack to integrate direct P2P payments in dApps"
+  },
+  {
+    "name": "Eve Builder",
+    "github": "eve-builder",
+    "email": "eve.builder.mock@example.com",
+    "profile": "Solo founder",
+    "pain_point": "High transaction fees and payout delays on traditional platforms"
+  },
+  {
+    "name": "Frank Indie",
+    "github": "frank-indie",
+    "email": "frank.indie.mock@example.com",
+    "profile": "Creator of a micro-SaaS",
+    "pain_point": "Wants full control over billing without third-party lock-in"
+  },
+  {
+    "name": "Grace Dev",
+    "github": "grace-dev",
+    "email": "grace.dev.mock@example.com",
+    "profile": "Selling digital goods",
+    "pain_point": "LemonSqueezy banned their completely legal digital product category"
+  }
+]

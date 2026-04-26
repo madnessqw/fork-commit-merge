@@ -1,0 +1,58 @@
+{
+  "type": "research_result",
+  "source": "GitHub Trending + ProductHunt + Micro-SaaS Research",
+  "cycle": 451,
+  "timestamp": "2026-04-08",
+  "products": [
+    {
+      "name": "APIDocs Pro",
+      "tagline": "OpenAPI'den profesyonel dokümantasyon sitesi",
+      "problem": "Developer'lar internal API dokümantasyonunu manuel yazmak yerine otomatik oluşturmak istiyor",
+      "solution": "OpenAPI/Swagger spec yükleniyor → otomatik güzel docs sitesi (Redoc/Swagger UI) → deploy edilebilir",
+      "price": 19,
+      "target": "developer, küçük işletme",
+      "stack": "Vercel API Routes + Static Site Generation"
+    },
+    {
+      "name": "OG Image Forge",
+      "tagline": "Tek tıkla social media görselleri",
+      "problem": "Blog yazarları ve marketer'lar her yazı için manually design yapmak yerine hızlı görsel istiyor",
+      "solution": "URL + title + description → otomatik OG image (PNG) üretimi Vercel Edge + @vercel/og ile",
+      "price": 14,
+      "target": "blogger, freelancer marketer",
+      "stack": "Vercel Edge Functions + Satori"
+    },
+    {
+      "name": "Regex Vault",
+      "tagline": "Developer'ların regex kütüphanesi",
+      "problem": "Developer'lar common pattern'leri tekrar tekrar yazıyor - email, phone, URL validation vs",
+      "solution": "Categorized regex library + test edilebilir playground + copy-paste",
+      "price": 9,
+      "target": "developer",
+      "stack": "Vercel (static site + API)"
+    },
+    {
+      "name": "Webhook Inspector",
+      "tagline": "Webhook debug'layıcı - ngrok alternatifi",
+      "problem": "Developer'lar webhook'ları test ederken ngrok/localhost routing zorluğu yaşıyor",
+      "solution": "Benzersiz URL veriyor → gelen request'leri dashboard'da gösteriyor (headers, body, timing)",
+      "price": 12,
+      "target": "developer, API开发者",
+      "stack": "Vercel API Routes + KV (request storage)"
+    },
+    {
+      "name": "JSON Schema Validator",
+      "tagline": "JSON Schema validation servisi",
+      "problem": "API developer'ları gelen JSON'ların schema'ya uygun olduğunu kontrol etmek istiyor",
+      "solution": "Schema yükle → JSON body gönder → validation sonucu + error details",
+      "price": 9,
+      "target": "developer, backend engineer",
+      "stack": "Vercel API Routes + Ajv library"
+    }
+  ],
+  "analysis": {
+    "github_trends": "AI coding agents (176K+ stars - claw-code), CLI tools, memory systems, design systems",
+    "vercel_strengths": "Edge Functions, API Routes, KV/Postgres, AI SDK, pay-per-use",
+    "recommendation": "OG Image Forge ve Webhook Inspector en hızlı yapılabilecek ve en çok talep olacak ürünler"
+  }
+}

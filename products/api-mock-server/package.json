@@ -1,0 +1,12 @@
+{
+  "name": "api-mock-server",
+  "version": "1.0.0",
+  "description": "Generate mock REST and GraphQL APIs for testing and development",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mock", "api", "rest", "graphql", "testing"],
+  "author": "UniverseCreator",
+  "license": "MIT"
+}

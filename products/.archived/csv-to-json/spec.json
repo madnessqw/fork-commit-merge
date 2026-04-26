@@ -1,0 +1,54 @@
+{
+  "slug": "csv-to-json",
+  "name": "CSV to JSON Pro",
+  "tagline": "Convert CSV files to clean JSON instantly",
+  "description": "Professional CSV to JSON converter with smart data type detection, nested object support, and batch processing. Handles large files with ease.",
+  "price": 19,
+  "category": "developer-tools",
+  "features": [
+    "Drag & drop CSV file upload",
+    "Smart data type detection (numbers, booleans, dates)",
+    "Nested object support via dot notation headers",
+    "Array generation from repeated columns",
+    "Large file support (up to 10MB)",
+    "Copy to clipboard or download JSON",
+    "Pretty print / minified output options",
+    "Preview first 10 rows before conversion"
+  ],
+  "tech_stack": {
+    "frontend": "vanilla-html-tailwind",
+    "backend": "vercel-serverless",
+    "processing": "client-side-papaparse"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "CSV to JSON Conversion Made Simple",
+        "subheadline": "Transform your CSV files into clean, structured JSON in seconds. Smart type detection, nested objects, and batch processing.",
+        "cta": "Try Free Conversion"
+      },
+      "demo": {
+        "type": "interactive",
+        "description": "Live CSV to JSON converter with sample data"
+      },
+      "features_section": true,
+      "how_it_works": [
+        "Upload or paste your CSV data",
+        "Configure conversion options",
+        "Get clean JSON instantly"
+      ],
+      "testimonials": true,
+      "faq_count": 6,
+      "trust_badges": ["privacy", "speed", "accuracy"]
+    }
+  },
+  "seo": {
+    "title": "CSV to JSON Pro - Smart Converter Tool",
+    "description": "Convert CSV files to JSON instantly. Smart type detection, nested objects, and batch processing. Free online tool.",
+    "keywords": ["csv to json", "csv converter", "json converter", "csv parser", "data conversion"]
+  },
+  "status": "spec_ready",
+  "priority": "high",
+  "cycle_created": 1046,
+  "notes": "High-demand developer tool, simple implementation"
+}

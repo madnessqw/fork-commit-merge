@@ -1,0 +1,139 @@
+{
+  "name": "WASM Forge",
+  "tagline": "WebAssembly Module Builder & Runtime API",
+  "slug": "wasmforge",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "mvp_complexity": "2-3 cycles",
+  "target_audience": ["developer", "web_assembly_engineer", "performance_optimizer", "frontend_architect"],
+  "problem": "WASM modülü derlemek için Emscripten kurulumu karmaşık. WASI runtime'ları çeşitli. WASM performans testi için araç yok. Browser ve server WASM farklılıkları",
+  "solution": "Vercel Edge + WASM runtime ile WASM builder ve runner. Rust/C to WASM, WASI support, performance metrics, module validation",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "wasm_runtime": "Wasmtime (light)",
+    "compiler": "Remote compilation service",
+    "storage": "Vercel KV + Blob",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://wasmforge.io/",
+    "endpoints": [
+      {
+        "path": "/api/compile",
+        "method": "POST",
+        "description": "Compile source to WASM",
+        "body": {
+          "language": "rust | c | cpp | go",
+          "source": "string or URL",
+          "optimization": "0 | 1 | 2 | 3 | s | z",
+          "target": "wasm32-unknown-unknown | wasm32-wasi"
+        },
+        "response": {
+          "wasmUrl": "https://wasmforge.io/modules/abc123.wasm",
+          "size": 24500,
+          "functions": ["add", "subtract"],
+          "imports": [],
+          "exports": ["memory", "add"]
+        }
+      },
+      {
+        "path": "/api/run",
+        "method": "POST",
+        "description": "Execute WASM module",
+        "body": {
+          "wasmUrl": "string (required)",
+          "function": "string (export name)",
+          "args": [1, 2],
+          "memoryLimit": "64MB"
+        },
+        "response": {
+          "result": 3,
+          "executionTime": 0.5,
+          "memoryUsed": "1.2MB"
+        }
+      },
+      {
+        "path": "/api/analyze",
+        "method": "POST",
+        "description": "Analyze WASM module",
+        "body": {
+          "wasmUrl": "string"
+        },
+        "response": {
+          "size": 24500,
+          "functions": 12,
+          "imports": 3,
+          "exports": 8,
+          "complexity": "low",
+          "suggestions": ["Enable LTO for smaller size"]
+        }
+      },
+      {
+        "path": "/api/validate",
+        "method": "POST",
+        "description": "Validate WASM module",
+        "body": {
+          "wasmUrl": "string"
+        },
+        "response": {
+          "valid": true,
+          "version": "1.0",
+          "features": ["mutable_globals", "multi_value"]
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Emscripten",
+      "price": "Free",
+      "pros": ["Industry standard", "Powerful"],
+      "cons": ["Complex setup", "Heavy toolchain", "Self-hosted"]
+    },
+    {
+      "name": "Wasmtime",
+      "price": "Free",
+      "pros": ["Fast", "WASI support"],
+      "cons": ["CLI only", "Self-hosted", "No cloud API"]
+    },
+    {
+      "name": "Cloudflare Workers",
+      "price": "$5/month",
+      "pros": ["WASM support"],
+      "cons": ["Vendor lock-in", "Limited debugging"]
+    }
+  ],
+  "advantage": "One-time $29 vs toolchain setup. Cloud compilation. Edge execution. No local setup.",
+  "features": [
+    "Rust/C/Go to WASM compilation",
+    "WASI runtime support",
+    "Module validation",
+    "Performance analysis",
+    "Function inspection",
+    "Memory profiling",
+    "Size optimization suggestions",
+    "Browser compatibility check",
+    "Module caching",
+    "Streaming execution"
+  ],
+  "use_cases": [
+    "Performance-critical code",
+    "Language interoperability",
+    "Browser-based computation",
+    "Plugin systems",
+    "Edge computing",
+    "Crypto/encryption"
+  ],
+  "estimated_revenue": {
+    "conservative": "30 sales/month = $870",
+    "moderate": "60 sales/month = $1,740",
+    "optimistic": "100 sales/month = $2,900"
+  },
+  "why_best": [
+    "WASM growing trend",
+    "Emscripten setup too complex",
+    "Edge computing use case",
+    "Performance market",
+    "Developer tooling"
+  ]
+}

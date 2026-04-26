@@ -1,0 +1,14 @@
+{
+  "name": "function-call-debugger",
+  "version": "1.0.0",
+  "description": "Debug and trace function calls with detailed analytics",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,605 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - navigation "Global" [ref=e5]:
+      - link "Algora" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+      - button "Open main menu" [ref=e11] [cursor=pointer]:
+        - generic [ref=e12]: Open main menu
+  - generic [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e17]:
+        - heading "Bounties" [level=2] [ref=e18]
+        - paragraph [ref=e19]: Open bounties for you
+      - generic [ref=e20]:
+        - generic [ref=e22] [cursor=pointer]: Scala (10)
+        - generic [ref=e24] [cursor=pointer]: JavaScript (9)
+        - generic [ref=e26] [cursor=pointer]: CSS (8)
+        - generic [ref=e28] [cursor=pointer]: Objective-C++ (2)
+        - generic [ref=e30] [cursor=pointer]: C++ (2)
+        - generic [ref=e32] [cursor=pointer]: CMake (2)
+        - generic [ref=e34] [cursor=pointer]: Java (2)
+        - generic [ref=e36] [cursor=pointer]: TypeScript (2)
+        - generic [ref=e38] [cursor=pointer]: Nix (1)
+        - generic [ref=e40] [cursor=pointer]: Shell (1)
+        - generic [ref=e42] [cursor=pointer]: Rust (1)
+      - list [ref=e45]:
+        - 'link "AR Archestra #3378 $500 Agent schedule triggers" [ref=e46] [cursor=pointer]':
+          - /url: https://github.com/archestra-ai/archestra/issues/3378
+          - listitem [ref=e47]:
+            - generic [ref=e49]:
+              - img [ref=e50]
+              - generic [ref=e51]: AR
+            - generic [ref=e53]:
+              - generic [ref=e54]: Archestra
+              - generic [ref=e55]: "#3378"
+              - generic [ref=e56]: $500
+              - generic [ref=e57]: Agent schedule triggers
+        - 'link "ZI ZIO #519 $4,000 Schema Migration System for ZIO Schema 2" [ref=e58] [cursor=pointer]':
+          - /url: https://github.com/zio/zio-blocks/issues/519
+          - listitem [ref=e59]:
+            - generic [ref=e61]:
+              - img [ref=e62]
+              - generic [ref=e63]: ZI
+            - generic [ref=e65]:
+              - generic [ref=e66]: ZIO
+              - generic [ref=e67]: "#519"
+              - generic [ref=e68]: $4,000
+              - generic [ref=e69]: Schema Migration System for ZIO Schema 2
+        - link "Twenty (YC S23) $2,500 IMAP" [ref=e70] [cursor=pointer]:
+          - /url: /twentyhq/bounties/g6i2c8YSNV9nHogT
+          - listitem [ref=e71]:
+            - img [ref=e74]
+            - generic [ref=e77]:
+              - generic [ref=e78]: Twenty (YC S23)
+              - generic [ref=e79]: $2,500
+              - generic [ref=e80]: IMAP
+        - 'link "GO Golem Cloud #275 $3,500 Incorporate MCP Server into Golem CLI" [ref=e81] [cursor=pointer]':
+          - /url: https://github.com/golemcloud/golem-cli/issues/275
+          - listitem [ref=e82]:
+            - generic [ref=e84]:
+              - img [ref=e85]
+              - generic [ref=e86]: GO
+            - generic [ref=e88]:
+              - generic [ref=e89]: Golem Cloud
+              - generic [ref=e90]: "#275"
+              - generic [ref=e91]: $3,500
+              - generic [ref=e92]: Incorporate MCP Server into Golem CLI
+        - 'link "ZI ZIO #9878 $850 ZScheduler parks+unparks workers too frequently" [ref=e93] [cursor=pointer]':
+          - /url: https://github.com/zio/zio/issues/9878
+          - listitem [ref=e94]:
+            - generic [ref=e96]:
+              - img [ref=e97]
+              - generic [ref=e98]: ZI
+            - generic [ref=e100]:
+              - generic [ref=e101]: ZIO
+              - generic [ref=e102]: "#9878"
+              - generic [ref=e103]: $850
+              - generic [ref=e104]: ZScheduler parks+unparks workers too frequently
+        - 'link "ZI ZIO #9877 $750 Can Fiber(Runtime) and Promise be merged?" [ref=e105] [cursor=pointer]':
+          - /url: https://github.com/zio/zio/issues/9877
+          - listitem [ref=e106]:
+            - generic [ref=e108]:
+              - img [ref=e109]
+              - generic [ref=e110]: ZI
+            - generic [ref=e112]:
+              - generic [ref=e113]: ZIO
+              - generic [ref=e114]: "#9877"
+              - generic [ref=e115]: $750
+              - generic [ref=e116]: Can Fiber(Runtime) and Promise be merged?
+        - 'link "DE deskflow #8032 $2,500 Persist Input Capture XDG Desktop Portal dialog (Wayland)" [ref=e117] [cursor=pointer]':
+          - /url: https://github.com/deskflow/deskflow/issues/8032
+          - listitem [ref=e118]:
+            - generic [ref=e120]:
+              - img [ref=e121]
+              - generic [ref=e122]: DE
+            - generic [ref=e124]:
+              - generic [ref=e125]: deskflow
+              - generic [ref=e126]: "#8032"
+              - generic [ref=e127]: $2,500
+              - generic [ref=e128]: Persist Input Capture XDG Desktop Portal dialog (Wayland)
+        - 'link "DE deskflow #8031 $5,000 Clipboard support in XDG Desktop Portal (Wayland)" [ref=e129] [cursor=pointer]':
+          - /url: https://github.com/deskflow/deskflow/issues/8031
+          - listitem [ref=e130]:
+            - generic [ref=e132]:
+              - img [ref=e133]
+              - generic [ref=e134]: DE
+            - generic [ref=e136]:
+              - generic [ref=e137]: deskflow
+              - generic [ref=e138]: "#8031"
+              - generic [ref=e139]: $5,000
+              - generic [ref=e140]: Clipboard support in XDG Desktop Portal (Wayland)
+        - 'link "ZI ZIO #9356 $2,500 Implement NIO scheduler for ZIO" [ref=e141] [cursor=pointer]':
+          - /url: https://github.com/zio/zio/issues/9356
+          - listitem [ref=e142]:
+            - generic [ref=e144]:
+              - img [ref=e145]
+              - generic [ref=e146]: ZI
+            - generic [ref=e148]:
+              - generic [ref=e149]: ZIO
+              - generic [ref=e150]: "#9356"
+              - generic [ref=e151]: $2,500
+              - generic [ref=e152]: Implement NIO scheduler for ZIO
+        - 'link "ZI ZIO #481 $750 Subtype relation for refined type fails" [ref=e153] [cursor=pointer]':
+          - /url: https://github.com/zio/izumi-reflect/issues/481
+          - listitem [ref=e154]:
+            - generic [ref=e156]:
+              - img [ref=e157]
+              - generic [ref=e158]: ZI
+            - generic [ref=e160]:
+              - generic [ref=e161]: ZIO
+              - generic [ref=e162]: "#481"
+              - generic [ref=e163]: $750
+              - generic [ref=e164]: Subtype relation for refined type fails
+    - generic [ref=e168]:
+      - generic [ref=e169]:
+        - heading "Fund GitHub issues" [level=2] [ref=e170]
+        - paragraph [ref=e171]: Add USD rewards on issues and pay when work is merged
+        - generic [ref=e174]:
+          - generic [ref=e175]: Fund any issue in seconds
+          - generic [ref=e176]: Help improve the OSS you love and rely on
+          - generic [ref=e177]:
+            - generic [ref=e178]: Pay when PRs are merged
+            - generic [ref=e180]: Pool bounties with other sponsors
+            - generic [ref=e184]: Algora handles payouts, compliance & 1099s
+          - link "Fund issues" [ref=e186] [cursor=pointer]:
+            - /url: https://cal.com/ioannisflo
+      - generic [ref=e187]:
+        - link "Zed Scott Chacon GitHub cofounder funds new feature in Zed Editor Zed Editor, Scott Chacon View issue" [ref=e188] [cursor=pointer]:
+          - /url: https://github.com/zed-industries/zed/issues/4440
+          - generic [ref=e189]:
+            - img "Zed" [ref=e190]
+            - img "Scott Chacon" [ref=e191]
+          - generic [ref=e192]:
+            - generic [ref=e193]: GitHub cofounder funds new feature in Zed Editor
+            - generic [ref=e194]: Zed Editor, Scott Chacon
+          - button "View issue" [ref=e195]:
+            - img [ref=e196]
+            - text: View issue
+        - link "Alex Klimaj PX4 Andrew Wilkins DefenceTech CEOs fund obstacle avoidance in PX4 Autopilot Alex Klimaj, Founder of ARK Electronics & Andrew Wilkins, CEO of Ascend Engineering View issue" [ref=e197] [cursor=pointer]:
+          - /url: https://github.com/PX4/PX4-Autopilot/issues/22464
+          - generic [ref=e198]:
+            - img "Alex Klimaj" [ref=e199]
+            - img "PX4" [ref=e200]
+            - img "Andrew Wilkins" [ref=e201]
+          - generic [ref=e202]:
+            - generic [ref=e203]: DefenceTech CEOs fund obstacle avoidance in PX4 Autopilot
+            - generic [ref=e204]: Alex Klimaj, Founder of ARK Electronics & Andrew Wilkins, CEO of Ascend Engineering
+          - button "View issue" [ref=e205]:
+            - img [ref=e206]
+            - text: View issue
+        - link "Coolify Andras Bacsai Coolify community crowdfunds new feature development Andras Bacsai, Founder of Coolify View bounty board" [ref=e207] [cursor=pointer]:
+          - /url: /coollabsio/bounties/community
+          - generic [ref=e208]:
+            - img "Coolify" [ref=e209]
+            - img "Andras Bacsai" [ref=e210]
+          - generic [ref=e211]:
+            - generic [ref=e212]: Coolify community crowdfunds new feature development
+            - generic [ref=e213]: Andras Bacsai, Founder of Coolify
+          - button "View bounty board" [ref=e214]
+    - generic [ref=e216]:
+      - heading "Did you know?" [level=2] [ref=e217]
+      - paragraph [ref=e218]: You can tip your favorite open source contributors with Algora.
+      - generic [ref=e219]:
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - heading "Tip contributors instantly" [level=3] [ref=e223]
+            - paragraph [ref=e224]: Support the maintainers of your favorite projects
+            - generic [ref=e225]:
+              - generic [ref=e228]: Send tips directly to GitHub usernames
+              - generic [ref=e231]: Algora handles payouts, compliance & 1099s
+          - button "Tip contributors" [ref=e233] [cursor=pointer]
+        - generic:
+          - img "Tip contributor"
+    - generic [ref=e235]:
+      - img "Y Combinator Logo" [ref=e236]
+      - heading "Trusted by open source YC founders" [level=2] [ref=e237]
+      - generic [ref=e240]:
+        - link "Browser Use" [ref=e241] [cursor=pointer]:
+          - /url: /browser-use
+          - img [ref=e242]
+          - text: Browser Use
+        - link [ref=e243] [cursor=pointer]:
+          - /url: /outerbase
+          - img [ref=e244]
+        - link "Trigger.dev":
+          - /url: /triggerdotdev
+          - img "Trigger.dev"
+        - link "Traceloop":
+          - /url: /traceloop
+          - img "Traceloop"
+        - link "Trieve logo Trieve" [ref=e245] [cursor=pointer]:
+          - /url: /trieve
+          - img "Trieve logo" [ref=e246]
+          - text: Trieve
+        - link "Twenty" [ref=e247] [cursor=pointer]:
+          - /url: /twentyhq
+          - img [ref=e248]
+          - text: Twenty
+        - link "Million":
+          - /url: /aidenybai
+          - img "Million"
+        - link "moon":
+          - /url: /moonrepo
+          - img "moon"
+        - link "Dittofeed":
+          - /url: /dittofeed
+          - img "Dittofeed"
+        - link "Onyx Logo":
+          - /url: /onyx-dot-app
+          - img "Onyx Logo"
+        - link "Logo" [ref=e250] [cursor=pointer]:
+          - /url: /mendableai
+          - text: 🔥 Firecrawl
+        - link "Keep":
+          - /url: /keephq
+          - img "Keep"
+        - link "Windmill Windmill" [ref=e251] [cursor=pointer]:
+          - /url: /windmill-labs
+          - img "Windmill" [ref=e252]
+          - text: Windmill
+        - link "Panora":
+          - /url: /panoratech
+          - img "Panora"
+        - link "Highlight":
+          - /url: /highlight
+          - img "Highlight"
+      - generic [ref=e254]:
+        - generic [ref=e256]:
+          - img "Tal Borenstein"
+        - generic [ref=e257]:
+          - heading "Keep has 90+ integrations to alert our customers about critical events. Of these, 42 integrations were built using bounties on Algora." [level=3] [ref=e258]:
+            - text: Keep has 90+ integrations to alert our customers about critical events. Of these,
+            - link "42 integrations" [ref=e259] [cursor=pointer]:
+              - /url: https://github.com/keephq/keep/issues?q=state%3Aclosed%20label%3A%22%F0%9F%92%8E%20Bounty%22%20%20label%3A%22%F0%9F%92%B0%20Rewarded%22%20label%3AProvider%20
+              - text: 42 integrations
+            - text: were built using bounties on Algora.
+          - generic [ref=e263]:
+            - generic [ref=e264]: Tal Borenstein
+            - generic [ref=e265]: Co-founder & CEO at Keep (YC W23)
+    - generic [ref=e267]:
+      - heading "Build product faster" [level=2] [ref=e268]
+      - paragraph [ref=e269]: Use bounties for outcome-based contract work with full GitHub integration.
+      - generic [ref=e271]:
+        - generic [ref=e273]:
+          - img "Louis Beaumont"
+        - generic [ref=e274]:
+          - heading "I posted our bounty on Upwork to try it, overall it's 1000x more friction than OSS bounties with Algora." [level=3] [ref=e275]
+          - generic [ref=e278]:
+            - generic [ref=e279]: Louis Beaumont
+            - generic [ref=e280]: Co-founder & CEO at Screenpipe
+      - generic [ref=e282]:
+        - generic [ref=e284]:
+          - img "Josh Pigford"
+        - generic [ref=e285]:
+          - heading "Let's offer a bounty to say \"Hey, someone please prioritize this, who has the skillset for it?\" I think long term I'd like to make it a very consistent part of our development process." [level=3] [ref=e286]
+          - generic [ref=e289]:
+            - generic [ref=e290]: Josh Pigford
+            - generic [ref=e291]: Co-founder & CEO at Maybe
+      - generic [ref=e293]:
+        - generic:
+          - generic:
+            - img "John A De Goes"
+        - generic [ref=e294]:
+          - heading "We used Algora extensively at Ziverge to reward over $143,000 in bounties and introduce a whole new generation of contributors to the ZIO and Golem ecosystems." [level=3] [ref=e295]
+          - generic [ref=e298]:
+            - generic [ref=e299]: John A De Goes
+            - generic [ref=e300]: Founder & CEO at Ziverge
+    - generic [ref=e302]:
+      - heading "Community highlights" [level=2] [ref=e304]
+      - list [ref=e305]:
+        - listitem [ref=e306]:
+          - link "Ayush Goyal Archestra Archestra awarded Ayush Goyal a $100 bounty 1 day ago" [ref=e310] [cursor=pointer]:
+            - /url: https://github.com/archestra-ai/archestra/issues/3556
+            - generic [ref=e313]:
+              - generic [ref=e314]:
+                - img "Ayush Goyal" [ref=e316]
+                - img "Archestra" [ref=e318]
+              - generic [ref=e319]:
+                - paragraph [ref=e320]: Archestra awarded Ayush Goyal a $100 bounty
+                - time [ref=e322]: 1 day ago
+        - listitem [ref=e323]:
+          - link "Excellencedev Alexandre Magno Alexandre Magno awarded Excellencedev a $100 bounty 1 week ago" [ref=e327] [cursor=pointer]:
+            - /url: https://github.com/go-gitea/gitea/issues/24635
+            - generic [ref=e330]:
+              - generic [ref=e331]:
+                - img "Excellencedev" [ref=e333]
+                - img "Alexandre Magno" [ref=e335]
+              - generic [ref=e336]:
+                - paragraph [ref=e337]: Alexandre Magno awarded Excellencedev a $100 bounty
+                - time [ref=e339]: 1 week ago
+        - listitem [ref=e340]:
+          - link "CharlesWong ProjectDiscovery ProjectDiscovery awarded CharlesWong a $75 tip 1 week ago" [ref=e344] [cursor=pointer]:
+            - /url: https://github.com/projectdiscovery/subfinder/pull/1764
+            - generic [ref=e347]:
+              - generic [ref=e348]:
+                - img "CharlesWong" [ref=e350]
+                - img "ProjectDiscovery" [ref=e352]
+              - generic [ref=e353]:
+                - paragraph [ref=e354]: ProjectDiscovery awarded CharlesWong a $75 tip
+                - time [ref=e356]: 1 week ago
+        - listitem [ref=e357]:
+          - link "Marchants ProjectDiscovery ProjectDiscovery awarded Marchants a $75 bounty 1 week ago" [ref=e361] [cursor=pointer]:
+            - /url: https://github.com/projectdiscovery/tlsx/issues/859
+            - generic [ref=e364]:
+              - generic [ref=e365]:
+                - img "Marchants" [ref=e367]
+                - img "ProjectDiscovery" [ref=e369]
+              - generic [ref=e370]:
+                - paragraph [ref=e371]: ProjectDiscovery awarded Marchants a $75 bounty
+                - time [ref=e373]: 1 week ago
+        - listitem [ref=e374]:
+          - link "Excellencedev Michael Aldridge Michael Aldridge awarded Excellencedev a $200 bounty 1 week ago" [ref=e378] [cursor=pointer]:
+            - /url: https://github.com/go-gitea/gitea/issues/24635
+            - generic [ref=e381]:
+              - generic [ref=e382]:
+                - img "Excellencedev" [ref=e384]
+                - img "Michael Aldridge" [ref=e386]
+              - generic [ref=e387]:
+                - paragraph [ref=e388]: Michael Aldridge awarded Excellencedev a $200 bounty
+                - time [ref=e390]: 1 week ago
+        - listitem [ref=e391]:
+          - link "Excellencedev Frank Frank awarded Excellencedev a $200 bounty 1 week ago" [ref=e395] [cursor=pointer]:
+            - /url: https://github.com/go-gitea/gitea/issues/24635
+            - generic [ref=e398]:
+              - generic [ref=e399]:
+                - img "Excellencedev" [ref=e401]
+                - img "Frank" [ref=e403]
+              - generic [ref=e404]:
+                - paragraph [ref=e405]: Frank awarded Excellencedev a $200 bounty
+                - time [ref=e407]: 1 week ago
+        - listitem [ref=e408]:
+          - link "Nabil Abdel-Hafeez ZIO ZIO awarded Nabil Abdel-Hafeez a $100 bounty 1 week ago" [ref=e412] [cursor=pointer]:
+            - /url: https://github.com/zio/zio-http/issues/1996
+            - generic [ref=e415]:
+              - generic [ref=e416]:
+                - img "Nabil Abdel-Hafeez" [ref=e418]
+                - img "ZIO" [ref=e420]
+              - generic [ref=e421]:
+                - paragraph [ref=e422]: ZIO awarded Nabil Abdel-Hafeez a $100 bounty
+                - time [ref=e424]: 1 week ago
+        - listitem [ref=e425]:
+          - link "Excellencedev Qdrant Qdrant awarded Excellencedev a $150 bounty 1 week ago" [ref=e429] [cursor=pointer]:
+            - /url: https://github.com/qdrant/qdrant/issues/3322
+            - generic [ref=e432]:
+              - generic [ref=e433]:
+                - img "Excellencedev" [ref=e435]
+                - img "Qdrant" [ref=e437]
+              - generic [ref=e438]:
+                - paragraph [ref=e439]: Qdrant awarded Excellencedev a $150 bounty
+                - time [ref=e441]: 1 week ago
+        - listitem [ref=e442]:
+          - link "Nabil Abdel-Hafeez ZIO ZIO awarded Nabil Abdel-Hafeez a $250 bounty 1 week ago" [ref=e446] [cursor=pointer]:
+            - /url: https://github.com/zio/zio-http/issues/3472
+            - generic [ref=e449]:
+              - generic [ref=e450]:
+                - img "Nabil Abdel-Hafeez" [ref=e452]
+                - img "ZIO" [ref=e454]
+              - generic [ref=e455]:
+                - paragraph [ref=e456]: ZIO awarded Nabil Abdel-Hafeez a $250 bounty
+                - time [ref=e458]: 1 week ago
+        - listitem [ref=e459]:
+          - link "Thomas ProjectDiscovery ProjectDiscovery awarded Thomas a $75 bounty 1 week ago" [ref=e463] [cursor=pointer]:
+            - /url: https://github.com/projectdiscovery/katana/issues/611
+            - generic [ref=e466]:
+              - generic [ref=e467]:
+                - img "Thomas" [ref=e469]
+                - img "ProjectDiscovery" [ref=e471]
+              - generic [ref=e472]:
+                - paragraph [ref=e473]: ProjectDiscovery awarded Thomas a $75 bounty
+                - time [ref=e475]: 1 week ago
+        - listitem [ref=e476]:
+          - link "Archestra Archestra shared a $500 bounty 2 weeks ago" [ref=e480] [cursor=pointer]:
+            - /url: https://github.com/archestra-ai/archestra/issues/3378
+            - generic [ref=e483]:
+              - img "Archestra" [ref=e486]
+              - generic [ref=e487]:
+                - paragraph [ref=e488]: Archestra shared a $500 bounty
+                - time [ref=e490]: 2 weeks ago
+        - listitem [ref=e491]:
+          - link "ZIO ZIO shared a $4,000 bounty 3 months ago" [ref=e495] [cursor=pointer]:
+            - /url: https://github.com/zio/zio-blocks/issues/519
+            - generic [ref=e498]:
+              - img "ZIO" [ref=e501]
+              - generic [ref=e502]:
+                - paragraph [ref=e503]: ZIO shared a $4,000 bounty
+                - time [ref=e505]: 3 months ago
+        - listitem [ref=e506]:
+          - link "Twenty (YC S23) Twenty (YC S23) shared a $2,500 bounty 9 months ago" [ref=e510] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e513]:
+              - img "Twenty (YC S23)" [ref=e516]
+              - generic [ref=e517]:
+                - paragraph [ref=e518]: Twenty (YC S23) shared a $2,500 bounty
+                - time [ref=e520]: 9 months ago
+        - listitem [ref=e521]:
+          - link "Golem Cloud Golem Cloud shared a $3,500 bounty 10 months ago" [ref=e525] [cursor=pointer]:
+            - /url: https://github.com/golemcloud/golem-cli/issues/275
+            - generic [ref=e528]:
+              - img "Golem Cloud" [ref=e531]
+              - generic [ref=e532]:
+                - paragraph [ref=e533]: Golem Cloud shared a $3,500 bounty
+                - time [ref=e535]: 10 months ago
+        - listitem [ref=e536]:
+          - link "ZIO ZIO shared a $850 bounty 10 months ago" [ref=e540] [cursor=pointer]:
+            - /url: https://github.com/zio/zio/issues/9878
+            - generic [ref=e543]:
+              - img "ZIO" [ref=e546]
+              - generic [ref=e547]:
+                - paragraph [ref=e548]: ZIO shared a $850 bounty
+                - time [ref=e550]: 10 months ago
+        - listitem [ref=e551]:
+          - link "ZIO ZIO shared a $750 bounty 10 months ago" [ref=e555] [cursor=pointer]:
+            - /url: https://github.com/zio/zio/issues/9877
+            - generic [ref=e558]:
+              - img "ZIO" [ref=e561]
+              - generic [ref=e562]:
+                - paragraph [ref=e563]: ZIO shared a $750 bounty
+                - time [ref=e565]: 10 months ago
+        - listitem [ref=e566]:
+          - link "Garden Computing Garden Computing is hiring! Full-stack TypeScript Framework Developer 11 months ago" [ref=e570] [cursor=pointer]:
+            - /url: /garden-co/jobs
+            - generic [ref=e573]:
+              - img "Garden Computing" [ref=e576]
+              - generic [ref=e577]:
+                - paragraph [ref=e578]: Garden Computing is hiring! Full-stack TypeScript Framework Developer
+                - time [ref=e580]: 11 months ago
+        - listitem [ref=e581]:
+          - link "TraceMachina TraceMachina is hiring! OSS Rust Engineer - India Office 🇮🇳 11 months ago" [ref=e585] [cursor=pointer]:
+            - /url: /TraceMachina/jobs
+            - generic [ref=e588]:
+              - img "TraceMachina" [ref=e591]
+              - generic [ref=e592]:
+                - paragraph [ref=e593]: TraceMachina is hiring! OSS Rust Engineer - India Office 🇮🇳
+                - time [ref=e595]: 11 months ago
+        - listitem [ref=e596]:
+          - link "ZIO ZIO is hiring! Full-time Scala Developer 11 months ago" [ref=e600] [cursor=pointer]:
+            - /url: /ZIO/jobs
+            - generic [ref=e603]:
+              - img "ZIO" [ref=e606]
+              - generic [ref=e607]:
+                - paragraph [ref=e608]: ZIO is hiring! Full-time Scala Developer
+                - time [ref=e610]: 11 months ago
+        - listitem [ref=e611]:
+          - link "Golem Cloud Golem Cloud is hiring! Full-time TypeScript developer 11 months ago" [ref=e615] [cursor=pointer]:
+            - /url: /golemcloud/jobs
+            - generic [ref=e618]:
+              - img "Golem Cloud" [ref=e621]
+              - generic [ref=e622]:
+                - paragraph [ref=e623]: Golem Cloud is hiring! Full-time TypeScript developer
+                - time [ref=e625]: 11 months ago
+        - listitem [ref=e626]:
+          - link "deskflow deskflow shared a $2,500 bounty 15 months ago" [ref=e630] [cursor=pointer]:
+            - /url: https://github.com/deskflow/deskflow/issues/8032
+            - generic [ref=e633]:
+              - img "deskflow" [ref=e636]
+              - generic [ref=e637]:
+                - paragraph [ref=e638]: deskflow shared a $2,500 bounty
+                - time [ref=e640]: 15 months ago
+        - listitem [ref=e641]:
+          - link "deskflow deskflow shared a $5,000 bounty 15 months ago" [ref=e645] [cursor=pointer]:
+            - /url: https://github.com/deskflow/deskflow/issues/8031
+            - generic [ref=e648]:
+              - img "deskflow" [ref=e651]
+              - generic [ref=e652]:
+                - paragraph [ref=e653]: deskflow shared a $5,000 bounty
+                - time [ref=e655]: 15 months ago
+        - listitem [ref=e656]:
+          - link "ZIO ZIO shared a $2,500 bounty 16 months ago" [ref=e660] [cursor=pointer]:
+            - /url: https://github.com/zio/zio/issues/9356
+            - generic [ref=e663]:
+              - img "ZIO" [ref=e666]
+              - generic [ref=e667]:
+                - paragraph [ref=e668]: ZIO shared a $2,500 bounty
+                - time [ref=e670]: 16 months ago
+        - listitem [ref=e671]:
+          - link "ZIO ZIO shared a $750 bounty 17 months ago" [ref=e674] [cursor=pointer]:
+            - /url: https://github.com/zio/izumi-reflect/issues/481
+            - generic [ref=e677]:
+              - img "ZIO" [ref=e680]
+              - generic [ref=e681]:
+                - paragraph [ref=e682]: ZIO shared a $750 bounty
+                - time [ref=e684]: 17 months ago
+    - generic [ref=e686]:
+      - heading "Join the open source economy" [level=2] [ref=e687]
+      - generic [ref=e688]:
+        - link "Companies" [ref=e689] [cursor=pointer]:
+          - /url: https://cal.com/ioannisflo
+        - link "Developers" [ref=e690] [cursor=pointer]:
+          - /url: /onboarding/dev
+  - contentinfo "Footer" [ref=e691]:
+    - heading "Footer" [level=2] [ref=e692]
+    - generic [ref=e695]:
+      - generic [ref=e696]:
+        - heading "Algora" [level=3] [ref=e697]:
+          - link "Algora" [ref=e698] [cursor=pointer]:
+            - /url: /
+            - img [ref=e699]
+        - list [ref=e701]:
+          - listitem [ref=e702]: Algora PBC © 2026
+          - listitem [ref=e703]:
+            - link "Schedule a call" [ref=e704] [cursor=pointer]:
+              - /url: https://cal.com/ioannisflo
+              - generic [ref=e706]: Schedule a call
+          - listitem [ref=e707]:
+            - link "US +1 (650) 420-2207" [ref=e708] [cursor=pointer]:
+              - /url: tel:+16504202207
+              - generic [ref=e710]: US
+              - generic [ref=e711]: +1 (650) 420-2207
+          - listitem [ref=e712]:
+            - link "EU +30 (697) 318-4144" [ref=e713] [cursor=pointer]:
+              - /url: tel:+306973184144
+              - generic [ref=e715]: EU
+              - generic [ref=e716]: +30 (697) 318-4144
+      - generic [ref=e717]:
+        - heading "Recruiting" [level=3] [ref=e718]
+        - list [ref=e719]:
+          - listitem [ref=e720]:
+            - link "CodeRabbit" [ref=e721] [cursor=pointer]:
+              - /url: /coderabbit/jobs
+          - listitem [ref=e722]:
+            - link "Lovable" [ref=e723] [cursor=pointer]:
+              - /url: /lovable/jobs
+          - listitem [ref=e724]:
+            - link "ComfyUI" [ref=e725] [cursor=pointer]:
+              - /url: /comfy/jobs
+          - listitem [ref=e726]:
+            - link "Firecrawl (YC S22)" [ref=e727] [cursor=pointer]:
+              - /url: /firecrawl/jobs
+          - listitem [ref=e728]:
+            - link "Air Space Intelligence" [ref=e729] [cursor=pointer]:
+              - /url: /airspace-intelligence/jobs
+          - listitem [ref=e730]:
+            - link "TextQL" [ref=e731] [cursor=pointer]:
+              - /url: /textql/jobs
+      - generic [ref=e732]:
+        - heading "Bounties" [level=3] [ref=e733]
+        - list [ref=e734]:
+          - listitem [ref=e735]:
+            - link "Jules" [ref=e736] [cursor=pointer]:
+              - /url: /challenges/jules
+          - listitem [ref=e737]:
+            - link "Turso" [ref=e738] [cursor=pointer]:
+              - /url: /challenges/turso
+          - listitem [ref=e739]:
+            - link "Atopile (YC W24)" [ref=e740] [cursor=pointer]:
+              - /url: /challenges/atopile
+          - listitem [ref=e741]:
+            - link "Golem Cloud" [ref=e742] [cursor=pointer]:
+              - /url: /challenges/golem
+          - listitem [ref=e743]:
+            - link "TSPerf" [ref=e744] [cursor=pointer]:
+              - /url: /challenges/tsperf
+          - listitem [ref=e745]:
+            - link "Prettier" [ref=e746] [cursor=pointer]:
+              - /url: /challenges/prettier
+      - generic [ref=e747]:
+        - heading "Community" [level=3] [ref=e748]
+        - list [ref=e749]:
+          - listitem [ref=e750]:
+            - link "OSS Founder Podcast" [ref=e751] [cursor=pointer]:
+              - /url: https://www.youtube.com/watch?v=ZXz74ZewxwY&list=PLRIG8mKLBXFotOxF234rEIREidMRh98Hv&t=229s
+          - listitem [ref=e752]:
+            - link "GitHub" [ref=e753] [cursor=pointer]:
+              - /url: https://github.com/algora-io
+          - listitem [ref=e754]:
+            - link "X (Twitter)" [ref=e755] [cursor=pointer]:
+              - /url: https://x.com/algoraio
+          - listitem [ref=e756]:
+            - link "LinkedIn" [ref=e757] [cursor=pointer]:
+              - /url: https://linkedin.com/company/algorapbc
+          - listitem [ref=e758]:
+            - link "Discord" [ref=e759] [cursor=pointer]:
+              - /url: /discord
+          - listitem [ref=e760]:
+            - link "YouTube" [ref=e761] [cursor=pointer]:
+              - /url: https://www.youtube.com/@algora-io
+      - generic [ref=e762]:
+        - heading "Legal" [level=3] [ref=e763]
+        - list [ref=e764]:
+          - listitem [ref=e765]:
+            - link "Terms of Service" [ref=e766] [cursor=pointer]:
+              - /url: /legal/terms
+          - listitem [ref=e767]:
+            - link "Privacy Policy" [ref=e768] [cursor=pointer]:
+              - /url: /legal/privacy

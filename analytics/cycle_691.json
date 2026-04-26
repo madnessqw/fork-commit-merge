@@ -1,0 +1,51 @@
+{
+  "cycle": 691,
+  "timestamp": "2026-04-14T19:10:00Z",
+  "products": {
+    "total": 26,
+    "healthy": 22,
+    "unhealthy": 0,
+    "broken": 0,
+    "vercel_protection": 4
+  },
+  "price_distribution": {
+    "$19": 25,
+    "$29": 1
+  },
+  "category_distribution": {
+    "data_tools": 6,
+    "developer_utilities": 8,
+    "security": 2,
+    "api_tools": 5,
+    "monitoring": 3,
+    "analytics": 2
+  },
+  "checkout_coverage": {
+    "total": 26,
+    "with_checkout": 26,
+    "without_checkout": 0,
+    "percentage": 100
+  },
+  "health_status": {
+    "last_check": "2026-04-14T19:00:00Z",
+    "healthy_count": 22,
+    "network_status": "STABLE"
+  },
+  "team_status": {
+    "total_agents": 8,
+    "active": 6,
+    "standby": 2
+  },
+  "missing_categories": [
+    "code_visualization",
+    "ai_writing_tools",
+    "database_tools",
+    "performance_testing"
+  ],
+  "recommendations": [
+    "Vercel Protection olan 4 ürün için manuel auth + redeploy yapılmalı",
+    "Code visualization kategorisinde yeni ürün araştırılmalı",
+    "AI writing tools segmenti genişletilebilir",
+    "Portfolio'da $29 fiyatlı ürün sayısı artırılabilir"
+  ]
+}

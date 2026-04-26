@@ -1,0 +1,22 @@
+{
+  "name": "api-mock-generator",
+  "version": "1.0.0",
+  "description": "Generate realistic mock API responses for REST and GraphQL APIs",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "api",
+    "mock",
+    "generator",
+    "rest",
+    "graphql",
+    "fake-data",
+    "developer-tools"
+  ],
+  "author": "UniverseCreator",
+  "license": "MIT",
+  "dependencies": {}
+}

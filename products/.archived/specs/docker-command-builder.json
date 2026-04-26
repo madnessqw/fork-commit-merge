@@ -1,0 +1,34 @@
+{
+  "name": "Docker Command Builder",
+  "slug": "docker-command-builder",
+  "tagline": "Visually build complex Docker commands and compose files",
+  "description": "Interactive Docker command generator with visual builders for docker run, docker-compose, and Dockerfile creation. Generate production-ready Docker configurations with best practices built-in.",
+  "price": "$19",
+  "features": [
+    "Visual docker run command builder",
+    "Docker Compose YAML generator",
+    "Dockerfile builder with multi-stage support",
+    "250+ pre-built service templates",
+    "Volume and network configuration UI",
+    "Environment variable manager",
+    "Port mapping visualizer",
+    "Resource limits calculator",
+    "One-click copy with explanations",
+    "Docker Swarm and Kubernetes export"
+  ],
+  "tech_stack": ["HTML", "Tailwind CSS", "Vanilla JS", "YAML", "Prism.js"],
+  "target_audience": "Developers, DevOps engineers, system administrators, students learning Docker",
+  "use_cases": [
+    "Generate production Docker commands",
+    "Create docker-compose stacks",
+    "Learn Docker syntax interactively",
+    "Standardize team Docker configurations",
+    "Migrate applications to containers"
+  ],
+  "category": "developer_tools",
+  "batch": 23,
+  "cycle": 1064,
+  "status": "spec_ready",
+  "estimated_build_time": "45 min",
+  "seo_keywords": ["Docker", "docker-compose", "containerization", "DevOps tools", "Docker command generator"]
+}

@@ -1,0 +1,183 @@
+{
+  "name": "FakeData API",
+  "tagline": "Realistic Test Data Generator API",
+  "slug": "fakedata-api",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1 cycle",
+  "target_audience": ["developer", "qa_engineer", "api_tester", "saas_founder"],
+  "problem": "API testing için mock data üretmek için faker.js kurmak gerekiyor. JSON schema'dan mock data üretmek zor. Her test için elle data oluşturmak zaman alıcı. json-schema-faker kullanmak için setup gerekiyor",
+  "solution": "Vercel Edge + @faker-js/faker ile mock data generator API. User, product, order gibi hazır entity'ler. JSON Schema'dan data üretme. 20+ locale desteği. Batch generation (1000 record). CSV/JSON/XML export",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "faker": "@faker-js/faker (npm)",
+    "schema_faker": "json-schema-faker (optional)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://fakedataapi.io/",
+    "endpoints": [
+      {
+        "path": "/api/generate",
+        "method": "POST",
+        "description": "Generate fake data by entity type",
+        "body": {
+          "entity": {
+            "type": "string",
+            "enum": ["user", "product", "order", "company", "address", "person", "vehicle", "finance", "internet", "lorem"],
+            "required": true
+          },
+          "count": {
+            "type": "number",
+            "default": 10,
+            "max": 1000,
+            "description": "Number of records to generate"
+          },
+          "locale": {
+            "type": "string",
+            "default": "en",
+            "enum": ["en", "tr", "de", "fr", "es", "it", "ja", "ko", "pt", "ru"],
+            "description": "Data locale"
+          },
+          "seed": {
+            "type": "number",
+            "description": "Random seed for reproducible data"
+          }
+        },
+        "response": {
+          "data": [
+            {
+              "id": "550e8400-e29b-41d4-a716-446655440000",
+              "firstName": "John",
+              "lastName": "Doe",
+              "email": "john.doe@example.com",
+              "phone": "+1 555-0123",
+              "address": {
+                "street": "123 Main St",
+                "city": "New York",
+                "zipCode": "10001"
+              }
+            }
+          ],
+          "count": 10,
+          "entity": "user",
+          "locale": "en",
+          "generatedAt": "2026-04-05T12:00:00Z"
+        }
+      },
+      {
+        "path": "/api/schema",
+        "method": "POST",
+        "description": "Generate data from JSON Schema",
+        "body": {
+          "schema": {
+            "type": "object",
+            "required": true,
+            "description": "JSON Schema object"
+          },
+          "count": {
+            "type": "number",
+            "default": 10,
+            "max": 1000
+          }
+        },
+        "response": {
+          "data": "generated data matching schema",
+          "schema": "original schema"
+        }
+      },
+      {
+        "path": "/api/custom",
+        "method": "POST",
+        "description": "Generate custom data with field definitions",
+        "body": {
+          "fields": {
+            "type": "object",
+            "required": true,
+            "example": {
+              "name": "faker.person.fullName",
+              "email": "faker.internet.email",
+              "age": "faker.number.int(18, 99)",
+              "isActive": "faker.datatype.boolean"
+            }
+          },
+          "count": 10
+        }
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "user",
+      "fields": ["id", "firstName", "lastName", "email", "phone", "avatar", "address"]
+    },
+    {
+      "name": "product",
+      "fields": ["id", "name", "description", "price", "category", "image", "sku"]
+    },
+    {
+      "name": "order",
+      "fields": ["id", "userId", "items", "total", "status", "createdAt", "shippingAddress"]
+    },
+    {
+      "name": "company",
+      "fields": ["name", "catchPhrase", "bs", "address", "phone", "email", "website"]
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Mockaroo",
+      "price": "$50/month",
+      "url": "https://mockaroo.com",
+      "pros": ["Many formats", "Schema support"],
+      "cons": ["Expensive", "Monthly subscription"]
+    },
+    {
+      "name": "Faker Cloud",
+      "price": "$9/month",
+      "url": "https://fakercloud.com",
+      "pros": ["API available"],
+      "cons": ["Monthly cost", "Limited features"]
+    },
+    {
+      "name": "faker-js (library)",
+      "price": "Free",
+      "url": "https://fakerjs.dev",
+      "pros": ["Popular", "Free"],
+      "cons": ["Setup required", "No API", "Self-hosted"]
+    }
+  ],
+  "advantage": "One-time $19 vs monthly subscriptions. faker.js quality (35k+ stars). No setup. Edge speed.",
+  "features": [
+    "20+ built-in entities",
+    "JSON Schema support",
+    "Custom field definitions",
+    "10+ locales",
+    "Batch generation (1000 records)",
+    "CSV/JSON/XML export",
+    "Seed for reproducible data",
+    "Nested object support"
+  ],
+  "use_cases": [
+    "API testing data",
+    "Demo application data",
+    "Load testing",
+    "Database seeding",
+    "UI/UX prototyping",
+    "Machine learning training data"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $950",
+    "moderate": "100 sales/month = $1,900",
+    "optimistic": "200 sales/month = $3,800"
+  },
+  "why_best_choice": [
+    "faker.js 35k+ stars - proven quality",
+    "Mockaroo $50/mo vs $19 one-time",
+    "Every developer needs test data",
+    "Simple implementation - just wrap faker",
+    "Edge compatible - no heavy processing",
+    "Multiple export formats"
+  ]
+}

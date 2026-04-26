@@ -1,0 +1,24 @@
+{
+  "cycle": 607,
+  "timestamp": "2026-04-09T07:15:35.568847+00:00",
+  "products_live": 24,
+  "products_with_checkout": 22,
+  "products_pending_checkout": [
+    "universe-hub",
+    "llm-token-lens"
+  ],
+  "lessons_total": 50,
+  "skills_updated": [
+    "skill-writer-bu-cycle-neyi-guncelledi"
+  ],
+  "top_issues": [
+    "universe-hub checkout URL pending",
+    "llm-token-lens checkout URL pending",
+    "Team config'ta 14 member (gereksiz duplikeler)"
+  ],
+  "recommendations": [
+    "universe-hub ve llm-token-lens için LemonSqueezy checkout oluştur",
+    "Team config temizle (researcher-2, optimizer-2 gibi duplikeleri sil)",
+    "ScanGuard (API Security Scanner, $29) yeni ürün adayı"
+  ]
+}

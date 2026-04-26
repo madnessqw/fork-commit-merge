@@ -1,0 +1,14 @@
+{
+  "name": "terminal-theme-studio",
+  "version": "1.0.0",
+  "description": "Generate beautiful terminal color schemes for iTerm2, VS Code, Windows Terminal, Alacritty, and more. Preview, customize, and export your perfect terminal look.",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

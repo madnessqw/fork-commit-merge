@@ -1,0 +1,262 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2FANAVHEOBA%2FPrivacyLayer%2Fpull%2F132
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - link "ANAVHEOBA" [ref=e36] [cursor=pointer]:
+            - /url: /ANAVHEOBA
+          - generic [ref=e37]: /
+          - strong [ref=e38]:
+            - link "PrivacyLayer" [ref=e39] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer
+          - generic [ref=e40]: Public
+        - generic [ref=e41]:
+          - list:
+            - listitem [ref=e42]:
+              - link "You must be signed in to change notification settings" [ref=e43] [cursor=pointer]:
+                - /url: /login?return_to=%2FANAVHEOBA%2FPrivacyLayer
+                - img [ref=e44]
+                - text: Notifications
+            - listitem [ref=e46]:
+              - link "Fork 42" [ref=e47] [cursor=pointer]:
+                - /url: /login?return_to=%2FANAVHEOBA%2FPrivacyLayer
+                - img [ref=e48]
+                - text: Fork
+                - generic "42" [ref=e50]
+            - listitem [ref=e51]:
+              - link "You must be signed in to star a repository" [ref=e53] [cursor=pointer]:
+                - /url: /login?return_to=%2FANAVHEOBA%2FPrivacyLayer
+                - img [ref=e54]
+                - text: Star
+                - generic "1 user starred this repository" [ref=e56]: "1"
+      - navigation "Repository" [ref=e57]:
+        - list [ref=e58]:
+          - listitem [ref=e59]:
+            - link "Code" [ref=e60] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer
+              - img [ref=e61]
+              - generic [ref=e63]: Code
+          - listitem [ref=e64]:
+            - link "Issues 101" [ref=e65] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer/issues
+              - img [ref=e66]
+              - generic [ref=e69]: Issues
+              - generic "101" [ref=e70]
+          - listitem [ref=e71]:
+            - link "Pull requests 92" [ref=e72] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer/pulls
+              - img [ref=e73]
+              - generic [ref=e75]: Pull requests
+              - generic "92" [ref=e76]
+          - listitem [ref=e77]:
+            - link "Actions" [ref=e78] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer/actions
+              - img [ref=e79]
+              - generic [ref=e81]: Actions
+          - listitem [ref=e82]:
+            - link "Projects" [ref=e83] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer/projects
+              - img [ref=e84]
+              - generic [ref=e86]: Projects
+          - listitem [ref=e87]:
+            - link "Security and quality" [ref=e88] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer/security
+              - img [ref=e89]
+              - generic [ref=e91]: Security and quality
+          - listitem [ref=e92]
+        - button "Additional navigation options" [ref=e96] [cursor=pointer]:
+          - img
+    - generic [ref=e103]:
+      - generic [ref=e106]:
+        - 'heading "docs: Hackathon Starter Kit - Issue #98 #132" [level=1] [ref=e108]':
+          - text: "docs: Hackathon Starter Kit - Issue #98"
+          - generic [ref=e110]: "#132"
+        - generic [ref=e113]:
+          - generic [ref=e115]:
+            - img "Pull request" [ref=e116]
+            - text: Open
+          - generic [ref=e119]:
+            - link "universe7creator" [ref=e120] [cursor=pointer]:
+              - /url: /universe7creator
+            - text: wants to merge 1 commit into
+            - link "ANAVHEOBA:main" [ref=e121] [cursor=pointer]:
+              - /url: /ANAVHEOBA/PrivacyLayer/tree/main
+            - generic [ref=e122]: from
+            - generic [ref=e123]:
+              - link "universe7creator:docs/hackathon-starter-kit-98" [ref=e124] [cursor=pointer]:
+                - /url: /universe7creator/PrivacyLayer/tree/docs/hackathon-starter-kit-98
+              - button "Copy head branch name to clipboard" [ref=e125] [cursor=pointer]:
+                - img [ref=e126]
+        - generic [ref=e129]:
+          - generic [ref=e131]:
+            - generic [ref=e132]: +1,148
+            - generic [ref=e133]: "-172"
+            - generic [ref=e134]: "Lines changed: 1148 additions & 172 deletions"
+          - navigation "Pull request navigation tabs" [ref=e143]:
+            - tablist [ref=e144]:
+              - tab "Conversation (0)" [selected] [ref=e145] [cursor=pointer]:
+                - img [ref=e146]
+                - text: Conversation
+                - generic [ref=e148]: "0"
+                - generic [ref=e149]: (0)
+              - tab "Commits (1)" [ref=e150] [cursor=pointer]:
+                - img [ref=e151]
+                - text: Commits
+                - generic [ref=e153]: "1"
+                - generic [ref=e154]: (1)
+              - tab "Checks (0)" [ref=e155] [cursor=pointer]:
+                - img [ref=e156]
+                - text: Checks
+                - generic [ref=e158]: "0"
+                - generic [ref=e159]: (0)
+              - tab "Files changed (8)" [ref=e160] [cursor=pointer]:
+                - img [ref=e161]
+                - text: Files changed
+                - generic [ref=e163]: "8"
+                - generic [ref=e164]: (8)
+      - generic [ref=e169]:
+        - generic [ref=e171]:
+          - heading "Conversation" [level=2] [ref=e172]
+          - generic [ref=e173]:
+            - generic [ref=e174]:
+              - generic [ref=e176]:
+                - link "@universe7creator" [ref=e177] [cursor=pointer]:
+                  - /url: /universe7creator
+                  - img "@universe7creator" [ref=e178]
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - group [ref=e184]:
+                      - button "Show options" [ref=e185] [cursor=pointer]:
+                        - img "Show options" [ref=e188]
+                    - heading "universe7creator commented Mar 24, 20262 weeks ago" [level=3] [ref=e190]:
+                      - generic [ref=e191]:
+                        - strong [ref=e192]:
+                          - link "universe7creator" [ref=e193] [cursor=pointer]:
+                            - /url: /universe7creator
+                        - text: commented
+                        - link "Mar 24, 20262 weeks ago" [ref=e194] [cursor=pointer]:
+                          - /url: "#issue-4124553482"
+                  - generic [ref=e198]:
+                    - heading "Summary" [level=2] [ref=e199]
+                    - paragraph [ref=e200]: This PR adds a comprehensive Hackathon Starter Kit to help participants build with PrivacyLayer quickly.
+                    - heading "What's Included" [level=2] [ref=e201]
+                    - list [ref=e202]:
+                      - listitem [ref=e203]: Quick Start Guide (10-minute setup)
+                      - listitem [ref=e204]: Judging Rubric (100-point scoring)
+                      - listitem [ref=e205]: Prize Categories (5 suggestions with strategies)
+                      - listitem [ref=e206]: 3 Working Examples (private payments, anonymous voting, confidential DAO)
+                      - listitem [ref=e207]: Resource list for continued learning
+                    - heading "Files Added" [level=2] [ref=e208]
+                    - list [ref=e209]:
+                      - listitem [ref=e210]: 8 new files, ~18,000 words
+                      - listitem [ref=e211]: All examples include code snippets
+                    - paragraph [ref=e212]:
+                      - text: Closes
+                      - link "#98" [ref=e213] [cursor=pointer]:
+                        - /url: https://github.com/ANAVHEOBA/PrivacyLayer/issues/98
+              - generic [ref=e218]:
+                - img [ref=e220]
+                - generic [ref=e225]:
+                  - link "@universe7creator" [ref=e228] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e229]
+                  - generic [ref=e230]:
+                    - code [ref=e231]:
+                      - 'link "docs: Add comprehensive Hackathon Starter Kit (Issue" [ref=e232] [cursor=pointer]':
+                        - /url: /ANAVHEOBA/PrivacyLayer/pull/132/commits/0653cceeda46cb5ddcdcae71416b78ba31b616ae
+                      - link "ANAVHEOBA#98" [ref=e233] [cursor=pointer]:
+                        - /url: https://github.com/ANAVHEOBA/PrivacyLayer/issues/98
+                      - link ")" [ref=e234] [cursor=pointer]:
+                        - /url: /ANAVHEOBA/PrivacyLayer/pull/132/commits/0653cceeda46cb5ddcdcae71416b78ba31b616ae
+                    - button "…" [ref=e236] [cursor=pointer]
+                  - code [ref=e240]:
+                    - link "0653cce" [ref=e241] [cursor=pointer]:
+                      - /url: /ANAVHEOBA/PrivacyLayer/pull/132/commits/0653cceeda46cb5ddcdcae71416b78ba31b616ae
+            - generic [ref=e245]:
+              - link "Sign up for free" [ref=e246] [cursor=pointer]:
+                - /url: /join?source=comment-repo
+              - strong [ref=e247]: to join this conversation on GitHub
+              - text: . Already have an account?
+              - link "Sign in to comment" [ref=e248] [cursor=pointer]:
+                - /url: /login?return_to=https%3A%2F%2Fgithub.com%2FANAVHEOBA%2FPrivacyLayer%2Fpull%2F132
+        - generic [ref=e252]:
+          - form "Select reviewers" [ref=e254]:
+            - heading "Reviewers" [level=3] [ref=e255]
+            - text: No reviews
+          - form "Select assignees" [ref=e257]:
+            - heading "Assignees" [level=3] [ref=e258]
+            - text: No one assigned
+          - generic [ref=e259]:
+            - heading "Labels" [level=3] [ref=e260]
+            - generic [ref=e261]: None yet
+          - form "Select projects" [ref=e263]:
+            - heading "Projects" [level=3] [ref=e264]
+            - text: None yet
+          - form "Select milestones" [ref=e266]:
+            - heading "Milestone" [level=3] [ref=e267]
+            - text: No milestone
+          - form "Link issues" [ref=e273]:
+            - heading "Development" [level=3] [ref=e274]
+            - paragraph [ref=e275]: Successfully merging this pull request may close these issues.
+            - link "Open issue [BOUNTY] Create Hackathon Starter Kit" [ref=e277] [cursor=pointer]:
+              - /url: https://github.com/ANAVHEOBA/PrivacyLayer/issues/98
+              - img "Open issue" [ref=e278]
+              - text: "[BOUNTY] Create Hackathon Starter Kit"
+          - generic [ref=e282]:
+            - heading "1 participant" [level=3] [ref=e283]
+            - link "@universe7creator" [ref=e285] [cursor=pointer]:
+              - /url: /universe7creator
+              - img "@universe7creator" [ref=e286]
+  - contentinfo [ref=e287]:
+    - heading "Footer" [level=2] [ref=e288]
+    - generic [ref=e289]:
+      - generic [ref=e290]:
+        - link "GitHub Homepage" [ref=e291] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e292]
+        - generic [ref=e294]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e295]:
+        - heading "Footer navigation" [level=3] [ref=e296]
+        - list "Footer navigation" [ref=e297]:
+          - listitem [ref=e298]:
+            - link "Terms" [ref=e299] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e300]:
+            - link "Privacy" [ref=e301] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e302]:
+            - link "Security" [ref=e303] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e304]:
+            - link "Status" [ref=e305] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e306]:
+            - link "Community" [ref=e307] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e308]:
+            - link "Docs" [ref=e309] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e310]:
+            - link "Contact" [ref=e311] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e312]:
+            - button "Manage cookies" [ref=e314] [cursor=pointer]
+          - listitem [ref=e315]:
+            - button "Do not share my personal information" [ref=e317] [cursor=pointer]

@@ -1,0 +1,442 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Ffreelensapp%2Ffreelens%2Fpull%2F1712
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - link "freelensapp" [ref=e36] [cursor=pointer]:
+            - /url: /freelensapp
+          - generic [ref=e37]: /
+          - strong [ref=e38]:
+            - link "freelens" [ref=e39] [cursor=pointer]:
+              - /url: /freelensapp/freelens
+          - generic [ref=e40]: Public
+        - generic [ref=e41]:
+          - list:
+            - listitem [ref=e42]:
+              - link "Sponsor @freelensapp" [ref=e43] [cursor=pointer]:
+                - /url: /sponsors/freelensapp
+                - generic [ref=e45]:
+                  - img [ref=e46]
+                  - text: Sponsor
+            - listitem [ref=e48]:
+              - link "You must be signed in to change notification settings" [ref=e49] [cursor=pointer]:
+                - /url: /login?return_to=%2Ffreelensapp%2Ffreelens
+                - img [ref=e50]
+                - text: Notifications
+            - listitem [ref=e52]:
+              - link "Fork 217" [ref=e53] [cursor=pointer]:
+                - /url: /login?return_to=%2Ffreelensapp%2Ffreelens
+                - img [ref=e54]
+                - text: Fork
+                - generic "217" [ref=e56]
+            - listitem [ref=e57]:
+              - link "You must be signed in to star a repository" [ref=e59] [cursor=pointer]:
+                - /url: /login?return_to=%2Ffreelensapp%2Ffreelens
+                - img [ref=e60]
+                - text: Star
+                - generic "4852 users starred this repository" [ref=e62]: 4.9k
+      - navigation "Repository" [ref=e63]:
+        - list [ref=e64]:
+          - listitem [ref=e65]:
+            - link "Code" [ref=e66] [cursor=pointer]:
+              - /url: /freelensapp/freelens
+              - img [ref=e67]
+              - generic [ref=e69]: Code
+          - listitem [ref=e70]:
+            - link "Issues 144" [ref=e71] [cursor=pointer]:
+              - /url: /freelensapp/freelens/issues
+              - img [ref=e72]
+              - generic [ref=e75]: Issues
+              - generic "144" [ref=e76]
+          - listitem [ref=e77]:
+            - link "Pull requests 59" [ref=e78] [cursor=pointer]:
+              - /url: /freelensapp/freelens/pulls
+              - img [ref=e79]
+              - generic [ref=e81]: Pull requests
+              - generic "59" [ref=e82]
+          - listitem [ref=e83]:
+            - link "Discussions" [ref=e84] [cursor=pointer]:
+              - /url: /freelensapp/freelens/discussions
+              - img [ref=e85]
+              - generic [ref=e87]: Discussions
+          - listitem [ref=e88]:
+            - link "Actions" [ref=e89] [cursor=pointer]:
+              - /url: /freelensapp/freelens/actions
+              - img [ref=e90]
+              - generic [ref=e92]: Actions
+          - listitem [ref=e93]:
+            - link "Projects" [ref=e94] [cursor=pointer]:
+              - /url: /freelensapp/freelens/projects
+              - img [ref=e95]
+              - generic [ref=e97]: Projects
+          - listitem [ref=e98]:
+            - link "Wiki" [ref=e99] [cursor=pointer]:
+              - /url: /freelensapp/freelens/wiki
+              - img [ref=e100]
+              - generic [ref=e102]: Wiki
+          - listitem [ref=e103]
+          - listitem [ref=e104]
+        - button "Additional navigation options" [ref=e108] [cursor=pointer]:
+          - img
+    - generic [ref=e115]:
+      - generic [ref=e118]:
+        - 'heading "feat: Custom theme and color feature (#1280) #1712" [level=1] [ref=e120]':
+          - text: "feat: Custom theme and color feature (#1280)"
+          - generic [ref=e122]: "#1712"
+        - generic [ref=e125]:
+          - generic [ref=e127]:
+            - img "Pull request" [ref=e128]
+            - text: Open
+          - generic [ref=e131]:
+            - link "universe7creator" [ref=e132] [cursor=pointer]:
+              - /url: /universe7creator
+            - text: wants to merge 1 commit into
+            - link "freelensapp:main" [ref=e133] [cursor=pointer]:
+              - /url: /freelensapp/freelens/tree/main
+            - generic [ref=e134]: from
+            - generic [ref=e135]:
+              - link "universe7creator:feature/custom-theme-1280" [ref=e136] [cursor=pointer]:
+                - /url: /universe7creator/freelens/tree/feature/custom-theme-1280
+              - button "Copy head branch name to clipboard" [ref=e137] [cursor=pointer]:
+                - img [ref=e138]
+        - generic [ref=e141]:
+          - generic [ref=e143]:
+            - generic [ref=e144]: "+415"
+            - generic [ref=e145]: "Lines changed: 415 additions & 0 deletions"
+          - navigation "Pull request navigation tabs" [ref=e154]:
+            - tablist [ref=e155]:
+              - tab "Conversation (4)" [selected] [ref=e156] [cursor=pointer]:
+                - img [ref=e157]
+                - text: Conversation
+                - generic [ref=e159]: "4"
+                - generic [ref=e160]: (4)
+              - tab "Commits (1)" [ref=e161] [cursor=pointer]:
+                - img [ref=e162]
+                - text: Commits
+                - generic [ref=e164]: "1"
+                - generic [ref=e165]: (1)
+              - tab "Checks (0)" [ref=e166] [cursor=pointer]:
+                - img [ref=e167]
+                - text: Checks
+                - generic [ref=e169]: "0"
+                - generic [ref=e170]: (0)
+              - tab "Files changed (5)" [ref=e171] [cursor=pointer]:
+                - img [ref=e172]
+                - text: Files changed
+                - generic [ref=e174]: "5"
+                - generic [ref=e175]: (5)
+      - generic [ref=e180]:
+        - generic [ref=e182]:
+          - heading "Conversation" [level=2] [ref=e183]
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e187]:
+                - link "@universe7creator" [ref=e188] [cursor=pointer]:
+                  - /url: /universe7creator
+                  - img "@universe7creator" [ref=e189]
+                - generic [ref=e191]:
+                  - generic [ref=e192]:
+                    - group [ref=e195]:
+                      - button "Show options" [ref=e196] [cursor=pointer]:
+                        - img "Show options" [ref=e199]
+                    - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e201]:
+                      - generic [ref=e202]:
+                        - strong [ref=e203]:
+                          - link "universe7creator" [ref=e204] [cursor=pointer]:
+                            - /url: /universe7creator
+                        - text: commented
+                        - link "Mar 25, 2026last week" [ref=e205] [cursor=pointer]:
+                          - /url: "#issue-4133346401"
+                  - generic [ref=e209]:
+                    - heading "Description" [level=2] [ref=e210]
+                    - paragraph [ref=e211]:
+                      - text: This PR implements the custom theme and color feature requested in issue
+                      - link "#1280" [ref=e212] [cursor=pointer]:
+                        - /url: https://github.com/freelensapp/freelens/issues/1280
+                      - text: .
+                    - heading "Changes" [level=2] [ref=e213]
+                    - list [ref=e214]:
+                      - listitem [ref=e215]:
+                        - strong [ref=e216]: CustomThemesState
+                        - text: ": New injectable for managing user-created themes with CRUD operations"
+                      - listitem [ref=e217]:
+                        - strong [ref=e218]: CustomThemeManager
+                        - text: ": UI component for creating, editing, and managing custom themes"
+                      - listitem [ref=e219]:
+                        - strong [ref=e220]: Color Picker
+                        - text: ": Visual color picker for primary, background, and text colors"
+                      - listitem [ref=e221]:
+                        - strong [ref=e222]: Theme Export/Import
+                        - text: ": Users can export themes as JSON files and import them"
+                      - listitem [ref=e223]:
+                        - strong [ref=e224]: Persistence
+                        - text: ": Custom themes are stored in user preferences and persist across sessions"
+                      - listitem [ref=e225]:
+                        - strong [ref=e226]: Integration
+                        - text: ": Custom themes integrate seamlessly with the existing theme system"
+                    - heading "Features" [level=2] [ref=e227]
+                    - list [ref=e228]:
+                      - listitem [ref=e229]:
+                        - strong [ref=e230]: Create Custom Themes
+                        - text: ": Users can create new themes with custom colors"
+                      - listitem [ref=e231]:
+                        - strong [ref=e232]: Edit Themes
+                        - text: ": Modify existing custom themes"
+                      - listitem [ref=e233]:
+                        - strong [ref=e234]: Delete Themes
+                        - text: ": Remove unwanted custom themes"
+                      - listitem [ref=e235]:
+                        - strong [ref=e236]: Export/Import
+                        - text: ": Share themes with others via JSON files"
+                      - listitem [ref=e237]:
+                        - strong [ref=e238]: Live Preview
+                        - text: ": Theme changes apply immediately"
+                    - heading "Related Issues" [level=2] [ref=e239]
+                    - paragraph [ref=e240]:
+                      - text: Closes
+                      - link "#1280" [ref=e241] [cursor=pointer]:
+                        - /url: https://github.com/freelensapp/freelens/issues/1280
+                    - heading "Payment" [level=2] [ref=e242]
+                    - paragraph [ref=e243]:
+                      - text: "PayPal:"
+                      - link "chaotikss@gmail.com" [ref=e244] [cursor=pointer]:
+                        - /url: mailto:chaotikss@gmail.com
+              - generic [ref=e245]:
+                - generic [ref=e249]:
+                  - img [ref=e251]
+                  - generic [ref=e256]:
+                    - link "@universe7creator" [ref=e259] [cursor=pointer]:
+                      - /url: /universe7creator
+                      - img "@universe7creator" [ref=e260]
+                    - generic [ref=e261]:
+                      - code [ref=e262]:
+                        - 'link "feat: add custom theme and color feature (" [ref=e263] [cursor=pointer]':
+                          - /url: /freelensapp/freelens/pull/1712/commits/640d2a63e8cbb5531b819ec68ebee93434f5aaa6
+                        - link "freelensapp#1280" [ref=e264] [cursor=pointer]:
+                          - /url: https://github.com/freelensapp/freelens/issues/1280
+                        - link ")" [ref=e265] [cursor=pointer]:
+                          - /url: /freelensapp/freelens/pull/1712/commits/640d2a63e8cbb5531b819ec68ebee93434f5aaa6
+                      - button "…" [ref=e267] [cursor=pointer]
+                    - code [ref=e271]:
+                      - link "640d2a6" [ref=e272] [cursor=pointer]:
+                        - /url: /freelensapp/freelens/pull/1712/commits/640d2a63e8cbb5531b819ec68ebee93434f5aaa6
+                - generic [ref=e274]:
+                  - link "@universe7creator" [ref=e276] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e277]
+                  - generic [ref=e279]:
+                    - generic [ref=e280]:
+                      - generic [ref=e281]:
+                        - group [ref=e283]:
+                          - button "Show options" [ref=e284] [cursor=pointer]:
+                            - img "Show options" [ref=e287]
+                        - generic "This user is the author of this pull request." [ref=e290]:
+                          - generic [ref=e291]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e292]:
+                        - generic [ref=e293]:
+                          - strong [ref=e294]:
+                            - link "universe7creator" [ref=e295] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e296] [cursor=pointer]:
+                            - /url: "#issuecomment-4128920706"
+                    - table [ref=e299]:
+                      - rowgroup [ref=e300]:
+                        - 'row "Hi @freelensapp team! 👋 I''ve submitted this PR to implement the custom theme and color feature as requested in #1280. The implementation includes: Theme configuration system Color customization options UI updates to support dynamic theming The PR is ready for review. Please let me know if you need any changes or have feedback. I''m happy to iterate quickly to get this merged. Payment preference: PayPal (chaotikss@gmail.com) Thanks for maintaining this awesome project! 🙏" [ref=e301]':
+                          - 'cell "Hi @freelensapp team! 👋 I''ve submitted this PR to implement the custom theme and color feature as requested in #1280. The implementation includes: Theme configuration system Color customization options UI updates to support dynamic theming The PR is ready for review. Please let me know if you need any changes or have feedback. I''m happy to iterate quickly to get this merged. Payment preference: PayPal (chaotikss@gmail.com) Thanks for maintaining this awesome project! 🙏" [ref=e302]':
+                            - paragraph [ref=e303]:
+                              - text: Hi
+                              - link "@freelensapp" [ref=e304] [cursor=pointer]:
+                                - /url: https://github.com/freelensapp
+                              - text: team! 👋
+                            - paragraph [ref=e305]:
+                              - text: I've submitted this PR to implement the custom theme and color feature as requested in
+                              - link "#1280" [ref=e306] [cursor=pointer]:
+                                - /url: https://github.com/freelensapp/freelens/issues/1280
+                              - text: ". The implementation includes:"
+                            - list [ref=e307]:
+                              - listitem [ref=e308]: Theme configuration system
+                              - listitem [ref=e309]: Color customization options
+                              - listitem [ref=e310]: UI updates to support dynamic theming
+                            - paragraph [ref=e311]: The PR is ready for review. Please let me know if you need any changes or have feedback. I'm happy to iterate quickly to get this merged.
+                            - paragraph [ref=e312]:
+                              - text: "Payment preference: PayPal ("
+                              - link "chaotikss@gmail.com" [ref=e313] [cursor=pointer]:
+                                - /url: mailto:chaotikss@gmail.com
+                              - text: )
+                            - paragraph [ref=e314]: Thanks for maintaining this awesome project! 🙏
+                - generic [ref=e316]:
+                  - link "@universe7creator" [ref=e318] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e319]
+                  - generic [ref=e321]:
+                    - generic [ref=e322]:
+                      - generic [ref=e323]:
+                        - group [ref=e325]:
+                          - button "Show options" [ref=e326] [cursor=pointer]:
+                            - img "Show options" [ref=e329]
+                        - generic "This user is the author of this pull request." [ref=e332]:
+                          - generic [ref=e333]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e334]:
+                        - generic [ref=e335]:
+                          - strong [ref=e336]:
+                            - link "universe7creator" [ref=e337] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e338] [cursor=pointer]:
+                            - /url: "#issuecomment-4129248529"
+                    - table [ref=e341]:
+                      - rowgroup [ref=e342]:
+                        - row "Hi @maintainers, following up on this custom theme feature PR. The implementation is complete and tested. Please let me know if you need any changes. Thanks for maintaining this great project!" [ref=e343]:
+                          - cell "Hi @maintainers, following up on this custom theme feature PR. The implementation is complete and tested. Please let me know if you need any changes. Thanks for maintaining this great project!" [ref=e344]:
+                            - paragraph [ref=e345]:
+                              - text: Hi
+                              - link "@maintainers" [ref=e346] [cursor=pointer]:
+                                - /url: https://github.com/maintainers
+                              - text: ", following up on this custom theme feature PR. The implementation is complete and tested. Please let me know if you need any changes. Thanks for maintaining this great project!"
+                - generic [ref=e348]:
+                  - link "@universe7creator" [ref=e350] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e351]
+                  - generic [ref=e353]:
+                    - generic [ref=e354]:
+                      - generic [ref=e355]:
+                        - group [ref=e357]:
+                          - button "Show options" [ref=e358] [cursor=pointer]:
+                            - img "Show options" [ref=e361]
+                        - generic "This user is the author of this pull request." [ref=e364]:
+                          - generic [ref=e365]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e366]:
+                        - generic [ref=e367]:
+                          - strong [ref=e368]:
+                            - link "universe7creator" [ref=e369] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e370] [cursor=pointer]:
+                            - /url: "#issuecomment-4129531745"
+                    - table [ref=e373]:
+                      - rowgroup [ref=e374]:
+                        - row "Hello @freelensapp maintainers! Following up on the custom theme feature PR. The implementation adds flexible color theming support. Please let me know if you'd like any changes. Excited to contribute to this project!" [ref=e375]:
+                          - cell "Hello @freelensapp maintainers! Following up on the custom theme feature PR. The implementation adds flexible color theming support. Please let me know if you'd like any changes. Excited to contribute to this project!" [ref=e376]:
+                            - paragraph [ref=e377]:
+                              - text: Hello
+                              - link "@freelensapp" [ref=e378] [cursor=pointer]:
+                                - /url: https://github.com/freelensapp
+                              - text: maintainers! Following up on the custom theme feature PR. The implementation adds flexible color theming support. Please let me know if you'd like any changes. Excited to contribute to this project!
+                - generic [ref=e380]:
+                  - link "@universe7creator" [ref=e382] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e383]
+                  - generic [ref=e385]:
+                    - generic [ref=e386]:
+                      - generic [ref=e387]:
+                        - group [ref=e389]:
+                          - button "Show options" [ref=e390] [cursor=pointer]:
+                            - img "Show options" [ref=e393]
+                        - generic "This user is the author of this pull request." [ref=e396]:
+                          - generic [ref=e397]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e398]:
+                        - generic [ref=e399]:
+                          - strong [ref=e400]:
+                            - link "universe7creator" [ref=e401] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e402] [cursor=pointer]:
+                            - /url: "#issuecomment-4129667606"
+                    - table [ref=e405]:
+                      - rowgroup [ref=e406]:
+                        - row "Hi @freelens maintainers, following up on this custom theme feature PR. The implementation is complete and tested. Would appreciate a review when you have time. Thanks!" [ref=e407]:
+                          - cell "Hi @freelens maintainers, following up on this custom theme feature PR. The implementation is complete and tested. Would appreciate a review when you have time. Thanks!" [ref=e408]:
+                            - paragraph [ref=e409]:
+                              - text: Hi
+                              - link "@freelens" [ref=e410] [cursor=pointer]:
+                                - /url: https://github.com/freelens
+                              - text: maintainers, following up on this custom theme feature PR. The implementation is complete and tested. Would appreciate a review when you have time. Thanks!
+            - generic [ref=e414]:
+              - link "Sign up for free" [ref=e415] [cursor=pointer]:
+                - /url: /join?source=comment-repo
+              - strong [ref=e416]: to join this conversation on GitHub
+              - text: . Already have an account?
+              - link "Sign in to comment" [ref=e417] [cursor=pointer]:
+                - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Ffreelensapp%2Ffreelens%2Fpull%2F1712
+        - generic [ref=e421]:
+          - form "Select reviewers" [ref=e423]:
+            - heading "Reviewers" [level=3] [ref=e424]
+            - text: No reviews
+          - form "Select assignees" [ref=e426]:
+            - heading "Assignees" [level=3] [ref=e427]
+            - text: No one assigned
+          - generic [ref=e428]:
+            - heading "Labels" [level=3] [ref=e429]
+            - generic [ref=e430]: None yet
+          - form "Select projects" [ref=e432]:
+            - heading "Projects" [level=3] [ref=e433]
+            - text: None yet
+          - form "Select milestones" [ref=e435]:
+            - heading "Milestone" [level=3] [ref=e436]
+            - text: No milestone
+          - form "Link issues" [ref=e442]:
+            - heading "Development" [level=3] [ref=e443]
+            - paragraph [ref=e444]: Successfully merging this pull request may close these issues.
+            - link "Open issue Custom theme and color feature" [ref=e446] [cursor=pointer]:
+              - /url: https://github.com/freelensapp/freelens/issues/1280
+              - img "Open issue" [ref=e447]
+              - text: Custom theme and color feature
+          - generic [ref=e451]:
+            - heading "1 participant" [level=3] [ref=e452]
+            - link "@universe7creator" [ref=e454] [cursor=pointer]:
+              - /url: /universe7creator
+              - img "@universe7creator" [ref=e455]
+  - contentinfo [ref=e456]:
+    - heading "Footer" [level=2] [ref=e457]
+    - generic [ref=e458]:
+      - generic [ref=e459]:
+        - link "GitHub Homepage" [ref=e460] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e461]
+        - generic [ref=e463]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e464]:
+        - heading "Footer navigation" [level=3] [ref=e465]
+        - list "Footer navigation" [ref=e466]:
+          - listitem [ref=e467]:
+            - link "Terms" [ref=e468] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e469]:
+            - link "Privacy" [ref=e470] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e471]:
+            - link "Security" [ref=e472] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e473]:
+            - link "Status" [ref=e474] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e475]:
+            - link "Community" [ref=e476] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e477]:
+            - link "Docs" [ref=e478] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e479]:
+            - link "Contact" [ref=e480] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e481]:
+            - button "Manage cookies" [ref=e483] [cursor=pointer]
+          - listitem [ref=e484]:
+            - button "Do not share my personal information" [ref=e486] [cursor=pointer]

@@ -1,0 +1,127 @@
+{
+  "name": "BlogHub",
+  "tagline": "Personal Blog Aggregator & RSS Reader API",
+  "slug": "bloghub",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["blogger", "reader", "content_curator", "developer"],
+  "problem": "Blog takip etmek için RSS reader'lar eski kaldı. Blogosphere.app tek seferlik. Feedly $6/ay. Kişisel blog aggregation yok. Blog discovery zor",
+  "solution": "Vercel Edge + KV ile blog aggregator. RSS aggregation, blog discovery, reading list, email digest, OPML import/export",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "parser": "rss-parser",
+    "storage": "Vercel KV",
+    "cache": "Edge Cache",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://bloghub.io/",
+    "endpoints": [
+      {
+        "path": "/api/feeds",
+        "method": "POST",
+        "description": "Add blog feed",
+        "body": {
+          "url": "string (RSS/Atom feed URL)",
+          "category": "string (optional)"
+        },
+        "response": {
+          "feedId": "feed_abc123",
+          "title": "Blog Title",
+          "lastPost": "2026-04-05",
+          "postCount": 52
+        }
+      },
+      {
+        "path": "/api/posts",
+        "method": "GET",
+        "description": "Get aggregated posts",
+        "parameters": {
+          "limit": 50,
+          "category": "string",
+          "since": "date"
+        },
+        "response": {
+          "posts": [
+            {
+              "title": "Post Title",
+              "url": "https://blog.com/post",
+              "blog": "Blog Name",
+              "published": "2026-04-05T12:00:00Z",
+              "summary": "Post summary..."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/discover",
+        "method": "GET",
+        "description": "Discover new blogs",
+        "parameters": {
+          "topic": "tech | design | lifestyle",
+          "sort": "popular | recent"
+        }
+      },
+      {
+        "path": "/api/opml",
+        "method": "POST",
+        "description": "Import OPML file",
+        "body": {"opml": "string"}
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Feedly",
+      "price": "$6/month",
+      "pros": ["Popular", "Full featured"],
+      "cons": ["Monthly cost", "Heavy", "Overkill"]
+    },
+    {
+      "name": "Blogosphere.app",
+      "price": "Free",
+      "pros": ["HN popular", "Simple"],
+      "cons": ["No API", "Static", "No personal aggregation"]
+    },
+    {
+      "name": "Inoreader",
+      "price": "$9/month",
+      "pros": ["Powerful"],
+      "cons": ["Expensive", "Complex"]
+    }
+  ],
+  "advantage": "One-time $19 vs monthly. Personal aggregation. Blog discovery. API-first.",
+  "features": [
+    "RSS/Atom feed aggregation",
+    "Blog discovery",
+    "Category management",
+    "Reading list",
+    "Email digest",
+    "OPML import/export",
+    "Full-text search",
+    "Mobile app (PWA)",
+    "Social sharing",
+    "Bookmarking"
+  ],
+  "use_cases": [
+    "Personal blog reader",
+    "Content curation",
+    "Research monitoring",
+    "News aggregation",
+    "Blog discovery",
+    "Reading habit tracking"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $1,140",
+    "moderate": "120 sales/month = $2,280",
+    "optimistic": "250 sales/month = $4,750"
+  },
+  "why_best": [
+    "Blogosphere 753 HN points",
+    "RSS hala kullanılıyor",
+    "Feedly $6/mo vs $19 one-time",
+    "Edge compatible",
+    "Simple but powerful"
+  ]
+}

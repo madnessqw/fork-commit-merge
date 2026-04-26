@@ -1,0 +1,141 @@
+{
+  "name": "WebhookSpy",
+  "tagline": "Webhook Testing & Inspection API",
+  "slug": "webhook-spy",
+  "version": "1.0.0",
+  "price": "$15 one-time",
+  "mvp_complexity": "1 cycle",
+  "target_audience": ["developer", "webhook_integrator", "api_tester", "saas_founder"],
+  "problem": "Webhook test etmek için webhook.site kullanılıyor (public, herkes görebilir). Svix gibi enterprise çözümler pahalı ($50/ay). Local webhook handler test etmek için ngrok gerekli. Request payload inspect etmek zor",
+  "solution": "Vercel Edge + KV ile webhook testing API. Unique webhook endpoint per user. Request history (last 100). Real-time webhook streaming. Request replay. Custom response codes. Payload inspection",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV (request logs)",
+    "realtime": "Server-Sent Events",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://webhookspy.io/",
+    "endpoints": [
+      {
+        "path": "/api/hook/:id",
+        "method": "POST",
+        "description": "Receive webhook and store payload",
+        "response": {
+          "received": true,
+          "id": "req_abc123",
+          "timestamp": "2026-04-05T12:00:00Z"
+        }
+      },
+      {
+        "path": "/api/requests/:id",
+        "method": "GET",
+        "description": "Get captured webhook requests",
+        "response": {
+          "webhookId": "hook_abc123",
+          "requests": [
+            {
+              "id": "req_abc123",
+              "method": "POST",
+              "headers": {
+                "content-type": "application/json",
+                "x-signature": "sha256=..."
+              },
+              "body": "request payload",
+              "query": {},
+              "timestamp": "2026-04-05T12:00:00Z",
+              "ip": "192.168.1.1"
+            }
+          ],
+          "total": 1
+        }
+      },
+      {
+        "path": "/api/replay/:requestId",
+        "method": "POST",
+        "description": "Replay a captured webhook to your endpoint",
+        "body": {
+          "targetUrl": "string (where to replay)"
+        },
+        "response": {
+          "replayed": true,
+          "targetUrl": "https://your-api.com/webhook",
+          "responseStatus": 200
+        }
+      },
+      {
+        "path": "/api/hook/:id/config",
+        "method": "PUT",
+        "description": "Configure webhook endpoint",
+        "body": {
+          "responseCode": 200,
+          "responseBody": "{\"status\":\"ok\"}",
+          "responseHeaders": {}
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "webhook.site",
+      "price": "Free/Premium",
+      "url": "https://webhook.site",
+      "pros": ["Free", "Easy to use"],
+      "cons": ["Public endpoints", "Limited history", "No replay"]
+    },
+    {
+      "name": "Svix",
+      "price": "$50/month",
+      "url": "https://svix.com",
+      "pros": ["Enterprise features", "Reliable"],
+      "cons": ["Expensive", "Overkill for simple testing"]
+    },
+    {
+      "name": "RequestBin (Hookbin)",
+      "price": "Free",
+      "url": "https://hookbin.com",
+      "pros": ["Free"],
+      "cons": ["Limited", "No advanced features"]
+    },
+    {
+      "name": "ngrok",
+      "price": "$8/month",
+      "url": "https://ngrok.com",
+      "pros": ["Tunneling"],
+      "cons": ["Not a webhook tester", "Monthly cost"]
+    }
+  ],
+  "advantage": "One-time $15 vs monthly. Private endpoints. Request replay. Custom responses. Edge speed.",
+  "features": [
+    "Unique webhook endpoint per user",
+    "Request history (last 100)",
+    "Real-time webhook streaming (SSE)",
+    "Request replay",
+    "Custom response codes",
+    "Custom response headers/body",
+    "Payload inspection",
+    "Query parameter capture",
+    "IP tracking"
+  ],
+  "use_cases": [
+    "Stripe webhook testing",
+    "GitHub webhook debugging",
+    "Slack webhook development",
+    "Payment gateway integration",
+    "Third-party API webhooks",
+    "Webhook signature verification testing"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $900",
+    "moderate": "120 sales/month = $1,800",
+    "optimistic": "200 sales/month = $3,000"
+  },
+  "why_best_choice": [
+    "webhook.site public - private needed",
+    "Svix $50/mo - too expensive",
+    "Very simple implementation",
+    "KV storage perfect for this",
+    "Real-time SSE streaming",
+    "Every webhook developer needs this"
+  ]
+}

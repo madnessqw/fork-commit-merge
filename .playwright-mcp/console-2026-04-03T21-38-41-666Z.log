@@ -1,0 +1,12 @@
+[    1767ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.issuehunt.io/users/authenticated:0
+[    2258ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.issuehunt.io/users/authenticated:0
+[    2258ms] [ERROR] HTTPError: Request failed with status code 401
+    at i (https://issuehunt.io/assets/vendor-ddf1019b.js:104:5530)
+    at async c9._retry (https://issuehunt.io/assets/vendor-ddf1019b.js:104:9661)
+    at async a.<computed> [as json] (https://issuehunt.io/assets/vendor-ddf1019b.js:104:6167)
+    at async Xn (https://issuehunt.io/assets/index-a7af5f4a.js:2:10575)
+    at async https://issuehunt.io/assets/index-a7af5f4a.js:2:12024 @ https://issuehunt.io/assets/index-a7af5f4a.js:1
+[    3297ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.issuehunt.io/users/login:0
+[    3298ms] [ERROR] HTTPError: Request failed with status code 401
+    at i (https://issuehunt.io/assets/vendor-ddf1019b.js:104:5530)
+    at async a.<computed> [as json] (https://issuehunt.io/assets/vendor-ddf1019b.js:104:6167) @ https://issuehunt.io/assets/vendor-ddf1019b.js:46

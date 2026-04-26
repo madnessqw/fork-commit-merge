@@ -1,0 +1,54 @@
+{
+  "slug": "cron-builder",
+  "name": "Cron Expression Builder",
+  "tagline": "Build, test, and understand cron expressions visually",
+  "description": "Visual cron expression builder with live preview, human-readable explanations, and next execution times. Perfect for developers and system administrators.",
+  "price": 19,
+  "category": "developer-tools",
+  "features": [
+    "Visual cron expression builder",
+    "Human-readable explanation",
+    "Next 5 execution times preview",
+    "Common presets (every hour, daily, weekly, monthly)",
+    "Expression validation",
+    "Copy to clipboard",
+    "Import from existing expression",
+    "Quick reference guide"
+  ],
+  "tech_stack": {
+    "frontend": "vanilla-html-tailwind",
+    "backend": "vercel-serverless",
+    "processing": "client-side-cron-parser"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "Never Write Cron Expressions By Hand Again",
+        "subheadline": "Build, validate, and understand cron expressions visually. Get human-readable explanations and see exactly when your jobs will run.",
+        "cta": "Build Your First Cron"
+      },
+      "demo": {
+        "type": "interactive",
+        "description": "Live cron builder with visual selector"
+      },
+      "features_section": true,
+      "how_it_works": [
+        "Select time pattern visually",
+        "See human-readable explanation",
+        "Copy expression and use anywhere"
+      ],
+      "testimonials": true,
+      "faq_count": 6,
+      "trust_badges": ["accuracy", "developer-friendly", "free-tool"]
+    }
+  },
+  "seo": {
+    "title": "Cron Expression Builder - Visual Cron Generator",
+    "description": "Build and validate cron expressions visually. Get human-readable explanations and preview next execution times. Free online tool.",
+    "keywords": ["cron builder", "cron expression", "cron generator", "cron validator", "schedule builder"]
+  },
+  "status": "spec_ready",
+  "priority": "high",
+  "cycle_created": 1046,
+  "notes": "Popular developer tool, simple client-side implementation"
+}

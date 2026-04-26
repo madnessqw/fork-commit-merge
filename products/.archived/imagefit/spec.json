@@ -1,0 +1,53 @@
+{
+  "name": "ImageFit",
+  "tagline": "Edge-Based Image Resizing API",
+  "version": "1.0.0",
+  "price": "$22 one-time",
+  "target_audience": ["developer", "blogger", "ecommerce_owner", "cms_user"],
+  "problem": "Image resizing için Cloudinary/Imgix gibi servisler aylık $20-50 istiyor. Kendi sunucunda ImageMagick kurmak maliyetli. Basit, hızlı edge-based resizing ihtiyacı var",
+  "solution": "Vercel Edge Function + Sharp ile image resizing. URL'den veya upload ile. WebP/AVIF dönüşümü, crop, resize, watermark",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "processor": "Sharp (WASM)",
+    "cache": "Vercel Edge Cache",
+    "storage": "Vercel Blob",
+    "payment": "Stripe"
+  },
+  "mvp_complexity": "1 cycle",
+  "api": {
+    "base_url": "https://imagefit.io/",
+    "endpoints": [
+      {
+        "path": "/api/resize",
+        "method": "GET",
+        "description": "Resize image from URL",
+        "parameters": {
+          "url": {"type": "string", "required": true, "description": "Source image URL"},
+          "width": {"type": "number", "description": "Target width"},
+          "height": {"type": "number", "description": "Target height"},
+          "fit": {"type": "string", "enum": ["cover", "contain", "fill", "inside", "outside"], "default": "cover"},
+          "format": {"type": "string", "enum": ["webp", "jpeg", "png", "avif", "auto"], "default": "auto"},
+          "quality": {"type": "number", "min": 1, "max": 100, "default": 80}
+        },
+        "response": {"url": "string", "size": "number", "format": "string"}
+      },
+      {
+        "path": "/api/upload",
+        "method": "POST",
+        "description": "Upload and process image"
+      }
+    ]
+  },
+  "market_analysis": {
+    "competitors": [
+      {"name": "Cloudinary", "price": "$25/month", "pros": ["Feature rich"], "cons": ["Expensive"]},
+      {"name": "Imgix", "price": "$75/month", "pros": ["Fast"], "cons": ["Very expensive"]}
+    ],
+    "advantage": "One-time $22 + Edge cached + Sharp WASM speed"
+  },
+  "estimated_revenue": {
+    "conservative": "25 sales/month = $550",
+    "moderate": "60 sales/month = $1,320",
+    "optimistic": "120 sales/month = $2,640"
+  }
+}

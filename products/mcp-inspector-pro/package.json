@@ -1,0 +1,14 @@
+{
+  "name": "mcp-inspector-pro",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Test and inspect MCP servers with interactive debugging",
+  "main": "api/process.js",
+  "scripts": {
+    "vercel-build": "echo 'Build complete'"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {}
+}

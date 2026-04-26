@@ -1,0 +1,2 @@
+[    1118ms] [ERROR] LiveView asset version mismatch. JavaScript version 1.0.10 vs. server 1.0.17. To avoid issues, please ensure that your assets use the same version as the server. @ https://algora.io/assets/app-3981a6ec2127b9310ddad8064d43ea07.js?vsn=d:9
+[    1205ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://algora.io/images/favicon.ico:0

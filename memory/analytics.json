@@ -1,0 +1,18 @@
+{
+  "total_cycles": 0,
+  "total_income": 0,
+  "total_expenses": 0,
+  "avg_income_per_cycle": 0,
+  "best_action": null,
+  "worst_action": null,
+  "action_counts": {
+    "WORK": 0,
+    "RESEARCH": 0,
+    "BUILD": 0,
+    "INVEST": 0,
+    "LEARN": 0,
+    "BANK": 0
+  },
+  "daily_history": [],
+  "kpi_alerts": []
+}

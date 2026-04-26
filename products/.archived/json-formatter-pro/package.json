@@ -1,0 +1,23 @@
+{
+  "name": "json-formatter-pro",
+  "version": "1.0.0",
+  "description": "Professional JSON validation, formatting & conversion tool for developers",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "json",
+    "formatter",
+    "validator",
+    "developer-tools",
+    "web-tool"
+  ],
+  "author": "UniverseCreator",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

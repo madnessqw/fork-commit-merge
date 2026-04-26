@@ -1,0 +1,515 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dlabel%253A%2522good%2Bfirst%2Bissue%2522%2Bstate%253Aopen%2Blanguage%253Atypescript%26type%3Dissues%26sort%3Dupdated
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e27]:
+    - generic [ref=e30]:
+      - heading "issues Search Results · label:\"good first issue\" state:open language:typescript" [level=1] [ref=e31]
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - region "Filter by" [ref=e36]:
+            - heading "Filter by" [level=2] [ref=e37]
+            - list "Filter by" [ref=e42]:
+              - listitem [ref=e43]:
+                - list [ref=e44]:
+                  - listitem [ref=e45]:
+                    - link "Code (...) results" [ref=e46] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=code&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e47]:
+                        - generic [ref=e48]: Code
+                        - generic:
+                          - generic: ...
+                          - generic: (...)
+                          - generic: results
+                  - listitem [ref=e49]:
+                    - link "Repositories results" [ref=e50] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=repositories&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e51]:
+                        - generic [ref=e52]: Repositories
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e53]:
+                    - link "Issues results" [ref=e54] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e55]:
+                        - generic [ref=e56]: Issues
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e57]:
+                    - link "Pull requests results" [ref=e58] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=pullrequests&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e59]:
+                        - generic [ref=e60]: Pull requests
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e61]:
+                    - link "Discussions results" [ref=e62] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=discussions&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e63]:
+                        - generic [ref=e64]: Discussions
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e65]:
+                    - link "Users results" [ref=e66] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=users&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e67]:
+                        - generic [ref=e68]: Users
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e69]:
+                    - button "More" [ref=e70] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e72]: More
+              - listitem [ref=e73]:
+                - heading "State" [level=3] [ref=e75]
+                - list "State" [ref=e76]:
+                  - listitem [ref=e77]:
+                    - link "Open" [ref=e78] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&state=open
+                      - generic:
+                        - img
+                      - generic "Open" [ref=e82]
+                  - listitem [ref=e83]:
+                    - link "Closed" [ref=e84] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&state=closed
+                      - generic:
+                        - img
+                      - generic "Closed" [ref=e88]
+                  - listitem [ref=e89]
+              - listitem [ref=e90]:
+                - heading "Advanced" [level=3] [ref=e92]
+                - list "Advanced" [ref=e93]:
+                  - listitem [ref=e94]:
+                    - button "Owner" [ref=e95] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Owner" [ref=e99]
+                  - listitem [ref=e100]:
+                    - button "State" [ref=e101] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "State" [ref=e105]
+                  - listitem [ref=e106]:
+                    - button "Close reason" [ref=e107] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Close reason" [ref=e111]
+                  - listitem [ref=e112]:
+                    - link "Has linked pull request" [ref=e113] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript+linked%3Apr&type=issues&sort=updated
+                      - generic:
+                        - img
+                      - generic "Has linked pull request" [ref=e117]
+                  - listitem [ref=e118]:
+                    - button "Author" [ref=e119] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Author" [ref=e123]
+                  - listitem [ref=e124]:
+                    - button "Assignee" [ref=e125] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Assignee" [ref=e129]
+                  - listitem [ref=e130]:
+                    - button "Mentioned user" [ref=e131] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Mentioned user" [ref=e135]
+                  - listitem [ref=e136]:
+                    - button "Mentioned team" [ref=e137] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Mentioned team" [ref=e141]
+                  - listitem [ref=e142]:
+                    - button "Commenter" [ref=e143] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Commenter" [ref=e147]
+                  - listitem [ref=e148]:
+                    - button "Involved user" [ref=e149] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Involved user" [ref=e153]
+                  - listitem [ref=e154]:
+                    - button "Label" [ref=e155] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Label" [ref=e159]
+                  - listitem [ref=e160]:
+                    - button "Milestone" [ref=e161] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Milestone" [ref=e165]
+                  - listitem [ref=e166]:
+                    - button "Number of comments" [ref=e167] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of comments" [ref=e171]
+                  - listitem [ref=e172]:
+                    - button "Number of interactions" [ref=e173] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of interactions" [ref=e177]
+              - listitem [ref=e178]
+              - listitem [ref=e179]:
+                - link "Advanced search" [ref=e180] [cursor=pointer]:
+                  - /url: /search/advanced
+                  - generic:
+                    - img
+                  - generic [ref=e182]: Advanced search
+          - slider "Draggable pane splitter" [ref=e184]
+        - generic [ref=e188]:
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e193]: 47.7k results
+                - generic [ref=e194]: (140 ms)
+              - heading "47.7k results" [active] [level=2] [ref=e195]
+            - generic [ref=e196]:
+              - 'button "Sort by: Best match" [ref=e198] [cursor=pointer]':
+                - generic [ref=e200]: "Sort by: Best match"
+                - generic:
+                  - img
+              - button "Open column options" [ref=e202] [cursor=pointer]:
+                - img [ref=e203]
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - heading "shubranshugupta/gate-coap-tracker Hide Cloudflare Security Check" [level=3] [ref=e209]:
+                - link "shubranshugupta/gate-coap-tracker" [ref=e211] [cursor=pointer]:
+                  - /url: /shubranshugupta/gate-coap-tracker
+                - generic [ref=e212]:
+                  - img [ref=e214]
+                  - link "Hide Cloudflare Security Check" [ref=e217] [cursor=pointer]:
+                    - /url: /shubranshugupta/gate-coap-tracker/issues/23
+              - generic [ref=e218]: img width= 600 height= 284 alt= Image src= https://github.com/user-attachments/assets/480dcb83-8d77-4f52-b638-07454299fef0 / This Cloudflare Security Check should hide when it is successful.
+              - generic [ref=e219]:
+                - generic [ref=e222]: enhancement
+                - generic [ref=e225]: good first issue
+              - list [ref=e226]:
+                - listitem [ref=e227]: shubranshugupta
+                - generic [ref=e228]: ·
+                - listitem [ref=e229]:
+                  - text: Opened
+                  - generic "Apr 4, 2026, 12:04 AM GMT+3" [ref=e230]: 4 minutes ago
+                - generic [ref=e231]: ·
+                - listitem [ref=e232]:
+                  - link "#23" [ref=e233] [cursor=pointer]:
+                    - /url: /shubranshugupta/gate-coap-tracker/issues/23
+            - generic [ref=e234]:
+              - heading "lingdojo/kana-dojo [Good First Issue] 🗾 Add new Trivia Question 97 - Beginner-Friendly Contribution" [level=3] [ref=e235]:
+                - link "lingdojo/kana-dojo" [ref=e237] [cursor=pointer]:
+                  - /url: /lingdojo/kana-dojo
+                - generic [ref=e238]:
+                  - img [ref=e240]
+                  - link "[Good First Issue] 🗾 Add new Trivia Question 97 - Beginner-Friendly Contribution" [ref=e243] [cursor=pointer]:
+                    - /url: /lingdojo/kana-dojo/issues/11675
+              - generic [ref=e244]: "🟢 Good First Issue: Add Trivia Question #97 — Beginner-Friendly Open Source Contribution ![Time: 1 minute](https://img.shields.io/badge/Time- 1_minute-brightgreen) Difficulty: Beginner No Code Required ..."
+              - generic [ref=e245]:
+                - generic [ref=e248]: community
+                - generic [ref=e251]: enhancement
+                - generic [ref=e254]: first-timers-only
+                - generic [ref=e257]: good first issue
+                - generic [ref=e260]: hacktoberfest
+                - generic [ref=e263]: help wanted
+                - generic [ref=e266]: low hanging fruit
+                - generic [ref=e269]: up-for-grabs
+              - list [ref=e270]:
+                - listitem [ref=e271]: tentoumushii
+                - generic [ref=e272]: ·
+                - listitem [ref=e273]:
+                  - img [ref=e275]
+                  - text: "1"
+                - generic [ref=e277]: ·
+                - listitem [ref=e278]:
+                  - text: Opened
+                  - generic "Apr 4, 2026, 12:00 AM GMT+3" [ref=e279]: 8 minutes ago
+                - generic [ref=e280]: ·
+                - listitem [ref=e281]:
+                  - link "#11675" [ref=e282] [cursor=pointer]:
+                    - /url: /lingdojo/kana-dojo/issues/11675
+            - generic [ref=e283]:
+              - 'heading "nikhilb2/simple_invoicing email: Add email_log table for audit tracking" [level=3] [ref=e284]':
+                - link "nikhilb2/simple_invoicing" [ref=e286] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e287]:
+                  - img [ref=e289]
+                  - 'link "email: Add email_log table for audit tracking" [ref=e292] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/79
+              - generic [ref=e293]: Phase 5 — Future Enhancement Summary Add an email_log table to track every email sent from the system for audit and debugging purposes. This is not required for the initial email feature but is a natural ...
+              - generic [ref=e294]:
+                - generic [ref=e297]: backend
+                - generic [ref=e300]: database
+                - generic [ref=e303]: email
+                - generic [ref=e306]: enhancement
+                - generic [ref=e309]: good first issue
+              - list [ref=e310]:
+                - listitem [ref=e311]: nikhilb2
+                - generic [ref=e312]: ·
+                - listitem [ref=e313]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:58 PM GMT+3" [ref=e314]: 10 minutes ago
+                - generic [ref=e315]: ·
+                - listitem [ref=e316]:
+                  - link "#79" [ref=e317] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/79
+            - generic [ref=e318]:
+              - 'heading "nikhilb2/simple_invoicing email: Create Jinja2 HTML email templates" [level=3] [ref=e319]':
+                - link "nikhilb2/simple_invoicing" [ref=e321] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e322]:
+                  - img [ref=e324]
+                  - 'link "email: Create Jinja2 HTML email templates" [ref=e327] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/75
+              - generic [ref=e328]: Phase 3 — Email Templates Summary Create Jinja2 HTML email templates for invoice emails, payment reminders, and ledger statements. Templates should be professional, mobile-friendly, and branded. Templates ...
+              - generic [ref=e329]:
+                - generic [ref=e332]: email
+                - generic [ref=e335]: good first issue
+                - generic [ref=e338]: help wanted
+              - list [ref=e339]:
+                - listitem [ref=e340]: nikhilb2
+                - generic [ref=e341]: ·
+                - listitem [ref=e342]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:58 PM GMT+3" [ref=e343]: 10 minutes ago
+                - generic [ref=e344]: ·
+                - listitem [ref=e345]:
+                  - link "#75" [ref=e346] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/75
+            - generic [ref=e347]:
+              - 'heading "nikhilb2/simple_invoicing email: Add send test email endpoint" [level=3] [ref=e348]':
+                - link "nikhilb2/simple_invoicing" [ref=e350] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e351]:
+                  - img [ref=e353]
+                  - 'link "email: Add send test email endpoint" [ref=e356] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/73
+              - generic [ref=e357]: Phase 2 — Backend SMTP CRUD API Summary Add a Send Test Email endpoint that lets admins verify their SMTP configuration works before relying on it for invoice/payment emails. Endpoint | Method | Path ...
+              - generic [ref=e358]:
+                - generic [ref=e361]: backend
+                - generic [ref=e364]: email
+                - generic [ref=e367]: fastapi
+                - generic [ref=e370]: good first issue
+                - generic [ref=e373]: python
+              - list [ref=e374]:
+                - listitem [ref=e375]: nikhilb2
+                - generic [ref=e376]: ·
+                - listitem [ref=e377]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:58 PM GMT+3" [ref=e378]: 10 minutes ago
+                - generic [ref=e379]: ·
+                - listitem [ref=e380]:
+                  - link "#73" [ref=e381] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/73
+            - generic [ref=e382]:
+              - 'heading "nikhilb2/simple_invoicing email: Add Fernet encryption for SMTP passwords" [level=3] [ref=e383]':
+                - link "nikhilb2/simple_invoicing" [ref=e385] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e386]:
+                  - img [ref=e388]
+                  - 'link "email: Add Fernet encryption for SMTP passwords" [ref=e391] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/71
+              - generic [ref=e392]: Phase 1 — Security Summary Implement a utility to encrypt and decrypt SMTP passwords using Fernet symmetric encryption from the cryptography library. Passwords must never be stored in plaintext in the ...
+              - generic [ref=e393]:
+                - generic [ref=e396]: backend
+                - generic [ref=e399]: email
+                - generic [ref=e402]: good first issue
+                - generic [ref=e405]: python
+                - generic [ref=e408]: security
+              - list [ref=e409]:
+                - listitem [ref=e410]: nikhilb2
+                - generic [ref=e411]: ·
+                - listitem [ref=e412]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:58 PM GMT+3" [ref=e413]: 11 minutes ago
+                - generic [ref=e414]: ·
+                - listitem [ref=e415]:
+                  - link "#71" [ref=e416] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/71
+            - generic [ref=e417]:
+              - 'heading "nikhilb2/simple_invoicing email: Add Pydantic schemas for SmtpConfig CRUD" [level=3] [ref=e418]':
+                - link "nikhilb2/simple_invoicing" [ref=e420] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e421]:
+                  - img [ref=e423]
+                  - 'link "email: Add Pydantic schemas for SmtpConfig CRUD" [ref=e426] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/70
+              - generic [ref=e427]: Phase 1 — Database and Model Summary Create Pydantic schemas for SMTP configuration CRUD operations — used by the API layer for request validation and response serialization. Schemas needed SmtpConfigCreate ...
+              - generic [ref=e428]:
+                - generic [ref=e431]: backend
+                - generic [ref=e434]: email
+                - generic [ref=e437]: good first issue
+                - generic [ref=e440]: pydantic
+                - generic [ref=e443]: python
+              - list [ref=e444]:
+                - listitem [ref=e445]: nikhilb2
+                - generic [ref=e446]: ·
+                - listitem [ref=e447]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:57 PM GMT+3" [ref=e448]: 11 minutes ago
+                - generic [ref=e449]: ·
+                - listitem [ref=e450]:
+                  - link "#70" [ref=e451] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/70
+            - generic [ref=e452]:
+              - 'heading "nikhilb2/simple_invoicing email: Create SmtpConfig database model and migration" [level=3] [ref=e453]':
+                - link "nikhilb2/simple_invoicing" [ref=e455] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e456]:
+                  - img [ref=e458]
+                  - 'link "email: Create SmtpConfig database model and migration" [ref=e461] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/69
+              - generic [ref=e462]: Phase 1 — Database and Model Summary Create a smtp_configs table and SQLAlchemy model to store SMTP server configurations. Multiple configs can exist but only one can be active at a time. Schema | ...
+              - generic [ref=e463]:
+                - generic [ref=e466]: backend
+                - generic [ref=e469]: database
+                - generic [ref=e472]: email
+                - generic [ref=e475]: good first issue
+                - generic [ref=e478]: migration
+                - generic [ref=e481]: python
+                - generic [ref=e484]: sqlalchemy
+              - list [ref=e485]:
+                - listitem [ref=e486]: nikhilb2
+                - generic [ref=e487]: ·
+                - listitem [ref=e488]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:57 PM GMT+3" [ref=e489]: 11 minutes ago
+                - generic [ref=e490]: ·
+                - listitem [ref=e491]:
+                  - link "#69" [ref=e492] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/69
+            - generic [ref=e493]:
+              - 'heading "nikhilb2/simple_invoicing email: Create SmtpConfig database model and migration" [level=3] [ref=e494]':
+                - link "nikhilb2/simple_invoicing" [ref=e496] [cursor=pointer]:
+                  - /url: /nikhilb2/simple_invoicing
+                - generic [ref=e497]:
+                  - img [ref=e499]
+                  - 'link "email: Create SmtpConfig database model and migration" [ref=e502] [cursor=pointer]':
+                    - /url: /nikhilb2/simple_invoicing/issues/68
+              - generic [ref=e503]: Phase 1 — Database and Model Summary Create a smtp_configs table and SQLAlchemy model to store SMTP server configurations. Multiple configs can exist but only one can be active at a time. Schema | ...
+              - generic [ref=e504]:
+                - generic [ref=e507]: backend
+                - generic [ref=e510]: database
+                - generic [ref=e513]: email
+                - generic [ref=e516]: good first issue
+                - generic [ref=e519]: migration
+                - generic [ref=e522]: python
+                - generic [ref=e525]: sqlalchemy
+              - list [ref=e526]:
+                - listitem [ref=e527]: nikhilb2
+                - generic [ref=e528]: ·
+                - listitem [ref=e529]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:57 PM GMT+3" [ref=e530]: 11 minutes ago
+                - generic [ref=e531]: ·
+                - listitem [ref=e532]:
+                  - link "#68" [ref=e533] [cursor=pointer]:
+                    - /url: /nikhilb2/simple_invoicing/issues/68
+            - generic [ref=e534]:
+              - heading "lingdojo/kana-dojo [Good First Issue] 🦊 Add new Japanese Proverb 80 - Beginner-Friendly Contribution" [level=3] [ref=e535]:
+                - link "lingdojo/kana-dojo" [ref=e537] [cursor=pointer]:
+                  - /url: /lingdojo/kana-dojo
+                - generic [ref=e538]:
+                  - img [ref=e540]
+                  - link "[Good First Issue] 🦊 Add new Japanese Proverb 80 - Beginner-Friendly Contribution" [ref=e543] [cursor=pointer]:
+                    - /url: /lingdojo/kana-dojo/issues/11674
+              - generic [ref=e544]: "🟢 Good First Issue: Add Japanese Proverb #80 — Beginner-Friendly Open Source Contribution ![Time: 1 minute](https://img.shields.io/badge/Time- 1_minute-brightgreen) Difficulty: Beginner No Code Required ..."
+              - generic [ref=e545]:
+                - generic [ref=e548]: community
+                - generic [ref=e551]: enhancement
+                - generic [ref=e554]: first-timers-only
+                - generic [ref=e557]: good first issue
+                - generic [ref=e560]: hacktoberfest
+                - generic [ref=e563]: help wanted
+                - generic [ref=e566]: low hanging fruit
+                - generic [ref=e569]: up-for-grabs
+              - list [ref=e570]:
+                - listitem [ref=e571]: tentoumushii
+                - generic [ref=e572]: ·
+                - listitem [ref=e573]:
+                  - img [ref=e575]
+                  - text: "1"
+                - generic [ref=e577]: ·
+                - listitem [ref=e578]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 11:51 PM GMT+3" [ref=e579]: 17 minutes ago
+                - generic [ref=e580]: ·
+                - listitem [ref=e581]:
+                  - link "#11674" [ref=e582] [cursor=pointer]:
+                    - /url: /lingdojo/kana-dojo/issues/11674
+          - navigation "Pagination" [ref=e585]:
+            - generic [ref=e586]:
+              - generic [ref=e587]:
+                - img [ref=e588]
+                - text: Previous
+              - link "Page 1" [ref=e590] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=1
+                - text: "1"
+              - link "Page 2" [ref=e591] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=2
+                - text: "2"
+              - link "Page 3" [ref=e592] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=3
+                - text: "3"
+              - link "Page 4" [ref=e593] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=4
+                - text: "4"
+              - link "Page 5" [ref=e594] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=5
+                - text: "5"
+              - link "Page 6" [ref=e595] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=6
+                - text: "6"
+              - link "Page 7..." [ref=e596] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=7
+                - text: "7"
+              - text: …
+              - link "Page 100" [ref=e597] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=100
+                - text: "100"
+              - link "Next Page" [ref=e598] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3A%22good+first+issue%22+state%3Aopen+language%3Atypescript&type=issues&sort=updated&p=2
+                - text: Next
+                - img [ref=e599]
+          - generic [ref=e602]:
+            - generic [ref=e603]:
+              - img "Issue origami icon" [ref=e605]
+              - heading "Learn how you can use GitHub Issues to plan and track your work." [level=2] [ref=e606]
+              - generic [ref=e607]: Save views for sprints, backlogs, teams, or releases. Rank, sort, and filter issues to suit the occasion. The possibilities are endless.
+              - link "Learn more about GitHub Issues" [ref=e608] [cursor=pointer]:
+                - /url: https://docs.github.com/issues
+                - text: Learn more about GitHub Issues
+                - img [ref=e609]
+            - generic [ref=e611]:
+              - generic [ref=e612]:
+                - img [ref=e613]
+                - text: ProTip!
+              - generic [ref=e615]:
+                - text: Press the
+                - generic [ref=e616]: /
+                - text: key to activate the search input again and adjust your query.

@@ -1,0 +1,19 @@
+{
+  "slug": "git-diff-visualizer",
+  "name": "Git Diff Visualizer",
+  "description": "Visualize git diffs with beautiful split/inline views, syntax highlighting, and file statistics",
+  "price": "$19",
+  "category": "developer-tools",
+  "features": [
+    "Split and inline diff views",
+    "Syntax highlighting for 50+ languages",
+    "File statistics and change summary",
+    "Copy/download diff patches",
+    "Dark/light theme support",
+    "Mobile responsive"
+  ],
+  "tech_stack": ["HTML5", "TailwindCSS", "JavaScript", "PrismJS"],
+  "status": "spec_ready",
+  "created_cycle": 1064,
+  "priority": "high"
+}

@@ -1,0 +1,495 @@
+{
+  "store": "profitbridge",
+  "products": [
+    {
+      "name": "UUID Generator Pro",
+      "slug": "uuid-generator-pro",
+      "description": "Professional UUID Generator Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://uuid-generator-l98xk4dvq-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "WebTerminal Pro",
+      "slug": "webterminal-pro",
+      "description": "Professional WebTerminal Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://webterminal-pro.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Cron Expression Builder",
+      "slug": "cron-expression-builder",
+      "description": "Professional Cron Expression Builder tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://cron-expression-builder-fy1s0opw0-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "TOML Toolkit",
+      "slug": "toml-toolkit",
+      "description": "Professional TOML Toolkit tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://toml-toolkit.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "HTML Entities Pro",
+      "slug": "html-entities",
+      "description": "Professional HTML Entities Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://html-entities-fk0an3v78-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "CSS Gradient Studio",
+      "slug": "css-gradient-studio",
+      "description": "Professional CSS Gradient Studio tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://css-gradient-studio-qchdd3taj-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Password Strength Checker Pro",
+      "slug": "password-strength-checker",
+      "description": "Professional Password Strength Checker Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://password-strength-checker-o6lhayyk7-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "YAML to JSON Converter",
+      "slug": "yaml-json-converter",
+      "description": "Professional YAML to JSON Converter tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://yaml-json-converter-gd3kqth3d-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "ID Generator Pro",
+      "slug": "id-generator-pro",
+      "description": "Professional ID Generator Pro tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://id-generator-g8gr7daxc-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "UUID Generator Pro",
+      "slug": "uuid-generator",
+      "description": "Professional UUID Generator Pro tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://uuid-generator-b3c67q2rr-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "NanoID Generator Pro",
+      "slug": "nanoid-generator",
+      "description": "Professional NanoID Generator Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://nanoid-generator-75cvenpcm-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "HTML Minifier Pro",
+      "slug": "html-minifier-pro",
+      "description": "Professional HTML Minifier Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://html-minifier-pro.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "TOML Validator",
+      "slug": "toml-validator",
+      "description": "Professional TOML Validator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://toml-validator.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "KeyForge",
+      "slug": "keyforge",
+      "description": "Professional KeyForge tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://keyforge-3lj8zc033-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "TOML Parser Pro",
+      "slug": "toml-parser-pro",
+      "description": "Professional TOML Parser Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://toml-parser-pro.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Nginx Config Generator",
+      "slug": "nginx-config-generator",
+      "description": "Professional Nginx Config Generator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://nginx-config-generator.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "HTML to Markdown Pro",
+      "slug": "html-to-markdown",
+      "description": "Professional HTML to Markdown Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://html-to-markdown.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "API Request Builder",
+      "slug": "api-request-builder",
+      "description": "Professional API Request Builder tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://api-request-builder-alpha.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "XML Master Pro",
+      "slug": "xml-master-pro",
+      "description": "Professional XML Master Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://xml-master-pro.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "JWT Generator",
+      "slug": "jwt-generator",
+      "description": "Professional JWT Generator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "XML Formatter & Validator",
+      "slug": "xml-formatter",
+      "description": "Professional XML Formatter & Validator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://xml-formatter-4xqfur0tg-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Markdown Previewer Pro",
+      "slug": "markdown-previewer",
+      "description": "Professional Markdown Previewer Pro tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://markdown-previewer-mf4qdegye-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "CSS Grid Generator",
+      "slug": "css-grid-gen",
+      "description": "Professional CSS Grid Generator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://css-grid-gen.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Dockerfile Generator",
+      "slug": "dockerfile-generator",
+      "description": "Professional Dockerfile Generator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://dockerfile-generator-46dilmiq1-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Timestamp Master",
+      "slug": "timestamp-master",
+      "description": "Professional Timestamp Master tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "Markdown Previewer Pro",
+      "slug": "markdown-previewer-pro",
+      "description": "Professional Markdown Previewer Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://markdown-previewer-awc1vufpu-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "HTTP Load Tester Pro",
+      "slug": "http-load-tester-pro",
+      "description": "Professional HTTP Load Tester Pro tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://http-load-tester-64aggndyi-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Cron Master",
+      "slug": "cron-master",
+      "description": "Professional Cron Master tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://cron-master.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Image Compressor Pro",
+      "slug": "image-compressor-pro",
+      "description": "Professional Image Compressor Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://image-compressor-e1z29y4g0-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "TOML Converter Pro",
+      "slug": "toml-converter-pro",
+      "description": "Professional TOML Converter Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://toml-converter-pro.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "HTML to JSX",
+      "slug": "html2jsx",
+      "description": "Professional HTML to JSX tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://html2jsx-mmlaaomvd-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Email Validator Pro",
+      "slug": "email-validator-pro",
+      "description": "Professional Email Validator Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://email-validator-lzumj1qer-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "MCP Server Validator",
+      "slug": "mcp-validator",
+      "description": "Professional MCP Server Validator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://mcp-validator-76hr64079-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "TOML Parser Pro",
+      "slug": "toml-parser",
+      "description": "Professional TOML Parser Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://toml-parser-4nke04v24-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "HTML2Markdown Pro",
+      "slug": "html2markdown",
+      "description": "Professional HTML2Markdown Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://html2markdown-1lr65oypb-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Markdown to PDF",
+      "slug": "markdown-to-pdf",
+      "description": "Professional Markdown to PDF tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://markdown-to-1d2epze3o-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Terminal Theme Studio",
+      "slug": "terminal-theme-studio",
+      "description": "Professional Terminal Theme Studio tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://terminal-theme-studio-klvuuadqp-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "IP Network Tools",
+      "slug": "ip-network-tools",
+      "description": "Professional IP Network Tools tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://ip-network-tools-arwxq9u1a-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Favicon Generator Pro",
+      "slug": "favicon-generator-pro",
+      "description": "Professional Favicon Generator Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://favicon-generator-q8xcpv963-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "XML Formatter Pro",
+      "slug": "xml-formatter-pro",
+      "description": "Professional XML Formatter Pro tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "HTML Entity Encoder/Decoder Pro",
+      "slug": "html-entity-encoder",
+      "description": "Professional HTML Entity Encoder/Decoder Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "OpenAPI Validator",
+      "slug": "openapi-validator",
+      "description": "Professional OpenAPI Validator tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "Cron Express",
+      "slug": "cron-express",
+      "description": "Professional Cron Express tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://cron-express-1vzejgb5v-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "CronMaster",
+      "slug": "cronmaster",
+      "description": "Professional CronMaster tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "Email Signature Pro",
+      "slug": "email-signature-pro",
+      "description": "Professional Email Signature Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "",
+      "status": "draft"
+    },
+    {
+      "name": "Text Diff Pro",
+      "slug": "text-diff-pro",
+      "description": "Professional Text Diff Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://text-diff-c07ahqu10-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "CSS Shadow Studio",
+      "slug": "css-shadow-studio",
+      "description": "Professional CSS Shadow Studio tool for developers",
+      "price_cents": 1900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://css-shadow-studio-pcz90wrrx-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Lorem Ipsum Pro",
+      "slug": "lorem-ipsum-pro",
+      "description": "Professional Lorem Ipsum Pro tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://lorem-ipsum-bc8xzansf-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    },
+    {
+      "name": "Color Palette Extractor",
+      "slug": "color-palette-extractor",
+      "description": "Professional Color Palette Extractor tool for developers",
+      "price_cents": 900,
+      "currency": "USD",
+      "category": "Developer Tools",
+      "webhook_url": "https://color-palette-extractor-dbzb0zz9u-madnessqws-projects.vercel.app/api/webhook",
+      "status": "draft"
+    }
+  ]
+}

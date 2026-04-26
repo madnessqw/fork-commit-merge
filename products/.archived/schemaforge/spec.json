@@ -1,0 +1,133 @@
+{
+  "name": "SchemaForge",
+  "tagline": "JSON Schema Generator & Validator API",
+  "slug": "schemaforge",
+  "version": "1.0.0",
+  "price": "$17 one-time",
+  "mvp_complexity": "1 cycle",
+  "target_audience": ["developer", "api_designer", "data_engineer", "qa_engineer"],
+  "problem": "JSON Schema yazmak zor ve hata yapmaya açık. API response'tan schema üretmek için online tool'lar var ama API yok. Schema validation için ek kütüphane gerekli",
+  "solution": "Vercel Edge + AJV ile JSON Schema API. Auto schema generation from JSON, validation, TypeScript type generation",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "validator": "AJV (light)",
+    "generator": "Custom inference",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://schemaforge.io/",
+    "endpoints": [
+      {
+        "path": "/api/generate",
+        "method": "POST",
+        "description": "Generate JSON Schema from JSON",
+        "body": {
+          "json": "object or array (required)",
+          "title": "string",
+          "strict": false
+        },
+        "response": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "age": {"type": "number"}
+            },
+            "required": ["name"]
+          },
+          "typescript": "interface User { name: string; age?: number }"
+        }
+      },
+      {
+        "path": "/api/validate",
+        "method": "POST",
+        "description": "Validate JSON against schema",
+        "body": {
+          "json": "object",
+          "schema": "object (JSON Schema)"
+        },
+        "response": {
+          "valid": false,
+          "errors": [
+            {"path": ".age", "message": "must be number", "value": "twenty"}
+          ]
+        }
+      },
+      {
+        "path": "/api/typescript",
+        "method": "POST",
+        "description": "Generate TypeScript from JSON Schema",
+        "body": {
+          "schema": "object"
+        },
+        "response": {
+          "typescript": "interface User { ... }",
+          "definitions": "type definitions"
+        }
+      },
+      {
+        "path": "/api/sample",
+        "method": "POST",
+        "description": "Generate sample data from schema",
+        "body": {
+          "schema": "object",
+          "count": 5
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "JSON Schema Store",
+      "price": "Free",
+      "pros": ["Free"],
+      "cons": ["No API", "Manual only", "Limited features"]
+    },
+    {
+      "name": "Transform.tools",
+      "price": "Free/Premium",
+      "pros": ["Good UI"],
+      "cons": ["No API", "Manual"]
+    },
+    {
+      "name": "Quicktype",
+      "price": "Free",
+      "pros": ["Powerful", "Multi-language"],
+      "cons": ["CLI only", "Setup required", "No API"]
+    }
+  ],
+  "advantage": "One-time $17 vs free but manual. API-first. Auto-generation. TypeScript export.",
+  "features": [
+    "JSON to Schema generation",
+    "Schema validation",
+    "TypeScript generation",
+    "Sample data generation",
+    "Multi-format export",
+    "Batch processing",
+    "Schema versioning",
+    "API documentation",
+    "Error reporting",
+    "Custom formats"
+  ],
+  "use_cases": [
+    "API contract design",
+    "Data validation",
+    "TypeScript type generation",
+    "Mock data creation",
+    "Documentation",
+    "Testing"
+  ],
+  "estimated_revenue": {
+    "conservative": "70 sales/month = $1,190",
+    "moderate": "140 sales/month = $2,380",
+    "optimistic": "250 sales/month = $4,250"
+  },
+  "why_best": [
+    "Quicktype setup gerekli",
+    "Her API developer'ın ihtiyacı",
+    "Edge compatible (AJV)",
+    "En basit implementasyon",
+    "1 cycle MVP"
+  ]
+}

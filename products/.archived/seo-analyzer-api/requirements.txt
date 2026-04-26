@@ -1,0 +1,20 @@
+# SEO Analyzer API - Requirements
+# =================================
+# Bu API hiçbir dış bağımlılığı yoktur (zero-dependency).
+# Python 3.6+ ile birlikte gelen built-in modülleri kullanır:
+#
+# - http.server (HTTP sunucu)
+# - urllib.request (URL istekleri)
+# - json (JSON işleme)
+# - re (regex meta tag çıkarma)
+# - csv (CSV export)
+# - io (StringIO için)
+#
+# Ekstra paket yüklemeye gerek yok!
+#
+# Minimum Python Sürümü: 3.6+
+# Önerilen Python Sürümü: 3.9+
+
+# Not: Bu dosya, pip install -r requirements.txt komutunun
+# hatasız çalışması için boş bırakılmıştır.
+# pip bu dosyayı okuduğunda hiçbir paket yüklemeyecek.

@@ -565,5 +565,16 @@
   </div>
 
   <script src="api/process.js"></script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_h5yJPZyZEUd94wgrw4MY03NFgFl6u1jTBX4Dh1UKNof";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

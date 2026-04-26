@@ -1,0 +1,134 @@
+{
+  "name": "ContentForge",
+  "tagline": "AI-Powered Content Generation API",
+  "slug": "contentforge",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["blogger", "marketer", "saas_founder", "content_creator"],
+  "problem": "Blog yazısı, sosyal medya postu, ürün açıklaması için AI araçları pahalı (Jasper $49/ay, Copy.ai $49/ay). Her içerik için ayrı prompt yazmak zor. API ile entegrasyon sınırlı",
+  "solution": "Vercel Edge + Gemini/Claude API ile content generation. Blog posts, social media, product descriptions, email templates. Template-based generation",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "ai": "Gemini API (1M free tokens/day)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://contentforge.io/",
+    "endpoints": [
+      {
+        "path": "/api/generate/blog",
+        "method": "POST",
+        "description": "Generate blog post",
+        "body": {
+          "topic": "string (required)",
+          "tone": "professional | casual | technical | friendly",
+          "length": "short | medium | long",
+          "keywords": ["array"],
+          "audience": "string"
+        },
+        "response": {
+          "title": "Generated Blog Title",
+          "content": "Full blog post content...",
+          "meta": {"wordCount": 500, "readingTime": "3 min"},
+          "keywords": ["keyword1", "keyword2"]
+        }
+      },
+      {
+        "path": "/api/generate/social",
+        "method": "POST",
+        "description": "Generate social media posts",
+        "body": {
+          "content": "string (blog or product)",
+          "platforms": ["twitter", "linkedin", "instagram"],
+          "tone": "string"
+        },
+        "response": {
+          "posts": [
+            {"platform": "twitter", "text": "Post content...", "hashtags": ["#tag"]},
+            {"platform": "linkedin", "text": "Longer post..."}
+          ]
+        }
+      },
+      {
+        "path": "/api/generate/product",
+        "method": "POST",
+        "description": "Generate product descriptions",
+        "body": {
+          "productName": "string",
+          "features": ["array"],
+          "targetAudience": "string",
+          "tone": "professional | playful | luxury"
+        }
+      },
+      {
+        "path": "/api/templates",
+        "method": "GET",
+        "description": "List available templates"
+      },
+      {
+        "path": "/api/rewrite",
+        "method": "POST",
+        "description": "Rewrite existing content",
+        "body": {
+          "content": "string",
+          "style": "simplify | expand | professional | casual"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Jasper",
+      "price": "$49/month",
+      "pros": ["Full featured", "Enterprise"],
+      "cons": ["Expensive", "Monthly cost"]
+    },
+    {
+      "name": "Copy.ai",
+      "price": "$49/month",
+      "pros": ["Good templates"],
+      "cons": ["Monthly cost", "API limits"]
+    },
+    {
+      "name": "ChatGPT",
+      "price": "$20/month",
+      "pros": ["Powerful"],
+      "cons": ["No API in free tier", "Manual prompting"]
+    }
+  ],
+  "advantage": "One-time $29 vs $49+/mo. API-first. Edge speed. Template-based.",
+  "features": [
+    "Blog post generation",
+    "Social media posts (Twitter, LinkedIn, Instagram)",
+    "Product descriptions",
+    "Email templates",
+    "Content rewriting",
+    "SEO keyword integration",
+    "Tone selection",
+    "Template library",
+    "Batch generation",
+    "Export (HTML, Markdown)"
+  ],
+  "use_cases": [
+    "Blog content creation",
+    "Social media scheduling",
+    "E-commerce product pages",
+    "Email marketing",
+    "SEO content",
+    "Content repurposing"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $1,450",
+    "moderate": "100 sales/month = $2,900",
+    "optimistic": "200 sales/month = $5,800"
+  },
+  "why_best": [
+    "Jasper $49/mo vs $29 one-time",
+    "AI content huge market",
+    "Edge compatible (API calls)",
+    "Gemini 1M free tokens/day",
+    "Template system reduces prompts"
+  ]
+}

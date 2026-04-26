@@ -1,0 +1,447 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e5]:
+      - link "BountyHub Logo" [ref=e6] [cursor=pointer]:
+        - /url: /en
+        - img "BountyHub Logo" [ref=e7]
+      - generic [ref=e8]:
+        - link "explore" [ref=e9] [cursor=pointer]:
+          - /url: /en/bounties
+        - link "Pricing" [ref=e10] [cursor=pointer]:
+          - /url: /en/pricing
+        - button "Docs" [ref=e11] [cursor=pointer]
+      - link "Sign In" [ref=e13] [cursor=pointer]:
+        - /url: /en/sign-in
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - heading "Available Bounties" [level=1] [ref=e18]
+          - link "Create new bounty" [ref=e19] [cursor=pointer]:
+            - /url: /en/bounty/new
+            - img [ref=e21]
+            - text: Create Bounty
+        - generic [ref=e24]:
+          - generic [ref=e27]:
+            - generic: Language
+            - generic [ref=e28]:
+              - combobox "Language" [ref=e29]
+              - button "Open" [ref=e31] [cursor=pointer]:
+                - img [ref=e32]
+              - group:
+                - generic: Language
+          - generic [ref=e36]:
+            - textbox "Search for Github repositories" [ref=e37]
+            - button [ref=e39] [cursor=pointer]:
+              - img [ref=e40]
+            - group
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - button "Highest Reward" [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - generic [ref=e47]: Highest Reward
+          - button "Newest" [ref=e48] [cursor=pointer]:
+            - img [ref=e49]
+            - generic [ref=e52]: Newest
+        - generic [ref=e53]:
+          - button "Open" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55]: Open
+          - button "Closed" [ref=e56] [cursor=pointer]:
+            - generic [ref=e57]: Closed
+      - generic [ref=e87]:
+        - generic [ref=e91]:
+          - generic [ref=e93]:
+            - img "microg/GmsCore logo" [ref=e95]
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: "microg/GmsCore • Issue #2994"
+              - link "[BOUNTY] RCS Support [14999$]" [ref=e98] [cursor=pointer]:
+                - /url: /en/bounty/view/521afa31-6c6f-4d2c-becc-c6b14318d2b4/bounty-rcs-support-14999dollar
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - generic [ref=e102]: Java
+              - generic [ref=e104]: Open
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - paragraph [ref=e107]: "Reward:"
+                - paragraph [ref=e108]: $14,999.00
+              - 'link "Claim bounty: [BOUNTY] RCS Support [14999$]" [ref=e110] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/521afa31-6c6f-4d2c-becc-c6b14318d2b4
+                - text: Claim
+        - generic [ref=e114]:
+          - generic [ref=e116]:
+            - img "microg/GmsCore logo" [ref=e118]
+            - generic [ref=e119]:
+              - paragraph [ref=e120]: "microg/GmsCore • Issue #2843"
+              - link "[BOUNTY] WearOS Support" [ref=e121] [cursor=pointer]:
+                - /url: /en/bounty/view/27a47575-ef9f-49d3-9685-c056d6825f9d/bounty-wearos-support
+          - generic [ref=e122]:
+            - generic [ref=e123]:
+              - generic [ref=e125]: Java
+              - generic [ref=e127]: Open
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - paragraph [ref=e130]: "Reward:"
+                - paragraph [ref=e131]: $1,340.00
+              - 'link "Claim bounty: [BOUNTY] WearOS Support" [ref=e133] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/27a47575-ef9f-49d3-9685-c056d6825f9d
+                - text: Claim
+        - generic [ref=e137]:
+          - generic [ref=e139]:
+            - img "electron/electron logo" [ref=e141]
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: "electron/electron • Issue #48191"
+              - 'link "macOS: dialog.showOpenDialog fails to show custom macOS packages (LSTypeIsPackage) when filtered by extension in Electron 36.2.0+ (worked in 35.7.5; 36.0.0 showed all files)" [ref=e144] [cursor=pointer]':
+                - /url: /en/bounty/view/7e9f4a92-740a-4f99-9387-95a6b25ad05f/macos-dialogshowopendialog-fails-to-show-custom-macos-packages-lstypeispackage-when-filtered-by-extension-in-electron-3620-worked-in-3575-3600-showed-all-files
+          - generic [ref=e145]:
+            - generic [ref=e146]:
+              - generic [ref=e148]: C++
+              - generic [ref=e150]: Open
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - paragraph [ref=e153]: "Reward:"
+                - paragraph [ref=e154]: $400.00
+              - 'link "Claim bounty: macOS: dialog.showOpenDialog fails to show custom macOS packages (LSTypeIsPackage) when filtered by extension in Electron 36.2.0+ (worked in 35.7.5; 36.0.0 showed all files)" [ref=e156] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/7e9f4a92-740a-4f99-9387-95a6b25ad05f
+                - text: Claim
+        - generic [ref=e160]:
+          - generic [ref=e162]:
+            - img "microg/GmsCore logo" [ref=e164]
+            - generic [ref=e165]:
+              - paragraph [ref=e166]: "microg/GmsCore • Issue #580"
+              - link "What's the status on Google Cast implementation?" [ref=e167] [cursor=pointer]:
+                - /url: /en/bounty/view/27c3cfe0-da9e-4192-848a-b676402de81c/whats-the-status-on-google-cast-implementation
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e171]: Java
+              - generic [ref=e173]: Open
+            - generic [ref=e174]:
+              - generic [ref=e175]:
+                - paragraph [ref=e176]: "Reward:"
+                - paragraph [ref=e177]: $250.00
+              - 'link "Claim bounty: What''s the status on Google Cast implementation?" [ref=e179] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/27c3cfe0-da9e-4192-848a-b676402de81c
+                - text: Claim
+        - generic [ref=e183]:
+          - generic [ref=e185]:
+            - img "emersion/hydroxide logo" [ref=e187]
+            - generic [ref=e188]:
+              - paragraph [ref=e189]: "emersion/hydroxide • Issue #207"
+              - link "CalDAV support" [ref=e190] [cursor=pointer]:
+                - /url: /en/bounty/view/81479fc7-ca8b-40aa-a117-8a01277e12b0/caldav-support
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - generic [ref=e194]: Go
+              - generic [ref=e196]: Open
+            - generic [ref=e197]:
+              - generic [ref=e198]:
+                - paragraph [ref=e199]: "Reward:"
+                - paragraph [ref=e200]: $250.00
+              - 'link "Claim bounty: CalDAV support" [ref=e202] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/81479fc7-ca8b-40aa-a117-8a01277e12b0
+                - text: Claim
+        - generic [ref=e206]:
+          - generic [ref=e208]:
+            - img "go-gitea/gitea logo" [ref=e210]
+            - generic [ref=e211]:
+              - paragraph [ref=e212]: "go-gitea/gitea • Issue #24635"
+              - link "[Proposal] Support configuring permissions of automatic tokens of Actions jobs" [ref=e213] [cursor=pointer]:
+                - /url: /en/bounty/view/ecbc87f3-44a8-42fc-84f3-22767cc07e29/proposal-support-configuring-permissions-of-automatic-tokens-of-actions-jobs
+          - generic [ref=e214]:
+            - generic [ref=e215]:
+              - generic [ref=e217]: Go
+              - generic [ref=e219]: Open
+            - generic [ref=e220]:
+              - generic [ref=e221]:
+                - paragraph [ref=e222]: "Reward:"
+                - paragraph [ref=e223]: $200.00
+              - 'link "Claim bounty: [Proposal] Support configuring permissions of automatic tokens of Actions jobs" [ref=e225] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/ecbc87f3-44a8-42fc-84f3-22767cc07e29
+                - text: Claim
+        - generic [ref=e229]:
+          - generic [ref=e231]:
+            - img "azerothcore/azerothcore-wotlk logo" [ref=e233]
+            - generic [ref=e234]:
+              - paragraph [ref=e235]: "azerothcore/azerothcore-wotlk • Issue #22571"
+              - 'link "Feature: Map Partitioning Support for AzerothCore" [ref=e236] [cursor=pointer]':
+                - /url: /en/bounty/view/ae3d1ab6-8f15-4d72-b39c-a7153339fa44/feature-map-partitioning-support-for-azerothcore
+          - generic [ref=e237]:
+            - generic [ref=e238]:
+              - generic [ref=e240]: C++
+              - generic [ref=e242]: Open
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - paragraph [ref=e245]: "Reward:"
+                - paragraph [ref=e246]: $200.00
+              - 'link "Claim bounty: Feature: Map Partitioning Support for AzerothCore" [ref=e248] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/ae3d1ab6-8f15-4d72-b39c-a7153339fa44
+                - text: Claim
+        - generic [ref=e252]:
+          - generic [ref=e254]:
+            - img "SPLURT-Station/S.P.L.U.R.T-tg logo" [ref=e256]
+            - generic [ref=e257]:
+              - paragraph [ref=e258]: "SPLURT-Station/S.P.L.U.R.T-tg • Issue #31"
+              - link "[BOUNTY] Vore System from Chomp/Vorestation $175+" [ref=e259] [cursor=pointer]:
+                - /url: /en/bounty/view/107c8d56-dbe4-4bfe-ac30-33ca70ccc951/bounty-vore-system-from-chompvorestation-dollar175
+          - generic [ref=e260]:
+            - generic [ref=e261]:
+              - generic [ref=e263]: DM
+              - generic [ref=e265]: Open
+            - generic [ref=e266]:
+              - generic [ref=e267]:
+                - paragraph [ref=e268]: "Reward:"
+                - paragraph [ref=e269]: $175.00
+              - 'link "Claim bounty: [BOUNTY] Vore System from Chomp/Vorestation $175+" [ref=e271] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/107c8d56-dbe4-4bfe-ac30-33ca70ccc951
+                - text: Claim
+        - generic [ref=e275]:
+          - generic [ref=e277]:
+            - img "microg/GmsCore logo" [ref=e279]
+            - generic [ref=e280]:
+              - paragraph [ref=e281]: "microg/GmsCore • Issue #580"
+              - link "What's the status on Google Cast implementation?" [ref=e282] [cursor=pointer]:
+                - /url: /en/bounty/view/ef91cb1e-dd69-4a33-bd90-21c9679c9247/whats-the-status-on-google-cast-implementation
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - generic [ref=e286]: Java
+              - generic [ref=e288]: Open
+            - generic [ref=e289]:
+              - generic [ref=e290]:
+                - paragraph [ref=e291]: "Reward:"
+                - paragraph [ref=e292]: $150.00
+              - 'link "Claim bounty: What''s the status on Google Cast implementation?" [ref=e294] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/ef91cb1e-dd69-4a33-bd90-21c9679c9247
+                - text: Claim
+        - generic [ref=e298]:
+          - generic [ref=e300]:
+            - img "SPLURT-Station/S.P.L.U.R.T-tg logo" [ref=e302]
+            - generic [ref=e303]:
+              - paragraph [ref=e304]: "SPLURT-Station/S.P.L.U.R.T-tg • Issue #76"
+              - link "[BOUNTY] Port objects from our rebase for mapping $150+" [ref=e305] [cursor=pointer]:
+                - /url: /en/bounty/view/1325e1c1-22de-408b-bf6c-69e858323598/bounty-port-objects-from-our-rebase-for-mapping-dollar150
+          - generic [ref=e306]:
+            - generic [ref=e307]:
+              - generic [ref=e309]: DM
+              - generic [ref=e311]: Open
+            - generic [ref=e312]:
+              - generic [ref=e313]:
+                - paragraph [ref=e314]: "Reward:"
+                - paragraph [ref=e315]: $150.00
+              - 'link "Claim bounty: [BOUNTY] Port objects from our rebase for mapping $150+" [ref=e317] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/1325e1c1-22de-408b-bf6c-69e858323598
+                - text: Claim
+        - generic [ref=e322]:
+          - generic [ref=e324]:
+            - img "microg/GmsCore logo" [ref=e326]
+            - generic [ref=e327]:
+              - paragraph [ref=e328]: "microg/GmsCore • Issue #2851"
+              - link "[com.ridedott.rider] Dott, a wide-spread european micromobility service provider, doesn't work" [ref=e329] [cursor=pointer]:
+                - /url: /en/bounty/view/5bd7b660-5c46-4686-bead-39a53699e98d/comridedottrider-dott-a-wide-spread-european-micromobility-service-provider-doesnt-work
+          - generic [ref=e330]:
+            - generic [ref=e331]:
+              - generic [ref=e333]: Java
+              - generic [ref=e335]: Open
+            - generic [ref=e336]:
+              - generic [ref=e337]:
+                - paragraph [ref=e338]: "Reward:"
+                - paragraph [ref=e339]: $100.00
+              - 'link "Claim bounty: [com.ridedott.rider] Dott, a wide-spread european micromobility service provider, doesn''t work" [ref=e341] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/5bd7b660-5c46-4686-bead-39a53699e98d
+                - text: Claim
+        - generic [ref=e345]:
+          - generic [ref=e347]:
+            - img "SPLURT-Station/S.P.L.U.R.T-tg logo" [ref=e349]
+            - generic [ref=e350]:
+              - paragraph [ref=e351]: "SPLURT-Station/S.P.L.U.R.T-tg • Issue #109"
+              - link "[BOUNTY] Genital size completion/respriting $100+" [ref=e352] [cursor=pointer]:
+                - /url: /en/bounty/view/7c9b61d6-7d0d-4c91-86c6-38686711b714/bounty-genital-size-completionrespriting-dollar100
+          - generic [ref=e353]:
+            - generic [ref=e354]:
+              - generic [ref=e356]: DM
+              - generic [ref=e358]: Open
+            - generic [ref=e359]:
+              - generic [ref=e360]:
+                - paragraph [ref=e361]: "Reward:"
+                - paragraph [ref=e362]: $100.00
+              - 'link "Claim bounty: [BOUNTY] Genital size completion/respriting $100+" [ref=e364] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/7c9b61d6-7d0d-4c91-86c6-38686711b714
+                - text: Claim
+        - generic [ref=e368]:
+          - generic [ref=e370]:
+            - img "azerothcore/azerothcore-wotlk logo" [ref=e372]
+            - generic [ref=e373]:
+              - paragraph [ref=e374]: "azerothcore/azerothcore-wotlk • Issue #16954"
+              - link "[Paladin] Ardent Defender dual spec issue" [ref=e375] [cursor=pointer]:
+                - /url: /en/bounty/view/6796c7b4-22dc-4aaa-a830-d6902952e8f5/paladin-ardent-defender-dual-spec-issue
+          - generic [ref=e376]:
+            - generic [ref=e377]:
+              - generic [ref=e379]: C++
+              - generic [ref=e381]: Open
+            - generic [ref=e382]:
+              - generic [ref=e383]:
+                - paragraph [ref=e384]: "Reward:"
+                - paragraph [ref=e385]: $100.00
+              - 'link "Claim bounty: [Paladin] Ardent Defender dual spec issue" [ref=e387] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/6796c7b4-22dc-4aaa-a830-d6902952e8f5
+                - text: Claim
+        - generic [ref=e391]:
+          - generic [ref=e393]:
+            - img "SPLURT-Station/S.P.L.U.R.T-tg logo" [ref=e395]
+            - generic [ref=e396]:
+              - paragraph [ref=e397]: "SPLURT-Station/S.P.L.U.R.T-tg • Issue #115"
+              - link "[BOUNTY] Infinidorms ports and tweaks $75+" [ref=e398] [cursor=pointer]:
+                - /url: /en/bounty/view/cabf6b8a-9ff0-4db4-9037-f8592e68f6a7/bounty-infinidorms-ports-and-tweaks-dollar75
+          - generic [ref=e399]:
+            - generic [ref=e400]:
+              - generic [ref=e402]: DM
+              - generic [ref=e404]: Open
+            - generic [ref=e405]:
+              - generic [ref=e406]:
+                - paragraph [ref=e407]: "Reward:"
+                - paragraph [ref=e408]: $75.00
+              - 'link "Claim bounty: [BOUNTY] Infinidorms ports and tweaks $75+" [ref=e410] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/cabf6b8a-9ff0-4db4-9037-f8592e68f6a7
+                - text: Claim
+        - generic [ref=e414]:
+          - generic [ref=e416]:
+            - img "freelensapp/freelens logo" [ref=e418]
+            - generic [ref=e419]:
+              - paragraph [ref=e420]: "freelensapp/freelens • Issue #1280"
+              - link "Custom theme and color feature" [ref=e421] [cursor=pointer]:
+                - /url: /en/bounty/view/fe773082-b67f-4af3-a5e6-7011ddd18dcd/custom-theme-and-color-feature
+          - generic [ref=e422]:
+            - generic [ref=e423]:
+              - generic [ref=e425]: TypeScript
+              - generic [ref=e427]: Open
+            - generic [ref=e428]:
+              - generic [ref=e429]:
+                - paragraph [ref=e430]: "Reward:"
+                - paragraph [ref=e431]: $50.00
+              - 'link "Claim bounty: Custom theme and color feature" [ref=e433] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/fe773082-b67f-4af3-a5e6-7011ddd18dcd
+                - text: Claim
+        - generic [ref=e437]:
+          - generic [ref=e439]:
+            - img "azerothcore/azerothcore-wotlk logo" [ref=e441]
+            - generic [ref=e442]:
+              - paragraph [ref=e443]: "azerothcore/azerothcore-wotlk • Issue #11462"
+              - link "[Mage] Arcane Concentration should give every tick of Blizzard a chance to proc Clearcasting." [ref=e444] [cursor=pointer]:
+                - /url: /en/bounty/view/82f0282c-cf0f-473b-aba8-57ef8aa421ea/mage-arcane-concentration-should-give-every-tick-of-blizzard-a-chance-to-proc-clearcasting
+          - generic [ref=e445]:
+            - generic [ref=e446]:
+              - generic [ref=e448]: C++
+              - generic [ref=e450]: Open
+            - generic [ref=e451]:
+              - generic [ref=e452]:
+                - paragraph [ref=e453]: "Reward:"
+                - paragraph [ref=e454]: $50.00
+              - 'link "Claim bounty: [Mage] Arcane Concentration should give every tick of Blizzard a chance to proc Clearcasting." [ref=e456] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/82f0282c-cf0f-473b-aba8-57ef8aa421ea
+                - text: Claim
+        - generic [ref=e460]:
+          - generic [ref=e462]:
+            - img "azerothcore/azerothcore-wotlk logo" [ref=e464]
+            - generic [ref=e465]:
+              - paragraph [ref=e466]: "azerothcore/azerothcore-wotlk • Issue #20741"
+              - link "[Warrior] Recklessness + Juggernaut causes non-critical mortal strike/slam hits to occur" [ref=e467] [cursor=pointer]:
+                - /url: /en/bounty/view/36759f3c-f8b3-4ff0-95cd-1efefa4cc7e5/warrior-recklessness-juggernaut-causes-non-critical-mortal-strikeslam-hits-to-occur
+          - generic [ref=e468]:
+            - generic [ref=e469]:
+              - generic [ref=e471]: C++
+              - generic [ref=e473]: Open
+            - generic [ref=e474]:
+              - generic [ref=e475]:
+                - paragraph [ref=e476]: "Reward:"
+                - paragraph [ref=e477]: $50.00
+              - 'link "Claim bounty: [Warrior] Recklessness + Juggernaut causes non-critical mortal strike/slam hits to occur" [ref=e479] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/36759f3c-f8b3-4ff0-95cd-1efefa4cc7e5
+                - text: Claim
+        - generic [ref=e483]:
+          - generic [ref=e485]:
+            - img "azerothcore/azerothcore-wotlk logo" [ref=e487]
+            - generic [ref=e488]:
+              - paragraph [ref=e489]: "azerothcore/azerothcore-wotlk • Issue #20250"
+              - link "[Class - Warrior] Sword Specialization doesn't proc with some melee abilities." [ref=e490] [cursor=pointer]:
+                - /url: /en/bounty/view/c66fe2c7-3ae4-480d-a081-f81cdb674954/class-warrior-sword-specialization-doesnt-proc-with-some-melee-abilities
+          - generic [ref=e491]:
+            - generic [ref=e492]:
+              - generic [ref=e494]: C++
+              - generic [ref=e496]: Open
+            - generic [ref=e497]:
+              - generic [ref=e498]:
+                - paragraph [ref=e499]: "Reward:"
+                - paragraph [ref=e500]: $50.00
+              - 'link "Claim bounty: [Class - Warrior] Sword Specialization doesn''t proc with some melee abilities." [ref=e502] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/c66fe2c7-3ae4-480d-a081-f81cdb674954
+                - text: Claim
+        - generic [ref=e506]:
+          - generic [ref=e508]:
+            - img "evershopcommerce/evershop logo" [ref=e510]
+            - generic [ref=e511]:
+              - paragraph [ref=e512]: "evershopcommerce/evershop • Issue #630"
+              - link "[BUG] The product registration does not list all child categories" [ref=e513] [cursor=pointer]:
+                - /url: /en/bounty/view/ddc82392-969b-4858-b56c-28b87b7cbdfc/bug-the-product-registration-does-not-list-all-child-categories
+          - generic [ref=e514]:
+            - generic [ref=e515]:
+              - generic [ref=e517]: JavaScript
+              - generic [ref=e519]: Open
+            - generic [ref=e520]:
+              - generic [ref=e521]:
+                - paragraph [ref=e522]: "Reward:"
+                - paragraph [ref=e523]: $30.00
+              - 'link "Claim bounty: [BUG] The product registration does not list all child categories" [ref=e525] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/ddc82392-969b-4858-b56c-28b87b7cbdfc
+                - text: Claim
+        - generic [ref=e529]:
+          - generic [ref=e531]:
+            - img "SPLURT-Station/S.P.L.U.R.T-tg logo" [ref=e533]
+            - generic [ref=e534]:
+              - paragraph [ref=e535]: "SPLURT-Station/S.P.L.U.R.T-tg • Issue #30"
+              - link "[BOUNTY] Lewd and custom mobs $25+" [ref=e536] [cursor=pointer]:
+                - /url: /en/bounty/view/0ffceee2-cbd6-4e40-b909-d6c1ac05314f/bounty-lewd-and-custom-mobs-dollar25
+          - generic [ref=e537]:
+            - generic [ref=e538]:
+              - generic [ref=e540]: DM
+              - generic [ref=e542]: Open
+            - generic [ref=e543]:
+              - generic [ref=e544]:
+                - paragraph [ref=e545]: "Reward:"
+                - paragraph [ref=e546]: $25.00
+              - 'link "Claim bounty: [BOUNTY] Lewd and custom mobs $25+" [ref=e548] [cursor=pointer]':
+                - /url: /en/bounty/claim/new/0ffceee2-cbd6-4e40-b909-d6c1ac05314f
+                - text: Claim
+      - button "Load More" [ref=e318] [cursor=pointer]: Load More
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - heading "Docs" [level=6] [ref=e63]
+            - link "For Bounty Creators" [ref=e64] [cursor=pointer]:
+              - /url: /en/docs/create-bounty
+            - link "For Bounty Hunters" [ref=e65] [cursor=pointer]:
+              - /url: /en/docs/claim-bounty
+            - link "For Repository Owners" [ref=e66] [cursor=pointer]:
+              - /url: /en/docs/repository-owner
+          - generic [ref=e67]:
+            - heading "Company" [level=6] [ref=e68]
+            - link "About us" [ref=e69] [cursor=pointer]:
+              - /url: /en/about-us
+            - link "Pricing" [ref=e70] [cursor=pointer]:
+              - /url: /en/pricing
+          - generic [ref=e71]:
+            - heading "Legal" [level=6] [ref=e72]
+            - link "Terms of Service" [ref=e73] [cursor=pointer]:
+              - /url: /en/terms-of-service
+            - link "Privacy Policy" [ref=e74] [cursor=pointer]:
+              - /url: /en/privacy-policy
+        - link "Copyright © BountyHub 2026" [ref=e77] [cursor=pointer]:
+          - /url: /en
+      - generic [ref=e78]:
+        - link "LinkedIn icon" [ref=e79] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/bountyhub-dev
+          - img "LinkedIn icon" [ref=e80]
+        - link "Discord icon" [ref=e81] [cursor=pointer]:
+          - /url: https://discord.gg/SfavWF9zZ8
+          - img "Discord icon" [ref=e82]
+        - link [ref=e83] [cursor=pointer]:
+          - /url: https://github.com/apps/bountyhub-app
+          - img [ref=e84]
+  - alert [ref=e86]

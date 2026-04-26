@@ -1,0 +1,30 @@
+{
+  "business_name": "Your Business Name",
+  "business_hours": {
+    "monday": {"open": "09:00", "close": "18:00"},
+    "tuesday": {"open": "09:00", "close": "18:00"},
+    "wednesday": {"open": "09:00", "close": "18:00"},
+    "thursday": {"open": "09:00", "close": "18:00"},
+    "friday": {"open": "09:00", "close": "18:00"},
+    "saturday": {"open": "10:00", "close": "16:00"},
+    "sunday": null
+  },
+  "services": [
+    "consultation",
+    "appointment",
+    "service",
+    "repair",
+    "maintenance",
+    "checkup"
+  ],
+  "contact": {
+    "phone": "+1-555-0123",
+    "email": "contact@yourbusiness.com",
+    "address": "123 Main St, City, State 12345"
+  },
+  "features": {
+    "auto_confirm": true,
+    "allow_cancellation": true,
+    "human_handoff": true
+  }
+}

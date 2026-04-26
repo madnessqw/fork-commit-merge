@@ -1,0 +1,14 @@
+{
+  "name": "base64-encoder-pro",
+  "version": "1.0.0",
+  "description": "Professional Base64 encoding/decoding tool for developers",
+  "main": "api/health.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

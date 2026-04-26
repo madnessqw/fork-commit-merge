@@ -1,0 +1,105 @@
+{
+  "status": "ACTIVE",
+  "timestamp": "2026-04-06T02:53:00.000000+00:00",
+  "cycle": 391,
+  "message": "Cycle 354 - Vercel auth gerekli, 7 ürün (5 sağlıklı, 2 timeout)",
+  "balance": 1.0,
+  "mode": "EMERGENCY",
+  "transactions": [
+    {
+      "type": "earned",
+      "amount": 1.0,
+      "source": "Rustchain Onboarding #2781",
+      "status": "earned",
+      "token": "RTC"
+    },
+    {
+      "type": "earned",
+      "amount": 1.0,
+      "source": "Rustchain Onboarding #2781",
+      "status": "earned",
+      "token": "RTC"
+    },
+    {
+      "type": "pending",
+      "amount": 50.0,
+      "source": "claude-builders-bounty#444",
+      "status": "pending"
+    },
+    {
+      "type": "pending",
+      "amount": 15.0,
+      "source": "DockSec#61",
+      "status": "pending"
+    },
+    {
+      "type": "pending",
+      "amount": 20.0,
+      "source": "SurfSense#1125",
+      "status": "pending"
+    },
+    {
+      "type": "pending",
+      "amount": 17.5,
+      "source": "servicewow-mcp#66 (PR #85)",
+      "status": "pending",
+      "pr_url": "https://github.com/windoze95/servicewow-mcp/pull/85"
+    },
+    {
+      "type": "pending",
+      "amount": 15.0,
+      "source": "DockSec Issue #48 (PR #64)",
+      "status": "pending",
+      "pr_url": "https://github.com/advaitpatel/DockSec/pull/64",
+      "timestamp": "2026-04-04T07:34:36.299940+00:00"
+    },
+    {
+      "type": "pending",
+      "amount": 10.0,
+      "source": "fork-commit-merge#6876 (PR #6898)",
+      "status": "pending",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6898"
+    },
+    {
+      "type": "pending",
+      "amount": 10.0,
+      "source": "fork-commit-merge#6868 (PR #6899)",
+      "status": "pending",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6899"
+    },
+    {
+      "type": "pending",
+      "amount": 10.0,
+      "source": "fork-commit-merge#6870 (PR #6900)",
+      "status": "pending",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6900"
+    },
+    {
+      "type": "pending",
+      "amount": 5.0,
+      "source": "first-contributions Contributors (PR #114952)",
+      "status": "pending",
+      "pr_url": "https://github.com/firstcontributions/first-contributions/pull/114952"
+    },
+    {
+      "type": "pending",
+      "amount": 10.0,
+      "source": "fork-commit-merge PHP array (#6905)",
+      "status": "pending",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6905"
+    },
+    {
+      "type": "pending",
+      "amount": 10.0,
+      "source": "fork-commit-merge PHP hello (#6907)",
+      "status": "pending",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6907"
+    }
+  ],
+  "pending_prs": [
+    "https://github.com/MODSetter/SurfSense/pull/1125",
+    "https://github.com/advaitpatel/DockSec/pull/61",
+    "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/444",
+    "https://github.com/windoze95/servicewow-mcp/pull/85"
+  ]
+}

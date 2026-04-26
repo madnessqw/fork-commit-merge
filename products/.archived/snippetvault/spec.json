@@ -1,0 +1,130 @@
+{
+  "name": "SnippetVault",
+  "tagline": "Code Snippet Manager & Sharing API",
+  "slug": "snippetvault",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "team_lead", "educator", "blogger"],
+  "problem": "Kod snippet'lerini paylaşmak için GitHub Gist kullanılıyor (public). Private snippet için ücretli plan gerekli. Syntax highlighting için ek işlem. Snippet collection yönetimi zor. CodePen/CodeSandbox ağır",
+  "solution": "Vercel Edge + KV ile code snippet API. Syntax highlighting, private/public snippets, collections, embedding",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "highlighter": "highlight.js (subset)",
+    "storage": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://snippetvault.io/",
+    "endpoints": [
+      {
+        "path": "/api/snippets",
+        "method": "POST",
+        "description": "Create new snippet",
+        "body": {
+          "title": "string",
+          "code": "string (required)",
+          "language": "string (js, python, css, etc.)",
+          "description": "string",
+          "tags": ["array"],
+          "visibility": "public | private (default: public)"
+        },
+        "response": {
+          "id": "snippet_abc123",
+          "url": "https://snippetvault.io/s/abc123",
+          "embedUrl": "https://snippetvault.io/embed/abc123"
+        }
+      },
+      {
+        "path": "/api/snippets/:id",
+        "method": "GET",
+        "description": "Get snippet with highlighting",
+        "response": {
+          "id": "snippet_abc123",
+          "title": "Fetch API Example",
+          "code": "fetch('/api')...",
+          "highlightedHtml": "<pre class='hljs'>...</pre>",
+          "language": "javascript",
+          "createdAt": "2026-04-05"
+        }
+      },
+      {
+        "path": "/api/snippets/:id/raw",
+        "method": "GET",
+        "description": "Get raw code",
+        "response": "plain text code"
+      },
+      {
+        "path": "/api/search",
+        "method": "GET",
+        "description": "Search snippets",
+        "parameters": {
+          "q": "string (search query)",
+          "language": "string (filter)",
+          "tags": "string (comma separated)"
+        }
+      },
+      {
+        "path": "/api/embed/:id",
+        "method": "GET",
+        "description": "Get embeddable snippet HTML",
+        "response": {
+          "html": "<iframe src='...'></iframe>",
+          "script": "<script src='...'></script>"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "GitHub Gist",
+      "price": "Free/Premium",
+      "pros": ["Popular", "Git integration"],
+      "cons": ["Public by default", "Limited search", "GitHub account required"]
+    },
+    {
+      "name": "CodePen",
+      "price": "Free/Premium",
+      "pros": ["Visual", "Interactive"],
+      "cons": ["Heavy", "Web focused", "Not for API"]
+    },
+    {
+      "name": "Carbon (screenshot)",
+      "price": "Free",
+      "pros": ["Beautiful images"],
+      "cons": ["Static images only", "No API", "No editing"]
+    }
+  ],
+  "advantage": "One-time $19 vs GitHub Pro. API-first. Lightweight. Embeddable.",
+  "features": [
+    "Syntax highlighting (30+ languages)",
+    "Private snippets",
+    "Public snippet sharing",
+    "Embeddable widgets",
+    "Snippet collections",
+    "Tag-based organization",
+    "Raw code export",
+    "Search functionality",
+    "API access"
+  ],
+  "use_cases": [
+    "Documentation snippets",
+    "Blog code examples",
+    "Team code sharing",
+    "Interview coding",
+    "Tutorial creation",
+    "Stack Overflow answers"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $950",
+    "moderate": "100 sales/month = $1,900",
+    "optimistic": "180 sales/month = $3,420"
+  },
+  "why_best": [
+    "GitHub Gist public sorunu",
+    "Carbon statik, bu dinamik",
+    "Developer'ların her gün kullandığı",
+    "Edge compatible (highlight.js subset)",
+    "API-first"
+  ]
+}

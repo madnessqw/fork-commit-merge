@@ -52,7 +52,7 @@
         <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-xl flex items-center justify-center font-bold text-lg">M</div>
         <span class="font-semibold text-xl">MCP Inspector</span>
       </div>
-      <a href="#pricing" class="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-6 py-2 rounded-full transition">
+      <a href="https://buy.polar.sh/polar_cl_MFwQIHRNW1bhGv5ldOX79RHb6AIrtsb8pkd9a17yjJK" target="_blank" class="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-6 py-2 rounded-full transition">
         Get Pro
       </a>
     </div>
@@ -224,5 +224,16 @@
       });
     }
   </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_MFwQIHRNW1bhGv5ldOX79RHb6AIrtsb8pkd9a17yjJK";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

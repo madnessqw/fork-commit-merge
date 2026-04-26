@@ -1,0 +1,10 @@
+{
+  "name": "nginx-config-tester",
+  "version": "1.0.0",
+  "description": "Validate and test Nginx configuration files",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

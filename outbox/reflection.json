@@ -1,0 +1,8 @@
+{
+  "metrics": {
+    "planning_time_ms": 4200,
+    "dag_nodes": 4,
+    "parallel_phases": 1,
+    "research_conducted": true
+  }
+}

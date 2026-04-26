@@ -1,0 +1,93 @@
+# Batch 15 - Cycle 1049+ Yeni Ürün Spec'leri
+# Hazırlayan: Claude (UniverseCreator)
+
+products:
+  - slug: "base64-toolkit-pro"
+    name: "Base64 Toolkit Pro"
+    tagline: "Advanced Base64 encoder/decoder with file support, batch processing, and validation"
+    description: |
+      Professional Base64 toolkit that handles text, files, images, and batch operations.
+      Features drag-and-drop file encoding, image preview, batch processing, URL-safe Base64,
+      and validation tools. Perfect for developers working with APIs, data URIs, and file handling.
+    price: "$19"
+    category: "developer-tools"
+    features:
+      - Text to Base64 encoding/decoding
+      - File drag-and-drop encoding (images, PDFs, any file)
+      - Image preview from Base64 data URIs
+      - Batch processing for multiple files
+      - URL-safe Base64 variant
+      - Validation and error detection
+      - Copy-to-clipboard with one click
+      - File download from decoded Base64
+    tech_stack:
+      - vanilla HTML + Tailwind CSS
+      - FileReader API for client-side processing
+      - No server required (pure client-side)
+    design_notes: |
+      Dark theme with glassmorphism cards. Split view: encoder on left, decoder on right.
+      Drag-and-drop zone with visual feedback. Image preview modal for decoded images.
+      Batch progress bar for multiple files.
+    demo_ready: true
+    estimated_build_time: "45 min"
+    status: "spec_ready"
+
+  - slug: "color-palette-gen"
+    name: "Color Palette Generator Pro"
+    tagline: "Extract harmonious color palettes from any image or create from scratch"
+    description: |
+      AI-powered color palette generator that extracts dominant colors from uploaded images
+      and creates harmonious color schemes. Export to CSS, SCSS, Tailwind, or Adobe formats.
+      Features accessibility checking, gradient generation, and palette sharing.
+    price: "$19"
+    category: "design-tools"
+    features:
+      - Upload image to extract palette (5 dominant colors)
+      - Generate palettes by color theory (complementary, triadic, analogous, etc.)
+      - Export to CSS variables, SCSS, Tailwind config
+      - WCAG contrast ratio checker
+      - Gradient generator from palette
+      - Save and share palettes
+      - Random palette generator
+      - Color blindness simulation
+    tech_stack:
+      - vanilla HTML + Tailwind CSS
+      - Canvas API for color extraction
+      - Color quantization algorithm (simple)
+    design_notes: |
+      Full-screen dark interface with color swatches as hero element.
+      Large upload area with dashed border. Palette cards with hex/RGB values.
+      Live preview showing palette applied to mock UI components.
+    demo_ready: true
+    estimated_build_time: "50 min"
+    status: "spec_ready"
+
+  - slug: "json-diff-pro"
+    name: "JSON Diff Pro"
+    tagline: "Compare JSON files with visual diff highlighting and patch generation"
+    description: |
+      Professional JSON comparison tool for developers. Side-by-side diff view,
+      syntax highlighting, patch generation, and merge suggestions.
+      Handle large files, nested objects, and array differences with precision.
+    price: "$19"
+    category: "developer-tools"
+    features:
+      - Side-by-side JSON comparison
+      - Syntax highlighting for added/removed/changed
+      - Tree view navigation for nested objects
+      - Patch/Diff generation
+      - Merge suggestions
+      - Import from URL or file upload
+      - Collapse/expand object nodes
+      - Copy merged result
+    tech_stack:
+      - vanilla HTML + Tailwind CSS
+      - diff library (custom implementation or lightweight)
+      - FileReader API for local files
+    design_notes: |
+      Dark theme with code editor aesthetics. Split diff view like GitHub.
+      Green for additions, red for deletions, yellow for changes.
+      Breadcrumb navigation for deep nesting.
+    demo_ready: true
+    estimated_build_time: "55 min"
+    status: "spec_ready"

@@ -1,0 +1,125 @@
+{
+  "name": "SSL Guard",
+  "tagline": "SSL Certificate Monitor & Validator API",
+  "slug": "ssl-guard",
+  "version": "1.0.0",
+  "price": "$15 one-time",
+  "mvp_complexity": "1 cycle",
+  "target_audience": ["developer", "devops", "saas_founder", "system_admin"],
+  "problem": "SSL sertifikalarının bitiş tarihini takip etmek zor. SSLShopper manuel kontrol gerektiriyor. Let's Encrypt 90 günde bir yenileme istiyor ve unutuluyor. Uptime monitoring tool'ları ayrıca SSL check'i istiyor",
+  "solution": "Vercel Edge + Node.js tls modülü ile SSL checker API. Domain SSL durumunu kontrol et, sertifika bitiş tarihini döndür, kaç gün kaldığını hesapla, issuer ve fingerprint bilgisi ver",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions (Node.js)",
+    "ssl_check": "Node.js tls module (native)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://sslguard.io/",
+    "endpoints": [
+      {
+        "path": "/api/check",
+        "method": "GET",
+        "description": "Check SSL certificate for domain",
+        "parameters": {
+          "domain": {
+            "type": "string",
+            "required": true,
+            "example": "example.com"
+          },
+          "port": {
+            "type": "number",
+            "default": 443,
+            "description": "SSL port"
+          }
+        },
+        "response": {
+          "domain": "example.com",
+          "valid": true,
+          "issuer": "Let's Encrypt",
+          "subject": "CN=example.com",
+          "fingerprint": "a1:b2:c3:d4:...",
+          "fingerprint256": "a1b2c3d4...",
+          "serialNumber": "123456789",
+          "validFrom": "2026-01-01T00:00:00Z",
+          "validTo": "2026-04-01T00:00:00Z",
+          "daysRemaining": 25,
+          "validFor": ["example.com", "www.example.com"],
+          "protocol": "TLSv1.3",
+          "cipher": "TLS_AES_256_GCM_SHA384"
+        }
+      },
+      {
+        "path": "/api/batch",
+        "method": "POST",
+        "description": "Check multiple domains",
+        "body": {
+          "domains": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "domain": "string",
+              "port": "number (optional)"
+            }
+          }
+        },
+        "response": {
+          "results": [
+            {
+              "domain": "example.com",
+              "valid": true,
+              "daysRemaining": 25
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/expiring",
+        "method": "GET",
+        "description": "Get domains expiring within X days",
+        "parameters": {
+          "days": {
+            "type": "number",
+            "default": 30,
+            "description": "Days threshold"
+          }
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {"name": "SSL Labs API", "price": "Free", "pros": ["Detailed analysis"], "cons": ["Complex", "Rate limits", "No simple check"]},
+    {"name": "SSLShopper", "price": "Free", "pros": ["Simple UI"], "cons": ["Manual only", "No API"]},
+    {"name": "Site24x7", "price": "$9/month", "pros": ["Monitoring"], "cons": ["Monthly cost", "Overkill for simple checks"]}
+  ],
+  "advantage": "One-time $15 vs monthly monitoring. Simple API. Edge speed. No rate limits.",
+  "features": [
+    "SSL certificate validation",
+    "Days remaining calculation",
+    "Issuer detection",
+    "Fingerprint extraction",
+    "Protocol & cipher info",
+    "Batch checking (50 domains)",
+    "Expiry alerts API",
+    "SAN/certificate chain"
+  ],
+  "use_cases": [
+    "Certificate expiry monitoring",
+    "Let's Encrypt renewal tracking",
+    "Multi-domain SSL audit",
+    "DevOps automation",
+    "Security compliance checks"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $750",
+    "moderate": "100 sales/month = $1,500",
+    "optimistic": "200 sales/month = $3,000"
+  },
+  "why_best": [
+    "Every website needs SSL",
+    "Let's Encrypt 90-day cycle",
+    "Native Node.js tls module",
+    "No external dependencies",
+    "Simple and fast"
+  ]
+}

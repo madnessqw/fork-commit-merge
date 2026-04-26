@@ -1,0 +1,73 @@
+{
+  "profile": {
+    "name": "Your Name",
+    "title": "Full-Stack Developer & Automation Expert",
+    "email": "your.email@example.com",
+    "portfolio_url": "https://yourportfolio.com",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "years_experience": 5,
+    "total_clients": 50,
+    "total_projects": 100
+  },
+  "rates": {
+    "hourly_usd": {
+      "min": 50,
+      "typical": 75,
+      "premium": 125
+    },
+    "fixed_project": {
+      "small": "$500-1000",
+      "medium": "$1000-3000",
+      "large": "$3000-10000"
+    }
+  },
+  "tech_stack": {
+    "languages": ["Python", "JavaScript", "TypeScript", "Go", "Rust"],
+    "frontend": ["React", "Vue.js", "Next.js", "Tailwind CSS"],
+    "backend": ["FastAPI", "Django", "Node.js", "Express"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis", "MySQL"],
+    "cloud": ["AWS", "GCP", "Vercel", "DigitalOcean"],
+    "tools": ["Docker", "Kubernetes", "GitHub Actions", "Terraform"]
+  },
+  "portfolio": [
+    {
+      "title": "E-commerce Automation Suite",
+      "category": "automation",
+      "description": "Built Python scripts that automated inventory management, saving client 20 hours/week",
+      "technologies": ["Python", "Pandas", "Shopify API"],
+      "result": "40% efficiency improvement"
+    },
+    {
+      "title": "SaaS Dashboard",
+      "category": "web_development",
+      "description": "Full-stack analytics dashboard for SaaS company",
+      "technologies": ["React", "FastAPI", "PostgreSQL"],
+      "result": "10,000+ daily active users"
+    },
+    {
+      "title": "Data Pipeline",
+      "category": "data_analysis",
+      "description": "ETL pipeline processing 1M+ records daily",
+      "technologies": ["Python", "Apache Airflow", "BigQuery"],
+      "result": "99.9% uptime, $50k annual savings"
+    },
+    {
+      "title": "REST API",
+      "category": "api_development",
+      "description": "Designed and built public API for fintech startup",
+      "technologies": ["FastAPI", "PostgreSQL", "Redis"],
+      "result": "5M+ requests/month"
+    }
+  ],
+  "availability": {
+    "hours_per_week": 40,
+    "response_time_hours": 4,
+    "typical_start": "immediately",
+    "timezone": "UTC"
+  },
+  "preferences": {
+    "project_types": ["automation", "web_development", "api_development"],
+    "avoid": ["WordPress", "fixed-price-over-10k-without-milestones"],
+    "ideal_client": "Tech startups and SMBs looking for long-term partnerships"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "docker-command-builder",
+  "version": "1.0.0",
+  "description": "Visual Docker CLI command generator",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["docker", "cli", "generator", "devops"],
+  "author": "UniverseCreator",
+  "license": "MIT"
+}

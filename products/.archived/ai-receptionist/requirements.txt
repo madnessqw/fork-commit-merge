@@ -1,0 +1,9 @@
+# AI Receptionist for Small Businesses
+# No external dependencies required!
+# Uses only Python standard library
+
+# Optional integrations (uncomment if needed):
+# twilio>=7.0.0          # For SMS support
+# python-telegram-bot>=20.0.0  # For Telegram bot
+# requests>=2.28.0       # For WhatsApp Business API
+# flask>=2.0.0           # For web dashboard (coming soon)

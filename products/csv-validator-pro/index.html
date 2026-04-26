@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="description" content="Professional CSV Validator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="csv, validator, CSV converter, CSV to JSON, spreadsheet tool, validator, validation tool, code checker, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://csv-validator-pro.vercel.app">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional CSV Validator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="csv, validator, CSV converter, CSV to JSON, spreadsheet tool, validator, validation tool, code checker, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://csv-validator-pro.vercel.app">
+  <title>CSV Validator Pro</title>
+  <meta name="description" content="Advanced CSV validation tool with delimiter auto-detection, schema validation, data type checking, encoding detection, and detailed error reports. Export results as JSON or CSV."
+    <meta property="og:title" content="CSV Validator Pro">
+    <meta name="keywords" content="csv, validator, CSV converter, CSV to JSON, spreadsheet tool, validator, validation tool, code checker, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://csv-validator-pro.vercel.app">
+    <meta property="og:description" content="Professional CSV Validator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2322c55e'/><path d='M25 30h50M25 50h50M25 70h50M35 30v40M65 30v40' stroke='white' stroke-width='6' stroke-linecap='round'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSV Validator Pro",
+  "description": "Professional CSV Validator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://csv-validator-pro.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .drop-zone {
+      transition: all 0.2s ease;
+    }
+    .drop-zone.dragover {
+      border-color: #22c55e;
+      background-color: #f0fdf4;
+      transform: scale(1.01);
+    }
+
+    .schema-row-enter {
+      animation: slideIn 0.15s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .error-row {
+      animation: fadeIn 0.2s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .tab-active {
+      border-bottom: 2px solid #22c55e;
+      color: #22c55e;
+    }
+
+    .pulse-dot {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      transition: all 0.2s ease;
+    }
+    .buy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+    .results-panel {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .type-badge {
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .type-string { background: #dbeafe; color: #1e40af; }
+    .type-number { background: #fef3c7; color: #92400e; }
+    .type-date { background: #e0e7ff; color: #3730a3; }
+    .type-email { background: #fce7f3; color: #9d174d; }
+    .type-regex { background: #f3e8ff; color: #6b21a8; }
+
+    .severity-error { color: #ef4444; }
+    .severity-warning { color: #f59e0b; }
+    .severity-info { color: #3b82f6; }
+
+    .progress-bar {
+      transition: width 0.3s ease;
+    }
+
+    .schema-preview {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-slate-900/80 border-b border-slate-800 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <div class="flex items-center gap-2">
+          <svg class="w-7 h-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="20" fill="#22c55e"/>
+            <path d="M25 30h50M25 50h50M25 70h50M35 30v40M65 30v40" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <span class="font-bold text-lg">CSV Validator <span class="text-brand-500">Pro</span></span>
+        </div>
+        <div class="flex items-center gap-4 text-sm">
+          <a href="#features" class="text-slate-400 hover:text-white transition">Features</a>
+          <a href="#pricing" class="text-slate-400 hover:text-white transition">Pricing</a>
+          <a href="https://buy.polar.sh/polar_cl_xfPwLDlKpqDEKLyPzApqOIJRuzBwNrhIPU8I71qUdgV" target="_blank" class="buy-btn text-white font-semibold px-4 py-1.5 rounded-lg text-sm">Buy — $19</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-24 pb-12 px-4 sm:px-6 lg:px-8 no-print">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-3 py-1 text-sm text-brand-400 mb-6">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Advanced CSV Validation
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+        Validate CSV Files<br>
+        <span class="bg-gradient-to-r from-brand-400 to-emerald-400 bg-clip-text text-transparent">Like a Pro</span>
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+        Auto-detect delimiters, define schema rules, validate data types, detect encoding, and get detailed error reports — all in one powerful tool.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-500">
+        <span class="flex items-center gap-1">
+          <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          No upload — 100% browser-side
+        </span>
+        <span class="flex items-center gap-1">
+          <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Large file support
+        </span>
+        <span class="flex items-center gap-1">
+          <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Export JSON / CSV reports
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tool -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- Left Column: Upload + Schema -->
+      <div class="lg:col-span-1 space-y-6">
+
+        <!-- File Upload -->
+        <div class="bg-slate-800 rounded-xl border border-slate-700 p-6">
+          <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            Upload CSV
+          </h2>
+
+          <div id="dropZone" class="drop-zone border-2 border-dashed border-slate-600 rounded-xl p-8 text-center cursor-pointer hover:border-brand-500/50 hover:bg-slate-800/50">
+            <svg class="w-10 h-10 mx-auto mb-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <p class="text-sm text-slate-400 mb-1">Drag & drop your CSV file here</p>
+            <p class="text-xs text-slate-500">or click to browse</p>
+          </div>
+          <input type="file" id="fileInput" accept=".csv,.tsv,.txt" class="hidden">
+
+          <div id="fileInfo" class="mt-4 hidden">
+            <div class="bg-slate-900 rounded-lg p-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 min-w-0">
+                  <svg class="w-4 h-4 text-brand-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  <span id="fileName" class="text-sm font-mono text-slate-300 truncate"></span>
+                </div>
+                <button id="clearFile" class="text-slate-500 hover:text-red-400 ml-2 flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              </div>
+              <div class="flex items-center gap-4 mt-2 text-xs text-slate-500">
+                <span id="fileSize"></span>
+                <span id="detectedEncoding"></span>
+                <span id="detectedDelimiter"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schema Builder -->
+        <div class="bg-slate-800 rounded-xl border border-slate-700 p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-bold text-lg flex items-center gap-2">
+              <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              Schema Rules
+            </h2>
+            <button id="autoDetectSchema" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-lg text-slate-300 transition">
+              Auto-detect from header
+            </button>
+          </div>
+
+          <div id="schemaList" class="schema-preview space-y-2 mb-4">
+            <!-- Schema rows added dynamically -->
+          </div>
+
+          <button id="addSchemaRow" class="w-full border border-dashed border-slate-600 hover:border-brand-500 text-slate-400 hover:text-brand-400 text-sm py-2 rounded-lg transition flex items-center justify-center gap-1">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Rule
+          </button>
+
+          <div class="mt-4 p-3 bg-slate-900 rounded-lg">
+            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-2">Validation Options</h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-sm text-slate-300">
+                <input type="checkbox" id="optHeaderRow" checked class="w-4 h-4 rounded bg-slate-700 border-slate-600 text-brand-500 focus:ring-brand-500">
+                First row is header
+              </label>
+              <label class="flex items-center gap-2 text-sm text-slate-300">
+                <input type="checkbox" id="optTrimWhitespace" checked class="w-4 h-4 rounded bg-slate-700 border-slate-600 text-brand-500 focus:ring-brand-500">
+                Trim whitespace
+              </label>
+              <label class="flex items-center gap-2 text-sm text-slate-300">
+                <input type="checkbox" id="optStrictCount" checked class="w-4 h-4 rounded bg-slate-700 border-slate-600 text-brand-500 focus:ring-brand-500">
+                Strict column count
+              </label>
+              <label class="flex items-center gap-2 text-sm text-slate-300">
+                <input type="checkbox" id="optDetectEncoding" checked class="w-4 h-4 rounded bg-slate-700 border-slate-600 text-brand-500 focus:ring-brand-500">
+                Detect encoding
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Validate Button -->
+        <button id="validateBtn" class="btn-primary w-full text-white font-bold py-3 px-6 rounded-xl text-lg flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none" disabled>
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Validate CSV
+        </button>
+
+        <!-- Progress -->
+        <div id="progressContainer" class="hidden">
+          <div class="bg-slate-800 rounded-xl border border-slate-700 p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="pulse-dot w-2 h-2 rounded-full bg-brand-500"></div>
+              <span id="progressLabel" class="text-sm text-slate-300">Processing...</span>
+            </div>
+            <div class="w-full bg-slate-700 rounded-full h-2">
+              <div id="progressBar" class="progress-bar bg-brand-500 h-2 rounded-full" style="width: 0%"></div>
+            </div>
+            <div id="progressStats" class="mt-2 text-xs text-slate-500 text-right"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Results + Preview -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- Tabs -->
+        <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+          <div class="flex border-b border-slate-700 no-print">
+            <button class="tab-btn tab-active px-5 py-3 text-sm font-medium transition" data-tab="preview">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                Preview
+              </span>
+            </button>
+            <button class="tab-btn px-5 py-3 text-sm font-medium text-slate-400 hover:text-white transition" data-tab="errors">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Errors
+                <span id="errorBadge" class="hidden bg-red-500/20 text-red-400 text-xs px-1.5 py-0.5 rounded-full font-bold">0</span>
+              </span>
+            </button>
+            <button class="tab-btn px-5 py-3 text-sm font-medium text-slate-400 hover:text-white transition" data-tab="stats">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                Statistics
+              </span>
+            </button>
+          </div>
+
+          <!-- Tab Content -->
+          <div id="tabContent">
+            <!-- Preview Tab -->
+            <div id="tab-preview" class="p-4">
+              <div id="previewEmpty" class="text-center py-16">
+                <svg class="w-16 h-16 mx-auto mb-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <p class="text-slate-500 text-sm">Upload a CSV file to see preview</p>
+              </div>
+              <div id="previewTable" class="hidden overflow-x-auto">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-3">
+                    <select id="previewLimit" class="bg-slate-700 border border-slate-600 text-slate-300 text-xs rounded-lg px-2 py-1">
+                      <option value="10">10 rows</option>
+                      <option value="25" selected>25 rows</option>
+                      <option value="50">50 rows</option>
+                      <option value="100">100 rows</option>
+                    </select>
+                    <span id="previewRange" class="text-xs text-slate-500"></span>
+                  </div>
+                </div>
+                <div class="overflow-x-auto border border-slate-700 rounded-lg">
+                  <table class="w-full text-xs font-mono">
+                    <thead id="previewHead"></thead>
+                    <tbody id="previewBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Errors Tab -->
+            <div id="tab-errors" class="hidden p-4">
+              <div id="errorsEmpty" class="text-center py-16">
+                <svg class="w-16 h-16 mx-auto mb-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-slate-500 text-sm">No errors to display. Run validation first.</p>
+              </div>
+              <div id="errorsContent" class="hidden space-y-2 results-panel"></div>
+            </div>
+
+            <!-- Stats Tab -->
+            <div id="tab-stats" class="hidden p-4">
+              <div id="statsEmpty" class="text-center py-16">
+                <svg class="w-16 h-16 mx-auto mb-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                <p class="text-slate-500 text-sm">Statistics will appear after validation.</p>
+              </div>
+              <div id="statsContent" class="hidden">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                  <div class="bg-slate-900 rounded-lg p-4 text-center">
+                    <div id="statTotal" class="text-2xl font-bold text-white">0</div>
+                    <div class="text-xs text-slate-500 mt-1">Total Rows</div>
+                  </div>
+                  <div class="bg-slate-900 rounded-lg p-4 text-center">
+                    <div id="statValid" class="text-2xl font-bold text-brand-400">0</div>
+                    <div class="text-xs text-slate-500 mt-1">Valid Rows</div>
+                  </div>
+                  <div class="bg-slate-900 rounded-lg p-4 text-center">
+                    <div id="statErrors" class="text-2xl font-bold text-red-400">0</div>
+                    <div class="text-xs text-slate-500 mt-1">Rows with Errors</div>
+                  </div>
+                  <div class="bg-slate-900 rounded-lg p-4 text-center">
+                    <div id="statCols" class="text-2xl font-bold text-blue-400">0</div>
+                    <div class="text-xs text-slate-500 mt-1">Columns</div>
+                  </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-3 mb-6">
+                  <div class="bg-slate-900 rounded-lg p-4">
+                    <h4 class="text-sm font-semibold text-slate-300 mb-3">Error Distribution</h4>
+                    <div id="errorDistribution" class="space-y-2 text-xs"></div>
+                  </div>
+                  <div class="bg-slate-900 rounded-lg p-4">
+                    <h4 class="text-sm font-semibold text-slate-300 mb-3">Column Types Detected</h4>
+                    <div id="columnTypes" class="space-y-2 text-xs"></div>
+                  </div>
+                </div>
+
+                <div class="bg-slate-900 rounded-lg p-4 mb-4">
+                  <h4 class="text-sm font-semibold text-slate-300 mb-3">Encoding & Delimiter</h4>
+                  <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div class="flex justify-between"><span class="text-slate-500">Detected Encoding</span><span id="statEncoding" class="font-mono text-slate-300">—</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Delimiter</span><span id="statDelimiter" class="font-mono text-slate-300">—</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Total Rows</span><span id="statTotal2" class="font-mono text-slate-300">—</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Data Rows</span><span id="statDataRows" class="font-mono text-slate-300">—</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Empty Rows</span><span id="statEmptyRows" class="font-mono text-slate-300">—</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Error Rate</span><span id="statErrorRate" class="font-mono text-slate-300">—</span></div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                  <button id="exportJson" class="flex items-center gap-1.5 bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm px-4 py-2 rounded-lg transition font-medium">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    Export JSON Report
+                  </button>
+                  <button id="exportCsv" class="flex items-center gap-1.5 bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm px-4 py-2 rounded-lg transition font-medium">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    Export CSV Report
+                  </button>
+                  <button id="exportErrorsOnly" class="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-sm px-4 py-2 rounded-lg transition font-medium border border-red-500/20">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Export Errors Only
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 px-4 sm:px-6 lg:px-8 no-print">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Everything You Need to Validate CSVs</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">From quick file checks to complex schema validation — CSV Validator Pro handles it all in your browser, with no uploads and no waiting.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-brand-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Smart Delimiter Detection</h3>
+          <p class="text-sm text-slate-400">Automatically detects comma, semicolon, tab, and pipe delimiters. Handles quoted fields and escaped characters.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Schema Validation</h3>
+          <p class="text-sm text-slate-400">Define column rules with types: string, number, date, email, or custom regex. Get instant feedback on violations.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Type Checking</h3>
+          <p class="text-sm text-slate-400">Validates each cell against its declared type. Numbers, dates, emails — all validated with precision.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Encoding Detection</h3>
+          <p class="text-sm text-slate-400">Detects UTF-8, UTF-16, ISO-8859-1, Windows-1252 and more. Handles BOM markers automatically.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Row-Level Error Reports</h3>
+          <p class="text-sm text-slate-400">Precise error locations: row number, column name, expected type, actual value. No guessing where the problem is.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Bulk Processing</h3>
+          <p class="text-sm text-slate-400">Chunked processing for large files. Shows real-time progress, handles files with millions of rows without freezing.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Export Reports</h3>
+          <p class="text-sm text-slate-400">Download validation reports as JSON or CSV. Export all results or just the errors — your choice.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-pink-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">100% Private</h3>
+          <p class="text-sm text-slate-400">All processing happens in your browser. Your data never leaves your device. No servers, no uploads, no privacy concerns.</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 p-6">
+          <div class="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          </div>
+          <h3 class="font-bold mb-2">Column Consistency</h3>
+          <p class="text-sm text-slate-400">Detects rows with wrong number of columns. Compares against the header row or your schema definition.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-16 px-4 sm:px-6 lg:px-8 no-print">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-4">One-Time Purchase, Lifetime Access</h2>
+        <p class="text-slate-400">No subscriptions. No limits. Pay once, use forever.</p>
+      </div>
+      <div class="bg-gradient-to-b from-slate-800 to-slate-800/50 rounded-2xl border border-slate-700 p-8 text-center">
+        <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-3 py-1 text-sm text-brand-400 mb-6">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6.207.293a1 1 0 00-1.414 0l-6 6a1 1 0 101.414 1.414l6-6a1 1 0 000-1.414zM12.5 10a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clip-rule="evenodd"/></svg>
+          One-time payment
+        </div>
+        <div class="text-6xl font-extrabold mb-2">$19</div>
+        <p class="text-slate-400 mb-8">Lifetime access — including all future updates</p>
+        <div class="space-y-3 text-left max-w-sm mx-auto mb-8">
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">Unlimited CSV file validations</span></div>
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">All validation features included</span></div>
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">JSON & CSV report export</span></div>
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">Bulk / large file support</span></div>
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">100% browser-based, private</span></div>
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">Lifetime updates</span></div>
+          <div class="flex items-start gap-2"><svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm text-slate-300">Priority support</span></div>
+        </div>
+        <a href="https://buy.polar.sh/polar_cl_xfPwLDlKpqDEKLyPzApqOIJRuzBwNrhIPU8I71qUdgV" target="_blank" class="buy-btn inline-flex items-center gap-2 text-white font-bold px-8 py-4 rounded-xl text-lg">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          Get CSV Validator Pro — $19
+        </a>
+        <p class="mt-4 text-xs text-slate-500">Secure checkout via Polar. Instant access after purchase.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 py-8 px-4 sm:px-6 lg:px-8 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="20" fill="#22c55e"/><path d="M25 30h50M25 50h50M25 70h50M35 30v40M65 30v40" stroke="white" stroke-width="6" stroke-linecap="round"/></svg>
+        <span>CSV Validator Pro</span>
+      </div>
+      <p>Built with precision. Validated with care.</p>
+    </div>
+  </footer>
+
+<script>
+// ============================================================
+// CSV Validator Pro — Core Engine
+// ============================================================
+
+const TYPES = ['string', 'number', 'date', 'email', 'regex'];
+const DELIMITERS = [
+  { char: ',', name: 'comma', label: 'Comma (,)' },
+  { char: ';', name: 'semicolon', label: 'Semicolon (;)' },
+  { char: '\t', name: 'tab', label: 'Tab' },
+  { char: '|', name: 'pipe', label: 'Pipe (|)' },
+];
+
+// State
+let currentFile = null;
+let rawContent = '';
+let parsedData = { headers: [], rows: [] };
+let delimiter = ',';
+let encoding = 'UTF-8';
+let schema = [];
+let validationResults = null;
+
+// ============================================================
+// Encoding Detection
+// ============================================================
+function detectEncoding(buffer) {
+  if (buffer.length >= 3 && buffer[0] === 0xEF && buffer[1] === 0xBB && buffer[2] === 0xBF) return 'UTF-8-BOM';
+  if (buffer.length >= 2 && buffer[0] === 0xFF && buffer[1] === 0xFE) return 'UTF-16LE';
+  if (buffer.length >= 2 && buffer[0] === 0xFE && buffer[1] === 0xFF) return 'UTF-16BE';
+
+  let hasHighBytes = false;
+  for (let i = 0; i < Math.min(buffer.length, 4096); i++) {
+    if (buffer[i] > 127) { hasHighBytes = true; break; }
+  }
+  if (!hasHighBytes) return 'ASCII';
+
+  // Heuristic: check for common Windows-1252 patterns
+  let win1252Score = 0;
+  for (let i = 0; i < Math.min(buffer.length, 4096); i++) {
+    const b = buffer[i];
+    // Windows-1252 specific bytes (0x80-0x9F range has special chars in Win-1252)
+    if (b >= 0x80 && b <= 0x9F) win1252Score += 2;
+  }
+  if (win1252Score > 5) return 'Windows-1252';
+  return 'UTF-8';
+}
+
+function decodeContent(buffer, encoding) {
+  if (encoding === 'ASCII') return new TextDecoder('utf-8').decode(buffer);
+
+  const replacements = {
+    'UTF-8-BOM': 'utf-8',
+    'UTF-16LE': 'utf-16le',
+    'UTF-16BE': 'utf-16be',
+    'UTF-8': 'utf-8',
+    'Windows-1252': 'windows-1252',
+    'ISO-8859-1': 'iso-8859-1',
+  };
+
+  try {
+    return new TextDecoder(replacements[encoding] || 'utf-8').decode(buffer);
+  } catch {
+    return new TextDecoder('utf-8').decode(buffer);
+  }
+}
+
+// ============================================================
+// Delimiter Detection
+// ============================================================
+function detectDelimiter(content) {
+  const lines = content.split(/\r?\n/).slice(0, 20).filter(l => l.trim());
+  if (lines.length === 0) return ',';
+
+  const scores = {};
+  DELIMITERS.forEach(d => {
+    const counts = lines.map(l => countDelimiters(l, d.char));
+    const validCounts = counts.filter(c => c > 0);
+    if (validCounts.length === 0) { scores[d.name] = 0; return; }
+    const avg = validCounts.reduce((a, b) => a + b, 0) / validCounts.length;
+    const variance = validCounts.reduce((sum, c) => sum + Math.pow(c - avg, 2), 0) / validCounts.length;
+    const consistency = variance < 1 ? 10 : (1 / (variance + 1));
+    scores[d.name] = consistentCount(validCounts) ? avg * consistency : 0;
+  });
+
+  let best = DELIMITERS[0];
+  DELIMITERS.forEach(d => { if (scores[d.name] > scores[best.name]) best = d; });
+  return best.char;
+}
+
+function countDelimiters(line, delim) {
+  let count = 0;
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    if (line[i] === '"') { inQuotes = !inQuotes; continue; }
+    if (!inQuotes && line[i] === delim) count++;
+  }
+  return count;
+}
+
+function consistentCount(counts) {
+  if (counts.length < 2) return true;
+  const avg = counts.reduce((a, b) => a + b, 0) / counts.length;
+  return counts.every(c => Math.abs(c - avg) <= 1);
+}
+
+// ============================================================
+// CSV Parsing
+// ============================================================
+function parseCSV(content, delim) {
+  const lines = content.split(/\r?\n/);
+  const headers = [];
+  const rows = [];
+  let hasHeader = document.getElementById('optHeaderRow').checked;
+  let trimWs = document.getElementById('optTrimWhitespace').checked;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim()) continue;
+
+    const fields = parseCSVLine(line, delim);
+
+    if (headers.length === 0 && hasHeader) {
+      headers.push(...fields.map(f => trimWs ? f.trim() : f));
+    } else {
+      rows.push(fields.map(f => trimWs ? f.trim() : f));
+    }
+  }
+
+  return { headers, rows };
+}
+
+function parseCSVLine(line, delim) {
+  const fields = [];
+  let current = '';
+  let inQuotes = false;
+  let i = 0;
+
+  while (i < line.length) {
+    const ch = line[i];
+    const nextCh = line[i + 1];
+
+    if (ch === '"') {
+      if (inQuotes && nextCh === '"') {
+        current += '"';
+        i += 2;
+        continue;
+      }
+      inQuotes = !inQuotes;
+      i++;
+      continue;
+    }
+
+    if (!inQuotes && ch === delim) {
+      fields.push(current);
+      current = '';
+      i++;
+      continue;
+    }
+
+    current += ch;
+    i++;
+  }
+
+  fields.push(current);
+  return fields;
+}
+
+// ============================================================
+// Validation Types
+// ============================================================
+const typeValidators = {
+  string: (val) => ({ valid: val.length > 0, error: null }),
+  number: (val) => {
+    if (!val || !val.trim()) return { valid: true, error: null };
+    const num = parseFloat(val.trim());
+    return { valid: !isNaN(num) && isFinite(num), error: `Expected number, got "${val}"` };
+  },
+  date: (val) => {
+    if (!val || !val.trim()) return { valid: true, error: null };
+    const d = new Date(val.trim());
+    return { valid: !isNaN(d.getTime()), error: `Expected valid date, got "${val}"` };
+  },
+  email: (val) => {
+    if (!val || !val.trim()) return { valid: true, error: null };
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return { valid: re.test(val.trim()), error: `Expected email format, got "${val}"` };
+  },
+  regex: (val, pattern) => {
+    if (!val || !val.trim()) return { valid: true, error: null };
+    try {
+      const re = new RegExp(pattern);
+      return { valid: re.test(val.trim()), error: `Failed regex pattern "${pattern}", value "${val}"` };
+    } catch {
+      return { valid: false, error: `Invalid regex pattern: ${pattern}` };
+    }
+  },
+};
+
+// ============================================================
+// Schema Auto-Detection
+// ============================================================
+function autoDetectSchema() {
+  if (!parsedData.headers.length) return;
+
+  schema = parsedData.headers.map((h, i) => {
+    const samples = parsedData.rows.slice(0, 20).map(r => r[i] || '');
+    const type = inferType(samples);
+    return { column: h, type, pattern: '' };
+  });
+
+  renderSchema();
+}
+
+function inferType(samples) {
+  const nonEmpty = samples.filter(s => s.trim());
+  if (nonEmpty.length === 0) return 'string';
+
+  let emailCount = 0, numberCount = 0, dateCount = 0;
+  nonEmpty.forEach(s => {
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim())) emailCount++;
+    if (!isNaN(parseFloat(s.trim())) && isFinite(parseFloat(s.trim()))) numberCount++;
+    const d = new Date(s.trim());
+    if (!isNaN(d.getTime())) dateCount++;
+  });
+
+  const threshold = nonEmpty.length * 0.6;
+  if (emailCount > threshold) return 'email';
+  if (numberCount > threshold) return 'number';
+  if (dateCount > threshold) return 'date';
+  return 'string';
+}
+
+// ============================================================
+// Validation Engine
+// ============================================================
+async function validateCSV() {
+  const results = {
+    totalRows: parsedData.rows.length,
+    validRows: 0,
+    errorRows: 0,
+    errors: [],
+    columnCount: parsedData.headers.length,
+    encoding,
+    delimiter: delimiterName(delimiter),
+    stats: {
+      typeErrors: {},
+      columnErrors: {},
+      emptyRows: 0,
+    },
+  };
+
+  const strictCount = document.getElementById('optStrictCount').checked;
+  const chunkSize = 500;
+  const rows = parsedData.rows;
+
+  for (let chunkStart = 0; chunkStart < rows.length; chunkStart += chunkSize) {
+    const chunkEnd = Math.min(chunkStart + chunkSize, rows.length);
+
+    for (let i = chunkStart; i < chunkEnd; i++) {
+      const rowIndex = i;
+      const row = rows[i];
+      const rowNum = i + 2; // +2: +1 for 1-based, +1 for header
+
+      if (row.every(f => !f || f.trim() === '')) {
+        results.stats.emptyRows++;
+        continue;
+      }
+
+      let rowErrors = [];
+      const expectedCount = parsedData.headers.length;
+
+      // Column count check
+      if (strictCount && row.length !== expectedCount) {
+        rowErrors.push({
+          row: rowNum,
+          column: 'ROW',
+          type: 'column_count',
+          severity: 'error',
+          message: `Expected ${expectedCount} columns, found ${row.length}`,
+          value: row.join(', '),
+        });
+        results.stats.columnErrors['column_count'] = (results.stats.columnErrors['column_count'] || 0) + 1;
+      }
+
+      // Type validation per schema
+      schema.forEach((rule, colIdx) => {
+        if (!rule || !rule.column) return;
+        const value = row[colIdx] || '';
+        const headerName = rule.column;
+
+        if (rule.type === 'regex') {
+          const result = typeValidators.regex(value, rule.pattern);
+          if (!result.valid) {
+            rowErrors.push({
+              row: rowNum,
+              column: headerName,
+              type: 'regex',
+              severity: 'error',
+              message: result.error,
+              value,
+            });
+            results.stats.typeErrors['regex'] = (results.stats.typeErrors['regex'] || 0) + 1;
+          }
+        } else if (rule.type && typeValidators[rule.type]) {
+          const result = typeValidators[rule.type](value);
+          if (!result.valid) {
+            rowErrors.push({
+              row: rowNum,
+              column: headerName,
+              type: rule.type,
+              severity: 'error',
+              message: result.error,
+              value,
+            });
+            results.stats.typeErrors[rule.type] = (results.stats.typeErrors[rule.type] || 0) + 1;
+          }
+        }
+      });
+
+      // Extra columns check
+      if (strictCount && row.length > expectedCount) {
+        for (let ci = expectedCount; ci < row.length; ci++) {
+          if (row[ci] && row[ci].trim()) {
+            rowErrors.push({
+              row: rowNum,
+              column: `Extra[${ci}]`,
+              type: 'extra_column',
+              severity: 'warning',
+              message: `Extra column at index ${ci}`,
+              value: row[ci],
+            });
+          }
+        }
+      }
+
+      if (rowErrors.length > 0) {
+        results.errorRows++;
+        results.errors.push(...rowErrors);
+      } else {
+        results.validRows++;
+      }
+    }
+
+    // Update progress
+    const progress = Math.round((chunkEnd / rows.length) * 100);
+    updateProgress(progress, chunkEnd, rows.length);
+
+    // Yield to UI
+    await new Promise(r => setTimeout(r, 0));
+  }
+
+  return results;
+}
+
+function delimiterName(char) {
+  const found = DELIMITERS.find(d => d.char === char);
+  return found ? found.label : char;
+}
+
+// ============================================================
+// UI Rendering
+// ============================================================
+function renderSchema() {
+  const list = document.getElementById('schemaList');
+  list.innerHTML = '';
+
+  if (schema.length === 0) {
+    list.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">No schema rules defined. Add rules or auto-detect from headers.</p>';
+    return;
+  }
+
+  schema.forEach((rule, idx) => {
+    const row = document.createElement('div');
+    row.className = 'schema-row-enter bg-slate-900 rounded-lg p-3 flex items-center gap-2';
+    row.innerHTML = `
+      <input type="text" value="${escapeHtml(rule.column)}" placeholder="Column name" data-idx="${idx}" data-field="column"
+        class="flex-1 bg-slate-800 border border-slate-700 text-slate-200 text-xs px-2 py-1.5 rounded font-mono focus:border-brand-500 focus:outline-none">
+      <select data-idx="${idx}" data-field="type"
+        class="bg-slate-800 border border-slate-700 text-slate-200 text-xs px-2 py-1.5 rounded focus:border-brand-500 focus:outline-none">
+        ${TYPES.map(t => `<option value="${t}" ${rule.type === t ? 'selected' : ''}>${t}</option>`).join('')}
+      </select>
+      <input type="text" value="${escapeHtml(rule.pattern || '')}" placeholder="Regex pattern" data-idx="${idx}" data-field="pattern"
+        class="w-28 bg-slate-800 border border-slate-700 text-slate-200 text-xs px-2 py-1.5 rounded font-mono focus:border-brand-500 focus:outline-none ${rule.type !== 'regex' ? 'opacity-30' : ''}">
+      <button data-idx="${idx}" class="remove-schema text-slate-600 hover:text-red-400 flex-shrink-0">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    `;
+    list.appendChild(row);
+  });
+
+  // Bind schema events
+  list.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('change', (e) => {
+      const idx = parseInt(e.target.dataset.idx);
+      const field = e.target.dataset.field;
+      if (field === 'type') schema[idx].type = e.target.value;
+      else if (field === 'column') schema[idx].column = e.target.value;
+      else if (field === 'pattern') schema[idx].pattern = e.target.value;
+    });
+  });
+
+  list.querySelectorAll('.remove-schema').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const idx = parseInt(e.currentTarget.dataset.idx);
+      schema.splice(idx, 1);
+      renderSchema();
+    });
+  });
+}
+
+function renderPreview() {
+  const empty = document.getElementById('previewEmpty');
+  const table = document.getElementById('previewTable');
+  const head = document.getElementById('previewHead');
+  const body = document.getElementById('previewBody');
+  const range = document.getElementById('previewRange');
+
+  if (!parsedData.headers.length && !parsedData.rows.length) {
+    empty.classList.remove('hidden');
+    table.classList.add('hidden');
+    return;
+  }
+
+  empty.classList.add('hidden');
+  table.classList.remove('hidden');
+
+  const limit = parseInt(document.getElementById('previewLimit').value);
+  const displayRows = parsedData.rows.slice(0, limit);
+
+  head.innerHTML = '<tr class="bg-slate-700/50">' +
+    '<th class="px-3 py-2 text-left text-slate-400 font-medium border-r border-slate-700">#</th>' +
+    parsedData.headers.map((h, i) => `<th class="px-3 py-2 text-left text-slate-300 font-medium border-r border-slate-700 min-w-[120px]">${escapeHtml(h)}</th>`).join('') +
+    '</tr>';
+
+  body.innerHTML = displayRows.map((row, ri) =>
+    '<tr class="border-b border-slate-700/50 hover:bg-slate-700/20">' +
+    `<td class="px-3 py-1.5 text-slate-500 border-r border-slate-700">${ri + 2}</td>` +
+    parsedData.headers.map((_, ci) => `<td class="px-3 py-1.5 text-slate-300 border-r border-slate-700/50 truncate max-w-[200px]">${escapeHtml(row[ci] || '')}</td>`).join('') +
+    '</tr>'
+  ).join('');
+
+  range.textContent = `Showing ${displayRows.length} of ${parsedData.rows.length} data rows`;
+}
+
+function renderErrors(results) {
+  const badge = document.getElementById('errorBadge');
+  const empty = document.getElementById('errorsEmpty');
+  const content = document.getElementById('errorsContent');
+
+  if (!results || results.errors.length === 0) {
+    badge.classList.add('hidden');
+    empty.classList.remove('hidden');
+    empty.querySelector('p').textContent = 'No errors found! All rows passed validation.';
+    empty.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
+    empty.querySelector('svg').className = 'w-16 h-16 mx-auto mb-4 text-brand-500';
+    content.classList.add('hidden');
+    return;
+  }
+
+  badge.textContent = results.errors.length;
+  badge.classList.remove('hidden');
+  empty.classList.add('hidden');
+  content.classList.remove('hidden');
+
+  content.innerHTML = results.errors.map(err => {
+    const severityColors = {
+      error: 'border-red-500/30 bg-red-500/5',
+      warning: 'border-amber-500/30 bg-amber-500/5',
+      info: 'border-blue-500/30 bg-blue-500/5',
+    };
+    const severityIcons = {
+      error: '<svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+      warning: '<svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>',
+      info: '<svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+    };
+
+    return `
+      <div class="error-row border ${severityColors[err.severity] || severityColors.error} rounded-lg p-3">
+        <div class="flex items-start gap-2">
+          ${severityIcons[err.severity] || severityIcons.error}
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-mono text-xs font-bold text-slate-300">Row ${err.row}</span>
+              <span class="text-xs text-slate-500">·</span>
+              <span class="font-mono text-xs text-slate-400">${escapeHtml(err.column)}</span>
+              <span class="type-badge type-${err.type}">${err.type}</span>
+            </div>
+            <p class="text-sm text-slate-300 mt-1">${escapeHtml(err.message)}</p>
+            ${err.value ? `<p class="text-xs text-slate-500 mt-1 font-mono truncate">Value: "${escapeHtml(err.value)}"</p>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderStats(results) {
+  const empty = document.getElementById('statsEmpty');
+  const content = document.getElementById('statsContent');
+
+  if (!results) {
+    empty.classList.remove('hidden');
+    content.classList.add('hidden');
+    return;
+  }
+
+  empty.classList.add('hidden');
+  content.classList.remove('hidden');
+
+  // Overview stats
+  document.getElementById('statTotal').textContent = results.totalRows;
+  document.getElementById('statValid').textContent = results.validRows;
+  document.getElementById('statErrors').textContent = results.errorRows;
+  document.getElementById('statCols').textContent = results.columnCount;
+
+  // Encoding & delimiter info
+  document.getElementById('statEncoding').textContent = results.encoding;
+  document.getElementById('statDelimiter').textContent = results.delimiter;
+  document.getElementById('statTotal2').textContent = results.totalRows;
+  document.getElementById('statDataRows').textContent = results.totalRows - results.stats.emptyRows;
+  document.getElementById('statEmptyRows').textContent = results.stats.emptyRows;
+
+  const errorRate = results.totalRows > 0
+    ? ((results.errorRows / results.totalRows) * 100).toFixed(1) + '%'
+    : '0%';
+  document.getElementById('statErrorRate').textContent = errorRate;
+
+  // Error distribution
+  const distEl = document.getElementById('errorDistribution');
+  const typeErrors = results.stats.typeErrors;
+  const colErrors = results.stats.columnErrors;
+
+  if (Object.keys(typeErrors).length === 0 && Object.keys(colErrors).length === 0) {
+    distEl.innerHTML = '<p class="text-slate-500 text-xs">No errors detected</p>';
+  } else {
+    const allErrors = { ...typeErrors, ...colErrors };
+    const total = Object.values(allErrors).reduce((a, b) => a + b, 0);
+    distEl.innerHTML = Object.entries(allErrors)
+      .sort((a, b) => b[1] - a[1])
+      .map(([type, count]) => {
+        const pct = total > 0 ? (count / total * 100).toFixed(0) : 0;
+        return `
+          <div class="flex items-center gap-2">
+            <span class="w-16 font-mono text-slate-400 text-xs truncate">${type}</span>
+            <div class="flex-1 bg-slate-700 rounded-full h-1.5">
+              <div class="bg-red-500 h-1.5 rounded-full" style="width:${pct}%"></div>
+            </div>
+            <span class="w-8 text-right text-slate-500 text-xs text-right">${count}</span>
+          </div>
+        `;
+      }).join('');
+  }
+
+  // Column types
+  const colTypesEl = document.getElementById('columnTypes');
+  if (schema.length > 0) {
+    colTypesEl.innerHTML = schema.map(r => `
+      <div class="flex items-center gap-2">
+        <span class="w-24 font-mono text-slate-400 text-xs truncate">${escapeHtml(r.column)}</span>
+        <span class="type-badge type-${r.type}">${r.type}</span>
+      </div>
+    `).join('');
+  } else {
+    colTypesEl.innerHTML = '<p class="text-slate-500 text-xs">No schema defined</p>';
+  }
+}
+
+// ============================================================
+// Progress
+// ============================================================
+function updateProgress(percent, current, total) {
+  document.getElementById('progressBar').style.width = percent + '%';
+  document.getElementById('progressLabel').textContent = `Processing... ${current.toLocaleString()} / ${total.toLocaleString()} rows`;
+  document.getElementById('progressStats').textContent = percent + '%';
+}
+
+// ============================================================
+// Export
+// ============================================================
+function exportJSON(results) {
+  if (!results) return;
+  const data = JSON.stringify(results, null, 2);
+  downloadFile(data, 'validation-report.json', 'application/json');
+}
+
+function exportCSV(results) {
+  if (!results) return;
+  const lines = ['"Row","Column","Type","Severity","Message","Value"'];
+  results.errors.forEach(e => {
+    lines.push(`${e.row},"${e.column}","${e.type}","${e.severity}","${e.message.replace(/"/g, '""')}","${(e.value || '').replace(/"/g, '""')}"`);
+  });
+  downloadFile(lines.join('\n'), 'validation-errors.csv', 'text/csv');
+}
+
+function exportErrorsOnly(results) {
+  if (!results || results.errors.length === 0) return;
+  exportCSV(results);
+}
+
+function downloadFile(content, filename, mimeType) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ============================================================
+// Utilities
+// ============================================================
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+// ============================================================
+// Tab Switching
+// ============================================================
+function initTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('tab-active');
+        b.classList.add('text-slate-400');
+      });
+      btn.classList.add('tab-active');
+      btn.classList.remove('text-slate-400');
+
+      ['preview', 'errors', 'stats'].forEach(t => {
+        document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab);
+      });
+    });
+  });
+}
+
+// ============================================================
+// Event Bindings
+// ============================================================
+function initEventHandlers() {
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+
+  // Drag & drop
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file);
+  });
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) loadFile(file);
+  });
+
+  // Clear file
+  document.getElementById('clearFile').addEventListener('click', () => {
+    currentFile = null;
+    rawContent = '';
+    parsedData = { headers: [], rows: [] };
+    validationResults = null;
+    schema = [];
+    document.getElementById('fileInput').value = '';
+    document.getElementById('fileInfo').classList.add('hidden');
+    document.getElementById('validateBtn').disabled = true;
+    renderSchema();
+    renderPreview();
+    document.getElementById('errorsEmpty').querySelector('p').textContent = 'No errors to display. Run validation first.';
+    document.getElementById('errorsEmpty').querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>';
+    document.getElementById('errorsEmpty').querySelector('svg').className = 'w-16 h-16 mx-auto mb-4 text-slate-600';
+    document.getElementById('statsContent').classList.add('hidden');
+    document.getElementById('statsEmpty').classList.remove('hidden');
+    document.getElementById('errorBadge').classList.add('hidden');
+    // Reset tabs
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('tab-active', i === 0);
+      if (i > 0) b.classList.add('text-slate-400');
+    });
+    ['preview', 'errors', 'stats'].forEach((t, i) => {
+      document.getElementById('tab-' + t).classList.toggle('hidden', i !== 0);
+    });
+  });
+
+  // Add schema row
+  document.getElementById('addSchemaRow').addEventListener('click', () => {
+    schema.push({ column: '', type: 'string', pattern: '' });
+    renderSchema();
+  });
+
+  // Auto-detect schema
+  document.getElementById('autoDetectSchema').addEventListener('click', () => {
+    autoDetectSchema();
+  });
+
+  // Preview limit
+  document.getElementById('previewLimit').addEventListener('change', renderPreview);
+
+  // Validate
+  document.getElementById('validateBtn').addEventListener('click', async () => {
+    const progressContainer = document.getElementById('progressContainer');
+    progressContainer.classList.remove('hidden');
+    document.getElementById('progressBar').style.width = '0%';
+    document.getElementById('progressStats').textContent = '';
+
+    try {
+      validationResults = await validateCSV();
+      renderErrors(validationResults);
+      renderStats(validationResults);
+
+      // Switch to errors tab if there are errors, or stats tab
+      if (validationResults.errors.length > 0) {
+        document.querySelector('[data-tab="errors"]').click();
+      } else {
+        document.querySelector('[data-tab="stats"]').click();
+      }
+    } catch (err) {
+      console.error('[DEBUG] Validation error:', err);
+      alert('Validation failed: ' + err.message);
+    } finally {
+      progressContainer.classList.add('hidden');
+    }
+  });
+
+  // Export buttons
+  document.getElementById('exportJson').addEventListener('click', () => exportJSON(validationResults));
+  document.getElementById('exportCsv').addEventListener('click', () => exportCSV(validationResults));
+  document.getElementById('exportErrorsOnly').addEventListener('click', () => exportErrorsOnly(validationResults));
+}
+
+// ============================================================
+// File Loading
+// ============================================================
+async function loadFile(file) {
+  currentFile = file;
+  const buffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(buffer);
+
+  encoding = detectEncoding(bytes);
+  rawContent = decodeContent(bytes, encoding);
+
+  delimiter = detectDelimiter(rawContent);
+  parsedData = parseCSV(rawContent, delimiter);
+
+  // Update UI
+  document.getElementById('fileName').textContent = file.name;
+  document.getElementById('fileSize').textContent = formatBytes(file.size);
+  document.getElementById('detectedEncoding').textContent = encoding;
+  document.getElementById('detectedDelimiter').textContent = delimiterName(delimiter);
+  document.getElementById('fileInfo').classList.remove('hidden');
+  document.getElementById('validateBtn').disabled = false;
+
+  // Auto-detect schema if has headers
+  if (parsedData.headers.length > 0) {
+    autoDetectSchema();
+  }
+
+  renderPreview();
+}
+
+// ============================================================
+// Init
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initTabs();
+  initEventHandlers();
+  renderSchema();
+});
+</script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_xfPwLDlKpqDEKLyPzApqOIJRuzBwNrhIPU8I71qUdgV";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e86]: Github Bounty for issue custom-theme-and-color-feature
+  - main [ref=e549]:
+    - generic [ref=e552]:
+      - link "BountyHub Logo" [ref=e553] [cursor=pointer]:
+        - /url: /en
+        - img "BountyHub Logo" [ref=e554]
+      - generic [ref=e555]:
+        - link "explore" [ref=e556] [cursor=pointer]:
+          - /url: /en/bounties
+        - link "Pricing" [ref=e557] [cursor=pointer]:
+          - /url: /en/pricing
+        - button "Docs" [ref=e558] [cursor=pointer]
+      - link "Sign In" [ref=e560] [cursor=pointer]:
+        - /url: /en/sign-in
+    - generic [ref=e565]:
+      - generic [ref=e566]:
+        - heading "freelensapp/freelens" [level=1] [ref=e567]
+        - generic [ref=e569]: TypeScript
+        - generic [ref=e570]:
+          - generic [ref=e572]: Open
+          - generic "This bounty is open and available to be claimed by eligible contributors." [ref=e573]:
+            - img [ref=e574]
+        - generic [ref=e576]:
+          - generic [ref=e578]: Exclusive
+          - 'generic "Exclusive: only the assignee may claim this bounty. Other users can send an assignment request to be considered." [ref=e579]':
+            - img [ref=e580]
+        - heading "Custom theme and color feature" [level=2] [ref=e582]
+        - generic [ref=e583]:
+          - paragraph [ref=e584]: "created by: robertobandini"
+          - img "robertobandini's avatar" [ref=e586]
+        - paragraph
+        - link "View on GitHub" [ref=e587] [cursor=pointer]:
+          - /url: https://github.com/freelensapp/freelens/issues/1280
+          - img [ref=e589]
+          - text: View on GitHub
+      - generic [ref=e591]:
+        - generic [ref=e593]:
+          - paragraph [ref=e594]: "Reward:"
+          - paragraph [ref=e595]: $50.00
+        - generic [ref=e596]:
+          - button "Increase bounty amount" [ref=e597] [cursor=pointer]
+          - button "Claim bounty" [ref=e598] [cursor=pointer]
+      - generic [ref=e599]:
+        - alert [ref=e601]:
+          - img [ref=e603]
+          - generic [ref=e605]: "Note: Fully AI-generated pull requests are not accepted. You may use AI tools for assistance, but all submissions must reflect your own understanding and meaningful human contribution."
+        - generic [ref=e606]:
+          - heading "Issue Description" [level=3] [ref=e607]
+          - generic [ref=e608]:
+            - heading "What would you like to be added?" [level=3] [ref=e609]
+            - paragraph [ref=e610]: In short, the ability to change the theme colors on Freelens and create new ones as you like.
+            - heading "Why is this needed?" [level=3] [ref=e611]
+            - paragraph [ref=e612]: Many users complain that they don't have this option, especially when it comes to colors they would prefer to change.
+            - paragraph [ref=e613]: "For example:"
+            - list [ref=e614]:
+              - listitem [ref=e615]:
+                - link "https://github.com/freelensapp/freelens/issues/550#issuecomment-3371177938" [ref=e616] [cursor=pointer]:
+                  - /url: https://github.com/freelensapp/freelens/issues/550#issuecomment-3371177938
+              - listitem [ref=e617]:
+                - link "https://github.com/freelensapp/freelens/issues/1237" [ref=e618] [cursor=pointer]:
+                  - /url: https://github.com/freelensapp/freelens/issues/1237
+              - listitem [ref=e619]:
+                - link "https://github.com/freelensapp/freelens/issues/186" [ref=e620] [cursor=pointer]:
+                  - /url: https://github.com/freelensapp/freelens/issues/186
+      - generic [ref=e621]:
+        - paragraph [ref=e622]: "Open claims:"
+        - generic [ref=e625]:
+          - generic [ref=e626]:
+            - img "Excellencedev" [ref=e628]
+            - paragraph [ref=e629]: Excellencedev
+          - paragraph [ref=e630]: Add Custom Theme and Color Customization Feature
+          - link "View on GitHub" [ref=e631] [cursor=pointer]:
+            - /url: https://github.com/freelensapp/freelens/pull/1368
+            - img [ref=e633]
+            - text: View on GitHub
+          - button "View Diff" [ref=e635] [cursor=pointer]:
+            - img [ref=e637]
+            - text: View Diff
+          - generic [ref=e640]: rejected
+    - generic [ref=e641]:
+      - generic [ref=e642]:
+        - generic [ref=e643]:
+          - generic [ref=e644]:
+            - heading "Docs" [level=6] [ref=e645]
+            - link "For Bounty Creators" [ref=e646] [cursor=pointer]:
+              - /url: /en/docs/create-bounty
+            - link "For Bounty Hunters" [ref=e647] [cursor=pointer]:
+              - /url: /en/docs/claim-bounty
+            - link "For Repository Owners" [ref=e648] [cursor=pointer]:
+              - /url: /en/docs/repository-owner
+          - generic [ref=e649]:
+            - heading "Company" [level=6] [ref=e650]
+            - link "About us" [ref=e651] [cursor=pointer]:
+              - /url: /en/about-us
+            - link "Pricing" [ref=e652] [cursor=pointer]:
+              - /url: /en/pricing
+          - generic [ref=e653]:
+            - heading "Legal" [level=6] [ref=e654]
+            - link "Terms of Service" [ref=e655] [cursor=pointer]:
+              - /url: /en/terms-of-service
+            - link "Privacy Policy" [ref=e656] [cursor=pointer]:
+              - /url: /en/privacy-policy
+        - link "Copyright © BountyHub 2026" [ref=e659] [cursor=pointer]:
+          - /url: /en
+      - generic [ref=e660]:
+        - link "LinkedIn icon" [ref=e661] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/bountyhub-dev
+          - img "LinkedIn icon" [ref=e662]
+        - link "Discord icon" [ref=e663] [cursor=pointer]:
+          - /url: https://discord.gg/SfavWF9zZ8
+          - img "Discord icon" [ref=e664]
+        - link [ref=e665] [cursor=pointer]:
+          - /url: https://github.com/apps/bountyhub-app
+          - img [ref=e666]

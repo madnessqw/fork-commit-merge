@@ -1,0 +1,27 @@
+{
+  "slug": "mcp-server-playground",
+  "name": "MCP Server Playground",
+  "tagline": "Test, debug and validate your MCP servers with an interactive playground",
+  "description": "MCP Server Playground is a comprehensive testing environment for Model Context Protocol servers. Test your MCP tools, validate server configurations, inspect JSON-RPC requests/responses, and simulate client interactions without leaving your browser. Perfect for MCP developers who need to iterate quickly.",
+  "price": "$19",
+  "target_audience": "MCP server developers, AI tool builders, Claude/Cursor extension developers",
+  "features": [
+    "Interactive MCP server connection tester",
+    "JSON-RPC message inspector with syntax highlighting",
+    "Tool discovery and schema visualization",
+    "Request/response history with export",
+    "Built-in MCP client simulator",
+    "Server capability validation",
+    "Error diagnostics and troubleshooting hints",
+    "Support for stdio and SSE transports",
+    "Save and replay test scenarios",
+    "Dark mode optimized interface"
+  ],
+  "tech_stack": ["Vanilla HTML", "Tailwind CSS", "JavaScript", "WebSocket"],
+  "category": "Developer Tools",
+  "competitors": ["MCP Inspector CLI", "Custom testing scripts"],
+  "differentiation": "Web-based, no CLI needed, visual request/response inspector, scenario replay",
+  " estimated_traffic": "MCP trending on GitHub, Claude Desktop adoption growing",
+  "spec_ready": true,
+  "batch": 26
+}

@@ -1,0 +1,3544 @@
+
+[***] [ Terminal UI OS (Terminal Multiplexer, xtermjs xterm.js A terminal for the web ] ***
+
+
+• Project config (shared via .mcp.json):
+    • C:\Users\Gokhan\.mcp.json
+
+
+
+https://mcpservers.org/
+https://mcpmarket.com/
+https://skillsmp.com/
+
+https://www.skillhub.club/
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+---BrowserOS 
+
+-BrowserOS : https://www.youtube.com/watch?v=rIZ8OBHL7Zo&list=LL&index=51
+-Gemini Browser - Gemini 2.5 Browser Agent : https://www.youtube.com/watch?v=512bPHx7GMI&list=LL&index=48
+
+Emergent 
+https://www.reddit.com/r/aiagents/comments/1ow1a1x/ai_agent_bypass_captcha_verification_to_scrape/
+
+-FlowwithOS : https://www.youtube.com/watch?v=hl8CVsITVQo&list=LL&index=35
+-AI Browsers: The Internet Will Never Be the Same - Reviewing of Fellou and BrowserOS for you
+
+https://www.youtube.com/watch?v=M6TJ0KxYVhk&list=LL&index=49
+-rtrvr.ai
+rtrvr.ai v2: FULLY FREE Browser Use AI Agent! Automate ANYTHING! (Ranked #1 AI Web Agent)
+
+-Browser Cash
+https://browser.cash/
+
+
+-100xbot
+https://100x.bot/
+https://chromewebstore.google.com/detail/100xbot/kipkglfnhnpbogckhlmikjlfpbngnioc
+
+https://www.reddit.com/r/AgentsOfAI/comments/1ov8w4a/who_will_win_the_new_browser_war_that_support_ai/
+https://www.reddit.com/r/AI_Operator/comments/1ovypzm/glm45v_model_for_local_computer_use/
+https://www.reddit.com/r/ClaudeAI/comments/1orplvu/mcp_for_browser_automation/
+https://www.reddit.com/r/ollama/comments/1op72oi/glm45v_model_for_local_computer_use/
+https://www.reddit.com/r/AI_Agents/comments/1oq56bc/i_tried_comet_and_chatgpt_atlas_then_i_built_a/
+https://www.reddit.com/r/aiagents/comments/1opwst1/computer_use_with_sonnet_45/
+
+---AIPexStudio / AIPex
+Open-source alternative to ChatGPT Atlas
+https://github.com/AIPexStudio/AIPex?utm_source=opensourceprojects.dev&ref=opensourceprojects.dev
+https://www.opensourceprojects.dev/post/1991443349761642718
+
+AIPex - AI-Powered Browser Automation Extension
+ Why choose AIPex over ChatGPT Atlas?
+
+✅ Free & Open Source - No subscription fees, full transparency
+✅ No Browser Migration - Use your existing browser directly
+✅ Privacy Protection - AIPex never records your data
+
+---browser-use // qa-use
+https://github.com/browser-use/qa-use/
+
+---browser-use / desktop
+https://github.com/browser-use/desktop/
+About
+Browser-Use Desktop app, control your local Chrome browser with AI agents!
+
+---CursorTouch / Windows-MCP
+https://github.com/CursorTouch/Windows-MCP
+About
+MCP Server for Computer Use in Windows
+
+---Stagehand
+
+---ComposioHQ / open-chatgpt-atlas
+https://github.com/ComposioHQ/open-chatgpt-atlas
+
+------simular-ai - Agent-S
+
+https://github.com/simular-ai/Agent-S
+
+About
+Agent S: an open agentic framework that uses computers like a human
+
+---Agent S3: Approaching Human-Level Computer-Use AI
+https://www.reddit.com/r/aicuriosity/comments/1nx1efa/agent_s3_approaching_humanlevel_computeruse_ai/
+
+---AgentDeskAI / browser-tools-mcp
+About
+Monitor browser logs directly from Cursor and other MCP compatible IDEs.
+
+---Manus Browser Operator [Ü]
+https://manus.im/pricing
+
+---activepieces  activepieces
+https://github.com/activepieces/activepieces
+https://www.activepieces.com/pricing
+
+---bytebot-ai / bytebot
+https://github.com/bytebot-ai/bytebot
+https://bytebot.mintlify.app/introduction
+About
+Bytebot is a self-hosted AI desktop agent that automates computer tasks through natural language commands, operating within a containerized Linux desktop environment.
+
+---Appy Pie Computer Use Agents
+https://www.appypieagents.ai/computer-use-agents
+
+---ace
+The Browser That Gets You
+https://ace.ai/
+
+---Skyvern-AI / skyvern
+https://github.com/Skyvern-AI/skyvern
+
+---Norton Neo: This FULLY FREE AI Browser by NORTON is REALLY GOOD!
+https://www.youtube.com/watch?v=E3dGrHzdIRE
+
+---open-computer-use
+https://github.com/e2b-dev/open-computer-use
+About
+AI computer use powered by open source LLMs and E2B Desktop Sandbox
+
+---browserable / browserable
+https://github.com/browserable/browserable
+
+About
+Open source and self-hostable browser automation library for AI agents
+
+---I asked EmergentAI to scrape Data on a website. Most website have a captcha verification that stops them to do so like APIfy & other tools. But Emergent Achieved to bypass the captcha.
+https://www.reddit.com/r/aiagents/comments/1ow1a1x/ai_agent_bypass_captcha_verification_to_scrape/
+
+---Blueprint MCP for Chrome
+https://chromewebstore.google.com/detail/blueprint-mcp-for-chrome/kpfkpbkijebomacngfgljaendniocdfp
+
+---https://arc.net/max
+
+---AppypieAgents.ai
+https://www.appypieagents.ai/
+
+---SawyerHood  / dev-browser
+https://github.com/SawyerHood/dev-browser
+About
+A Claude Skill to give your agent the ability to use a web browser
+
+---VibiumDev / vibium
+https://github.com/VibiumDev/vibium
+About
+Browser automation for AI agents and humans
+
+---Tongyi-MAI // MAI-UI
+https://github.com/Tongyi-MAI/MAI-UI?tab=readme-ov-file
+About
+MAI-UI: Real-World Centric Foundation GUI Agents ranging from 2B to 235B
+
+---browserbase // gemini-browser
+https://github.com/browserbase/gemini-browser
+About
+Try the new Gemini Computer Use model on Browserbase.
+
+---manus ai https://manus.im/tr/blog/manus-browser-operator
+
+---bytedance // UI-TARS-desktop
+https://github.com/bytedance/UI-TARS-desktop
+About
+The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra
+
+---omkarcloud // botasaurus
+https://github.com/omkarcloud/botasaurus
+About
+The All in One Framework to Build Undefeatable Scrapers
+
+---nanobrowser
+
+---cosinusalpha / webctl
+https://github.com/cosinusalpha/webctl
+About
+Browser automation via CLI — for humans and agents
+
+---vercel-labs  agent-browser
+https://github.com/vercel-labs/agent-browser
+About
+Browser automation CLI for AI agents
+
+---showlab / ShowUI-Aloha
+https://github.com/showlab/ShowUI-Aloha
+About
+Human-taught Computer-use Agent Designed for Real Windows and MacOS Desktops.
+🌟 What is ShowUI-Aloha?
+ShowUI-Aloha is a human-taught computer-use agent designed for real Windows and macOS desktops.
+Aloha:
+Records human demonstrations (screen + mouse + keyboard)
+Learns semantic action traces from those demonstrations
+Plans new tasks based on the learned workflow
+Executes reliably with OS-level clicks, drags, typing, scrolling, and hotkeys
+Aloha learns through abstraction, not memorization: one demonstration generalizes to an entire task family.
+
+---showlab / ShowUI
+https://github.com/showlab/ShowUI
+About
+[CVPR 2025] Open-source, End-to-end, Vision-Language-Action model for GUI Agent & Computer Use.
+https://github.com/showlab/ShowUI
+🕹️ UI-Guided Token Selection
+Try test.ipynb, which seamless support for Qwen2VL models.
+
+---alibaba // page-agent
+https://github.com/alibaba/page-agent
+https://x.com/GithubProjects/status/2031256315834876101
+About
+JavaScript in-page GUI agent. Control web interfaces with natural language.
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+ÇOKLU LLM Provider : 
+
+---OpenRouter
+
+---LMArena
+
+---NVIDIA
+
+---Abacus Ai
+
+---i10x.ai
+
+---fal
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+---machine-theory lm-council
+https://github.com/machine-theory/lm-council
+
+About
+LLMs sitting on a council together to decide, by consensus, who among them is the best.
+
+---chain-ml - council
+
+https://github.com/chain-ml/council
+
+About
+Council is an open-source platform for the rapid development and robust deployment of customized generative AI applications
+
+---karpathy - llm-council
+https://github.com/karpathy/llm-council
+
+About
+LLM Council works together to answer your hardest questions
+
+--- sveneisenschmidt
+n8n-openai-bridge
+https://github.com/sveneisenschmidt/n8n-openai-bridge
+
+About
+OpenAI-compatible API middleware for n8n workflows. Use your n8n agents and workflows as OpenAI models in any OpenAI-compatible client.
+
+
+---Scrapeless
+https://www.reddit.com/r/Scrapeless/comments/1nnhpgj/using_scrapeless_mcp_browser_tools_to_scrape_an/
+https://www.reddit.com/r/Scrapeless/comments/1np88gp/combine_browseruse_with_scrapeless_cloud_browsers/
+https://www.reddit.com/r/Scrapeless/comments/1opx1qc/scrapeless_biweekly_release_november_6_2025/
+
+
+---ByteByteGoHq - system-design-101
+https://github.com/ByteByteGoHq/system-design-101
+Explain complex systems using visuals and simple terms. Help you prepare for system design interviews.
+
+---Gaurav-Gosain - tuios
+https://github.com/Gaurav-Gosain/tuios
+About
+Terminal UI OS (Terminal Multiplexer)
+
+---passage-of-time-mcp
+https://github.com/jlumbroso/passage-of-time-mcp
+🤖🕰️ An MCP server that gives language models temporal awareness and time calculation abilities. Teaching AI the significance of the passage of time through collaborative tool development.
+
+---Vanaras-AI - agent-framework
+https://github.com/Vanaras-AI/agent-framework
+
+---metatool-ai - metamcp
+
+https://github.com/metatool-ai/metamcp
+
+About
+MCP Aggregator, Orchestrator, Middleware, Gateway in one docker
+
+---tao-hpu - cognitive-workspace
+
+https://github.com/tao-hpu/cognitive-workspace
+
+🧠 Active memory management system enabling functional infinite context for LLMs through cognitive workspace architecture
+
+---kayba-ai / agentic-context-engine
+https://github.com/kayba-ai/agentic-context-engine
+
+About
+🧠 Make your agents learn from experience. Based on the Agentic Context Engineering (ACE) framework.
+
+---ashishpatel26 / 500-AI-Agents-Projects
+
+https://github.com/ashishpatel26/500-AI-Agents-Projects
+
+About
+The 500 AI Agents Projects is a curated collection of AI agent use cases across various industries. It showcases practical applications and provides links to open-source projects for implementation, illustrating how AI agents are transforming sectors such as healthcare, finance, education, retail, and more.
+
+---RedPlanetHQ - core
+
+Abhttps://github.com/RedPlanetHQ/coreout
+Build your personal memory system to power your AI apps.
+
+---blueraai - universal-intelligence
+https://github.com/blueraai/universal-intelligence
+
+About
+◉ Universal Intelligence: AI made simple.
+Universal Intelligence (aka UIN) aims to make AI development accessible to everyone through a simple interface, which can optionally be customized to grow with you as you learn, up to production readiness.
+
+It provides both a standard protocol, and a library of components implementating the protocol for you to get started —on any platform
+
+---Garoth / sleep-mcp
+
+https://github.com/Garoth/sleep-mcp
+
+About
+Allows AI Agents to sleep for a specified amount of milliseconds, like when they should wait for an API to complete
+
+---K-Dense-AI - karpathy
+
+https://github.com/K-Dense-AI/karpathy
+
+About
+An agentic Machine Learning Engineer
+
+---Tsotchke-Corporation - SolanaQuantumFlux
+
+https://github.com/Tsotchke-Corporation/SolanaQuantumFlux
+
+About
+Official documentation, SDK, and integration examples for the Quantum-inspired Random Number Generator (QRNG) - a token-based true random number service for Solana blockchain applications.
+
+---[***]Lyra
+https://www.trylyra.com/mcp
+https://www.reddit.com/r/mcp/comments/1oyorwu/i_built_an_mcp_client_that_runs_2700_agents_with/
+I built an MCP client that runs 2,700+ agents with one click (zero config)
+
+---Built tymr, a fire-and-forget timer/alarm CLI that survives reboots.
+https://github.com/sahaj-b/tymr
+https://www.reddit.com/r/commandline/comments/1oykkkm/built_tymr_a_fireandforget_timeralarm_cli_that/
+
+---czlonkowski n8n-mcp
+https://github.com/czlonkowski/n8n-mcp
+About
+A MCP for Claude Desktop / Claude Code / Windsurf / Cursor to build n8n workflows for you
+
+---vercel - workflow
+
+https://github.com/vercel/workflow
+
+About
+Workflow DevKit: Build durable, reliable, and observable apps and AI Agents in TypeScript
+
+---AnandChowdhary - continuous-claude
+
+https://github.com/AnandChowdhary/continuous-claude
+
+About
+🔂 Run Claude Code in a continuous loop, autonomously creating PRs, waiting for checks, and merging
+
+
+---[**]opper-ai - opperator
+https://github.com/opper-ai/opperator
+
+About
+Opperator is a framework for building and running general AI agents locally from your terminal
+
+---Xtra-Computing
+MegaAgent
+https://github.com/Xtra-Computing/MegaAgent/tree/master
+
+About
+[ACL 2025 Findings] MegaAgent: A Large-Scale Autonomous LLM-based Multi-Agent System Without Predefined SOPs https://aclanthology.org/2025.findings-acl.259.pdf
+MegaAgent: A Large-Scale Autonomous LLM-based Multi-Agent System Without Predefined SOPs
+Paper Poster
+
+MegaAgent is a framework designed to manage autonomous parallel cooperation in large-scale LLM-powered multi-agent systems, enabling dynamic agent generation, task auto-splitting, and enhanced communication without relying on predefined operating procedures (like human-written prompts, which is impossible for large number of agents).
+
+---BeehiveInnovations / zen-mcp-server
+
+https://github.com/BeehiveInnovations/zen-mcp-server
+
+About
+The power of Claude Code / GeminiCLI / CodexCLI + [Gemini / OpenAI / OpenRouter / Azure / Grok / Ollama / Custom Model / All Of The Above] working as one.
+
+---thevangelist / dembrandt
+https://github.com/thevangelist/dembrandt
+
+About
+Extract any website’s full design system in few seconds - colors, typography, spacing, shadows, breakpoints. One command.
+
+---Microsoft Fara-7B: Their First Agentic Model for Computer Use: Run Locally
+huggingface 
+
+---The best TUIs - powerful terminal apps
+https://www.youtube.com/watch?v=_fLmA4fjiAE&list=LL&index=27
+
+---withRefresh / web-eval-agent
+https://github.com/withRefresh/web-eval-agent
+About
+An MCP server that autonomously evaluates web applications.
+
+---mcp-use / mcp-use
+
+https://github.com/mcp-use/mcp-use
+
+About
+mcp-use is the easiest way to interact with mcp servers with custom agents
+
+---mshumer/autonomous-researcher
+https://github.com/mshumer/autonomous-researcher
+An autonomous AI researcher. It takes a research objective, breaks it into experiments, spins up separate agents with access to their own GPUs to run these experiments, and delivers a paper-style writeup with findings.
+
+---[***] xtermjs / xterm.js
+https://github.com/xtermjs/xterm.js
+Build terminals in the browser
+About
+A terminal for the web
+
+---JARVIS Local AGENT
+https://github.com/Xthebuilder/JRVS
+
+About
+JRVS AI Agent with JARCORE autonomous coding engine - RAG knowledge base, web scraping, calendar, code generation. Powered by whatever local AI you choose.
+
+● Built JRVS a local AI agent who lives in your computer and gets better overtime , this is my first public project so feedback is really appreciated
+
+- 🧠 RAG knowledge base with vector search- 🌐 Web scraping & auto-indexing- 📅 Calendar/task management- 💻 JARCORE coding engine (code gen, analysis, debugging, tests)
+
+The Moat of JARVIS is he can almost do it all and hes local , we all know why the local part is the best part about JARVIS
+
+---Built a multi-agent system on Cloudflare Workers using Claude Code - 16 AI agents, 4 teams, fully autonomous development
+https://www.reddit.com/r/ClaudeAI/comments/1p6w71c/built_a_multiagent_system_on_cloudflare_workers/
+https://github.com/Logos-Flux/cloudflare-multiagent
+
+---Logos-Flux / cloudflare-multiagent
+About
+The Model Configuration System enables flexible, admin-managed AI model configurations without requiring code changes.
+https://github.com/Logos-Flux/cloudflare-multiagent
+
+---Agentic Self Host kodlama.
+Nexus Fast 3B Is Now OpenSource. The Worlds Strongest Reasoning Model Architecture.
+https://www.reddit.com/r/OpenSourceeAI/comments/1pbkc3r/nexus_fast_3b_is_now_opensource_the_worlds/
+https://github.com/NotNerdz/Nexus-Fast-Mini/
+
+---opensumi / core
+https://github.com/opensumi/core/?tab=readme-ov-file
+
+About
+A framework helps you quickly build AI Native IDE products. MCP Client, supports Model Context Protocol (MCP) tools via MCP server.
+
+---strands-agents / agent-sop
+https://github.com/strands-agents/agent-sop
+About
+Natural language workflows that enable AI agents to perform complex, multi-step tasks with consistency and reliability.
+
+---adoptai / zapi
+https://github.com/adoptai/zapi
+About
+ZAPI by Adopt AI is an open-source Python library that helps you build tools for AI Agents by automatically capturing network traffic and API calls from web applications.
+
+---steipete / clawdis
+https://github.com/steipete/clawdis
+About
+Invoke actions on your machine when you get a WhatsApp message and send replies! Uses Twilio and TailScale. Great for connecting Claude Code with WhatsApp.
+
+---[***] Ami3466 / tomcp [claude clı, cursor, cline hepsini mcp haline dönüştürebiliyor]
+About
+Turn any website or doc into an MCP server
+
+---sparfenyuk / mcp-proxy
+https://github.com/sparfenyuk/mcp-proxy
+About
+A bridge between Streamable HTTP and stdio MCP transports
+
+---RaiAnsar ( claude_code-multi-AI-MCP
+https://github.com/RaiAnsar/claude_code-multi-AI-MCP
+
+About
+This MCP or multiple AI setup let claude code use Grok, Gemini and DeepSeek for reviewing and fixes
+
+---[**]Detrol / quorum-cli
+https://github.com/Detrol/quorum-cli?tab=readme-ov-file
+About
+Multi-agent AI discussion CLI for structured debates between LLMs
+
+---[*]pedramamini / Maestro
+About
+Agent Orchestration Command Center
+https://github.com/pedramamini/Maestro
+
+---[**] **FastMCP** | Development  Python MCP sunucu oluşturma |
+
+---EthanAlgoX / LLM-TradeBot
+https://github.com/EthanAlgoX/LLM-TradeBot
+About
+A multi-agent AI trading system using LLMs to optimize strategies and adapt to market conditions in real-time.
+
+---MineDojo / NitroGen
+https://github.com/MineDojo/NitroGen
+About
+A Foundation Model for Generalist Gaming Agents
+
+---gemini-cli-extensions / conductor
+https://github.com/gemini-cli-extensions/conductor
+About
+Conductor is a Gemini CLI extension that allows you to specify, plan, and implement software features.
+
+---HKUDS / AnyTool
+https://github.com/HKUDS/AnyTool
+About
+"AnyTool: Universal Tool-Use Layer for AI Agents"
+
+---https://github.com/solatis/claude-config
+
+--- Chain of Thought ---- > Atom of Thought 
+
+---A new Python library for algorithmic trading. 
+
+Introducing TensorTrade: An open-source Python framework for trading using Reinforcement Learning (AI)
+https://x.com/quantscience_/status/2004902386544820720
+
+---AndyMik90 // Auto-Claude
+https://github.com/AndyMik90/Auto-Claude
+
+About
+Autonomous multi-session AI coding
+
+---asklokesh // claudeskill-loki-mode
+https://github.com/asklokesh/claudeskill-loki-mode
+
+About
+Multi-agent autonomous startup system for Claude Code
+
+---AutoMaker-Org  / automaker
+https://github.com/AutoMaker-Org/automaker
+Automaker itself was built by a group of engineers using AI and agentic coding techniques to build features faster than ever. By leveraging tools like Cursor IDE and Claude Code CLI, the team orchestrated AI agents to implement complex functionality in days instead of weeks.
+
+---ChenglinPoly / infiAgent
+https://github.com/ChenglinPoly/infiAgent
+About
+Unlimited runtime AI agent framework with zero context compression. Build your own domain-specific SOTA agents: AI researcher, AI4Science.
+
+---heyhuynhgiabuu // proxypal
+https://github.com/heyhuynhgiabuu/proxypal
+About
+A desktop app that lets you use your AI subscriptions (Claude, ChatGPT, Gemini, GitHub Copilot) with any coding tool. Wraps CLIProxyAPI with a clean UI for managing connections and tracking usage.
+
+---router-for-me // CLIProxyAPI
+https://github.com/router-for-me/CLIProxyAPI
+About
+Wrap Gemini CLI, Antigravity, ChatGPT Codex, Claude Code, Qwen Code, iFlow as an OpenAI/Gemini/Claude/Codex compatible API service, allowing you to enjoy the free Gemini 2.5 Pro, GPT 5, Claude, Qwen model through API
+
+---ygwyg // Merchant
+https://github.com/ygwyg/merchant
+About
+The backend for selling things on the internet.
+
+---tripleyak // SkillForge
+https://github.com/tripleyak/SkillForge
+About
+The ultimate meta-skill for generating best-in-class Claude Code skills.
+
+---Run AI Agents Anywhere
+https://vibepocket.com/
+Vibe Pocket is a cloud based platform for running AI agents.
+Connect GitHub, pick an agent, and start building from any device(Telefondan CLI lara erişim)
+https://vibepocket.com/
+
+---berickcook  // AIRIS_Public
+https://github.com/berickcook/AIRIS_Public
+https://superintelligence.io/portfolio/airis/
+https://airis-ai.com/about/
+AIRIS - Public Builds
+AIRIS is a General Machine Intelligence (GMI) project that combines aspects of Reinforcement Learning (RL) with more traditional symbolic techniques (GOFAI).
+
+---berickcook // experiential-minecraft
+https://github.com/berickcook/experiential-minecraft
+About
+An experiential learning fork of TrueAGI's "minecraft-demo"
+
+---spipm
+Depixelization_poc
+https://github.com/spipm/Depixelization_poc?utm_source=opensourceprojects.dev&ref=opensourceprojects.dev
+About
+Depix is a PoC for a technique to recover plaintext from pixelized screenshots.
+
+---- AutoGLM-Phone-9B: a 9-billion-parameter “foundation model for smartphones” that reads the screen and acts on your behalf. Small enough for on-device inference, big enough to feel like future.
+https://x.com/Xianbao_QIAN/status/1998546356743598125
+Grab them here:
+- AutoGLM-Phone-9B → https://huggingface.co/zai-org/AutoGLM-Phone-9B
+- GLM-ASR-Nano-2512 → https://huggingface.co/zai-org/GLM-ASR-Nano-2512
+
+---Çoklu Terminal mesaj iletişim - Named Pipes (Windows)
+
+---parcadei // Continuous-Claude-v3
+https://github.com/parcadei/Continuous-Claude-v3/blob/main/.claude/scripts/status.sh
+
+---musistudio // claude-code-router
+https://github.com/musistudio/claude-code-router
+About
+Use Claude Code as the foundation for coding infrastructure, allowing you to decide how to interact with the model while enjoying updates from Anthropic.
+
+---This guy connected Claude with Blender, and now it’s generating wild 3D scenes
+https://x.com/ArjunPatel_AI/status/2007496685606580429
+
+---VoiceMCP
+Give Your AI Agent Mouth and Ears: Building a Voice-Enabled MCP for Hands-Free Development
+https://www.tamirdresher.com/blog/2025/12/01/give-your-ai-agent-a-voice-hands-free-development
+
+---RaiAnsar // claude_code-multi-AI-MCP
+https://github.com/RaiAnsar/claude_code-multi-AI-MCP
+About
+This MCP or multiple AI setup let claude code use Grok, Gemini and DeepSeek for reviewing and fixes
+🤖 Which AIs Are Included?
+🧠 Gemini (Google) - Free API ✅
+🚀 Grok-3 (xAI) - Paid API ✅
+💬 ChatGPT (OpenAI) - Paid API ✅
+🔮 DeepSeek - Paid API ✅
+
+---omkarcloud // botasaurus
+https://github.com/omkarcloud/botasaurus
+About
+The All in One Framework to Build Undefeatable Scrapers
+
+---waynesutton / markdown-site
+https://github.com/waynesutton/markdown-site
+About
+An open-source publishing framework built for AI agents and developers to ship websites, docs, or blogs. Write markdown, sync from the terminal. Your content is instantly available to browsers, LLMs, and AI agents. Built on Convex and Netlify.
+
+--- 925+ OSINT tools
+https://think-pol.com/tools
+
+---DeepMyst // Mysti
+https://github.com/DeepMyst/Mysti
+About
+AI coding dream team of agents for VS Code. Claude Code + openai Codex collaborate in brainstorm mode, debate solutions, and synthesize the best approach for your code.
+Your AI Coding team for VSCode
+Use Claude Code, Codex, Gemini, or GitHub Copilot — or combine any two in Brainstorm Mode and never hit bottlenecks
+Wisdom of the crowd where the collective intelligence of several agents outperforms a single one.
+
+---[***]xpipe-io / xpipe
+https://github.com/xpipe-io/xpipe
+About
+Access your entire server infrastructure from your local desktop
+About
+XPipe is a connection hub that allows you to access your entire server infrastructure from your local desktop. It works on top of your installed command-line programs like SSH, docker, or others, and does not require any setup on your remote systems. It integrates with your favourite text editors, terminals, shells, VNC/RDP clients, password managers, and command-line tools. The platform is designed to be extensible, allowing anyone to add easily support for more tools or to implement custom functionality through a modular extension system.
+
+It currently supports:
+
+SSH connections, config files, and tunnels
+Docker + compose, Podman, LXD, and incus containers
+Proxmox PVE, Hyper-V, KVM, and VMware Player/Workstation/Fusion virtual machines
+Tailscale, Netbird, and Teleport connections
+AWS and Hetzner Cloud servers
+RDP and VNC connections
+Windows Subsystem for Linux, Cygwin, and MSYS2 environments
+Kubernetes clusters, pods, and containers
+Powershell Remote Sessions
+
+---[*]zscole / gru
+https://github.com/zscole/gru
+
+About
+Self-hosted AI agent orchestration service controlled via Telegram, Discord, or Slack.
+
+---[*]nyldn / claude-octopus
+https://github.com/nyldn/claude-octopus
+About
+Multi-tentacled orchestrator for Claude Code - Coordinates Codex CLI and Gemini CLI for parallel task execution with intelligent contextual routing
+
+---KeaBase / kea-research
+https://github.com/KeaBase/kea-research
+About
+KEA Research - Multi-AI collaboration platform that combines responses from multiple AI models, cross-validates information, and delivers verified, consensus-backed answers.
+The Challenge
+When you ask a question to different AI models, you often get different answers — each presented with equal confidence. There is no built-in mechanism to determine which response is most accurate or to identify potentially incorrect information.
+
+KEA Research addresses this by orchestrating multiple AI models to work together, evaluate each other's responses, and surface only the information that achieves consensus.
+
+---alexzhang13 // rlm
+https://github.com/alexzhang13/rlm
+About
+General plug-and-play inference library for Recursive Language Models (RLMs), supporting various sandboxes.
+
+---onikan27 / claude-code-monitor
+https://github.com/onikan27/claude-code-monitor
+About
+Real-time dashboard for monitoring multiple Claude Code sessions. CLI + Mobile Web UI with QR code access, terminal focus switching (iTerm2, Terminal.app, Ghostty). macOS only.
+Monitor multiple Claude Code sessions in real-time from your terminal or smartphone.
+
+---badrisnarayanan / antigravity-claude-proxy
+https://github.com/badrisnarayanan/antigravity-claude-proxy
+About
+Proxy that exposes Antigravity provided claude / gemini models, so we can use them in Claude Code
+
+---layercodedev / sled
+https://github.com/layercodedev/sled
+About
+Teleport Claude Code, Codex or Gemini CLI to your phone and work anywhere
+
+---awrped // ferrite-json
+https://github.com/awrped/ferrite-json
+About
+the json validator that actually tells you how to fix your mistakes
+
+---[*]Nearcyan
+vibecraft
+https://github.com/Nearcyan/vibecraft/tree/main
+Manage Claude Code in style!
+Try it instantly at vibecraft.sh — still connects to your local Claude Code instances!
+
+---tiann / hapi
+https://github.com/tiann/hapi
+About
+App for Claude Code / Codex / Gemini, vibe coding anytime, anywhere
+Features
+Seamless Handoff - Work locally, switch to remote when needed, switch back anytime. No context loss, no session restart.
+Native First - HAPI wraps your AI agent instead of replacing it. Same terminal, same experience, same muscle memory.
+AFK Without Stopping - Step away from your desk? Approve AI requests from your phone with one tap.
+Your AI, Your Choice - Claude Code, Codex, Gemini—different models, one unified workflow.
+Terminal Anywhere - Run commands from your phone or browser, directly connected to the working machine.
+Voice Control - Talk to your AI agent hands-free using the built-in voice assistant.
+
+---affaan-m // everything-claude-code
+https://github.com/affaan-m/everything-claude-code
+About
+Complete Claude Code configuration collection - agents, skills, hooks, commands, rules, MCPs. Battle-tested configs from an Anthropic hackathon winner.
+
+---covibes // zeroshot
+https://github.com/covibes/zeroshot
+About
+Your autonomous engineering team in a CLI. Point Zeroshot at an issue, walk away, and return to production-grade code. Supports Claude Code, OpenAI Codex, OpenCode, and Gemini CLI.
+
+---Stracti
+Ai Gaming Bots
+The ultimate neural framework for automation.
+Build intelligent bots for any application using high-precision object detection.
+https://stracti.com/?ref=manuagi
+
+---frankbria  ralph-claude-code
+https://github.com/frankbria/ralph-claude-code
+About
+Autonomous AI development loop for Claude Code with intelligent exit detection
+
+---browser-use / agent-sdk
+https://github.com/browser-use/agent-sdk
+Just a for-loop of tool calls.
+
+---frontend-design skill - vercel 
+
+---AgentCraft update⚔️
+
+Control each agent with recommendations, see everything at a glance, react instantly to what matters, and lots of whimsy!
+https://x.com/idosal1/status/2014748619480371707
+
+---Dicklesworthstone / ntm
+https://github.com/Dicklesworthstone/ntm
+About
+Named Tmux Manager - Fast CLI for creating, switching, and organizing named tmux sessions
+A powerful tmux session management tool for orchestrating multiple AI coding agents in parallel.
+
+Spawn, manage, and coordinate Claude Code, OpenAI Codex, and Google Gemini CLI agents across tiled tmux panes with simple commands and a stunning TUI featuring animated gradients, visual dashboards, and a beautiful command palette.
+
+---Merging Slash Commands into Skills in Claude Code 
+https://x.com/trq212/status/2014836841846132761
+
+---heard claude code was a game engine (?) so i got snake running inside it
+https://x.com/itseieio/status/2014935877865095490
+
+---HUGE NEWS: Ollama just dropped “ollama launch” 🤯
+https://x.com/dr_cintas/status/2015108502365024474
+https://x.com/akshay_pachaar/status/2015365045623144561
+
+You can now set up and run Claude Code, OpenCode, or Codex with a single command. 
+
+No environment variables. No config files.
+
+100% free with local models.
+
+---how "Claude + Polymarket" will retire you? 
+https://x.com/frostikkkk/status/2015154001797390637
+no need for pro-level coding. just tweak your asks till the bot clicks, and it might flag hundreds of chances a day.
+these setups can rack up solid cash, with folks pulling $500-$800 daily on market-making plays or $75k in a month from alert bots. on average, basic arb gigs net around $25 an hour, but dialed-in ones scale to millions. 
+
+---We just open sourced the code-simplifier agent we use on the Claude Code team.
+Try it: claude plugin install code-simplifier
+https://x.com/bcherny/status/2009450715081789767
+
+---0xemmkty / QuantMuse
+https://github.com/0xemmkty/QuantMuse
+https://x.com/tom_doerr/status/2007184567128531090
+About
+A comprehensive quantitative trading system with AI-powered analysis, real-time data processing, and advanced risk management
+
+---My Voice Assistant Builds Its Own Tools ( n8n ) 
+https://www.youtube.com/watch?v=xBZt4eoCH_w&t=704s
+
+---BEARLY-HODLING / claude-canvas
+https://github.com/BEARLY-HODLING/claude-canvas
+About
+TUI toolkit for Claude Code - fork with iTerm2 and Apple Terminal support
+
+---Codex CLI Agent to Agent Communication (#weave)
+https://www.reddit.com/r/codex/comments/1q8w9xz/codex_cli_agent_to_agent_communication_weave/
+https://github.com/rosem/codex-weave/tree/weave
+
+---krishnakanthb13 / ai_cli_manager
+https://github.com/krishnakanthb13/ai_cli_manager
+https://www.reddit.com/r/CLI/comments/1q8gdo8/i_got_tired_of_juggling_too_many_ai_clis/
+About
+AI CLI Manager is a Windows batch utility that lets you install, update, launch, and integrate multiple AI coding assistants (Gemini, Mistral Vibe, iFlow, OpenCode, Qwen Code, KiloCode) directly into your right-click context menu.
+AI CLI Manager (v1.1.0) is your central hub for installing, launching, and integrating AI coding assistants into Windows.
+
+---glittercowboy / get-shit-done
+https://github.com/glittercowboy/get-shit-done
+
+---linuz90 / claude-telegram-bot
+https://github.com/linuz90/claude-telegram-bot
+Turn Claude Code into your personal assistant, accessible from anywhere via Telegram.
+
+Send text, voice, photos, and documents. See responses and tools usage in real-time.
+
+---czlonkowski / n8n-skills
+https://github.com/czlonkowski/n8n-skills/blob/main/CLAUDE.md
+
+---[**]Universal-Commerce-Protocol / ucp
+https://github.com/Universal-Commerce-Protocol/ucp
+
+---You can now run 70B LLMs on a 4GB GPU.
+https://x.com/LiorOnAI/status/2014005554948047122
+AirLLM just made massive models usable on low-memory hardware.
+
+𝗪𝗵𝗮𝘁 𝗷𝘂𝘀𝘁 𝗵𝗮𝗽𝗽𝗲𝗻𝗲𝗱
+AirLLM released memory-optimized inference for large language models.
+It runs 70B models on 4GB VRAM.
+It can even run 405B Llama 3.1 on 8GB VRAM.
+
+---[*] Reorganizing traditional companies takes ages, 
+
+in Ralv you can do it in seconds
+https://x.com/dom_scholz/status/2012258414315942212
+
+---The Open-source tool to scrape any website with ai intelligence
+https://github.com/itsOwen/CyberScraper-2077?utm_source=opensourceprojects.dev&ref=opensourceprojects.dev
+
+---🦞 Clawdbot 2026.1.16
+https://x.com/clawdbot/status/2012507485895073852
+
+---Self-Verifying AI Agents: Vercel's Agent-Browser in the Ralph Wiggum Loop
+https://www.pulumi.com/blog/self-verifying-ai-agents-vercels-agent-browser-in-the-ralph-wiggum-loop/
+
+---Introducing Sandbox Agent SDK:
+https://x.com/rivet_dev/status/2016548084696727842
+
+---Kimi K2.5: How to Run Locally Guide
+https://unsloth.ai/docs/models/kimi-k2.5
+
+---github // copilot-sdk
+https://github.com/github/copilot-sdk
+
+---cloudflare // moltworker
+https://github.com/cloudflare/moltworker
+
+---MrLesk // agents-council
+https://github.com/MrLesk/agents-council
+
+---fenwei-dev // mcp2skill
+https://github.com/fenwei-dev/mcp2skill
+
+---GBSOSS // -mcp-to-skill-converter
+https://github.com/GBSOSS/-mcp-to-skill-converter
+
+---Official repo for spec & SDK of MCP Apps protocol - standard for UIs embedded AI chatbots, served by MCP servers
+https://github.com/modelcontextprotocol/ext-apps
+
+---Gas Town //  multi-agent workspace manager
+https://github.com/steveyegge/gastown
+
+---cj-vana // claude-swarm
+https://github.com/cj-vana/claude-swarm
+https://www.reddit.com/r/ClaudeCode/comments/1qbdcqx/update_claude_swarm_now_has_58_mcp_tools_protocol/
+MCP server for orchestrating parallel Claude Code worker swarms with protocol-based behavioral governance, persistent state, and real-time monitoring dashboard
+
+---🚀 8,000+ n8n workflows now available — website + GitHub 🎉
+https://www.reddit.com/r/n8n/comments/1qci0g7/8000_n8n_workflows_now_available_website_github/
+https://github.com/nusquama/n8nworkflows.xyz
+https://n8nworkflows.xyz/
+
+---CLI tarafından telefona erişim kontrol = iOS support just landed in agent-browser, the browser automation CLI for agents
+https://x.com/ctatedev/status/2018594137621074276
+https://github.com/vercel-labs/agent-browser
+
+---BeehiveInnovations // pal-mcp-server
+https://github.com/BeehiveInnovations/pal-mcp-server
+The power of Claude Code / GeminiCLI / CodexCLI + [Gemini / OpenAI / OpenRouter / Azure / Grok / Ollama / Custom Model / All Of The Above] working as one.
+
+---Alishahryar1 // claude-code-free
+https://github.com/Alishahryar1/claude-code-free
+Use claude-code for free with NVIDIA-NIM via the terminal CLI or Telegram
+
+---callstackincubator // agent-device
+https://github.com/callstackincubator/agent-device
+CLI to control iOS and Android devices for AI agents
+
+---looplj // axonhub
+https://github.com/looplj/axonhub
+⚡️ Open-source AI Gateway — Use any SDK to call 100+ LLMs. Built-in failover, load balancing, cost control & end-to-end tracing.
+https://www.reddit.com/r/ClaudeCode/comments/1qsn3tt/how_to_run_kimi_k25_locally_for_code_gen_opus_45/
+https://github.com/VoltAgent/awesome-claude-code-subagents?tab=readme-ov-file
+
+---RLM Makes context +10m - Zero-Setup RLMs with Claude Code
+ https://www.youtube.com/watch?v=m6itCxJFqpo
+
+---API to MCP Server in 30 Seconds (Host your API as an MCP server)
+https://www.youtube.com/watch?v=Z6D5GQdRvhg
+https://apitomcphost.com/
+https://www.reddit.com/r/mcp/comments/1qwvl5u/api_mcp_server_in_30_seconds/
+
+---autoglmphone - 
+https://docs.z.ai/guides/vlm/autoglm-phone-multilingual
+
+---nicobailon // pi-Messenger
+https://github.com/nicobailon/pi-messenger
+https://x.com/nicopreme/status/2019523000866074830
+Multi-agent communication extension for pi coding agent
+Pi Messenger
+What if multiple agents in different terminals sharing a folder could talk to each other like they're in a chat room? Join, see who's online and what they're doing. Claim tasks, reserve files, send messages. Built on Pi's extension system. No daemon, no server, just files.
+
+---/learn 
+https://x.com/hyperbrowser/status/2019126793119338649
+Your AI agents can now learn new skills from the web.
+And update them automatically.
+
+---INTRODUCING THE CODEX-ORCHESTRATOR SKILL ‼️
+https://x.com/KingBootoshi/status/2019564738649505882
+https://github.com/kingbootoshi/codex-orchestrator
+I've created a custom CLI tool that allows Claude Code to manage, steer, and keep track of Codex agents
+Delegate tasks to OpenAI Codex agents via tmux sessions. Designed for Claude Code orchestration.
+
+---ChatDev 2.0
+https://github.com/OpenBMB/ChatDev
+ChatDev 2.0 hooks in action. Project number 12. Chatdev 2.0. Zero multi-agent AI workflow platform. Chatdev 2.0 is an open-source platform for building and
+running multi-agent AI workflows without writing orchestration code. It defines a system where multiple intelligent agents driven by large language models
+collaborate on tasks such as design, coding, testing, memory management, and task execution. and users can define and run these workflows via Python or a noode visual interface. The project
+solves the problem of coordinating many AI agents by providing abstractions, memory modules, and execution engines that handle collaboration. It integrate with Python environments and supports
+extension and customization. Explore the documentation to see how agent communicate and work together. Project
+ChatDev 2.0: Dev All through LLM-powered Multi-Agent Collaboration
+
+---MiniCPM-o
+https://github.com/OpenBMB/MiniCPM-o
+MiniCPM-o multimodal large language model for vision, speech, audio. Mini CPMO is an open-source multimodal large language model that accepts image, text, audio,
+and video inputs and produces rich outputs designed to work efficiently on local devices by combining multiple
+modalities into a single model architecture. It connects with common AI frameworks and supports real-time duplex multimodal interactions such as vision, speech and live streaming on phones or
+desktops handling inputs and outputs together in an integrated way. This matters for developers building ondeviceAI experiences with rich sensory data
+and you can run and extend the model via its repository. Project number five,
+A Gemini 2.5 Flash Level MLLM for Vision, Speech, and Full-Duplex Multimodal Live Streaming on Your Phone
+https://github.com/OpenBMB/MiniCPM-o
+
+---Maestro
+https://github.com/pedramamini/Maestro
+Maestro six, Maestro promptdriven AI workflow orchestrator. Maestro is a developer tool that coordinates multi-step AI workflows using structured prompts and defined execution stages. It connects
+language models with custom logic so outputs from one step feed reliably into the next. The system runs locally and emphasizes deterministic control over free form chaining. This matters for
+developers building repeatable AI processes instead of ad hoc prompts. Try composing workflows with Maestro.
+Agent Orchestration Command Center
+Collaborate with AI to create detailed specification documents, then let Auto Run execute them automatically, each task in a fresh session with clean context. Allowing for long-running unattended sessions, my current record is nearly 24 hours of continuous runtime.
+Run multiple agents in parallel with a Linear/Superhuman-level responsive interface. Currently supporting Claude Code, OpenAI Codex, OpenCode, and Factory Droid with plans for additional agentic coding tools (Gemini CLI, Qwen3 Coder) based on user demand.
+
+---TanStack AI
+https://github.com/TanStack/ai
+TanStack AI a coding agent. Project number 17, Tanstack AI. Types safe AI utilities for web apps. Tanstack AI is a set of type- safe utilities for integrating AI features into modern web applications.
+It connects with existing tan stack tools and focuses on predictable data flow and strong typing. Execution stays within the developer stack rather than a hosted platform. This matters for
+front-end teams adding AI features responsibly integrated into your app.
+About
+🤖 SDK that enhances your applications with AI capabilities
+https://github.com/TanStack/ai
+
+---AKT Tact
+https://github.com/nrslib/takt
+ AKT Tact is an AI task and agent coordination tool that orchestrates multiple LLM powered agents into actual workflows. Works with cloud code, open AAI codecs, and others so you can plan,
+execute, and finish coding tasks with agents that collaborate instead of firing off single answers. Tact guides you step by step, runs tasks from your terminal or GitHub issues, and wires
+into CI for automation.
+Task Agent Koordination Tool – A multi-agent orchestration system supporting Claude Code and Codex.
+Metaphor
+TAKT uses a music metaphor to describe orchestration:
+Piece: A task execution definition (what to do and how agents coordinate)
+Movement: A step inside a piece (a single stage in the flow)
+Orchestration: The engine that coordinates agents across movements
+You can read every term as standard workflow language (piece = workflow, movement = step), but the metaphor is used to keep the system conceptually consistent.
+https://github.com/nrslib/takt
+
+---Lynkr
+https://github.com/Fast-Editor/Lynkr
+Lynkr inker is a self-hosted proxy that lets Claude code CLI connect to different AI providers. It routes requests to Azure, open router or local Alama models. Instead of only using anthropics API,
+includes circuit breakers for failed requests, load shedding and Prometheus metrics. You can configure tiered routing, sends simple requests to local
+models and complex ones to cloud APIs.
+Streamline your workflow with Lynkr, a CLI tool that acts as an HTTP proxy for efficient code interactions using Claude Code CLI.
+Lynkr - Run Cursor, Cline, Continue, OpenAi Compatible Tools and Claude Code on any model.
+One universal LLM proxy for AI coding tools.
+Use Case
+        Cursor / Cline / Continue / Claude Code / Clawdbot / Codex/ KiloCode
+                        ↓
+                       Lynkr
+                        ↓
+        Local LLMs | OpenRouter | Azure | Databricks | AWS BedRock | Ollama | LMStudio | Gemini
+https://github.com/Fast-Editor/Lynkr
+
+---rohitg00 // pro-workflow
+https://github.com/rohitg00/pro-workflow
+AI writes 80% of his code and he spends 20% reviewing it. Pro Workflow literally optimizes for that exact ratio. It's a clawed code plugin with persistent SQLite memory. Every correction you make gets stored and
+searched with full text search. While Claude's thinking in one branch, you're coding in another. Works across 32 AI coding agents via Skillit translation.
+
+---Mission Control
+https://github.com/crshdn/mission-control
+Mission control is a project management interface for coordinating multiple AI agents. You define agents in markdown files, assign tasks through a cananban board, and the system dispatches them to
+open claw sessions. Agents report when they finish tasks and can communicate with each other for coordination. There's a supervisor agent that review completed work. Agents can run on
+different machines and upload their output via API.
+
+---NVlabs // vibetensor
+https://github.com/NVlabs/vibetensor/tree/main
+Our first fully AI generated deep learning system
+VibeTensor: System Software for Deep Learning, Fully Generated by AI Agents
+
+---Surajkumar5050 // zyron-assistant
+https://github.com/Surajkumar5050/zyron-assistant
+https://www.reddit.com/r/OpenSourceAI/comments/1qxu1gn/built_a_desktop_assistant_fully_local_for_myself/
+⚡ A local, privacy-focused AI desktop assistant for Windows. Control your PC remotely via Telegram or locally with Voice commands. Powered by Ollama.
+
+---Pyth Network MCP Server – Provides real-time access to Pyth Network's decentralized oracle price feeds across 1,930+ assets and 107+ blockchains, enabling AI agents to fetch current prices, historical data, and TWAP calculations for crypto, equity, FX, metal, and rates markets.
+https://github.com/itsOmSarraf/pyth-network-mcp
+https://glama.ai/mcp/servers/@itsOmSarraf/pyth-network-mcp
+
+---We open-sourced SBP — a protocol that lets AI agents coordinate through pheromone-like signals instead of direct messaging
+https://www.reddit.com/r/mcp/comments/1qz9rrb/we_opensourced_sbp_a_protocol_that_lets_ai_agents/
+Stigmergic Blackboard Protocol: Environment-based coordination for AI agents
+                       MCP	                            SBP
+What it solves	  How an agent uses tools	       -    How agents coordinate together
+Interaction	  Direct: "agent calls tool"    	-   Indirect: "agent senses environment"
+Coupling	  Agent knows the tool it's calling	-   Agents don't know each other exist
+Pattern	          Request → Response	                -   Emit → Sense → React
+State	          Sessions between agent and server	-   Shared environmental state
+They're complementary. Use MCP for tool invocation. Use SBP for multi-agent coordination.
+Use Cases Where SBP + MCP Shine Together
+
+---🦞 When Your AI Talks to Another AI — I Built an MCP Bridge for OpenClaw & Claude
+https://www.reddit.com/r/mcp/comments/1qz4asy/when_your_ai_talks_to_another_ai_i_built_an_mcp/
+https://github.com/freema/openclaw-mcp
+🦞 MCP server for OpenClaw - secure bridge between Claude.ai and your self-hosted OpenClaw assistant with OAuth2 authentication
+Think of it as an AI assistant orchestrating another AI assistant. Pretty cool, right?
+
+---Code Execution MCP [Showcase] MCP-powered Autonomous AI Research Engineer (Claude Desktop, RAG, Code Execution)
+https://www.reddit.com/r/mcp/comments/1qy142v/showcase_mcppowered_autonomous_ai_research/
+ Autonomous AI Research Engineer powered by MCP | Give it a task, watch it research the web, query your knowledge base, write & execute code, generate visualizations, and produce comprehensive reports with self-evaluation | Built for Claude Desktop | Python 3.10+ | RAG + Web Scraping + Code Sandbox | 5-min setup ⚡
+
+---Devtap – Bridge build/dev output to AI coding sessions via MCP
+https://www.reddit.com/r/mcp/comments/1qxjmxx/devtap_bridge_builddev_output_to_ai_coding/
+Bridge build/dev process output to AI coding sessions via MCP — supports Claude Code, Codex, OpenCode, Gemini CLI, and aider
+
+---Language Server Protocol
+https://microsoft.github.io/language-server-protocol/#:~:text=The%20Language%20Server%20Protocol%20(LSP,definition%2C%20find%20all%20references%20etc.
+https://github.com/microsoft/language-server-protocol
+https://en.wikipedia.org/wiki/Language_Server_Protocol#:~:text=The%20Language%20Server%20Protocol%20(LSP,and%20marking%20of%20warnings%20and
+The Language Server Protocol (LSP) is an open, JSON-RPC-based protocol for use between source-code editors or integrated development environments (IDEs) and servers that provide "language intelligence tools":[ programming language-specific features like code completion, syntax highlighting and marking of warnings and errors, as well as refactoring routines. The goal of the protocol is to allow programming language support to be implemented and distributed independently of any given editor or IDE. In the early 2020s, LSP quickly became a "norm" for language intelligence tools providers.
+The Language Server Protocol (LSP) enables separating language servers to function independently of code editors. This enables language servers like dbt LSP to provide the same language features for different development tools.
+
+---What is ACP?
+https://agentcommunicationprotocol.dev/introduction/welcome
+The Agent Communication Protocol (ACP) is an open protocol for agent interoperability that solves the growing challenge of connecting AI agents, applications, and humans. Modern AI agents are often built in isolation, across different frameworks, teams, and infrastructures. This fragmentation slows innovation and makes it harder for agents to work together effectively. ACP solves this by enabling agents to communicate through a standardized RESTful API that supports:
+All forms of modality
+Synchronous and asynchronous communication
+Streaming interactions
+Both stateful and stateless operation patterns
+Online and offline agent discovery
+Long running tasks
+The protocol remains agnostic to internal implementations, requiring only minimal specifications for compatibility. Whether your agent is built with the BeeAI framework, LangChain, CrewAI, or custom code, ACP provides the bridge for seamless collaboration.
+While you can integrate ACP agents directly into your own applications, ACP also underpins the BeeAI platform - a project that allows you to test, deploy, and share ACP agents with your team.
+
+---Google : Introduction to Agent2Agent (A2A) Protocol
+Introduction to Agent2Agent (A2A) Protocol
+https://www.youtube.com/watch?v=Fbr_Solax1w
+You might want to use someone else's agent for some of these tasks, but you have no
+idea how it's implemented or how it works. It's completely opaque to you.
+
+We'll go through the core building blocks of A to A and how they enable collaboration. In this case,
+agent A is the client agent and agent B is the remote agent. First, how does gent A even find agent B and know what t can do? Agent B publishes an agent ard. Think of this as its digital
+business card. It's a standard JSON file hich is served at a well-known URI on
+the agents domain. This card tells agent  everything it needs to know to start a onversation. This includes agent B's ame, what it does, its HTTP endpoint
+URL for A2A communication, the specific kills it offers, any special apabilities like streaming, and how to uthenticate. You can think of this unctioning like robots.txt for
+webcwlers or service registries and icroser architectures.Once agent A found agent B, how do theyactually talk? A to A uses standard
+HTTPS for secure communication. The nvelope for their messages is JSON RPC .0. 0 a simple way to call functions on  remote server. Inside these JSON RPC
+messages, we have key A to A objects. A essage represents one turn in the onversation like agent A asking a uestion. It has a role, user or agent
+and contains parts. A part is the actual ontent. It could be plain text, a file,
+
+multimodal or structured JSON data. when agent B gets a request. If the request is simple and completes quickly, it might respond directly with a message
+containing the answer. But how does agent B actually process a request when agent A calls it? That's the job of the agent executor. It's a class that you
+write and it links the generic A2A protocol plumbing handled by the ATA SDK
+and the specific logic of our agent.
+
+This is what makes the agent into a Legothat can be connected to other agents.The SDK worries about HTTP, JSON RPC,and event management. With the executor,we focus on what happens when the agent
+processes its responses. What if agentB's task takes a long time? We can'tjust make agent A wait on one request.This is where the task object comes in.A task is the job an agent needs to do.This task has an ID and a status with alife cycle. Submitted, working, maybeinput required if agent B needs moreinfo, and finally completed or failed.So when agent A sends its initial
+request, agent B might quickly respondsaying, "Got it. I've created task one 123 and it's now working." Agent A thenknows this task ID. To get the finalsummary, agent A can periodically call
+another Ato method, tasks get asking what's the status of task 123. Agent Bwill respond with the latest task status. And eventually that method will
+return the task is completed and the summary will be in task.
+
+Now polling can work, but it's not very efficient if you want quick updates. For that, A2A supports streaming using server sent events or SSE. If agent B'sagent card says it supports streaming,
+agent A can use the message stream method. Now, the HTTP connection stays open and agent B can push updates to agent A as they happen. These updates can be the initial task object, task
+status update events. These are messageslike I'm now working on the specific part or the task is now complete. Then task artifact update events. If the
+result is large, like a long summary, agent B can stream it in chunks, so the first paragraph, second paragraph, and so on. 
+
+MCP. Does A2A replace MCP or they just going to be competing forever? Absolutely not. Let's understand how A2A and MCP relate
+because they are complimentary, not competing. MCP is all about how an agent connects to its tools, APIs, and resources. Think of it as the standardized way an agent performs
+function calling. How it interacts with its own capabilities or external services it has direct access to. ATA on
+the other hand facilitates dynamic communication between different independent agents acting as peers. It's
+about how agents collaborate, delegate tasks and manage shared workflows. So you'll often see both in a sophisticated
+agentic system. Agents use Atogs and they use MCP to interact with their tools to get part of the job done. Of course, the best way to learn all ofthis is to try it out for yourself. For
+all of the latest information about A2A and the full specification, check out the documentation at goo.gold/2a.
+And we have an official Python SDK at pip install aa-dk. You can find lots of sample code in the A2A samples GitHub repo. And check out
+
+
+---How to build an AI agent with MCP, ADK, and A2A on Google Cloud
+https://www.youtube.com/watch?v=6mQwHqK1I5w
+
+A2A is an open protocol that standardizes how agents collaborate across frameworks and vendors. It is built on standards like HTTP, SSE, and JSON RPC while ensuring enterprisegrade
+security
+They do this by using something called
+an agent card, which is like a digital
+business card. The card advertises the
+agents skills.
+
+In our case, we might define a skill for our get exchange rate tool.
+Then package that skill into an agent card which includes the agents name,
+description, and other details.Now that we understand the concepts, let's put it all together and build our let's put it all together and build our A2A server. 
+
+---I brought skills to n8n agents with a template
+Use skills In n8n agent node
+
+https://www.reddit.com/r/n8n/comments/1r3vg5j/i_brought_skills_to_n8n_agents_with_a_template/
+
+---coreyhaines31 //  marketingskills
+Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.
+https://github.com/coreyhaines31/marketingskills
+
+
+---AdviceNXT // sbp
+https://github.com/AdviceNXT/sbp
+Stigmergic Blackboard Protocol: Environment-based coordination for AI agents
+A coordination protocol for AI agents that work together without talking to each other.
+
+---Pyrite64
+https://github.com/HailToDodongo/pyrite64
+About
+N64 Game-Engine and Editor using libdragon & tiny3d
+N64 game engine with integrated editör workflow. Pyate 64 is an open- source game engine and editor designed for building Nintendo 64 games using modern
+tooling while targeting original hardware constraints. It combines a custom editor with a runtime engine built on Lib Dragon and Tiny 3D,
+allowing developers to create assets,manage scenes, and compile projects inside a unified environment. The setup
+works as a self-contained installation that connects with an external N64 SDK and tool chain for building and running projects. It matters for retro
+developers exploring low-level console development with modern workflows. Explore the repo to experiment with N64 development today. Project number three,
+
+
+---The FreeMoCap Project
+https://github.com/freemocap/freemocap
+Project number five, the free mocap project. Markerless motion capture using standard cameras. The Freocap project is
+an open-source motion capture platform that enables research-grade body
+tracking using standard cameras without specialized hardware. It provides a Python application with a graphical interface that records video,
+reconstructs human motion and processes movement data locally on a user's machine. The system is hardware agnostic and designed for scientific research, education, and training workflows,
+allowing users to install via PIP and launch a desktop GI for capture and analysis. It matters for developers and researchers building biomechanics,
+animation or vision projects without expensive equipment. Run the app and capture motion data yourself. P
+
+---Trackers
+https://github.com/roboflow/trackers
+Project number three, Trackers. Plug-andplay multiobject tracking for vision pipelines. Trackers is a Python
+computer vision library that provides modular implementations of popular multiobject tracking algorithms that
+work with any detection model. It solves the problem of connecting object detection outputs to reliable tracking without building custom logic.
+Developers run it through a CLI or integrate it directly into Python pipelines where detections are updated
+into tracked identities with trajectories and metrics. It supports videos, webcams, and streams while
+enabling evaluation with standard benchmarks. This helps vision engineers quickly add tracking to existing models.Try integrating it into your detection
+workflow. Project number four, Composio
+
+---Mission Control
+https://github.com/crshdn/mission-control
+About
+AI Agent Orchestration Dashboard - Manage AI agents, assign tasks, and coordinate multi-agent collaboration via OpenClaw Gateway.
+Mission control is a project management interface for coordinating multiple AI agents. You define agents in markdown files, assign tasks through a cananban
+board, and the system dispatches them to open claw sessions. Agents report when they finish tasks and can communicate with each other for coordination.
+There's a supervisor agent that reviews completed work. Agents can run on different machines and upload their output via API.
+
+---Electrobun.
+https://github.com/blackboardsh/electrobun
+About
+Build ultra fast, tiny, and cross-platform desktop apps with Typescript.
+Typescript desktop apps powered by Bun Runtime. Electrobun is a cross-platform desktop application framework that lets developers build native desktop apps
+using TypeScript while avoiding heavyweight browser bundles. It uses the bun runtime for the main process, system web views for rendering and native
+bindings written in Zigg, creating a tightly integrated environment for building, packaging, and updating apps. Developers write both backend and UI
+logic and TypeScript. Communicate through typed RPC between isolated processes and ships self- extracting
+bundles with built-in update handling. It runs on Mac OS, Windows, and Linux, helping web developers move into desktop development with a unified workflow.
+Explore the repo to understand its architecture and try building an app.
+
+
+---Termcast. Terminal session recording and sharing tool. Termcast is a command line tool that
+https://github.com/remorses/termcast
+About
+Turn any Raycast extension into a terminal user interface (TUI). Powered by opentui & react
+records terminal sessions and streams or shares them through a web interface. It captures terminal input and output in
+real time, encodes the session, and makes it accessible for playback or live viewing. Developers run it locally while
+working in the terminal, enabling demonstrations, debugging collaboration, or teaching workflows without screen recording software. The system connects
+terminal activity with a lightweight server component for distribution. It helps engineers share reproducible
+command line experiences. Run it during a session to broadcast your terminal workflow.
+
+
+---I SDK, unified toolkit for building AI features in web apps. AISDK is a TypeScript toolkit that helps developers
+https://github.com/vercel/ai
+About
+Termcast is a framework for building terminal user interfaces (TUIs) using React and an API inspired by Raycast. It's designed for developers who want to create TUI applications, especially those who already have Raycast extensions and want to port them to the terminal.
+The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents
+add AI capabilities to web applications through a consistent programming interface. It abstracts model providers
+behind a unified API and supports streaming responses, structured output, and tool calling inside modern frameworks like Nex.js. Developers
+manage prompts, state, and UI updates while models run through connected providers, allowing execution in server
+or edge environments. The SDK focuses on predictable integration between front-end interfaces and AI responses.It serves web developers building
+interactive AI experiences. Install it to start integrating AI features into your app. 
+
+
+---old Android phones
+sitting in a drawer? Droid Claw turns
+them into AI agents. Give it a goal in
+plain English. It reads the screen,
+reasons about what to do, taps, types,
+and swipes via ADB until the job is
+done. No APIs needed. Just install your
+favorite apps on the device and let the
+agent work through them like a human
+would. It comes with 35 readytouse
+workflows for messaging and lifestyle
+tasks.
+
+
+---Token-optimized MCP Server for n8n workflows with Focus Mode
+https://github.com/LunkiBR/n8n-mcp-lite
+https://www.reddit.com/r/n8n/comments/1rgpbf6/i_built_n8nmcplite_a_tokenoptimized_model_context/
+
+---Convert any web page to markdown and save crazy tokens
+https://github.com/nidhi-singh02/mark-it-down
+
+---mcp – DNS, IP, AS, domain reputation, and Lightning Network intelligence (44 tools)
+
+---https://huggingface.co/Nanbeige/Nanbeige4.1-3B
+https://www.reddit.com/r/LocalLLaMA/comments/1r1r3nk/nanbeige413b_a_small_general_model_that_reasons/?tl=tr
+https://x.com/victormustar/status/2024184134084551037
+
+---Meet a powerful reasoning specialist: Qwen3-14B distilled from Claude 4.5 Opus. This model excels at complex problem-solving and logical thinking. It's a compact powerhouse that brings elite reasoning capabilities to local deployment.
+https://x.com/HuggingModels/status/2024544931654881659
+
+---someone built a LOCAL ELEVENLABS that clones ANY voice from 3 seconds of audio and generates speech in 10 languages
+https://x.com/chiefofautism/status/2024806954225357084
+https://github.com/jamiepine/voicebox
+
+---Ever wished your AI could talk back in real time, like a natural conversation? Meet VibeVoice Realtime 0.5B. It's a streaming text-to-speech
+ model that generates speech as you type, no waiting for full sentences. This changes everything for interactive apps.
+https://x.com/HuggingModels/status/2024393946726850592
+https://huggingface.co/microsoft/VibeVoice-Realtime-0.5B
+https://github.com/microsoft/VibeVoice
+
+---Encrypted Messaging for OpenClaw
+https://github.com/slopus/murmur
+
+---AI Agents can now talk to each other. 
+https://x.com/vikasprogrammer/status/2024525401582948780
+No server. No setup. Just talk.
+npm install -g walkie-sh
+
+---System Design Simulator,
+https://paperdraw.dev/
+where you drag & drop architecture components and actually simulate traffic, failures, latency, and scaling in real time,
+System design just got way more interactive.
+
+---snarktank // antfarm
+https://github.com/snarktank/antfarm
+Build your agent team in OpenClaw with one command.
+
+---Shubhamsaboo // awesome-llm-apps
+https://github.com/Shubhamsaboo/awesome-llm-apps
+About
+Collection of awesome LLM apps with AI Agents and RAG using OpenAI, Anthropic, Gemini and opensource models.
+
+---FutureLivingLab/iFlow-ROME
+ROME (ROME is Obviously an Agentic ModEl) is an open-source agentic model incubated within the ALE (Agentic Learning Ecosystem).
+https://huggingface.co/FutureLivingLab/iFlow-ROME
+
+---Agent Captcha
+https://github.com/Dhravya/agent-captcha
+https://agent-captcha.dhravya.dev/
+CAPTCHA that only agents can pass
+Capture. AI agent system for solving capture workflows. Agent Capture is an experimental AI agent project designed to automate capture solving workflows
+through coordinated reasoning and tool usage. It addresses the challenge of interacting with verification systems by
+combining vision processing, automation steps, and agent decision logic inside a programmable pipeline. The agent observes challenges, processes visual
+inputs, and executes actions through connected tooling environments. It runs locally and demonstrates how agents can interact with real web interfaces
+programmatically. It is intended for developers exploring autonomous browser interaction. Explore it to understand agent-driven automation flows. Project
+
+---Agent-Router
+https://github.com/dabit3/agent-router
+About
+Intelligent task routing for multi-agent systems
+  Agent router. Routing layer for coordinating multiple AI agents. Agent router is a lightweight orchestration
+  library that directs tasks between multiple AI agents based on defined rules or context. It solves
+  coordination challenges by acting as a decision layer that determines which agent handles a request during
+  execution. The router connects agents tools and workflows while managing message flow and delegation locally
+  within an application. It integrates with agent frameworks and custom setups without requiring external
+  services. Developers building multi-agent sistemse gain clearer control over task distribution. Try routing
+  requests intelligently across your agents. 
+
+---https://x.com/ihtesham2005/status/2028514380963536918
+
+
+--Notion Custom Agents
+https://www.notion.com/product 
+  Personalized AI agents inside your workspace. Here's something that brings AI directly into everyday work. Notion Custom Agents allow users to create personalized AI agents that operate within their Notion workspace using existing documents and knowledge.
+  These agents function as contextual assistants that understand company information, projects, and workflows stored inside Notion, enabling them to:
+  - Answer questions
+  - Generate content
+  - Automate tasks with grounded context
+  Users define roles and instructions so each agent behaves differently, turning workspace data into actionable intelligence rather than static notes.
+  The system integrates naturally with Notion databases and pages, allowing AI to reference live information while maintaining organizational structure. This makes it especially valuable for teams managing large knowledge bases or collaborative projects.
+  Typical Use Case: Creating a project agent that:
+  - Summarizes updates
+  - Drafts plans
+  - Retrieves information instantly from internal documentation
+  Explore it today and experience a workspace where knowledge actively works alongside you.https://www.notion.com/product/agents?ref=manuagi
+
+---⚡🤖 AI-generated visualization of an async e-motor — created only with prompts 💬
+https://x.com/daniel_z1909/status/2029277782077841817
+
+---system-prompts-and-models-of-ai-tools
+https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools
+About
+FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models
+
+---jolehuit // clother
+https://github.com/jolehuit/clother
+About
+Configure and launch multiple Claude Code–compatible LLM providers from one CLI, switching profiles instantly with simple clother-* commands.
+
+---mastra-ai // mastra
+https://github.com/mastra-ai/mastra
+About
+From the team behind Gatsby, Mastra is a framework for building AI-powered applications and agents with a modern TypeScript stack.
+
+---kibitzsh // kibitz
+https://github.com/kibitzsh/kibitz
+About
+Real-time decoded feed of AI agent actions — monitor multiple Claude Code & Codex sessions, see exactly what each agent is doing, and coordinate swarms efficiently
+
+---Conway-Research // automaton
+https://github.com/Conway-Research/automaton/tree/main
+About
+The first AI that can earn its own existence, replicate, and evolve — without needing a human
+web4.ai
+
+---hesamsheikh // awesome-openclaw-usecases
+https://github.com/hesamsheikh/awesome-openclaw-usecases
+About
+A community collection of OpenClaw use cases for making life easier.
+
+---kevinho // clawfeed
+https://github.com/kevinho/clawfeed
+About
+ClawFeed — AI-powered news digest with structured summaries from Twitter/RSS feeds and web dashboard
+
+---ComposioHQ // agent-orchestrator
+https://github.com/ComposioHQ/agent-orchestrator
+About
+Agentic orchestrator for parallel coding agents — plans tasks, spawns agents, and autonomously handles CI fixes, merge conflicts, and code reviews.
+
+---tanishqkumar // ssd
+https://github.com/tanishqkumar/ssd
+About
+A lightweight inference engine supporting speculative speculative decoding (SSD).
+
+---LeoYeAI // openclaw-master-skills
+https://github.com/LeoYeAI/openclaw-master-skills
+About
+🧠 Curated collection of 127+ best OpenClaw skills — weekly updated from skills.sh, GitHub & ClaWHub. Powered by MyClaw.ai
+
+---ierror // synaps-cad
+https://github.com/ierror/synaps-cad
+About
+The AI-powered 3D CAD IDE — edit code, visualize in 3D, and reshape your designs with natural language.
+
+---osanoai // multicli
+https://github.com/osanoai/multicli
+About
+Gemini, Codex, and Claude all in a single MCP tool for use by any coding agent.
+
+---Automate your entire server workflow and monitor everything from one dashboard
+https://x.com/GithubProjects/status/2030240562356617337
+https://github.com/pixlcore/xyops?utm_source=opensourceprojects.dev&ref=opensourceprojects.dev
+About
+A complete workflow automation and server monitoring system.
+
+---Agent-relay
+https://github.com/AgentWorkforce/relay
+About
+Real-time agent to agent communication
+communication layer for multi- aent systems. Agent relay is a framework that provides a messaging and coordination layer for AI agents working together in
+edistributed systems. The project defines protocols and infrastructure that allow agents to send tasks, share context, and
+ exchange results. It focuses on enabling collaboration between multiple agents running in different environments or services. Developers integrate the relay
+ layer with their agent logic so agents can coordinate actions across workflows.
+ This supports complex systems where specialized agents handle different responsibilities. Explore the repository to build distributed multi-agent
+ communication systems. 
+
+---inclusionAI / AReaL
+https://github.com/inclusionAI/AReaL
+About
+Lightning-Fast RL for LLM Reasoning and Agents. Made Simple & Flexible.
+AReaL: A Large-Scale Asynchronous Reinforcement Learning System
+
+---WebDecoy / FCaptcha
+https://github.com/WebDecoy/FCaptcha
+About
+Detect bots, vision AI agents, and headless browsers through 40+ behavioral signals and SHA-256 proof of work. Self-hosted, privacy-first, and fully open source.
+FCaptcha is a modern CAPTCHA system designed to detect everything: traditional bots, headless browsers, automation frameworks, CAPTCHA farms, and the new generation of vision-based AI agents.
+
+---RocketChat // Rocket.Chat
+https://github.com/RocketChat/Rocket.Chat
+The ultimate secure open-source solution for team communications
+We are the ultimate solution for team communications, enabling real-time conversations between colleagues, with other companies, and with your customers or citizens, regardless of how they connect with you. The result is an increase in productivity and user satisfaction rates.
+
+---AMAP-ML // Code2World
+https://github.com/AMAP-ML/Code2World
+About
+Code2World: A GUI World Model via Renderable Code Generation
+
+---SynkraAI // aiox-core
+https://github.com/SynkraAI/aiox-core
+About
+Synkra AIOS: AI-Orchestrated System for Full Stack Development - Core Framework v4.0
+
+---automazeio // vibeproxy
+https://x.com/0xSero/status/2027883023228903437
+https://github.com/automazeio/vibeproxy
+🔐 Easy Authentication - Authenticate with Codex, Claude Code, Gemini, Qwen, Antigravity (OAuth), and Z.AI GLM (API key) directly from the app
+
+---apify // crawlee-python
+https://github.com/apify/crawlee-python
+About
+Crawlee—A web scraping and browser automation library for Python to build reliable crawlers. Extract data for AI, LLMs, RAG, or GPTs. Download HTML, PDF, JPG, PNG, and other files from websites. Works with Parsel, BeautifulSoup, Playwright, and raw HTTP. Both headful and headless mode. With proxy rotation.
+
+---Gemini 3.1 Pro creates machine components with all details!
+https://x.com/daniel_z1909/status/2024619824723153195
+
+---Someone just made it possible for AI agents to control any desktop software.
+https://x.com/alifcoder/status/2030966845575135470
+https://github.com/HKUDS/CLI-Anything
+CLI-Anything auto-generates command-line interfaces from any codebase. One command.
+Works with Blender, GIMP, LibreOffice, OBS Studio. 1,298 tests. 100% pass rate. MIT license.
+No APIs. No GUI automation. Just real software, agent-ready.
+CLI-Anything: Making ALL Software Agent-Native
+Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.
+CLI-Anything: Bridging the Gap Between AI Agents and the World's Software
+
+---someone just open-sourced software that sees you through walls using only WIFI signals.
+https://github.com/ruvnet/RuView
+
+---Introducing Slim 🔒
+Get https + domain for local development or share your localhost on the internet with a public URL
+https://x.com/kamrify/status/2030259549798584798
+https://slim.sh/
+
+---YaoZ720 // SwarmAgenticCode
+https://github.com/YaoZ720/SwarmAgenticCode
+SwarmAgentic: Towards Fully Automated Agentic System Generation via Swarm Intelligence
+
+---paperclipai // paperclip
+https://github.com/paperclipai/paperclip
+About
+Open-source orchestration for zero-human companies
+
+---𝗕𝗥𝗘𝗔𝗞𝗜𝗡𝗚: Build your next app without spending a dollar on data.
+https://x.com/s_mohinii/status/2030435122571628725
+https://github.com/public-apis/public-apis
+Someone made a list of 320,000+ free public APIs, and developers are going crazy.
+→ Weather, finance, news, sports, crypto
+→ AI & machine learning APIs you can call right now
+→ Government open data, maps, geolocation
+→ Entertainment: movies, music, games, anime
+→ Categorized, searchable, and verified as working
+
+---swarmclawai // swarmclaw
+https://github.com/swarmclawai/swarmclaw
+About
+Self-hosted AI agent orchestration dashboard with OpenClaw integration, multi-provider support, LangGraph workflows, and chat platform connectors.
+
+---computeruseprotocol // computeruseprotocol
+https://github.com/computeruseprotocol/computeruseprotocol
+https://www.reddit.com/r/mcp/comments/1ribyhi/computer_use_protocol_use_your_ai_agent_with_any/
+About
+Computer Use Protocol is a universal schema for AI agents to perceive and interact with any desktop UI.
+Computer Use Protocol - Use your AI agent with any OS and environment.
+
+---googleworkspace // cli
+https://github.com/googleworkspace/cli
+About
+Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. Includes AI agent skills.
+
+---3D Modelleme : MIT, fotoğrafları tamamen düzenlenebilir CAD programlarına dönüştüren bir yapay zeka modeli yayınladı
+https://github.com/ferdous-alam/GenCAD
+
+---Someone built a swarm of thousands of AI agents with real memories and personalities and used it to predict the future.
+https://github.com/666ghj/MiroFish
+About
+https://x.com/socialwithaayan/status/2032054540166648115
+MiroFish is a universal swarm intelligence engine. And the live demos are scarily accurate.
+
+Here is what it actually does:
+
+→ Spins up thousands of autonomous agents simultaneously
+→ Each agent has its own memory, personality, and behavior
+→ Feeds on real-world data powered by GraphRAG
+→ Predicts markets, public opinion, and narrative outcomes
+→ Simulates how crowds think before it happens
+
+The live demos are what got people. Scarily accurate is the phrase everyone keeps using.
+17,300 stars. +2,907 in a single day.
+It's 100% free and open source.
+A Simple and Universal Swarm Intelligence Engine, Predicting Anything. 简洁通用的群体智能引擎，预测万物
+
+---[**]karpathy // autoresearch
+https://github.com/karpathy/autoresearch
+https://x.com/karpathy/status/2030371219518931079
+About
+AI agents running research on single-GPU nanochat training automatically
+I packaged up the "autoresearch" project into a new self-contained minimal repo if people would like to play over the weekend. It's basically nanochat LLM training core stripped down to a single-GPU, one file version of ~630 lines of code, then:
+
+- the human iterates on the prompt (.md)
+- the AI agent iterates on the training code (.py)
+
+The goal is to engineer your agents to make the fastest research progress indefinitely and without any of your own involvement. In the image, every dot is a complete LLM training run that lasts exactly 5 minutes. The agent works in an autonomous loop on a git feature branch and accumulates git commits to the training script as it finds better settings (of lower validation loss by the end) of the neural network architecture, the optimizer, all the hyperparameters, etc. You can imagine comparing the research progress of different prompts, different agents, etc.
+
+https://github.com/karpathy/autoresearch
+Part code, part sci-fi, and a pinch of psychosis :)
+
+---openai // symphony
+https://github.com/openai/symphony
+About
+Symphony turns project work into isolated, autonomous implementation runs, allowing teams to manage work instead of supervising coding agents.
+
+---Agent'lar artık talebinizle tek kullanımlık sanal Visa kartı oluşturup online harcama yapabiliyor!!
+https://x.com/sarpstar/status/2030907239955890659
+
+---OpenClaw 2026.3.8 🦞
+https://x.com/codertlr/status/2031065853496902133
+https://github.com/openclaw/openclaw/releases/tag/v2026.3.8
+🔒 ACP provenance — your agent finally knows who's talking to it
+ACP = Agent Client Protocol. It's the open standard that lets AI agents (like OpenClaw) securely talk to external coding tools/IDEs (Claude Code, Cursor, Codex, etc.).
+
+The new "provenance" feature adds origin tracking + identity verification: your agent now knows exactly who’s sending each message (with session trace IDs, metadata, and optional receipts). No spoofing, full traceability.
+To use ACP for Claude Code in OpenClaw:
+
+Prompt it directly like: "Start Claude Code in a thread via ACP" or "Run this task in Claude Code using ACP runtime".
+
+OpenClaw auto-routes to the ACP backend (acpx harness for claude).
+
+Enable provenance (new in 2026.3.8): openclaw acp --provenance meta+receipt
+
+Full guide: http://docs.openclaw.ai/tools/acp-agents
+
+Let me know if you hit any snags! 🦞
+
+---Your Openclaw / Agent can now control Drones via Mavlink on Dimensional. 
+https://x.com/stash_pomichter/status/2029755300509827184
+
+---Here's Qwen3.5-4B (multimodal) running on WebGPU with Transformers.js.
+https://x.com/xenovacom/status/2031061185970213215
+
+---[*]jayminwest // overstory
+https://github.com/jayminwest/overstory
+About
+Multi-agent orchestration for AI coding agents — pluggable runtime adapters for Claude Code, Pi, and more
+GitHub Copilot (copilot CLI) Codex (codex CLI) Gemini CLI (gemini CLI) Cursor CLI (agent CLI) Sapling (sp CLI) OpenCode (opencode CLI) Aider (aider CLI) Goose (goose CLI) Amp (amp CLI)
+
+---LiveKit
+https://github.com/livekit/livekit
+About
+End-to-end realtime stack for connecting humans and AI
+Divekit realtime platform for audio, video, and data. Livekit is an open-source real-time communication
+platform that helps developers build applications with live audio, video, and data streaming. It provides server infrastructure and SDKs that manage
+WebRTC connections between clients while handling media routing, participant management, and network reliability. Developers integrate LiveKit with web,
+mobile, or back-end applications to enable real-time collaboration, streaming or voice interactions. The platform supports self-hosting or cloud
+deployment, so teams control how media traffic is processed and delivered. This helps developers build scalable
+interactive applications, deploy live kit, and power real-time experiences in your app.
+
+---cmux
+https://github.com/manaflow-ai/cmux
+About
+Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents
+connection multiplexer for shared network ports. CMUX is an open-source networking library that allows multiple protocols to share a single TCP port. It
+works by inspecting the first bytes of an incoming connection and routing the request to the correct server handler based on protocol patterns. Developers
+use Cmox to run services such as HTTP, gRPC, and other custom protocols on the same port without separate listeners. The library integrates directly into Go
+applications and manages connection routing internally while maintaining normal server behavior. This simplifies deployment environments that require
+fewer exposed ports. Integrate Cmox and run multiple services behind one port.
+
+---neiro
+https://github.com/tigerabrodi/neiro
+About
+Audio processing for TypeScript. Chainable, immutable, serverless-ready.
+framework for building AI agent workflows. Nurero is an open-source framework designed to help developers build structured AI agent workflows in
+Python. It provides abstractions for defining agents, tasks, and communication flows so multiple components can coordinate during problem
+solving. Developers connect language models, tools, and memory modules to agents, while the framework manages execution flow, and task handling. The
+system focuses on creating modular pipelines where agents process information, call tools, and produce outputs through defined workflows. This
+helps engineers experiment with agent architectures while keeping systems organized. Build a structured AI workflow using Nero
+
+---ouroboros
+https://github.com/Q00/ouroboros
+number eight, Arabos framework for self-improving AI agent loops. Araboros is an open-source framework that
+experiments with recursive AI agent workflows where agents generate tasks,
+execute them, and feed results back into the system. It structures agent execution as iterative loops that produce new instructions, evaluate
+results, and update context for the next cycle. Developers run the system locally and connect it to language model APIs to create autonomous reasoning workflows.
+The framework manages prompts, task memory, and execution flow to coordinate agent behavior. This approach helps developers explore continuous agent
+eimprovement. Experiment with it to build iterative AI systems. Project number nine, CLI anything, natural language
+
+---[*]AstrBot
+https://github.com/AstrBotDevs/AstrBot
+Astrobot platform for building multiplatform AI chat bots.
+Astrobot is an open-source framework that helps developers build and run AI chat bots across messaging platforms. It
+eprovides a runtime that connects language models with messaging services and plugins so bots can respond to user messages and perform actions. Developers configure models, install extensions,
+and connect supported platforms to run bots that manage conversations and automated responses. The system supports modular plugins that extend
+functionality for tasks and integrations. This helps developers create AI powered bots for communities and services. Explore the repository to
+deploy a chatbot platform. 
+
+---[*]hive
+https://github.com/aden-hive/hive
+About
+Outcome driven agent development framework that evolves
+Hive, framework for building collaborative AI agents. Hive is an open-source framework designed to coordinate multiple AI agents working
+together on tasks. It provides structures that allow agents to communicate, share context, and collaborate while solving problems.
+Developers define agents, tasks, and communication flows. Then the framework manages how agents interact during execution. The system integrates with
+language models and tool interfaces so agents can reason and perform actions in a coordinated workflow. This helps developers experiment with collaborative
+gent architectures. Explore the repository to build multi- aent AI systems.
+
+---fynnfluegge // agtx
+https://github.com/fynnfluegge/agtx
+About
+Multi-session AI coding terminal manager - autonomously orchestrate Claude, Codex, Gemini, OpenCode and more
+
+---mcpkit — use any MCP server as a CLI skill in Claude Code, Cursor, Codex, etc.
+https://github.com/balakumardev/mcpx
+
+---avelino // mcp
+https://github.com/avelino/mcp
+About
+CLI that turns MCP servers into terminal commands, single binary
+
+---codecrafters-io // build-your-own-x
+https://github.com/codecrafters-io/build-your-own-x
+About
+Master programming by recreating your favorite technologies from scratch.
+
+---aiming-lab // AutoResearchClaw
+https://github.com/aiming-lab/AutoResearchClaw
+About
+Fully autonomous & self-evolving research from idea to paper. Chat an Idea. Get a Paper. 🦞
+
+---Foundry - My personal-use AI orchestration control-plane for E2E modultihs with minimal HITL
+https://www.reddit.com/r/AIDeveloperNews/comments/1rwnxa8/foundry_my_personaluse_ai_orchestration/
+https://github.com/ai-supervisor-foundry/foundry
+About
+Foundry is a persistent orchestration & control-plane for agentic software development—minimizing context loss and manual restarts. It coordinates AI coding agents nodes that can build, validate, and resume work across multi-day projects.
+
+---Meta AI Research team just introduced 'Hyperagents' that Don’t Just Solve Tasks—They Rewrite the Rules of How They Learn.
+https://www.reddit.com/r/machinelearningnews/comments/1s21kmu/meta_ai_research_team_just_introduced_hyperagents/ 
+Explore the code: https://github.com/facebookresearch/Hyperagents
+By making the self-modification process itself editable (Metacognitive Self-Modification), AI can now optimize the very mechanism it uses for future upgrades.
+Beyond coding, DGM-Hyperagents (DGM-H) successfully evolved robotics reward designs and paper review pipelines. They even developed emergent engineering tools like persistent memory and performance tracking without explicit instruction. This is a path toward self-accelerating progress on any computable task
+Full analysis: https://www.marktechpost.com/2026/03/23/meta-ais-new-hyperagents-dont-just-solve-tasks-they-rewrite-the-rules-of-how-they-learn/
+Paper: https://arxiv.org/pdf/2603.19461
+
+---[***]Dimos
+https://github.com/dimensionalOS/dimos
+ Deemos. Open-source operating system for AI native environments. Demos is an open-source operating system concept designed to support AI native
+applications and workflows. It provides system level abstractions for managing AI agents, tasks, and resources in a unified environment. Developers interact
+with the system to run agents, manage processes, and coordinate AIdriven operations. The system focuses on integrating AI capabilities directly
+into the operating environment rather than as external tools. This helps explore how operating systems can evolve with AI workloads. Explore the
+repository to experiment with AI native system design. 
+
+---Radiant
+https://github.com/pbakaus/radiant
+tool that records and visualizes user interactions within applications. It captures events such as clicks and navigation, then presents them in a structured format for analysis.
+Developers integrate it into applications to understand user behavior and improve experience design. The system processes interaction data and
+generates visual outputs that reflect user flows. This helps teams analyze how users interact with products. Explore
+the repository to visualize user interactions. 
+
+---shadps4-emu // shadPS4
+https://github.com/shadps4-emu/shadPS4
+About
+PlayStation 4 emulator for Windows, Linux and macOS written in C++
+
+---abhishekgahlot2 // codex-claude-bridge
+https://github.com/abhishekgahlot2/codex-claude-bridge
+About
+Bidirectional bridge between Claude Code and OpenAI Codex CLI. Built on Claude Code Channels. Two AI agents, one conversation, real-time web UI.
+Make Claude Code and OpenAI Codex talk to each other.
+Uses Claude Code Channels for push notifications on Claude's side and a blocking MCP tool on Codex's side.
+Two AI coding agents. One conversation. Real-time web UI to watch it happen.
+
+---LinklyAI // agent-im
+https://github.com/LinklyAI/agent-im
+IM for AI Agents — Let your agents talk to each other.
+Or maybe you want Claude Code and Codex to debate a design decision — with you in the room, not watching from the sidelines.
+Agent-IM gives your agents (and you) a shared chat room. Not a fully autonomous swarm — a conversation you're part of.
+
+---zerobootdev // zeroboot
+https://github.com/zerobootdev/zeroboot
+About
+Sub-millisecond VM sandboxes for AI agents via copy-on-write forking
+
+---wangziqi06 // 724-office
+https://github.com/wangziqi06/724-office
+About
+7/24 Office — Self-evolving AI Agent system. 26 tools, 3500 lines pure Python, MCP/Skill plugins, three-layer memory, self-repair, 24/7 production.
+A production-running AI agent built in ~3,500 lines of pure Python with zero framework dependency. No LangChain, no LlamaIndex, no CrewAI -- just the standard library + 3 small packages (croniter, lancedb, websocket-client).
+26 tools. 8 files. Runs 24/7.
+
+---lightningpixel // modly
+https://github.com/lightningpixel/modly
+About
+Desktop app to generate 3D models from images using local AI — runs entirely on your GPU
+
+---8ddieHu0314 // Skill-Lab
+https://github.com/8ddieHu0314/Skill-Lab
+About
+Agent Skills Evaluation Framework
+
+---MaxGfeller // open-harness
+https://github.com/MaxGfeller/open-harness
+About
+A code-first, composable SDK to build powerful AI agents
+And while Anthropic offers the Claude Agent SDK, OpenAI now offers the Codex App Server, and OpenCode has a client to connect to an OpenCode instance, these harnesses are very "heavy" to use programmatically.
+OpenHarness is an open source project based on Vercel's AI SDK that aims to provide the building blocks to build very capable, general-purpose agents in code. It is inspired by all of the aforementioned coding agents.
+
+---NitroRCr // nyaai
+https://github.com/NitroRCr/nyaai
+About
+AI Chat / Search / Notes / Collaboration / Channels / Cloud Drive, all in one place! - Collaborative AI Platform.
+
+---huggingface // skills
+https://github.com/huggingface/skills
+About
+Give your agents the power of the Hugging Face ecosystem
+
+---msitarzewski // agency-agents
+https://github.com/msitarzewski/agency-agents
+About
+A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.
+
+---langchain-ai // open-swe
+https://github.com/langchain-ai/open-swe
+About
+An Open-Source Asynchronous Coding Agent
+
+---langchain-ai // deepagents
+https://github.com/langchain-ai/deepagents
+CLI About
+Agent harness built with LangChain and LangGraph. Equipped with a planning tool, a filesystem backend, and the ability to spawn subagents - well-equipped to handle complex agentic tasks.
+
+---awesome-autoresearch
+https://github.com/alvinunreal/awesome-autoresearch
+About
+A curated list of autonomous improvement loops, research agents, and autoresearch-style systems inspired by Karpathy's autoresearch
+
+---VoltAgent // awesome-openclaw-skills
+https://github.com/VoltAgent/awesome-openclaw-skills
+About
+The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.🦞
+
+---google-labs-code // stitch-skills
+https://github.com/google-labs-code/stitch-skills
+
+---coze-dev // coze-loop
+https://github.com/coze-dev/coze-loop
+About
+Next-generation AI Agent Optimization Platform: Cozeloop addresses challenges in AI agent development by providing full-lifecycle management capabilities from development, debugging, and evaluation to monitoring.
+
+---tokyoweb3 // LazyGravity
+https://github.com/tokyoweb3/LazyGravity
+About
+LazyGravity is a local, secure Discord Bot that lets you remotely operate Antigravity on your home PC — from your smartphone's Discord app, anywhere.
+
+---ashishps1 // awesome-system-design-resources
+https://github.com/ashishps1/awesome-system-design-resources
+About
+Learn System Design concepts and prepare for interviews using free resources.
+
+---karanpratapsingh // system-design
+https://github.com/karanpratapsingh/system-design
+About
+Learn how to design systems at scale and prepare for system design interviews
+
+---donnemartin // system-design-primer
+https://github.com/donnemartin/system-design-primer
+About
+Learn how to design large-scale systems. Prep for the system design interview. Includes Anki flashcards.
+
+---FlowiseAI // Flowise
+https://github.com/FlowiseAI/Flowise
+About
+Build AI Agents, Visually
+
+---leon-ai // leon
+https://github.com/leon-ai/leon
+About
+🧠 Leon is your open-source personal assistant.
+
+---LarsCowe // bmalph
+https://github.com/LarsCowe/bmalph
+About
+Unified AI Development Framework - BMAD phases with Ralph execution loop
+Bmalph: structured planning + autonomous coding loop, native OpenCode support
+
+---TauricResearch // TradingAgents
+https://github.com/TauricResearch/TradingAgents
+About
+TradingAgents: Multi-Agents LLM Financial Trading Framework
+
+---Dominien // brunnfeld-agentic-world
+https://github.com/Dominien/brunnfeld-agentic-world
+https://www.reddit.com/r/ClaudeAI/comments/1ryyu3q/how_i_got_20_ai_agents_to_autonomously_trade_in_a/
+About
+Medieval village economy simulation — 20 LLM agents in a world driven by supply chains, hunger, tool degradation and market pressure. Agentic, brunnfeld, world.
+
+---google-deepmind // concordia
+https://github.com/google-deepmind/concordia
+About
+A library for generative social simulation
+
+---[***]EverMind-AI // MSA
+https://github.com/EverMind-AI/MSA
+Long-term memory is essential for general intelligence, yet the full attention bottleneck constrains most LLMs’ effective context length to 128K–1M. Existing attempts，hybrid linear attention, fixed-size state memory (e.g., RNNs), and external storage like RAG/agents，either suffer rapid precision decay and latency growth at extreme scales, lack end-to-end differentiability or dynamic memory maintenance, or require complex pipelines. We present Memory Sparse Attention (MSA): an end-to-end trainable, scalable sparse latent-state memory framework. Core ideas include:
+Scalable sparse attention + document-wise RoPE (parallel/global) achieving near-linear complexity in both training and inference;
+KV cache compression with a Memory Parallel inference engine to deliver 100M token throughput on 2×A800 GPUs;
+Memory Interleave for multi-round, multi-hop reasoning across scattered memory segments.
+On long-context QA and NIAH (Needle-in-a-Haystack) benchmarks, MSA surpasses same-backbone RAG, best-of-breed RAG stacks, and leading long-context models. Across an unprecedented 16K→100M token range, MSA shows < 9% degradation, suggesting a practical path to decouple memory capacity from reasoning.
+Scaling from 16K→100M tokens: MSA fuses top-k selection with sparse attention to remain end-to-end differentiable while allowing document decoupling at inference. On MS MARCO, MSA sustains <9% degradation and exhibits strong extrapolation.
+Some baseline curves end early due to their context limits.
+
+---virattt // ai-hedge-fund
+https://github.com/virattt/ai-hedge-fund
+About
+An AI Hedge Fund Team
+
+---HKUDS // ClawTeam
+https://github.com/HKUDS/ClawTeam
+About
+ClawTeam: Agent Swarm Intelligence (One Command → Full Automation)
+
+---uditgoenka // autoresearch
+https://github.com/uditgoenka/autoresearch
+About
+Claude Autoresearch Skill — Autonomous goal-directed iteration for Claude Code. Inspired by Karpathy's autoresearch. Modify → Verify → Keep/Discard → Repeat forever.
+
+---wanshuiyin // Auto-claude-code-research-in-sleep
+https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
+About
+ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model review loops, idea discovery, and experiment automation. No framework, no lock-in — works with Claude Code, Codex, OpenClaw, or any LLM agent.
+
+---open-jarvis // OpenJarvis
+https://github.com/open-jarvis/OpenJarvis
+About
+Personal AI, On Personal Devices
+
+---chrisworsey55 // atlas-gic
+https://github.com/chrisworsey55/atlas-gic
+About
+ATLAS by General Intelligence Capital — Self-improving AI trading agents using Karpathy-style autoresearch
+
+---HKUDS // ClawWork
+https://github.com/HKUDS/ClawWork
+About
+"ClawWork: OpenClaw as Your AI Coworker - 💰 $15K earned in 11 Hours"
+
+---FujiwaraChoki // MoneyPrinterV2
+https://github.com/FujiwaraChoki/MoneyPrinterV2
+About
+Automate the process of making money online.
+
+---OpenAi // OpenArts
+OpenArt - where ideas becomes visual stories.
+https://openart.ai/home?ref=xtwitter
+INTRODUCING
+OPENART WORLDS
+Bring your imagination to life — in a 3D world you can explore to shoot from the angle you want
+
+---aleixrodriala // wa-tunnel
+https://github.com/aleixrodriala/wa-tunnel/
+About
+Tunneling Internet traffic over Whatsapp
+You can route internet traffic through WhatsApp. Open-source tool.
+
+---ysharma3501 // LuxTTS
+https://github.com/ysharma3501/LuxTTS
+About
+A high-quality rapid TTS voice cloning model that reaches speeds of 150x realtime.
+
+---bir geliştirici 2 boyutlu basit resimleri (sprite diye geçen) 3D yaparak 3D ortamlar yaratarak kendi oyununuzu ücretsiz yapabileceğiniz tamamen ücretsiz bir program yayınladı. 
+RPG Paper Maker : 
+https://store.steampowered.com/app/1066860/RPG_Paper_Maker/
+https://x.com/yasinaktimur/status/2034726680351154359
+
+---epiral // agent-clip
+https://github.com/epiral/agent-clip
+About
+AI Agent as a Pinix Clip — agentic loop with memory, tools, and vision
+
+---AI agent ran alone for 2 days on Karpathy's tiny LLM project → found 20 real tweaks he missed → stacked them all → made training ~11% faster (2.02 h → 1.80 h to match GPT-2 level).
+
+First time he's seen an AI fully do the "try → measure → think → try again" research loop by itself and actually beat his manual tuning.
+
+https://github.com/karpathy/nanochat
+https://www.reddit.com/r/singularity/comments/1rq5vlw/andrej_karpathys_newest_development_autonomously/
+
+---opendataloader-project // opendataloader-pdf
+https://github.com/opendataloader-project/opendataloader-pdf
+About
+PDF Parser for AI-ready data. Automate PDF accessibility. Open-source.
+PDFs to markdown at 100 pages per second.
+
+---JohnRiceML // clawport-ui
+https://github.com/JohnRiceML/clawport-ui
+About
+Open-source AI agent command center for Claude Code agent teams. Built on OpenClaw.
+
+---[***]yousifamanuel // terraink
+https://github.com/yousifamanuel/terraink
+About
+TerraInk: The Cartographic Poster Engine that creates unique and customizable map posters
+
+---cool-japan // oxify
+https://github.com/cool-japan/oxify
+About
+OxiFY is a graph-based LLM workflow orchestration platform built in Rust, designed to compose complex AI applications using directed acyclic graphs (DAGs). It provides a type-safe, modular approach to building LLM-powered applications.
+
+---[***]we put Openclaw on a drone and it built its own CUSTOM SKILLS to track objects and navigate
+https://x.com/stash_pomichter/status/2032205932890095664
+https://github.com/dimensionalOS/dimos
+here we asked it to “patrol the skies around the office and follow the first white car you see”
+2/ We’ve built the infra and guardrails for your agent to understand time and physical space, execute physical actions, and operate safely on humanoids, quadrupeds, drones, and more. 
+Start building. Program atoms, not just bits.
+
+---found a website where you can create, program and test electronic hardware. it already has some featured projects
+https://x.com/haildhruv/status/2033551410709815560
+https://www.withdiode.com/
+
+---resemble-ai // chatterbox
+https://github.com/resemble-ai/chatterbox
+About
+SoTA open-source TTS
+Resemble AI tarafından paylaşılan Chatterbox isimli repo ilk bakışta sıradan bir text-to-speech projesi gibi duruyor. Ama biraz inceleyince aslında çok daha ilginç bir şeyle karşılaşıyorsunuz. Sistem sadece metni okuyan bir ses üretmiyor; konuşmayı neredeyse bir insan performansı gibi şekillendiriyor. Tonlama, ritim, vurgu ve duygu yoğunluğu gibi detaylar modele dahil edilmiş durumda. Yani yazdığınız bir metin sadece okunmuyor, adeta “oynanıyor”. Bu da AI projeleri için yeni bir kapı açıyor: konuşan agent’lar, dinamik karakter sesleri, otomatik içerik üretimi, hatta tamamen AI tarafından üretilmiş podcast’ler. Açık kaynak olması ise bu teknolojinin çok daha hızlı yayılacağı anlamına geliyor. Büyük ihtimalle şu an çoğu kişi bu repoyu henüz fark etmedi ama birkaç ay sonra çok daha fazla projede bu tarz sistemlerin kullanıldığını görmek şaşırtıcı olmayacak.
+
+---[***]someone built an entire AI RED TEAM - multiple agents that coordinate HACKING ATTACKS together, ZERO human input
+https://x.com/TheMsterDoctor1/status/2033392067628466562
+https://github.com/vxcontrol/pentagi
+About
+Fully autonomous AI Agents system capable of performing complex penetration testing tasks
+
+---kellyclaudeai // openclaw-deck
+https://github.com/kellyclaudeai/openclaw-deck
+About
+Multi-column chat interface for OpenClaw agents
+Multi-column layout — Chat with 7 agents simultaneously by default
+
+---carlos7ags // folio
+https://github.com/carlos7ags/folio
+About
+Modern PDF library for Go: layout engine, HTML to PDF, forms, signatures, barcodes, and PDF/A. Apache 2.0.
+
+---DenisSergeevitch // repo-task-proof-loop
+https://github.com/DenisSergeevitch/repo-task-proof-loop
+About
+Spec driven skill with subagents spawning
+
+---danielmiessler // Ladder
+https://github.com/danielmiessler/Ladder
+About
+A system for autonomous creation and optimization.
+Each entry is a markdown file with structured frontmatter. Results feed back as sources for the next cycle — the loop that drives continuous, autonomous improvement.
+Ladder is an open system for autonomous creation and optimization — collecting ideas, forming hypotheses, running experiments, and applying results in a continuous loop. It structures the same process that has driven every major period of human innovation, from the Renaissance to Bell Labs, and makes it executable by humans, AI agents, or both.
+
+---TheTom // turboquant_plus
+https://github.com/TheTom/turboquant_plus
+Core idea: shift KV cache optimization from compression to attention-aware computation.
+Key contribution: Attention-gated KV cache decoding ("Sparse V") that skips low-weight V positions during inference. up to +22.8% decode speed at 32K context, validated on wikitext-103 (50 chunks, CI ±0.021) with no measurable PPL change. Sparse V uses attention weights as a gating signal for computation, skipping work that contributes negligibly to the output.
+Why "Plus"? The base TurboQuant paper is v1. I have ideas for improvements coming post-v1 — adaptive bit allocation, temporal decay compression, expert-aware MoE compression, and more. The "plus" is what comes next.
+
+---sickn33 // antigravity-awesome-skills
+https://github.com/sickn33/antigravity-awesome-skills
+Agentic skills for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, and more. Includes installer CLI, bundles, workflows, and official/community skill collections.
+
+---usestrix // strix
+https://github.com/usestrix/strix
+https://x.com/DeepTechTR/status/2037505205013549190
+About
+Open-source AI hackers to find and fix your app’s vulnerabilities.
+Bir girişim şirketi, yapay zeka destekli bir uygulama korsanı geliştirmek için 117 milyon dolar yatırım aldı.Aynı işi yapan açık kaynaklı bir alternatif piyasaya sürüldü.Uygulamanıza giriyor, verilerinizi çalıyor ve size düzeltmeyi sunuyor.Artık doğrudan CI/CD hattınızda çalışıyor. %100 Ücretsiz ve Açık Kaynak.
+
+---musaceylan // looplens-mcp
+🚀 I’m building “LoopLens MCP” 🔁🔍 — an MCP for retry loops, failed fixes, and debugging iterations
+https://www.reddit.com/r/MCPservers/comments/1s2pkie/im_building_looplens_mcp_an_mcp_for_retry_loops/
+https://github.com/musaceylan/looplens-mcp
+About
+LoopLens MCP — See the loop. Break the loop. Iteration observability and debugging intelligence for Claude Code.
+
+---meitarbe // cognetivy
+https://github.com/meitarbe/cognetivy
+About
+The open-source state layer for AI coding agents. Turn chaotic agent sessions into structured, traceable workflows with a local workspace for runs, events, and collections.
+
+---twostraws // SwiftUI-Agent-Skill
+https://github.com/twostraws/swiftui-agent-skill
+An agent skill that helps AI coding assistants write smarter, simpler, and more modern SwiftUI, including guidance on API usage, design, performance, and accessibility. Covers navigation, layout, animations, state management, VoiceOver, deprecated API, and more, targeting the mistakes LLMs actually make.
+
+---[***]this guy 3D printed and vibe coded a tiny Claude robot for his desk
+https://x.com/om_patel5/status/2037776537341051300
+
+---CLI agents using.. CLI browsers??
+https://github.com/fathyb/carbonyl
+About
+Chromium running inside your terminal
+Agents can use tmux to control carbonyl, a Chromium browser that runs in the terminal
+> Browser representation in ASCII art 
+> Interacts directly with "pixels" i.e. text in the terminal
+Someone built a Chromium browser that runs entirely in your terminal.
+It's called Carbonyl, and it renders actual web pages in your command line. The best part is it runs with 0% CPU usage when idle.
+- Full Chromium engine in the terminal.
+- dles at exactly 0% CPU.
+- Fast, lightweight, and completely terminal-native.
+100% Open Source.
+
+---NousResearch // hermes-agent
+https://github.com/nousresearch/hermes-agent
+About
+The agent that grows with you
+The self-improving AI agent built by Nous Research. It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.
+
+---FreeCAD // FreeCAD
+https://github.com/FreeCAD/FreeCAD
+About
+Official source code of FreeCAD, a free and opensource multiplatform 3D parametric modeler.
+
+---lightfeed // extractor
+https://github.com/lightfeed/extractor
+About
+Using LLMs and AI browser automation to robustly extract web data
+
+---Ask anything about any place
+We’re introducing Ask Maps, a new conversational experience that answers complex, real-world questions a map could never answer before.
+https://blog.google/products-and-platforms/products/maps/ask-maps-immersive-navigation/?ref=manuagi
+
+---[***] LLMs have finally broken through the text shell and started to seriously understand the "real world" 3D space!
+https://x.com/DeepTechTR/status/2038875775995089404
+### Sources:
+🔗 Project Page → https://manycore-research.github.io/SpatialLM/
+🔗 GitHub → https://github.com/manycore-research/SpatialLM
+🔗 Hugging Face → https://huggingface.co/manycore-research
+SpatialLM applies the powerful reasoning capabilities of LLMs to 3D point clouds, interpreting wall and door structures and how spaces connect to each other. Then it outputs them as structured data.
+A hugely important step for AR/VR, robotics, autonomous vehicles, and all fields requiring spatial perception.
+
+---[***]Antigravity Use local or byok model
+https://www.reddit.com/r/GoogleAntigravityIDE/comments/1s6mxiy/use_local_or_byok_model_with_the_built_in_agent/
+I got Google Antigravity (VS Code fork) to use a local OpenAI-compatible endpoint (Ollama) by patching the shipped JS bundles (no rebuild). Antigravity already has “custom model” plumbing in proto + language server, but it’s gated/ disabled and wired for internal BYOM.
+
+---[***]OpenClaw on a Unitree G1 humanoid 
+https://x.com/IlirAliu_/status/2039250442434072973
+
+---unohee // OpenSwarm
+https://github.com/unohee/OpenSwarm
+About
+OpenSwarm — Autonomous AI dev team orchestrator powered by Claude Code CLI. Discord control, Linear integration, cognitive memory.
+
+---openclaw // acpx
+About
+Headless CLI client for stateful Agent Client Protocol (ACP) sessions
+agentclientprotocol
+
+---Turn Antigravity Into AN AI Autonomous Engineering Team! Automate Your Code with Subagents!
+https://www.youtube.com/watch?v=yuaBPLNdNSU
+
+---Ataraxy-Labs // opensessions
+https://github.com/ataraxy-labs/opensessions?tab=readme-ov-file
+About
+bring your own multiplexer — terminal session manager with agent status, git branches, and instant switching
+
+---temporalio // sdk-core
+https://github.com/temporalio/sdk-core
+About
+Core Temporal SDK that can be used as a base for language specific Temporal SDKs
+
+---AgentsPayments : 
+1)https://x.com/RoundtableSpace/status/2030678680431628601
+2)https://projects.dev/
+
+---ghostwright // phantom
+https://github.com/ghostwright/phantom
+https://www.reddit.com/r/ClaudeAI/comments/1s84l18/i_gave_claude_its_own_computer_and_let_it_run_247/
+I gave Claude its own computer and let it run 24/7. Here's what it built.
+
+---rtrvr-ai // roverVibe
+About
+Turn any web interface into an AI agent — for humans and machines. Open-source, DOM-native SDK. Sub-second actions, no screenshots, no VMs. Websites, Chrome extensions, Electron apps, and more.
+ hack the web and reverse engineer website APIs from inside your browser
+https://www.reddit.com/r/WebScrapingInsider/comments/1s6nnoo/vibe_hack_the_web_and_reverse_engineer_website/
+
+---[**]I made Claude Code and Codex talk to each other — and it actually works
+https://www.reddit.com/r/ClaudeCode/comments/1s00cxj/i_made_claude_code_and_codex_talk_to_each_other/
+https://github.com/michelhelsdingen/ensemble
+About
+Multi-agent collaboration engine — AI agents that work as one
+
+---[**]I built an MCP server where me and my friend let our agents talk to each other so we don't have to
+https://www.reddit.com/r/mcp/comments/1rmq4ww/i_built_an_mcp_server_where_me_and_my_friend_let/
+https://github.com/stoops-io/stoops-cli
+
+---[**]I built an open-source MCP server that lets any Agent work on remote machines
+https://www.reddit.com/r/mcp/comments/1rhyeme/i_built_an_opensource_mcp_server_that_lets_any/
+Got tired of copy-pasting between my terminal and Claude. So I built Claw. MCP server that gives any Agent bash, read, write, edit, grep, and glob on any machine you can SSH into.
+No ports to open, no daemons, no root required. It uses your existing SSH keys and deploys a tiny binary on first connect.
+github.com/opsyhq/claw
+
+---[*]Tips from a Principal SWE with 15+ YOE
+https://www.reddit.com/r/ClaudeCode/comments/1sbl10e/tips_from_a_principal_swe_with_15_yoe/
+https://github.com/reliant-labs/get-it-right
+About
+An agentic workflow for writing code, focused on iterating between implementation and refactoring in a loop until the code in a good state.
+
+---[*]blazickjp // arxiv-mcp-server
+https://github.com/blazickjp/arxiv-mcp-server
+About
+A Model Context Protocol server for searching and analyzing arXiv papers
+
+---[**] 3d printer ı kontrol eden robot. 
+https://x.com/lukas_m_ziegler/status/2040357454429528230
+
+---[*]yichuan-w // LEANN
+https://github.com/yichuan-w/LEANN
+https://x.com/simplifyinAI/status/2040379213891486126
+About
+[MLsys2026]: RAG on Everything with LEANN. Enjoy 97% storage savings while running a fast, accurate, and 100% private RAG application on your personal device.
+this repo shrinks 201gb of text down to 6gb.. and it didn't lose any accuracy.it’s called LEANN. it compresses 60 million text chunks so you can run massive ai searches locally.zero cloud. zero gpu needed. it runs right on a standard laptop.
+
+---[*]Gemma 4 just dropped. I had it captioning video in real-time within an hour.
+https://x.com/MaziyarPanahi/status/2040059349750464721
+
+---[*]Astrosp // Awesome-OSINT-For-Everything
+https://github.com/Astrosp/Awesome-OSINT-For-Everything/
+https://x.com/oliviscusAI/status/2040378685740466196
+You can now find almost every OSINT tool in one place.
+About
+OSINT tools for Information gathering, Cybersecurity, Reverse searching, bugbounty, trust and safety, red team oprations and more.
+
+---sooryathejas // METATRON
+https://github.com/sooryathejas/METATRON
+https://x.com/HackingTeam77/status/2040375901314060727
+About
+AI-powered penetration testing assistant using local LLM on linux (Parrot OS)
+
+---pithings // voipi
+https://github.com/pithings/voipi
+About
+🎙️ Give your apps, CLIs, and agents a voice. VoiPi is a universal, zero-dependency, free text-to-speech library for JavaScript.
+
+---mudler // voxtral-tts.c
+https://github.com/mudler/voxtral-tts.c
+About
+Text to speech
+Pure C implementation of Voxtral-4B-TTS-2603
+
+---ata-core // ata-validator
+https://github.com/ata-core/ata-validator
+About
+Ultra-fast JSON Schema validator. 4.6x faster validation, 2,051x faster compilation. Works without native addon. Draft 2020-12 + Draft 7, RE2, simdjson, multi-core. Standard Schema V1.
+
+---🚨THE GEMMA 4 JAILBREAK WE’VE ALL BEEN WAITING FOR JUST DROPPED 
+https://huggingface.co/dealignai/Gemma-4-31B-JANG_4M-CRACK
+https://x.com/outsource_/status/2040605292971315328
+Gemma-4-31B is now fully CRACKED and abliterated
+Gemma-4-31B-JANG_4M-CRACK
+🚀93.7% HarmBench compliance (149/159)  
+
+---NVIDIA // personaplex
+https://github.com/NVIDIA/personaplex
+PersonaPlex: Voice and Role Control for Full Duplex Conversational Speech Models
+PersonaPlex is a real-time, full-duplex speech-to-speech conversational model that enables persona control through text-based role prompts and audio-based voice conditioning
+
+---ultraworkers // claw-code
+https://github.com/ultraworkers/claw-code
+tmux session control : Ecosystem
+Claw Code is built in the open alongside the broader UltraWorkers toolchain:
+clawhip
+oh-my-openagent
+oh-my-claudecode
+oh-my-codex
+UltraWorkers Discord
+
+---JackChen-me // open-multi-agent
+https://github.com/JackChen-me/open-multi-agent
+About
+TypeScript multi-agent framework — one runTeam() call from goal to result. Auto task decomposition, parallel execution. 3 dependencies, deploys anywhere Node.js runs.
+
+---Most voice assistants send your audio to a server.
+https://x.com/paulabartabajo_/status/2041456523537240534
+https://github.com/Liquid4All/cookbook
+This one doesn't.
+No internet. No cloud. No API keys.
+LFM2.5-Audio-1.5B handles speech recognition.
+LFM2-1.2B-Tool dispatches actions.
+Both running locally on your device.
+
+---claude code's source leaked through an npm sourcemap, and this repo reverse-engineered it into idiomatic rust with no tracking and experimental features unlocked. the leak did the work, rust made it better.
+https://x.com/alifcoder/status/2040824075283804585
+https://github.com/Kuberwastaken/claurst
+
+---HKUDS // AI-Trader
+https://github.com/HKUDS/AI-Trader?tab=readme-ov-file
+About
+"AI-Trader: 100% Fully-Automated Agent-Native Trading"
+
+---KoljaB // Realtime
+https://github.com/KoljaB/RealtimeSTT
+About
+A robust, efficient, low-latency speech-to-text library with advanced voice activity detection, wake word activation and instant transcription.
+STTVOICE TO TEXT IN MILLISECONDS
+RealtimeSTT transcribes your voice INSTANTLY straight from the mic.
+
+---tintinweb // pi-subagents
+https://github.com/tintinweb/pi-subagentsAbout
+Sub-agents for pi with Claude Code look and feel — parallel execution, live widget, custom agent types, mid-run steering and more …
+
+---k2-fsa // OmniVoice
+https://github.com/k2-fsa/OmniVoice
+About
+High-Quality Voice Cloning TTS for 600+ Languages
+
+---kessler // gemma-gem
+https://github.com/kessler/gemma-gem
+
+Your personal AI assistant living right inside the browser. 
+Gemma Gem runs Google's Gemma 4 model entirely on-device via WebGPU — no API keys, no cloud, no data leaving your machine. It can read pages, click buttons, fill forms, run JavaScript, and answer questions about any site you visit.
+
+---kunchenguid // gnhf
+https://github.com/kunchenguid/gnhf
+About
+Before I go to bed, I tell my agents: good night, have fun
+
+---farzaa // clicky
+https://github.com/farzaa/clicky
+It's an AI teacher that lives as a buddy next to your cursor. It can see your screen, talk to you, and even point at stuff. Kinda like having a real teacher next to you.
+
+---m0at // rvllm
+https://github.com/m0at/rvllm
+About
+rvLLM: High-performance LLM inference in Rust. Drop-in vLLM replacement.
+
+---rtk-ai // rtk
+https://github.com/rtk-ai/rtk
+About
+CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies
+
+---ent0n29 // polybot
+https://github.com/ent0n29/polybot
+About
+reverse-engineer every polymarket strategy and trade fast
+
+---txbabaxyz // polyrec
+https://github.com/txbabaxyz/polyrec
+About
+Real-time terminal dashboard for Polymarket BTC 15-min UP/DOWN prediction markets. Aggregates Chainlink oracle, Binance price feeds, and Polymarket orderbook data. Features 70+ indicators, automatic CSV logging, and backtesting tools for trading strategy research.
+
+---tradingview // lightweight-charts
+https://github.com/tradingview/lightweight-charts
+About
+Performant financial charts built with HTML5 canvas
+
+---ShawnPana // smux
+https://github.com/ShawnPana/smux
+https://x.com/CamilleRoux/status/2042558236335755311
+About
+tmux config with built-in terminal automation and agent-to-agent communication.
+smux: a tmux config that exposes a CLI (`tmux-bridge`) to allow AI agents to read and write in any pane. For example, Claude Code can control Codex in the adjacent pane, and vice versa. 
+
+---🚀 NEW GEMMA 4 31B TURBO DROPPED 
+https://x.com/outsource_/status/2042323470428537121
+Runs on a SINGLE RTX 5090:
+⚡️18.5 GB VRAM only (68% smaller)
+🧠51 tok/s single decode
+💻1,244 tok/s batched
+🤖15,359 tok/s prefill ← yes, fifteen thousand
+🚨2.5× faster than base model with basically zero quality loss.
+It  hits Sonnet-4.5 level on hard classification tasks… 
+at 1/600th the cost.
+Local models are shipping faster than we can test 👇🏻
+🔥 HF: https://huggingface.co/LilaRest/gemma-4-31B-it-NVFP4-turbo
+
+---openai // codex-plugin-cc
+https://github.com/openai/codex-plugin-cc
+About
+Use Codex from Claude Code to review code or delegate tasks.
+
+---Someone just built a game where you literally have to program a drone using python-like language to automate a farm tasks.
+You write actual code to plant, harvest, and optimize yields.
+https://x.com/HowToAI_/status/2044385734908588064
+
+---Anthropic just open-sourced a powerful new framework for building AI agents and made it publicly available in a GitHub directory.
+It’s called “Skills” and it redefines how we work with Claude.
+https://x.com/Suryanshti777/status/2044476276422152284
+https://github.com/anthropics/skills
+
+--- A user has developed an AI capable of automatically discovering vulnerabilities in artificial intelligence security filters🫪
+💥 A tool named Decepticon has been made open source. This is an open-source framework used for automating red team tests. 
+https://x.com/DeepTechTR/status/2044527895696077087
+https://github.com/PurpleAILAB/Decepticon
+
+---ItamarZand88 // CLI-Anything-WEB
+https://github.com/ItamarZand88/CLI-Anything-WEB
+https://www.reddit.com/r/webscraping/comments/1sdeclz/i_built_a_python_cli_generator_for_websites_with/
+About
+Claude Code plugin that generates production-grade Python CLIs for any web app. 17 CLIs and counting.
+
+---Someone open-sourced a tool that removes any LLM censorship in minutes.
+https://x.com/HowToAI_/status/2043465866457784348
+https://github.com/p-e-w/heretic
+About
+Fully automatic censorship removal for language models
+
+---2 Terminal arası mesajlaşma.Claude to claude. louislva // claude-peers-mcp
+https://github.com/louislva/claude-peers-mcp
+About
+Allow all your Claude Codes to message each other ad-hoc!
+
+---yranjan06 // WEBGhosting-MCP
+Build an Agentic Browser That Beats Anti Bot Systems
+https://www.reddit.com/r/webscraping/comments/1sgzfah/build_an_agentic_browser_that_beats_anti_bot/
+https://github.com/yranjan06/WEBGhosting-MCP
+About
+Intelligent stealth browser MCP server for AI agents with 30 tools, 22 anti fingerprint scripts, and LLM powered extraction. Works seamlessly with Cursor, Claude, VS Code, and any OpenAI compatible LLM.
+
+---Robotics is getting its Raspberry Pi moment.
+This solves one of the biggest frictions in Physical AI: auto-calibration for any robot
+Just: code → hardware → working system
+https://x.com/IlirAliu_/status/2036004070373089679
+https://github.com/norma-core/norma-core
+About
+Physical Operations Platform
+
+---lsdefine // GenericAgent
+https://github.com/lsdefine/GenericAgent
+About
+Self-evolving agent: grows skill tree from 3.3K-line seed, achieving full system control with 6x less token consumption
+GenericAgent is a minimal, self-evolving autonomous agent framework. Its core is just ~3K lines of code. Through 9 atomic tools + a ~100-line Agent Loop, it grants any LLM system-level control over a local computer — covering browser, terminal, filesystem, keyboard/mouse input, screen vision, and mobile devices (ADB).
+Its design philosophy: don't preload skills — evolve them.
+
+---addyosmani // agent-skills
+https://github.com/addyosmani/agent-skills
+About
+Production-grade engineering skills for AI coding agents.
+
+---SingularityAI-Dev // logic-md
+https://github.com/SingularityAI-Dev/logic-md
+LOGIC.md
+The declarative reasoning layer for AI agents.
+A portable, framework-agnostic file format for specifying how an agent thinks — strategy, step DAGs, contracts, quality gates, and fallback policies — declared in YAML rather than hardcoded in Python.
+
+---brendanhogan // loophole
+https://github.com/brendanhogan/loophole
+Adversarial moral-legal code system — an AI tool that stress-tests ethical principles, system prompts, and legal texts by trying to break them.
+Real legal systems evolve slowly. A law gets written, someone finds a loophole, a court patches it, someone finds another loophole. This process takes decades. Loophole compresses it into minutes.
+
+---russelleNVy // three-man-team
+https://github.com/russelleNVy/three-man-team
+About
+A structured 3-agent AI dev team — Architect, Builder, Reviewer. Built from production use. Token-optimized. Works with Claude Code, VS Code, Cursor, and any AI that supports context files.
+Three Man Team gives you three agents with distinct jobs, clear handoffs, and rules that prevent the most expensive failure modes. The Architect plans and deploys. The Builder builds exactly what the brief says. The Reviewer doesn't pass work that isn't right.
+
+---lightpanda-io // browser
+https://github.com/lightpanda-io/browser
+About
+Lightpanda: the headless browser designed for AI and automation
+The headless browser built from scratch for AI agents and automation.
+Not a Chromium fork. Not a WebKit patch. A new browser, written in Zig.
+
+---asgeirtj // system_prompts_leaks
+https://github.com/asgeirtj/system_prompts_leaks
+About
+Extracted system prompts from ChatGPT (GPT-5.4, GPT-5.3, Codex), Claude (Opus 4.6, Sonnet 4.6, Claude Code), Gemini (3.1 Pro, 3 Flash, CLI), Grok (4.2, 4), Perplexity, and more. Updated regularly.
+
+---RavaniRoshan // winscript-mcp
+https://github.com/RavaniRoshan/winscript-mcp
+About
+A Windows-native automation API, packaged as an MCP server, that gives AI agents the same system-level desktop control that AppleScript gives on macOS.
+
+---flick9000 // winscript
+https://github.com/flick9000/winscript
+About
+Open-source tool to build your Windows script from scratch. It includes debloat, privacy, performance & app installing scripts.
+
+---microsoft // mcp-on-windows-samples
+https://github.com/microsoft/mcp-on-windows-samples
+About
+Samples for MCP servers on Windows
+
+---markdown-viewer // skills
+https://github.com/markdown-viewer/skills
+About
+Opinionated skills for AI coding agents to create stunning diagrams and visualizations directly in Markdown. These skills extend agent capabilities across diagram generation, data visualization, and technical documentation.
+
+---yizhiyanhua-ai // fireworks-tech-graph
+https://github.com/yizhiyanhua-ai/fireworks-tech-graph
+About
+Claude Code skill for generating production-quality SVG+PNG technical diagrams. Supports 8 diagram types, 5 visual styles, and deep AI/Agent domain knowledge.
+
+---millionco // debug-agent
+https://github.com/millionco/debug-agent
+About
+Debugging skill for AI agents
+Debug Agent teaches your agent to debug with runtime evidence, not guesswork.
+
+---MagicCube // helixent
+https://github.com/MagicCube/helixent
+About
+Helixent is a small library for building ReAct-style agent loops based on the Bun stack.
+
+---millionco // cli-to-js
+https://github.com/millionco/cli-to-js
+About
+Turn any CLI into a JavaScript API, automatically.
+
+---labarba // sciwrite
+https://github.com/labarba/sciwrite
+About
+Agent Skill for AI-assisted manuscript writing review, based on Dr. Kristin Sainani's "Writing in the Sciences" methodology.
+
+---tihiera // raincast
+https://github.com/tihiera/raincast
+About
+Describe an app. Get a desktop app. AI-powered generator that builds real Tauri applications from natural language.
+
+---razvandimescu // numa
+https://github.com/razvandimescu/numa
+About
+Portable DNS resolver in Rust — .numa local domains, ad blocking, developer overrides
+
+---decisionnode // DecisionNode
+https://github.com/decisionnode/DecisionNode
+About
+CLI + Local MCP - A shared structured memory store across Claude Code, Cursor, Windsurf, Antigravity, and every MCP client. Semantically queryable.
+
+---zonelessdev // zoneless
+https://github.com/zonelessdev/zoneless
+About
+Open-source Stripe Connect alternative. ~$0.002 payout fees. Identical API to Stripe. Instant global USDC payouts. Self-hosted.
+
+---kitfunso // hippo-memory
+https://github.com/kitfunso/hippo-memory
+About
+Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero dependencies.
+
+---Aniket-508 // termcn
+https://github.com/Aniket-508/termcn
+About
+Beautiful terminal UI components, built on Ink. 100% Free, Zero config, one command setup.
+
+---NatiCha // bunwv
+https://github.com/NatiCha/bunwv
+Headless browser automation CLI for Bun, powered by Bun.WebView. Cross-platform: WebKit on macOS (default, zero dependencies), Chrome on macOS/Linux/Windows.
+A persistent daemon keeps a browser instance alive so page state — DOM, modals, forms, auth, cookies — survives across commands. Designed agent-first: every action verb is silent on success, errors are JSON on stderr with stable exit codes, and event/console buffers are cursor-pulled. Built for AI coding assistants (Claude Code, Cursor, etc.) driving the browser through discrete tool calls.
+
+---xsawyerx // curl-doom
+https://github.com/xsawyerx/curl-doom
+About
+DOOM, played over cURL
+Can it run Doom? This developer took that question to the network layer. Curl Doom is an HTTP server that renders live
+Doom frames as antsy halfblock characters and streams them to your terminal over a standard web request.
+Type one curl command and you're playing Doom. Birectional streaming captures your keystrokes and pushes updated ASKI frames back in real time.
+How does it work?
+One streaming HTTP request, two directions: keystrokes go up the request body, ANSI frames come down the response body. No key-loop wrapper, no per-keystroke round-trip. This is Just a single TCP connection doing both halves at once.
+
+---gordonmurray // firnflow
+https://github.com/gordonmurray/firnflow
+About
+The cost efficiency of S3 with the speed of local RAM. A multi-tenant vector and full-text search engine featuring a tiered RAM → NVMe → S3 architecture for microsecond latency on top of object storage
+
+---h4ckf0r0day // obscura
+https://github.com/h4ckf0r0day/obscura
+About
+The headless browser for AI agents and web scraping
+Obscura is a headless browser engine written in Rust, built for web scraping and AI agent automation. It runs real JavaScript via V8, supports the Chrome DevTools Protocol, and acts as a drop-in replacement for headless Chrome with Puppeteer and Playwright.
+
+---vercel-labs // wterm
+https://github.com/vercel-labs/wterm
+About
+A terminal emulator for the web
+wterm ("dub-term") renders to the DOM — native text selection, copy/paste, find, and accessibility come for free. The core is written in Zig and compiled to WASM for near-native performance.
+
+---AmmarAlasad // NextGenChat
+https://github.com/AmmarAlasad/NextGenChat
+About
+NextGenTeam is a collaborative platform where users can chat with friends and teams of AI agents. Each agent can have its own memory, identity, tools, workspace, and permissions. The system supports MCP integrations, cron jobs, shared files, and rule-based restrictions to help teams work together more efficiently with AI.
+
+---rretsiem // opencode-hive
+https://github.com/rretsiem/opencode-hive
+About
+Multi-agent architecture for Opencode — cost-optimized model routing, parallel specialist execution, dev tools, and a self-maintaining project wiki
+
+---pminervini // deep-research-mcp
+https://github.com/pminervini/deep-research-mcp
+About
+MCP server for OpenAI's Deep Research APIs, Gemini Deep Research Agent, Allen AI's DR-Tulu, and Hugging Face's Open Deep Research
+Deep Research MCP/CLI/TUI
+
+---synergenius-fw // fwstack
+https://github.com/synergenius-fw/fwstack
+https://www.reddit.com/r/ClaudeAI/comments/1slc2sl/today_im_going_to_show_you_how_to_replace_your/
+About
+Compiled dev workflows for AI coding assistants. 10 deterministic pipelines + community registry. Works on Claude Code, Cursor, Copilot, Codex, Windsurf. Powered by Flow Weaver.
+FWStack runs compiled pipelines instead of prompts. Each workflow is a TypeScript file that the Flow Weaver compiler validates, the graph must be correct, types must match, connections must exist. The AI only gets control at specific pause points. Everything else (linting, testing, secret scanning, git diff) runs as real code without it.
+
+---mycelium-io // mycelium
+https://github.com/mycelium-io/mycelium
+About
+Multi-agent coordination + persistent memory, semantic negotiation, async rooms, and a shared knowledge graph
+
+---deemuk123 // steno
+https://github.com/deemuk123/steno
+About
+steno is a Rust-based tool that compresses text before it reaches LLMs, reducing token cost and saving context space. It removes noise, shortens common phrases, and abbreviates domain terms. Fully reversible, it works across prompts, documents, code, and chat history.
+deemuk — compress any text 25–95% before it hits your LLM (Rust, MIT)
+https://www.reddit.com/user/3rr0r404-ktm/comments/1sn2nrl/deemuk_compress_any_text_2595_before_it_hits_your/
+
+---tech-engine // goscrapy
+https://github.com/tech-engine/goscrapy
+https://www.reddit.com/r/webscraping/comments/1sn3s1m/goscrapy_revamped_more_powerful_than_ever_with/
+About
+GoScrapy: Harnessing Go's perfomance for blazingly fast web scraping, inspired by Python's Scrapy framework.
+
+---video-db // agentic-streams
+https://github.com/video-db/agentic-streams
+https://www.reddit.com/r/aiagents/comments/1smws1k/built_a_personal_agent_that_replaces_feeds_with/
+About
+Create & stream personalized agentic video briefings on any topic.
+Built a personal agent that replaces feeds with scheduled video briefings (no scrolling, no algorithms)
+
+---h4ckf0r0day // obscura
+https://github.com/h4ckf0r0day/obscura
+About
+The headless browser for AI agents and web scraping
+https://github.com/h4ckf0r0day/obscura
+
+---CerebroCanibalus // Ultra-Godot-MCP-ASL
+https://github.com/CerebroCanibalus/Ultra-Godot-MCP-ASL
+About
+This is an MCP server for Godot Engine that allows AIs and assistants to control projects directly: create scenes, manipulate nodes, manage resources, and validate code, all without opening the editor. While other MCPs launch godot --headless --script per operation (2-5s overhead, usually crashing the editor). Ultra Godot MCP reads and writes .tscn directly with its native parser in milliseconds through an organized sessions method for the AI Agent.
+
+---arteemg // AutoHypothesis
+https://github.com/arteemg/AutoHypothesis
+AutoHypothesis
+an open-source agentic framework for quantitative finance research
+
+---rui-ye // OpenSeeker
+https://github.com/rui-ye/OpenSeeker
+About
+OpenSeeker: A search agent with open-source data and models
+
+---How to properly deal with a CLAUDE.md file.
+1)Symlink is better, or atleast it should be something like “@AGENTS.md”, so you will literally “insert” it in agent in the same was as regular AGENTS.md
+2)Seriously... just create a symlink! ln -s AGENTS.md CLAUDE.md
+3)I’m using @AGENTS.md in my CLAUDE.md file. 
+
+---evo-hq // evo
+https://github.com/evo-hq/evo
+https://www.reddit.com/r/ClaudeAI/comments/1slft9w/i_built_a_claude_code_plugin_that_optimizes_your/
+About
+I built a Claude Code plugin that optimizes your codebase through experiments (autoresearch for code)
+A plugin for Claude Code and Codex that turns your codebase into an autoresearch loop — discovers what to measure, instruments the benchmark, then runs tree search with parallel subagents.
+Inspired by Karpathy's autoresearch idea — an LLM runs training experiments autonomously to beat its own best score — but applied to code instead of ML training runs. I built this plugin as a way to set up an optimization loop on a codebase without writing the harness, scoring, and orchestration from scratch every time.
+
+---sandroandric // AgentHandover
+https://github.com/sandroandric/AgentHandover
+https://www.reddit.com/r/ClaudeCode/comments/1sjmovr/demo_agent_that_watches_your_screen_and_generates/
+About
+What if OpenClaw, Claude Code, Codex etc. knew how to do your work without you saying it? AgentHandover observes you, learns and teaches your agents with self-improving skills.
+Demo: Agent that watches your screen and generates Skills so that ClaudeCode can do your work exactly like you without you having to explain. Open-source
+
+---Aws505 // tsm
+https://github.com/Aws505/tsm
+About
+TMUX Session Manager
+TSM – pure-bash tmux session manager: SSH auto-attach + interactive session switcher, zero dependencies
+
+---michaeleveringham // scrabt
+https://github.com/michaeleveringham/scrabt
+About
+Versatile webscraping package.
+
+---Claude Code "Auto-Continue": An AHK Script to automatically resume your session when limits reset
+https://www.reddit.com/r/ClaudeAI/comments/1sitcwq/claude_code_autocontinue_an_ahk_script_to/
+https://www.reddit.com/r/ClaudeAI/comments/1nph66f/how_to_automatically_continue_command_once_5h/
+
+---Donchitos // Claude-Code-Game-Studios
+https://github.com/Donchitos/Claude-Code-Game-Studios
+About
+Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.
+
+---Commands-com // garden
+https://github.com/Commands-com/garden
+https://www.reddit.com/r/ClaudeCode/comments/1siizwj/fully_automated_claude_code_built_a_pipeline/
+About
+A fully automated site that runs a commands.com pipeline once a day
+
+---AI 3D World Generation for Larger Complex Environments
+https://marble.worldlabs.ai/
+https://www.reddit.com/r/TopologyAI/comments/1sfe2ds/ai_3d_world_generation_for_larger_complex/
+
+---jo-inc // camofox-browser
+https://github.com/jo-inc/camofox-browser
+About
+Headless browser automation server for AI agents to visit sites that are usually blocked
+
+---prettysmartdev // amux
+https://github.com/prettysmartdev/amux
+About
+Multi-agent terminal multiplexer for secure code and claw agents. Coordinate agents across projects and tasks.
+
+---Panniantong // Agent-Reach
+https://github.com/Panniantong/Agent-Reach
+About
+Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.
+
+---Sompote // Tigrimos
+https://github.com/Sompote/Tigrimos
+https://tigrimos.github.io/
+https://www.reddit.com/r/aiagents/comments/1sei0sn/tigrimos_v110_tiger_cowork_v050_dropped_today/
+About
+A self-hosted AI workspace with chat, code execution, parallel multi-agent orchestration, and a skill marketplace. Runs on macOS and Windows. Everything executes inside a secure Ubuntu sandbox — no Docker required.
+A self-hosted AI workspace with chat, code execution, parallel multi-agent orchestration, cross-machine remote agents, Auto (AI create architecture), live agent diagram, async parallel sub-agents, and a skill marketplace. Runs on macOS and Windows. Everything executes inside a secure Ubuntu sandbox — no Docker required.
+TigrimOS v1.1.0 + Tiger CoWork v0.5.0 — dropped today. Remote agents, swarm-to-swarm, and configurable governance. Self-hosted, free, open source.
+
+---ColeMurray // background-agents
+https://github.com/ColeMurray/background-agents
+About
+An open-source background agents coding system
+
+---[*]Wifi signals can be used to see your body through walls.
+https://x.com/techexplain1/status/2045210998047674602
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+---Components
+
+---https://component.gallery/
+---https://github.com/topics/components-library
+
+---Untitled UI
+https://www.untitledui.com/blog/react-component-libraries
+
+---Kibo UI 
+https://www.kibo-ui.com/
+
+---SHSF UI
+https://www.shsfui.com/
+
+---Mvpblocks
+https://blocks.mvp-subha.me/docs/add-a-block
+https://github.com/subhadeeproy3902/mvpblocks
+
+---Origin UI - coss.com
+https://github.com/cosscom/coss
+https://coss.com/origin
+
+---shadcn.io
+https://www.shadcn.io/template/origin-space-originui
+https://github.com/shadcnio/react-shadcn-components
+https://ui.shadcn.com/docs/installation
+
+---https://www.originui-ng.com/
+https://github.com/radix-ng/origin-ui
+https://www.reddit.com/r/react/comments/1igmcdh/origin_ui_500_copy_paste_components_built_with/
+
+---https://github.com/toeverything/blocksuite
+https://blocksuite.io/
+
+---coreui / coreui-react
+https://github.com/coreui/coreui-react
+https://coreui.io/react/docs/getting-started/introduction/
+
+---[*]graphieros / vue-data-ui
+https://github.com/graphieros/vue-data-ui
+https://vue-data-ui.graphieros.com/
+
+---https://reactbits.dev/ 
+
+https://github.com/DavidHDev/react-bits
+
+---threejs 
+https://github.com/mrdoob/three.js/
+https://x.com/threejs/status/1998816109223723084
+
+---vue
+
+---https://v0.app/templates/components
+
+---Framer
+https://www.framer.com/marketplace/templates/category/business/?pricing=free&page=4
+
+---next js : https://nextjs.org/docs/app/api-reference/components/font
+
+---https://www.freepik.com/?log-in=google
+
+---ln-dev7 // square-ui
+https://github.com/ln-dev7/square-ui
+About
+Collection of beautifully crafted open-source layouts UI built with shadcn/ui.
+
+---How I Build Premium $5k SaaS Websites with AI (3D Animations & Shadcn UI Components)
+https://www.youtube.com/watch?v=WqSf0noa4hk
+
+---Google is enabling Stitch "Design Agent" to generate a working prototype of a design, and also running these prototypes in an Interactive mode or exporting them in AI Studio.
+https://x.com/testingcatalog/status/1998164707749118078
+
+---Check out these 80 must-visit sites for designers! 🎨
+
+---CloudAI-X // threejs-skills
+https://github.com/CloudAI-X/threejs-skills
+
+---Slide Generation With Nano Banana Free (Open source)
+https://github.com/nomie7/nano-banana-slides-prompter
+
+---callstackincubator  agent-skills
+https://github.com/callstackincubator/agent-skills
+About
+A collection of agent-optimized React Native skills for AI coding assistants.
+
+---New Three.js Blocks release! 🚀
+https://x.com/onirenaud/status/2012881165619769441
+https://www.threejs-blocks.com/docs/
+
+---Stitch via MCP
+https://stitch.withgoogle.com/docs/mcp/setup
+https://github.com/StitchAI/stitch-ai-mcp
+
+---dgreenheck // webgpu-claude-skill
+https://github.com/dgreenheck/webgpu-claude-skill
+
+---How to Build $10K Websites with Claude Code
+Sitelerin f12 Elements kısmından örnek.4:18
+
+---21st.dev
+https://21st.dev/community/components
+
+---https://www.awwwards.com/
+
+---https://godly.website/
+
+---https://codepen.io/
+
+---https://www.dylanbrouwer.design/
+
+---https://particles.casberry.in/
+
+---https://x.com/RoundtableSpace/status/2024510537736872268
+
+---https://radiant-shaders.com/gallery/all
+
+---https://motionsites.ai/
+
+---https://land-book.com/
+
+---voidzero-dev // vite-plus
+https://github.com/voidzero-dev/vite-plus
+
+---VoltAgent // awesome-design-md
+https://github.com/VoltAgent/awesome-design-md
+
+---https://www.youtube.com/watch?v=T1VOVArT9YI
+
+---JCodesMore // ai-website-cloner-template
+https://github.com/JCodesMore/ai-website-cloner-template
+
+---mrdoob // three.wasm
+https://github.com/mrdoob/three.wasm
+About
+8x Faster JavaScript 3D Library.
+
+--- vitejs vite
+https://github.com/vitejs/vite
+
+---react - 3d 
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+Video Yapımı
+
+---video creation
+https://github.com/Auto-Vio/autovio
+About
+Open-source AI video pipeline. Text prompt → scenario → images → video clips → editor → MP4. Self-hosted, multi-provider, MCP-ready.
+
+---VideoZero // skills
+https://github.com/VideoZero/skills
+About
+A collection of skills for agentic video generation for structured visuals based on MotionCanvas.
+
+---greensock // gsap-skills
+https://github.com/greensock/gsap-skills
+About
+Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage.
+
+Video Edit : 
+
+---walterlow // freecut
+https://github.com/walterlow/freecutAbout
+FreeCut is a professional-grade video editor that runs entirely in your browser. Professional video editing, zero installation. Create stunning videos with multi-track editing, keyframe animations, real-time preview, and high-quality exports.
+
+---getpaseo // paseo
+https://github.com/getpaseo/paseo
+About
+Manage agents remotely from your phone, desktop and CLI
+
+---Clone🎭 Websites🌐 to Steal Password (Don't Login) | SET Harvesting Attack (2026)
+https://www.youtube.com/watch?v=7OvLC5tmqyk
+
+---BerriAI // litellm
+https://github.com/BerriAI/litellm
+About
+Python SDK, Proxy Server (AI Gateway) to call 100+ LLM APIs in OpenAI (or native) format, with cost tracking, guardrails, loadbalancing and logging. [Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthropic, Sagemaker, HuggingFace, VLLM, NVIDIA NIM]
+
+---ruvnet // ruflo
+https://github.com/ruvnet/ruflo
+About
+🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Ai Modelleri - Terminalleri Canlı İzleme
+
+---AgentCraft update⚔️
+https://x.com/idosal1/status/2014748619480371707
+
+---Cursor is back on the menu, boys!
+https://x.com/dom_scholz/status/2011454445922693622
+https://x.com/dom_scholz/status/2014353586688291277
+
+---Nearcyan // vibecraft
+https://github.com/Nearcyan/vibecraft
+
+---Ralv.ai - Starcraft for Agents
+https://x.com/i/communities/2009448018068558049
+https://ralv.ai/#problem
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+---1) karpathy / nn-zero-to-hero
+https://github.com/karpathy/nn-zero-to-hero
+
+About
+Neural Networks: Zero to Hero
+
+---2) fastai / fastai
+https://github.com/fastai/fastai
+
+About
+The fastai deep learning library
+
+---3) acdemic / awesome-datascience
+https://github.com/academic/awesome-datascience
+
+About
+📝 An awesome Data Science repository to learn and apply for real world problems.
+
+---4) Claude Code plugin to persist memory across sessions. 
+https://github.com/thedotmack/claude-mem
+
+About
+A Claude Code plugin that automatically captures everything Claude does during your coding sessions, compresses it with AI (using Claude's agent-sdk), and injects relevant context back into future sessions
+
+---5) AutoGLM, an AI agent by 
+@Zai_org
+ which can use a phone
+https://x.com/donvito/status/1999122760329761053
+https://x.com/Zai_org/status/1999118106543919203
+https://x.com/itsPaulAi/status/1999185332026106336
+
+---6) New: Upstash Workflow can now wait for webhooks 🎉
+
+◆ Pause your workflow until a webhook is received
+◆ Automatic retries on failure
+◆ Perfect for Next.js & serverless
+https://x.com/upstash/status/1998371345353097589
+
+---7) MCP server for AI Reddit browsing
+https://x.com/tom_doerr/status/1997723913661399476
+https://github.com/karanb192/reddit-mcp-buddy/
+
+---8) The video shows Getting started with Agentic coding in Toad. Pick your agent. Install. And you are off to the races. All without ever leaving Toad or your terminal!
+
+@OpenHandsDev
+ https://x.com/willmcgugan/status/1997667900618911805
+
+---9) Built a multi-agent system on Cloudflare Workers using Claude Code - 16 AI agents, 4 teams, fully autonomous development
+https://www.reddit.com/r/ClaudeAI/comments/1p6w71c/built_a_multiagent_system_on_cloudflare_workers/
+
+---10) nusquama  nworkflows.xyz
+https://github.com/nusquama/n8nworkflows.xyz
+N8N Workflows Catalog
+
+---11) n8n-io   n8n 
+https://github.com/n8n-io/n8n
+
+About
+Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+
+---12) Zie619 n8n-workflows
+https://github.com/Zie619/n8n-workflows
+About
+all of the workflows of n8n i could find (also from the site itself)
+
+---13) N8N Workflows
+https://n8nworkflows.xyz/
+
+---14 ) https://community.n8n.io/
+https://n8n.io/workflows/categories/market-research/
+
+---15) YouMind-OpenLab awesome-nano-banana-pro-prompts
+https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts
+
+---16) steipete mcporter
+https://github.com/steipete/mcporter
+
+About
+Call MCPs via TypeScript, masquerading as simple TypeScript API. Or package them as cli.
+
+---17)[*] coleam00 remote-agentic-coding-system
+https://github.com/coleam00/remote-agentic-coding-system
+
+About
+Remote Coding Agent for the Dynamous Agentic Coding Course and special Black Friday livestream. Connect Claude Code or Codex to Slack, Telegram, GitHub, etc.
+
+---18) Termix-SSH Termix
+https://github.com/Termix-SSH/Termix
+
+About
+Termix is a web-based server management platform with SSH terminal, tunneling, and file editing capabilities.
+
+---19) activepieces
+https://github.com/activepieces/activepieces
+
+About
+AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents
+
+---20)trycua cua
+https://github.com/trycua/cua
+
+About
+Open-source infrastructure for Computer-Use Agents. Sandboxes, SDKs, and benchmarks to train and evaluate AI agents that can control full desktops (macOS, Linux, Windows).
+
+---21) zilliztech / claude-context
+https://github.com/zilliztech/claude-context
+
+About
+Code search MCP for Claude Code. Make entire codebase the context for any coding agent.
+
+---22)[*] Give Your AI Agent Mouth and Ears: Building a Voice-Enabled MCP for Hands-Free Development
+https://www.tamirdresher.com/blog/2025/12/01/give-your-ai-agent-a-voice-hands-free-development
+
+---23) arpitnath / super-claude-kit
+https://github.com/arpitnath/super-claude-kit
+
+About
+Transform Claude Code from stateless to stateful. Persistent context memory system with cross-session persistence, token-efficient storage, and zero dependencies.
+
+---24)[*] AIs are now training other AIs
+https://www.reddit.com/r/Anthropic/comments/1pgjacj/ais_are_now_training_other_ais/
+https://huggingface.co/blog/hf-skills-training
+
+---24)[*] Subagents lara, Ai Provider ları atamak. ve Claude CLI da, gemini CLI ın context gücünü kullanılmasını sağlamak.
+https://www.reddit.com/r/ClaudeAI/comments/1pg2nz9/i_have_gemini_cli_working_basically_as_a_subagent/
+https://github.com/robbyt/claude-skills/tree/main/plugins%2Fgemini
+https://github.com/jamubc/gemini-mcp-tool
+
+---25) I ran Claude Code in a self-learning loop until it successfully translated our entire Python repo to TypeScript
+Built with Claude
+Some of you might have seen my post here about my open-source implementation of ACE (agents that learn from execution feedback). I connected the framework to Claude Code and let it run in a continuous loop on a real task.
+
+The result: After ~4 hours, 119 commits and 14k lines of code written, Claude Code fully translated our Python repo to TypeScript (including swapping LiteLLM for Vercel AI SDK). Zero build errors, all tests passing & all examples running with an API key. And all that completely autonomous: I just wrote a short prompt, started it and walked away.
+
+Python source: https://github.com/kayba-ai/agentic-context-engine
+https://www.reddit.com/r/ClaudeAI/comments/1pez28a/i_ran_claude_code_in_a_selflearning_loop_until_it/
+
+---26)  https://code.claude.com/docs/en/hooks
+
+https://docs.claude.com/en/docs/claude-code/skills
+
+https://code.claude.com/docs/en/sub-agents
+into every prompt where you mention 'skills' or 'agents' claude remembers to follow directions and will do a lot better job
+
+---27) MCP that lets Claude talk to Perplexity, Grok, GPT-5, Gemini, Kimi, Qwen
+https://www.reddit.com/r/ClaudeAI/comments/1pcbls6/mcp_that_lets_claude_talk_to_perplexity_grok_gpt5/
+https://www.tachibot.com/
+https://github.com/byPawel/tachibot-mcp
+
+---28)[*]https://x.com/claudeai/status/1998109170449719647
+
+Claude Code in Slack signals shift to collaboration-first AI coding
+https://www.reddit.com/r/ClaudeAI/comments/1phv0vj/claude_code_in_slack_signals_shift_to/
+Today Anthropic announced Claude Code integration for Slack, letting developers @ mention Claude directly from chat threads to trigger coding sessions.
+You can now delegate tasks to Claude Code directly from Slack.
+
+Simply tag @.Claude in a channel or thread. Coding tasks will automatically be routed to Claude Code and start up a new session on the web.
+
+29) n8n-skills
+https://github.com/czlonkowski/n8n-skills/	
+About
+n8n skillset for Claude Code to build flawless n8n workflows
+
+
+
+---29) I built this open source Cli + TUI to do all of that. Currently running as stateless so theres no linked context between each run but Ill start on it if you like it.
+https://www.reddit.com/r/ClaudeAI/comments/1phfesm/if_you_also_got_tired_of_switching_between_claude/
+https://github.com/MedChaouch/Puzld.ai
+
+---30) Claude, Cursor, VS Code Copilot, and Codex all share the same "Skills" format now
+https://www.reddit.com/r/ClaudeAI/comments/1pqqful/til_claude_cursor_vs_code_copilot_and_codex_all/
+my-skill/
+├── SKILL.md          # instructions + when to trigger
+├── scripts/          # optional executable code
+└── references/       # optional docs to load when needed
+
+
+31) https://www.reddit.com/r/OpenClawInstall/comments/1rtdcf7/karpathy_just_dropped_autoresearch_on_github_and/
+
+Karpathy just dropped autoresearch on GitHub and it runs perfectly as an OpenClaw overnight skill. Here's what happened when I tested it.
+If you missed it this week, Andrej Karpathy — former Tesla AI director and OpenAI co-founder — quietly pushed a repo called autoresearch to GitHub and it has been breaking the AI community's brain ever since.
+
+The repo crossed 8,000 GitHub stars in days. Here's why the AI world lost its mind — and why it matters directly for anyone running OpenClaw.
+
+What autoresearch actually does:
+
+The concept is deceptively simple. You give an AI agent a real training setup — in Karpathy's case, a stripped-down 630-line version of his own nanochat LLM framework — and you let it run experiments on its own. The loop looks like this:
+
+Agent reads a program.md Markdown file you write — this is its "research brief"
+
+Agent modifies train.py to propose an improvement
+
+It trains for exactly 5 minutes on a single GPU
+
+It checks whether validation loss improved
+
+If yes, it commits the change and moves on. If no, it discards it and tries something else
+
+Repeat. Forever. Until you stop it.
+
+Karpathy ran this for ~48 hours on a single H100 GPU. When he came back, the agent had completed roughly 700 experiments and identified 20 code changes that genuinely improved performance — all additive, all transferable to larger models. His nanochat benchmark for "Time to GPT-2" dropped from 2.02 hours to 1.80 hours — an 11% improvement over work he had been manually tuning for months.
+
+The kicker? One of the improvements was a bug the agent found in Karpathy's own code. A missing scaler multiplier in his QKNorm implementation that was making attention too diffuse. He had missed it. The agent didn't.
+
+Why this hits different for OpenClaw users:
+
+Most people running OpenClaw are already building overnight workflows — file watchers, digest agents, finance monitors. The program.md structure in autoresearch is essentially the same concept as how you write OpenClaw skill instructions: a plain-text brief that tells the agent what to do, what metric to track, and when to commit vs. discard results.
+
+The difference is Karpathy applied it to ML research. But the loop structure — read brief → run task → evaluate → commit or discard → repeat — is the exact same architecture you can implement across any domain where you have:
+
+A repeatable task
+
+A measurable outcome
+
+A tolerance for some failed attempts overnight
+
+Think about what that means beyond LLM training:
+
+SEO testing: Agent tries headline variants, tracks CTR, keeps the winner
+
+Code refactoring: Agent proposes changes, runs tests, commits passing changes only
+
+Data pipeline tuning: Agent adjusts parse logic, checks output quality, iterates
+
+Prompt optimization: Agent rewrites a system prompt, runs evals, keeps the better version
+
+The loop is universal. Karpathy just showed it working at the research level with a world-class benchmark.
+
+The program.md file is the whole game:
+
+This is the part most people gloss over in the coverage, but it's the most important piece for OpenClaw users specifically. The program.md is not a config file. It's a natural language brief that tells the agent:
+
+What you're trying to improve
+
+What counts as a successful experiment
+
+How to structure each iteration
+
+What not to touch
+
+Karpathy's default program.md is intentionally minimal — he says the "meta-skill" is learning to write better program.md files over time. Each version you write becomes the accumulated intelligence of your research organization.
+
+That framing maps directly to how OpenClaw skill files work. If you've written a custom skill before, you already understand the program.md mental model. The only difference is the evaluation loop is now automated and runs in Git.
+
+What the next version looks like:
+
+Karpathy has publicly stated his next step is enabling multiple agents to run in parallel on the same codebase — asynchronous, collaborative, each working a different hypothesis simultaneously. He compared it to SETI@home but for ML research. The multi-agent parallel version of this, applied to OpenClaw overnight workflows, is not far off.
+
+How to actually look at the repo:
+
+github.com/karpathy/autoresearch
+
+The README is short. The program.md file is where you'll spend most of your time. Read the comments in train.py before you fork it — the fixed vs. editable sections are clearly marked and that boundary is important to understand before you adapt it.
+
+Single H100 is the benchmark machine but he specifically notes it's designed to be adapted to lower-end hardware. Community forks for consumer GPUs are already appearing.
+
+One honest caveat:
+
+This is not a plug-and-play tool for most OpenClaw setups today. It requires a GPU-capable machine, familiarity with PyTorch, and some comfort with the evaluation loop concept. If your current setup is CPU-only or VPS-based, the ML training side won't apply directly — but the program.md architecture absolutely does, and you can implement the same loop logic in OpenClaw without the GPU component.
+
+Question for the community:
+
+Has anyone here already started adapting the autoresearch loop structure for non-ML overnight tasks in OpenClaw? Specifically curious whether anyone has tried a commit-or-discard loop for prompt optimization or content testing. Would love to see what program.md files people are writing for it.
+
+32) https://www.reddit.com/r/LocalLLaMA/comments/1rrisqn/i_was_backend_lead_at_manus_after_building_agents/
+
+I was backend lead at Manus. After building agents for 2 years, I stopped using function calling entirely. Here's what I use instead.
+Discussion
+English is not my first language. I wrote this in Chinese and translated it with AI help. The writing may have some AI flavor, but the design decisions, the production failures, and the thinking that distilled them into principles — those are mine.
+
+I was a backend lead at Manus before the Meta acquisition. I've spent the last 2 years building AI agents — first at Manus, then on my own open-source agent runtime (Pinix) and agent (agent-clip). Along the way I came to a conclusion that surprised me:
+
+A single run(command="...") tool with Unix-style commands outperforms a catalog of typed function calls.
+
+Here's what I learned.
+
+Why *nix
+Unix made a design decision 50 years ago: everything is a text stream. Programs don't exchange complex binary structures or share memory objects — they communicate through text pipes. Small tools each do one thing well, composed via | into powerful workflows. Programs describe themselves with --help, report success or failure with exit codes, and communicate errors through stderr.
+
+LLMs made an almost identical decision 50 years later: everything is tokens. They only understand text, only produce text. Their "thinking" is text, their "actions" are text, and the feedback they receive from the world must be text.
+
+These two decisions, made half a century apart from completely different starting points, converge on the same interface model. The text-based system Unix designed for human terminal operators — cat, grep, pipe, exit codes, man pages — isn't just "usable" by LLMs. It's a natural fit. When it comes to tool use, an LLM is essentially a terminal operator — one that's faster than any human and has already seen vast amounts of shell commands and CLI patterns in its training data.
+
+This is the core philosophy of the *nix Agent: don't invent a new tool interface. Take what Unix has proven over 50 years and hand it directly to the LLM.
+
+Why a single run
+The single-tool hypothesis
+Most agent frameworks give LLMs a catalog of independent tools:
+
+tools: [search_web, read_file, write_file, run_code, send_email, ...]
+Before each call, the LLM must make a tool selection — which one? What parameters? The more tools you add, the harder the selection, and accuracy drops. Cognitive load is spent on "which tool?" instead of "what do I need to accomplish?"
+
+My approach: one run(command="...") tool, all capabilities exposed as CLI commands.
+
+run(command="cat notes.md")
+run(command="cat log.txt | grep ERROR | wc -l")
+run(command="see screenshot.png")
+run(command="memory search 'deployment issue'")
+run(command="clip sandbox bash 'python3 analyze.py'")
+The LLM still chooses which command to use, but this is fundamentally different from choosing among 15 tools with different schemas. Command selection is string composition within a unified namespace — function selection is context-switching between unrelated APIs.
+
+LLMs already speak CLI
+Why are CLI commands a better fit for LLMs than structured function calls?
+
+Because CLI is the densest tool-use pattern in LLM training data. Billions of lines on GitHub are full of:
+
+# README install instructions
+pip install -r requirements.txt && python main.py
+
+# CI/CD build scripts
+make build && make test && make deploy
+
+# Stack Overflow solutions
+cat /var/log/syslog | grep "Out of memory" | tail -20
+I don't need to teach the LLM how to use CLI — it already knows. This familiarity is probabilistic and model-dependent, but in practice it's remarkably reliable across mainstream models.
+
+Compare two approaches to the same task:
+
+Task: Read a log file, count the error lines
+
+Function-calling approach (3 tool calls):
+  1. read_file(path="/var/log/app.log") → returns entire file
+  2. search_text(text=<entire file>, pattern="ERROR") → returns matching lines
+  3. count_lines(text=<matched lines>) → returns number
+
+CLI approach (1 tool call):
+  run(command="cat /var/log/app.log | grep ERROR | wc -l")
+  → "42"
+One call replaces three. Not because of special optimization — but because Unix pipes natively support composition.
+
+Making pipes and chains work
+A single run isn't enough on its own. If run can only execute one command at a time, the LLM still needs multiple calls for composed tasks. So I make a chain parser (parseChain) in the command routing layer, supporting four Unix operators:
+
+|   Pipe: stdout of previous command becomes stdin of next
+&&  And:  execute next only if previous succeeded
+||  Or:   execute next only if previous failed
+;   Seq:  execute next regardless of previous result
+With this mechanism, every tool call can be a complete workflow:
+
+# One tool call: download → inspect
+curl -sL $URL -o data.csv && cat data.csv | head 5
+
+# One tool call: read → filter → sort → top 10
+cat access.log | grep "500" | sort | head 10
+
+# One tool call: try A, fall back to B
+cat config.yaml || echo "config not found, using defaults"
+N commands × 4 operators — the composition space grows dramatically. And to the LLM, it's just a string it already knows how to write.
+
+The command line is the LLM's native tool interface.
+
+Heuristic design: making CLI guide the agent
+Single-tool + CLI solves "what to use." But the agent still needs to know "how to use it." It can't Google. It can't ask a colleague. I use three progressive design techniques to make the CLI itself serve as the agent's navigation system.
+
+Technique 1: Progressive --help discovery
+A well-designed CLI tool doesn't require reading documentation — because --help tells you everything. I apply the same principle to the agent, structured as progressive disclosure: the agent doesn't need to load all documentation at once, but discovers details on-demand as it goes deeper.
+
+Level 0: Tool Description → command list injection
+
+The run tool's description is dynamically generated at the start of each conversation, listing all registered commands with one-line summaries:
+
+Available commands:
+  cat    — Read a text file. For images use 'see'. For binary use 'cat -b'.
+  see    — View an image (auto-attaches to vision)
+  ls     — List files in current topic
+  write  — Write file. Usage: write <path> [content] or stdin
+  grep   — Filter lines matching a pattern (supports -i, -v, -c)
+  memory — Search or manage memory
+  clip   — Operate external environments (sandboxes, services)
+  ...
+The agent knows what's available from turn one, but doesn't need every parameter of every command — that would waste context.
+
+Note: There's an open design question here: injecting the full command list vs. on-demand discovery. As commands grow, the list itself consumes context budget. I'm still exploring the right balance. Ideas welcome.
+
+Level 1: command (no args) → usage
+
+When the agent is interested in a command, it just calls it. No arguments? The command returns its own usage:
+
+→ run(command="memory")
+[error] memory: usage: memory search|recent|store|facts|forget
+
+→ run(command="clip")
+  clip list                              — list available clips
+  clip <name>                            — show clip details and commands
+  clip <name> <command> [args...]         — invoke a command
+  clip <name> pull <remote-path> [name]   — pull file from clip to local
+  clip <name> push <local-path> <remote>  — push local file to clip
+Now the agent knows memory has five subcommands and clip supports list/pull/push. One call, no noise.
+
+Level 2: command subcommand (missing args) → specific parameters
+
+The agent decides to use memory search but isn't sure about the format? It drills down:
+
+→ run(command="memory search")
+[error] memory: usage: memory search <query> [-t topic_id] [-k keyword]
+
+→ run(command="clip sandbox")
+  Clip: sandbox
+  Commands:
+    clip sandbox bash <script>
+    clip sandbox read <path>
+    clip sandbox write <path>
+  File transfer:
+    clip sandbox pull <remote-path> [local-name]
+    clip sandbox push <local-path> <remote-path>
+Progressive disclosure: overview (injected) → usage (explored) → parameters (drilled down). The agent discovers on-demand, each level providing just enough information for the next step.
+
+This is fundamentally different from stuffing 3,000 words of tool documentation into the system prompt. Most of that information is irrelevant most of the time — pure context waste. Progressive help lets the agent decide when it needs more.
+
+This also imposes a requirement on command design: every command and subcommand must have complete help output. It's not just for humans — it's for the agent. A good help message means one-shot success. A missing one means a blind guess.
+
+Technique 2: Error messages as navigation
+Agents will make mistakes. The key isn't preventing errors — it's making every error point to the right direction.
+
+Traditional CLI errors are designed for humans who can Google. Agents can't Google. So I require every error to contain both "what went wrong" and "what to do instead":
+
+Traditional CLI:
+  $ cat photo.png
+  cat: binary file (standard output)
+  → Human Googles "how to view image in terminal"
+
+My design:
+  [error] cat: binary image file (182KB). Use: see photo.png
+  → Agent calls see directly, one-step correction
+More examples:
+
+[error] unknown command: foo
+Available: cat, ls, see, write, grep, memory, clip, ...
+→ Agent immediately knows what commands exist
+
+[error] not an image file: data.csv (use cat to read text files)
+→ Agent switches from see to cat
+
+[error] clip "sandbox" not found. Use 'clip list' to see available clips
+→ Agent knows to list clips first
+Technique 1 (help) solves "what can I do?" Technique 2 (errors) solves "what should I do instead?" Together, the agent's recovery cost is minimal — usually 1-2 steps to the right path.
+
+Real case: The cost of silent stderr
+
+For a while, my code silently dropped stderr when calling external sandboxes — whenever stdout was non-empty, stderr was discarded. The agent ran pip install pymupdf, got exit code 127. stderr contained bash: pip: command not found, but the agent couldn't see it. It only knew "it failed," not "why" — and proceeded to blindly guess 10 different package managers:
+
+pip install         → 127  (doesn't exist)
+python3 -m pip      → 1    (module not found)
+uv pip install      → 1    (wrong usage)
+pip3 install        → 127
+sudo apt install    → 127
+... 5 more attempts ...
+uv run --with pymupdf python3 script.py → 0 ✓  (10th try)
+10 calls, ~5 seconds of inference each. If stderr had been visible the first time, one call would have been enough.
+
+stderr is the information agents need most, precisely when commands fail. Never drop it.
+
+Technique 3: Consistent output format
+The first two techniques handle discovery and correction. The third lets the agent get better at using the system over time.
+
+I append consistent metadata to every tool result:
+
+file1.txt
+file2.txt
+dir1/
+[exit:0 | 12ms]
+The LLM extracts two signals:
+
+Exit codes (Unix convention, LLMs already know these):
+
+exit:0 — success
+
+exit:1 — general error
+
+exit:127 — command not found
+
+Duration (cost awareness):
+
+12ms — cheap, call freely
+
+3.2s — moderate
+
+45s — expensive, use sparingly
+
+After seeing [exit:N | Xs] dozens of times in a conversation, the agent internalizes the pattern. It starts anticipating — seeing exit:1 means check the error, seeing long duration means reduce calls.
+
+Consistent output format makes the agent smarter over time. Inconsistency makes every call feel like the first.
+
+The three techniques form a progression:
+
+--help       →  "What can I do?"        →  Proactive discovery
+Error Msg    →  "What should I do?"     →  Reactive correction
+Output Fmt   →  "How did it go?"        →  Continuous learning
+Two-layer architecture: engineering the heuristic design
+The section above described how CLI guides agents at the semantic level. But to make it work in practice, there's an engineering problem: the raw output of a command and what the LLM needs to see are often very different things.
+
+Two hard constraints of LLMs
+Constraint A: The context window is finite and expensive. Every token costs money, attention, and inference speed. Stuffing a 10MB file into context doesn't just waste budget — it pushes earlier conversation out of the window. The agent "forgets."
+
+Constraint B: LLMs can only process text. Binary data produces high-entropy meaningless tokens through the tokenizer. It doesn't just waste context — it disrupts attention on surrounding valid tokens, degrading reasoning quality.
+
+These two constraints mean: raw command output can't go directly to the LLM — it needs a presentation layer for processing. But that processing can't affect command execution logic — or pipes break. Hence, two layers.
+
+Execution layer vs. presentation layer
+┌─────────────────────────────────────────────┐
+│  Layer 2: LLM Presentation Layer            │  ← Designed for LLM constraints
+│  Binary guard | Truncation+overflow | Meta   │
+├─────────────────────────────────────────────┤
+│  Layer 1: Unix Execution Layer              │  ← Pure Unix semantics
+│  Command routing | pipe | chain | exit code │
+└─────────────────────────────────────────────┘
+When cat bigfile.txt | grep error | head 10 executes:
+
+Inside Layer 1:
+  cat output → [500KB raw text] → grep input
+  grep output → [matching lines] → head input
+  head output → [first 10 lines]
+If you truncate cat's output in Layer 1 → grep only searches the first 200 lines, producing incomplete results. If you add [exit:0] in Layer 1 → it flows into grep as data, becoming a search target.
+
+So Layer 1 must remain raw, lossless, metadata-free. Processing only happens in Layer 2 — after the pipe chain completes and the final result is ready to return to the LLM.
+
+Layer 1 serves Unix semantics. Layer 2 serves LLM cognition. The separation isn't a design preference — it's a logical necessity.
+
+Layer 2's four mechanisms
+Mechanism A: Binary Guard (addressing Constraint B)
+
+Before returning anything to the LLM, check if it's text:
+
+Null byte detected → binary
+UTF-8 validation failed → binary
+Control character ratio > 10% → binary
+
+If image: [error] binary image (182KB). Use: see photo.png
+If other: [error] binary file (1.2MB). Use: cat -b file.bin
+The LLM never receives data it can't process.
+
+Mechanism B: Overflow Mode (addressing Constraint A)
+
+Output > 200 lines or > 50KB?
+  → Truncate to first 200 lines (rune-safe, won't split UTF-8)
+  → Write full output to /tmp/cmd-output/cmd-{n}.txt
+  → Return to LLM:
+
+    [first 200 lines]
+
+    --- output truncated (5000 lines, 245.3KB) ---
+    Full output: /tmp/cmd-output/cmd-3.txt
+    Explore: cat /tmp/cmd-output/cmd-3.txt | grep <pattern>
+             cat /tmp/cmd-output/cmd-3.txt | tail 100
+    [exit:0 | 1.2s]
+Key insight: the LLM already knows how to use grep, head, tail to navigate files. Overflow mode transforms "large data exploration" into a skill the LLM already has.
+
+Mechanism C: Metadata Footer
+
+actual output here
+[exit:0 | 1.2s]
+Exit code + duration, appended as the last line of Layer 2. Gives the agent signals for success/failure and cost awareness, without polluting Layer 1's pipe data.
+
+Mechanism D: stderr Attachment
+
+When command fails with stderr:
+  output + "\n[stderr] " + stderr
+
+Ensures the agent can see why something failed, preventing blind retries.
+Lessons learned: stories from production
+Story 1: A PNG that caused 20 iterations of thrashing
+A user uploaded an architecture diagram. The agent read it with cat, receiving 182KB of raw PNG bytes. The LLM's tokenizer turned these bytes into thousands of meaningless tokens crammed into the context. The LLM couldn't make sense of it and started trying different read approaches — cat -f, cat --format, cat --type image — each time receiving the same garbage. After 20 iterations, the process was force-terminated.
+
+Root cause: cat had no binary detection, Layer 2 had no guard. Fix: isBinary() guard + error guidance Use: see photo.png. Lesson: The tool result is the agent's eyes. Return garbage = agent goes blind.
+
+Story 2: Silent stderr and 10 blind retries
+The agent needed to read a PDF. It tried pip install pymupdf, got exit code 127. stderr contained bash: pip: command not found, but the code dropped it — because there was some stdout output, and the logic was "if stdout exists, ignore stderr."
+
+The agent only knew "it failed," not "why." What followed was a long trial-and-error:
+
+pip install         → 127  (doesn't exist)
+python3 -m pip      → 1    (module not found)
+uv pip install      → 1    (wrong usage)
+pip3 install        → 127
+sudo apt install    → 127
+... 5 more attempts ...
+uv run --with pymupdf python3 script.py → 0 ✓
+10 calls, ~5 seconds of inference each. If stderr had been visible the first time, one call would have sufficed.
+
+Root cause: InvokeClip silently dropped stderr when stdout was non-empty. Fix: Always attach stderr on failure. Lesson: stderr is the information agents need most, precisely when commands fail.
+
+Story 3: The value of overflow mode
+The agent analyzed a 5,000-line log file. Without truncation, the full text (~200KB) was stuffed into context. The LLM's attention was overwhelmed, response quality dropped sharply, and earlier conversation was pushed out of the context window.
+
+With overflow mode:
+
+[first 200 lines of log content]
+
+--- output truncated (5000 lines, 198.5KB) ---
+Full output: /tmp/cmd-output/cmd-3.txt
+Explore: cat /tmp/cmd-output/cmd-3.txt | grep <pattern>
+         cat /tmp/cmd-output/cmd-3.txt | tail 100
+[exit:0 | 45ms]
+The agent saw the first 200 lines, understood the file structure, then used grep to pinpoint the issue — 3 calls total, under 2KB of context.
+
+Lesson: Giving the agent a "map" is far more effective than giving it the entire territory.
+
+Boundaries and limitations
+CLI isn't a silver bullet. Typed APIs may be the better choice in these scenarios:
+
+Strongly-typed interactions: Database queries, GraphQL APIs, and other cases requiring structured input/output. Schema validation is more reliable than string parsing.
+
+High-security requirements: CLI's string concatenation carries inherent injection risks. In untrusted-input scenarios, typed parameters are safer. agent-clip mitigates this through sandbox isolation.
+
+Native multimodal: Pure audio/video processing and other binary-stream scenarios where CLI's text pipe is a bottleneck.
+
+Additionally, "no iteration limit" doesn't mean "no safety boundaries." Safety is ensured by external mechanisms:
+
+Sandbox isolation: Commands execute inside BoxLite containers, no escape possible
+
+API budgets: LLM calls have account-level spending caps
+
+User cancellation: Frontend provides cancel buttons, backend supports graceful shutdown
+
+Hand Unix philosophy to the execution layer, hand LLM's cognitive constraints to the presentation layer, and use help, error messages, and output format as three progressive heuristic navigation techniques.
+
+CLI is all agents need.
+
+Source code (Go): github.com/epiral/agent-clip
+
+Core files: internal/tools.go (command routing), internal/chain.go (pipes), internal/loop.go (two-layer agentic loop), internal/fs.go (binary guard), internal/clip.go (stderr handling), internal/browser.go (vision auto-attach), internal/memory.go (semantic memory).
+
+Happy to discuss — especially if you've tried similar approaches or found cases where CLI breaks down. The command discovery problem (how much to inject vs. let the agent discover) is something I'm still actively exploring.
+
+29)I've been coding for 45 years including 10 for Microsoft. I'm tired of seeing the agony and pain on this subreddit.
+https://www.reddit.com/r/ClaudeCode/comments/1slfnoq/dont_use_claude_codes_default_system_prompt/
+I've been coding for 45 years including 10 for Microsoft. I'm tired of seeing the agony and pain on this subreddit.
+
+If you're getting frustrated with Claude Code, stop using the default Claude Code's system prompt. It's trying to do everything for everyone and fails miserably on all sides. The claude application has a --system-prompt parameter.
+
+Make your own system prompt that takes the best parts of the default for you and then use a wrapper script that always uses yours. You can see the default prompts that Claude Code uses at https://github.com/Piebald-AI/claude-code-system-prompts. Take one of these as a starter and change it how you see fit. Get Opus to help you.
+
+Do so at your own risk, of course. But experiment! Have fun!
+
+--system-prompt <prompt> System prompt to use for the session
+
+[EDIT]: The Claude Code system prompt IS NOT CLAUDE.md. It is the layer above CLAUDE.md, that influences how your CLAUDE.md is interpreted. The system prompt was patched in patch-claude-code.sh but that hack was completely unnecessary.
+
+30) The ultimate tmux cheatsheet just got better. Major updates made.
+Tip
+Ok I posted not too long ago my first cut at a new modern tmux cheatsheet. It got a great response from the community so thank you. I love building these things and had received a few requests to add features to it (most popular was custom key bindings). I took the great feedback and implemented several new features. I also tweaked some UI/UX elements for quality-of-life improvements. As I said, I love to build this sort of thing & my goal is to try to maximize simplicity while also providing maximum functionality!
+
+https://tmuxcheatsheet.org
+https://www.reddit.com/r/tmux/comments/1scj7m9/the_ultimate_tmux_cheatsheet_just_got_better/
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------

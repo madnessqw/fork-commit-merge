@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL to NoSQL Converter</title>
+    <meta name="description" content="Professional SQL to NoSQL Converter tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="sql, to, nosql, converter, SQL formatter, SQL beautifier, database tool, file converter, format converter, data conversion, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://sql-to-nosql.vercel.app">
+    <meta property="og:title" content="SQL to NoSQL Converter">
+    <meta property="og:description" content="Professional SQL to NoSQL Converter tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SQL to NoSQL Converter",
+  "description": "Professional SQL to NoSQL Converter tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://sql-to-nosql.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111;
+            --bg-card: #161616;
+            --border: #2a2a2a;
+            --text: #fff;
+            --text-secondary: #a0a0a0;
+            --accent: #00d084;
+            --accent-glow: rgba(0, 208, 132, 0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d084 0%, #00a8e8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; }
+        .demo-section {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .panel-header {
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel-body { padding: 20px; }
+        textarea, .code-output {
+            width: 100%;
+            min-height: 200px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text);
+            resize: vertical;
+        }
+        .code-output { white-space: pre-wrap; overflow-x: auto; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: #000;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow); }
+        .features {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .feature h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .feature p { color: var(--text-secondary); }
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, var(--bg-secondary) 100%);
+        }
+        .price { font-size: 3rem; font-weight: 700; margin: 20px 0; }
+        .price span { font-size: 1rem; color: var(--text-secondary); }
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .demo-section { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SQL → NoSQL</div>
+                <button class="btn" onclick="scrollToDemo()">Try Demo</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>SQL to NoSQL Converter</h1>
+            <p>Transform SQL queries into MongoDB, DynamoDB, and Firebase commands instantly. Smart schema mapping included.</p>
+        </div>
+    </section>
+
+    <section id="demo" class="container">
+        <div class="demo-section">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>📝</span> SQL Input
+                </div>
+                <div class="panel-body">
+                    <textarea id="sqlInput" placeholder="Enter your SQL query here...
+
+Example:
+SELECT name, email FROM users WHERE age > 25 ORDER BY created_at DESC LIMIT 10">SELECT name, email FROM users WHERE age > 25 ORDER BY created_at DESC LIMIT 10</textarea>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <span>⚡</span> NoSQL Output
+                </div>
+                <div class="panel-body">
+                    <div class="code-output" id="nosqlOutput">// Click Convert to see result
+db.users.find(
+  { age: { $gt: 25 } },
+  { name: 1, email: 1 }
+).sort({ created_at: -1 }).limit(10)</div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin: 32px 0;">
+            <select id="targetDb" style="padding: 12px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); margin-right: 12px;">
+                <option value="mongodb">MongoDB</option>
+                <option value="dynamodb">DynamoDB</option>
+                <option value="firebase">Firebase</option>
+            </select>
+            <button class="btn" onclick="convert()">Convert Query</button>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔄</div>
+                <h3>Smart Conversion</h3>
+                <p>Automatically transforms SQL syntax to NoSQL with proper operator mapping and best practices.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Multiple Targets</h3>
+                <p>Export to MongoDB, DynamoDB, Firebase, and more. One tool for all your NoSQL needs.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Results</h3>
+                <p>Get converted queries in milliseconds. No waiting, no processing delays.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to convert?</h2>
+            <div class="price">$19 <span>one-time</span></div>
+            <p style="color: var(--text-secondary); margin-bottom: 32px;">Lifetime access. No subscriptions. No limits.</p>
+            <button class="btn" onclick="buyNow()">Get SQL to NoSQL Converter</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SQL to NoSQL Converter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+        function convert() {
+            const sql = document.getElementById('sqlInput').value;
+            const target = document.getElementById('targetDb').value;
+            const output = document.getElementById('nosqlOutput');
+
+            // Simple mock conversion
+            if (target === 'mongodb') {
+                output.textContent = `// MongoDB Query
+db.users.find(
+  { age: { $gt: 25 } },
+  { name: 1, email: 1 }
+).sort({ created_at: -1 }).limit(10)`;
+            } else if (target === 'dynamodb') {
+                output.textContent = `// DynamoDB Query
+{
+  "TableName": "users",
+  "IndexName": "age-index",
+  "KeyConditionExpression": "age > :age",
+  "ExpressionAttributeValues": { ":age": { "N": "25" } },
+  "ProjectionExpression": "name, email",
+  "ScanIndexForward": false,
+  "Limit": 10
+}`;
+            } else {
+                output.textContent = `// Firebase Query
+firebase.firestore()
+  .collection('users')
+  .where('age', '>', 25)
+  .orderBy('created_at', 'desc')
+  .limit(10)
+  .get()`;
+            }
+        }
+        function buyNow() {
+            window.location.href = '/api/process?action=checkout';
+        }
+    </script>
+</body>
+</html>

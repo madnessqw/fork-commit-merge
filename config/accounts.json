@@ -1,0 +1,76 @@
+{
+  "_note": "DO NOT MODIFY THIS FILE. Infrastructure config. Read-only for UniverseCreator.",
+  "github": {
+    "username": "universe7creator",
+    "email": "UniverseCreatorUniverseCreator3@gmail.com",
+    "auth": "GH_TOKEN env variable (classic token with repo scope)"
+  },
+  "paypal": {
+    "email": "chaotikss@gmail.com",
+    "business_name": "Fastboostltd",
+    "currency": "USD",
+    "note": "Use for receiving payments from LemonSqueezy, Ko-fi, Fiverr, Upwork"
+  },
+  "bank": {
+    "provider": "akbank",
+    "iban": "TR38 0004 6002 0088 8000 1791 88",
+    "note": "Turkish bank account for TRY withdrawals"
+  },
+  "telegram": {
+    "bot": "@OtonomUniverseCreator",
+    "chat_id": "7941453284"
+  },
+  "crypto": {
+    "note": "USDC deposit adresi — Gokhan yarın ekleyecek (Binance veya Metamask)",
+    "usdc_network": "TRC20 veya ERC20",
+    "usdc_address": "PENDING — Gokhan ekleyecek",
+    "rtc_note": "RustChain (RTC) token — muhtemelen proje cüzdanına gelir, DEX üzerinden USDT'ye çevrilir",
+    "binance_status": "PENDING — deposit adresi alınacak"
+  },
+  "dev_to": {
+    "username": "universe7creator",
+    "display_name": "Can Koylan",
+    "url": "https://dev.to/universe7creator",
+    "api_key": "sHNYcn8Asxk8YsqJewkUfHb1",
+    "status": "ACTIVE",
+    "note": "Blog publishing — use Dev.to API v1 for autonomous posts"
+  },
+  "algora": {
+    "url": "https://algora.io",
+    "login": "GitHub OAuth (universe7creator)",
+    "status": "ACTIVE",
+    "stripe_connect": "Connecting via Turkey — cross-border payout to Akbank",
+    "top_bounties": ["Archestra #3378 $500", "Archestra #1301 $900", "ZIO #519 $4000"],
+    "note": "Real USD bounties — Stripe Connect payout. Bounties accumulate until Stripe payout is configured."
+  },
+  "bountyhub": {
+    "url": "https://www.bountyhub.dev",
+    "login": "GitHub OAuth (universe7creator)",
+    "status": "ACTIVE",
+    "payout": "PayPal (chaotikss@gmail.com) — HEMEN ÇEKİLEBİLİR!",
+    "fee": "0% hunter fee",
+    "top_bounties": ["Evershop #630 $30", "Freelens #1280 $50", "AzerothCore $50"],
+    "note": "EN ÖNCELİKLİ PLATFORM — PayPal ile Türkiye'ye direkt ödeme! Stripe gerekmiyor."
+  },
+  "payment_instructions": {
+    "priority_1_bountyhub": "BountyHub → PayPal (chaotikss@gmail.com) → HEMEN çekilebilir. EN HIZLI YOL!",
+    "priority_2_algora": "Algora → Stripe Connect → Akbank (Stripe bağlanınca)",
+    "privacylayer_usdc": "PR merge olunca USDC — deposit adresi gerekli",
+    "rustchain_rtc": "RTC token — cüzdan adresi gerekli",
+    "paypal_bounties": "PayPal: chaotikss@gmail.com — BountyHub + direkt bountyler",
+    "bank_withdrawal": "PayPal'dan TRY çekme → Akbank IBAN'a gönder"
+  },
+  "lemonsqueezy": {
+    "store_name": "CodeForge Labs",
+    "store_url": "https://codeforgelabs.lemonsqueezy.com",
+    "status": "ACTIVE — store created, verification pending",
+    "note": "Digital product sales — DevTools Bundle etc. Uses same Stripe as Algora."
+  },
+  "platforms_pending": {
+    "fiverr": "PENDING",
+    "upwork": "PENDING",
+    "ko_fi": "PENDING",
+    "medium": "PENDING",
+    "twitter": "PENDING"
+  }
+}

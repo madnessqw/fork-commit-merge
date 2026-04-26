@@ -1,0 +1,134 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - navigation "Global" [ref=e6]:
+      - link "Algora" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - img [ref=e9]
+      - button "Open main menu" [ref=e12] [cursor=pointer]:
+        - generic [ref=e13]: Open main menu
+    - main [ref=e15]:
+      - heading "Challenges" [level=1] [ref=e17]
+      - generic [ref=e20]: Active
+      - generic [ref=e23]:
+        - link "View challenge" [ref=e25] [cursor=pointer]:
+          - /url: /challenges/jules
+          - generic [ref=e28]: View challenge
+        - link "View challenge" [ref=e31] [cursor=pointer]:
+          - /url: /challenges/turso
+          - generic [ref=e34]: View challenge
+        - link "View challenge" [ref=e37] [cursor=pointer]:
+          - /url: /challenges/atopile
+          - generic [ref=e40]: View challenge
+      - generic [ref=e44]: Completed
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - link [ref=e48] [cursor=pointer]:
+            - /url: /challenges/golem
+          - generic:
+            - generic: Rewarded
+        - generic [ref=e49]:
+          - link [ref=e50] [cursor=pointer]:
+            - /url: /challenges/tsperf
+          - generic:
+            - generic: Rewarded
+        - generic [ref=e51]:
+          - link [ref=e52] [cursor=pointer]:
+            - /url: /challenges/prettier
+          - generic:
+            - generic: Rewarded
+    - generic "Footer" [ref=e54]:
+      - heading "Footer" [level=2] [ref=e55]
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - heading "Algora" [level=3] [ref=e60]:
+            - link "Algora" [ref=e61] [cursor=pointer]:
+              - /url: /
+              - img [ref=e62]
+          - list [ref=e64]:
+            - listitem [ref=e65]: Algora PBC © 2026
+            - listitem [ref=e66]:
+              - link "Schedule a call" [ref=e67] [cursor=pointer]:
+                - /url: https://cal.com/ioannisflo
+                - generic [ref=e69]: Schedule a call
+            - listitem [ref=e70]:
+              - link "US +1 (650) 420-2207" [ref=e71] [cursor=pointer]:
+                - /url: tel:+16504202207
+                - generic [ref=e73]: US
+                - generic [ref=e74]: +1 (650) 420-2207
+            - listitem [ref=e75]:
+              - link "EU +30 (697) 318-4144" [ref=e76] [cursor=pointer]:
+                - /url: tel:+306973184144
+                - generic [ref=e78]: EU
+                - generic [ref=e79]: +30 (697) 318-4144
+        - generic [ref=e80]:
+          - heading "Recruiting" [level=3] [ref=e81]
+          - list [ref=e82]:
+            - listitem [ref=e83]:
+              - link "CodeRabbit" [ref=e84] [cursor=pointer]:
+                - /url: /coderabbit/jobs
+            - listitem [ref=e85]:
+              - link "Lovable" [ref=e86] [cursor=pointer]:
+                - /url: /lovable/jobs
+            - listitem [ref=e87]:
+              - link "ComfyUI" [ref=e88] [cursor=pointer]:
+                - /url: /comfy/jobs
+            - listitem [ref=e89]:
+              - link "Firecrawl (YC S22)" [ref=e90] [cursor=pointer]:
+                - /url: /firecrawl/jobs
+            - listitem [ref=e91]:
+              - link "Air Space Intelligence" [ref=e92] [cursor=pointer]:
+                - /url: /airspace-intelligence/jobs
+            - listitem [ref=e93]:
+              - link "TextQL" [ref=e94] [cursor=pointer]:
+                - /url: /textql/jobs
+        - generic [ref=e95]:
+          - heading "Bounties" [level=3] [ref=e96]
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - link "Jules" [ref=e99] [cursor=pointer]:
+                - /url: /challenges/jules
+            - listitem [ref=e100]:
+              - link "Turso" [ref=e101] [cursor=pointer]:
+                - /url: /challenges/turso
+            - listitem [ref=e102]:
+              - link "Atopile (YC W24)" [ref=e103] [cursor=pointer]:
+                - /url: /challenges/atopile
+            - listitem [ref=e104]:
+              - link "Golem Cloud" [ref=e105] [cursor=pointer]:
+                - /url: /challenges/golem
+            - listitem [ref=e106]:
+              - link "TSPerf" [ref=e107] [cursor=pointer]:
+                - /url: /challenges/tsperf
+            - listitem [ref=e108]:
+              - link "Prettier" [ref=e109] [cursor=pointer]:
+                - /url: /challenges/prettier
+        - generic [ref=e110]:
+          - heading "Community" [level=3] [ref=e111]
+          - list [ref=e112]:
+            - listitem [ref=e113]:
+              - link "OSS Founder Podcast" [ref=e114] [cursor=pointer]:
+                - /url: https://www.youtube.com/watch?v=ZXz74ZewxwY&list=PLRIG8mKLBXFotOxF234rEIREidMRh98Hv&t=229s
+            - listitem [ref=e115]:
+              - link "GitHub" [ref=e116] [cursor=pointer]:
+                - /url: https://github.com/algora-io
+            - listitem [ref=e117]:
+              - link "X (Twitter)" [ref=e118] [cursor=pointer]:
+                - /url: https://x.com/algoraio
+            - listitem [ref=e119]:
+              - link "LinkedIn" [ref=e120] [cursor=pointer]:
+                - /url: https://linkedin.com/company/algorapbc
+            - listitem [ref=e121]:
+              - link "Discord" [ref=e122] [cursor=pointer]:
+                - /url: /discord
+            - listitem [ref=e123]:
+              - link "YouTube" [ref=e124] [cursor=pointer]:
+                - /url: https://www.youtube.com/@algora-io
+        - generic [ref=e125]:
+          - heading "Legal" [level=3] [ref=e126]
+          - list [ref=e127]:
+            - listitem [ref=e128]:
+              - link "Terms of Service" [ref=e129] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e130]:
+              - link "Privacy Policy" [ref=e131] [cursor=pointer]:
+                - /url: /legal/privacy

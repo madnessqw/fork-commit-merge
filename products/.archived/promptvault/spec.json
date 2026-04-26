@@ -1,0 +1,131 @@
+{
+  "name": "PromptVault",
+  "tagline": "AI Prompt Management & Versioning API",
+  "slug": "promptvault",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "ai_engineer", "content_creator", "prompt_engineer"],
+  "problem": "AI prompt'ları scattered - Notion'da, text file'larında, her yerde. Prompt versioning yok. A/B test yapmak zor. Team prompt library'si yok. Prompt performance track edilemiyor",
+  "solution": "Vercel Edge + KV ile prompt management API. Prompt versioning, A/B testing, performance tracking, team library, template variables",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV",
+    "analytics": "Edge computed",
+    "cache": "Edge Cache",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://promptvault.io/",
+    "endpoints": [
+      {
+        "path": "/api/prompts",
+        "method": "POST",
+        "description": "Create new prompt",
+        "body": {
+          "name": "blog-generator",
+          "template": "Write a {{tone}} blog about {{topic}} for {{audience}}",
+          "variables": ["tone", "topic", "audience"],
+          "model": "gpt-4 | claude-3",
+          "temperature": 0.7
+        },
+        "response": {
+          "promptId": "pv_abc123",
+          "version": 1,
+          "endpoint": "https://promptvault.io/api/prompts/pv_abc123/run"
+        }
+      },
+      {
+        "path": "/api/prompts/:id/run",
+        "method": "POST",
+        "description": "Execute prompt with variables",
+        "body": {
+          "variables": {"tone": "professional", "topic": "AI", "audience": "developers"}
+        },
+        "response": {
+          "prompt": "Rendered prompt text",
+          "output": "AI response (optional)",
+          "latency": 245
+        }
+      },
+      {
+        "path": "/api/prompts/:id/versions",
+        "method": "POST",
+        "description": "Create new version",
+        "body": {
+          "template": "Updated template...",
+          "changelog": "Improved tone"
+        }
+      },
+      {
+        "path": "/api/library",
+        "method": "GET",
+        "description": "Get team prompt library"
+      },
+      {
+        "path": "/api/analytics/:id",
+        "method": "GET",
+        "description": "Get prompt performance metrics",
+        "response": {
+          "runs": 15234,
+          "avgLatency": 245,
+          "successRate": 98.5,
+          "cost": 45.23
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Langfuse",
+      "price": "$39/month",
+      "pros": ["Full observability"],
+      "cons": ["Expensive", "Complex", "Monthly"]
+    },
+    {
+      "name": "Weights & Biases",
+      "price": "$50/month",
+      "pros": ["ML focused"],
+      "cons": ["Overkill for prompts", "Expensive"]
+    },
+    {
+      "name": "Notion/Google Docs",
+      "price": "Free",
+      "pros": ["Free"],
+      "cons": ["No versioning", "No tracking", "Manual"]
+    }
+  ],
+  "advantage": "One-time $19 vs monthly. Prompt versioning. Performance tracking. Team collaboration.",
+  "features": [
+    "Prompt versioning",
+    "Template variables",
+    "A/B testing",
+    "Performance analytics",
+    "Team library",
+    "Model comparison",
+    "Cost tracking",
+    "Prompt templates",
+    "API access",
+    "Webhook integration"
+  ],
+  "use_cases": [
+    "AI app development",
+    "Content generation workflows",
+    "Chatbot optimization",
+    "Prompt engineering",
+    "Team collaboration",
+    "Production prompt management"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $1,140",
+    "moderate": "120 sales/month = $2,280",
+    "optimistic": "250 sales/month = $4,750"
+  },
+  "why_best": [
+    "AI boom 2025 - herkes prompt yazıyor",
+    "Langfuse $39/mo vs $19 one-time",
+    "Edge compatible (KV)",
+    "Simple but powerful",
+    "Growing need"
+  ]
+}

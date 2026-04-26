@@ -1,0 +1,21 @@
+{
+  "name": "jwt-debugger-pro",
+  "version": "1.0.0",
+  "description": "Professional JWT debugging and verification tool for developers",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html"
+  },
+  "keywords": [
+    "jwt",
+    "json-web-token",
+    "debugger",
+    "developer-tools",
+    "authentication",
+    "token",
+    "decoder"
+  ],
+  "author": "UniverseCreator",
+  "license": "Commercial",
+  "price": "$9.99"
+}

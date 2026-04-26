@@ -1,0 +1,148 @@
+{
+  "name": "EmailVerify",
+  "tagline": "Email Verification & Validation API",
+  "slug": "emailverify",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "saas_founder", "marketer", "sales_team"],
+  "problem": "Email verification için NeverBounce pahalı (pay-as-you-go, 1000 email = $4). ZeroBounce $39/ay. Fake email kayıtları database'i kirletiyor. Bounce rate yüksek kalıyor",
+  "solution": "Vercel Edge + email validation regex + SMTP validation + domain checking. Disposable email detection. Role-based email detection. Catch-all detection",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "validation": "SMTP handshake + DNS MX lookup",
+    "disposable_db": "disposable-email-domains (npm)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://emailverify.io/",
+    "endpoints": [
+      {
+        "path": "/api/verify",
+        "method": "POST",
+        "description": "Verify single email",
+        "body": {
+          "email": {
+            "type": "string",
+            "required": true,
+            "example": "user@example.com"
+          },
+          "checkSmtp": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable SMTP validation (slower but accurate)"
+          }
+        },
+        "response": {
+          "email": "user@example.com",
+          "valid": true,
+          "score": 95,
+          "checks": {
+            "format": true,
+            "domain": true,
+            "mx": true,
+            "smtp": true,
+            "disposable": false,
+            "role": false,
+            "catchAll": false
+          },
+          "suggestion": null
+        }
+      },
+      {
+        "path": "/api/batch",
+        "method": "POST",
+        "description": "Verify multiple emails",
+        "body": {
+          "emails": {
+            "type": "array",
+            "maxItems": 100,
+            "items": "string"
+          }
+        },
+        "response": {
+          "results": [
+            {"email": "valid@test.com", "valid": true, "score": 95},
+            {"email": "invalid@test.com", "valid": false, "score": 0}
+          ],
+          "summary": {
+            "total": 2,
+            "valid": 1,
+            "invalid": 1,
+            "risky": 0
+          }
+        }
+      },
+      {
+        "path": "/api/check-domain",
+        "method": "GET",
+        "description": "Check if domain has valid MX records",
+        "parameters": {
+          "domain": "string (required)"
+        },
+        "response": {
+          "domain": "gmail.com",
+          "hasMx": true,
+          "mxRecords": ["gmail-smtp-in.l.google.com"],
+          "isDisposable": false
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "NeverBounce",
+      "price": "$4 per 1000 verifications",
+      "url": "https://neverbounce.com",
+      "pros": ["Accurate", "Popular"],
+      "cons": ["Usage-based cost", "Expensive at scale"]
+    },
+    {
+      "name": "ZeroBounce",
+      "price": "$39/month",
+      "url": "https://zerobounce.net",
+      "pros": ["Full featured"],
+      "cons": ["Monthly subscription", "API limits"]
+    },
+    {
+      "name": "EmailValidator (npm)",
+      "price": "Free",
+      "url": "https://www.npmjs.com/package/email-validator",
+      "pros": ["Free"],
+      "cons": ["Basic regex only", "No SMTP check", "Setup required"]
+    }
+  ],
+  "advantage": "One-time $19 vs pay-per-use. Unlimited verifications. Edge speed. Built-in disposable detection.",
+  "features": [
+    "Format validation",
+    "MX record checking",
+    "SMTP validation (optional)",
+    "Disposable email detection",
+    "Role-based detection (admin@, support@)",
+    "Catch-all detection",
+    "Domain verification",
+    "Batch processing (100)",
+    "Verification scoring (0-100)"
+  ],
+  "use_cases": [
+    "Signup validation",
+    "Email list cleaning",
+    "Marketing campaigns",
+    "Sales outreach",
+    "Database hygiene",
+    "Form validation"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $950",
+    "moderate": "100 sales/month = $1,900",
+    "optimistic": "200 sales/month = $3,800"
+  },
+  "why_best": [
+    "NeverBounce $4/1000 vs $19 unlimited",
+    "Every SaaS needs email validation",
+    "Edge compatible (no heavy deps)",
+    "Simple implementation",
+    "High demand"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ssl-cipher-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze SSL/TLS cipher suites and security configuration",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

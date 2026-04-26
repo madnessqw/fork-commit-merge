@@ -1,0 +1,394 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fevershopcommerce%2Fevershop%2Fpull%2F893
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - link "evershopcommerce" [ref=e36] [cursor=pointer]:
+            - /url: /evershopcommerce
+          - generic [ref=e37]: /
+          - strong [ref=e38]:
+            - link "evershop" [ref=e39] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop
+          - generic [ref=e40]: Public
+        - generic [ref=e41]:
+          - list:
+            - listitem [ref=e42]:
+              - button "Sponsor evershopcommerce/evershop" [ref=e44] [cursor=pointer]:
+                - generic [ref=e46]:
+                  - img [ref=e47]
+                  - text: Sponsor
+            - listitem [ref=e49]:
+              - link "You must be signed in to change notification settings" [ref=e50] [cursor=pointer]:
+                - /url: /login?return_to=%2Fevershopcommerce%2Fevershop
+                - img [ref=e51]
+                - text: Notifications
+            - listitem [ref=e53]:
+              - link "Fork 2.3k" [ref=e54] [cursor=pointer]:
+                - /url: /login?return_to=%2Fevershopcommerce%2Fevershop
+                - img [ref=e55]
+                - text: Fork
+                - generic "2,295" [ref=e57]: 2.3k
+            - listitem [ref=e58]:
+              - link "You must be signed in to star a repository" [ref=e60] [cursor=pointer]:
+                - /url: /login?return_to=%2Fevershopcommerce%2Fevershop
+                - img [ref=e61]
+                - text: Star
+                - generic "9968 users starred this repository" [ref=e63]: 10k
+      - navigation "Repository" [ref=e64]:
+        - list [ref=e65]:
+          - listitem [ref=e66]:
+            - link "Code" [ref=e67] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop
+              - img [ref=e68]
+              - generic [ref=e70]: Code
+          - listitem [ref=e71]:
+            - link "Issues 66" [ref=e72] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/issues
+              - img [ref=e73]
+              - generic [ref=e76]: Issues
+              - generic "66" [ref=e77]
+          - listitem [ref=e78]:
+            - link "Pull requests 14" [ref=e79] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/pulls
+              - img [ref=e80]
+              - generic [ref=e82]: Pull requests
+              - generic "14" [ref=e83]
+          - listitem [ref=e84]:
+            - link "Discussions" [ref=e85] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/discussions
+              - img [ref=e86]
+              - generic [ref=e88]: Discussions
+          - listitem [ref=e89]:
+            - link "Actions" [ref=e90] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/actions
+              - img [ref=e91]
+              - generic [ref=e93]: Actions
+          - listitem [ref=e94]:
+            - link "Projects" [ref=e95] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/projects
+              - img [ref=e96]
+              - generic [ref=e98]: Projects
+          - listitem [ref=e99]
+          - listitem [ref=e100]
+        - button "Additional navigation options" [ref=e104] [cursor=pointer]:
+          - img
+    - generic [ref=e111]:
+      - generic [ref=e114]:
+        - 'heading "fix: CategoryTree not showing all child categories #893" [level=1] [ref=e116]':
+          - text: "fix: CategoryTree not showing all child categories"
+          - generic [ref=e118]: "#893"
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - img "Pull request" [ref=e124]
+            - text: Open
+          - generic [ref=e127]:
+            - link "universe7creator" [ref=e128] [cursor=pointer]:
+              - /url: /universe7creator
+            - text: wants to merge 1 commit into
+            - link "evershopcommerce:dev" [ref=e129] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/tree/dev
+            - generic [ref=e130]: from
+            - generic [ref=e131]:
+              - link "universe7creator:fix-category-tree-children" [ref=e132] [cursor=pointer]:
+                - /url: /universe7creator/evershop/tree/fix-category-tree-children
+              - button "Copy head branch name to clipboard" [ref=e133] [cursor=pointer]:
+                - img [ref=e134]
+        - generic [ref=e137]:
+          - generic [ref=e139]:
+            - generic [ref=e140]: "+11"
+            - generic [ref=e141]: "-4"
+            - generic [ref=e142]: "Lines changed: 11 additions & 4 deletions"
+          - navigation "Pull request navigation tabs" [ref=e151]:
+            - tablist [ref=e152]:
+              - tab "Conversation (4)" [selected] [ref=e153] [cursor=pointer]:
+                - img [ref=e154]
+                - text: Conversation
+                - generic [ref=e156]: "4"
+                - generic [ref=e157]: (4)
+              - tab "Commits (1)" [ref=e158] [cursor=pointer]:
+                - img [ref=e159]
+                - text: Commits
+                - generic [ref=e161]: "1"
+                - generic [ref=e162]: (1)
+              - tab "Checks (0)" [ref=e163] [cursor=pointer]:
+                - img [ref=e164]
+                - text: Checks
+                - generic [ref=e166]: "0"
+                - generic [ref=e167]: (0)
+              - tab "Files changed (1)" [ref=e168] [cursor=pointer]:
+                - img [ref=e169]
+                - text: Files changed
+                - generic [ref=e171]: "1"
+                - generic [ref=e172]: (1)
+      - generic [ref=e177]:
+        - generic [ref=e179]:
+          - heading "Conversation" [level=2] [ref=e180]
+          - generic [ref=e181]:
+            - generic [ref=e182]:
+              - generic [ref=e184]:
+                - link "@universe7creator" [ref=e185] [cursor=pointer]:
+                  - /url: /universe7creator
+                  - img "@universe7creator" [ref=e186]
+                - generic [ref=e188]:
+                  - generic [ref=e189]:
+                    - group [ref=e192]:
+                      - button "Show options" [ref=e193] [cursor=pointer]:
+                        - img "Show options" [ref=e196]
+                    - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e198]:
+                      - generic [ref=e199]:
+                        - strong [ref=e200]:
+                          - link "universe7creator" [ref=e201] [cursor=pointer]:
+                            - /url: /universe7creator
+                        - text: commented
+                        - link "Mar 25, 2026last week" [ref=e202] [cursor=pointer]:
+                          - /url: "#issue-4131923295"
+                  - generic [ref=e206]:
+                    - paragraph [ref=e207]:
+                      - text: Fixes
+                      - link "#630" [ref=e208] [cursor=pointer]:
+                        - /url: https://github.com/evershopcommerce/evershop/issues/630
+                    - heading "Problem" [level=2] [ref=e209]
+                    - paragraph [ref=e210]:
+                      - text: The CategoryTree component was not displaying all child categories when a parent category had more than 20 children (default pagination limit). This was reported in issue
+                      - link "#630" [ref=e211] [cursor=pointer]:
+                        - /url: https://github.com/evershopcommerce/evershop/issues/630
+                      - text: where a category with 75 child rows in the database only showed a subset in the UI.
+                    - heading "Root Cause" [level=2] [ref=e212]
+                    - paragraph [ref=e213]: The GraphQL queries in CategoryTree.tsx did not specify pagination parameters, causing the API to apply default pagination (20 items per page). This meant only 20 child categories were fetched regardless of the actual number of children.
+                    - heading "Changes" [level=2] [ref=e214]
+                    - list [ref=e215]:
+                      - listitem [ref=e216]: Added limit filter to both root categories query and children queries to fetch up to 1000 categories
+                      - listitem [ref=e217]: "Fixed React key prop warnings by changing key={child.value} to key={child.categoryId}"
+                      - listitem [ref=e218]: Added total field to childrenQuery for potential future pagination UI improvements
+                    - heading "Testing" [level=2] [ref=e219]
+                    - list [ref=e220]:
+                      - listitem [ref=e221]: Categories with 75+ children now display correctly
+                      - listitem [ref=e222]: No more React key warnings in console
+                      - listitem [ref=e223]: Backward compatible
+              - generic [ref=e224]:
+                - generic [ref=e228]:
+                  - img [ref=e230]
+                  - generic [ref=e235]:
+                    - link "@universe7creator" [ref=e238] [cursor=pointer]:
+                      - /url: /universe7creator
+                      - img "@universe7creator" [ref=e239]
+                    - generic [ref=e240]:
+                      - code [ref=e241]:
+                        - 'link "fix: CategoryTree not showing all child categories due to default pag…" [ref=e242] [cursor=pointer]':
+                          - /url: /evershopcommerce/evershop/pull/893/commits/fcbb8a8339572c775af846f6f0c6559351d77338
+                      - button "…" [ref=e244] [cursor=pointer]
+                    - code [ref=e248]:
+                      - link "fcbb8a8" [ref=e249] [cursor=pointer]:
+                        - /url: /evershopcommerce/evershop/pull/893/commits/fcbb8a8339572c775af846f6f0c6559351d77338
+                - generic [ref=e251]:
+                  - link "@universe7creator" [ref=e253] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e254]
+                  - generic [ref=e256]:
+                    - generic [ref=e257]:
+                      - generic [ref=e258]:
+                        - group [ref=e260]:
+                          - button "Show options" [ref=e261] [cursor=pointer]:
+                            - img "Show options" [ref=e264]
+                        - generic "This user is the author of this pull request." [ref=e267]:
+                          - generic [ref=e268]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e269]:
+                        - generic [ref=e270]:
+                          - strong [ref=e271]:
+                            - link "universe7creator" [ref=e272] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e273] [cursor=pointer]:
+                            - /url: "#issuecomment-4128921351"
+                    - table [ref=e276]:
+                      - rowgroup [ref=e277]:
+                        - 'row "Hi @evershopcommerce team! 👋 This PR fixes the CategoryTree issue where child categories weren''t displaying properly. The fix addresses the recursive category loading logic. The PR is ready for review and testing. Please let me know if any adjustments are needed. Payment: PayPal (chaotikss@gmail.com) Thanks for the opportunity to contribute! 🙏" [ref=e278]':
+                          - 'cell "Hi @evershopcommerce team! 👋 This PR fixes the CategoryTree issue where child categories weren''t displaying properly. The fix addresses the recursive category loading logic. The PR is ready for review and testing. Please let me know if any adjustments are needed. Payment: PayPal (chaotikss@gmail.com) Thanks for the opportunity to contribute! 🙏" [ref=e279]':
+                            - paragraph [ref=e280]:
+                              - text: Hi
+                              - link "@evershopcommerce" [ref=e281] [cursor=pointer]:
+                                - /url: https://github.com/evershopcommerce
+                              - text: team! 👋
+                            - paragraph [ref=e282]: This PR fixes the CategoryTree issue where child categories weren't displaying properly. The fix addresses the recursive category loading logic.
+                            - paragraph [ref=e283]: The PR is ready for review and testing. Please let me know if any adjustments are needed.
+                            - paragraph [ref=e284]:
+                              - text: "Payment: PayPal ("
+                              - link "chaotikss@gmail.com" [ref=e285] [cursor=pointer]:
+                                - /url: mailto:chaotikss@gmail.com
+                              - text: )
+                            - paragraph [ref=e286]: Thanks for the opportunity to contribute! 🙏
+                - generic [ref=e288]:
+                  - link "@universe7creator" [ref=e290] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e291]
+                  - generic [ref=e293]:
+                    - generic [ref=e294]:
+                      - generic [ref=e295]:
+                        - group [ref=e297]:
+                          - button "Show options" [ref=e298] [cursor=pointer]:
+                            - img "Show options" [ref=e301]
+                        - generic "This user is the author of this pull request." [ref=e304]:
+                          - generic [ref=e305]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e306]:
+                        - generic [ref=e307]:
+                          - strong [ref=e308]:
+                            - link "universe7creator" [ref=e309] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e310] [cursor=pointer]:
+                            - /url: "#issuecomment-4129248528"
+                    - table [ref=e313]:
+                      - rowgroup [ref=e314]:
+                        - row "Hi @maintainers, just checking in on this PR. The fix for CategoryTree child categories is ready for review. Happy to make any adjustments if needed. Thanks for your time!" [ref=e315]:
+                          - cell "Hi @maintainers, just checking in on this PR. The fix for CategoryTree child categories is ready for review. Happy to make any adjustments if needed. Thanks for your time!" [ref=e316]:
+                            - paragraph [ref=e317]:
+                              - text: Hi
+                              - link "@maintainers" [ref=e318] [cursor=pointer]:
+                                - /url: https://github.com/maintainers
+                              - text: ", just checking in on this PR. The fix for CategoryTree child categories is ready for review. Happy to make any adjustments if needed. Thanks for your time!"
+                - generic [ref=e320]:
+                  - link "@universe7creator" [ref=e322] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e323]
+                  - generic [ref=e325]:
+                    - generic [ref=e326]:
+                      - generic [ref=e327]:
+                        - group [ref=e329]:
+                          - button "Show options" [ref=e330] [cursor=pointer]:
+                            - img "Show options" [ref=e333]
+                        - generic "This user is the author of this pull request." [ref=e336]:
+                          - generic [ref=e337]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e338]:
+                        - generic [ref=e339]:
+                          - strong [ref=e340]:
+                            - link "universe7creator" [ref=e341] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e342] [cursor=pointer]:
+                            - /url: "#issuecomment-4129531742"
+                    - table [ref=e345]:
+                      - rowgroup [ref=e346]:
+                        - row "Hi @evershopcommerce team! Just checking in on this PR. The fix for CategoryTree child categories is ready for review. Happy to make any adjustments if needed. Thanks for maintaining this great project!" [ref=e347]:
+                          - cell "Hi @evershopcommerce team! Just checking in on this PR. The fix for CategoryTree child categories is ready for review. Happy to make any adjustments if needed. Thanks for maintaining this great project!" [ref=e348]:
+                            - paragraph [ref=e349]:
+                              - text: Hi
+                              - link "@evershopcommerce" [ref=e350] [cursor=pointer]:
+                                - /url: https://github.com/evershopcommerce
+                              - text: team! Just checking in on this PR. The fix for CategoryTree child categories is ready for review. Happy to make any adjustments if needed. Thanks for maintaining this great project!
+                - generic [ref=e352]:
+                  - link "@universe7creator" [ref=e354] [cursor=pointer]:
+                    - /url: /universe7creator
+                    - img "@universe7creator" [ref=e355]
+                  - generic [ref=e357]:
+                    - generic [ref=e358]:
+                      - generic [ref=e359]:
+                        - group [ref=e361]:
+                          - button "Show options" [ref=e362] [cursor=pointer]:
+                            - img "Show options" [ref=e365]
+                        - generic "This user is the author of this pull request." [ref=e368]:
+                          - generic [ref=e369]: Author
+                      - heading "universe7creator commented Mar 25, 2026last week" [level=3] [ref=e370]:
+                        - generic [ref=e371]:
+                          - strong [ref=e372]:
+                            - link "universe7creator" [ref=e373] [cursor=pointer]:
+                              - /url: /universe7creator
+                          - text: commented
+                          - link "Mar 25, 2026last week" [ref=e374] [cursor=pointer]:
+                            - /url: "#issuecomment-4129667609"
+                    - table [ref=e377]:
+                      - rowgroup [ref=e378]:
+                        - row "Hi @treoden, just checking in on this PR. The fix for CategoryTree child categories has been tested and is ready for review. Please let me know if you need any changes. Happy to address any feedback!" [ref=e379]:
+                          - cell "Hi @treoden, just checking in on this PR. The fix for CategoryTree child categories has been tested and is ready for review. Please let me know if you need any changes. Happy to address any feedback!" [ref=e380]:
+                            - paragraph [ref=e381]:
+                              - text: Hi
+                              - link "@treoden" [ref=e382] [cursor=pointer]:
+                                - /url: https://github.com/treoden
+                              - text: ", just checking in on this PR. The fix for CategoryTree child categories has been tested and is ready for review. Please let me know if you need any changes. Happy to address any feedback!"
+            - generic [ref=e386]:
+              - link "Sign up for free" [ref=e387] [cursor=pointer]:
+                - /url: /join?source=comment-repo
+              - strong [ref=e388]: to join this conversation on GitHub
+              - text: . Already have an account?
+              - link "Sign in to comment" [ref=e389] [cursor=pointer]:
+                - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fevershopcommerce%2Fevershop%2Fpull%2F893
+        - generic [ref=e393]:
+          - form "Select reviewers" [ref=e395]:
+            - heading "Reviewers" [level=3] [ref=e396]
+            - text: No reviews
+          - form "Select assignees" [ref=e398]:
+            - heading "Assignees" [level=3] [ref=e399]
+            - text: No one assigned
+          - generic [ref=e400]:
+            - heading "Labels" [level=3] [ref=e401]
+            - generic [ref=e402]: None yet
+          - form "Select projects" [ref=e404]:
+            - heading "Projects" [level=3] [ref=e405]
+            - text: None yet
+          - form "Select milestones" [ref=e407]:
+            - heading "Milestone" [level=3] [ref=e408]
+            - text: No milestone
+          - form "Link issues" [ref=e414]:
+            - heading "Development" [level=3] [ref=e415]
+            - paragraph [ref=e416]: Successfully merging this pull request may close these issues.
+            - link "Closed issue [BUG] The product registration does not list all child categories" [ref=e418] [cursor=pointer]:
+              - /url: https://github.com/evershopcommerce/evershop/issues/630
+              - img "Closed issue" [ref=e419]
+              - text: "[BUG] The product registration does not list all child categories"
+          - generic [ref=e423]:
+            - heading "1 participant" [level=3] [ref=e424]
+            - link "@universe7creator" [ref=e426] [cursor=pointer]:
+              - /url: /universe7creator
+              - img "@universe7creator" [ref=e427]
+  - contentinfo [ref=e428]:
+    - heading "Footer" [level=2] [ref=e429]
+    - generic [ref=e430]:
+      - generic [ref=e431]:
+        - link "GitHub Homepage" [ref=e432] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e433]
+        - generic [ref=e435]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e436]:
+        - heading "Footer navigation" [level=3] [ref=e437]
+        - list "Footer navigation" [ref=e438]:
+          - listitem [ref=e439]:
+            - link "Terms" [ref=e440] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e441]:
+            - link "Privacy" [ref=e442] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e443]:
+            - link "Security" [ref=e444] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e445]:
+            - link "Status" [ref=e446] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e447]:
+            - link "Community" [ref=e448] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e449]:
+            - link "Docs" [ref=e450] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e451]:
+            - link "Contact" [ref=e452] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e453]:
+            - button "Manage cookies" [ref=e455] [cursor=pointer]
+          - listitem [ref=e456]:
+            - button "Do not share my personal information" [ref=e458] [cursor=pointer]

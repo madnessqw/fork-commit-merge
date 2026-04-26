@@ -97,7 +97,7 @@
                 <a href="#demo" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-semibold glow hover:opacity-90 transition pulse-glow">
                     Try Demo Free
                 </a>
-                <a href="#pricing" class="px-8 py-4 glass rounded-xl font-semibold hover:bg-white/10 transition">
+                <a href="https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW" target="_blank" class="px-8 py-4 glass rounded-xl font-semibold hover:bg-white/10 transition">
                     Get Pro $19
                 </a>
             </div>
@@ -445,5 +445,16 @@
             }, 2000);
         });
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_UvaLV1oU4B1arTB6Nxwruf3dI4azb1Hhw5cBd3CtyWW";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

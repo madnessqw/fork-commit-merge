@@ -1,0 +1,14 @@
+{
+  "name": "ascii-art-generator",
+  "version": "1.0.0",
+  "description": "Generate stylish ASCII banners and text art for code comments, documentation, and CLI outputs",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

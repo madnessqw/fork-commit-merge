@@ -1,0 +1,116 @@
+{
+  "name": "TokenGuard",
+  "tagline": "AI Token Budget & Usage Tracker API",
+  "slug": "tokenguard",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "ai_engineer", "saas_founder", "startup"],
+  "problem": "AI token kullanımı kontrolsüz. Maliyetler şişiyor. Token limit'leri yok. Budget enforcement yok. Multi-project tracking zor",
+  "solution": "Vercel Edge + KV ile token tracking. Budget alerts, rate limiting, usage analytics, cost projections",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV",
+    "analytics": "Edge computed",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://tokenguard.io/",
+    "endpoints": [
+      {
+        "path": "/api/track",
+        "method": "POST",
+        "description": "Track token usage",
+        "body": {
+          "projectId": "string",
+          "model": "gpt-4 | claude-3",
+          "inputTokens": 100,
+          "outputTokens": 200,
+          "cost": 0.003
+        }
+      },
+      {
+        "path": "/api/projects/:id/budget",
+        "method": "GET",
+        "description": "Get budget status",
+        "response": {
+          "budget": 100,
+          "used": 45.5,
+          "remaining": 54.5,
+          "projected": 120,
+          "alerts": [{"type": "approaching_limit", "threshold": 80}]
+        }
+      },
+      {
+        "path": "/api/analytics/:id",
+        "method": "GET",
+        "description": "Get usage analytics",
+        "response": {
+          "daily": [{"date": "2026-04-05", "tokens": 15234, "cost": 2.5}],
+          "byModel": {"gpt-4": 60, "claude-3": 40},
+          "trend": "increasing"
+        }
+      },
+      {
+        "path": "/api/check",
+        "method": "POST",
+        "description": "Check if request allowed (rate limiting)",
+        "body": {"projectId": "string", "estimatedTokens": 1000},
+        "response": {"allowed": true, "remainingBudget": 54.5}
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Tokencap (GitHub)",
+      "price": "Free/Open Source",
+      "pros": ["Open source"],
+      "cons": ["Self-hosted", "Limited features", "No UI"]
+    },
+    {
+      "name": "OpenAI Dashboard",
+      "price": "Free",
+      "pros": ["Official"],
+      "cons": ["OpenAI only", "No budget enforcement", "Limited analytics"]
+    },
+    {
+      "name": "Langfuse",
+      "price": "$39/month",
+      "pros": ["Full observability"],
+      "cons": ["Expensive", "Complex"]
+    }
+  ],
+  "advantage": "One-time $19 vs monthly. Multi-provider. Budget enforcement. Simple API.",
+  "features": [
+    "Token tracking",
+    "Budget management",
+    "Cost projections",
+    "Rate limiting",
+    "Multi-provider support",
+    "Real-time analytics",
+    "Alerts & notifications",
+    "Project isolation",
+    "Cost optimization suggestions",
+    "Export reports"
+  ],
+  "use_cases": [
+    "AI app cost control",
+    "Team budget management",
+    "Startup cost optimization",
+    "Multi-project tracking",
+    "Production monitoring",
+    "Cost forecasting"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $1,140",
+    "moderate": "120 sales/month = $2,280",
+    "optimistic": "250 sales/month = $4,750"
+  },
+  "why_best": [
+    "Tokencap GitHub'da popüler",
+    "AI maliyetleri artıyor",
+    "Her AI projesi ihtiyacı",
+    "Edge compatible (KV)",
+    "Basit fakat güçlü"
+  ]
+}

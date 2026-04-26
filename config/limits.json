@@ -1,0 +1,12 @@
+{
+  "tier": "STARTER",
+  "max_single_spend_usd": 5.00,
+  "max_daily_spend_usd": 10.00,
+  "requires_approval_above_usd": 20.00,
+  "emergency_threshold_usd": 2.00,
+  "critical_threshold_usd": 5.00,
+  "surviving_threshold_usd": 15.00,
+  "thriving_threshold_usd": 100.00,
+  "allowed_actions": ["RESEARCH", "WORK", "LEARN", "BUILD"],
+  "forbidden_actions": ["INVEST"]
+}

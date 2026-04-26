@@ -1,0 +1,124 @@
+{
+  "name": "ConfigVault",
+  "tagline": "Environment Variables & Config Management API",
+  "slug": "configvault",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "devops", "saas_founder", "team_lead"],
+  "problem": "Environment variable yönetimi için .env file'ları yetersiz. HashiCorp Vault karmaşık. Vercel/Netlify env limitli. Team'ler arası config paylaşımı zor",
+  "solution": "Vercel Edge + KV ile config management API. Environment variables, feature flags, secret rotation, team access control",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV (encrypted)",
+    "encryption": "AES-256-GCM",
+    "cache": "Edge Cache",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://configvault.io/",
+    "endpoints": [
+      {
+        "path": "/api/projects",
+        "method": "POST",
+        "description": "Create new project",
+        "body": {
+          "name": "string",
+          "environments": ["development", "staging", "production"]
+        },
+        "response": {
+          "projectId": "proj_abc123",
+          "apiKey": "cv_prod_xxx"
+        }
+      },
+      {
+        "path": "/api/configs/:projectId",
+        "method": "POST",
+        "description": "Set config value",
+        "body": {
+          "key": "DATABASE_URL",
+          "value": "string",
+          "environment": "production",
+          "secret": true
+        }
+      },
+      {
+        "path": "/api/configs/:projectId",
+        "method": "GET",
+        "description": "Get all configs for environment",
+        "parameters": {
+          "environment": "string"
+        },
+        "response": {
+          "configs": [
+            {"key": "API_KEY", "value": "***", "secret": true},
+            {"key": "DEBUG", "value": "false", "secret": false}
+          ]
+        }
+      },
+      {
+        "path": "/api/flags/:projectId",
+        "method": "POST",
+        "description": "Create feature flag",
+        "body": {
+          "name": "new_feature",
+          "enabled": false,
+          "rules": [{"userGroup": "beta", "enabled": true}]
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "HashiCorp Vault",
+      "price": "Enterprise $$$",
+      "pros": ["Enterprise grade"],
+      "cons": ["Complex", "Expensive", "Self-hosted"]
+    },
+    {
+      "name": "Doppler",
+      "price": "$6/user/month",
+      "pros": ["Good UI", "Team features"],
+      "cons": ["Monthly cost", "Per user pricing"]
+    },
+    {
+      "name": "1Password Secrets",
+      "price": "$19.99/month",
+      "pros": ["Secure"],
+      "cons": ["Expensive", "Not developer focused"]
+    }
+  ],
+  "advantage": "One-time $19 vs monthly. Simple API. Edge speed. Team collaboration.",
+  "features": [
+    "Environment variable management",
+    "Secret encryption",
+    "Feature flags",
+    "Team access control",
+    "Config versioning",
+    "Audit logs",
+    "Environment promotion",
+    "CLI tool",
+    "SDK (JS, Python)",
+    "Webhook notifications"
+  ],
+  "use_cases": [
+    "Microservices config",
+    "Feature flagging",
+    "Secret management",
+    "Team onboarding",
+    "Multi-environment setups",
+    "CI/CD integration"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $1,140",
+    "moderate": "120 sales/month = $2,280",
+    "optimistic": "250 sales/month = $4,750"
+  },
+  "why_best": [
+    "Doppler $6/user/mo vs $19 one-time",
+    "Her developer'ın ihtiyacı",
+    "Edge compatible (KV)",
+    "Feature flags = ek değer",
+    "Simple pricing"
+  ]
+}

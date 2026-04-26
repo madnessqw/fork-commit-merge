@@ -1,0 +1,236 @@
+{
+  "name": "LinkSpark",
+  "tagline": "Smart URL Shortener with Analytics API",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "target_audience": ["marketer", "saas_founder", "content_creator", "developer"],
+  "problem": "Mevcut URL shortener'lar ya ücretli (Bitly $29/ay) ya da self-hosted kurulum gerektiriyor (YOURLS, Kutt). Basit bir API ile link kısaltma ve analiz ihtiyacı var",
+  "solution": "Vercel Edge Function + KV storage ile anlık URL kısaltma. Click analytics, QR kod üretimi, custom alias'lar, expiration tarihleri",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV (Redis)",
+    "analytics": "Vercel Analytics / Tinybird",
+    "qr_code": "qrcode npm package",
+    "payment": "Stripe"
+  },
+  "mvp_complexity": "1-2 cycle",
+  "api": {
+    "base_url": "https://linkspark.api/",
+    "endpoints": [
+      {
+        "path": "/api/shorten",
+        "method": "POST",
+        "description": "Create a short URL",
+        "body": {
+          "url": {
+            "type": "string",
+            "required": true,
+            "description": "URL to shorten"
+          },
+          "alias": {
+            "type": "string",
+            "required": false,
+            "description": "Custom short code (4-20 chars)"
+          },
+          "expires_at": {
+            "type": "ISO8601 date",
+            "required": false,
+            "description": "Link expiration date"
+          },
+          "password": {
+            "type": "string",
+            "required": false,
+            "description": "Password protection"
+          },
+          "utm": {
+            "type": "object",
+            "properties": {
+              "source": "string",
+              "medium": "string",
+              "campaign": "string"
+            }
+          }
+        },
+        "response": {
+          "short_url": "string",
+          "short_code": "string",
+          "original_url": "string",
+          "qr_code": "string (base64 PNG)",
+          "created_at": "ISO8601 timestamp",
+          "expires_at": "ISO8601 timestamp | null"
+        }
+      },
+      {
+        "path": "/api/stats/:code",
+        "method": "GET",
+        "description": "Get click statistics for a short URL",
+        "parameters": {
+          "code": "Short URL code"
+        },
+        "response": {
+          "short_code": "string",
+          "original_url": "string",
+          "total_clicks": "number",
+          "unique_clicks": "number",
+          "created_at": "ISO8601 timestamp",
+          "analytics": {
+            "countries": "array of {country, clicks}",
+            "devices": "array of {device, clicks}",
+            "browsers": "array of {browser, clicks}",
+            "referrers": "array of {referrer, clicks}",
+            "timeline": "array of {date, clicks}"
+          }
+        }
+      },
+      {
+        "path": "/api/qr",
+        "method": "GET",
+        "description": "Generate QR code for URL",
+        "parameters": {
+          "url": "URL to encode",
+          "size": "number (default: 300)",
+          "format": "png | svg (default: png)"
+        },
+        "response": {
+          "qr_code": "string (base64)",
+          "url": "string"
+        }
+      },
+      {
+        "path": "/api/batch",
+        "method": "POST",
+        "description": "Shorten multiple URLs",
+        "body": {
+          "urls": {
+            "type": "array",
+            "max_items": 100,
+            "items": {
+              "url": "string",
+              "alias": "string (optional)"
+            }
+          }
+        }
+      },
+      {
+        "path": "/api/links",
+        "method": "GET",
+        "description": "List all shortened links",
+        "parameters": {
+          "limit": "number (default: 20, max: 100)",
+          "offset": "number (default: 0)"
+        }
+      }
+    ]
+  },
+  "features": [
+    "Custom short aliases",
+    "QR code generation",
+    "Click analytics (geo, device, browser)",
+    "Link expiration dates",
+    "Password protection",
+    "UTM parameter tracking",
+    "Batch shortening",
+    "API rate limiting",
+    "Redirect rules"
+  ],
+  "analytics": {
+    "tracked_data": [
+      "Total clicks",
+      "Unique visitors",
+      "Geographic location (country, city)",
+      "Device type (mobile, desktop, tablet)",
+      "Browser (Chrome, Safari, Firefox)",
+      "Operating system",
+      "Referrer source",
+      "Click timestamp"
+    ],
+    "retention": "90 days"
+  },
+  "implementation": {
+    "phase_1": {
+      "name": "Core Shortener",
+      "tasks": [
+        "Setup Vercel Edge Function",
+        "Implement URL validation",
+        "Create short code generation (nanoid)",
+        "Setup KV storage",
+        "Implement redirect endpoint",
+        "Add basic analytics"
+      ],
+      "duration": "1 cycle"
+    },
+    "phase_2": {
+      "name": "Advanced Features",
+      "tasks": [
+        "Add QR code generation",
+        "Implement custom aliases",
+        "Add password protection",
+        "Create batch API",
+        "Add UTM tracking",
+        "Setup Stripe payment",
+        "Create dashboard UI"
+      ],
+      "duration": "1 cycle"
+    }
+  },
+  "market_analysis": {
+    "competitors": [
+      {
+        "name": "Bitly",
+        "price": "$29/month",
+        "pros": ["Enterprise features", "API"],
+        "cons": ["Expensive", "Monthly subscription"]
+      },
+      {
+        "name": "Short.io",
+        "price": "$19/month",
+        "pros": ["Custom domains", "API"],
+        "cons": ["Subscription only", "Limited free tier"]
+      },
+      {
+        "name": "YOURLS (self-hosted)",
+        "price": "Free (hosting required)",
+        "pros": ["Free", "Open source"],
+        "cons": ["Requires server setup", "Maintenance needed"]
+      },
+      {
+        "name": "Kutt (self-hosted)",
+        "price": "Free (hosting required)",
+        "pros": ["Modern UI", "API"],
+        "cons": ["Requires PostgreSQL", "Complex setup"]
+      }
+    ],
+    "advantage": "One-time $29 + No hosting needed + Edge speed + Full API"
+  },
+  "pricing_strategy": {
+    "model": "one-time",
+    "price": "$29",
+    "tiers": [
+      {
+        "name": "Creator",
+        "price": "$29",
+        "features": [
+          "Unlimited URL shortening",
+          "Click analytics",
+          "QR codes",
+          "Custom aliases",
+          "API access",
+          "90-day analytics retention"
+        ]
+      }
+    ]
+  },
+  "use_cases": [
+    "Social media link tracking",
+    "Marketing campaign URLs",
+    "QR code generation for print",
+    "Affiliate link management",
+    "Newsletter click tracking",
+    "Bio link pages"
+  ],
+  "estimated_revenue": {
+    "conservative": "20 sales/month = $580",
+    "moderate": "50 sales/month = $1,450",
+    "optimistic": "120 sales/month = $3,480"
+  }
+}

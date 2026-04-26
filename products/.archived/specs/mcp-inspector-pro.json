@@ -1,0 +1,34 @@
+{
+  "name": "MCP Inspector Pro",
+  "slug": "mcp-inspector-pro",
+  "tagline": "Test, debug and validate MCP servers with visual tools",
+  "description": "Professional MCP (Model Context Protocol) server testing and debugging platform. Inspect server capabilities, test tool calls, validate responses, and debug MCP integrations with an intuitive visual interface.",
+  "price": "$19",
+  "features": [
+    "Visual MCP server connection tester",
+    "Tool discovery and introspection",
+    "Interactive tool call builder with JSON editor",
+    "Request/response inspector with syntax highlighting",
+    "Server capability validation",
+    "Error diagnostics and troubleshooting guides",
+    "Support for stdio and SSE transports",
+    "MCP protocol compliance checker",
+    "Export test results as JSON/CURL",
+    "Built-in MCP server templates"
+  ],
+  "tech_stack": ["HTML", "Tailwind CSS", "Vanilla JS", "JSON Editor"],
+  "target_audience": "AI developers, MCP server builders, integration engineers, Claude/Cursor developers",
+  "use_cases": [
+    "Debug MCP server connections",
+    "Test tool calls before integration",
+    "Validate MCP server implementations",
+    "Learn MCP protocol interactively",
+    "Document MCP server capabilities"
+  ],
+  "category": "developer_tools",
+  "batch": 23,
+  "cycle": 1064,
+  "status": "spec_ready",
+  "estimated_build_time": "50 min",
+  "seo_keywords": ["MCP", "Model Context Protocol", "MCP server", "Claude MCP", "AI tools", "MCP debugger"]
+}

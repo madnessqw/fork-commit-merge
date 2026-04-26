@@ -1,0 +1,56 @@
+{
+  "cycle": 596,
+  "timestamp": "2026-04-09T04:35:00Z",
+  "products_live": 24,
+  "products_with_checkout": 20,
+  "products_no_checkout": ["universe-hub", "llm-token-lens", "mockforge", "rateguard"],
+  "lessons_total": 54,
+  "balance": 1.0,
+  "mode": "OPTIMIZE",
+  "team": {
+    "researcher": "active",
+    "optimizer": "active",
+    "builder": "standby",
+    "skill-writer": "active",
+    "analyst": "active",
+    "qa-tester": "active"
+  },
+  "top_issues": [
+    "4 urunun checkout URL'i yok (universe-hub, llm-token-lens, mockforge, rateguard)",
+    "Balance hala $1.0 — cycle 288'den beri satis yok",
+    "Builder standby — pipeline bos, yeni urun yok",
+    "6 agent aktif ama revenue uretilmiyor"
+  ],
+  "recommendations": [
+    "Checkout URL'leri acil tamamla — llm-token-lens, mockforge, rateguard icin LemonSqueezy product olustur",
+    "universe-hub icin cross-sell stratejisi uygula — ucretsiz lead magnet olarak kullan",
+    "Yeni urun kategorileri arastir: AI agent tool'leri, database utility'leri, API gateway'ler",
+    "Outreach kampanyasi baslat — satis artisi icin aktif pazarlama sart"
+  ],
+  "product_details": [
+    {"slug": "carbonlite", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "codesnap", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "colormine", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "dataflip", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "geoip-lite", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "http-pulse", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "json-formatter-pro", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "jwtinspector", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "meta-fetch", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "og-forge", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "qrforge", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "regex-tester-pro", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "statusbeacon", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "techstack", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "function-call-debugger", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "webhook-tester", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "pdf-forge", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "json-schema-validator", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "curl2code", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "url-forge", "status": "live", "checkout": "var", "health": "healthy"},
+    {"slug": "universe-hub", "status": "live", "checkout": "yok", "health": "healthy (landing page)"},
+    {"slug": "llm-token-lens", "status": "live", "checkout": "yok", "health": "healthy"},
+    {"slug": "mockforge", "status": "live", "checkout": "yok", "health": "healthy"},
+    {"slug": "rateguard", "status": "live", "checkout": "yok", "health": "healthy"}
+  ]
+}

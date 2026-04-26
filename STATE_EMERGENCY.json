@@ -1,0 +1,7 @@
+{
+  "status": "EMERGENCY_SHUTDOWN",
+  "timestamp": "2026-04-03T23:59:00Z",
+  "message": "System shutdown imminent. All tasks halted.",
+  "last_action": "/clear received",
+  "recovery_instructions": "Resume from last known good state. Check SURVIVAL_REPORT_FINAL.md."
+}

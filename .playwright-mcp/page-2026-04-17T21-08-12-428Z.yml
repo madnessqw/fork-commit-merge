@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - generic [ref=e4]:
+    - link [ref=e6] [cursor=pointer]:
+      - /url: https://www.lemonsqueezy.com
+      - img [ref=e7]
+    - generic [ref=e12]:
+      - heading "Redirecting" [level=1] [ref=e13]
+      - paragraph [ref=e14]:
+        - text: If you are not redirected soon, please
+        - button "click here" [ref=e15] [cursor=pointer]
+        - text: .
+      - paragraph [ref=e16]:
+        - link "Go back to sign in" [ref=e17] [cursor=pointer]:
+          - /url: https://auth.lemonsqueezy.com/login
+      - iframe [ref=e18]:
+        
+  - generic [ref=e19]:
+    - img [ref=e20]
+    - img [ref=e22]
+    - img [ref=e24]
+    - img [ref=e26]
+    - generic [ref=e29]:
+      - paragraph [ref=e30]: “It’s refreshing to see Lemon Squeezy focusing solely on digital products. Giving you all the necessary tools you’ll need to start selling your products and subscriptions quickly and easily.”
+      - generic [ref=e32]:
+        - heading "Ian Barnard" [level=4] [ref=e33]
+        - text: "@ian_barnard"

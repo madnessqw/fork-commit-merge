@@ -1,0 +1,24 @@
+{
+  "name": "csv-converter-pro",
+  "version": "1.0.0",
+  "description": "Professional data transformation tool - Convert CSV, JSON, TSV, Markdown, HTML, SQL",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html"
+  },
+  "keywords": [
+    "csv",
+    "json",
+    "converter",
+    "data",
+    "transformation",
+    "markdown",
+    "html",
+    "sql",
+    "developer-tools"
+  ],
+  "author": "UniverseCreator",
+  "license": "MIT",
+  "price": 9.99,
+  "currency": "USD"
+}

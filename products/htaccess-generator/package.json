@@ -1,0 +1,9 @@
+{
+  "name": "htaccess-generator",
+  "version": "1.0.0",
+  "description": "Professional Apache .htaccess file generator",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

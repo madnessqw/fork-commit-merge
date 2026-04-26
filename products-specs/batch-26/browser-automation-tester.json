@@ -1,0 +1,27 @@
+{
+  "slug": "browser-automation-tester",
+  "name": "Browser Automation Tester",
+  "tagline": "Test Playwright and Puppeteer scripts instantly in your browser",
+  "description": "Browser Automation Tester is an online sandbox for testing browser automation scripts. Write Playwright or Puppeteer code, run it against live websites, capture screenshots, extract data, and debug selectors - all without installing anything. Perfect for web scrapers, e2e test writers, and automation developers who need quick iteration.",
+  "price": "$19",
+  "target_audience": "Web scrapers, QA engineers, automation developers, data extractors",
+  "features": [
+    "In-browser Playwright/Puppeteer code editor",
+    "Live script execution against any URL",
+    "Screenshot capture and comparison",
+    "Element selector helper with visual picker",
+    "Network request interception and mocking",
+    "Cookie and session management",
+    "Export scripts to Python, JS, or TypeScript",
+    "Test result history and replay",
+    "Mobile viewport simulation",
+    "Headless browser debugging logs"
+  ],
+  "tech_stack": ["Vanilla HTML", "Tailwind CSS", "JavaScript", "WebContainer API"],
+  "category": "Developer Tools",
+  "competitors": ["Playwright Try", "Puppeteer Sandbox", "Browserless"],
+  "differentiation": "Client-side execution (privacy), no signup, instant results",
+  "estimated_traffic": "Playwright trending, web scraping demand high",
+  "spec_ready": true,
+  "batch": 26
+}

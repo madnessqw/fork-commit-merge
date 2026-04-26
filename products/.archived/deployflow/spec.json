@@ -1,0 +1,122 @@
+{
+  "name": "DeployFlow",
+  "tagline": "Static Site Previews & Deployment API",
+  "slug": "deployflow",
+  "version": "1.0.0",
+  "price": "$22 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "designer", "freelancer", "agency"],
+  "problem": "Netlify $19/ay. Vercel limitsiz ama proje başına. Basit static site deploy için ücretli plan gerekli. Preview deployment'lar sınırlı. Custom domain zor",
+  "solution": "Vercel Edge + Blob ile static site hosting. Drag-drop deploy, preview URLs, custom domains, password protection, analytics",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel Blob",
+    "cdn": "Vercel Edge Network",
+    "cache": "Edge Cache",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://deployflow.io/",
+    "endpoints": [
+      {
+        "path": "/api/deploy",
+        "method": "POST",
+        "description": "Deploy static site",
+        "body": {
+          "files": [{"path": "index.html", "content": "base64"}],
+          "siteName": "my-site",
+          "password": "string (optional)"
+        },
+        "response": {
+          "siteId": "site_abc123",
+          "url": "https://my-site.deployflow.io",
+          "customDomain": "string (optional)"
+        }
+      },
+      {
+        "path": "/api/sites/:id",
+        "method": "GET",
+        "description": "Get site details",
+        "response": {
+          "id": "site_abc123",
+          "url": "https://my-site.deployflow.io",
+          "deployedAt": "2026-04-05T12:00:00Z",
+          "size": 245000,
+          "visits": 15234
+        }
+      },
+      {
+        "path": "/api/sites/:id/preview",
+        "method": "POST",
+        "description": "Create preview deployment",
+        "response": {
+          "previewUrl": "https://preview-xyz.deployflow.io",
+          "expiresIn": "7 days"
+        }
+      },
+      {
+        "path": "/api/sites/:id/analytics",
+        "method": "GET",
+        "description": "Get site analytics",
+        "response": {
+          "visits": 15234,
+          "uniqueVisitors": 8902,
+          "bandwidth": "2.4GB"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Netlify",
+      "price": "$19/month",
+      "pros": ["Full featured", "CI/CD"],
+      "cons": ["Monthly cost", "Build minute limits"]
+    },
+    {
+      "name": "Vercel",
+      "price": "$20/month",
+      "pros": ["Fast", "Edge network"],
+      "cons": ["Monthly cost", "Function limits"]
+    },
+    {
+      "name": "GitHub Pages",
+      "price": "Free",
+      "pros": ["Free"],
+      "cons": ["Public repos only", "No preview", "Limited"]
+    }
+  ],
+  "advantage": "One-time $22 vs monthly. Simple deploy. Preview URLs. Custom domains. No build limits.",
+  "features": [
+    "Drag-drop deploy",
+    "ZIP upload",
+    "Git integration",
+    "Preview URLs",
+    "Custom domains",
+    "Password protection",
+    "Analytics",
+    "Bandwidth stats",
+    "Deploy history",
+    "Rollback"
+  ],
+    "use_cases": [
+    "Portfolio hosting",
+    "Client previews",
+    "Landing pages",
+    "Documentation",
+    "Static demos",
+    "File sharing"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $1,320",
+    "moderate": "120 sales/month = $2,640",
+    "optimistic": "250 sales/month = $5,500"
+  },
+  "why_best": [
+    "Netlify $19/mo vs $22 one-time",
+    "Her developer deploy ihtiyacı",
+    "Preview deployments çok değerli",
+    "Edge compatible (Blob)",
+    "Simple pricing"
+  ]
+}

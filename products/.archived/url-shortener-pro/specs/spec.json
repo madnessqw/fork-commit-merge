@@ -1,0 +1,41 @@
+{
+  "slug": "url-shortener-pro",
+  "name": "URL Shortener Pro",
+  "tagline": "Create short, branded links with analytics and QR codes",
+  "description": "Professional URL shortener with custom aliases, click analytics, QR code generation, and password protection. Perfect for marketers, developers, and businesses who need trackable short links.",
+  "price": "$19",
+  "category": "developer-tools",
+  "features": [
+    "Short URL generation with custom aliases",
+    "Click analytics (location, device, referrer)",
+    "QR code generation for every link",
+    "Password protection for sensitive links",
+    "Expiration dates for temporary links",
+    "Bulk URL shortening",
+    "API access for integrations",
+    "Export analytics as CSV",
+    "UTM parameter builder"
+  ],
+  "tech_stack": {
+    "frontend": "Vanilla HTML + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "deployment": "Vercel"
+  },
+  "pages": [
+    "Landing page with live demo",
+    "Privacy policy",
+    "Terms of service"
+  ],
+  "api_endpoints": [
+    "/api/shorten - POST URL to shorten",
+    "/api/stats - GET link analytics"
+  ],
+  "design": {
+    "theme": "dark",
+    "primary_color": "#10b981",
+    "style": "modern glassmorphism"
+  },
+  "batch": 23,
+  "status": "spec_ready",
+  "created_at": "2026-04-21T22:15:00Z"
+}

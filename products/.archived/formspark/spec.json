@@ -1,0 +1,136 @@
+{
+  "name": "FormSpark",
+  "tagline": "Form Backend & Submission Handler API",
+  "slug": "formspark",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "designer", "saas_founder", "no_code_builder"],
+  "problem": "Statik sitelere form eklemek için Netlify Forms limitli (100 submissions/ay). Formspree $10/ay. Form backend kurulumu zor. File upload desteği pahalı",
+  "solution": "Vercel Edge + KV ile form backend. Form submissions, file uploads, spam filtering, email notifications, webhook forwarding",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV + Vercel Blob",
+    "spam_filter": "honeypot + akismet",
+    "email": "Resend",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://formspark.io/",
+    "endpoints": [
+      {
+        "path": "/api/forms",
+        "method": "POST",
+        "description": "Create new form endpoint",
+        "body": {
+          "name": "string",
+          "redirectUrl": "string (optional)",
+          "notifications": {
+            "email": "string",
+            "webhook": "string (optional)"
+          },
+          "spamProtection": true
+        },
+        "response": {
+          "formId": "form_abc123",
+          "endpoint": "https://formspark.io/f/form_abc123",
+          "embedCode": "<form action='...'>...</form>"
+        }
+      },
+      {
+        "path": "/f/:formId",
+        "method": "POST",
+        "description": "Submit form data",
+        "body": "any form fields",
+        "response": {
+          "success": true,
+          "submissionId": "sub_xyz789",
+          "message": "Thank you for your submission"
+        }
+      },
+      {
+        "path": "/api/submissions/:formId",
+        "method": "GET",
+        "description": "Get form submissions",
+        "parameters": {
+          "limit": "number (default: 50)",
+          "cursor": "string (pagination)"
+        },
+        "response": {
+          "submissions": [
+            {
+              "id": "sub_xyz789",
+              "data": {"name": "John", "email": "john@example.com"},
+              "createdAt": "2026-04-05T12:00:00Z",
+              "spam": false
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/export",
+        "method": "POST",
+        "description": "Export submissions to CSV/JSON",
+        "body": {
+          "formId": "string",
+          "format": "csv | json",
+          "dateFrom": "string",
+          "dateTo": "string"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Formspree",
+      "price": "$10/month",
+      "pros": ["Popular", "Reliable"],
+      "cons": ["Monthly cost", "Limited submissions"]
+    },
+    {
+      "name": "Netlify Forms",
+      "price": "Free/Pro $19/month",
+      "pros": ["Integrated"],
+      "cons": ["100 submissions limit", "Netlify only"]
+    },
+    {
+      "name": "Typeform",
+      "price": "$25/month",
+      "pros": ["Beautiful forms"],
+      "cons": ["Expensive", "Hosted only", "No API"]
+    }
+  ],
+  "advantage": "One-time $19 vs monthly. Unlimited submissions. File uploads. Edge speed.",
+  "features": [
+    "Form endpoint creation",
+    "Unlimited submissions",
+    "File upload support",
+    "Spam protection (honeypot)",
+    "Email notifications",
+    "Webhook forwarding",
+    "Export (CSV, JSON)",
+    "Submission management",
+    "Custom redirect",
+    "Thank you page"
+  ],
+  "use_cases": [
+    "Static site forms",
+    "Portfolio contact forms",
+    "Landing page forms",
+    "Event registrations",
+    "File upload forms",
+    "Survey forms"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $1,140",
+    "moderate": "120 sales/month = $2,280",
+    "optimistic": "250 sales/month = $4,750"
+  },
+  "why_best": [
+    "Formspree $10/mo vs $19 one-time",
+    "Netlify 100 limit",
+    "Her static site için gerekli",
+    "Edge compatible",
+    "File upload desteği"
+  ]
+}

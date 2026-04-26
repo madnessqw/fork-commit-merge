@@ -1,0 +1,29 @@
+Konu: 🚀 Kendi SEO API'nizi $9'dan başlayan fiyatlarla edinin
+
+Merhaba,
+
+Web sitenizin SEO performansını analiz eden, rakiplerinizin meta taglarını inceleyen veya müşterileriniz için link önizleme özellikleri mi geliştirmek istiyorsunuz? SEO Analyzer API v2.0 tam da bunun için hazır.
+
+SEO Analyzer API ile şunları yapabilirsiniz:
+✅ Tek URL veya toplu olarak 50 URL'ye kadar analiz
+✅ Title ve meta description otomatik çıkarma
+✅ JSON/CSV export ile sonuçları anında dışa aktarma
+✅ Sıfır bağımlılık - Python built-in modüllerle çalışır
+✅ 30 saniyede kurulum, hemen kullanmaya başlayın
+
+3 paket sunuyoruz:
+💰 Starter ($9) - Tek proje, kişisel kullanım
+💰 Professional ($19) - 5 proje, ticari kullanım, ömür boyu güncelleme
+💰 Enterprise ($49) - Sınırsız proje, beyaz etiket, kendi ürününüzde satabilirsiniz
+
+Ödeme sonrası otomatik download linki alırsınız. PayPal, banka havalesi veya kripto ile ödeme yapabilirsiniz.
+
+Detaylı bilgi ve satın alma için: paypal@universecreator.io adresine yazın.
+
+İyi çalışmalar,
+UniverseCreator Ekibi
+
+
+---
+
+P.S. Enterprise paketiyle SEO Analyzer API'yi kendi ürününüzde satabilir, tekrarlayan gelir elde edebilirsiniz.

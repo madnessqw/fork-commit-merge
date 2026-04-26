@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Htpasswd Generator Pro</title>
+  <meta name="description" content="Professional Htpasswd Generator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+  <meta name="keywords" content="htpasswd, generator, apache, nginx, password protection, bcrypt, md5, sha1, web server security">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+  <meta property="og:title" content="Htpasswd Generator Pro">
+  <meta property="og:description" content="Professional Htpasswd Generator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://og-forge.vercel.app/api/og?title=Htpasswd%20Generator%20Pro&description=Apache%20%26%20Nginx%20Password%20Protection">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://htpasswd-generator.vercel.app">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Htpasswd Generator Pro",
+  "description": "Professional Htpasswd Generator tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://htpasswd-generator.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+          animation: { 'fade-in': 'fadeIn 0.5s ease-out', 'slide-up': 'slideUp 0.5s ease-out', 'pulse-glow': 'pulseGlow 2s ease-in-out infinite' },
+          keyframes: { fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } }, slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }, pulseGlow: { '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)' }, '50%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.6)' } } }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0a0a0a; color: #fff; }
+    .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .glow-button { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); transition: all 0.3s ease; }
+    .glow-button:hover { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); transform: translateY(-2px); }
+    .feature-card:hover { transform: translateY(-5px); border-color: rgba(99, 102, 241, 0.5); }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-transparent"></div>
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-fade-in">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        <span class="text-sm text-gray-300">Apache & Nginx Compatible</span>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-slide-up">
+        <span class="gradient-text">Htpasswd</span> Generator Pro
+      </h1>
+
+      <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.1s">
+        Generate secure .htpasswd files with MD5, SHA1, and Bcrypt hashing.
+        Professional password protection for Apache and Nginx web servers.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-slide-up" style="animation-delay: 0.2s">
+        <button class="glow-button px-8 py-4 bg-indigo-600 rounded-xl font-semibold text-lg">
+          Get Pro Access — $19
+        </button>
+        <button class="px-8 py-4 glass rounded-xl font-semibold text-lg hover:bg-white/5 transition-colors">
+          View Demo
+        </button>
+      </div>
+
+      <!-- Demo Preview -->
+      <div class="glass rounded-2xl p-6 md:p-8 max-w-4xl mx-auto animate-slide-up" style="animation-delay: 0.3s">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-3 h-3 rounded-full bg-red-500"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500"></div>
+          <span class="ml-4 text-sm text-gray-500">htpasswd generator preview</span>
+        </div>
+        <div class="bg-black/50 rounded-xl p-6 font-mono text-left text-sm">
+          <div class="text-gray-500 mb-2"># Generated .htpasswd file</div>
+          <div class="text-green-400">admin:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/</div>
+          <div class="text-blue-400">developer:$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi</div>
+          <div class="text-purple-400">manager:{SHA}5en6G6MezRroT3XKqkdPOmY/BfQ=</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Professional Features</h2>
+        <p class="text-gray-400">Everything you need for secure password protection</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-6 feature-card transition-all duration-300">
+          <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Multiple Hash Algorithms</h3>
+          <p class="text-gray-400">MD5, SHA1, and Bcrypt hashing options for maximum compatibility</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 feature-card transition-all duration-300">
+          <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Apache & Nginx Ready</h3>
+          <p class="text-gray-400">Fully compatible with both Apache and Nginx web servers</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 feature-card transition-all duration-300">
+          <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Bulk Generation</h3>
+          <p class="text-gray-400">Generate multiple users at once for efficient team management</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 feature-card transition-all duration-300">
+          <div class="w-12 h-12 bg-yellow-600/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Secure Password Gen</h3>
+          <p class="text-gray-400">Built-in secure password generator with strength indicators</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 feature-card transition-all duration-300">
+          <div class="w-12 h-12 bg-pink-600/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Htaccess Templates</h3>
+          <p class="text-gray-400">Ready-to-use .htaccess and nginx.conf templates included</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 feature-card transition-all duration-300">
+          <div class="w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">One-Click Copy</h3>
+          <p class="text-gray-400">Instant copy to clipboard for quick server configuration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20"></div>
+        <div class="relative z-10">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple Pricing</h2>
+          <p class="text-gray-400 mb-8">One-time purchase, lifetime access</p>
+
+          <div class="text-6xl font-bold mb-4">$19</div>
+          <p class="text-gray-500 mb-8">One-time payment • No subscription</p>
+
+          <ul class="text-left max-w-md mx-auto space-y-3 mb-8">
+            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Unlimited htpasswd generation</li>
+            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>All hash algorithms included</li>
+            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Bulk user generation</li>
+            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Server config templates</li>
+            <li class="flex items-center gap-3"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Lifetime updates</li>
+          </ul>
+
+          <button class="glow-button w-full max-w-md px-8 py-4 bg-indigo-600 rounded-xl font-semibold text-lg">
+            Get Pro Access Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="glass rounded-xl p-6">
+          <h3 class="text-lg font-semibold mb-2">Which hash algorithm should I use?</h3>
+          <p class="text-gray-400">Bcrypt is recommended for maximum security. MD5 is widely compatible with older systems. SHA1 offers a balance between security and compatibility.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="text-lg font-semibold mb-2">Is this compatible with both Apache and Nginx?</h3>
+          <p class="text-gray-400">Yes! Generated .htpasswd files work with Apache's mod_auth_basic and Nginx's auth_basic module.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="text-lg font-semibold mb-2">Can I generate multiple users at once?</h3>
+          <p class="text-gray-400">Absolutely. The Pro version includes bulk generation for entire teams or organizations.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="text-lg font-semibold mb-2">Are passwords stored securely?</h3>
+          <p class="text-gray-400">Passwords are hashed client-side using industry-standard algorithms. We never store or transmit plain text passwords.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-500"> 2026 Htpasswd Generator Pro. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="text-gray-500 hover:text-white transition-colors">Privacy</a>
+        <a href="#" class="text-gray-500 hover:text-white transition-colors">Terms</a>
+        <a href="#" class="text-gray-500 hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,302 @@
+{
+  "name": "Valid8",
+  "tagline": "Real-time Email Validation API",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "target_audience": ["saas_founder", "email_marketer", "signup_form_owner", "developer"],
+  "problem": "SaaS uygulamalarında fake email kayıtları, bouncerate artışı, email verification maliyetleri. Mevcut çözümler pahalı (her validation için ücret)",
+  "solution": "Regex + DNS MX lookup + SMTP check ile gerçek zamanlı email validation. Disposable email detection, typo correction önerileri, cache'li sonuçlar",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "validation": "DNS over HTTPS",
+    "cache": "Vercel KV / Redis",
+    "disposable_list": "disposable-email-domains",
+    "payment": "Stripe"
+  },
+  "mvp_complexity": "1-2 cycle",
+  "api": {
+    "base_url": "https://valid8.api/",
+    "endpoints": [
+      {
+        "path": "/api/validate/email",
+        "method": "GET",
+        "description": "Validate email address with multiple checks",
+        "parameters": {
+          "email": {
+            "type": "string",
+            "required": true,
+            "description": "Email address to validate"
+          },
+          "check_mx": {
+            "type": "boolean",
+            "default": true,
+            "description": "Verify MX records exist"
+          },
+          "check_smtp": {
+            "type": "boolean",
+            "default": false,
+            "description": "Perform SMTP handshake (slower but accurate)"
+          },
+          "block_disposable": {
+            "type": "boolean",
+            "default": true,
+            "description": "Block disposable/temp email providers"
+          },
+          "suggest_fix": {
+            "type": "boolean",
+            "default": true,
+            "description": "Suggest typo corrections"
+          }
+        },
+        "response": {
+          "valid": {
+            "type": "boolean",
+            "description": "Overall validation result"
+          },
+          "checks": {
+            "format": {
+              "type": "boolean",
+              "description": "RFC 5322 format validation"
+            },
+            "mx": {
+              "type": "boolean",
+              "description": "MX record exists"
+            },
+            "disposable": {
+              "type": "boolean",
+              "description": "Is disposable email"
+            },
+            "smtp": {
+              "type": "boolean",
+              "description": "SMTP server responds"
+            }
+          },
+          "email": {
+            "type": "object",
+            "properties": {
+              "address": "string (normalized)",
+              "domain": "string",
+              "local": "string (before @)"
+            }
+          },
+          "suggestion": {
+            "type": "string",
+            "description": "Corrected email if typo detected",
+            "example": "user@gmail.com (if input was user@gmial.com)"
+          },
+          "score": {
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "description": "Trust score (0-100)"
+          },
+          "cached": {
+            "type": "boolean",
+            "description": "Result from cache"
+          },
+          "timestamp": "ISO8601 timestamp"
+        },
+        "examples": [
+          {
+            "url": "/api/validate/email?email=user@example.com&check_mx=true",
+            "response": {
+              "valid": true,
+              "checks": {
+                "format": true,
+                "mx": true,
+                "disposable": false,
+                "smtp": false
+              },
+              "email": {
+                "address": "user@example.com",
+                "domain": "example.com",
+                "local": "user"
+              },
+              "suggestion": null,
+              "score": 95,
+              "cached": false,
+              "timestamp": "2025-04-04T10:00:00Z"
+            }
+          },
+          {
+            "url": "/api/validate/email?email=user@gmial.com",
+            "response": {
+              "valid": true,
+              "checks": {
+                "format": true,
+                "mx": true,
+                "disposable": false
+              },
+              "suggestion": "user@gmail.com",
+              "score": 70,
+              "cached": false
+            }
+          },
+          {
+            "url": "/api/validate/email?email=user@tempmail.com&block_disposable=true",
+            "response": {
+              "valid": false,
+              "checks": {
+                "format": true,
+                "mx": true,
+                "disposable": true
+              },
+              "suggestion": null,
+              "score": 10,
+              "reason": "Disposable email provider"
+            }
+          }
+        ]
+      },
+      {
+        "path": "/api/validate/batch",
+        "method": "POST",
+        "description": "Validate multiple emails in batch",
+        "body": {
+          "emails": {
+            "type": "array",
+            "max_items": 100,
+            "items": "string"
+          },
+          "options": {
+            "check_mx": "boolean (default: true)",
+            "block_disposable": "boolean (default: true)"
+          }
+        },
+        "response": {
+          "results": "array",
+          "valid_count": "number",
+          "invalid_count": "number",
+          "processing_time_ms": "number"
+        }
+      }
+    ]
+  },
+  "validation_levels": {
+    "format": {
+      "description": "RFC 5322 compliant email format",
+      "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "speed": "instant"
+    },
+    "mx": {
+      "description": "Check domain has MX records",
+      "method": "DNS over HTTPS (Cloudflare/Quad9)",
+      "speed": "~50-200ms",
+      "cache_ttl": "24 hours"
+    },
+    "smtp": {
+      "description": "Verify mailbox exists via SMTP",
+      "method": "SMTP handshake",
+      "speed": "~500ms-2s",
+      "rate_limit": "10 req/min",
+      "warning": "Some servers block SMTP verification"
+    }
+  },
+  "disposable_detection": {
+    "sources": [
+      "disposable-email-domains npm package",
+      "Custom blocklist",
+      "User submissions"
+    ],
+    "categories": [
+      "temporary",
+      "throwaway",
+      "fake",
+      "anonymous"
+    ]
+  },
+  "typo_detection": {
+    "common_typos": {
+      "gmial.com": "gmail.com",
+      "gmail.co": "gmail.com",
+      "gmaill.com": "gmail.com",
+      "yahooo.com": "yahoo.com",
+      "yaho.com": "yahoo.com",
+      "hotmial.com": "hotmail.com",
+      "outlok.com": "outlook.com",
+      "icloud.co": "icloud.com"
+    },
+    "algorithm": "Levenshtein distance for similar domains"
+  },
+  "implementation": {
+    "phase_1": {
+      "name": "Core Validation",
+      "tasks": [
+        "Setup Vercel Edge Function",
+        "Implement format validation",
+        "Add disposable email detection",
+        "Setup Vercel KV cache",
+        "Create basic API response"
+      ],
+      "duration": "1 cycle"
+    },
+    "phase_2": {
+      "name": "Advanced Features",
+      "tasks": [
+        "Add MX lookup (DNS over HTTPS)",
+        "Implement typo suggestion",
+        "Add batch validation endpoint",
+        "Create documentation",
+        "Setup Stripe payment"
+      ],
+      "duration": "1 cycle"
+    }
+  },
+  "market_analysis": {
+    "competitors": [
+      {
+        "name": "Email-Validator.net",
+        "price": "$499/50k checks",
+        "pros": ["High accuracy", "SMTP check"],
+        "cons": ["Very expensive", "Pay per check"]
+      },
+      {
+        "name": "ZeroBounce",
+        "price": "$65/5000",
+        "pros": ["High accuracy", "API"],
+        "cons": ["Expensive", "Credit system"]
+      },
+      {
+        "name": "NeverBounce",
+        "price": "$50/1000",
+        "pros": ["Real-time API"],
+        "cons": ["Most expensive", "Complex pricing"]
+      },
+      {
+        "name": "Abstract API",
+        "price": "$9/month",
+        "pros": ["Affordable"],
+        "cons": ["Monthly subscription", "Rate limits"]
+      }
+    ],
+    "advantage": "One-time $19 + Unlimited validations + Fast Edge response"
+  },
+  "pricing_strategy": {
+    "model": "one-time",
+    "price": "$19",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": "$19",
+        "features": [
+          "Unlimited validations",
+          "Format + MX + Disposable checks",
+          "Typo suggestions",
+          "Basic support"
+        ]
+      }
+    ]
+  },
+  "use_cases": [
+    "Signup form validation",
+    "Newsletter subscription check",
+    "E-commerce checkout",
+    "CRM data cleaning",
+    "Lead qualification"
+  ],
+  "estimated_revenue": {
+    "conservative": "15 sales/month = $285",
+    "moderate": "50 sales/month = $950",
+    "optimistic": "100 sales/month = $1,900"
+  }
+}

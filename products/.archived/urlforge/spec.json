@@ -1,0 +1,144 @@
+{
+  "name": "URL Forge",
+  "tagline": "URL Parsing & Building API",
+  "slug": "urlforge",
+  "version": "1.0.0",
+  "price": "$14 one-time",
+  "mvp_complexity": "1 cycle",
+  "target_audience": ["developer", "web_scraper", "seo_specialist", "content_manager"],
+  "problem": "URL parsing için native URL API var ama query string manipülasyonu zor. URL validasyonu için regex yazmak gerekli. URL parametrelerini encode/decode etmek manual. Multiple URL'leri normalize etmek zaman alıcı",
+  "solution": "Vercel Edge + native URL API ile URL manipulation. Parse, build, normalize, query manipulation, validation",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "url_lib": "Native URL API",
+    "query_lib": "native-querystring",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://urlforge.io/",
+    "endpoints": [
+      {
+        "path": "/api/parse",
+        "method": "GET",
+        "description": "Parse URL into components",
+        "parameters": {
+          "url": "string (required)"
+        },
+        "response": {
+          "href": "https://user:pass@example.com:8080/path?query=1#hash",
+          "protocol": "https:",
+          "host": "example.com:8080",
+          "hostname": "example.com",
+          "port": "8080",
+          "pathname": "/path",
+          "search": "?query=1",
+          "hash": "#hash",
+          "username": "user",
+          "password": "pass",
+          "origin": "https://example.com:8080",
+          "query": {"query": "1"}
+        }
+      },
+      {
+        "path": "/api/build",
+        "method": "POST",
+        "description": "Build URL from components",
+        "body": {
+          "protocol": "https",
+          "hostname": "example.com",
+          "pathname": "/path",
+          "query": {"key": "value"},
+          "hash": "section"
+        },
+        "response": {
+          "url": "https://example.com/path?key=value#section",
+          "valid": true
+        }
+      },
+      {
+        "path": "/api/normalize",
+        "method": "GET",
+        "description": "Normalize URL",
+        "parameters": {
+          "url": "string",
+          "lowercase": "boolean (default: true)",
+          "removeTrailingSlash": "boolean (default: false)"
+        },
+        "response": {
+          "original": "HTTPS://Example.COM//path//",
+          "normalized": "https://example.com/path/"
+        }
+      },
+      {
+        "path": "/api/query",
+        "method": "POST",
+        "description": "Manipulate query string",
+        "body": {
+          "url": "string",
+          "action": "add | remove | set | get",
+          "params": {"key": "value"}
+        }
+      },
+      {
+        "path": "/api/validate",
+        "method": "GET",
+        "description": "Validate URL format",
+        "parameters": {
+          "url": "string",
+          "checkDns": "boolean (default: false)"
+        },
+        "response": {
+          "valid": true,
+          "type": "absolute",
+          "suggestions": []
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Native URL API",
+      "price": "Free",
+      "pros": ["Built-in"],
+      "cons": ["Basic only", "No query manipulation", "Manual work"]
+    },
+    {
+      "name": "query-string (npm)",
+      "price": "Free",
+      "pros": ["Popular"],
+      "cons": ["Setup required", "Library only"]
+    }
+  ],
+  "advantage": "One-time $14 vs free but manual. Convenience API. Edge speed.",
+  "features": [
+    "URL parsing",
+    "URL building",
+    "URL normalization",
+    "Query string manipulation",
+    "URL validation",
+    "Batch URL processing",
+    "URL comparison",
+    "Protocol detection",
+    "Domain extraction"
+  ],
+  "use_cases": [
+    "Web scraping",
+    "URL shorteners",
+    "SEO analysis",
+    "Redirect management",
+    "Link validation",
+    "API URL building"
+  ],
+  "estimated_revenue": {
+    "conservative": "60 sales/month = $840",
+    "moderate": "120 sales/month = $1,680",
+    "optimistic": "200 sales/month = $2,800"
+  },
+  "why_best": [
+    "Her developer'ın ihtiyacı",
+    "En basit implementasyon (native API)",
+    "1 cycle MVP",
+    "Düşük fiyat ($14) = yüksek satış"
+  ]
+}

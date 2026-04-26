@@ -1,0 +1,11 @@
+{
+  "cycle": 896,
+  "timestamp": "2026-04-19T03:56:31.982546Z",
+  "top_recommendation": "toml-parser-pro",
+  "alternatives": [
+    "email-signature-generator",
+    "color-palette-extractor",
+    "html-entity-tool"
+  ],
+  "rationale": "TOML pop\u00fclerlik kazan\u0131yor, az rekabet, basit implementasyon"
+}

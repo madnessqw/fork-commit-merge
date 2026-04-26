@@ -1,0 +1,52 @@
+# LemonSqueezy Product Creation List
+# Format: Name | Slug | Price | Webhook URL
+
+UUID Generator Pro | uuid-generator-pro | $9 | https://uuid-generator-l98xk4dvq-madnessqws-projects.vercel.app/api/webhook
+WebTerminal Pro | webterminal-pro | $9 | https://webterminal-pro.vercel.app/api/webhook
+Cron Expression Builder | cron-expression-builder | $9 | https://cron-expression-builder-fy1s0opw0-madnessqws-projects.vercel.app/api/webhook
+TOML Toolkit | toml-toolkit | $9 | https://toml-toolkit.vercel.app/api/webhook
+HTML Entities Pro | html-entities | $9 | https://html-entities-fk0an3v78-madnessqws-projects.vercel.app/api/webhook
+CSS Gradient Studio | css-gradient-studio | $9 | https://css-gradient-studio-qchdd3taj-madnessqws-projects.vercel.app/api/webhook
+Password Strength Checker Pro | password-strength-checker | $9 | https://password-strength-checker-o6lhayyk7-madnessqws-projects.vercel.app/api/webhook
+YAML to JSON Converter | yaml-json-converter | $9 | https://yaml-json-converter-gd3kqth3d-madnessqws-projects.vercel.app/api/webhook
+ID Generator Pro | id-generator-pro | $19 | https://id-generator-g8gr7daxc-madnessqws-projects.vercel.app/api/webhook
+UUID Generator Pro | uuid-generator | $19 | https://uuid-generator-b3c67q2rr-madnessqws-projects.vercel.app/api/webhook
+NanoID Generator Pro | nanoid-generator | $9 | https://nanoid-generator-75cvenpcm-madnessqws-projects.vercel.app/api/webhook
+HTML Minifier Pro | html-minifier-pro | $9 | https://html-minifier-pro.vercel.app/api/webhook
+TOML Validator | toml-validator | $9 | https://toml-validator.vercel.app/api/webhook
+KeyForge | keyforge | $9 | https://keyforge-3lj8zc033-madnessqws-projects.vercel.app/api/webhook
+TOML Parser Pro | toml-parser-pro | $9 | https://toml-parser-pro.vercel.app/api/webhook
+Nginx Config Generator | nginx-config-generator | $9 | https://nginx-config-generator.vercel.app/api/webhook
+HTML to Markdown Pro | html-to-markdown | $9 | https://html-to-markdown.vercel.app/api/webhook
+API Request Builder | api-request-builder | $19 | https://api-request-builder-alpha.vercel.app/api/webhook
+XML Master Pro | xml-master-pro | $9 | https://xml-master-pro.vercel.app/api/webhook
+JWT Generator | jwt-generator | $9 | 
+XML Formatter & Validator | xml-formatter | $9 | https://xml-formatter-4xqfur0tg-madnessqws-projects.vercel.app/api/webhook
+Markdown Previewer Pro | markdown-previewer | $19 | https://markdown-previewer-mf4qdegye-madnessqws-projects.vercel.app/api/webhook
+CSS Grid Generator | css-grid-gen | $9 | https://css-grid-gen.vercel.app/api/webhook
+Dockerfile Generator | dockerfile-generator | $9 | https://dockerfile-generator-46dilmiq1-madnessqws-projects.vercel.app/api/webhook
+Timestamp Master | timestamp-master | $9 | 
+Markdown Previewer Pro | markdown-previewer-pro | $9 | https://markdown-previewer-awc1vufpu-madnessqws-projects.vercel.app/api/webhook
+HTTP Load Tester Pro | http-load-tester-pro | $19 | https://http-load-tester-64aggndyi-madnessqws-projects.vercel.app/api/webhook
+Cron Master | cron-master | $9 | https://cron-master.vercel.app/api/webhook
+Image Compressor Pro | image-compressor-pro | $9 | https://image-compressor-e1z29y4g0-madnessqws-projects.vercel.app/api/webhook
+TOML Converter Pro | toml-converter-pro | $9 | https://toml-converter-pro.vercel.app/api/webhook
+HTML to JSX | html2jsx | $19 | https://html2jsx-mmlaaomvd-madnessqws-projects.vercel.app/api/webhook
+Email Validator Pro | email-validator-pro | $9 | https://email-validator-lzumj1qer-madnessqws-projects.vercel.app/api/webhook
+MCP Server Validator | mcp-validator | $9 | https://mcp-validator-76hr64079-madnessqws-projects.vercel.app/api/webhook
+TOML Parser Pro | toml-parser | $9 | https://toml-parser-4nke04v24-madnessqws-projects.vercel.app/api/webhook
+HTML2Markdown Pro | html2markdown | $9 | https://html2markdown-1lr65oypb-madnessqws-projects.vercel.app/api/webhook
+Markdown to PDF | markdown-to-pdf | $9 | https://markdown-to-1d2epze3o-madnessqws-projects.vercel.app/api/webhook
+Terminal Theme Studio | terminal-theme-studio | $9 | https://terminal-theme-studio-klvuuadqp-madnessqws-projects.vercel.app/api/webhook
+IP Network Tools | ip-network-tools | $19 | https://ip-network-tools-arwxq9u1a-madnessqws-projects.vercel.app/api/webhook
+Favicon Generator Pro | favicon-generator-pro | $9 | https://favicon-generator-q8xcpv963-madnessqws-projects.vercel.app/api/webhook
+XML Formatter Pro | xml-formatter-pro | $19 | 
+HTML Entity Encoder/Decoder Pro | html-entity-encoder | $9 | 
+OpenAPI Validator | openapi-validator | $9 | 
+Cron Express | cron-express | $19 | https://cron-express-1vzejgb5v-madnessqws-projects.vercel.app/api/webhook
+CronMaster | cronmaster | $9 | 
+Email Signature Pro | email-signature-pro | $9 | 
+Text Diff Pro | text-diff-pro | $9 | https://text-diff-c07ahqu10-madnessqws-projects.vercel.app/api/webhook
+CSS Shadow Studio | css-shadow-studio | $19 | https://css-shadow-studio-pcz90wrrx-madnessqws-projects.vercel.app/api/webhook
+Lorem Ipsum Pro | lorem-ipsum-pro | $9 | https://lorem-ipsum-bc8xzansf-madnessqws-projects.vercel.app/api/webhook
+Color Palette Extractor | color-palette-extractor | $9 | https://color-palette-extractor-dbzb0zz9u-madnessqws-projects.vercel.app/api/webhook

@@ -1,0 +1,26 @@
+{
+  "sites": [
+    {
+      "name": "Example Site",
+      "url": "https://example.com"
+    }
+  ],
+  "check_interval": 300,
+  "retry_count": 2,
+  "alerts": {
+    "discord": "YOUR_DISCORD_WEBHOOK_URL",
+    "slack": "YOUR_SLACK_WEBHOOK_URL",
+    "telegram": {
+      "bot_token": "YOUR_BOT_TOKEN",
+      "chat_id": "YOUR_CHAT_ID"
+    },
+    "email": {
+      "server": "smtp.gmail.com",
+      "port": 587,
+      "username": "your-email@gmail.com",
+      "password": "your-app-password",
+      "from_email": "alerts@yourdomain.com",
+      "to_emails": ["admin@yourdomain.com"]
+    }
+  }
+}

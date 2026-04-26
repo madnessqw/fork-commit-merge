@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Analyzer API v2.0 - Kendi SEO API'nizi 30 Saniyede Kurun</title>
+    <meta name="description" content="Meta tag extraction API for developers. Tek URL veya 50 URL'ye kadar toplu analiz. JSON/CSV export. Sıfır bağımlılık. $9'dan başlayan fiyatlarla hemen edinin.">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        header { background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); padding: 80px 0; text-align: center; }
+        header h1 { font-size: 3rem; margin-bottom: 20px; color: #0a0a0a; }
+        header .subtitle { font-size: 1.5rem; color: #333; margin-bottom: 40px; }
+        header .cta-button {
+            display: inline-block;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        header .cta-button:hover { transform: translateY(-2px); }
+
+        /* Features */
+        .features { padding: 80px 0; background: #f8f9fa; }
+        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .feature-card { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #00C9FF; }
+        .feature-card ul { list-style: none; }
+        .feature-card li { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .feature-card li:last-child { border-bottom: none; }
+        .feature-card li::before { content: "✅ "; }
+
+        /* Pricing */
+        .pricing { padding: 80px 0; }
+        .pricing h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; }
+        .pricing-subtitle { text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 60px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .pricing-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .pricing-card:hover { border-color: #00C9FF; transform: translateY(-5px); }
+        .pricing-card.popular { border-color: #00C9FF; position: relative; }
+        .pricing-card.popular::before {
+            content: "⭐ EN POPÜLER";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00C9FF;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .pricing-card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+        .pricing-card .price { font-size: 3.5rem; font-weight: bold; color: #00C9FF; margin-bottom: 10px; }
+        .pricing-card .price span { font-size: 1.2rem; color: #666; font-weight: normal; }
+        .pricing-card .description { color: #666; margin-bottom: 30px; }
+        .pricing-card ul { list-style: none; margin-bottom: 30px; text-align: left; }
+        .pricing-card li { padding: 12px 0; border-bottom: 1px solid #eee; }
+        .pricing-card li::before { content: "✓ "; color: #00C9FF; font-weight: bold; }
+        .pricing-card .buy-button {
+            display: inline-block;
+            background: #00C9FF;
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .pricing-card .buy-button:hover { background: #00a8d4; }
+
+        /* API Example */
+        .api-example { padding: 80px 0; background: #1a1a1a; color: #fff; }
+        .api-example h2 { text-align: center; font-size: 2.5rem; margin-bottom: 40px; }
+        .code-block {
+            background: #2d2d2d;
+            padding: 30px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.95rem;
+        }
+        .code-block pre { margin: 0; }
+        .code-block code { color: #f8f8f2; }
+        .comment { color: #75715e; }
+        .string { color: #e6db74; }
+        .keyword { color: #66d9ef; }
+
+        /* Use Cases */
+        .use-cases { padding: 80px 0; }
+        .use-cases h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; }
+        .use-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .use-case-card { text-align: center; padding: 30px; }
+        .use-case-card .icon { font-size: 3rem; margin-bottom: 20px; }
+        .use-case-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .use-case-card p { color: #666; }
+
+        /* FAQ */
+        .faq { padding: 80px 0; background: #f8f9fa; }
+        .faq h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; }
+        .faq-item { background: #fff; margin-bottom: 20px; padding: 30px; border-radius: 12px; }
+        .faq-item h3 { font-size: 1.3rem; margin-bottom: 15px; color: #00C9FF; }
+        .faq-item p { color: #666; }
+
+        /* CTA */
+        .cta { padding: 80px 0; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+        .cta h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .cta p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; }
+        .cta .email {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer { background: #1a1a1a; color: #999; padding: 40px 0; text-align: center; }
+        footer a { color: #fff; text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            header .subtitle { font-size: 1.2rem; }
+            .pricing-card .price { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>🚀 SEO Analyzer API v2.0</h1>
+            <p class="subtitle">Meta tag extraction API for developers — sıfır bağımlılık, 30 saniyede kurulum</p>
+            <a href="#pricing" class="cta-button">Hemen Satın Al — $9'dan başlayan fiyatlarla</a>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Özellikler</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Tek URL Analizi</h3>
+                    <ul>
+                        <li>POST /analyze endpoint</li>
+                        <li>Title ve meta description çıkarma</li>
+                        <li>JSON formatında yanıt</li>
+                        <li>10 saniye timeout</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Toplu İşlem (50 URL)</h3>
+                    <ul>
+                        <li>POST /analyze-batch endpoint</li>
+                        <li>50 URL'ye kadar paralel analiz</li>
+                        <li>Her URL için ayrı sonuç</li>
+                        <li>Hızlı ve verimli</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>JSON/CSV Export</h3>
+                    <ul>
+                        <li>GET /export endpoint</li>
+                        <li>Sonuçları anında dışa aktar</li>
+                        <li>İki format seçeneği</li>
+                        <li>Excel ile uyumlu</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Sıfır Bağımlılık</h3>
+                    <ul>
+                        <li>Python built-in modüller</li>
+                        <li>Hiçbir paket gerekmez</li>
+                        <li>30 saniyede kurulum</li>
+                        <li>Linux ve macOS desteği</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>CORS Desteği</h3>
+                    <ul>
+                        <li>Tarayıcıdan direkt kullanım</li>
+                        <li>Frontend entegrasyonu kolay</li>
+                        <li>Access-Control-Allow-Origin</li>
+                        <li>Her framework ile çalışır</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Self-Hosted</h3>
+                    <ul>
+                        <li>Kendi sunucunuzda çalışır</li>
+                        <li>Sınırsız kullanım</li>
+                        <li>Veriler sizde kalır</li>
+                        <li>Tek seferlik ödeme</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Fiyatlandırma</h2>
+            <p class="pricing-subtitle">Tek seferlik ödeme — ömür boyu kullanım, güncellemeler dahil</p>
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$9</div>
+                    <p class="description">Kişisel projeler için</p>
+                    <ul>
+                        <li>Tek proje (tek domain/uygulama)</li>
+                        <li>1 yıl güncelleme</li>
+                        <li>E-posta desteği (48 saat)</li>
+                        <li>Kişisel kullanım hakkı</li>
+                        <li>Tüm temel özellikler</li>
+                        <li>Sınırsız API çağrısı</li>
+                    </ul>
+                    <a href="mailto:paypal@universecreator.io?subject=SEO%20API%20Starter%20Sat%C4%B1n%20Alma" class="buy-button">Satın Al</a>
+                </div>
+
+                <!-- Professional -->
+                <div class="pricing-card popular">
+                    <h3>Professional</h3>
+                    <div class="price">$19</div>
+                    <p class="description">Ticari projeler için</p>
+                    <ul>
+                        <li>5 projeye kadar kullanım</li>
+                        <li><strong>Ömür boyu güncelleme</strong></li>
+                        <li>Öncelikli e-posta desteği (24 saat)</li>
+                        <li><strong>Ticari kullanım hakkı</strong></li>
+                        <li>API source koduna tam erişim</li>
+                        <li>Sınırsız API çağrısı</li>
+                    </ul>
+                    <a href="mailto:paypal@universecreator.io?subject=SEO%20API%20Professional%20Sat%C4%B1n%20Alma" class="buy-button">Satın Al</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$49</div>
+                    <p class="description">Beyaz etiket lisans</p>
+                    <ul>
+                        <li><strong>Sınırsız proje</strong></li>
+                        <li><strong>Ömür boyu güncelleme</strong></li>
+                        <li>Slack/Telegram öncelikli destek</li>
+                        <li><strong>Beyaz etiket lisansı</strong></li>
+                        <li><strong>Kendi ürününüzde satabilirsiniz</strong></li>
+                        <li>Özelleştirme talepleri</li>
+                        <li>SLA garantisi</li>
+                    </ul>
+                    <a href="mailto:paypal@universecreator.io?subject=SEO%20API%20Enterprise%20Sat%C4%B1n%20Alma" class="buy-button">Satın Al</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Example -->
+    <section class="api-example">
+        <div class="container">
+            <h2>API Kullanımı</h2>
+            <div class="code-block">
+                <pre><code><span class="comment"># Tek URL analizi</span>
+<span class="keyword">curl</span> -X POST http://localhost:5055/analyze \
+  -H <span class="string">"Content-Type: application/json"</span> \
+  -d <span class="string">'{"url": "https://example.com"}'</span>
+
+<span class="comment">// Yanıt</span>
+{
+  <span class="string">"url"</span>: <span class="string">"https://example.com"</span>,
+  <span class="string">"title"</span>: <span class="string">"Example Domain"</span>,
+  <span class="string">"description"</span>: <span class="string">"This domain is for use in illustrative examples..."</span>,
+  <span class="string">"status"</span>: <span class="string">"success"</span>
+}
+
+<span class="comment"># Toplu analiz (50 URL'ye kadar)</span>
+<span class="keyword">curl</span> -X POST http://localhost:5055/analyze-batch \
+  -H <span class="string">"Content-Type: application/json"</span> \
+  -d <span class="string">'{"urls": ["https://example.com", "https://google.com"]}'</span>
+
+<span class="comment"># JSON export</span>
+<span class="keyword">curl</span> http://localhost:5055/export?format=json
+
+<span class="comment"># CSV export</span>
+<span class="keyword">curl</span> http://localhost:5055/export?format=csv</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <h2>Kullanım Alanları</h2>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="icon">🔍</div>
+                    <h3>SEO Araçları</h3>
+                    <p>Meta tag izleme, rakip analizi, sıralama takibi</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="icon">📰</div>
+                    <h3>İçerik Agregatörleri</h3>
+                    <p>Sayfa başlıkları ve özetleri çıkarma, RSS benzeri akışlar</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="icon">🔗</div>
+                    <h3>Link Önizleme</h3>
+                    <p>Sosyal medya link preview'ları, rich link cards</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="icon">📊</div>
+                    <h3>Marketing Automation</h3>
+                    <p>Kampanya landing page analizi, A/B test metadata</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="icon">🤖</div>
+                    <h3>Web Crawler'lar</h3>
+                    <p>Hızlı meta tag extraction, büyük ölçekli tarama</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="icon">📈</div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Sayfa metadata raporlama, SEO sağlık skoru</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Sıkça Sorulan Sorular</h2>
+
+            <div class="faq-item">
+                <h3>📦 Teslimat nasıl oluyor?</h3>
+                <p>Ödeme sonrası otomatik download linki alırsınız. ZIP dosyası içinde tüm source kod, kurulum scripti ve dokümantasyon bulunur.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>💳 Hangi ödeme yöntemlerini kabul ediyorsunuz?</h3>
+                <p>PayPal, banka havalesi (Akbank IBAN) ve kripto para (USDT/BTC) ile ödeme yapabilirsiniz. Detaylar için paypal@universecreator.io adresine yazın.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>🔧 Teknik gereksinimler neler?</h3>
+                <p>Python 3.6+ (önerilen: 3.9+), Linux veya macOS. Hiçbir dış paket gerekmez — sadece Python built-in modüller kullanılır.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>🚀 Kurulum ne kadar sürer?</h3>
+                <p>30 saniye! `bash install.sh` komutunu çalıştırın, ardından `seo-api` komutu ile API'yi başlatın. API http://localhost:5055 adresinde hazır.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>🔄 Güncellemeler dahil mi?</h3>
+                <p>Starter paketi 1 yıl güncelleme içerir. Professional ve Enterprise paketlerinde ömür boyu güncelleme dahildir.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>🏢 Enterprise paketiyle ne yapabilirim?</h3>
+                <p>Enterprise paketiyle SEO Analyzer API'yi kendi ürününüzde satabilir, tekrarlayan gelir elde edebilirsiniz. Beyaz etiket lisansı tam özelleştirme hakkı verir.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>📞 Destek nasıl alabilirim?</h3>
+                <p>Tüm paketler e-posta desteği içerir. Professional paketi öncelikli destek (24 saat), Enterprise paketi Slack/Telegram öncelikli destek içerir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>1000'lerce URL'yi Saniyeler İçinde Analiz Edin</h2>
+            <p>Hemen satın alın, projenize entegre edin, 30 saniyede kullanmaya başlayın.</p>
+            <a href="mailto:paypal@universecreator.io?subject=SEO%20Analyzer%20API%20Sat%C4%B1n%20Alma" class="email">📧 paypal@universecreator.io</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 UniverseCreator. Tüm hakları saklıdır.</p>
+            <p>İletişim: <a href="mailto:paypal@universecreator.io">paypal@universecreator.io</a> | Telegram: @universecreator</p>
+        </div>
+    </footer>
+
+</body>
+</html>

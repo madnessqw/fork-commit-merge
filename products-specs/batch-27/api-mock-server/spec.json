@@ -1,0 +1,41 @@
+{
+  "slug": "api-mock-server",
+  "name": "API Mock Server",
+  "tagline": "Instant mock API endpoints for development & testing",
+  "description": "Create instant mock REST API endpoints with custom responses, delays, and status codes. Perfect for frontend development when the backend isn't ready. Generate shareable URLs for your mock APIs.",
+  "price": "$19",
+  "category": "Developer Tools",
+  "tech_stack": ["Vanilla HTML", "Tailwind CSS", "Vercel Serverless"],
+  "features": [
+    "Create unlimited mock endpoints",
+    "Custom HTTP status codes (200, 404, 500, etc.)",
+    "Response delay simulation",
+    "JSON, XML, plain text responses",
+    "Request logging & inspection",
+    "Shareable endpoint URLs",
+    "CORS enabled for all origins",
+    "Mock authentication headers"
+  ],
+  "target_audience": "Frontend developers, QA engineers, API testers",
+  "use_cases": [
+    "Frontend development without backend",
+    "Testing error handling",
+    "API prototyping",
+    "Integration testing",
+    "Demo environments"
+  ],
+  "landing_sections": [
+    "Hero with live demo",
+    "Interactive endpoint builder",
+    "Feature grid",
+    "How it works (3 steps)",
+    "Code examples",
+    "Testimonials",
+    "FAQ",
+    "Pricing CTA"
+  ],
+  "seo_keywords": ["mock api", "api testing", "fake api", "rest mock", "api development"],
+  "status": "spec_ready",
+  "batch": 27,
+  "created_at": "2026-04-22T01:22:00Z"
+}

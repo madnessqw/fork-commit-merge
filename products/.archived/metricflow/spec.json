@@ -1,0 +1,138 @@
+{
+  "name": "MetricFlow",
+  "tagline": "Simple Analytics & Event Tracking API",
+  "slug": "metricflow",
+  "version": "1.0.0",
+  "price": "$24 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "saas_founder", "product_manager", "indie_hacker"],
+  "problem": "Google Analytics karmaşık, GDPR sorunları var. Plausible $9/ay. Basit event tracking için lightweight çözüm yok. Custom dashboard kurulumu zor",
+  "solution": "Vercel Edge + KV ile simple analytics. Page views, custom events, real-time dashboard, export. Privacy-first, no cookies",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "storage": "Vercel KV (time-series)",
+    "aggregation": "Edge computed",
+    "dashboard": "Pre-built HTML",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://metricflow.io/",
+    "endpoints": [
+      {
+        "path": "/api/track",
+        "method": "POST",
+        "description": "Track event",
+        "body": {
+          "projectId": "string",
+          "event": "pageview | custom",
+          "url": "string",
+          "referrer": "string",
+          "metadata": {}
+        }
+      },
+      {
+        "path": "/api/projects/:id/stats",
+        "method": "GET",
+        "description": "Get project statistics",
+        "parameters": {
+          "period": "24h | 7d | 30d | 90d"
+        },
+        "response": {
+          "pageviews": 15234,
+          "uniqueVisitors": 8902,
+          "bounceRate": 45.2,
+          "avgDuration": 124,
+          "topPages": [
+            {"path": "/", "views": 5234}
+          ],
+          "referrers": [
+            {"source": "google", "count": 2341}
+          ],
+          "devices": {"desktop": 60, "mobile": 35, "tablet": 5}
+        }
+      },
+      {
+        "path": "/api/projects/:id/events",
+        "method": "GET",
+        "description": "Get custom events",
+        "parameters": {
+          "event": "string (optional filter)",
+          "from": "date",
+          "to": "date"
+        }
+      },
+      {
+        "path": "/api/projects/:id/realtime",
+        "method": "GET",
+        "description": "Real-time active users",
+        "response": {
+          "activeUsers": 45,
+          "pageViewsLastMinute": 12
+        }
+      },
+      {
+        "path": "/api/export",
+        "method": "POST",
+        "description": "Export raw data",
+        "body": {
+          "projectId": "string",
+          "format": "csv | json",
+          "dateRange": {"from": "date", "to": "date"}
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Plausible",
+      "price": "$9/month",
+      "pros": ["Privacy focused", "Simple"],
+      "cons": ["Monthly cost", "Self-hosted complex"]
+    },
+    {
+      "name": "Fathom",
+      "price": "$14/month",
+      "pros": ["Simple", "Fast"],
+      "cons": ["Monthly cost", "Limited features"]
+    },
+    {
+      "name": "Google Analytics",
+      "price": "Free",
+      "pros": ["Free", "Powerful"],
+      "cons": ["Complex", "GDPR issues", "Cookie banner required"]
+    }
+  ],
+  "advantage": "One-time $24 vs monthly. Privacy-first. No cookies. Real-time. Edge speed.",
+  "features": [
+    "Page view tracking",
+    "Custom event tracking",
+    "Real-time dashboard",
+    "Privacy-first (no cookies)",
+    "GDPR compliant",
+    "Export (CSV, JSON)",
+    "Top pages & referrers",
+    "Device analytics",
+    "Time-series data",
+    "Simple JavaScript snippet"
+  ],
+  "use_cases": [
+    "SaaS analytics",
+    "Portfolio tracking",
+    "Landing page stats",
+    "Blog analytics",
+    "E-commerce tracking",
+    "App event tracking"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $1,200",
+    "moderate": "100 sales/month = $2,400",
+    "optimistic": "200 sales/month = $4,800"
+  },
+  "why_best": [
+    "Plausible $9/mo vs $24 one-time",
+    "Privacy-focused trend",
+    "GDPR compliant (no cookies)",
+    "Edge compatible (KV)",
+    "Simple dashboard"
+  ]
+}

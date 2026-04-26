@@ -1,0 +1,21 @@
+{
+  "name": "JSON Diff Pro",
+  "slug": "json-diff-pro",
+  "description": "Compare two JSON files side-by-side and visualize differences instantly. Detect added, removed, and modified fields with color-coded highlighting.",
+  "price": 19,
+  "category": "Developer Tools",
+  "tags": ["json", "diff", "compare", "developer", "tool"],
+  "features": [
+    "Side-by-side JSON comparison",
+    "Color-coded difference highlighting",
+    "Detect added, removed, modified fields",
+    "Nested object diff support",
+    "Array comparison with index matching",
+    "Copy merged JSON to clipboard",
+    "Download diff report as JSON",
+    "Syntax validation before compare"
+  ],
+  "status": "spec_ready",
+  "created_cycle": 1076,
+  "target_audience": "Developers, API testers, data engineers"
+}

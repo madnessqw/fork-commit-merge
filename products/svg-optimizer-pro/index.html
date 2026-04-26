@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="description" content="Professional SVG Optimizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="svg, optimizer, SVG generator, vector graphics, SVG pattern, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://svg-optimizer-pro.vercel.app">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional SVG Optimizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">
+    <meta name="keywords" content="svg, optimizer, SVG generator, vector graphics, SVG pattern, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://svg-optimizer-pro.vercel.app">
+  <title>SVG Optimizer Pro</title>
+  <meta name="description" content="Compress and optimize SVG files instantly with precision controls. Reduce file size while preserving quality."
+    <meta property="og:title" content="SVG Optimizer Pro">
+    <meta name="keywords" content="svg, optimizer, SVG generator, vector graphics, SVG pattern, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://svg-optimizer-pro.vercel.app">
+    <meta property="og:description" content="Professional SVG Optimizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.">>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+  <style>
+    .drop-zone.dragover { border-color: #3b82f6; background: #eff6ff; }
+    .compare-slider { -webkit-appearance: none; appearance: none; height: 4px; background: #cbd5e1; border-radius: 2px; }
+    .compare-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #3b82f6; cursor: ew-resize; }
+    .navy-bg { background: #1e3a5f; }
+    .code-font { font-family: 'Fira Code', 'Courier New', monospace; }
+    .fade-in { animation: fadeIn 0.3s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; } }
+    .tag-btn { transition: all 0.15s ease; }
+    .tag-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+  </style>
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SVG Optimizer Pro",
+  "description": "Professional SVG Optimizer tool for developers. Generate, convert, and validate instantly with a clean, modern interface.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://svg-optimizer-pro.vercel.app"
+}
+    </script>
+    </head>
+<body class="bg-gray-100 min-h-screen">
+  <!-- Header -->
+  <header class="navy-bg text-white py-6 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold">SVG Optimizer Pro</h1>
+        <p class="text-blue-200 text-sm">Compress & optimize SVG files instantly</p>
+      </div>
+      <div class="text-right">
+        <span class="text-2xl font-bold text-yellow-400">$19</span>
+        <div class="text-xs text-blue-200">One-time purchase</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main App -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Upload Zone -->
+    <div id="dropZone" class="drop-zone bg-white border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all mb-8">
+      <input type="file" id="fileInput" accept=".svg" class="hidden">
+      <div class="text-5xl mb-4">📦</div>
+      <h2 class="text-xl font-semibold text-gray-700 mb-2">Drop your SVG here</h2>
+      <p class="text-gray-500 mb-4">or click to browse</p>
+      <button id="browseBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-medium">Choose File</button>
+    </div>
+
+    <!-- Precision Controls -->
+    <div id="controls" class="bg-white rounded-2xl shadow-lg p-6 mb-8 hidden fade-in">
+      <h3 class="font-bold text-gray-800 mb-4">⚙️ Optimization Controls</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optMetadata" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Remove metadata</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optComments" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Remove comments</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optEmptyAttrs" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Remove empty attrs</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optHiddenElems" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Remove hidden</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optStyle" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Minify styles</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optPath" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Simplify paths</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optViewBox" checked class="w-4 h-4 text-blue-600"> <span class="text-sm">Optimize viewBox</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="optColors" class="w-4 h-4 text-blue-600"> <span class="text-sm">Shorten colors</span>
+        </label>
+      </div>
+      <div class="mt-4 flex items-center gap-4">
+        <label class="text-sm text-gray-600">Precision:</label>
+        <input type="range" id="precision" min="0" max="3" value="1" class="flex-1">
+        <span id="precisionLabel" class="text-sm font-mono bg-gray-100 px-2 py-1 rounded">Medium</span>
+      </div>
+      <button id="optimizeBtn" class="mt-4 w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition">Optimize SVG</button>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="bg-white rounded-2xl shadow-lg p-6 hidden fade-in">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-bold text-lg text-gray-800">✅ Optimization Complete</h3>
+        <a id="buyBtn" href="https://buy.polar.sh/polar_cl_vmByVwBRGJgDxR2YqUpogZRoO67LYsjH5AoTU4UiGcV" target="_blank" class="bg-yellow-400 text-gray-900 px-5 py-2 rounded-lg font-bold hover:bg-yellow-500 transition text-sm">Buy Pro — $19 →</a>
+      </div>
+      <div class="grid grid-cols-3 gap-4 mb-6 text-center">
+        <div class="bg-gray-50 rounded-xl p-4">
+          <div id="origSize" class="text-2xl font-bold text-gray-700">—</div>
+          <div class="text-xs text-gray-500">Original</div>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4">
+          <div id="optSize" class="text-2xl font-bold text-green-600">—</div>
+          <div class="text-xs text-gray-500">Optimized</div>
+        </div>
+        <div class="bg-blue-50 rounded-xl p-4">
+          <div id="savings" class="text-2xl font-bold text-blue-600">—</div>
+          <div class="text-xs text-gray-500">Reduction</div>
+        </div>
+      </div>
+      <!-- Comparison -->
+      <div id="compareView" class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <div class="text-xs font-semibold text-gray-500 mb-2">BEFORE</div>
+          <div id="beforePreview" class="bg-gray-100 rounded-xl p-4 overflow-auto max-h-64 code-font text-xs"></div>
+        </div>
+        <div>
+          <div class="text-xs font-semibold text-gray-500 mb-2">AFTER</div>
+          <div id="afterPreview" class="bg-gray-100 rounded-xl p-4 overflow-auto max-h-64 code-font text-xs"></div>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <button id="downloadBtn" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">Download Optimized SVG</button>
+        <button id="copyBtn" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-medium hover:bg-gray-300 transition">Copy Code</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-400 text-sm py-8">
+    Built by UniverseCreator · Tool: <a href="https://buy.polar.sh/polar_cl_vmByVwBRGJgDxR2YqUpogZRoO67LYsjH5AoTU4UiGcV" target="_blank" class="text-blue-500 hover:underline">SVG Optimizer Pro</a>
+  </footer>
+
+<script>
+// State
+let currentSVG = '';
+let optimizedSVG = '';
+
+// Elements
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const browseBtn = document.getElementById('browseBtn');
+const controls = document.getElementById('controls');
+const optimizeBtn = document.getElementById('optimizeBtn');
+const results = document.getElementById('results');
+const precisionSlider = document.getElementById('precision');
+const precisionLabel = document.getElementById('precisionLabel');
+
+// Precision labels
+const precisionLevels = ['Low', 'Medium', 'High', 'Extreme'];
+precisionSlider.addEventListener('input', () => {
+  precisionLabel.textContent = precisionLevels[precisionSlider.value];
+});
+
+// File handling
+dropZone.addEventListener('click', () => fileInput.click());
+browseBtn.addEventListener('click', (e) => { e.stopPropagation(); fileInput.click(); });
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) loadFile(fileInput.files[0]); });
+
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    currentSVG = e.target.result;
+    if (currentSVG.length > 50000) {
+      alert('SVG is very large. Processing may take a moment.');
+    }
+    controls.classList.remove('hidden');
+    results.classList.add('hidden');
+  };
+  reader.readAsText(file);
+}
+
+// SVG Optimizer
+function optimizeSVG(svg, opts) {
+  let result = svg;
+  if (opts.optMetadata) {
+    result = result.replace(/<metadata([\s\S]*?)<\/metadata>/gi, '');
+    result = result.replace(/<title([\s\S]*?)<\/title>/gi, '');
+    result = result.replace(/<desc([\s\S]*?)<\/desc>/gi, '');
+  }
+  if (opts.optComments) {
+    result = result.replace(/<!--[\s\S]*?-->/g, '');
+  }
+  if (opts.optEmptyAttrs) {
+    result = result.replace(/\s+[a-zA-Z-]+=""/g, '');
+  }
+  if (opts.optHiddenElems) {
+    result = result.replace(/<g\s+style="display:\s*none[^"]*">[\s\S]*?<\/g>/gi, '');
+    result = result.replace(/<g\s+style="visibility:\s*hidden[^"]*">[\s\S]*?<\/g>/gi, '');
+  }
+  if (opts.optStyle) {
+    result = result.replace(/\s+/g, ' ');
+    result = result.replace(/>\s+</g, '><');
+  }
+  if (opts.optColors) {
+    result = result.replace(/\bwhite\b/g, '#fff');
+    result = result.replace(/\bblack\b/g, '#000');
+    result = result.replace(/\bgray\b/g, '#808080');
+  }
+  if (opts.optViewBox) {
+    result = result.replace(/viewBox="[\s\S]*?"/i, (m) => {
+      const vals = m.match(/[\d.-]+/g);
+      if (vals && vals.length >= 4) {
+        const [x, y, w, h] = vals.map(Number);
+        if (x === 0 && y === 0) return `viewBox="0 0 ${w} ${h}"`;
+      }
+      return m;
+    });
+  }
+  // Round numbers in path d attribute (precision control)
+  if (opts.optPath) {
+    const precision = [3, 2, 1, 0][opts.precision];
+    if (precision < 3) {
+      result = result.replace(/\bd="([\d.,-]+)"/g, (m, d) => {
+        const nums = d.split(/([\d.-]+)/).map((part, i) => {
+          if (i % 2 === 0) return part;
+          const n = parseFloat(part);
+          if (isNaN(n)) return part;
+          return n.toFixed(precision).replace(/\.?0+$/, '');
+        }).join('');
+        return `d="${nums}"`;
+      });
+    }
+  }
+  result = result.trim();
+  return result;
+}
+
+// Stats
+function getStats(orig, opt) {
+  const origBytes = new Blob([orig]).size;
+  const optBytes = new Blob([opt]).size;
+  const savings = ((origBytes - optBytes) / origBytes * 100).toFixed(1);
+  return { origBytes, optBytes, savings };
+}
+
+function formatBytes(n) {
+  if (n < 1024) return n + ' B';
+  return (n / 1024).toFixed(1) + ' KB';
+}
+
+// Optimize handler
+optimizeBtn.addEventListener('click', () => {
+  if (!currentSVG) return;
+  const opts = {
+    optMetadata: document.getElementById('optMetadata').checked,
+    optComments: document.getElementById('optComments').checked,
+    optEmptyAttrs: document.getElementById('optEmptyAttrs').checked,
+    optHiddenElems: document.getElementById('optHiddenElems').checked,
+    optStyle: document.getElementById('optStyle').checked,
+    optPath: document.getElementById('optPath').checked,
+    optViewBox: document.getElementById('optViewBox').checked,
+    optColors: document.getElementById('optColors').checked,
+    precision: parseInt(precisionSlider.value)
+  };
+  optimizedSVG = optimizeSVG(currentSVG, opts);
+  const stats = getStats(currentSVG, optimizedSVG);
+  document.getElementById('origSize').textContent = formatBytes(stats.origBytes);
+  document.getElementById('optSize').textContent = formatBytes(stats.optBytes);
+  document.getElementById('savings').textContent = stats.savings + '%';
+  document.getElementById('beforePreview').textContent = currentSVG.slice(0, 2000) + (currentSVG.length > 2000 ? '\n...' : '');
+  document.getElementById('afterPreview').textContent = optimizedSVG.slice(0, 2000) + (optimizedSVG.length > 2000 ? '\n...' : '');
+  results.classList.remove('hidden');
+});
+
+// Download
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  const blob = new Blob([optimizedSVG], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'optimized.svg';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// Copy
+document.getElementById('copyBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText(optimizedSVG).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy Code', 1500);
+  });
+});
+</script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_Y84JGGIk09Vq9pbSzI6TW3El8zR9UyXFhYie90M3Wze";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "slug": "ai-agent-workflow-builder",
+  "name": "AI Agent Workflow Builder",
+  "tagline": "Design, visualize and export AI agent workflows with a drag-and-drop canvas",
+  "description": "AI Agent Workflow Builder is a visual design tool for creating complex multi-agent workflows. Drag and drop agent nodes, connect them with conditional logic, define tool integrations, and export your workflow as runnable code (Python/JavaScript) or JSON configuration. Perfect for building agent orchestration systems without writing boilerplate.",
+  "price": "$19",
+  "target_audience": "AI developers, agent system architects, automation engineers",
+  "features": [
+    "Visual drag-and-drop workflow canvas",
+    "Pre-built agent node templates (LLM, Tool, Decision, Loop)",
+    "Conditional branching and parallel execution paths",
+    "Tool integration designer (MCP, API, Function)",
+    "Real-time workflow validation",
+    "Export to Python (LangChain, CrewAI) or JavaScript",
+    "JSON workflow configuration export",
+    "Workflow simulation and step-through debugging",
+    "Shareable workflow links",
+    "Templates library (Research, Coding, Analysis patterns)"
+  ],
+  "tech_stack": ["Vanilla HTML", "Tailwind CSS", "JavaScript", "Canvas API/SVG"],
+  "category": "Developer Tools",
+  "competitors": ["n8n", "LangFlow", "Flowise"],
+  "differentiation": "Focused on AI agent patterns, exports clean code, no backend required",
+  "estimated_traffic": "Multi-agent systems trending, n8n AI agents popular",
+  "spec_ready": true,
+  "batch": 26
+}

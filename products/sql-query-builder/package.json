@@ -1,0 +1,12 @@
+{
+  "name": "sql-query-builder",
+  "version": "1.0.0",
+  "description": "Visual SQL query builder with drag-and-drop interface",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["sql", "query", "builder", "database"],
+  "license": "MIT"
+}

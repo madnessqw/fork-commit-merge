@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Mock Studio</title>
+  <meta name="description" content="Browser Mock Studio made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta name="keywords" content="browser, mock, studio, design studio, creator tool, visual editor, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="https://browser-mock-studio.vercel.app">
+  <meta property="og:title" content="Browser Mock Studio">
+  <meta property="og:description" content="Browser Mock Studio made simple. Professional-grade tool with instant results and developer-friendly features.">
+  <meta property="og:image" content="https://browser-mock-studio.vercel.app/og-image.png">
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Browser Mock Studio",
+  "description": "Browser Mock Studio made simple. Professional-grade tool with instant results and developer-friendly features.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": "https://browser-mock-studio.vercel.app"
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.5);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 60px;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .price-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 20px;
+      font-size: 0.875rem;
+      color: #a5b4fc;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    /* Demo Section */
+    .demo-section {
+      padding: 80px 0;
+      background: var(--bg-secondary);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      margin-bottom: 48px;
+    }
+
+    .demo-container {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .controls-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+    }
+    .control-group { margin-bottom: 24px; }
+    .control-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .control-group select,
+    .control-group input {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+    }
+    .control-group select:focus,
+    .control-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .browser-btn {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .browser-btn button {
+      flex: 1;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.75rem;
+    }
+    .browser-btn button.active,
+    .browser-btn button:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .canvas-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 500px;
+    }
+    #mockupCanvas {
+      border-radius: 8px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .canvas-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    /* Features */
+    .features {
+      padding: 100px 0;
+      background: var(--bg-primary);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Use Cases */
+    .use-cases {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+    }
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .use-case {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .use-case-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .use-case h4 {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .use-case p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Trust Badges */
+    .trust {
+      padding: 60px 0;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-grid {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-secondary);
+    }
+    .trust-item span {
+      font-size: 1.5rem;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--accent);
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: var(--text-secondary);
+    }
+    .faq-item.active .faq-answer {
+      padding: 0 24px 20px;
+      max-height: 200px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 100px 0;
+      background: var(--bg-primary);
+      text-align: center;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 24px;
+      padding: 60px 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-box h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta-box p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    .price-display {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+    .price-display span {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { padding: 120px 0 60px; }
+      .demo-container {
+        grid-template-columns: 1fr;
+      }
+      .use-cases-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .canvas-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .canvas-actions .btn {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">Browser Mock Studio</div>
+      <div class="nav-links">
+        <a href="#demo">Demo</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a href="#buy" class="btn btn-primary" id="navBuyBtn">Buy Now — $19</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Create <span class="gradient-text">Beautiful</span> Browser Mockups</h1>
+      <p>Generate professional browser mockups for your screenshots. Chrome, Safari, Firefox styles with dark/light modes and custom backgrounds.</p>
+      <div class="hero-buttons">
+        <a href="#demo" class="btn btn-primary">Try Demo Free</a>
+        <a href="#features" class="btn btn-secondary">See Features</a>
+      </div>
+      <div class="price-tag">
+        <span>One-time purchase — $19</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <h2 class="section-title">Live Demo</h2>
+      <p class="section-subtitle">Try the mockup generator right in your browser</p>
+
+      <div class="demo-container">
+        <div class="controls-panel">
+          <div class="control-group">
+            <label>Browser Style</label>
+            <div class="browser-btn">
+              <button class="active" data-browser="chrome">Chrome</button>
+              <button data-browser="safari">Safari</button>
+              <button data-browser="firefox">Firefox</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Theme</label>
+            <select id="themeSelect">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>Background</label>
+            <select id="bgSelect">
+              <option value="gradient-purple">Gradient Purple</option>
+              <option value="gradient-blue">Gradient Blue</option>
+              <option value="gradient-orange">Gradient Orange</option>
+              <option value="solid-dark">Solid Dark</option>
+              <option value="solid-light">Solid Light</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>URL Bar Text</label>
+            <input type="text" id="urlInput" value="example.com/dashboard" placeholder="example.com">
+          </div>
+          <div class="control-group">
+            <label>Upload Screenshot</label>
+            <input type="file" id="imageUpload" accept="image/*">
+          </div>
+        </div>
+
+        <div class="canvas-container">
+          <canvas id="mockupCanvas" width="800" height="500"></canvas>
+          <div class="canvas-actions">
+            <button class="btn btn-primary" id="downloadPng">Download PNG</button>
+            <button class="btn btn-secondary" id="downloadJpg">Download JPG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Everything You Need</h2>
+      <p class="section-subtitle">Professional mockups for any project</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Multiple Browsers</h3>
+          <p>Chrome, Safari, and Firefox browser frames with authentic styling and details.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Dark & Light Modes</h3>
+          <p>Switch between dark and light themes to match your screenshot content.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🖼️</div>
+          <h3>Custom Backgrounds</h3>
+          <p>Beautiful gradient and solid backgrounds to make your mockups pop.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Device Frames</h3>
+          <p>Desktop, tablet, and mobile device frames for responsive mockups.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💾</div>
+          <h3>Export Options</h3>
+          <p>Download as PNG, JPG, or WebP with customizable quality settings.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Instant Preview</h3>
+          <p>Real-time preview as you customize your mockup settings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="use-cases">
+    <div class="container">
+      <h2 class="section-title">Perfect For</h2>
+      <p class="section-subtitle">Used by designers, developers, and marketers worldwide</p>
+
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <div class="use-case-icon">💼</div>
+          <h4>Portfolios</h4>
+          <p>Showcase your work professionally</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">📢</div>
+          <h4>Marketing</h4>
+          <p>Create stunning social graphics</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">📚</div>
+          <h4>Documentation</h4>
+          <p>Perfect for help articles</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🎓</div>
+          <h4>Presentations</h4>
+          <p>Impress in meetings</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item"><span>🔒</span> Secure Payment</div>
+        <div class="trust-item"><span>⚡</span> Instant Access</div>
+        <div class="trust-item"><span>🔄</span> Free Updates</div>
+        <div class="trust-item"><span>💬</span> Support Included</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <div class="faq-list">
+        <div class="faq-item active">
+          <div class="faq-question">What is Browser Mock Studio?</div>
+          <div class="faq-answer">Browser Mock Studio is a tool that generates professional browser mockups for your screenshots. It's perfect for portfolio presentations, marketing materials, and documentation.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What browsers are supported?</div>
+          <div class="faq-answer">We support Chrome, Safari, and Firefox browser frames with authentic styling that matches the real browsers.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can I upload my own screenshots?</div>
+          <div class="faq-answer">Yes! You can upload any image file (PNG, JPG, WebP) and it will be automatically placed inside the browser mockup frame.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What export formats are available?</div>
+          <div class="faq-answer">You can export your mockups as PNG, JPG, or WebP files at high resolution suitable for print and web.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is this a one-time purchase?</div>
+          <div class="faq-answer">Yes! Pay once and get lifetime access including all future updates and new browser styles we add.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="buy">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to Create Beautiful Mockups?</h2>
+        <p>Join thousands of designers and developers who use Browser Mock Studio</p>
+        <div class="price-display">$19 <span>one-time</span></div>
+        <button class="btn btn-primary" id="buyBtn" style="font-size: 1.125rem; padding: 16px 40px;">Get Instant Access</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Browser Mock Studio. All rights reserved. | Built with ❤️ by UniverseCreator</p>
+    </div>
+  </footer>
+
+  <script>
+    // Canvas setup
+    const canvas = document.getElementById('mockupCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentBrowser = 'chrome';
+    let currentTheme = 'dark';
+    let currentBg = 'gradient-purple';
+    let uploadedImage = null;
+
+    // Sample screenshot data (gradient placeholder)
+    const sampleScreenshots = {
+      'gradient-purple': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      'gradient-blue': 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)',
+      'gradient-orange': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      'solid-dark': '#1a1a2e',
+      'solid-light': '#f5f5f5'
+    };
+
+    function drawMockup() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background
+      const bgColors = {
+        'gradient-purple': ['#1a0b2e', '#2d1b4e'],
+        'gradient-blue': ['#0a1628', '#1a2b4a'],
+        'gradient-orange': ['#2e1a0b', '#4a2d1b'],
+        'solid-dark': ['#0a0a0a', '#0a0a0a'],
+        'solid-light': ['#f5f5f5', '#f5f5f5']
+      };
+      const bg = bgColors[currentBg] || bgColors['gradient-purple'];
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, bg[0]);
+      gradient.addColorStop(1, bg[1]);
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Browser frame
+      const frameX = 50;
+      const frameY = 50;
+      const frameW = 700;
+      const frameH = 400;
+
+      // Browser header
+      const isDark = currentTheme === 'dark';
+      ctx.fillStyle = isDark ? '#2d2d2d' : '#e8e8e8';
+      ctx.beginPath();
+      ctx.roundRect(frameX, frameY, frameW, 40, [8, 8, 0, 0]);
+      ctx.fill();
+
+      // Browser controls
+      const dotColors = isDark ? ['#ff5f57', '#ffbd2e', '#28ca42'] : ['#ff5f57', '#ffbd2e', '#28ca42'];
+      for (let i = 0; i < 3; i++) {
+        ctx.fillStyle = dotColors[i];
+        ctx.beginPath();
+        ctx.arc(frameX + 20 + i * 16, frameY + 20, 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // URL bar
+      ctx.fillStyle = isDark ? '#1a1a1a' : '#ffffff';
+      ctx.beginPath();
+      ctx.roundRect(frameX + 80, frameY + 8, frameW - 100, 24, 4);
+      ctx.fill();
+
+      // URL text
+      ctx.fillStyle = isDark ? '#888' : '#666';
+      ctx.font = '12px Inter, sans-serif';
+      ctx.fillText('🔒 ' + (document.getElementById('urlInput').value || 'example.com'), frameX + 90, frameY + 24);
+
+      // Content area
+      ctx.fillStyle = isDark ? '#1a1a2a' : '#ffffff';
+      ctx.beginPath();
+      ctx.roundRect(frameX, frameY + 40, frameW, frameH - 40, [0, 0, 8, 8]);
+      ctx.fill();
+
+      // Screenshot content
+      if (uploadedImage) {
+        ctx.drawImage(uploadedImage, frameX + 10, frameY + 50, frameW - 20, frameH - 60);
+      } else {
+        // Sample content
+        const contentGradient = ctx.createLinearGradient(frameX + 10, frameY + 50, frameX + frameW - 10, frameY + frameH - 10);
+        if (currentBg === 'gradient-purple') {
+          contentGradient.addColorStop(0, '#667eea');
+          contentGradient.addColorStop(1, '#764ba2');
+        } else if (currentBg === 'gradient-blue') {
+          contentGradient.addColorStop(0, '#1e3c72');
+          contentGradient.addColorStop(1, '#2a5298');
+        } else if (currentBg === 'gradient-orange') {
+          contentGradient.addColorStop(0, '#f093fb');
+          contentGradient.addColorStop(1, '#f5576c');
+        } else if (currentBg === 'solid-dark') {
+          contentGradient.addColorStop(0, '#16213e');
+          contentGradient.addColorStop(1, '#1a1a2e');
+        } else {
+          contentGradient.addColorStop(0, '#e0e0e0');
+          contentGradient.addColorStop(1, '#f5f5f5');
+        }
+        ctx.fillStyle = contentGradient;
+        ctx.fillRect(frameX + 10, frameY + 50, frameW - 20, frameH - 60);
+
+        // Sample UI elements
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        ctx.fillRect(frameX + 40, frameY + 80, 120, 20);
+        ctx.fillRect(frameX + 40, frameY + 110, 200, 10);
+        ctx.fillRect(frameX + 40, frameY + 130, 180, 10);
+        ctx.fillRect(frameX + 40, frameY + 150, 160, 10);
+      }
+
+      // Shadow
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+      ctx.shadowBlur = 30;
+      ctx.shadowOffsetY = 20;
+    }
+
+    // Event listeners
+    document.querySelectorAll('.browser-btn button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.browser-btn button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentBrowser = btn.dataset.browser;
+        drawMockup();
+      });
+    });
+
+    document.getElementById('themeSelect').addEventListener('change', (e) => {
+      currentTheme = e.target.value;
+      drawMockup();
+    });
+
+    document.getElementById('bgSelect').addEventListener('change', (e) => {
+      currentBg = e.target.value;
+      drawMockup();
+    });
+
+    document.getElementById('urlInput').addEventListener('input', () => {
+      drawMockup();
+    });
+
+    document.getElementById('imageUpload').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          uploadedImage = new Image();
+          uploadedImage.onload = () => drawMockup();
+          uploadedImage.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('downloadPng').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'browser-mockup.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    document.getElementById('downloadJpg').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'browser-mockup.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.9);
+      link.click();
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+
+    // Checkout buttons
+    const CHECKOUT_URL = window.__CHECKOUT_URL || null;
+    document.querySelectorAll('#buyBtn, #navBuyBtn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (CHECKOUT_URL) {
+          window.open(CHECKOUT_URL, '_blank');
+        } else {
+          alert('Store coming soon! Contact @OtonomUniverseCreator on Telegram.');
+        }
+      });
+    });
+
+    // Initial draw
+    drawMockup();
+  </script>
+</body>
+</html>

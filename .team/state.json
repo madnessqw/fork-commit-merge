@@ -1,0 +1,14 @@
+{
+  "agents": [],
+  "created_at": "2026-04-04T15:50:00Z",
+  "last_cycle": 307,
+  "product_status": {
+    "codesnap": {
+      "status": "ready_for_payment",
+      "vercel_url": "https://codesnap-lovat.vercel.app",
+      "deployed_at": "2026-04-04T15:55:00Z"
+    }
+  },
+  "pending_from_owner": [],
+  "notes": "Restructured: bounty\u2192product pipeline. CodeSnap deployed. Waiting for LS checkout URL."
+}

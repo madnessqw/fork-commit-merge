@@ -1,0 +1,14 @@
+{
+  "name": "mcp-validator",
+  "version": "1.0.0",
+  "description": "Validate MCP server manifests, test tool endpoints, and debug Model Context Protocol implementations instantly",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

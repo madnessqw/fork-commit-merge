@@ -1,0 +1,10 @@
+{
+  "name": "git-diff-visualizer",
+  "version": "1.0.0",
+  "description": "Beautiful diff visualization with syntax highlighting",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

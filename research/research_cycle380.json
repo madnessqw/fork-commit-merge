@@ -1,0 +1,51 @@
+{
+  "cycle": 380,
+  "date": "2026-04-05",
+  "sources": {
+    "github_trending": "15 repos analyzed",
+    "arxiv": "10 papers (March-April 2026)",
+    "indiehackers": "Top posts analyzed"
+  },
+  "products": [
+    {
+      "name": "Agent Security Scanner",
+      "tagline": "Scan AI agent code for security vulnerabilities",
+      "problem": "AI agent frameworks have 190+ known security advisories. Developers lack tools to check their code.",
+      "solution": "Vercel serverless tool that analyzes Python/TypeScript agent code for: prompt injection, credential exposure, MCP misconfig, tool vulnerabilities",
+      "price": 24,
+      "price_type": "one-time",
+      "evidence": "ArXiv: Agent Audit (2603.22853), AegisUI (2603.05031), OpenClaw taxonomy (2603.27517). GitHub: openclaude 16K stars, gstack 64K stars",
+      "competitors": [
+        {"name": "GitHub Advanced Security", "price": "$350/user/year"},
+        {"name": "Agent Audit (open source)", "price": "Free"}
+      ],
+      "priority": 1
+    },
+    {
+      "name": "MCP Config Validator",
+      "tagline": "Validate Model Context Protocol configurations",
+      "problem": "MCP servers misconfiguration leads to over-privileged agents",
+      "solution": "Online tool that validates MCP server configs, checks permissions, suggests least-privilege",
+      "price": 14,
+      "price_type": "one-time",
+      "evidence": "MCP Registry launched on GitHub March 2026. ArXiv 2603.19469 discusses MCP security",
+      "competitors": [{"name": "MCP Registry", "price": "Free"}],
+      "priority": 2
+    },
+    {
+      "name": "Function Call Debugger",
+      "tagline": "Debug LLM function calling in real-time",
+      "problem": "Debugging function calls between LLMs and tools is difficult",
+      "solution": "Visual debugger that traces function calls, shows JSON payloads, optimizes prompts",
+      "price": 19,
+      "price_type": "one-time",
+      "evidence": "ArXiv: Agentic Tool Use in LLMs (2604.00835). GitHub: CLI-Anything 28K stars",
+      "competitors": [
+        {"name": "LangChain Debugger", "price": "Free"},
+        {"name": "OpenRouter", "price": "Free tier"}
+      ],
+      "priority": 3
+    }
+  ],
+  "recommendation": "Build Agent Security Scanner first - aligns with JWT Inspector product line, strong market demand, 2-3 cycle MVP"
+}

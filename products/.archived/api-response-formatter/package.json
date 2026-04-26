@@ -1,0 +1,14 @@
+{
+  "name": "api-response-formatter",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
+  },
+  "dependencies": {
+    "ajv": "^8.18.0",
+    "fast-xml-parser": "^4.5.6"
+  }
+}

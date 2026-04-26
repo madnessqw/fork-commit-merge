@@ -1,0 +1,7 @@
+{
+  "cycle": 926,
+  "task": "health_check_all",
+  "products": 26,
+  "timestamp": "2026-04-13T14:05:00Z",
+  "instructions": "Tüm 26 ürünün /api/health endpoint'ini test et. Sonuçları health_report.md'e kaydet. Bozuk varsa team-lead'e bildir."
+}

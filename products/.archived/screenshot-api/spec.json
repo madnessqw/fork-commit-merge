@@ -1,0 +1,84 @@
+{
+  "name": "ScreenShot API",
+  "tagline": "Website Screenshot as a Service",
+  "version": "1.0.0",
+  "price": "$25 one-time",
+  "target_audience": ["developer", "saas_founder", "marketer", "designer"],
+  "problem": "Website screenshot almak için Puppeteer/Playwright kurmak gerekiyor. Bulut çözümleri (BrowserStack, Url2png) aylık $20-50 istiyor. Basit bir API ile anında screenshot ihtiyacı var",
+  "solution": "Vercel Edge Function + Playwright ile website screenshot API. Web sayfalarını PNG/JPG/PDF olarak kaydetme. Mobile/desktop view, tam sayfa, element screenshot",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "browser": "Playwright (chromium)",
+    "storage": "Vercel Blob (screenshot storage)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "mvp_complexity": "1-2 cycle",
+  "api": {
+    "base_url": "https://screenshotapi.io/",
+    "endpoints": [
+      {
+        "path": "/api/screenshot",
+        "method": "GET",
+        "description": "Capture website screenshot",
+        "parameters": {
+          "url": {
+            "type": "string",
+            "required": true,
+            "description": "URL to screenshot"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["png", "jpg", "pdf"],
+            "default": "png"
+          },
+          "width": {
+            "type": "number",
+            "default": 1920,
+            "description": "Viewport width"
+          },
+          "height": {
+            "type": "number",
+            "default": 1080
+          },
+          "fullPage": {
+            "type": "boolean",
+            "default": false,
+            "description": "Capture full page"
+          },
+          "delay": {
+            "type": "number",
+            "default": 0,
+            "description": "Wait milliseconds after load"
+          },
+          "selector": {
+            "type": "string",
+            "description": "CSS selector to screenshot specific element"
+          }
+        },
+        "response": {
+          "url": "string (screenshot URL)",
+          "expires_at": "ISO8601",
+          "format": "string",
+          "dimensions": {
+            "width": "number",
+            "height": "number"
+          }
+        }
+      }
+    ]
+  },
+  "market_analysis": {
+    "competitors": [
+      {"name": "Url2png", "price": "$20/month", "pros": ["Reliable"], "cons": ["Monthly cost"]},
+      {"name": "Screenshotlayer", "price": "$19/month", "pros": ["API"], "cons": ["Pay per use"]},
+      {"name": "BrowserStack", "price": "$29/month", "pros": ["Many browsers"], "cons": ["Expensive"]}
+    ],
+    "advantage": "One-time $25 + Edge speed + Simple API"
+  },
+  "estimated_revenue": {
+    "conservative": "20 sales/month = $500",
+    "moderate": "50 sales/month = $1,250",
+    "optimistic": "100 sales/month = $2,500"
+  }
+}

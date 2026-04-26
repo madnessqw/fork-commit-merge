@@ -1,0 +1,14 @@
+{
+  "name": "browser-mock-studio",
+  "version": "1.0.0",
+  "description": "Generate realistic browser mock data, user agents, and viewport configs for testing",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

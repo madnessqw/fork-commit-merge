@@ -1,0 +1,97 @@
+# Example Job Descriptions for Testing
+# Copy one of these and use with the proposal generator
+
+---
+
+## Example 1: Python Automation
+
+Title: Python Script to Automate Excel Report Generation
+
+Description:
+We need a Python script that can:
+- Read data from multiple Excel files
+- Perform calculations and data cleaning
+- Generate formatted PDF reports
+- Email reports automatically
+- Run on Windows and schedule via Task Scheduler
+
+Budget: $500-1000
+Duration: 1-2 weeks
+
+---
+
+## Example 2: Web Development
+
+Title: Build a React Dashboard for Analytics
+
+Description:
+Looking for a frontend developer to build a responsive analytics dashboard.
+Requirements:
+- React with TypeScript
+- Chart.js or D3 for visualizations
+- Real-time data updates via WebSocket
+- Dark/light mode toggle
+- Mobile responsive
+- Connect to existing REST API
+
+Budget: $2000-4000
+Duration: 3-4 weeks
+
+---
+
+## Example 3: API Development
+
+Title: Design and Build REST API for Mobile App
+
+Description:
+We need a backend developer to create a REST API for our mobile app.
+Features needed:
+- User authentication (JWT)
+- CRUD operations for 5 resources
+- File upload (images)
+- Push notification integration
+- Rate limiting
+- API documentation
+
+Tech: Node.js/Express or Python/FastAPI
+Budget: $3000-5000
+Duration: 4-6 weeks
+
+---
+
+## Example 4: Data Analysis
+
+Title: Analyze Customer Churn Data
+
+Description:
+We have customer data in CSV format and need insights on churn patterns.
+Deliverables:
+- Statistical analysis of churn factors
+- Predictive model for churn risk
+- Interactive dashboard
+- Executive summary report
+- Recommendations for retention
+
+Data: 50,000 customer records
+Budget: $1500-2500
+Duration: 2-3 weeks
+
+---
+
+## Example 5: General/Consulting
+
+Title: Code Review and Architecture Consultation
+
+Description:
+We need an experienced developer to review our Python codebase and provide:
+- Architecture recommendations
+- Performance optimization suggestions
+- Security audit
+- Best practices documentation
+- 2-hour video consultation
+
+Codebase: ~10,000 lines of Python
+Budget: $800-1200
+Duration: 1 week
+
+---

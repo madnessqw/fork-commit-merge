@@ -1,0 +1,219 @@
+{
+  "name": "ChatEmbed",
+  "tagline": "AI Chatbot Widget API for Websites",
+  "version": "1.0.0",
+  "price": "$35 one-time",
+  "target_audience": ["saas_founder", "ecommerce_owner", "support_team", "developer"],
+  "problem": "Websitelere AI chatbot eklemek için genellikle aylık $20-50 ödenen SaaS çözümleri (Intercom, Crisp, Tidio) kullanılıyor. Basit, özelleştirilebilir ve tek seferlik ödeme ile çalışan bir çözüm yok",
+  "solution": "Vercel Edge Function + AI SDK ile çalışan embeddable chatbot widget. OpenAI/Anthropic API'ye bağlanan, tamamen özelleştirilebilir, tek bir script tag ile eklenen chatbot",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "ai_sdk": "Vercel AI SDK",
+    "llm": "OpenAI GPT-4o-mini / Claude Haiku",
+    "storage": "Vercel KV (conversation history)",
+    "frontend": "Web Component (vanilla JS)",
+    "payment": "Stripe"
+  },
+  "mvp_complexity": "1-2 cycle",
+  "api": {
+    "base_url": "https://chatembed.api/",
+    "endpoints": [
+      {
+        "path": "/api/chat",
+        "method": "POST",
+        "description": "Send message to chatbot and get AI response",
+        "body": {
+          "message": {
+            "type": "string",
+            "required": true,
+            "description": "User message"
+          },
+          "session_id": {
+            "type": "string",
+            "required": true,
+            "description": "Unique session identifier"
+          },
+          "context": {
+            "type": "string",
+            "required": false,
+            "description": "System context/prompt for the bot"
+          },
+          "history": {
+            "type": "array",
+            "required": false,
+            "description": "Previous messages for context",
+            "items": {
+              "role": "user | assistant",
+              "content": "string"
+            }
+          }
+        },
+        "response": {
+          "message": "string (AI response)",
+          "session_id": "string",
+          "timestamp": "ISO8601",
+          "usage": {
+            "prompt_tokens": "number",
+            "completion_tokens": "number"
+          }
+        }
+      },
+      {
+        "path": "/api/chat/stream",
+        "method": "POST",
+        "description": "Stream chat response (SSE)",
+        "body": {
+          "message": "string",
+          "session_id": "string",
+          "context": "string"
+        },
+        "response": "text/event-stream"
+      },
+      {
+        "path": "/api/widget/config",
+        "method": "GET",
+        "description": "Get widget configuration",
+        "parameters": {
+          "api_key": "Your API key"
+        },
+        "response": {
+          "theme": {
+            "primary_color": "string",
+            "background_color": "string",
+            "text_color": "string",
+            "font_family": "string"
+          },
+          "position": "bottom-right | bottom-left",
+          "greeting": "string",
+          "placeholder": "string",
+          "bot_name": "string",
+          "bot_avatar": "string (URL)"
+        }
+      },
+      {
+        "path": "/api/conversations/:session_id",
+        "method": "GET",
+        "description": "Get conversation history",
+        "response": {
+          "session_id": "string",
+          "messages": [
+            {
+              "role": "user | assistant",
+              "content": "string",
+              "timestamp": "ISO8601"
+            }
+          ],
+          "created_at": "ISO8601",
+          "updated_at": "ISO8601"
+        }
+      }
+    ]
+  },
+  "widget_features": {
+    "embedding": "Single script tag: <script src='https://chatembed.api/widget.js' data-api-key='...'></script>",
+    "customization": [
+      "Brand colors",
+      "Bot name and avatar",
+      "Position (left/right)",
+      "Greeting message",
+      "Input placeholder",
+      "Custom CSS"
+    ],
+    "ui_components": [
+      "Floating bubble button",
+      "Expandable chat window",
+      "Typing indicators",
+      "Message timestamps",
+      "File attachment (optional)",
+      "Quick reply buttons"
+    ]
+  },
+  "implementation": {
+    "phase_1": {
+      "name": "Core Chat API",
+      "tasks": [
+        "Setup Vercel Edge Function",
+        "Integrate Vercel AI SDK",
+        "Implement chat endpoint",
+        "Add streaming support",
+        "Setup KV for conversation history",
+        "Create basic widget JS"
+      ],
+      "duration": "1 cycle"
+    },
+    "phase_2": {
+      "name": "Widget & Features",
+      "tasks": [
+        "Build customizable widget UI",
+        "Create widget configuration API",
+        "Add theme customization",
+        "Implement conversation persistence",
+        "Add analytics/events",
+        "Setup Stripe payment",
+        "Create documentation & examples"
+      ],
+      "duration": "1 cycle"
+    }
+  },
+  "market_analysis": {
+    "competitors": [
+      {
+        "name": "Intercom",
+        "price": "$74/month",
+        "pros": ["Full featured", "CRM integration"],
+        "cons": ["Very expensive", "Complex"]
+      },
+      {
+        "name": "Crisp",
+        "price": "$25/month",
+        "pros": ["Good UI", "Multi-channel"],
+        "cons": ["Monthly cost", "Limited AI on free"]
+      },
+      {
+        "name": "Tidio",
+        "price": "$29/month",
+        "pros": ["Easy setup", "Templates"],
+        "cons": ["Per-operator pricing", "Limited customization"]
+      },
+      {
+        "name": "Chatbase",
+        "price": "$19/month",
+        "pros": ["AI focused", "Train on documents"],
+        "cons": ["Monthly subscription", "Message limits"]
+      }
+    ],
+    "advantage": "One-time $35 + Bring your own AI key + Full customization + No monthly fees"
+  },
+  "pricing_strategy": {
+    "model": "one-time",
+    "price": "$35",
+    "tiers": [
+      {
+        "name": "Business",
+        "price": "$35",
+        "features": [
+          "Unlimited conversations",
+          "Customizable widget",
+          "Conversation history",
+          "Streaming responses",
+          "Bring your own AI API key",
+          "Basic analytics",
+          "Email support"
+        ]
+      }
+    ]
+  },
+  "use_cases": [
+    "E-commerce customer support",
+    "SaaS onboarding assistant",
+    "Documentation Q&A bot",
+    "Lead qualification",
+    "Appointment booking",
+    "Product recommendations"
+  ],
+  "estimated_revenue": {
+    "conservative": "15 sales/month = $525",
+    "moderate": "40 sales/month = $1,400",
+    "optimistic": "100 sales/month = $3,500"
+  }
+}

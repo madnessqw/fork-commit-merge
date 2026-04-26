@@ -1,0 +1,124 @@
+{
+  "name": "AgentKit",
+  "tagline": "AI Agent Builder & Orchestration API",
+  "slug": "agentkit",
+  "version": "1.0.0",
+  "price": "$39 one-time",
+  "mvp_complexity": "2-3 cycles",
+  "target_audience": ["developer", "ai_researcher", "saas_founder", "automation_engineer"],
+  "problem": "AI agent geliştirmek için LangChain kurulumu karmaşık. CrewAI $15/ay. Basit agent workflow'ları için lightweight çözüm yok. Agent orchestration pahalı",
+  "solution": "Vercel Edge ile AI agent builder. ReAct pattern, tool calling, multi-agent orchestration, memory management. Gemini/Claude API entegrasyonu",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "ai": "Gemini API + Claude API",
+    "orchestration": "Custom agent runtime",
+    "memory": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://agentkit.io/",
+    "endpoints": [
+      {
+        "path": "/api/agents",
+        "method": "POST",
+        "description": "Create new agent",
+        "body": {
+          "name": "string",
+          "systemPrompt": "string (required)",
+          "tools": ["web_search", "calculator", "code_execution"],
+          "model": "gemini-2.0-flash | claude-3-haiku",
+          "memory": true
+        },
+        "response": {
+          "agentId": "agent_abc123",
+          "endpoint": "https://agentkit.io/api/agents/agent_abc123/run"
+        }
+      },
+      {
+        "path": "/api/agents/:id/run",
+        "method": "POST",
+        "description": "Run agent with input",
+        "body": {
+          "input": "string (required)",
+          "context": {},
+          "maxSteps": 10
+        },
+        "response": {
+          "output": "Agent response",
+          "steps": [{"thought": "...", "action": "...", "observation": "..."}],
+          "tokensUsed": 245
+        }
+      },
+      {
+        "path": "/api/workflows",
+        "method": "POST",
+        "description": "Create multi-agent workflow",
+        "body": {
+          "name": "string",
+          "steps": [
+            {"agent": "agent_id", "input": "{{user_input}}"},
+            {"agent": "agent_id2", "input": "{{previous.output}}"}
+          ]
+        }
+      },
+      {
+        "path": "/api/tools",
+        "method": "GET",
+        "description": "List available tools"
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "LangChain",
+      "price": "Free/Open Source",
+      "pros": ["Powerful", "Popular"],
+      "cons": ["Complex setup", "Steep learning curve", "Self-hosted"]
+    },
+    {
+      "name": "CrewAI",
+      "price": "$15/month",
+      "pros": ["Multi-agent", "Python"],
+      "cons": ["Monthly cost", "Python only"]
+    },
+    {
+      "name": "AutoGPT",
+      "price": "Free",
+      "pros": ["Autonomous"],
+      "cons": ["Unreliable", "Resource heavy", "Self-hosted"]
+    }
+  ],
+  "advantage": "One-time $39 vs monthly. Edge-native. Simple API. Multi-agent support.",
+  "features": [
+    "ReAct agent pattern",
+    "Tool calling (search, calc, code)",
+    "Multi-agent workflows",
+    "Memory management",
+    "Agent versioning",
+    "Step-by-step debugging",
+    "Custom tool creation",
+    "Webhook triggers",
+    "Streaming responses",
+    "Token usage tracking"
+  ],
+  "use_cases": [
+    "Customer support bots",
+    "Research assistants",
+    "Code review agents",
+    "Content creation workflows",
+    "Data analysis pipelines",
+    "Autonomous task runners"
+  ],
+  "estimated_revenue": {
+    "conservative": "35 sales/month = $1,365",
+    "moderate": "70 sales/month = $2,730",
+    "optimistic": "120 sales/month = $4,680"
+  },
+  "why_best": [
+    "AI agents hot trend 2025",
+    "CrewAI $15/mo vs $39 one-time",
+    "LangChain too complex",
+    "Edge compatible",
+    "Highest price point"
+  ]
+}

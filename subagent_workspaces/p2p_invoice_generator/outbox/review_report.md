@@ -1,0 +1,2 @@
+QA REVIEW: PASS
+The backend correctly returns a 402 Payment Required with the expected PayPal link when the API limit is exceeded or the user has no balance. The frontend correctly parses the 402 error, extracts the `payment_link`, and renders an anchor element pointing to the PayPal checkout. The Data Contract in `hive_mind.md` is correctly implemented.

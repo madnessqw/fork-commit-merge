@@ -1,0 +1,150 @@
+{
+  "name": "DNS Probe",
+  "tagline": "DNS Lookup & Analysis API",
+  "slug": "dns-probe",
+  "version": "1.0.0",
+  "price": "$17 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "devops", "network_admin", "saas_founder"],
+  "problem": "DNS kayıtlarını kontrol etmek için dig/nslookup kullanmak zor. A, MX, TXT, NS kayıtlarını API ile almak için Google DNS API kullanmak lazım. DNS propagation check'i yapmak zor",
+  "solution": "Vercel Edge + DNS over HTTPS (DoH) API. A, AAAA, MX, NS, TXT, CNAME lookup. DNS propagation check (multi-resolver). SPF, DMARC record parser",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "dns_resolver": "DNS over HTTPS (Google/Cloudflare)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://dnsprobe.io/",
+    "endpoints": [
+      {
+        "path": "/api/lookup",
+        "method": "GET",
+        "description": "DNS lookup for domain",
+        "parameters": {
+          "domain": {
+            "type": "string",
+            "required": true,
+            "example": "example.com"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["A", "AAAA", "MX", "NS", "TXT", "CNAME", "SOA", "PTR", "SRV"],
+            "default": "A",
+            "description": "DNS record type"
+          },
+          "resolver": {
+            "type": "string",
+            "enum": ["google", "cloudflare", "opendns"],
+            "default": "google",
+            "description": "DNS resolver"
+          }
+        },
+        "response": {
+          "domain": "example.com",
+          "type": "A",
+          "resolver": "google",
+          "records": [
+            {
+              "value": "93.184.216.34",
+              "ttl": 300
+            }
+          ],
+          "queryTime": "45ms",
+          "timestamp": "2026-04-05T12:00:00Z"
+        }
+      },
+      {
+        "path": "/api/all",
+        "method": "GET",
+        "description": "Get all DNS records for domain",
+        "parameters": {
+          "domain": "string (required)"
+        },
+        "response": {
+          "domain": "example.com",
+          "records": {
+            "A": [{"value": "93.184.216.34", "ttl": 300}],
+            "AAAA": [{"value": "2606:2800:220:1:248:1893:25c8:1946", "ttl": 300}],
+            "MX": [{"value": "10 mail.example.com", "ttl": 3600}],
+            "NS": [{"value": "ns1.example.com", "ttl": 86400}],
+            "TXT": [{"value": "v=spf1 include:_spf.google.com ~all", "ttl": 3600}],
+            "CNAME": []
+          }
+        }
+      },
+      {
+        "path": "/api/propagation",
+        "method": "GET",
+        "description": "Check DNS propagation across locations",
+        "parameters": {
+          "domain": "string",
+          "type": "string (default: A)"
+        },
+        "response": {
+          "domain": "example.com",
+          "type": "A",
+          "locations": [
+            {"location": "US-East", "resolver": "8.8.8.8", "value": "93.184.216.34"},
+            {"location": "US-West", "resolver": "1.1.1.1", "value": "93.184.216.34"},
+            {"location": "Europe", "resolver": "208.67.222.222", "value": "93.184.216.35"}
+          ],
+          "propagated": true,
+          "propagationPercentage": 95
+        }
+      },
+      {
+        "path": "/api/spf",
+        "method": "GET",
+        "description": "Parse SPF record",
+        "parameters": {
+          "domain": "string"
+        },
+        "response": {
+          "domain": "example.com",
+          "spf": "v=spf1 include:_spf.google.com ~all",
+          "parsed": {
+            "version": "spf1",
+            "mechanisms": ["include:_spf.google.com"],
+            "qualifier": "~all"
+          },
+          "valid": true
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {"name": "Google DoH", "price": "Free", "pros": ["Reliable"], "cons": ["Complex API", "Raw response"]},
+    {"name": "Cloudflare DoH", "price": "Free", "pros": ["Fast"], "cons": ["Complex", "No parsing"]},
+    {"name": "WhoisXML API", "price": "$19/month", "pros": ["Full features"], "cons": ["Expensive", "Monthly"]}
+  ],
+  "advantage": "One-time $17 vs monthly. Parsed JSON response. Propagation check. SPF parser.",
+  "features": [
+    "A, AAAA, MX, NS, TXT, CNAME lookup",
+    "Multi-resolver support",
+    "DNS propagation check",
+    "SPF record parser",
+    "DMARC record parser",
+    "All records query",
+    "Batch domain lookup",
+    "Query time tracking"
+  ],
+  "use_cases": [
+    "DNS debugging",
+    "Email setup validation (MX, SPF)",
+    "Domain migration",
+    "DNS monitoring",
+    "Security audit (TXT records)"
+  ],
+  "estimated_revenue": {
+    "conservative": "35 sales/month = $595",
+    "moderate": "70 sales/month = $1,190",
+    "optimistic": "120 sales/month = $2,040"
+  },
+  "why_best": [
+    "Network admins need this",
+    "DoH is modern standard",
+    "Edge compatible (fetch)",
+    "Clear use cases"
+  ]
+}

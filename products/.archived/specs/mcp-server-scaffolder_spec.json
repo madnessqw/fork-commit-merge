@@ -1,0 +1,101 @@
+{
+  "name": "MCP Server Scaffolder",
+  "slug": "mcp-server-scaffolder",
+  "description": "Scaffold production-ready MCP servers with TypeScript, Python, or Go templates",
+  "long_description": "MCP Server Scaffolder generates complete Model Context Protocol server boilerplate with proper resource handlers, tool definitions, and type safety. Choose from TypeScript, Python, or Go templates with built-in Stdio/SSE transport support.",
+  "price": "$19",
+  "category": "developer-tools",
+  "tags": ["mcp", "ai", "scaffold", "typescript", "python", "go", "server"],
+  "features": [
+    "TypeScript, Python & Go templates",
+    "Stdio & SSE transport support",
+    "Resource & tool handlers",
+    "Type-safe with full Intellisense",
+    "Built-in error handling",
+    "Docker-ready configuration"
+  ],
+  "tech_stack": {
+    "frontend": "Vanilla HTML + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "processing": "Client-side generation"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "Scaffold MCP Servers in Seconds",
+        "subheadline": "Production-ready Model Context Protocol server boilerplate with TypeScript, Python, or Go",
+        "cta": "Generate Your Server"
+      },
+      "demo": {
+        "type": "generator",
+        "inputs": [
+          {"name": "server_name", "type": "text", "placeholder": "my-mcp-server"},
+          {"name": "language", "type": "select", "options": ["TypeScript", "Python", "Go"]},
+          {"name": "transport", "type": "select", "options": ["Stdio", "SSE", "Both"]}
+        ],
+        "output": "generated_code_preview"
+      },
+      "features": [
+        {"icon": "⚡", "title": "Instant Scaffold", "desc": "Complete server structure in seconds"},
+        {"icon": "🔒", "title": "Type Safe", "desc": "Full TypeScript/Go type definitions"},
+        {"icon": "📦", "title": "Ready to Deploy", "desc": "Includes Docker & CI/CD configs"},
+        {"icon": "🎯", "title": "MCP Compliant", "desc": "Follows official MCP protocol specs"}
+      ],
+      "how_it_works": [
+        "Enter your server name",
+        "Select language (TS/Python/Go)",
+        "Choose transport mode",
+        "Download complete boilerplate"
+      ],
+      "faq": [
+        {"q": "What is MCP?", "a": "Model Context Protocol - a standard for AI tools and resources"},
+        {"q": "Which LLMs support MCP?", "a": "Claude, Cursor, and any MCP-compatible client"},
+        {"q": "Can I customize the template?", "a": "Yes, generated code is fully editable and MIT licensed"}
+      ],
+      "testimonials": [
+        {"name": "Alex Chen", "role": "AI Developer", "text": "Saved me hours setting up MCP servers."}
+      ]
+    }
+  },
+  "api": {
+    "routes": [
+      {
+        "path": "/api/scaffold",
+        "method": "POST",
+        "description": "Generate MCP server scaffold",
+        "request": {
+          "server_name": "string",
+          "language": "typescript|python|go",
+          "transport": "stdio|sse|both"
+        },
+        "response": {
+          "files": [{"path": "string", "content": "string"}],
+          "download_url": "string"
+        }
+      },
+      {
+        "path": "/api/health",
+        "method": "GET",
+        "description": "Health check"
+      },
+      {
+        "path": "/api/webhook",
+        "method": "POST",
+        "description": "LemonSqueezy webhook handler"
+      }
+    ]
+  },
+  "payment": {
+    "provider": "lemonsqueezy",
+    "price": 19,
+    "currency": "USD",
+    "license_type": "perpetual"
+  },
+  "deployment": {
+    "platform": "vercel",
+    "region": "iad1"
+  },
+  "status": "spec_ready",
+  "created_at": "2026-04-22T00:20:00Z",
+  "spec_version": "1.0"
+}

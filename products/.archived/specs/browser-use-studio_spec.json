@@ -1,0 +1,101 @@
+{
+  "name": "Browser Use Studio",
+  "slug": "browser-use-studio",
+  "description": "Generate browser automation scripts with natural language - powered by browser-use patterns",
+  "long_description": "Browser Use Studio converts your natural language instructions into executable browser automation scripts. Generate Python code for browser-use, Puppeteer, or Playwright with intelligent element detection and action sequencing.",
+  "price": "$19",
+  "category": "developer-tools",
+  "tags": ["browser-automation", "browser-use", "puppeteer", "playwright", "ai", "scraping"],
+  "features": [
+    "Natural language to code",
+    "browser-use Python generation",
+    "Puppeteer & Playwright export",
+    "Smart element selector detection",
+    "Multi-step action sequences",
+    "Script validation & preview"
+  ],
+  "tech_stack": {
+    "frontend": "Vanilla HTML + Tailwind CSS",
+    "backend": "Vercel Serverless Functions",
+    "processing": "Client-side + API"
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "headline": "Write Once, Automate Anywhere",
+        "subheadline": "Turn natural language into browser automation scripts for browser-use, Puppeteer, or Playwright",
+        "cta": "Generate Script"
+      },
+      "demo": {
+        "type": "generator",
+        "inputs": [
+          {"name": "instruction", "type": "textarea", "placeholder": "Go to example.com, search for 'browser automation', click the first result"},
+          {"name": "framework", "type": "select", "options": ["browser-use", "Puppeteer", "Playwright"]}
+        ],
+        "output": "generated_script_preview"
+      },
+      "features": [
+        {"icon": "🤖", "title": "Natural Language", "desc": "Describe what you want, get working code"},
+        {"icon": "⚡", "title": "Multi-Framework", "desc": "Export to browser-use, Puppeteer, or Playwright"},
+        {"icon": "🎯", "title": "Smart Selectors", "desc": "AI-powered element detection"},
+        {"icon": "📋", "title": "Copy & Run", "desc": "Working code ready to execute"}
+      ],
+      "how_it_works": [
+        "Describe your automation task",
+        "Select your preferred framework",
+        "Review generated script",
+        "Copy and run locally"
+      ],
+      "faq": [
+        {"q": "What is browser-use?", "a": "A Python library that lets AI control browsers with natural language"},
+        {"q": "Do I need an API key?", "a": "Generated scripts use your own LLM API keys"},
+        {"q": "Can I edit the generated code?", "a": "Yes, all generated code is fully editable"}
+      ],
+      "testimonials": [
+        {"name": "Sarah Kim", "role": "QA Engineer", "text": "Cut our test writing time by 70%."}
+      ]
+    }
+  },
+  "api": {
+    "routes": [
+      {
+        "path": "/api/generate",
+        "method": "POST",
+        "description": "Generate browser automation script",
+        "request": {
+          "instruction": "string",
+          "framework": "browser-use|puppeteer|playwright",
+          "url": "string (optional)"
+        },
+        "response": {
+          "script": "string",
+          "framework": "string",
+          "steps": ["string"]
+        }
+      },
+      {
+        "path": "/api/health",
+        "method": "GET",
+        "description": "Health check"
+      },
+      {
+        "path": "/api/webhook",
+        "method": "POST",
+        "description": "LemonSqueezy webhook handler"
+      }
+    ]
+  },
+  "payment": {
+    "provider": "lemonsqueezy",
+    "price": 19,
+    "currency": "USD",
+    "license_type": "perpetual"
+  },
+  "deployment": {
+    "platform": "vercel",
+    "region": "iad1"
+  },
+  "status": "spec_ready",
+  "created_at": "2026-04-22T00:20:00Z",
+  "spec_version": "1.0"
+}

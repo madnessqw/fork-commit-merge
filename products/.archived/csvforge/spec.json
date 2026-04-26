@@ -1,0 +1,133 @@
+{
+  "name": "CSV Forge",
+  "tagline": "CSV Manipulation & Conversion API",
+  "slug": "csvforge",
+  "version": "1.0.0",
+  "price": "$17 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "data_analyst", "content_manager", "saas_founder"],
+  "problem": "CSV dosyalarını işlemek için PapaParse kurulumu gerekiyor. CSV↔JSON dönüşümü için online tool'lar var ama API yok. Büyük CSV dosyalarını parçalamak zor. CSV validasyonu için ayrı araçlar lazım",
+  "solution": "Vercel Edge + PapaParse ile CSV manipulation API. CSV↔JSON, CSV↔Excel, CSV merge/split, validation, column mapping",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "csv_parser": "PapaParse (npm)",
+    "excel": "xlsx (npm)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://csvforge.io/",
+    "endpoints": [
+      {
+        "path": "/api/convert/json",
+        "method": "POST",
+        "description": "Convert CSV to JSON",
+        "body": {
+          "csv": "string (CSV content or URL)",
+          "delimiter": "string (default: comma)",
+          "headers": "boolean (default: true)",
+          "dynamicTyping": "boolean (auto-detect types)"
+        },
+        "response": {
+          "data": [{"name": "John", "age": 30}],
+          "meta": {"fields": ["name", "age"], "rowCount": 100}
+        }
+      },
+      {
+        "path": "/api/convert/csv",
+        "method": "POST",
+        "description": "Convert JSON to CSV",
+        "body": {
+          "data": "array of objects",
+          "fields": "array (optional column order)",
+          "delimiter": "string (default: comma)"
+        }
+      },
+      {
+        "path": "/api/validate",
+        "method": "POST",
+        "description": "Validate CSV structure",
+        "body": {
+          "csv": "string",
+          "expectedColumns": "number (optional)"
+        },
+        "response": {
+          "valid": true,
+          "errors": [],
+          "rowCount": 100,
+          "columnCount": 5
+        }
+      },
+      {
+        "path": "/api/split",
+        "method": "POST",
+        "description": "Split CSV into chunks",
+        "body": {
+          "csv": "string",
+          "chunkSize": "number (rows per file)"
+        }
+      },
+      {
+        "path": "/api/merge",
+        "method": "POST",
+        "description": "Merge multiple CSVs",
+        "body": {
+          "files": ["csv1 content", "csv2 content"],
+          "commonColumn": "string (optional merge key)"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "ConvertCSV.com",
+      "price": "Free/Premium",
+      "pros": ["Free"],
+      "cons": ["No API", "Manual only", "Limited"]
+    },
+    {
+      "name": "PapaParse (library)",
+      "price": "Free",
+      "pros": ["Popular", "Fast"],
+      "cons": ["Setup required", "No API"]
+    },
+    {
+      "name": "Flatfile",
+      "price": "$49/month",
+      "pros": ["Enterprise features"],
+      "cons": ["Expensive", "Overkill for simple tasks"]
+    }
+  ],
+  "advantage": "One-time $17 vs monthly. PapaParse quality. Edge speed. No setup.",
+  "features": [
+    "CSV to JSON conversion",
+    "JSON to CSV conversion",
+    "Excel to CSV",
+    "CSV validation",
+    "CSV splitting",
+    "CSV merging",
+    "Column mapping",
+    "Delimiter detection",
+    "Type auto-detection",
+    "Large file streaming"
+  ],
+  "use_cases": [
+    "Data migration",
+    "Import/export tools",
+    "Report generation",
+    "Data cleaning",
+    "ETL pipelines",
+    "Bulk uploads"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $850",
+    "moderate": "100 sales/month = $1,700",
+    "optimistic": "200 sales/month = $3,400"
+  },
+  "why_best": [
+    "PapaParse 9k+ stars - proven",
+    "Flatfile $49/mo vs $17 one-time",
+    "Edge compatible",
+    "Every data pipeline needs this"
+  ]
+}

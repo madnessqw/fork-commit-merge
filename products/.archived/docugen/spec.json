@@ -1,0 +1,127 @@
+{
+  "name": "DocuGen",
+  "tagline": "Dynamic Documentation Generator API",
+  "slug": "docugen",
+  "version": "1.0.0",
+  "price": "$24 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "api_designer", "technical_writer", "saas_founder"],
+  "problem": "API dokümantasyonu için Swagger/OpenAPI yazmak zor. ReadMe pahalı ($19/ay). Postman dokümantasyonu sınırlı. Manuel dokümantasyon güncellemesi zaman alıcı",
+  "solution": "Vercel Edge ile API'den otomatik doküman üretme. OpenAPI generation, markdown export, interactive playground, changelog",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "parser": "swagger-parser",
+    "renderer": "redoc (lite)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://docugen.io/",
+    "endpoints": [
+      {
+        "path": "/api/generate",
+        "method": "POST",
+        "description": "Generate docs from OpenAPI spec",
+        "body": {
+          "spec": "string (OpenAPI JSON/YAML or URL)",
+          "theme": "default | dark | minimal",
+          "logo": "string (URL)",
+          "brandColor": "string (hex)"
+        },
+        "response": {
+          "docUrl": "https://docugen.io/docs/abc123",
+          "embedCode": "<iframe src='...'></iframe>",
+          "markdown": "string"
+        }
+      },
+      {
+        "path": "/api/analyze",
+        "method": "POST",
+        "description": "Analyze API and generate OpenAPI spec",
+        "body": {
+          "endpoints": [
+            {
+              "method": "GET",
+              "path": "/api/users",
+              "description": "Get all users"
+            }
+          ]
+        },
+        "response": {
+          "openapi": "3.0.0 spec",
+          "suggestions": ["Add response examples", "Define error codes"]
+        }
+      },
+      {
+        "path": "/api/playground",
+        "method": "GET",
+        "description": "Get interactive API playground",
+        "parameters": {
+          "specId": "string"
+        }
+      },
+      {
+        "path": "/api/export",
+        "method": "POST",
+        "description": "Export docs to various formats",
+        "body": {
+          "format": "markdown | html | pdf",
+          "specId": "string"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "ReadMe",
+      "price": "$19/month per project",
+      "pros": ["Beautiful docs", "Full featured"],
+      "cons": ["Monthly cost", "Per project pricing"]
+    },
+    {
+      "name": "Swagger UI",
+      "price": "Free",
+      "pros": ["Free", "Standard"],
+      "cons": ["Basic styling", "No customization", "Self-hosted"]
+    },
+    {
+      "name": "Redoc",
+      "price": "Free",
+      "pros": ["Beautiful", "Open source"],
+      "cons": ["Setup required", "Self-hosted", "Complex"]
+    }
+  ],
+  "advantage": "One-time $24 vs monthly. Auto OpenAPI generation. Customizable themes. Edge hosted.",
+  "features": [
+    "OpenAPI spec import",
+    "Auto OpenAPI generation",
+    "Interactive playground",
+    "Multiple themes",
+    "Markdown export",
+    "HTML export",
+    "PDF export",
+    "Custom branding",
+    "Changelog generation",
+    "API analytics"
+  ],
+  "use_cases": [
+    "API documentation",
+    "Developer portals",
+    "API onboarding",
+    "Internal docs",
+    "Client SDK docs",
+    "Webhook documentation"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $960",
+    "moderate": "80 sales/month = $1,920",
+    "optimistic": "150 sales/month = $3,600"
+  },
+  "why_best": [
+    "ReadMe $19/mo vs $24 one-time",
+    "Every API needs docs",
+    "Edge compatible",
+    "Auto-generation saves time",
+    "Growing API economy"
+  ]
+}

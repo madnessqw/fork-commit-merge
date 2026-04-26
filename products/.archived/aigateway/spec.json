@@ -1,0 +1,118 @@
+{
+  "name": "AIGateway",
+  "tagline": "AI API Gateway & Rate Limiter",
+  "slug": "aigateway",
+  "version": "1.0.0",
+  "price": "$34 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "saas_founder", "ai_engineer", "startup"],
+  "problem": "Çoklu AI provider (OpenAI, Anthropic, Gemini) yönetimi karmaşık. Her biri için ayrı API key, farklı rate limit'ler, maliyet takibi zor. Fallback mekanizması yok",
+  "solution": "Vercel Edge + KV ile unified AI gateway. Multi-provider routing, rate limiting, cost tracking, fallback, caching",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "cache": "Vercel KV (response caching)",
+    "routing": "Edge-based load balancer",
+    "analytics": "Edge computed",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://aigateway.io/",
+    "endpoints": [
+      {
+        "path": "/v1/chat/completions",
+        "method": "POST",
+        "description": "Unified OpenAI-compatible endpoint",
+        "body": {
+          "model": "gpt-4 | claude-3 | gemini-pro",
+          "messages": [{"role": "user", "content": "Hello"}],
+          "temperature": 0.7
+        },
+        "response": {
+          "id": "chat_abc123",
+          "model": "claude-3-haiku-20240307",
+          "content": "Hello! How can I help?",
+          "usage": {"prompt_tokens": 10, "completion_tokens": 20},
+          "cost": 0.00025
+        }
+      },
+      {
+        "path": "/api/providers",
+        "method": "GET",
+        "description": "List configured providers"
+      },
+      {
+        "path": "/api/analytics",
+        "method": "GET",
+        "description": "Usage and cost analytics",
+        "response": {
+          "totalRequests": 15234,
+          "totalCost": 45.23,
+          "byProvider": {
+            "openai": {"requests": 8000, "cost": 25.50},
+            "anthropic": {"requests": 7000, "cost": 18.75},
+            "gemini": {"requests": 234, "cost": 0.98}
+          },
+          "cacheHitRate": 15.5
+        }
+      },
+      {
+        "path": "/api/cache/clear",
+        "method": "POST",
+        "description": "Clear response cache"
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "LiteLLM",
+      "price": "Free/Open Source",
+      "pros": ["Popular", "Open source"],
+      "cons": ["Self-hosted", "Complex setup", "Maintenance"]
+    },
+    {
+      "name": "Langfuse",
+      "price": "$39/month",
+      "pros": ["Observability"],
+      "cons": ["Monthly cost", "Complex"]
+    },
+    {
+      "name": "Helicone",
+      "price": "$20/month",
+      "pros": ["Good features"],
+      "cons": ["Monthly cost", "Vendor lock-in"]
+    }
+  ],
+  "advantage": "One-time $34 vs monthly. Unified API. Edge caching. Cost transparency.",
+  "features": [
+    "Unified OpenAI-compatible API",
+    "Multi-provider routing",
+    "Intelligent fallback",
+    "Response caching",
+    "Rate limiting",
+    "Cost tracking",
+    "Usage analytics",
+    "Request retry logic",
+    "Load balancing",
+    "API key rotation"
+  ],
+  "use_cases": [
+    "Multi-LLM applications",
+    "Cost optimization",
+    "High availability AI",
+    "AI SaaS products",
+    "Chatbot backends",
+    "Content generation pipelines"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $1,360",
+    "moderate": "80 sales/month = $2,720",
+    "optimistic": "150 sales/month = $5,100"
+  },
+  "why_best": [
+    "AI boom 2025",
+    "LiteLLM self-hosted karmaşası",
+    "Helicone $20/mo vs $34 one-time",
+    "Edge caching = cost saving",
+    "Highest price point"
+  ]
+}

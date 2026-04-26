@@ -1,0 +1,111 @@
+{
+  "name": "Markdown Pro",
+  "tagline": "Universal HTML ↔ Markdown Converter API",
+  "slug": "markdown-pro",
+  "version": "1.0.0",
+  "price": "$19 one-time",
+  "mvp_complexity": "1-2 cycles",
+  "target_audience": ["developer", "content_creator", "blogger", "ai_researcher"],
+  "problem": "HTML'yi Markdown'a çevirmek için turndown kütüphanesi kurmak gerekiyor. ChatGPT'den gelen HTML response'ları Markdown'a çevirmek lazım. Web scraping sonucu HTML'i temiz Markdown'a dönüştürmek zor",
+  "solution": "Vercel Edge + turndown/showdown ile HTML ↔ Markdown converter API. Table, code block, image dönüşümü. GitHub-flavored Markdown desteği",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "html_to_md": "turndown (npm)",
+    "md_to_html": "showdown (npm)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://mdpro.io/",
+    "endpoints": [
+      {
+        "path": "/api/html-to-markdown",
+        "method": "POST",
+        "description": "Convert HTML to Markdown",
+        "body": {
+          "html": {
+            "type": "string",
+            "required": true,
+            "description": "HTML content"
+          },
+          "options": {
+            "headingStyle": "setext | atx (default: atx)",
+            "bulletListMarker": "* | - | + (default: *)",
+            "codeBlockStyle": "fenced | indented (default: fenced)",
+            "emDelimiter": "_ | * (default: _)",
+            "strongDelimiter": "** | __ (default: **)"
+          }
+        },
+        "response": {
+          "markdown": "# Heading\n\nContent...",
+          "stats": {
+            "inputLength": 1200,
+            "outputLength": 450,
+            "headings": 3,
+            "links": 5,
+            "images": 2
+          }
+        }
+      },
+      {
+        "path": "/api/markdown-to-html",
+        "method": "POST",
+        "description": "Convert Markdown to HTML",
+        "body": {
+          "markdown": "string (required)",
+          "options": {
+            "tables": true,
+            "tasklists": true,
+            "strikethrough": true
+          }
+        },
+        "response": {
+          "html": "<h1>Heading</h1><p>Content...</p>"
+        }
+      },
+      {
+        "path": "/api/url-to-markdown",
+        "method": "GET",
+        "description": "Fetch URL and convert to Markdown",
+        "parameters": {
+          "url": "string (required)"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {"name": "Turndown (library)", "price": "Free", "pros": ["Popular"], "cons": ["Setup required", "No API"]},
+    {"name": "Pandoc", "price": "Free", "pros": ["Powerful"], "cons": ["CLI only", "Setup required"]},
+    {"name": "Cloudmersive", "price": "$9/month", "pros": ["API"], "cons": ["Monthly cost"]}
+  ],
+  "advantage": "One-time $19 vs monthly. No setup. Edge speed. Bidirectional conversion.",
+  "features": [
+    "HTML to Markdown",
+    "Markdown to HTML",
+    "Table conversion",
+    "Code block preservation",
+    "Image link handling",
+    "GitHub-flavored Markdown",
+    "URL fetching",
+    "Custom options"
+  ],
+  "use_cases": [
+    "ChatGPT HTML to MD",
+    "Web scraping cleanup",
+    "CMS migration",
+    "Documentation conversion",
+    "Content editing"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $760",
+    "moderate": "80 sales/month = $1,520",
+    "optimistic": "150 sales/month = $2,850"
+  },
+  "why_best": [
+    "AI trend (ChatGPT outputs HTML)",
+    "turndown 5k+ stars",
+    "showdown 13k+ stars",
+    "Edge compatible",
+    "Growing need"
+  ]
+}

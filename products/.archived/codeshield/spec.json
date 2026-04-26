@@ -1,0 +1,147 @@
+{
+  "name": "CodeShield",
+  "tagline": "Code Security Scanner & SAST API",
+  "slug": "codeshield",
+  "version": "1.0.0",
+  "price": "$34 one-time",
+  "mvp_complexity": "2-3 cycles",
+  "target_audience": ["developer", "security_engineer", "devops", "saas_founder"],
+  "problem": "Code security için SonarQube pahalı (enterprise). Snyk $52/ay. GitHub Advanced Security $$$. Basit SAST için self-hosted kurulum zor",
+  "solution": "Vercel Edge + semgrep-lite ile code security scanning. OWASP Top 10 detection, secrets scanning, dependency audit",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "scanner": "semgrep (light)",
+    "secrets": "gitleaks (patterns)",
+    "deps": "snyk vulnerability DB (public)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://codeshield.io/",
+    "endpoints": [
+      {
+        "path": "/api/scan",
+        "method": "POST",
+        "description": "Scan code for vulnerabilities",
+        "body": {
+          "code": "string (base64 or URL to repo)",
+          "language": "javascript | python | typescript | go | rust",
+          "rules": ["owasp", "secrets", "best-practices"]
+        },
+        "response": {
+          "scanId": "scan_abc123",
+          "vulnerabilities": [
+            {
+              "rule": "insecure-random",
+              "severity": "high",
+              "line": 45,
+              "message": "Use crypto.randomBytes() instead of Math.random()",
+              "cwe": "CWE-338"
+            }
+          ],
+          "summary": {"high": 2, "medium": 5, "low": 8}
+        }
+      },
+      {
+        "path": "/api/scan/secrets",
+        "method": "POST",
+        "description": "Scan for hardcoded secrets",
+        "body": {
+          "code": "string",
+          "language": "string"
+        },
+        "response": {
+          "secrets": [
+            {
+              "type": "aws-access-key",
+              "line": 23,
+              "value": "AKIA...",
+              "severity": "critical"
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/scan/dependencies",
+        "method": "POST",
+        "description": "Scan dependencies for vulnerabilities",
+        "body": {
+          "packageJson": "string",
+          "lockFile": "string (optional)"
+        },
+        "response": {
+          "vulnerabilities": [
+            {
+              "package": "lodash",
+              "version": "4.17.15",
+              "vulnerable": "<4.17.21",
+              "severity": "high",
+              "cve": "CVE-2021-23337"
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/sarif",
+        "method": "POST",
+        "description": "Export scan results as SARIF",
+        "body": {
+          "scanId": "string"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Snyk",
+      "price": "$52/month",
+      "pros": ["Comprehensive", "IDE integration"],
+      "cons": ["Expensive", "Monthly cost"]
+    },
+    {
+      "name": "SonarQube",
+      "price": "Free/Enterprise $$$",
+      "pros": ["Powerful", "Industry standard"],
+      "cons": ["Self-hosted complexity", "Resource heavy"]
+    },
+    {
+      "name": "GitHub Advanced Security",
+      "price": "$$$",
+      "pros": ["Integrated"],
+      "cons": ["Enterprise only", "Expensive"]
+    }
+  ],
+  "advantage": "One-time $34 vs monthly $52+. OWASP detection. Secrets scanning. Edge compatible.",
+  "features": [
+    "Vulnerability scanning",
+    "OWASP Top 10 detection",
+    "Secrets detection (API keys, tokens)",
+    "Dependency vulnerability check",
+    "SARIF export",
+    "GitHub Actions integration",
+    "Multiple language support",
+    "Severity scoring",
+    "False positive suppression",
+    "Security report generation"
+  ],
+  "use_cases": [
+    "Pre-commit scanning",
+    "CI/CD security gate",
+    "Vulnerability assessment",
+    "Secrets rotation",
+    "Compliance checking",
+    "Security audits"
+  ],
+  "estimated_revenue": {
+    "conservative": "30 sales/month = $1,020",
+    "moderate": "60 sales/month = $2,040",
+    "optimistic": "100 sales/month = $3,400"
+  },
+  "why_best": [
+    "Snyk $52/mo vs $34 one-time",
+    "Security critical for every app",
+    "semgrep open source",
+    "Higher price ($34)",
+    "Growing security awareness"
+  ]
+}

@@ -53,7 +53,7 @@
                 <p class="text-xl text-gray-400 mb-8">Transform your code snippets into stunning, shareable screenshots with custom themes and backgrounds</p>
                 <div class="flex gap-4 justify-center">
                     <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
-                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all">Get Pro - $19</a>
+                    <a href="https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ" target="_blank" class="px-8 py-4 rounded-lg font-semibold border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition-all">Get Pro - $19</a>
                 </div>
             </div>
         </div>
@@ -184,7 +184,7 @@ for (let i = 0; i < 10; i++) {
                     <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Social media templates</li>
                     <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Lifetime updates</li>
                 </ul>
-                <a href="#" class="btn-primary block text-center px-8 py-4 rounded-lg font-semibold text-white transition-all">Get Pro Access</a>
+                <a href="https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ" target="_blank" class="btn-primary block text-center px-8 py-4 rounded-lg font-semibold text-white transition-all">Get Pro Access</a>
             </div>
         </div>
     </section>
@@ -234,5 +234,16 @@ for (let i = 0; i < 10; i++) {
             Prism.highlightAll();
         });
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_CGKR6Wi13f3H482RqQEuWvYdFEErZTejHT9iD0jq0wZ";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

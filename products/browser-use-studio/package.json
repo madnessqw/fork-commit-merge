@@ -1,0 +1,12 @@
+{
+  "name": "browser-use-studio",
+  "version": "1.0.0",
+  "description": "AI-powered browser automation workflow builder",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": ["browser", "automation", "playwright", "ai", "workflow"],
+  "author": "UniverseCreator",
+  "license": "MIT"
+}

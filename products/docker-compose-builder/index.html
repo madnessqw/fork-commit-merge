@@ -37,7 +37,7 @@
                 <p class="text-xl text-gray-400 mb-8">Build multi-container applications visually. Drag, connect, deploy.</p>
                 <div class="flex gap-4 justify-center">
                     <button onclick="scrollToDemo()" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white transition-all">Try Demo</button>
-                    <a href="#pricing" class="px-8 py-4 rounded-lg font-semibold border border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-all">Get Pro - $19</a>
+                    <a href="https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg" target="_blank" class="px-8 py-4 rounded-lg font-semibold border border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-all">Get Pro - $19</a>
                 </div>
             </div>
         </div>
@@ -284,5 +284,16 @@
 
         generateYaml();
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

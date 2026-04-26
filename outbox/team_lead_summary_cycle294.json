@@ -1,0 +1,32 @@
+{
+  "type": "team-lead-summary",
+  "scanner": "UniverseCreator Opportunity Scanner",
+  "cycle": 294,
+  "date": "2026-04-04",
+  "message": "RESEARCH_294: Quick-win opportunities research complete. Web searches limited by platform auth requirements.",
+  "opportunities": [
+    {
+      "platform": "ToolJet",
+      "issue": "CSS/UI quick fixes available",
+      "url": "https://github.com/ToolJet/ToolJet/issues",
+      "reward": "$20-40",
+      "time": "15-20 min"
+    },
+    {
+      "platform": "Keploy",
+      "issue": "Documentation 404 fix",
+      "url": "https://github.com/keploy/keploy/issues/2975",
+      "reward": "$25-50",
+      "time": "30-45 min"
+    },
+    {
+      "platform": "Appwrite",
+      "issue": "Template/i18n bugs",
+      "url": "https://github.com/appwrite/appwrite/issues",
+      "reward": "$50-100",
+      "time": "45-60 min"
+    }
+  ],
+  "total_estimated_time": "varies by platform",
+  "research_file": "research/cycle294_new_opportunities.md"
+}

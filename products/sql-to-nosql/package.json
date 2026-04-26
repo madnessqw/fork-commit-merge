@@ -1,0 +1,14 @@
+{
+  "name": "sql-to-nosql",
+  "version": "1.0.0",
+  "description": "Convert SQL queries to NoSQL instantly - MongoDB, DynamoDB, Firestore",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "20.x"
+  }
+}

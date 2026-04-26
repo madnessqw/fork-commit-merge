@@ -1,0 +1,474 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dlabel%253Agood-first-issue%2Bstate%253Aopen%2Blanguage%253Apython%26type%3Dissues%26sort%3Dupdated
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e27]:
+    - generic [ref=e30]:
+      - heading "issues Search Results · label:good-first-issue state:open language:python" [level=1] [ref=e31]
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - region "Filter by" [ref=e36]:
+            - heading "Filter by" [level=2] [ref=e37]
+            - list "Filter by" [ref=e42]:
+              - listitem [ref=e43]:
+                - list [ref=e44]:
+                  - listitem [ref=e45]:
+                    - link "Code (...) results" [ref=e46] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=code&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e47]:
+                        - generic [ref=e48]: Code
+                        - generic:
+                          - generic: ...
+                          - generic: (...)
+                          - generic: results
+                  - listitem [ref=e49]:
+                    - link "Repositories results" [ref=e50] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=repositories&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e51]:
+                        - generic [ref=e52]: Repositories
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e53]:
+                    - link "Issues results" [ref=e54] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e55]:
+                        - generic [ref=e56]: Issues
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e57]:
+                    - link "Pull requests results" [ref=e58] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=pullrequests&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e59]:
+                        - generic [ref=e60]: Pull requests
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e61]:
+                    - link "Discussions results" [ref=e62] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=discussions&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e63]:
+                        - generic [ref=e64]: Discussions
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e65]:
+                    - link "Users results" [ref=e66] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=users&sort=updated
+                      - generic:
+                        - img
+                      - generic [ref=e67]:
+                        - generic [ref=e68]: Users
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e69]:
+                    - button "More" [ref=e70] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e72]: More
+              - listitem [ref=e73]:
+                - heading "State" [level=3] [ref=e75]
+                - list "State" [ref=e76]:
+                  - listitem [ref=e77]:
+                    - link "Open" [ref=e78] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&state=open
+                      - generic:
+                        - img
+                      - generic "Open" [ref=e82]
+                  - listitem [ref=e83]:
+                    - link "Closed" [ref=e84] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&state=closed
+                      - generic:
+                        - img
+                      - generic "Closed" [ref=e88]
+                  - listitem [ref=e89]
+              - listitem [ref=e90]:
+                - heading "Advanced" [level=3] [ref=e92]
+                - list "Advanced" [ref=e93]:
+                  - listitem [ref=e94]:
+                    - button "Owner" [ref=e95] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Owner" [ref=e99]
+                  - listitem [ref=e100]:
+                    - button "State" [ref=e101] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "State" [ref=e105]
+                  - listitem [ref=e106]:
+                    - button "Close reason" [ref=e107] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Close reason" [ref=e111]
+                  - listitem [ref=e112]:
+                    - link "Has linked pull request" [ref=e113] [cursor=pointer]:
+                      - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython+linked%3Apr&type=issues&sort=updated
+                      - generic:
+                        - img
+                      - generic "Has linked pull request" [ref=e117]
+                  - listitem [ref=e118]:
+                    - button "Author" [ref=e119] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Author" [ref=e123]
+                  - listitem [ref=e124]:
+                    - button "Assignee" [ref=e125] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Assignee" [ref=e129]
+                  - listitem [ref=e130]:
+                    - button "Mentioned user" [ref=e131] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Mentioned user" [ref=e135]
+                  - listitem [ref=e136]:
+                    - button "Mentioned team" [ref=e137] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Mentioned team" [ref=e141]
+                  - listitem [ref=e142]:
+                    - button "Commenter" [ref=e143] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Commenter" [ref=e147]
+                  - listitem [ref=e148]:
+                    - button "Involved user" [ref=e149] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Involved user" [ref=e153]
+                  - listitem [ref=e154]:
+                    - button "Label" [ref=e155] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Label" [ref=e159]
+                  - listitem [ref=e160]:
+                    - button "Milestone" [ref=e161] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Milestone" [ref=e165]
+                  - listitem [ref=e166]:
+                    - button "Number of comments" [ref=e167] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of comments" [ref=e171]
+                  - listitem [ref=e172]:
+                    - button "Number of interactions" [ref=e173] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of interactions" [ref=e177]
+              - listitem [ref=e178]
+              - listitem [ref=e179]:
+                - link "Advanced search" [ref=e180] [cursor=pointer]:
+                  - /url: /search/advanced
+                  - generic:
+                    - img
+                  - generic [ref=e182]: Advanced search
+          - slider "Draggable pane splitter" [ref=e184]
+        - generic [ref=e188]:
+          - generic [ref=e190]:
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e193]: 1k results
+                - generic [ref=e194]: (75 ms)
+              - heading "1k results" [active] [level=2] [ref=e195]
+            - generic [ref=e196]:
+              - 'button "Sort by: Best match" [ref=e198] [cursor=pointer]':
+                - generic [ref=e200]: "Sort by: Best match"
+                - generic:
+                  - img
+              - button "Open column options" [ref=e202] [cursor=pointer]:
+                - img [ref=e203]
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - heading "VATSIM-UK/UK-Sector-File Edinburgh (EGPH) Runway headings updated" [level=3] [ref=e209]:
+                - link "VATSIM-UK/UK-Sector-File" [ref=e211] [cursor=pointer]:
+                  - /url: /VATSIM-UK/UK-Sector-File
+                - generic [ref=e212]:
+                  - img [ref=e214]
+                  - link "Edinburgh (EGPH) Runway headings updated" [ref=e217] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6098
+              - generic [ref=e218]: Changes 060 - 059 Link to AMDT (page number on PDF) Pg. 564 Files to be changed
+              - generic [ref=e219]:
+                - generic [ref=e222]: airac
+                - generic [ref=e225]: good-first-issue
+                - generic [ref=e228]: up-for-grabs
+              - list [ref=e229]:
+                - listitem [ref=e230]: BenWalker01
+                - generic [ref=e231]: ·
+                - listitem [ref=e232]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 6:25 PM UTC" [ref=e233]: 2 hours ago
+                - generic [ref=e234]: ·
+                - listitem [ref=e235]:
+                  - link "#6098" [ref=e236] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6098
+            - generic [ref=e237]:
+              - heading "VATSIM-UK/UK-Sector-File Bournemouth (EGHH) Runway headings changed" [level=3] [ref=e238]:
+                - link "VATSIM-UK/UK-Sector-File" [ref=e240] [cursor=pointer]:
+                  - /url: /VATSIM-UK/UK-Sector-File
+                - generic [ref=e241]:
+                  - img [ref=e243]
+                  - link "Bournemouth (EGHH) Runway headings changed" [ref=e246] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6097
+              - generic [ref=e247]: Changes 075 - 074 Link to AMDT (page number on PDF) Pg. 487 Files to be changed
+              - generic [ref=e248]:
+                - generic [ref=e251]: airac
+                - generic [ref=e254]: good-first-issue
+                - generic [ref=e257]: up-for-grabs
+              - list [ref=e258]:
+                - listitem [ref=e259]: BenWalker01
+                - generic [ref=e260]: ·
+                - listitem [ref=e261]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 6:24 PM UTC" [ref=e262]: 2 hours ago
+                - generic [ref=e263]: ·
+                - listitem [ref=e264]:
+                  - link "#6097" [ref=e265] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6097
+            - generic [ref=e266]:
+              - heading "VATSIM-UK/UK-Sector-File Birmingham (EGBB) Runway headings changed" [level=3] [ref=e267]:
+                - link "VATSIM-UK/UK-Sector-File" [ref=e269] [cursor=pointer]:
+                  - /url: /VATSIM-UK/UK-Sector-File
+                - generic [ref=e270]:
+                  - img [ref=e272]
+                  - link "Birmingham (EGBB) Runway headings changed" [ref=e275] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6096
+              - generic [ref=e276]: Changes 146 - 145 Link to AMDT (page number on PDF) Pg. 475 Files to be changed
+              - generic [ref=e277]:
+                - generic [ref=e280]: airac
+                - generic [ref=e283]: good-first-issue
+                - generic [ref=e286]: up-for-grabs
+              - list [ref=e287]:
+                - listitem [ref=e288]: BenWalker01
+                - generic [ref=e289]: ·
+                - listitem [ref=e290]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 6:23 PM UTC" [ref=e291]: 2 hours ago
+                - generic [ref=e292]: ·
+                - listitem [ref=e293]:
+                  - link "#6096" [ref=e294] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6096
+            - generic [ref=e295]:
+              - heading "VATSIM-UK/UK-Sector-File Belfast City (EGAC) Runway headings changed" [level=3] [ref=e296]:
+                - link "VATSIM-UK/UK-Sector-File" [ref=e298] [cursor=pointer]:
+                  - /url: /VATSIM-UK/UK-Sector-File
+                - generic [ref=e299]:
+                  - img [ref=e301]
+                  - link "Belfast City (EGAC) Runway headings changed" [ref=e304] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6095
+              - generic [ref=e305]: Changes 037 - 036 Link to AMDT (page number on PDF) Pg 465 Files to be changed
+              - generic [ref=e306]:
+                - generic [ref=e309]: airac
+                - generic [ref=e312]: good-first-issue
+                - generic [ref=e315]: up-for-grabs
+              - list [ref=e316]:
+                - listitem [ref=e317]: BenWalker01
+                - generic [ref=e318]: ·
+                - listitem [ref=e319]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 6:22 PM UTC" [ref=e320]: 2 hours ago
+                - generic [ref=e321]: ·
+                - listitem [ref=e322]:
+                  - link "#6095" [ref=e323] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6095
+            - generic [ref=e324]:
+              - heading "VATSIM-UK/UK-Sector-File Aldergrove (EGAA) runway headings changed" [level=3] [ref=e325]:
+                - link "VATSIM-UK/UK-Sector-File" [ref=e327] [cursor=pointer]:
+                  - /url: /VATSIM-UK/UK-Sector-File
+                - generic [ref=e328]:
+                  - img [ref=e330]
+                  - link "Aldergrove (EGAA) runway headings changed" [ref=e333] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6094
+              - generic [ref=e334]: Changes 067 - 066 164 - 163 Link to AMDT (page number on PDF) Pg. 457 Files to be changed
+              - generic [ref=e335]:
+                - generic [ref=e338]: airac
+                - generic [ref=e341]: good-first-issue
+                - generic [ref=e344]: up-for-grabs
+              - list [ref=e345]:
+                - listitem [ref=e346]: BenWalker01
+                - generic [ref=e347]: ·
+                - listitem [ref=e348]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 6:21 PM UTC" [ref=e349]: 2 hours ago
+                - generic [ref=e350]: ·
+                - listitem [ref=e351]:
+                  - link "#6094" [ref=e352] [cursor=pointer]:
+                    - /url: /VATSIM-UK/UK-Sector-File/issues/6094
+            - generic [ref=e353]:
+              - heading "kcolbchain/meridian Add real-time WebSocket price streaming" [level=3] [ref=e354]:
+                - link "kcolbchain/meridian" [ref=e356] [cursor=pointer]:
+                  - /url: /kcolbchain/meridian
+                - generic [ref=e357]:
+                  - img [ref=e359]
+                  - link "Add real-time WebSocket price streaming" [ref=e362] [cursor=pointer]:
+                    - /url: /kcolbchain/meridian/issues/4
+              - generic [ref=e363]: WebSocket feed for live price updates from DEXes. Support Uniswap V3 pool events, build into oracle module.
+              - generic [ref=e364]:
+                - generic [ref=e367]: good-first-issue
+                - generic [ref=e370]: help-wanted
+              - list [ref=e371]:
+                - listitem [ref=e372]: abhicris
+                - generic [ref=e373]: ·
+                - listitem [ref=e374]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 5:22 PM UTC" [ref=e375]: 3 hours ago
+                - generic [ref=e376]: ·
+                - listitem [ref=e377]:
+                  - link "#4" [ref=e378] [cursor=pointer]:
+                    - /url: /kcolbchain/meridian/issues/4
+            - generic [ref=e379]:
+              - heading "kcolbchain/meridian Add multi-chain deployment support (Arbitrum, Optimism, Base)" [level=3] [ref=e380]:
+                - link "kcolbchain/meridian" [ref=e382] [cursor=pointer]:
+                  - /url: /kcolbchain/meridian
+                - generic [ref=e383]:
+                  - img [ref=e385]
+                  - link "Add multi-chain deployment support (Arbitrum, Optimism, Base)" [ref=e388] [cursor=pointer]:
+                    - /url: /kcolbchain/meridian/issues/3
+              - generic [ref=e389]: Web3 connectors for Arb/OP/Base, Uniswap V3 router integration, gas estimation, simulation mode.
+              - generic [ref=e390]:
+                - generic [ref=e393]: good-first-issue
+                - generic [ref=e396]: help-wanted
+              - list [ref=e397]:
+                - listitem [ref=e398]: abhicris
+                - generic [ref=e399]: ·
+                - listitem [ref=e400]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 5:22 PM UTC" [ref=e401]: 3 hours ago
+                - generic [ref=e402]: ·
+                - listitem [ref=e403]:
+                  - link "#3" [ref=e404] [cursor=pointer]:
+                    - /url: /kcolbchain/meridian/issues/3
+            - generic [ref=e405]:
+              - heading "kcolbchain/meridian Add Chainlink oracle integration for real-world price feeds" [level=3] [ref=e406]:
+                - link "kcolbchain/meridian" [ref=e408] [cursor=pointer]:
+                  - /url: /kcolbchain/meridian
+                - generic [ref=e409]:
+                  - img [ref=e411]
+                  - link "Add Chainlink oracle integration for real-world price feeds" [ref=e414] [cursor=pointer]:
+                    - /url: /kcolbchain/meridian/issues/1
+              - generic [ref=e415]: Implement ChainlinkPriceFeed in src/oracle/price_feed.py. Connect to Chainlink contracts via web3, implement get_price() and get_historical(), add tests with mocked responses.
+              - generic [ref=e416]:
+                - generic [ref=e419]: good-first-issue
+                - generic [ref=e422]: help-wanted
+              - list [ref=e423]:
+                - listitem [ref=e424]: abhicris
+                - generic [ref=e425]: ·
+                - listitem [ref=e426]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 5:22 PM UTC" [ref=e427]: 3 hours ago
+                - generic [ref=e428]: ·
+                - listitem [ref=e429]:
+                  - link "#1" [ref=e430] [cursor=pointer]:
+                    - /url: /kcolbchain/meridian/issues/1
+            - generic [ref=e431]:
+              - heading "kcolbchain/monsoon Add lending protocol strategy (Aave, Compound)" [level=3] [ref=e432]:
+                - link "kcolbchain/monsoon" [ref=e434] [cursor=pointer]:
+                  - /url: /kcolbchain/monsoon
+                - generic [ref=e435]:
+                  - img [ref=e437]
+                  - link "Add lending protocol strategy (Aave, Compound)" [ref=e440] [cursor=pointer]:
+                    - /url: /kcolbchain/monsoon/issues/2
+              - generic [ref=e441]: "Add a lending strategy to src/strategies/. Lending protocol interactions (deposit, borrow, repay) are high-signal for airdrop eligibility. Requirements: - Extend BaseStrategy - Support Aave V3 and ..."
+              - generic [ref=e442]:
+                - generic [ref=e445]: good-first-issue
+                - generic [ref=e448]: help-wanted
+              - list [ref=e449]:
+                - listitem [ref=e450]: abhicris
+                - generic [ref=e451]: ·
+                - listitem [ref=e452]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 5:19 PM UTC" [ref=e453]: 3 hours ago
+                - generic [ref=e454]: ·
+                - listitem [ref=e455]:
+                  - link "#2" [ref=e456] [cursor=pointer]:
+                    - /url: /kcolbchain/monsoon/issues/2
+            - generic [ref=e457]:
+              - heading "kcolbchain/monsoon Add wallet analytics and eligibility dashboard" [level=3] [ref=e458]:
+                - link "kcolbchain/monsoon" [ref=e460] [cursor=pointer]:
+                  - /url: /kcolbchain/monsoon
+                - generic [ref=e461]:
+                  - img [ref=e463]
+                  - link "Add wallet analytics and eligibility dashboard" [ref=e466] [cursor=pointer]:
+                    - /url: /kcolbchain/monsoon/issues/1
+              - generic [ref=e467]: "Enhance the CLI dashboard in src/monitor/dashboard.py with per-wallet analytics. Requirements: - Per-wallet eligibility score across all strategies - Action heatmap (which days, which chains) - ..."
+              - generic [ref=e468]:
+                - generic [ref=e471]: good-first-issue
+                - generic [ref=e474]: help-wanted
+              - list [ref=e475]:
+                - listitem [ref=e476]: abhicris
+                - generic [ref=e477]: ·
+                - listitem [ref=e478]:
+                  - text: Opened
+                  - generic "Apr 3, 2026, 5:19 PM UTC" [ref=e479]: 3 hours ago
+                - generic [ref=e480]: ·
+                - listitem [ref=e481]:
+                  - link "#1" [ref=e482] [cursor=pointer]:
+                    - /url: /kcolbchain/monsoon/issues/1
+          - navigation "Pagination" [ref=e485]:
+            - generic [ref=e486]:
+              - generic [ref=e487]:
+                - img [ref=e488]
+                - text: Previous
+              - link "Page 1" [ref=e490] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=1
+                - text: "1"
+              - link "Page 2" [ref=e491] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=2
+                - text: "2"
+              - link "Page 3" [ref=e492] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=3
+                - text: "3"
+              - link "Page 4" [ref=e493] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=4
+                - text: "4"
+              - link "Page 5" [ref=e494] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=5
+                - text: "5"
+              - link "Page 6" [ref=e495] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=6
+                - text: "6"
+              - link "Page 7..." [ref=e496] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=7
+                - text: "7"
+              - text: …
+              - link "Page 100" [ref=e497] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=100
+                - text: "100"
+              - link "Next Page" [ref=e498] [cursor=pointer]:
+                - /url: https://github.com/search?q=label%3Agood-first-issue+state%3Aopen+language%3Apython&type=issues&sort=updated&p=2
+                - text: Next
+                - img [ref=e499]
+          - generic [ref=e502]:
+            - generic [ref=e503]:
+              - img "Issue origami icon" [ref=e505]
+              - heading "Learn how you can use GitHub Issues to plan and track your work." [level=2] [ref=e506]
+              - generic [ref=e507]: Save views for sprints, backlogs, teams, or releases. Rank, sort, and filter issues to suit the occasion. The possibilities are endless.
+              - link "Learn more about GitHub Issues" [ref=e508] [cursor=pointer]:
+                - /url: https://docs.github.com/issues
+                - text: Learn more about GitHub Issues
+                - img [ref=e509]
+            - generic [ref=e511]:
+              - generic [ref=e512]:
+                - img [ref=e513]
+                - text: ProTip!
+              - text: Restrict your search to the title by using the in:title qualifier.

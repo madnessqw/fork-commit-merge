@@ -1,0 +1,11 @@
+{
+  "name": "mockforge",
+  "version": "1.0.0",
+  "description": "Serverless API Mock Generator",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "docker-compose-builder",
+  "version": "1.0.0",
+  "description": "Visual Docker Compose file generator with service templates and validation",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

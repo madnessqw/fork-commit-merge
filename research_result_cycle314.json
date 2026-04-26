@@ -1,0 +1,315 @@
+{
+  "type": "research_result",
+  "cycle": 314,
+  "date": "2026-04-04",
+  "research_summary": "GitHub trending repos, API tools, and form builders analyzed",
+  "products": [
+    {
+      "name": "PDFGen",
+      "tagline": "HTML to PDF Generation API",
+      "problem": "Geliştiriciler HTML/CSS ile tasarladıkları invoice, report, ticket gibi dokümanları PDF'e çevirmek için Puppeteer/Playwright kurmak zorunda. Mevcut API'ler (DocRaptor $15/ay, HTML2PDF $19/ay) pahalı",
+      "solution": "Vercel Edge + Playwright ile HTML → PDF dönüşüm API'si. URL veya HTML body ile çalışır. Custom CSS, header/footer, page numbers desteği",
+      "price": "$29 one-time",
+      "mvp_complexity": "2 cycles",
+      "market_potential": "High",
+      "evidence": {
+        "github_trend": "pdfme/pdfme (PDF generation library) trending",
+        "html_to_pdf_repos": "wkhtmltopdf/wkhtmltopdf 12k+ stars, html2pdf.js popular",
+        "competitor_demand": "Many developers looking for simple PDF API"
+      },
+      "competitors": [
+        {"name": "DocRaptor", "price": "$15/month", "url": "https://docraptor.com"},
+        {"name": "HTML2PDF Rocket", "price": "$19/month", "url": "https://www.html2pdfrocket.com"},
+        {"name": "PDFShift", "price": "$9/month", "url": "https://pdfshift.io"}
+      ],
+      "tech_stack": {
+        "runtime": "Vercel Edge Functions (with Node.js runtime for Playwright)",
+        "browser": "Playwright Chromium",
+        "storage": "Vercel Blob (temporary PDF storage)",
+        "cache": "Vercel Edge Cache"
+      },
+      "api_spec": {
+        "endpoint": "/api/pdf/generate",
+        "method": "POST",
+        "input": {
+          "source": "URL or HTML string (required)",
+          "format": "A4, Letter, Legal (default: A4)",
+          "orientation": "portrait | landscape (default: portrait)",
+          "margins": {"top": "1cm", "bottom": "1cm", "left": "1cm", "right": "1cm"},
+          "header": "HTML string for header",
+          "footer": "HTML string for footer (supports {{pageNumber}}, {{totalPages}})",
+          "delay": "Wait time after load in ms (default: 0)",
+          "filename": "Output filename (default: document.pdf)"
+        },
+        "output": {
+          "url": "Temporary download URL",
+          "expires_at": "ISO8601 timestamp",
+          "pages": "Number of pages",
+          "size_bytes": "File size"
+        }
+      },
+      "features": [
+        "URL to PDF conversion",
+        "HTML string to PDF",
+        "Custom page sizes",
+        "Header/footer with page numbers",
+        "Custom CSS support",
+        "Wait for JS rendering",
+        "Batch conversion"
+      ],
+      "use_cases": [
+        "Invoice generation",
+        "Report exports",
+        "Ticket/Receipt PDFs",
+        "Resume builders",
+        "Certificate generators"
+      ]
+    },
+    {
+      "name": "MockData",
+      "tagline": "Fake Data Generation API",
+      "problem": "Geliştiriciler test için mock data üretmek için faker.js kütüphanesini manuel entegre ediyor. API testing, demo verileri için hazır mock data API'si eksik",
+      "solution": "JSON schema veya type tanımına göre fake data üreten API. Users, products, orders gibi yaygın entity'ler için hazır şablonlar",
+      "price": "$19 one-time",
+      "mvp_complexity": "1-2 cycles",
+      "market_potential": "High",
+      "evidence": {
+        "github_trend": "faker-js/faker 10k+ stars, json-schema-faker popular",
+        "related_repos": "Bogus (C#), gofakeit (Go) - many ports exist",
+        "use_case": "Every developer needs test data"
+      },
+      "competitors": [
+        {"name": "Mockaroo", "price": "$50/month", "url": "https://mockaroo.com"},
+        {"name": "Faker Cloud", "price": "$9/month", "url": "https://fakercloud.com"}
+      ],
+      "tech_stack": {
+        "runtime": "Vercel Edge Functions",
+        "library": "@faker-js/faker",
+        "cache": "Vercel KV (schema caching)"
+      },
+      "api_spec": {
+        "endpoint": "/api/mock/generate",
+        "method": "POST",
+        "input": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": "faker.person.fullName",
+              "email": "faker.internet.email",
+              "avatar": "faker.image.avatar",
+              "createdAt": "faker.date.past"
+            }
+          },
+          "count": "Number of records (max: 1000, default: 10)",
+          "locale": "en, tr, de, fr (default: en)"
+        },
+        "output": {
+          "data": "Array of generated objects",
+          "meta": {
+            "count": "number",
+            "generated_at": "ISO8601"
+          }
+        }
+      },
+      "features": [
+        "20+ built-in templates (users, products, orders, posts)",
+        "JSON Schema support",
+        "Custom field types",
+        "Localization (10+ languages)",
+        "Batch generation (up to 1000)",
+        "CSV/JSON/XML output"
+      ],
+      "use_cases": [
+        "API testing data",
+        "Demo application data",
+        "Load testing",
+        "UI/UX prototyping",
+        "Database seeding"
+      ]
+    },
+    {
+      "name": "JSONDiff",
+      "tagline": "JSON Comparison & Diff API",
+      "problem": "API testing ve data migration sırasında JSON response'ları karşılaştırmak gerekiyor. Mevcut araçlar çoğunlukla client-side veya CLI based",
+      "solution": "JSON diff API. İki JSON arasındaki farkları structed olarak döner. Deep diff, array comparison, patch generation desteği",
+      "price": "$15 one-time",
+      "mvp_complexity": "1 cycle",
+      "market_potential": "Medium",
+      "evidence": {
+        "github_trend": "josephburnett/jd, andreyvit/json-diff popular",
+        "related_repos": "json-diff-ts, json-diff-kit actively maintained",
+        "use_case": "Testing APIs, comparing configs, migration validation"
+      },
+      "competitors": [
+        {"name": "JSON Diff", "price": "Free (web only)", "url": "https://www.jsondiff.com"},
+        {"name": "DeepDiff (Python)", "price": "Open source", "url": "https://github.com/seperman/deepdiff"}
+      ],
+      "tech_stack": {
+        "runtime": "Vercel Edge Functions",
+        "algorithm": "Deep object diff with LCS for arrays"
+      },
+      "api_spec": {
+        "endpoint": "/api/diff",
+        "method": "POST",
+        "input": {
+          "left": "First JSON object",
+          "right": "Second JSON object",
+          "options": {
+            "ignoreKeys": ["createdAt", "id"],
+            "arrayOrderMatters": true,
+            "strictTypes": false
+          }
+        },
+        "output": {
+          "equal": "boolean",
+          "diffs": [
+            {
+              "path": "users[0].name",
+              "type": "changed | added | removed",
+              "oldValue": "John",
+              "newValue": "Jane"
+            }
+          ],
+          "summary": {
+            "added": 2,
+            "removed": 1,
+            "changed": 5
+          },
+          "patch": "RFC 6902 JSON Patch format"
+        }
+      },
+      "features": [
+        "Deep object comparison",
+        "Array diff with LCS",
+        "Ignore specific keys",
+        "JSON Patch generation",
+        "Visual diff format",
+        "Batch comparison"
+      ],
+      "use_cases": [
+        "API response testing",
+        "Configuration drift detection",
+        "Database migration validation",
+        "Snapshot testing"
+      ]
+    },
+    {
+      "name": "FormBackend",
+      "tagline": "Form Submission Backend API",
+      "problem": "Statik sitelere form eklemek için backend kurmak gerekiyor. Formspree ücretli, Netlify Forms limitli. Basit form submission handler eksik",
+      "solution": "Form verilerini kabul eden, doğrulayan, email/webhook gönderen backend API. Her forma unique endpoint",
+      "price": "$25 one-time",
+      "mvp_complexity": "1-2 cycles",
+      "market_potential": "High",
+      "evidence": {
+        "github_trend": "heyform/heyform, OpnForm/OpnForm trending",
+        "market": "Formspree, Basin.io, Getform.io all charge monthly",
+        "use_case": "Static sites (Jekyll, Hugo, Next.js) need form backends"
+      },
+      "competitors": [
+        {"name": "Formspree", "price": "$8/month", "url": "https://formspree.io"},
+        {"name": "Basin", "price": "$9/month", "url": "https://usebasin.com"},
+        {"name": "Getform", "price": "$7/month", "url": "https://getform.io"}
+      ],
+      "tech_stack": {
+        "runtime": "Vercel Edge Functions",
+        "storage": "Vercel KV (form submissions)",
+        "email": "Resend API",
+        "validation": "Zod schema"
+      },
+      "api_spec": {
+        "endpoint": "/api/f/{formId}",
+        "method": "POST",
+        "input": {
+          "formId": "Unique form identifier in URL",
+          "body": "Form data (any fields)"
+        },
+        "output": {
+          "success": true,
+          "message": "Form submitted successfully",
+          "submissionId": "sub_abc123"
+        }
+      },
+      "features": [
+        "Unique endpoint per form",
+        "Spam filtering (honeypot, akismet)",
+        "Email notifications",
+        "Webhook forwarding",
+        "File uploads (with limits)",
+        "Submission dashboard",
+        "CSV export",
+        "Custom thank you page redirect",
+        "Zapier/Make integration"
+      ],
+      "use_cases": [
+        "Contact forms",
+        "Newsletter signups",
+        "Job applications",
+        "Event registrations",
+        "Feedback forms"
+      ]
+    },
+    {
+      "name": "CodeSnap",
+      "tagline": "Code to Image Generator API",
+      "problem": "Kod snippet'lerini sosyal medyada paylaşmak için Carbon, Ray.so gibi araçlar kullanılıyor ama bunlar manuel. Otomatik code image generation API eksik",
+      "solution": "Koddan güzel görsel üreten API. Carbon.sh benzeri temalar, syntax highlighting, custom fontlar",
+      "price": "$19 one-time",
+      "mvp_complexity": "1-2 cycles",
+      "market_potential": "Medium",
+      "evidence": {
+        "github_trend": "carbon-app/carbon 35k+ stars",
+        "use_case": "Dev content creators, documentation, social media",
+        "related": "Many developers sharing code on Twitter/X"
+      },
+      "competitors": [
+        {"name": "Carbon", "price": "Free (manual)", "url": "https://carbon.now.sh"},
+        {"name": "Ray.so", "price": "Free (manual)", "url": "https://ray.so"}
+      ],
+      "tech_stack": {
+        "runtime": "Vercel Edge Functions",
+        "renderer": "Satori + shiki (syntax highlighting)",
+        "storage": "Vercel Blob"
+      },
+      "api_spec": {
+        "endpoint": "/api/snap",
+        "method": "POST",
+        "input": {
+          "code": "Source code string",
+          "language": "javascript, python, etc.",
+          "theme": "dracula, nord, github-dark, etc.",
+          "background": "gradient | solid | transparent",
+          "windowControls": true,
+          "padding": 16
+        },
+        "output": {
+          "url": "Image URL",
+          "format": "png | svg",
+          "dimensions": {"width": 1200, "height": 800}
+        }
+      },
+      "features": [
+        "30+ themes",
+        "50+ languages",
+        "Custom fonts (Fira Code, JetBrains Mono)",
+        "Window controls toggle",
+        "Gradient backgrounds",
+        "Auto line numbers"
+      ],
+      "use_cases": [
+        "Social media code sharing",
+        "Documentation screenshots",
+        "Blog post images",
+        "Presentation slides"
+      ]
+    }
+  ],
+  "priority_recommendation": [
+    "FormBackend ($25) - Highest demand, simple tech",
+    "PDFGen ($29) - High value, clear use cases",
+    "MockData ($19) - Easy to build, broad appeal",
+    "CodeSnap ($19) - Social media trend",
+    "JSONDiff ($15) - Developer tool, simple"
+  ],
+  "total_portfolio_value": "$107 (if all built)"
+}

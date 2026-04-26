@@ -1,0 +1,8 @@
+{
+  "cycle": 926,
+  "task": "landing_quality_audit",
+  "products": 26,
+  "timestamp": "2026-04-13T14:05:00Z",
+  "focus_products": ["carbonlite", "mockforge", "rateguard", "ai-cost-dashboard", "secretguard"],
+  "instructions": "Landing page kalite kontrolü yap: 1) Dark tema kullanımı, 2) Gradient text, 3) Glassmorphism kartlar, 4) Demo bölümü, 5) Mobile responsive. Eksikleri listele."
+}

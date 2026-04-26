@@ -1,0 +1,138 @@
+{
+  "name": "InboxGuard",
+  "tagline": "Email Inbox Analyzer & Cleanup API",
+  "slug": "inboxguard",
+  "version": "1.0.0",
+  "price": "$24 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["productivity_ninja", "developer", "gmail_user", "entrepreneur"],
+  "problem": "Gmail inbox dolu, hangi mailler önemli belli değil. Unroll.me $5/ay. Mailstrom $49/yıl. Inbox analytics için basit araç yok. Email zero inbox yapmak zor",
+  "solution": "Vercel Edge + Gmail API ile inbox analyzer. Email categorization, sender analytics, unsubscribe suggestions, storage cleanup recommendations",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "email_api": "Gmail API",
+    "analytics": "Edge computed",
+    "storage": "Vercel KV (cache)",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://inboxguard.io/",
+    "endpoints": [
+      {
+        "path": "/api/analyze",
+        "method": "POST",
+        "description": "Analyze inbox and get report",
+        "body": {
+          "accessToken": "string (Gmail OAuth)",
+          "days": "number (default: 30)"
+        },
+        "response": {
+          "totalEmails": 15234,
+          "categories": {
+            "social": 2341,
+            "promotions": 4521,
+            "updates": 1234,
+            "forums": 567,
+            "personal": 6571
+          },
+          "topSenders": [
+            {"email": "newsletter@example.com", "count": 234, "category": "promotions"}
+          ],
+          "storageUsed": "2.4GB",
+          "unreadCount": 452,
+          "oldEmails": 12034
+        }
+      },
+      {
+        "path": "/api/cleanup-suggestions",
+        "method": "POST",
+        "description": "Get cleanup recommendations",
+        "response": {
+          "suggestions": [
+            {
+              "type": "unsubscribe",
+              "sender": "newsletter@spam.com",
+              "emailCount": 156,
+              "impact": "high"
+            },
+            {
+              "type": "delete_old",
+              "olderThan": "2 years",
+              "emailCount": 5234,
+              "storageSaved": "1.2GB"
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/unsubscribe",
+        "method": "POST",
+        "description": "Get unsubscribe links for sender",
+        "body": {
+          "sender": "string (email address)"
+        }
+      },
+      {
+        "path": "/api/stats",
+        "method": "GET",
+        "description": "Get inbox statistics over time",
+        "parameters": {
+          "period": "7d | 30d | 90d | 1y"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Unroll.me",
+      "price": "$5/month",
+      "pros": ["Simple", "Popular"],
+      "cons": ["Monthly cost", "Privacy concerns", "Limited analytics"]
+    },
+    {
+      "name": "Mailstrom",
+      "price": "$49/year",
+      "pros": ["Powerful"],
+      "cons": ["Yearly cost", "Complex UI"]
+    },
+    {
+      "name": "Clean Email",
+      "price": "$29/year",
+      "pros": ["Good features"],
+      "cons": ["Yearly cost", "Subscription model"]
+    }
+  ],
+  "advantage": "One-time $24 vs yearly. Privacy focused. Analytics + cleanup. Edge speed.",
+  "features": [
+    "Inbox categorization",
+    "Sender analytics",
+    "Storage analysis",
+    "Unsubscribe suggestions",
+    "Old email detection",
+    "Duplicate finder",
+    "Email volume trends",
+    "Cleanup scheduling",
+    "Privacy first (no email storage)",
+    "Gmail native integration"
+  ],
+  "use_cases": [
+    "Inbox zero",
+    "Email cleanup",
+    "Storage management",
+    "Unsubscribe batch",
+    "Productivity analysis",
+    "Newsletter management"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $1,200",
+    "moderate": "100 sales/month = $2,400",
+    "optimistic": "200 sales/month = $4,800"
+  },
+  "why_best": [
+    "Mailstrom $49/yıl vs $24 one-time",
+    "Herkesin Gmail'i var",
+    "Privacy odaklı trend",
+    "Edge compatible (API calls)",
+    "Productivity market"
+  ]
+}

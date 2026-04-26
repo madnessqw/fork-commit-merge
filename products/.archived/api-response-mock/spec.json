@@ -1,0 +1,22 @@
+{
+  "slug": "api-response-mock",
+  "name": "API Response Mock",
+  "tagline": "Generate realistic mock API responses for testing",
+  "description": "Create realistic mock API responses with proper data types, relationships, and schemas. Supports JSON, XML, and custom formats. Perfect for frontend development and API prototyping.",
+  "price": "$19",
+  "category": "developer-tools",
+  "tech_stack": ["faker.js", "json-schema-faker"],
+  "features": [
+    "Generate realistic mock data",
+    "JSON Schema validation",
+    "Custom field types and formats",
+    "Array and nested object support",
+    "RESTful response patterns",
+    "Error response simulation",
+    "Pagination mock data",
+    "Copy to clipboard with one click"
+  ],
+  "target_audience": ["frontend developers", "api developers", "qa engineers"],
+  "keywords": ["mock", "api", "json", "testing", "data"],
+  "status": "spec_ready"
+}

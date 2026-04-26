@@ -1,0 +1,31 @@
+{
+  "name": "AI Red Team Simulator",
+  "slug": "ai-red-team-sim",
+  "tagline": "Simulate AI-powered security testing scenarios",
+  "description": "Educational security testing platform that simulates AI red team scenarios. Learn about penetration testing, vulnerability assessment, and defensive security through interactive simulations. For educational and defensive purposes only.",
+  "price": "$29",
+  "features": [
+    "Interactive vulnerability scanning simulations",
+    "Network reconnaissance scenarios",
+    "Social engineering awareness training",
+    "Defensive countermeasure tutorials",
+    "Security report generator",
+    "CVSS score calculator",
+    "MITRE ATT&CK framework mapping",
+    "CTF-style challenges"
+  ],
+  "tech_stack": ["HTML", "Tailwind CSS", "Vanilla JS", "Chart.js"],
+  "target_audience": "Security professionals, penetration testers, security students, CISOs",
+  "use_cases": [
+    "Security awareness training",
+    "Penetration testing methodology learning",
+    "Vulnerability assessment practice",
+    "Defensive security simulation"
+  ],
+  "category": "security_tools",
+  "batch": 16,
+  "cycle": 1051,
+  "status": "spec_ready",
+  "estimated_build_time": "60 min",
+  "seo_keywords": ["red team", "penetration testing", "security training", "vulnerability scanner", "CTF"]
+}

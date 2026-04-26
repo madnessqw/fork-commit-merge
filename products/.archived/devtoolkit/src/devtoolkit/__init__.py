@@ -1,0 +1,4 @@
+"""Python DevToolkit - Practical automation scripts for developers."""
+
+__version__ = "1.0.0"
+__author__ = "UniverseCreator"

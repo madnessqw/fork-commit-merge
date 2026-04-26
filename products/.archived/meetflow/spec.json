@@ -1,0 +1,128 @@
+{
+  "name": "MeetFlow",
+  "tagline": "Meeting Transcription & AI Summary API",
+  "slug": "meetflow",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["remote_worker", "product_manager", "developer", "team_lead"],
+  "problem": "Meeting not almak zor. Otter.ai $10/ay. Zoom transcription sınırlı. Meeting summary için AI tool'ları pahalı. Action items extract etmek manual",
+  "solution": "Vercel Edge + Gemini API ile meeting transcription. Audio-to-text, AI summary, action items, key decisions, searchable archive",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "transcription": "Gemini 2.0 Flash (audio)",
+    "summarization": "Gemini API",
+    "storage": "Vercel KV + Blob",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://meetflow.io/",
+    "endpoints": [
+      {
+        "path": "/api/transcribe",
+        "method": "POST",
+        "description": "Transcribe audio file",
+        "body": {
+          "audio": "base64 or URL",
+          "language": "en | tr | de | es",
+          "speakers": 2
+        },
+        "response": {
+          "transcriptId": "tr_abc123",
+          "transcript": [
+            {"speaker": "Speaker 1", "text": "Hello everyone", "timestamp": "00:00:05"}
+          ],
+          "duration": 1800
+        }
+      },
+      {
+        "path": "/api/summarize",
+        "method": "POST",
+        "description": "Generate AI summary",
+        "body": {
+          "transcriptId": "string",
+          "style": "brief | detailed | bullet-points"
+        },
+        "response": {
+          "summary": "Meeting summary...",
+          "keyPoints": ["Point 1", "Point 2"],
+          "actionItems": [
+            {"task": "Review PR", "assignee": "John", "due": "2026-04-10"}
+          ],
+          "decisions": ["Decision 1"]
+        }
+      },
+      {
+        "path": "/api/meetings",
+        "method": "GET",
+        "description": "List all meetings",
+        "parameters": {
+          "search": "string",
+          "dateFrom": "date",
+          "dateTo": "date"
+        }
+      },
+      {
+        "path": "/api/search",
+        "method": "GET",
+        "description": "Search across all transcripts",
+        "parameters": {
+          "q": "string (search query)"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Otter.ai",
+      "price": "$10/month",
+      "pros": ["Popular", "Good accuracy"],
+      "cons": ["Monthly cost", "Limited free tier"]
+    },
+    {
+      "name": "Fireflies.ai",
+      "price": "$10/month",
+      "pros": ["Integration heavy"],
+      "cons": ["Monthly cost", "Complex pricing"]
+    },
+    {
+      "name": "Zoom Native",
+      "price": "$0-20/month",
+      "pros": ["Integrated"],
+      "cons": ["Zoom only", "Limited features"]
+    }
+  ],
+  "advantage": "One-time $29 vs monthly. AI-powered summaries. Searchable archive. No vendor lock-in.",
+  "features": [
+    "Audio transcription",
+    "AI meeting summary",
+    "Action item extraction",
+    "Key decision tracking",
+    "Multi-language support",
+    "Speaker diarization",
+    "Searchable transcripts",
+    "Export (PDF, TXT, JSON)",
+    "Meeting analytics",
+    "Integration API"
+  ],
+  "use_cases": [
+    "Remote team meetings",
+    "Interview transcription",
+    "User research sessions",
+    "Sales calls",
+    "Training sessions",
+    "Conference talks"
+  ],
+  "estimated_revenue": {
+    "conservative": "45 sales/month = $1,305",
+    "moderate": "90 sales/month = $2,610",
+    "optimistic": "180 sales/month = $5,220"
+  },
+  "why_best": [
+    "Remote work trend devam ediyor",
+    "Otter.ai $10/mo vs $29 one-time",
+    "Gemini audio API güçlü",
+    "Edge compatible",
+    "Yüksek değer"
+  ]
+}

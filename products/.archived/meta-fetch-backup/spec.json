@@ -1,0 +1,111 @@
+{
+  "name": "MetaFetch",
+  "tagline": "URL Metadata Extraction API",
+  "version": "1.0.0",
+  "price": "$15 one-time",
+  "mvp_complexity": "1 cycle",
+  "target_audience": ["developer", "content_creator", "marketer"],
+  "problem": "Web sayfalarından metadata çekmek için cheerio/jsdom kurmak gerekiyor. Basit bir API ile title, description, favicon, OG tags, images çekme ihtiyacı var",
+  "solution": "Vercel Edge Function ile URL'den metadata çekme API'si. HTML parsing, Open Graph, Twitter Cards, favicon discovery",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "parser": "native DOM (via html-to-text or regex)",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://metafetch.api/",
+    "endpoints": [
+      {
+        "path": "/api/extract",
+        "method": "GET",
+        "description": "Extract metadata from URL",
+        "parameters": {
+          "url": {
+            "type": "string",
+            "required": true,
+            "description": "URL to extract metadata from"
+          },
+          "fields": {
+            "type": "array",
+            "optional": true,
+            "items": ["title", "description", "favicon", "ogImage", "author", "published"]
+          }
+        },
+        "response": {
+          "url": "string",
+          "title": "string",
+          "description": "string",
+          "favicon": "string",
+          "ogImage": "string",
+          "ogTitle": "string",
+          "ogDescription": "string",
+          "twitterCard": "string",
+          "twitterImage": "string",
+          "author": "string",
+          "published": "string",
+          "siteName": "string",
+          "images": ["string"],
+          "cached": "boolean"
+        }
+      },
+      {
+        "path": "/api/batch",
+        "method": "POST",
+        "description": "Extract metadata from multiple URLs",
+        "body": {
+          "urls": {
+            "type": "array",
+            "maxItems": 50,
+            "items": "string"
+          }
+        }
+      }
+    ]
+  },
+  "features": [
+    "Title & description extraction",
+    "Open Graph tags",
+    "Twitter Card support",
+    "Favicon discovery",
+    "Image list extraction",
+    "Article metadata (author, date)",
+    "Batch processing",
+    "Caching (24h)",
+    "JSON response"
+  ],
+  "implementation": {
+    "phase_1": {
+      "name": "Core Extractor",
+      "tasks": [
+        "Setup Vercel Edge Function",
+        "Implement fetch + regex parsing",
+        "Extract title, description, OG tags",
+        "Add favicon discovery",
+        "Setup KV cache",
+        "Create JSON response"
+      ],
+      "duration": "1 cycle"
+    }
+  },
+  "market_analysis": {
+    "competitors": [
+      {"name": "LinkPreview", "price": "$9/month", "url": "https://linkpreview.net"},
+      {"name": "Microlink", "price": "$11/month", "url": "https://microlink.io"},
+      {"name": "Embed.ly", "price": "$19/month", "url": "https://embed.ly"}
+    ],
+    "advantage": "One-time $15 vs monthly subscriptions"
+  },
+  "use_cases": [
+    "Link previews in apps",
+    "Social media sharing",
+    "Content curation tools",
+    "Bookmark managers",
+    "RSS readers"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $600",
+    "moderate": "80 sales/month = $1,200",
+    "optimistic": "150 sales/month = $2,250"
+  }
+}

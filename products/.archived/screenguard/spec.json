@@ -1,0 +1,134 @@
+{
+  "name": "ScreenGuard",
+  "tagline": "Website Screenshot & Visual Testing API",
+  "slug": "screenguard",
+  "version": "1.0.0",
+  "price": "$24 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "qa_engineer", "designer", "product_manager"],
+  "problem": "Screenshot almak için Puppeteer kurulumu zor. Browserless $40/ay. URL2PNG pahalı. Visual regression testing için araç yok. Responsive testing zaman alıcı",
+  "solution": "Vercel Edge + Playwright ile screenshot API. Full page, element, responsive, PDF, visual diff comparison",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "browser": "Playwright (serverless)",
+    "storage": "Vercel Blob",
+    "cache": "Edge Cache",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://screenguard.io/",
+    "endpoints": [
+      {
+        "path": "/api/screenshot",
+        "method": "GET",
+        "description": "Take screenshot",
+        "parameters": {
+          "url": "string (required)",
+          "width": 1920,
+          "height": 1080,
+          "fullPage": false,
+          "format": "png | jpeg | webp",
+          "delay": 0,
+          "selector": "string (optional element)"
+        },
+        "response": {
+          "imageUrl": "https://blob.vercel-storage.com/abc123.png",
+          "size": 245000,
+          "dimensions": {"width": 1920, "height": 1080}
+        }
+      },
+      {
+        "path": "/api/responsive",
+        "method": "GET",
+        "description": "Screenshot multiple viewports",
+        "parameters": {
+          "url": "string",
+          "devices": ["mobile", "tablet", "desktop"]
+        },
+        "response": {
+          "screenshots": [
+            {"device": "mobile", "url": "...", "width": 375},
+            {"device": "desktop", "url": "...", "width": 1920}
+          ]
+        }
+      },
+      {
+        "path": "/api/pdf",
+        "method": "GET",
+        "description": "Generate PDF",
+        "parameters": {
+          "url": "string",
+          "format": "A4 | Letter",
+          "margin": "1cm"
+        }
+      },
+      {
+        "path": "/api/diff",
+        "method": "POST",
+        "description": "Compare two screenshots",
+        "body": {
+          "before": "imageUrl1",
+          "after": "imageUrl2"
+        },
+        "response": {
+          "diffUrl": "...",
+          "difference": 2.5,
+          "pixelsChanged": 1234
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Browserless",
+      "price": "$40/month",
+      "pros": ["Full featured"],
+      "cons": ["Expensive", "Monthly", "Complex"]
+    },
+    {
+      "name": "URL2PNG",
+      "price": "$0.01 per screenshot",
+      "pros": ["Pay per use"],
+      "cons": ["Expensive at scale", "Limited features"]
+    },
+    {
+      "name": "Puppeteer (self-hosted)",
+      "price": "Free",
+      "pros": ["Free", "Flexible"],
+      "cons": ["Setup required", "Maintenance", "No API"]
+    }
+  ],
+  "advantage": "One-time $24 vs monthly. Edge speed. Visual testing included. Simple API.",
+  "features": [
+    "Full page screenshots",
+    "Element screenshots",
+    "Responsive testing",
+    "PDF generation",
+    "Visual diff comparison",
+    "Multiple formats",
+    "Custom viewport",
+    "Delayed capture",
+    "Screenshot history",
+    "Batch processing"
+  ],
+  "use_cases": [
+    "Website previews",
+    "Visual regression testing",
+    "Responsive design testing",
+    "Screenshot automation",
+    "Design reviews",
+    "Documentation"
+  ],
+  "estimated_revenue": {
+    "conservative": "50 sales/month = $1,200",
+    "moderate": "100 sales/month = $2,400",
+    "optimistic": "200 sales/month = $4,800"
+  },
+  "why_best": [
+    "Browserless $40/mo vs $24 one-time",
+    "Her developer screenshot ihtiyacı",
+    "Visual testing ek değer",
+    "Edge compatible",
+    "2 cycle MVP"
+  ]
+}

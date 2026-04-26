@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RustChain Mining Simulator | Try Before You Mine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid rgba(0,212,255,0.2);
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            animation: gradient 5s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .simulator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .simulator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .panel {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .panel-title {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hardware-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .hardware-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .hardware-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+        
+        .hardware-card.selected {
+            border-color: #00d4ff;
+            background: rgba(0,212,255,0.1);
+        }
+        
+        .hardware-card.vm {
+            opacity: 0.6;
+        }
+        
+        .hardware-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .hardware-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .hardware-year {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .multiplier {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .multiplier.high {
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+        }
+        
+        .multiplier.medium {
+            background: rgba(255,193,7,0.2);
+            color: #ffc107;
+        }
+        
+        .multiplier.low {
+            background: rgba(255,107,107,0.2);
+            color: #ff6b6b;
+        }
+        
+        .multiplier.vm {
+            background: rgba(108,117,125,0.2);
+            color: #6c757d;
+        }
+        
+        .simulation-stage {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+        
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stage-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0,212,255,0.2);
+            color: #00d4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .stage-title {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        
+        .stage-status {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .stage-status.complete {
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+        }
+        
+        .stage-content {
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        .fingerprint-visual {
+            background: linear-gradient(90deg, #1a1a2e, #0f0f23);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'SF Mono', monospace;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .fingerprint-line {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 3px;
+        }
+        
+        .fingerprint-bit {
+            width: 8px;
+            height: 8px;
+            border-radius: 1px;
+            background: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+        
+        .fingerprint-bit.delayed {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .rewards-panel {
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,44,191,0.1));
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .rewards-title {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        
+        .reward-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+        
+        .reward-period {
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        

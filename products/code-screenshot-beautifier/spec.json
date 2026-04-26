@@ -1,0 +1,19 @@
+{
+  "slug": "code-screenshot-beautifier",
+  "name": "Code Screenshot Beautifier",
+  "description": "Turn code snippets into beautiful, shareable screenshots with custom themes and backgrounds",
+  "price": "$19",
+  "category": "developer-tools",
+  "features": [
+    "50+ beautiful themes",
+    "Custom backgrounds and gradients",
+    "Syntax highlighting",
+    "Window controls and macOS/Linux styles",
+    "Export as PNG/SVG",
+    "Twitter/social media optimized sizes"
+  ],
+  "tech_stack": ["HTML5", "TailwindCSS", "JavaScript", "Canvas API"],
+  "status": "spec_ready",
+  "created_cycle": 1064,
+  "priority": "high"
+}

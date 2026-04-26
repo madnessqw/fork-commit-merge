@@ -1,0 +1,208 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fevershopcommerce%2Fevershop%2Fpulls%3Fq%3Dis%253Apr%2Bauthor%253Auniverse7creator
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - link "evershopcommerce" [ref=e36] [cursor=pointer]:
+            - /url: /evershopcommerce
+          - generic [ref=e37]: /
+          - strong [ref=e38]:
+            - link "evershop" [ref=e39] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop
+          - generic [ref=e40]: Public
+        - generic [ref=e41]:
+          - list:
+            - listitem [ref=e42]:
+              - button "Sponsor evershopcommerce/evershop" [ref=e44] [cursor=pointer]:
+                - generic [ref=e46]:
+                  - img [ref=e47]
+                  - text: Sponsor
+            - listitem [ref=e49]:
+              - link "You must be signed in to change notification settings" [ref=e50] [cursor=pointer]:
+                - /url: /login?return_to=%2Fevershopcommerce%2Fevershop
+                - img [ref=e51]
+                - text: Notifications
+            - listitem [ref=e53]:
+              - link "Fork 2.3k" [ref=e54] [cursor=pointer]:
+                - /url: /login?return_to=%2Fevershopcommerce%2Fevershop
+                - img [ref=e55]
+                - text: Fork
+                - generic "2,295" [ref=e57]: 2.3k
+            - listitem [ref=e58]:
+              - link "You must be signed in to star a repository" [ref=e60] [cursor=pointer]:
+                - /url: /login?return_to=%2Fevershopcommerce%2Fevershop
+                - img [ref=e61]
+                - text: Star
+                - generic "9968 users starred this repository" [ref=e63]: 10k
+      - navigation "Repository" [ref=e64]:
+        - list [ref=e65]:
+          - listitem [ref=e66]:
+            - link "Code" [ref=e67] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop
+              - img [ref=e68]
+              - generic [ref=e70]: Code
+          - listitem [ref=e71]:
+            - link "Issues 66" [ref=e72] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/issues
+              - img [ref=e73]
+              - generic [ref=e76]: Issues
+              - generic "66" [ref=e77]
+          - listitem [ref=e78]:
+            - link "Pull requests 14" [ref=e79] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/pulls
+              - img [ref=e80]
+              - generic [ref=e82]: Pull requests
+              - generic "14" [ref=e83]
+          - listitem [ref=e84]:
+            - link "Discussions" [ref=e85] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/discussions
+              - img [ref=e86]
+              - generic [ref=e88]: Discussions
+          - listitem [ref=e89]:
+            - link "Actions" [ref=e90] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/actions
+              - img [ref=e91]
+              - generic [ref=e93]: Actions
+          - listitem [ref=e94]:
+            - link "Projects" [ref=e95] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/projects
+              - img [ref=e96]
+              - generic [ref=e98]: Projects
+          - listitem [ref=e99]
+          - listitem [ref=e100]
+        - button "Additional navigation options" [ref=e104] [cursor=pointer]:
+          - img
+    - generic [ref=e107]:
+      - 'heading "Pull requests: evershopcommerce/evershop" [level=1] [ref=e108]'
+      - generic [ref=e109]:
+        - search [ref=e110]:
+          - search "Issues" [ref=e111]:
+            - textbox "Search all issues" [ref=e112]: is:pr author:universe7creator
+            - img
+          - navigation "Issue" [ref=e114]:
+            - link "Labels 11" [ref=e115] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/labels
+              - img [ref=e116]
+              - text: Labels 11
+            - link "Milestones 2" [ref=e118] [cursor=pointer]:
+              - /url: /evershopcommerce/evershop/milestones
+              - img [ref=e119]
+              - text: Milestones 2
+        - link "New pull request" [ref=e123] [cursor=pointer]:
+          - /url: /evershopcommerce/evershop/compare
+          - generic [ref=e126]: New pull request
+      - link "Clear current search query, filters, and sorts" [ref=e128] [cursor=pointer]:
+        - /url: /evershopcommerce/evershop/pulls?q=is%3Apr+is%3Aopen
+        - img [ref=e129]
+        - text: Clear current search query, filters, and sorts
+      - generic [ref=e132]:
+        - link "1 Open" [ref=e133] [cursor=pointer]:
+          - /url: /evershopcommerce/evershop/pulls?q=is%3Apr+author%3Auniverse7creator+is%3Aopen
+          - img [ref=e134]
+          - text: 1 Open
+        - link "0 Closed" [ref=e136] [cursor=pointer]:
+          - /url: /evershopcommerce/evershop/pulls?q=is%3Apr+author%3Auniverse7creator+is%3Aclosed
+          - img [ref=e137]
+          - text: 0 Closed
+      - generic [ref=e139]:
+        - generic [ref=e142]:
+          - group [ref=e143]:
+            - button "Author" [ref=e144] [cursor=pointer]: Author
+          - group [ref=e146]:
+            - button "Label" [ref=e147] [cursor=pointer]: Label
+          - generic [ref=e149]:
+            - group [ref=e150]:
+              - button "Projects" [ref=e151] [cursor=pointer]: Projects
+            - group [ref=e153]:
+              - button "Milestones" [ref=e154] [cursor=pointer]: Milestones
+            - group [ref=e156]:
+              - button "Reviews" [ref=e157] [cursor=pointer]: Reviews
+          - group [ref=e159]:
+            - button "Assignee" [ref=e160] [cursor=pointer]: Assignee
+          - group [ref=e162]:
+            - button "Sort" [ref=e163] [cursor=pointer]: Sort
+        - heading "Pull requests list" [level=2] [ref=e165]
+        - group "Issues" [ref=e166]:
+          - generic [ref=e169]:
+            - generic "Open Pull Request" [ref=e171]:
+              - img [ref=e172]
+            - generic [ref=e174]:
+              - 'link "fix: CategoryTree not showing all child categories" [ref=e175] [cursor=pointer]':
+                - /url: /evershopcommerce/evershop/pull/893
+              - generic [ref=e177]:
+                - text: "#893 opened Mar 25, 2026last week by"
+                - link "universe7creator" [ref=e178] [cursor=pointer]:
+                  - /url: /evershopcommerce/evershop/issues?q=is%3Apr+is%3Aopen+author%3Auniverse7creator
+            - generic [ref=e179]:
+              - generic "1 linked issue" [ref=e181]:
+                - link "1 issue" [ref=e182] [cursor=pointer]:
+                  - /url: /evershopcommerce/evershop/issues/893/linked_closing_reference?reference_location=REPO_ISSUES_INDEX
+                  - generic [ref=e183]:
+                    - img [ref=e184]
+                    - text: "1"
+              - generic [ref=e188]:
+                - generic "Assigned to"
+              - link "4 comments" [ref=e190] [cursor=pointer]:
+                - /url: /evershopcommerce/evershop/pull/893
+                - img [ref=e191]
+                - text: "4"
+      - generic [ref=e193]:
+        - img [ref=e194]
+        - strong [ref=e196]: ProTip!
+        - text: Filter pull requests by the default branch with
+        - link "base:dev" [ref=e197] [cursor=pointer]:
+          - /url: /evershopcommerce/evershop/issues?q=is%3Apr+author%3Auniverse7creator+base%3Adev
+        - text: .
+  - contentinfo [ref=e198]:
+    - heading "Footer" [level=2] [ref=e199]
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - link "GitHub Homepage" [ref=e202] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e203]
+        - generic [ref=e205]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e206]:
+        - heading "Footer navigation" [level=3] [ref=e207]
+        - list "Footer navigation" [ref=e208]:
+          - listitem [ref=e209]:
+            - link "Terms" [ref=e210] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e211]:
+            - link "Privacy" [ref=e212] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e213]:
+            - link "Security" [ref=e214] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e215]:
+            - link "Status" [ref=e216] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e217]:
+            - link "Community" [ref=e218] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e219]:
+            - link "Docs" [ref=e220] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e221]:
+            - link "Contact" [ref=e222] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e223]:
+            - button "Manage cookies" [ref=e225] [cursor=pointer]
+          - listitem [ref=e226]:
+            - button "Do not share my personal information" [ref=e228] [cursor=pointer]

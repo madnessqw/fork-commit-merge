@@ -93,7 +93,7 @@
                     </div>
                     <span class="text-xl font-bold">SSL Cert Checker</span>
                 </div>
-                <a href="#pricing" class="px-6 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-all">Buy Now $19</a>
+                <a href="https://buy.polar.sh/polar_cl_YpC4xsXpLSvoIhUCJVdOP0PAc5SgL3OpCzkUp46y3xV" target="_blank" class="px-6 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-all">Buy Now $19</a>
             </div>
         </div>
     </nav>
@@ -375,5 +375,16 @@
             if (e.key === 'Enter') checkSSL();
         });
     </script>
+
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_YpC4xsXpLSvoIhUCJVdOP0PAc5SgL3OpCzkUp46y3xV";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+{
+  "cycle": 627,
+  "date": "2026-04-09",
+  "products_total": 24,
+  "products_live": 22,
+  "products_ready_for_payment": 2,
+  "products_no_checkout": [
+    "universe-hub",
+    "llm-token-lens"
+  ],
+  "price_distribution": {
+    "$19": 24
+  },
+  "category_distribution": {
+    "developer-tools": 9,
+    "other": 5,
+    "monitoring": 3,
+    "data-tools": 4,
+    "portfolio": 1,
+    "ai-tools": 1,
+    "security": 1
+  },
+  "balance": 1.0,
+  "mode": "OPTIMIZE",
+  "recommendations": [
+    "universe-hub ve llm-token-lens checkout bekliyor (36+ cycle)",
+    "Yeni AI tool kategorileri kesfedilebilir",
+    "Mevcut urunlerin landing page kalitesi artirilabilir",
+    "Security kategorisi bos - ScanGuard oneriliyor"
+  ]
+}

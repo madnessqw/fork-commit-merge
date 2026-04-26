@@ -1,0 +1,18 @@
+{
+  "bot_token": "7590893298:AAGUHxxOCuWCi4NItlQP8Wr6sNGGVaImXII",
+  "bot_username": "OtonomUniverseCreator",
+  "chat_id": "7941453284",
+  "notifications": {
+    "tier_up": true,
+    "emergency": true,
+    "three_d_secure": true,
+    "daily_report": true,
+    "approval_requests": true
+  },
+  "templates": {
+    "3ds_request": "🔐 3DS Code Needed — {merchant} — ${amount}",
+    "tier_up": "🎉 TIER UP! {emoji} {tier_name} — Balance: ${balance}",
+    "emergency": "🚨 EMERGENCY: Balance dropped to ${balance}!",
+    "daily_report": "📊 Daily: Income ${income} | Expenses ${expenses} | Balance ${balance}"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "name": "UI Scan",
+  "tagline": "UI Component Extractor & Code Generator",
+  "slug": "uiscan",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "mvp_complexity": "2-3 cycles",
+  "target_audience": ["developer", "frontend_engineer", "ui_designer", "product_manager"],
+  "problem": "Web sitesinden UI component koparmak zor. Pluck var ama AI coding tools'a özel. HTML to React/Vue dönüşümü zor. CSS extraction manuel",
+  "solution": "Vercel Edge + AI ile UI extraction. Screenshot to code, CSS extraction, component generation, multi-framework export",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "ai": "Gemini Vision API",
+    "parser": "JSDOM",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://uiscan.io/",
+    "endpoints": [
+      {
+        "path": "/api/extract",
+        "method": "POST",
+        "description": "Extract UI from URL or image",
+        "body": {
+          "url": "string (optional)",
+          "image": "base64 (optional)",
+          "framework": "react | vue | svelte | html"
+        },
+        "response": {
+          "componentId": "ui_abc123",
+          "html": "<div class='card'>...</div>",
+          "css": ".card { padding: 16px; }",
+          "react": "export default function Card() {...}",
+          "vue": "<template>...</template>"
+        }
+      },
+      {
+        "path": "/api/analyze",
+        "method": "POST",
+        "description": "Analyze UI structure",
+        "body": {"url": "string"},
+        "response": {
+          "components": [
+            {"type": "button", "count": 5, "styles": {...}},
+            {"type": "card", "count": 3, "styles": {...}}
+          ],
+          "colors": ["#6366f1", "#f1f163"],
+          "fonts": ["Inter", "Roboto"]
+        }
+      },
+      {
+        "path": "/api/colors",
+        "method": "POST",
+        "description": "Extract color palette",
+        "body": {"url": "string"},
+        "response": {
+          "palette": [
+            {"color": "#6366f1", "usage": "primary"},
+            {"color": "#f1f163", "usage": "accent"}
+          ],
+          "cssVariables": ":root { --primary: #6366f1; }"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Pluck",
+      "price": "Free/Unknown",
+      "pros": ["New", "AI powered"],
+      "cons": ["Limited", "No API", "AI tools only"]
+    },
+    {
+      "name": "Anima",
+      "price": "$39/month",
+      "pros": ["Figma integration"],
+      "cons": ["Expensive", "Monthly", "Figma only"]
+    },
+    {
+      "name": "Locofy",
+      "price": "$19/month",
+      "pros": ["Design to code"],
+      "cons": ["Monthly", "Limited frameworks"]
+    }
+  ],
+  "advantage": "One-time $29 vs monthly. URL-based. Multi-framework. API-first.",
+  "features": [
+    "Screenshot to code",
+    "URL extraction",
+    "Multi-framework export",
+    "CSS extraction",
+    "Color palette analysis",
+    "Typography detection",
+    "Component library",
+    "Design system export",
+    "Responsive detection",
+    "Animation detection"
+  ],
+  "use_cases": [
+    "Landing page cloning",
+    "Design inspiration",
+    "Component library building",
+    "Design system extraction",
+    "Competitor analysis",
+    "Rapid prototyping"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $1,160",
+    "moderate": "80 sales/month = $2,320",
+    "optimistic": "150 sales/month = $4,350"
+  },
+  "why_best": [
+    "Pluck HN'de popüler",
+    "Design to code trend",
+    "Gemini Vision API güçlü",
+    "Her frontend developer ihtiyacı",
+    "Yüksek değer ($29)"
+  ]
+}

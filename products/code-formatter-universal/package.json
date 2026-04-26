@@ -1,0 +1,12 @@
+{
+  "name": "code-formatter-universal",
+  "version": "1.0.0",
+  "description": "Universal code formatter supporting 50+ languages",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["code", "formatter", "beautifier", "developer-tools"],
+  "license": "MIT"
+}

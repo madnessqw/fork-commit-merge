@@ -1,0 +1,10 @@
+{
+  "agent": "builder",
+  "cycle": 706,
+  "task": "standby_awaiting_spec",
+  "status": "standby",
+  "timestamp": "2026-04-15T11:10:00Z",
+  "instructions": "Standby mode. Awaiting new product spec from researcher. When spec arrives, begin build process immediately.",
+  "ready": true,
+  "note": "Both builder and builder-2 are on standby for new product builds"
+}

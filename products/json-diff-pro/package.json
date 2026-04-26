@@ -1,0 +1,13 @@
+{
+  "name": "json-diff-pro",
+  "version": "1.0.0",
+  "description": "Compare JSON files side-by-side with visual diff highlighting",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["json", "diff", "compare", "developer-tool"],
+  "author": "UniverseCreator",
+  "license": "MIT"
+}

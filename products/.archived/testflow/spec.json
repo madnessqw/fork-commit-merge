@@ -1,0 +1,125 @@
+{
+  "name": "TestFlow",
+  "tagline": "API Testing & Automation Platform",
+  "slug": "testflow",
+  "version": "1.0.0",
+  "price": "$29 one-time",
+  "mvp_complexity": "2-3 cycles",
+  "target_audience": ["developer", "qa_engineer", "api_tester", "devops"],
+  "problem": "Postman pahalı ($14/ay). Insomnia karmaşık. Basit API testi için curl/script yazmak zor. CI/CD entegrasyonu için ek kurulum gerekiyor",
+  "solution": "Vercel Edge + KV ile API testing platform. Collection management, scheduled tests, CI/CD webhook, environment variables",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "http_client": "native fetch()",
+    "storage": "Vercel KV",
+    "scheduler": "Vercel Cron",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://testflow.io/",
+    "endpoints": [
+      {
+        "path": "/api/test",
+        "method": "POST",
+        "description": "Run single API test",
+        "body": {
+          "method": "GET | POST | PUT | DELETE",
+          "url": "string (required)",
+          "headers": "object",
+          "body": "any",
+          "timeout": "number (default: 30000)"
+        },
+        "response": {
+          "success": true,
+          "status": 200,
+          "duration": 245,
+          "response": {},
+          "assertions": [{"passed": true, "message": "Status is 200"}]
+        }
+      },
+      {
+        "path": "/api/collections",
+        "method": "POST",
+        "description": "Create test collection",
+        "body": {
+          "name": "string",
+          "tests": [
+            {
+              "name": "Get Users",
+              "method": "GET",
+              "url": "https://api.example.com/users",
+              "assertions": [{"type": "status", "expected": 200}]
+            }
+          ]
+        }
+      },
+      {
+        "path": "/api/collections/:id/run",
+        "method": "POST",
+        "description": "Run all tests in collection"
+      },
+      {
+        "path": "/api/schedule",
+        "method": "POST",
+        "description": "Schedule recurring tests",
+        "body": {
+          "collectionId": "string",
+          "frequency": "hourly | daily | weekly",
+          "webhook": "string (optional)"
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Postman",
+      "price": "$14/month",
+      "pros": ["Industry standard", "Full featured"],
+      "cons": ["Monthly cost", "Heavy", "Overkill for simple tests"]
+    },
+    {
+      "name": "Insomnia",
+      "price": "Free/$8 per user",
+      "pros": ["Lighter than Postman"],
+      "cons": ["Pricing per user", "Limited free version"]
+    },
+    {
+      "name": "curl + scripts",
+      "price": "Free",
+      "pros": ["Free", "Flexible"],
+      "cons": ["Manual setup", "No UI", "No scheduling"]
+    }
+  ],
+  "advantage": "One-time $29 vs monthly. API-first. Scheduling included. Edge speed.",
+  "features": [
+    "Single API test",
+    "Test collections",
+    "Assertions (status, body, headers)",
+    "Environment variables",
+    "Scheduled tests",
+    "Webhook notifications",
+    "Test history",
+    "Response time tracking",
+    "CI/CD integration"
+  ],
+  "use_cases": [
+    "API health monitoring",
+    "Regression testing",
+    "Uptime checking",
+    "Load testing",
+    "Integration testing",
+    "Webhook validation"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $1,160",
+    "moderate": "80 sales/month = $2,320",
+    "optimistic": "150 sales/month = $4,350"
+  },
+  "why_best": [
+    "Postman $14/mo vs $29 one-time",
+    "Every API needs testing",
+    "Edge compatible (native fetch)",
+    "Built-in scheduling (Vercel Cron)",
+    "Higher price point ($29)"
+  ]
+}

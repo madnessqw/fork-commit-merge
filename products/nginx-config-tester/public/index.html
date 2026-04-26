@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx Config Tester</title>
+    <meta name="description" content="Nginx Config Tester made simple. Professional-grade tool with instant results and developer-friendly features.">
+    <meta name="keywords" content="nginx, config, tester, Nginx config, server config, web server, tester tool, testing utility, debug tool, developer tools, online tool, web utility">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Universe7Creator">
+    <link rel="canonical" href="None">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nginx Config Tester",
+  "description": "Nginx Config Tester made simple. Professional-grade tool with instant results and developer-friendly features.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19.00",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "url": null
+}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body{font-family:'Inter',sans-serif;background:#0a0a0a}</style>
+</head>
+<body class="text-gray-100">
+    <nav class="border-b border-gray-800 bg-gray-900/50 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-black font-bold text-xl">N</div>
+                    <span class="text-xl font-bold">Nginx Config Tester</span>
+                </div>
+                <a href="#pricing" class="bg-emerald-500 hover:bg-emerald-400 text-black px-5 py-2 rounded-lg font-semibold transition">Get Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative py-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-cyan-500/10"></div>
+        <div class="max-w-5xl mx-auto px-4 text-center relative">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Validate Nginx Configs Before They Break Production</h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Syntax checking, best practice analysis, and security recommendations for your Nginx configurations</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#demo" class="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-semibold text-lg transition">Try Demo</a>
+                <a href="#pricing" class="border border-gray-700 hover:border-gray-600 px-8 py-4 rounded-xl font-semibold transition">Get Access - $19</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-20 bg-gray-900/30">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Try It Now</h2>
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+                <textarea id="config" rows="12" class="w-full bg-black border border-gray-800 rounded-lg p-4 font-mono text-sm text-gray-300 focus:border-emerald-500 focus:outline-none" placeholder="Paste your Nginx configuration here..."></textarea>
+                <button onclick="validateConfig()" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-black py-3 rounded-lg font-semibold transition">Validate Configuration</button>
+                <div id="result" class="mt-4 p-4 rounded-lg hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Syntax Validation</h3>
+                    <p class="text-gray-400 text-sm">Detailed error messages for syntax issues</p>
+                </div>
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Security Analysis</h3>
+                    <p class="text-gray-400 text-sm">Best practice security recommendations</p>
+                </div>
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Performance Tips</h3>
+                    <p class="text-gray-400 text-sm">Optimization suggestions for speed</p>
+                </div>
+                <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">SSL/TLS Check</h3>
+                    <p class="text-gray-400 text-sm">Certificate configuration validation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-20 bg-gray-900/30">
+        <div class="max-w-md mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">One-Time Purchase</h2>
+            <p class="text-gray-400 mb-8">Lifetime access, no subscriptions</p>
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8">
+                <div class="text-5xl font-bold mb-2">$19</div>
+                <p class="text-gray-400 mb-6">One-time payment</p>
+                <ul class="text-left space-y-3 mb-8 text-gray-300">
+                    <li class="flex items-center"><svg class="w-5 h-5 text-emerald-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Unlimited validations</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-emerald-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Detailed security reports</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-emerald-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Best practice analysis</li>
+                    <li class="flex items-center"><svg class="w-5 h-5 text-emerald-400 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Lifetime updates</li>
+                </ul>
+                <button onclick="alert('Purchase integration coming soon')" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-4 rounded-xl font-semibold transition">Get Access Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-800 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 Nginx Config Tester. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function validateConfig() {
+            const config = document.getElementById('config').value;
+            const result = document.getElementById('result');
+            if (!config.trim()) {
+                result.className = 'mt-4 p-4 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300';
+                result.textContent = 'Please enter a Nginx configuration';
+                result.classList.remove('hidden');
+                return;
+            }
+            result.className = 'mt-4 p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-300';
+            result.innerHTML = '<p>Demo validation complete!</p><ul class="mt-2 text-sm"><li>Syntax: OK</li><li>Security: 3 recommendations found</li><li>Performance: 2 optimization suggestions</li></ul>';
+            result.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

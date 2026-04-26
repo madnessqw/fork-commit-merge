@@ -1,0 +1,206 @@
+{
+  "name": "DocuParse",
+  "tagline": "AI-Powered Document Parsing API",
+  "version": "1.0.0",
+  "price": "$39 one-time",
+  "target_audience": ["developer", "saas_founder", "data_entry", "automation_engineer"],
+  "problem": "Geliştiriciler PDF, DOCX ve resimlerden metin çıkarmak için karmaşık kütüphaneler kurmak zorunda. Mevcut çözümler (AWS Textract, Google Document AI) pahalı ve abonelik gerektiriyor",
+  "solution": "Vercel Edge Function + OCR + LLM ile belge ayrıştırma. PDF, DOCX, PNG, JPG'den yapılandırılmış veri çıkarımı. Tablo, form, ve metin tanıma",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "ocr": "Tesseract.js / PaddleOCR",
+    "llm": "OpenAI GPT-4o-mini / Claude Haiku",
+    "storage": "Vercel Blob",
+    "cache": "Vercel KV",
+    "payment": "Stripe"
+  },
+  "mvp_complexity": "2 cycle",
+  "api": {
+    "base_url": "https://docuparse.api/",
+    "endpoints": [
+      {
+        "path": "/api/parse",
+        "method": "POST",
+        "description": "Parse document and extract structured data",
+        "body": {
+          "file": {
+            "type": "base64 | URL",
+            "required": true,
+            "description": "Document to parse (PDF, DOCX, PNG, JPG)",
+            "max_size": "10MB"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["json", "markdown", "text"],
+            "default": "json"
+          },
+          "extract": {
+            "type": "array",
+            "items": ["text", "tables", "forms", "images", "metadata"],
+            "default": ["text"]
+          },
+          "language": {
+            "type": "string",
+            "default": "auto",
+            "description": "Document language (ISO 639-1)"
+          }
+        },
+        "response": {
+          "success": "boolean",
+          "data": {
+            "text": "string (full text content)",
+            "pages": "number",
+            "tables": "array of table objects",
+            "forms": "array of form field objects",
+            "metadata": {
+              "title": "string",
+              "author": "string",
+              "created": "date",
+              "pages": "number"
+            }
+          },
+          "processing_time_ms": "number",
+          "cached": "boolean"
+        }
+      },
+      {
+        "path": "/api/parse/batch",
+        "method": "POST",
+        "description": "Parse multiple documents",
+        "body": {
+          "files": {
+            "type": "array",
+            "max_items": 10,
+            "items": "URL or base64"
+          }
+        },
+        "response": {
+          "results": "array of parse results",
+          "completed": "number",
+          "failed": "number"
+        }
+      },
+      {
+        "path": "/api/extract/invoice",
+        "method": "POST",
+        "description": "Extract invoice data (vendor, amount, date, items)",
+        "body": {
+          "file": "base64 | URL"
+        },
+        "response": {
+          "vendor": "string",
+          "invoice_number": "string",
+          "date": "date",
+          "due_date": "date",
+          "total": "number",
+          "currency": "string",
+          "line_items": "array"
+        }
+      },
+      {
+        "path": "/api/extract/receipt",
+        "method": "POST",
+        "description": "Extract receipt data (merchant, items, total)",
+        "body": {
+          "file": "base64 | URL"
+        }
+      }
+    ]
+  },
+  "supported_formats": {
+    "pdf": "Full support with OCR",
+    "docx": "Microsoft Word documents",
+    "png": "Image OCR",
+    "jpg/jpeg": "Image OCR",
+    "tiff": "Multi-page images"
+  },
+  "features": [
+    "Text extraction with layout preservation",
+    "Table detection and extraction",
+    "Form field recognition",
+    "Invoice/receipt specialized extraction",
+    "Multi-language support (50+ languages)",
+    "Handwriting recognition (basic)",
+    "Image extraction from PDFs"
+  ],
+  "implementation": {
+    "phase_1": {
+      "name": "Core Parser",
+      "tasks": [
+        "Setup Vercel Edge Function",
+        "Integrate Tesseract.js for OCR",
+        "Implement PDF text extraction",
+        "Add basic image parsing",
+        "Create JSON response format",
+        "Setup Vercel Blob for file storage"
+      ],
+      "duration": "1 cycle"
+    },
+    "phase_2": {
+      "name": "AI Extraction",
+      "tasks": [
+        "Add LLM for structured data extraction",
+        "Implement invoice/receipt templates",
+        "Add table detection",
+        "Create batch processing",
+        "Add caching layer",
+        "Setup Stripe payment",
+        "Create documentation"
+      ],
+      "duration": "1 cycle"
+    }
+  },
+  "market_analysis": {
+    "competitors": [
+      {
+        "name": "AWS Textract",
+        "price": "$0.0015-0.01 per page",
+        "pros": ["High accuracy", "Enterprise grade"],
+        "cons": ["Expensive at scale", "AWS required"]
+      },
+      {
+        "name": "Google Document AI",
+        "price": "$0.001-0.05 per page",
+        "pros": ["Pre-trained models", "GCP integration"],
+        "cons": ["Pay per use", "Complex setup"]
+      },
+      {
+        "name": "Azure Form Recognizer",
+        "price": "$0.05-0.50 per page",
+        "pros": ["Custom models", "Microsoft ecosystem"],
+        "cons": ["Very expensive", "Azure lock-in"]
+      }
+    ],
+    "advantage": "One-time $39 + Unlimited parsing + No vendor lock-in + Edge speed"
+  },
+  "pricing_strategy": {
+    "model": "one-time",
+    "price": "$39",
+    "tiers": [
+      {
+        "name": "Professional",
+        "price": "$39",
+        "features": [
+          "Unlimited document parsing",
+          "PDF, DOCX, Image support",
+          "Invoice & Receipt extraction",
+          "API access",
+          "Basic support"
+        ]
+      }
+    ]
+  },
+  "use_cases": [
+    "Invoice processing automation",
+    "Receipt expense tracking",
+    "Document digitization",
+    "Form data extraction",
+    "PDF to structured data conversion",
+    "Receipt scanning apps"
+  ],
+  "estimated_revenue": {
+    "conservative": "10 sales/month = $390",
+    "moderate": "30 sales/month = $1,170",
+    "optimistic": "80 sales/month = $3,120"
+  }
+}

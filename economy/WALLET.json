@@ -1,0 +1,17 @@
+{
+  "balance": 0.00,
+  "currency": "USD",
+  "tier": "AWAKENING",
+  "tier_progress": 0,
+  "transactions": [],
+  "banking": {
+    "bank": "Akbank",
+    "card_last4": null,
+    "3ds_enabled": true
+  },
+  "limits": {
+    "approval_required": 20,
+    "emergency_threshold": 5,
+    "critical_threshold": 2
+  }
+}

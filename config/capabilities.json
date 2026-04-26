@@ -1,0 +1,118 @@
+{
+  "version": "1.1",
+  "last_updated": "2026-04-17T14:35:15.384725+00:00",
+  "cycle": 800,
+  "mcp_servers": {
+    "council": {
+      "status": "healthy",
+      "owner": "toolsmith",
+      "installed": "2026-04-01"
+    },
+    "arxiv": {
+      "status": "healthy",
+      "owner": "toolsmith",
+      "installed": "2026-04-01"
+    },
+    "mcptube": {
+      "status": "healthy",
+      "owner": "toolsmith",
+      "installed": "2026-04-01"
+    }
+  },
+  "plugins": {
+    "codex@openai-codex": {
+      "status": "enabled",
+      "owner": "toolsmith"
+    },
+    "playwright@claude-plugins-official": {
+      "status": "enabled",
+      "owner": "toolsmith"
+    },
+    "context7@claude-plugins-official": {
+      "status": "enabled",
+      "owner": "toolsmith"
+    },
+    "claude-octopus@nyldn-plugins": {
+      "status": "enabled",
+      "owner": "toolsmith"
+    },
+    "claude-worktrace@claude-worktrace": {
+      "status": "enabled",
+      "owner": "toolsmith"
+    }
+  },
+  "skills": {
+    "/derin-arastirma": {
+      "status": "available",
+      "owner": "researcher",
+      "path": "/home/gokhan/.claude/skills/derin-arastirma/SKILL.md"
+    },
+    "build_checklist": {
+      "status": "configured",
+      "owner": "skill-writer"
+    },
+    "market_research": {
+      "status": "configured",
+      "owner": "skill-writer"
+    },
+    "self_improvement_log": {
+      "status": "configured",
+      "owner": "skill-writer"
+    },
+    "capability_engineering": {
+      "status": "configured",
+      "owner": "toolsmith"
+    },
+    "evolution": {
+      "status": "available",
+      "owner": "toolsmith",
+      "path": "/home/gokhan/UniverseCreator/skills/EVOLUTION.md"
+    }
+  },
+  "scripts": {
+    "create_product.sh": {
+      "status": "working"
+    },
+    "deploy_product.sh": {
+      "status": "working"
+    },
+    "set_checkout_url.sh": {
+      "status": "working"
+    },
+    "check_evolution.sh": {
+      "status": "working"
+    }
+  },
+  "gaps": [
+    {
+      "id": "capability-loop",
+      "status": "healthy",
+      "owner": "toolsmith",
+      "note": "Evolution loop integrated into FACTORY.md and EVOLUTION.md skills",
+      "resolved_at": "2026-04-17T03:39:56.421383+00:00"
+    }
+  ],
+  "restart_required": [],
+  "agent_capabilities": {
+    "researcher": [
+      "mcp:arxiv",
+      "mcp:mcptube",
+      "skill:market_research"
+    ],
+    "builder": [
+      "script:create_product",
+      "script:deploy_product"
+    ],
+    "optimizer": [
+      "vercel_api",
+      "seo_tools"
+    ],
+    "toolsmith": [
+      "mcp_install",
+      "skill_create",
+      "script_maintenance",
+      "config_management",
+      "skill:evolution"
+    ]
+  }
+}

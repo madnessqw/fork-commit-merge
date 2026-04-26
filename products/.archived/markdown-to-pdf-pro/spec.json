@@ -1,0 +1,22 @@
+{
+  "slug": "markdown-to-pdf-pro",
+  "name": "Markdown to PDF Pro",
+  "tagline": "Convert Markdown to beautifully formatted PDF instantly",
+  "description": "Transform your Markdown documents into professional PDFs with customizable themes, code highlighting, and instant download. Perfect for documentation, reports, and README exports.",
+  "price": "$19",
+  "category": "document-converter",
+  "tech_stack": ["html2canvas", "jsPDF", "marked.js"],
+  "features": [
+    "Instant Markdown to PDF conversion",
+    "Multiple professional themes",
+    "Syntax highlighting for code blocks",
+    "Table support with styling",
+    "Image embedding",
+    "Custom fonts and colors",
+    "Page breaks control",
+    "Headers and footers"
+  ],
+  "target_audience": ["developers", "technical writers", "project managers"],
+  "keywords": ["markdown", "pdf", "converter", "documentation", "export"],
+  "status": "spec_ready"
+}

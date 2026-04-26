@@ -1,0 +1,155 @@
+{
+  "name": "ImageSlim",
+  "tagline": "Lightning Fast Image Optimization & Resizing API",
+  "slug": "imageslim",
+  "version": "1.0.0",
+  "price": "$24 one-time",
+  "mvp_complexity": "2 cycles",
+  "target_audience": ["developer", "web_designer", "saas_founder", "content_manager"],
+  "problem": "Cloudinary pahalı ($25/ay), Imgix karmaşık pricing. Basit image resize/format conversion için serverless çözüm yok. Next.js Image component'i external URL'lerle çalışmıyor",
+  "solution": "Vercel Edge + Sharp (wasm) ile image processing API. On-the-fly resize, format conversion (WebP, AVIF), quality adjustment. URL-based API (no upload needed)",
+  "tech_stack": {
+    "runtime": "Vercel Edge Functions",
+    "image_processor": "Sharp (wasm)",
+    "cache": "Vercel KV + Edge Cache",
+    "payment": "Stripe"
+  },
+  "api": {
+    "base_url": "https://imageslim.io/",
+    "endpoints": [
+      {
+        "path": "/api/resize",
+        "method": "GET",
+        "description": "Resize image from URL",
+        "parameters": {
+          "url": {
+            "type": "string",
+            "required": true,
+            "description": "Source image URL"
+          },
+          "width": {
+            "type": "number",
+            "description": "Target width"
+          },
+          "height": {
+            "type": "number",
+            "description": "Target height"
+          },
+          "fit": {
+            "type": "string",
+            "enum": ["cover", "contain", "fill", "inside", "outside"],
+            "default": "cover"
+          }
+        },
+        "response": "Resized image (binary)"
+      },
+      {
+        "path": "/api/format",
+        "method": "GET",
+        "description": "Convert image format",
+        "parameters": {
+          "url": "string (required)",
+          "format": {
+            "type": "string",
+            "enum": ["webp", "avif", "jpeg", "png", "gif"],
+            "required": true
+          },
+          "quality": {
+            "type": "number",
+            "default": 80,
+            "min": 1,
+            "max": 100
+          }
+        }
+      },
+      {
+        "path": "/api/optimize",
+        "method": "GET",
+        "description": "Smart optimization (auto format, quality)",
+        "parameters": {
+          "url": "string (required)",
+          "width": "number",
+          "quality": "number (default: auto)"
+        },
+        "response": {
+          "originalSize": 245000,
+          "optimizedSize": 45000,
+          "savings": "81.6%",
+          "format": "webp",
+          "image": "binary"
+        }
+      },
+      {
+        "path": "/api/metadata",
+        "method": "GET",
+        "description": "Get image metadata",
+        "parameters": {
+          "url": "string (required)"
+        },
+        "response": {
+          "width": 1920,
+          "height": 1080,
+          "format": "jpeg",
+          "size": 245000,
+          "colorSpace": "srgb",
+          "hasAlpha": false
+        }
+      }
+    ]
+  },
+  "competitors": [
+    {
+      "name": "Cloudinary",
+      "price": "$25/month",
+      "url": "https://cloudinary.com",
+      "pros": ["Full featured", "Video support"],
+      "cons": ["Expensive", "Complex pricing tiers"]
+    },
+    {
+      "name": "Imgix",
+      "price": "$10-100+/month",
+      "url": "https://imgix.com",
+      "pros": [Fast", "Reliable"],
+      "cons": ["Usage-based pricing", "Monthly minimum"]
+    },
+    {
+      "name": "ImageKit",
+      "price": "$29/month",
+      "url": "https://imagekit.io",
+      "pros": ["Good features"],
+      "cons": ["Monthly cost", "Bandwidth limits"]
+    }
+  ],
+  "advantage": "One-time $24 vs monthly $25+. No bandwidth limits. Edge caching. Simple URL API.",
+  "features": [
+    "On-the-fly image resize",
+    "Format conversion (WebP, AVIF, JPEG, PNG)",
+    "Smart quality optimization",
+    "Aspect ratio preservation",
+    "Edge caching",
+    "Batch processing",
+    "Metadata extraction",
+    "Blurhash generation",
+    "Base64 output option"
+  ],
+  "use_cases": [
+    "Blog image optimization",
+    "E-commerce product images",
+    "Responsive images",
+    "WebP conversion",
+    "Thumbnail generation",
+    "Social media images"
+  ],
+  "estimated_revenue": {
+    "conservative": "40 sales/month = $960",
+    "moderate": "80 sales/month = $1,920",
+    "optimistic": "150 sales/month = $3,600"
+  },
+  "why_best": [
+    "Cloudinary $25/mo vs $24 one-time",
+    "Every website needs image optimization",
+    "Edge compatible (Sharp wasm)",
+    "No upload required (URL-based)",
+    "Simple API"
+  ]
+}
