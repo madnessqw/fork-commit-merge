@@ -93,7 +93,8 @@ Kullanışlı agentlar:
 - @sre-site-reliability-engineer — health check analizi
 - @database-optimizer — veri tutarlılığı kontrolü
 
-Örnek: @sales-strategist analyze checkout conversion for current products and suggest pricing optimizations
+Örnek: @sales-strategist analyze checkout conversion for current products AND apply optimizations directly
+NOT: Sadece öneri ALMA — DİREKT UYGULA VE COMMIT AT
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ## MOD SEÇİMİ (Tercihe bağlı — varsayılan: ANALYSIS)

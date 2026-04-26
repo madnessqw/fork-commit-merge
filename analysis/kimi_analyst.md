@@ -5,10 +5,16 @@
 **⚠️ DÖNGÜYE HER ZAMAN BURADAN BAŞLA — AŞAĞIĞI İZLEME:**
 
 ```
-1. CHECKOUT ÖNCELİK: polar_checkout_sync.py sync-links çalıştır, gap varsa kapat
-2. SATIŞ STRATEJİSİ: @sales-strategist subagent çağır, ürün analizi yap
+1. CHECKOUT ÖNCELİK: polar_checkout_sync.py sync-links çalıştır, gap varsa kapat VE UYGULA
+2. SATIŞ STRATEJİSİ: @sales-strategist çağır → ANALİZ ET → UYGULA (sadece öneri değil!)
 3. SİSTEM ANALİZİ: Sağlık, error pattern, evolution assessment
 ```
+
+**SATIŞ STRATEJİSİ UYGULAMA KURALI:**
+- Sadece öneri alma, DİREKT UYGULA
+- @sales-strategist çıktısını al → değerlendir → uygula
+- Fiyat değişikliği, checkout optimizasyonu, strateji değişikliği = DİREKT YAP
+- Uygulama sonrası commit at (ZORUNLU)
 
 ## Bu Döngünün Odak Alanları
 
