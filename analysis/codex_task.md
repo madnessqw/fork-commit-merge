@@ -1,28 +1,34 @@
-# Codex Task — Generated 2026-04-26 14:30 +0300
+# Codex Task — Generated 2026-04-26 12:00 UTC
 
-## MOD: INNOVATE
+## MOD: PRODUCTION SAFE INFRA
 
-Sistem tamamen yeşil: 171/171 live healthy, checkout_gap=0, canonical_drift=0 (13 ürün fallback healthy, otomasyonla düzeltilemez — manuel Vercel alias gerektirir).
+Bu görev dosyası live `STATE.json` → `STATE_SUMMARY.json` üzerinden üretildi. Eski araştırma/no-code talimatı
+stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyileştirmesi seçilir.
 
 ## Aktif Görev
-**Yeni ürün fırsatı tespiti**
+**Canonical URL drift düzeltmesi**
 
-Mevcut portföy 171 live ürünle tamamen yeşil. INNOVATE modunda: projeler.txt'deki [***] projeleri değerlendir, yeni ürün seç, build başlat.
+Live ürünlerin public URL'si ile ideal canonical URL'sini aynı tut. Önce health pipeline'ını ve summary sync'ini doğrula; alias/redirect farkını manuel Vercel fix gibi saklamaya çalışma.
 
 ## Canlı State Özeti
-- Cycle: 1212
+- Cycle: 1213
 - Live sağlık: 171/171 (%100.0)
 - Canonical healthy: 171/171 (%100.0)
 - Health pending: 0
-- Fallback healthy: 13 (alias URL kullanan ürünler, manuel Vercel aksiyonu gerektirir)
+- Fallback healthy: 0
 - Checkout gap: 0
 - Deploy readiness gap: 0
-- Canonical drift: 0
-- Mode: INNOVATE (building=0, active=171)
-- Next action: projeler.txt [***] tara → ürün seç → build başlat
+- Deploy/url gap: 0
+- Canonical drift: 6
+- Canonical drift slugs: `croncraft`, `chmod-calculator`, `terminal-os`, `terraink`, `nginx-config`, `commit-message-generator`
+- Accepted canonical drift: 7
+- Accepted canonical drift slugs: `jwt-generator`, `pdf-forge`, `webhook-tester`, `email-validator-pro`, `diffmaster`, `html-entity-encoder`, `timestamp-converter`
+- Fallback healthy slugs: `croncraft`, `chmod-calculator`, `terminal-os`, `terraink`, `nginx-config`, `commit-message-generator`
+- Spec-ready count: 0
+- Next action: 6 canonical URL drift'ini düzelt; fallback alias'ı ezme
 
 ## Guardrails
 - Dosyaları okumadan edit yapma.
 - Production canlı ürün davranışını bozma.
-- Yeni ürün: spec'den başla, deploy-ready bitir.
-- INNOVATE modunda en az 1 yeni ürün fırsatı tespit et veya build başlat.
+- Manual Vercel/ödeme-provider aksiyonlarını çözüldü gibi gösterme.
+- Cerrahi değişiklik + test/verification + `analysis/codex_result.md` + commit.
