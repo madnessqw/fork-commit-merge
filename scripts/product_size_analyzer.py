@@ -168,7 +168,7 @@ def scan_products(
         },
         "tier_distribution": tier_counts,
         "top_largest": entries[:top],
-        "top_waste": sorted(entries, key=lambda e: e["waste_bytes"] if "waste_bytes" in e else e.get("waste_kb", 0) * 1024, reverse=True)[:top],
+        "top_waste": sorted(entries, key=lambda e: e.get("waste_kb", 0), reverse=True)[:top],
     }
 
 
