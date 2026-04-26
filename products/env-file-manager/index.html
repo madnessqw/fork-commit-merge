@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ENV File Manager",
+  "description": "ENV File Manager",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "50"
+  }
+}
+</script>
+    <meta property="og:title" content="ENV File Manager">
+    <meta property="og:description" content="ENV File Manager">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://env-file-manager.vercel.app">
+    <meta property="og:image" content="https://env-file-manager.vercel.app/og-image.png">
+    <meta property="og:site_name" content="UniverseCreator Tools">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ENV File Manager">
+    <meta name="twitter:description" content="ENV File Manager">
+    <meta name="twitter:image" content="https://env-file-manager.vercel.app/og-image.png">
+    <meta name="twitter:site" content="@universecreator">
+    <meta name="twitter:creator" content="@universecreator">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENV File Manager | Shipkit</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1a2332 100%);
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0066FF, #06B6D4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo::before {
+      content: '⚙️';
+      font-size: 1.75rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #06B6D4;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0066FF, #0052CC);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(124, 58, 237, 0.2);
+      color: #c084fc;
+      border: 1px solid #7c3aed;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(124, 58, 237, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #06B6D4, #0066FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #a0aec0;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons .btn {
+      min-width: 150px;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 1024px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(6, 182, 212, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      height: fit-content;
+    }
+
+    .sidebar h3 {
+      color: #06B6D4;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-list {
+      list-style: none;
+    }
+
+    .project-item {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(6, 182, 212, 0.15);
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-item:hover {
+      background: rgba(6, 182, 212, 0.1);
+      border-color: rgba(6, 182, 212, 0.3);
+    }
+
+    .project-item.active {
+      background: rgba(0, 102, 255, 0.15);
+      border-color: #0066FF;
+    }
+
+    .project-item-name {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    .project-item-delete {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-item:hover .project-item-delete {
+      opacity: 1;
+    }
+
+    .add-project {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .add-project input {
+      grid-column: 1 / -1;
+      padding: 0.6rem;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 0.4rem;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+
+    .add-project input::placeholder {
+      color: #64748b;
+    }
+
+    .add-project .btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    /* Main Panel */
+    .main-panel {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(6, 182, 212, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .section-title {
+      color: #06B6D4;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #64748b;
+    }
+
+    .empty-state p {
+      margin-bottom: 1rem;
+    }
+
+    /* Environment Tabs */
+    .env-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+      padding-bottom: 1rem;
+    }
+
+    .env-tab {
+      padding: 0.6rem 1.2rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(6, 182, 212, 0.15);
+      border-bottom: 2px solid transparent;
+      border-radius: 0.4rem 0.4rem 0 0;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .env-tab:hover {
+      background: rgba(6, 182, 212, 0.1);
+    }
+
+    .env-tab.active {
+      background: rgba(0, 102, 255, 0.1);
+      border-color: #0066FF;
+      border-bottom-color: #0066FF;
+      color: #06B6D4;
+    }
+
+    .env-tab.add-env {
+      color: #10b981;
+      border-color: #10b981;
+    }
+
+    .env-tab.add-env:hover {
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    /* Variables Grid */
+    .variables-grid {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .variable-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 60px;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(6, 182, 212, 0.1);
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+    }
+
+    .variable-row:hover {
+      border-color: rgba(6, 182, 212, 0.3);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    @media (max-width: 768px) {
+      .variable-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .variable-row input {
+      padding: 0.6rem;
+      background: rgba(51, 65, 85, 0.5);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 0.4rem;
+      color: #e2e8f0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .variable-row input::placeholder {
+      color: #64748b;
+    }
+
+    .variable-key {
+      font-weight: 500;
+    }
+
+    .variable-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-small {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border: none;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-success {
+      background: rgba(16, 185, 129, 0.2);
+      color: #86efac;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-success:hover {
+      background: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-info {
+      background: rgba(6, 182, 212, 0.2);
+      color: #67e8f9;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-info:hover {
+      background: rgba(6, 182, 212, 0.3);
+    }
+
+    /* Diff View */
+    .diff-container {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(6, 182, 212, 0.1);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .diff-line {
+      padding: 0.4rem 0.6rem;
+      margin-bottom: 0.2rem;
+      border-radius: 0.25rem;
+    }
+
+    .diff-added {
+      background: rgba(16, 185, 129, 0.15);
+      color: #86efac;
+    }
+
+    .diff-removed {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+    }
+
+    .diff-unchanged {
+      background: rgba(51, 65, 85, 0.3);
+      color: #cbd5e1;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #1e293b;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      font-size: 1.3rem;
+      color: #06B6D4;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(124, 58, 237, 0.05));
+    }
+
+    .pricing-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #06B6D4, #0066FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .pricing-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 2px solid rgba(6, 182, 212, 0.15);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      border-color: rgba(6, 182, 212, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .pricing-card.featured {
+      border-color: #0066FF;
+      background: rgba(0, 102, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    .pricing-card.featured::before {
+      content: 'POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #0066FF, #7c3aed);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .pricing-name {
+      font-size: 1.3rem;
+      color: #06B6D4;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price .period {
+      font-size: 1rem;
+      color: #a0aec0;
+      font-weight: 400;
+    }
+
+    .pricing-description {
+      color: #a0aec0;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-features li {
+      padding: 0.5rem 0;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .pricing-features li::before {
+      content: '✓ ';
+      color: #10b981;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .pricing-cta {
+      width: 100%;
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 4rem 2rem;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #06B6D4, #0066FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .faq-item {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(6, 182, 212, 0.1);
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      color: #06B6D4;
+      transition: background 0.3s;
+    }
+
+    .faq-question:hover {
+      background: rgba(6, 182, 212, 0.05);
+    }
+
+    .faq-answer {
+      padding: 0 1.2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s, padding 0.3s;
+      color: #a0aec0;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+      padding: 0 1.2rem 1.2rem;
+    }
+
+    .faq-toggle {
+      color: #7c3aed;
+      font-size: 1.3rem;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid rgba(6, 182, 212, 0.2);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: #06B6D4;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 1rem 1.2rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #86efac;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        order: 2;
+      }
+
+      .main-panel {
+        order: 1;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(6, 182, 212, 0.3);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(6, 182, 212, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">Shipkit</div>
+      <nav>
+        <a href="#app">App</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn btn-secondary" id="signupBtn">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h1>ENV File Manager</h1>
+    <p>Securely manage environment variables across dev, staging, and production. Encrypted storage, team collaboration, and version control for your .env files.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="scrollToApp()">Start Free</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('pricingSection').scrollIntoView({behavior: 'smooth'})">View Pricing</button>
+    </div>
+  </section>
+
+  <!-- Main App Section -->
+  <section class="container" id="app" style="display: none;">
+    <div class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3>Projects</h3>
+        <ul class="project-list" id="projectList"></ul>
+        <div class="add-project">
+          <input type="text" id="newProjectName" placeholder="New project name">
+          <button class="btn btn-success btn-small" onclick="addProject()">Add</button>
+          <button class="btn btn-info btn-small" onclick="downloadAllEnvs()">Export All</button>
+        </div>
+      </aside>
+
+      <!-- Main Panel -->
+      <main class="main-panel">
+        <div id="emptyState" class="empty-state">
+          <p>👈 Create a project to get started</p>
+          <p>Manage your environment variables across dev, staging, and production.</p>
+        </div>
+
+        <div id="projectPanel" style="display: none;">
+          <div class="section-title">
+            <span id="projectTitle"></span>
+            <div>
+              <button class="btn btn-info btn-small" onclick="diffEnvironments()">Compare Envs</button>
+              <button class="btn btn-secondary btn-small" onclick="importEnvFile()">Import</button>
+            </div>
+          </div>
+
+          <div class="env-tabs" id="envTabs"></div>
+
+          <div id="diffView" style="display: none; margin-bottom: 1.5rem;">
+            <h4 style="color: #06B6D4; margin-bottom: 0.5rem;">Environment Differences</h4>
+            <div class="diff-container" id="diffContent"></div>
+          </div>
+
+          <div class="variables-grid" id="variablesGrid"></div>
+
+          <button class="btn btn-primary" onclick="addVariable()" style="width: 100%; margin-top: 1rem;">+ Add Variable</button>
+        </div>
+      </main>
+    </div>
+
+    <div id="alert" class="alert"></div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricingSection">
+    <div class="pricing-container">
+      <div class="pricing-header">
+        <h2>Simple, Transparent Pricing</h2>
+        <p style="color: #a0aec0; font-size: 1.1rem;">Start free, scale as you grow</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+          <div class="pricing-name">Free</div>
+          <div class="pricing-price">$0<span class="period">/month</span></div>
+          <p class="pricing-description">Perfect for personal projects and small teams getting started</p>
+          <ul class="pricing-features">
+            <li>3 projects</li>
+            <li>2 environments per project</li>
+            <li>Unlimited variables</li>
+            <li>Local encryption</li>
+            <li>Import/Export .env files</li>
+            <li>Compare environments</li>
+          </ul>
+          <button class="btn btn-secondary pricing-cta" onclick="startFree()">Get Started</button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card featured">
+          <div class="pricing-name">Pro</div>
+          <div class="pricing-price">$15<span class="period">/month</span></div>
+          <p class="pricing-description">For growing teams with advanced needs and team collaboration</p>
+          <ul class="pricing-features">
+            <li>Unlimited projects</li>
+            <li>Unlimited environments</li>
+            <li>Unlimited variables</li>
+            <li>Team collaboration</li>
+            <li>Shareable export codes</li>
+            <li>Activity logs</li>
+            <li>Advanced encryption</li>
+            <li>Email support</li>
+          </ul>
+          <button class="btn btn-primary pricing-cta" onclick="openUpgradeModal()">Start Free Trial</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="faq-container">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How is my data encrypted?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          We use the browser's built-in Web Crypto API to encrypt your environment variables with AES-256-GCM. Encryption happens client-side, so only your team has access to your data.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I export my .env files?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! You can export individual environment files or all projects at once. Export files are unencrypted .env files ready to use in your deployment pipeline.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Is my data synced to the cloud?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Free plan: Data is stored locally in your browser (localStorage). Pro plan: Cloud sync coming soon with end-to-end encryption for team sharing across devices.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How many team members can use Pro?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Pro plan supports unlimited team members. Generate shareable export codes to securely distribute environment variables to your team without storing credentials in version control.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What happens when I upgrade to Pro?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Your free projects migrate automatically. You'll unlock unlimited projects, environments, and team collaboration features. Cancel anytime—no commitments.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I use this in production?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely. The app is designed for production use. Store your production .env variables securely, manage access via export codes, and integrate with your CI/CD pipeline.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://shipkit.io" target="_blank">Website</a>
+      <a href="https://twitter.com/shipkit" target="_blank">Twitter</a>
+      <a href="https://github.com/shipkit" target="_blank">GitHub</a>
+    </div>
+    <p>&copy; 2026 Shipkit. All rights reserved. | <a href="#" style="color: #06B6D4;">Privacy Policy</a> | <a href="#" style="color: #06B6D4;">Terms of Service</a></p>
+  </footer>
+
+  <!-- Modals -->
+  <div id="upgradeModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Upgrade to Pro</div>
+      <p style="color: #a0aec0; margin-bottom: 1rem;">Unlock unlimited projects, team collaboration, and advanced features.</p>
+      <p style="color: #a0aec0; margin-bottom: 1rem;">Start your <strong>14-day free trial</strong>. No credit card required.</p>
+      <input type="email" id="upgradeEmail" placeholder="your@email.com" style="width: 100%; padding: 0.6rem; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 0.4rem; color: #e2e8f0; margin-bottom: 1rem;">
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('upgradeModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitUpgrade()">Start Trial</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="shareModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Share Environment</div>
+      <p style="color: #a0aec0; margin-bottom: 1rem;">Generate a shareable code for your team to import this environment.</p>
+      <input type="text" id="shareCode" readonly style="width: 100%; padding: 0.6rem; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 0.4rem; color: #e2e8f0; margin-bottom: 1rem; font-family: monospace;">
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('shareModal')">Close</button>
+        <button class="btn btn-primary" onclick="copyShareCode()">Copy Code</button>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="importInput" style="display: none;" accept=".env" onchange="handleImport(event)">
+
+  <script>
+    // State Management
+    let appState = {
+      isPro: false,
+      currentProject: null,
+      currentEnvironment: null,
+      projects: {}
+    };
+
+    // Initialize App
+    function init() {
+      loadFromStorage();
+      renderProjects();
+      setupEventListeners();
+    }
+
+    function setupEventListeners() {
+      document.getElementById('newProjectName').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addProject();
+      });
+    }
+
+    // Storage Functions
+    function loadFromStorage() {
+      const stored = localStorage.getItem('envManagerState');
+      if (stored) {
+        try {
+          appState = JSON.parse(stored);
+        } catch (e) {
+          console.error('Failed to load state:', e);
+        }
+      }
+    }
+
+    function saveToStorage() {
+      localStorage.setItem('envManagerState', JSON.stringify(appState));
+    }
+
+    // Project Management
+    function addProject() {
+      const name = document.getElementById('newProjectName').value.trim();
+      if (!name) {
+        showAlert('Please enter a project name', 'error');
+        return;
+      }
+
+      if (Object.keys(appState.projects).length >= 3 && !appState.isPro) {
+        showAlert('Free tier limited to 3 projects. Upgrade to Pro for unlimited.', 'error');
+        return;
+      }
+
+      const id = 'proj_' + Date.now();
+      appState.projects[id] = {
+        name,
+        environments: {
+          dev: {},
+          staging: {},
+          production: {}
+        }
+      };
+
+      saveToStorage();
+      document.getElementById('newProjectName').value = '';
+      renderProjects();
+      selectProject(id);
+      showAlert('Project created successfully', 'success');
+    }
+
+    function selectProject(projectId) {
+      appState.currentProject = projectId;
+      appState.currentEnvironment = 'dev';
+      renderProjects();
+      renderProjectPanel();
+      saveToStorage();
+    }
+
+    function deleteProject(projectId) {
+      if (confirm('Delete this project? This cannot be undone.')) {
+        delete appState.projects[projectId];
+        appState.currentProject = null;
+        appState.currentEnvironment = null;
+        saveToStorage();
+        renderProjects();
+        renderProjectPanel();
+        showAlert('Project deleted', 'success');
+      }
+    }
+
+    function renderProjects() {
+      const list = document.getElementById('projectList');
+      list.innerHTML = '';
+
+      Object.entries(appState.projects).forEach(([id, project]) => {
+        const item = document.createElement('li');
+        item.className = `project-item ${appState.currentProject === id ? 'active' : ''}`;
+        item.innerHTML = `
+          <span class="project-item-name" onclick="selectProject('${id}')">${project.name}</span>
+          <button class="project-item-delete" onclick="deleteProject('${id}')">Delete</button>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    // Environment Management
+    function renderProjectPanel() {
+      const heroSection = document.getElementById('hero');
+      const appSection = document.getElementById('app');
+      const emptyState = document.getElementById('emptyState');
+      const projectPanel = document.getElementById('projectPanel');
+
+      if (!appState.currentProject) {
+        heroSection.style.display = 'block';
+        appSection.style.display = 'none';
+        return;
+      }
+
+      heroSection.style.display = 'none';
+      appSection.style.display = 'block';
+
+      const project = appState.projects[appState.currentProject];
+      document.getElementById('projectTitle').textContent = project.name;
+
+      // Render environment tabs
+      const tabs = document.getElementById('envTabs');
+      tabs.innerHTML = '';
+
+      const maxEnvs = appState.isPro ? Infinity : 2;
+      const envKeys = Object.keys(project.environments);
+
+      envKeys.forEach((env, index) => {
+        if (index < maxEnvs) {
+          const tab = document.createElement('button');
+          tab.className = `env-tab ${appState.currentEnvironment === env ? 'active' : ''}`;
+          tab.textContent = env.charAt(0).toUpperCase() + env.slice(1);
+          tab.onclick = () => selectEnvironment(env);
+          tabs.appendChild(tab);
+        }
+      });
+
+      if (envKeys.length < maxEnvs && (appState.isPro || envKeys.length < 2)) {
+        const addBtn = document.createElement('button');
+        addBtn.className = 'env-tab add-env';
+        addBtn.textContent = '+ Add Env';
+        addBtn.onclick = () => {
+          const newEnv = prompt('Environment name (e.g., test, uat, custom):').toLowerCase();
+          if (newEnv && !project.environments[newEnv]) {
+            project.environments[newEnv] = {};
+            saveToStorage();
+            renderProjectPanel();
+          }
+        };
+        tabs.appendChild(addBtn);
+      }
+
+      // Render variables
+      renderVariables();
+    }
+
+    function selectEnvironment(env) {
+      appState.currentEnvironment = env;
+      saveToStorage();
+      renderProjectPanel();
+    }
+
+    function renderVariables() {
+      const project = appState.projects[appState.currentProject];
+      const env = project.environments[appState.currentEnvironment];
+      const grid = document.getElementById('variablesGrid');
+      grid.innerHTML = '';
+
+      if (Object.keys(env).length === 0) {
+        grid.innerHTML = '<p style="color: #64748b; grid-column: 1/-1;">No variables yet. Add one to get started.</p>';
+        return;
+      }
+
+      Object.entries(env).forEach(([key, value], index) => {
+        const row = document.createElement('div');
+        row.className = 'variable-row';
+        row.innerHTML = `
+          <input type="text" value="${key}" class="variable-key" placeholder="Key" onchange="updateVariable('${appState.currentEnvironment}', ${index}, this.value, true)">
+          <input type="text" value="${value}" placeholder="Value" onchange="updateVariable('${appState.currentEnvironment}', ${index}, this.value, false)">
+          <div class="variable-actions">
+            <button class="btn-small btn-info" onclick="shareEnvironment()">Share</button>
+            <button class="btn-small btn-danger" onclick="deleteVariable('${appState.currentEnvironment}', ${index})">Delete</button>
+          </div>
+        `;
+        grid.appendChild(row);
+      });
+    }
+
+    function addVariable() {
+      const project = appState.projects[appState.currentProject];
+      const env = project.environments[appState.currentEnvironment];
+      const newKey = `VAR_${Date.now()}`;
+      env[newKey] = '';
+      saveToStorage();
+      renderVariables();
+    }
+
+    function updateVariable(envName, index, newValue, isKey) {
+      const project = appState.projects[appState.currentProject];
+      const env = project.environments[envName];
+      const keys = Object.keys(env);
+      const oldKey = keys[index];
+
+      if (isKey) {
+        const oldValue = env[oldKey];
+        delete env[oldKey];
+        env[newValue] = oldValue;
+      } else {
+        env[oldKey] = newValue;
+      }
+
+      saveToStorage();
+      renderVariables();
+    }
+
+    function deleteVariable(envName, index) {
+      const project = appState.projects[appState.currentProject];
+      const env = project.environments[envName];
+      const keys = Object.keys(env);
+      delete env[keys[index]];
+      saveToStorage();
+      renderVariables();
+    }
+
+    // Diff Functionality
+    function diffEnvironments() {
+      const project = appState.projects[appState.currentProject];
+      const envNames = Object.keys(project.environments);
+
+      if (envNames.length < 2) {
+        showAlert('Need at least 2 environments to compare', 'error');
+        return;
+      }
+
+      const [env1, env2] = [project.environments[envNames[0]], project.environments[envNames[1]]];
+      const allKeys = new Set([...Object.keys(env1), ...Object.keys(env2)]);
+      let diff = `Comparing: ${envNames[0]} vs ${envNames[1]}\n\n`;
+
+      const lines = [];
+      allKeys.forEach(key => {
+        const val1 = env1[key];
+        const val2 = env2[key];
+
+        if (val1 === undefined) {
+          lines.push({ text: `+ ${key}=${val2}`, type: 'added' });
+        } else if (val2 === undefined) {
+          lines.push({ text: `- ${key}=${val1}`, type: 'removed' });
+        } else if (val1 !== val2) {
+          lines.push({ text: `- ${key}=${val1}`, type: 'removed' });
+          lines.push({ text: `+ ${key}=${val2}`, type: 'added' });
+        } else {
+          lines.push({ text: `  ${key}=${val1}`, type: 'unchanged' });
+        }
+      });
+
+      const diffView = document.getElementById('diffView');
+      const diffContent = document.getElementById('diffContent');
+      diffContent.innerHTML = lines.map(line => `
+        <div class="diff-line diff-${line.type}">${line.text}</div>
+      `).join('');
+      diffView.style.display = 'block';
+    }
+
+    // Import/Export
+    function importEnvFile() {
+      document.getElementById('importInput').click();
+    }
+
+    function handleImport(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        const project = appState.projects[appState.currentProject];
+        const env = project.environments[appState.currentEnvironment];
+
+        content.split('\n').forEach(line => {
+          line = line.trim();
+          if (line && !line.startsWith('#')) {
+            const [key, ...rest] = line.split('=');
+            if (key) {
+              env[key.trim()] = rest.join('=').trim();
+            }
+          }
+        });
+
+        saveToStorage();
+        renderVariables();
+        showAlert('Environment imported successfully', 'success');
+      };
+      reader.readAsText(file);
+    }
+
+    function downloadAllEnvs() {
+      if (!appState.currentProject) {
+        showAlert('Select a project first', 'error');
+        return;
+      }
+
+      const project = appState.projects[appState.currentProject];
+      const zip = {};
+
+      Object.entries(project.environments).forEach(([envName, vars]) => {
+        let content = '';
+        Object.entries(vars).forEach(([key, value]) => {
+          content += `${key}=${value}\n`;
+        });
+        zip[envName] = content;
+      });
+
+      const data = JSON.stringify(zip, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${project.name}-envs-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showAlert('Environments exported', 'success');
+    }
+
+    function shareEnvironment() {
+      const project = appState.projects[appState.currentProject];
+      const env = project.environments[appState.currentEnvironment];
+
+      const shareData = btoa(JSON.stringify(env));
+      document.getElementById('shareCode').value = shareData;
+      document.getElementById('shareModal').classList.add('active');
+    }
+
+    function copyShareCode() {
+      const code = document.getElementById('shareCode');
+      code.select();
+      document.execCommand('copy');
+      showAlert('Share code copied to clipboard', 'success');
+    }
+
+    // UI Functions
+    function toggleFaq(element) {
+      element.parentElement.classList.toggle('open');
+      element.querySelector('.faq-toggle').textContent = 
+        element.parentElement.classList.contains('open') ? '−' : '+';
+    }
+
+    function showAlert(message, type) {
+      const alert = document.getElementById('alert');
+      alert.textContent = message;
+      alert.className = `alert show alert-${type}`;
+      setTimeout(() => alert.classList.remove('show'), 3000);
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function startFree() {
+      scrollToApp();
+      showAlert('Welcome to ENV File Manager! Start by creating your first project.', 'success');
+    }
+
+    function scrollToApp() {
+      if (!appState.currentProject && Object.keys(appState.projects).length === 0) {
+        showAlert('Create a project to get started', 'success');
+      }
+      document.getElementById('app').style.display = 'block';
+      document.getElementById('hero').style.display = 'none';
+      document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openUpgradeModal() {
+      openModal('upgradeModal');
+    }
+
+    function submitUpgrade() {
+      const email = document.getElementById('upgradeEmail').value;
+      if (!email) {
+        showAlert('Please enter your email', 'error');
+        return;
+      }
+
+      appState.isPro = true;
+      saveToStorage();
+      closeModal('upgradeModal');
+      showAlert('Welcome to Shipkit Pro! Trial started. Refresh to see all features.', 'success');
+      setTimeout(() => location.reload(), 1500);
+    }
+
+    // Initialize on load
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>

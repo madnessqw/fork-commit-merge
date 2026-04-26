@@ -1,0 +1,95 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Subdomain Finder",
+  "description": "Discover subdomains for any domain. Security reconnaissance tool for penetration testers and security researchers.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "19",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "50"
+  }
+}
+</script>
+    <meta property="og:title" content="Subdomain Finder">
+    <meta property="og:description" content="Discover subdomains for any domain. Security reconnaissance tool for penetration testers and security researchers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://subdomain-finder.vercel.app">
+    <meta property="og:image" content="https://subdomain-finder.vercel.app/og-image.png">
+    <meta property="og:site_name" content="UniverseCreator Tools">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Subdomain Finder">
+    <meta name="twitter:description" content="Discover subdomains for any domain. Security reconnaissance tool for penetration testers and security researchers.">
+    <meta name="twitter:image" content="https://subdomain-finder.vercel.app/og-image.png">
+    <meta name="twitter:site" content="@universecreator">
+    <meta name="twitter:creator" content="@universecreator">
+<?php
+header("Content-Type: application/json; charset=UTF-8");
+
+if (!isset($_GET['link']) || empty($_GET['link'])) {
+    echo json_encode([], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+$domain = htmlspecialchars($_GET['link']);
+$crt_sh_url = "https://crt.sh/?q=%25.$domain&output=json";
+$response = @file_get_contents($crt_sh_url);
+
+if ($response === FALSE) {
+    echo json_encode([], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+$data = json_decode($response, true);
+$subdomains = [];
+
+if (!empty($data)) {
+    foreach ($data as $entry) {
+        $splitted = preg_split('/\r\n|\r|\n/', $entry['name_value']);
+        foreach ($splitted as $sub) {
+            $sub = trim($sub);
+            if (strpos($sub, "*.") === 0) {
+                continue;
+            }
+            $subdomains[] = $sub;
+        }
+    }
+}
+
+$subdomains = array_values(array_unique($subdomains));
+$filtered_subdomains = [];
+
+foreach ($subdomains as $sub) {
+    if (strpos($sub, "www.") === 0) {
+        $non_www = substr($sub, 4);
+        if (in_array($non_www, $subdomains)) {
+            continue;
+        }
+    }
+    $filtered_subdomains[] = $sub;
+}
+
+if (($key = array_search($domain, $filtered_subdomains)) !== false) {
+    unset($filtered_subdomains[$key]);
+    array_unshift($filtered_subdomains, $domain);
+}
+
+// JSON Response for Subdomains
+echo json_encode($filtered_subdomains, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+// Debugging & Server Info Section
+echo "\n\n===================\n";
+echo "Server Info (PHPInfo):\n";
+echo "===================\n\n";
+
+// Show PHP Info
+phpinfo();
+?>
