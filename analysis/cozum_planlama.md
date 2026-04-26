@@ -1,57 +1,65 @@
-# Çözüm Planlama — Cycle 948 | 2026-04-20 09:50 UTC
+# Cozum Planlama — Cycle 1196 | 2026-04-26 04:51 UTC
 
-## Öncelikli Eylemler (Toolsmith için)
+## Oncelikli Eylemler (Toolsmith / GLM icin)
 
-### 1. [ÇÖZÜMSÜZ — P0] STATE.json healthy_count=0 BUG
-- **Sorun:** `scripts/audit_portfolio_health.py` çalışmıyor, STATE healthy_count=0 raporluyor
-- **Kök neden:** Script dependency veya path sorunu; cache invalidation düzgün yapılmıyor
-- **Çözüm:**
-  1. `audit_portfolio_health.py`'yi debug et — import hataları, path sorunları kontrol et
-  2. `healthy_count` hesaplamasını product.json'ları direkt okuyarak yap
-  3. STATE.json'ı her cycle'da product.json'lardan yeniden oluştur
-- **Kalıcı fix:** STATE.json'ı "cached snapshot" yap, her cycle'da force-refresh
+### 1. [ONEMLI — YAPILMASI GEREKEN] STATE Cycle Sync Fix
+- **Sorun:** STATE.json cycle 1195'te, kimi_loop 1196/1197 calismis — STATE gecersiiz
+- **Kok neden:** Kimi loop STATE'i guncellemiyor veya guncelleme basarisiz oluyor
+- **Cozum:**
+  1. `STATE.json`'i oku, `cycle` alanini bul
+  2. `kimi_loop.log`'dan en son calisan cycle numarasini bul
+  3. Fark varsa STATE'i guncelle
+- **Kalici fix:** Her kimi loop sonunda STATE.json sync kontrolu ekle
 
-### 2. [ÇÖZÜMSÜZ — P1] 65 Building Ürün Deploy Pipeline Tıkalı
-- **Sorun:** 65 ürün "building" statüsünde, kodları hazır ama deploy edilmemiş
-- **Kök neden:** Vercel token invalid + toplu deploy mekanizması yok
-- **Çözüm:**
-  1. Vercel token'ı yenile (kullanıcı gerekli)
-  2. `scripts/batch_deploy.sh` yaz — tüm building ürünleri sırayla deploy et
-  3. Deploy sonrası product.json'da status → "live" güncelle
-- **Kalıcı fix:** Yeni ürün oluşturulduğunda otomatik deploy pipeline (GitHub push → Vercel auto-deploy)
+### 2. [ONEMLI — YAPILMASI GEREKEN] Orphan Dizin Karar ve Temizlik
+- **Sorun:** 117 orphan dizin tespit edildi — 15 has_code, 50 has_spec, 20 minimal, 13 dead, 11.5MB
+- **Kok neden:** Dizin silme veya entegrasyon olmamis, birikmis
+- **Cozum (GLM):**
+  1. `orphan_cleanup_planner.py` ciktisini oku
+  2. 15 code+spec'li dizinden spec-ready olanlari belirle
+  3. `spec_ready_count` hesaplamasini duzelt — diskte spec varsa STATE'e ekle
+- **Kalici fix:** Orphan bulundugunda otomatik bildirim + archive karari
 
-### 3. [ÇÖZÜMSÜZ — P2] LemonSqueezy Checkout Gap (GELİR BLOKERI)
-- **Sorun:** 65/113 ürün checkout URL eksik
-- **Kök neden:** LemonSqueezy identity verification pending
-- **Çözüm:** Gökhan'ın manuel müdahalesi gerekli — kimlik doğrulaması tamamlanmalı
-- **Otomasyon:** Verification sonrası `scripts/create_checkout_urls.py` ile toplu URL oluşturma
+### 3. [TEKRARLAYAN — P0] Vercel Alias Drift — 12 Urun
+- **Sorun:** 5 active drift + 7 accepted drift urun var
+- **Kok neden:** Vercel token invalid, alias atanamıyor
+- **Cozum:** Gokhan Manuel — Vercel dashboard'dan device code: MJFC-THWB ile login ol, alias'ları duzelt
+- **Kalici fix:** Vercel token yenileme + alias fix script
 
-### 4. [TEKRARLAYAN — P3] Codex Usage Limit Geçişleri
-- **Sorun:** 02:40-03:21 UTC arası sık hesap değiştirme
-- **Kök neden:** İki hesap arası usage limit'e yakın olma
-- **Çözüm:** Geçiş eşiğini %80'den %90'a çek, bekleme süresi ekle
-- **Kalıcı fix:** Üçüncü hesap ekle veya usage monitoring alert'i kur
+### 4. [TEKRARLAYAN — P1] Vercel Auth Blocked
+- **Sorun:** `vercel_auth_issue=True` — deploy ve alias islemleri bloke
+- **Kok neden:** Token expired/invalid
+- **Cozum:** Gokhan Manuel — `vercel login` veya device code ile yeniden auth ol
+- **Kalici fix:** Token yenileme mekanizmasi
 
-## Sistem Evrim Adımları (Codex görevi olabilir)
-1. **STATE.json refactoring** — product.json'ları source of truth yap, STATE'i cached snapshot yap
-2. **Otomatik kategori atama scripti** — ürün adı + README analizinden kategori çıkarımı
-3. **Log rotation scripti** — 10MB üstü log'ları gzip'le, son 3 dosyayı tut
-4. **Checkout URL field standardizasyonu** — tüm product.json'larda tek `checkout_url` + `payment_provider`
-5. **Boş klasör temizleme pipeline'ı** — product.json olmayan 86 klasörü `_archived/` altına taşı
-6. **Fiyat atama otomasyonu** — kategori/benzer ürünlere göre otomatik fiyat önerisi
-7. **Deploy pipeline otomasyonu** — building → deploy → live akışını otomatikleştir
+### 5. [TEKRARLAYAN — P2] Codex Offline
+- **Sorun:** Her iki Codex hesabi da limitte, Apr 28'e kadar offline
+- **Kok neden:** Usage limit askint
+- **Cozum:** GLM/Kimi build moduna gecmis durumda — devam ediyor
+- **Kalici fix:** Ucuncu hesap ekleme veya usage monitoring
 
-## Düşük Öncelik
-- [YENİ] 104/113 kategorisiz ürün — otomatik kategori scripti yazılınca çözülür
-- [YENİ] 86 boş klasör — gürültü kaynağı ama acil değil, arşivleme yeterli
-- [YENİ] webhook-tester canonical drift false positive — HTTP 200 dönüyor, STATE güncellenmeli
-- Codex usage limit geçişleri — şu an otomatik çalışıyor, üçüncü hesap long-term çözüm
+## Sistem Evrim Adimlari (Codex gorevi olabilir)
+
+### SWARM-Level Fixes
+1. **STATE sync guard** — kimi loop her calistiginda STATE.json cycle'unu log'daki ile karsilastir, fark varsa uyar
+2. **Orphan dedupe pipeline** — her cycle'da disk STATE'i karsilastir, orphan = disk'te var STATE'te yok, bildir
+3. **Dual canonical drift metric** — `active_drift` ve `accepted_drift` ayri say, dashboard'da ayri goster
+4. **spec_ready_count fix** — diskte `SPEC.md` veya `product.json` olan urunleri say, STATE'e yansit
+5. **Checkout URL validation loop** — Polar checkout URL'lerinin HTTP 200 dondugunu periyodik kontrol et
+
+### Dust Cleanup
+- 117 orphan dizinden 13 dead olanlari `scripts/orphan_archive.sh` ile _archived/ altina tası
+- 50 has_spec'li orphan'den spec kalitesi ortalama uzeri olanlari `products/`'a tası
+
+## Dusuk Oncelik
+- **$0 revenue** — aktif checkout var ama satış yok, landing page veya pricing sorunu olabilir
+- **spec_ready mismatch** — 4 urun spec-ready ama STATE'de 0, bu Cycle 1197 orphan temizligi ile cozulur
 
 ## Genel Sistem Notu
-Sistem 948 cycle'a ulaşmış ve stabil çalışıyor. Ana sorunlar:
-1. **Veri bütünlüğü:** STATE.json gerçeği yansıtmıyor — product.json'lar source of truth olmalı
-2. **Deploy pipeline:** Vercel token sorunları + toplu deploy eksikliği 65 ürünü engelliyor
-3. **Gelir akışı:** LemonSqueezy verification olmadan checkout URL oluşturulamıyor — bu tek bloker
-4. **Veri kalitesi:** Kategori, fiyat ve field standardizasyonu eksik — ürün sayısı arttıkça büyüyen borç
+Sistem stabil calisiyor: 169/169 saglikli, 0 checkout gap. Ana sorunlar:
+1. **Veri tutarliligi:** STATE 2 cycle gecersiiz — karar mekanizmasi yanlis veriye dayanabilir
+2. **Orphan birikimi:** 117 dizin birikmis, zamanla buyuyen sorun
+3. **Manuel Vercel islemleri:** Alias ve auth icin dashboard gerekiyor
+4. **Codex offline:** Insaat ve iyilestirme duraksamis, Codex donunce devam edecek
 
-Sistem "çalışıyor ama potansiyelinin çok altında" durumunda. 43 live ürün var ama sadece 5'i fiyatlı, 65'i deploy bekliyor, 64'ü checkout eksikli. Öncelik: deploy pipeline → LemonSqueezy → veri kalitesi.
+Sistem saglikli ama veri tutarliligi ve Manuel Vercel islemleri oncelikli.

@@ -1,0 +1,374 @@
+[2026-04-20 19:30:11] === Tüm projelerin ssoProtection kapatılıyor ===
+[2026-04-20 19:30:18] Toplam proje: 83
+[2026-04-20 19:30:24]   ✅ nanoid-generator — ssoProtection: None
+[2026-04-20 19:30:30]   ✅ html-entities — ssoProtection: None
+[2026-04-20 19:30:37]   ✅ toml-toolkit — ssoProtection: None
+[2026-04-20 19:30:43]   ✅ cron-expression-builder — ssoProtection: None
+[2026-04-20 19:30:49]   ✅ uuid-generator-pro — ssoProtection: None
+[2026-04-20 19:30:56]   ✅ html-entity — ssoProtection: None
+[2026-04-20 19:31:02]   ✅ diffmaster — ssoProtection: None
+[2026-04-20 19:31:08]   ✅ pdf-forge — ssoProtection: None
+[2026-04-20 19:31:14]   ✅ secretguard — ssoProtection: None
+[2026-04-20 19:31:21]   ✅ color-contrast-pro — ssoProtection: None
+[2026-04-20 19:31:27]   ✅ ip-network-tools — ssoProtection: None
+[2026-04-20 19:31:33]   ✅ ai-cost-dashboard — ssoProtection: None
+[2026-04-20 19:31:39]   ✅ html-to-markdown-pro — ssoProtection: None
+[2026-04-20 19:31:45]   ✅ csv-to-json-pro — ssoProtection: None
+[2026-04-20 19:31:52]   ✅ table-to-csv — ssoProtection: None
+[2026-04-20 19:31:58]   ✅ graphql-query-builder — ssoProtection: None
+[2026-04-20 19:32:04]   ✅ jsonpath-tester — ssoProtection: None
+[2026-04-20 19:32:10]   ✅ hmac-generator-pro — ssoProtection: None
+[2026-04-20 19:32:16]   ✅ docker-compose-validator — ssoProtection: None
+[2026-04-20 19:32:23]   ✅ git-command-builder — ssoProtection: None
+[2026-04-20 19:32:29]   ✅ http-api-client — ssoProtection: None
+[2026-04-20 19:32:35]   ✅ lorem-ipsum-generator — ssoProtection: None
+[2026-04-20 19:32:41]   ✅ xml-to-json — ssoProtection: None
+[2026-04-20 19:32:47]   ✅ number-base-converter — ssoProtection: None
+[2026-04-20 19:32:54]   ✅ text-case-converter — ssoProtection: None
+[2026-04-20 19:33:00]   ✅ markdown-to-html-pro — ssoProtection: None
+[2026-04-20 19:33:06]   ✅ password-generator-pro — ssoProtection: None
+[2026-04-20 19:33:12]   ✅ code-minifier-pro — ssoProtection: None
+[2026-04-20 19:33:19]   ✅ svg-pattern-generator — ssoProtection: None
+[2026-04-20 19:33:25]   ✅ api-compare — ssoProtection: None
+[2026-04-20 19:33:31]   ✅ email-signature — ssoProtection: None
+[2026-04-20 19:33:37]   ✅ cron-expression-parser — ssoProtection: None
+[2026-04-20 19:33:43]   ✅ url-builder-pro — ssoProtection: None
+[2026-04-20 19:33:50]   ✅ html-beautifier — ssoProtection: None
+[2026-04-20 19:33:56]   ✅ yaml-converter-pro — ssoProtection: None
+[2026-04-20 19:34:02]   ✅ timestamp-converter-pro — ssoProtection: None
+[2026-04-20 19:34:08]   ✅ html-to-markdown — ssoProtection: None
+[2026-04-20 19:34:14]   ✅ code-snippet-manager — ssoProtection: None
+[2026-04-20 19:34:21]   ✅ jwt-generator-pro — ssoProtection: None
+[2026-04-20 19:34:27]   ✅ favicon-generator-pro — ssoProtection: None
+[2026-04-20 19:34:33]   ✅ hash-generator-pro — ssoProtection: None
+[2026-04-20 19:34:39]   ✅ url-encoder-decoder — ssoProtection: None
+[2026-04-20 19:34:46]   ✅ sql-query-formatter — ssoProtection: None
+[2026-04-20 19:34:52]   ✅ base64-pro — ssoProtection: None
+[2026-04-20 19:34:58]   ✅ url-forge — ssoProtection: None
+[2026-04-20 19:35:04]   ✅ curl2code — ssoProtection: None
+[2026-04-20 19:35:10]   ✅ json-schema-validator — ssoProtection: None
+[2026-04-20 19:35:17]   ✅ meta-fetch — ssoProtection: None
+[2026-04-20 19:35:23]   ✅ http-pulse — ssoProtection: None
+[2026-04-20 19:35:29]   ✅ rateguard — ssoProtection: None
+[2026-04-20 19:35:35]   ✅ mockforge — ssoProtection: None
+[2026-04-20 19:35:41]   ✅ dataflip — ssoProtection: None
+[2026-04-20 19:35:47]   ✅ og-forge — ssoProtection: None
+[2026-04-20 19:35:54]   ✅ webhook-tester — ssoProtection: None
+[2026-04-20 19:36:00]   ✅ regex-tester-pro — ssoProtection: None
+[2026-04-20 19:36:06]   ✅ cron-master — ssoProtection: None
+[2026-04-20 19:36:12]   ✅ json-formatter-pro — ssoProtection: None
+[2026-04-20 19:36:18]   ✅ test-product — ssoProtection: None
+[2026-04-20 19:36:24]   ✅ webhook-flow — ssoProtection: None
+[2026-04-20 19:36:31]   ✅ rateguard-api — ssoProtection: None
+[2026-04-20 19:36:37]   ✅ json-editor-pro — ssoProtection: None
+[2026-04-20 19:36:43]   ✅ rate-guard — ssoProtection: None
+[2026-04-20 19:36:49]   ✅ function-call-debugger — ssoProtection: None
+[2026-04-20 19:36:55]   ✅ metafetch — ssoProtection: None
+[2026-04-20 19:37:02]   ✅ mcp-config-validator — ssoProtection: None
+[2026-04-20 19:37:08]   ✅ api-response-formatter — ssoProtection: None
+[2026-04-20 19:37:14]   ✅ agent-security-scanner — ssoProtection: None
+[2026-04-20 19:37:20]   ✅ data-flip — ssoProtection: None
+[2026-04-20 19:37:26]   ✅ profitbridge — ssoProtection: None
+[2026-04-20 19:37:33]   ✅ polymarket-aws-proxy — ssoProtection: None
+[2026-04-20 19:37:39]   ✅ nextjs-ai-chatbot-hsr5 — ssoProtection: None
+[2026-04-20 19:37:45]   ✅ nextjs-ai-chatbot — ssoProtection: None
+[2026-04-20 19:37:45] === SONUÇ: 72 düzeltildi, 1 başarısız ===
+[2026-04-20 20:42:24] === css-gradient-studio için ssoProtection kapatılıyor ===
+[2026-04-20 20:42:30]   ✅ css-gradient-studio — ssoProtection: None
+[2026-04-20 20:52:43] === yaml-json-converter için ssoProtection kapatılıyor ===
+[2026-04-20 20:52:49]   ✅ yaml-json-converter — ssoProtection: None
+[2026-04-20 21:02:05] === password-strength-checker için ssoProtection kapatılıyor ===
+[2026-04-20 21:02:11]   ✅ password-strength-checker — ssoProtection: None
+[2026-04-20 21:50:33] === keyforge için ssoProtection kapatılıyor ===
+[2026-04-20 21:50:39]   ✅ keyforge — ssoProtection: None
+[2026-04-20 23:12:22] === toml-parser-pro için ssoProtection kapatılıyor ===
+[2026-04-20 23:12:28]   ✅ toml-parser-pro — ssoProtection: None
+[2026-04-21 00:42:52] === http-load-tester-pro için ssoProtection kapatılıyor ===
+[2026-04-21 00:42:58]   ✅ http-load-tester-pro — ssoProtection: None
+[2026-04-21 02:21:39] === code-snippet-manager için ssoProtection kapatılıyor ===
+[2026-04-21 02:21:45]   ✅ code-snippet-manager — ssoProtection: None
+[2026-04-21 02:22:43] === email-signature için ssoProtection kapatılıyor ===
+[2026-04-21 02:22:49]   ✅ email-signature — ssoProtection: None
+[2026-04-21 03:44:11] === xml-formatter için ssoProtection kapatılıyor ===
+[2026-04-21 03:44:17]   ✅ xml-formatter — ssoProtection: None
+[2026-04-21 03:54:00] === uuid-generator için ssoProtection kapatılıyor ===
+[2026-04-21 03:54:06]   ✅ uuid-generator — ssoProtection: None
+[2026-04-21 03:58:04] === id-generator-pro için ssoProtection kapatılıyor ===
+[2026-04-21 03:58:10]   ✅ id-generator-pro — ssoProtection: None
+[2026-04-21 04:00:29] === markdown-previewer için ssoProtection kapatılıyor ===
+[2026-04-21 04:00:35]   ✅ markdown-previewer — ssoProtection: None
+[2026-04-21 04:19:10] === uuid-generator için ssoProtection kapatılıyor ===
+[2026-04-21 04:19:16]   ✅ uuid-generator — ssoProtection: None
+[2026-04-21 04:19:56] === id-generator-pro için ssoProtection kapatılıyor ===
+[2026-04-21 04:20:02]   ✅ id-generator-pro — ssoProtection: None
+[2026-04-21 04:22:02] === markdown-previewer için ssoProtection kapatılıyor ===
+[2026-04-21 04:22:08]   ✅ markdown-previewer — ssoProtection: None
+[2026-04-21 04:23:32] === cron-express için ssoProtection kapatılıyor ===
+[2026-04-21 04:23:37]   ✅ cron-express — ssoProtection: None
+[2026-04-21 05:05:50] === toml-parser için ssoProtection kapatılıyor ===
+[2026-04-21 05:05:56]   ✅ toml-parser — ssoProtection: None
+[2026-04-21 05:06:42] === html2markdown için ssoProtection kapatılıyor ===
+[2026-04-21 05:06:47]   ✅ html2markdown — ssoProtection: None
+[2026-04-21 05:10:35] === markdown-to-pdf için ssoProtection kapatılıyor ===
+[2026-04-21 05:10:40]   ✅ markdown-to-pdf — ssoProtection: None
+[2026-04-21 05:32:14] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-21 05:32:20]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-21 05:32:20] === openapi-validator için ssoProtection kapatılıyor ===
+[2026-04-21 05:32:26]   ✅ openapi-validator — ssoProtection: None
+[2026-04-21 05:32:26] === email-signature-pro için ssoProtection kapatılıyor ===
+[2026-04-21 05:32:32]   ✅ email-signature-pro — ssoProtection: None
+[2026-04-21 05:32:46] === cronmaster için ssoProtection kapatılıyor ===
+[2026-04-21 05:32:52]   ❌ cronmaster — ERROR: Project not found.
+[2026-04-21 05:32:52] === hmac-generator için ssoProtection kapatılıyor ===
+[2026-04-21 05:32:58]   ❌ hmac-generator — ERROR: Project not found.
+[2026-04-21 05:32:58] === jwt-generator için ssoProtection kapatılıyor ===
+[2026-04-21 05:33:03]   ❌ jwt-generator — ERROR: Project not found.
+[2026-04-21 05:33:03] === timestamp-master için ssoProtection kapatılıyor ===
+[2026-04-21 05:33:09]   ❌ timestamp-master — ERROR: Project not found.
+[2026-04-21 05:33:09] === timestamp-converter için ssoProtection kapatılıyor ===
+[2026-04-21 05:33:15]   ✅ timestamp-converter — ssoProtection: None
+[2026-04-21 05:33:15] === xml-formatter-pro için ssoProtection kapatılıyor ===
+[2026-04-21 05:33:21]   ❌ xml-formatter-pro — ERROR: Project not found.
+[2026-04-21 05:40:08] === hmac-generator için ssoProtection kapatılıyor ===
+[2026-04-21 05:40:14]   ✅ hmac-generator — ssoProtection: None
+[2026-04-21 05:41:05] === timestamp-converter için ssoProtection kapatılıyor ===
+[2026-04-21 05:41:11]   ✅ timestamp-converter — ssoProtection: None
+[2026-04-21 05:43:23] === html-entity için ssoProtection kapatılıyor ===
+[2026-04-21 05:43:29]   ✅ html-entity — ssoProtection: None
+[2026-04-21 07:37:52] === Tüm projelerin ssoProtection kapatılıyor ===
+[2026-04-21 07:37:58] Toplam proje: 100
+[2026-04-21 07:38:04]   ✅ api-spec-validator — ssoProtection: None
+[2026-04-21 07:38:10]   ✅ cronmaster — ssoProtection: None
+[2026-04-21 07:38:16]   ✅ xml-formatter-pro — ssoProtection: None
+[2026-04-21 07:38:22]   ✅ timestamp-master — ssoProtection: None
+[2026-04-21 07:38:28]   ✅ jwt-generator — ssoProtection: None
+[2026-04-21 07:38:34]   ✅ lorem-ipsum-pro — ssoProtection: None
+[2026-04-21 07:38:40]   ✅ color-palette-extractor — ssoProtection: None
+[2026-04-21 07:38:46]   ✅ dockerfile-generator — ssoProtection: None
+[2026-04-21 07:38:52]   ✅ css-shadow-studio — ssoProtection: None
+[2026-04-21 07:38:58]   ✅ text-diff-pro — ssoProtection: None
+[2026-04-21 07:39:04]   ✅ terminal-theme-studio — ssoProtection: None
+[2026-04-21 07:39:10]   ✅ mcp-validator — ssoProtection: None
+[2026-04-21 07:39:16]   ✅ email-validator-pro — ssoProtection: None
+[2026-04-21 07:39:22]   ✅ markdown-table-generator — ssoProtection: None
+[2026-04-21 07:39:28]   ✅ text-transformer-pro — ssoProtection: None
+[2026-04-21 07:39:34]   ✅ envguard-pro — ssoProtection: None
+[2026-04-21 07:39:40]   ✅ croncraft — ssoProtection: None
+[2026-04-21 07:39:46]   ✅ diffforge — ssoProtection: None
+[2026-04-21 07:39:52]   ✅ chart-studio — ssoProtection: None
+[2026-04-21 07:39:58]   ✅ css-grid-gen — ssoProtection: None
+[2026-04-21 07:40:04]   ✅ html2jsx — ssoProtection: None
+[2026-04-21 07:40:11]   ✅ toml-converter-pro — ssoProtection: None
+[2026-04-21 07:40:17]   ✅ image-compressor-pro — ssoProtection: None
+[2026-04-21 07:40:23]   ✅ markdown-previewer-pro — ssoProtection: None
+[2026-04-21 07:40:29]   ✅ xml-master-pro — ssoProtection: None
+[2026-04-21 07:40:35]   ✅ nginx-config-generator — ssoProtection: None
+[2026-04-21 07:40:41]   ✅ api-request-builder — ssoProtection: None
+[2026-04-21 07:40:47]   ✅ toml-validator — ssoProtection: None
+[2026-04-21 07:40:53]   ✅ html-minifier-pro — ssoProtection: None
+[2026-04-21 07:40:59]   ✅ mock-data-pro — ssoProtection: None
+[2026-04-21 07:41:05]   ✅ unit-test-generator — ssoProtection: None
+[2026-04-21 07:41:05] === SONUÇ: 31 düzeltildi, 1 başarısız ===
+[2026-04-21 09:16:59] === Tüm projelerin ssoProtection kapatılıyor ===
+[2026-04-21 09:17:06] Toplam proje: 100
+[2026-04-21 09:17:06] === SONUÇ: 0 düzeltildi, 0 başarısız ===
+[2026-04-21 10:57:30] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-21 10:57:36]   ✅ diffmaster — ssoProtection: None
+[2026-04-21 15:16:35] === email-signature-pro için ssoProtection kapatılıyor ===
+[2026-04-21 15:16:41]   ✅ email-signature-pro — ssoProtection: None
+[2026-04-21 15:21:52] === email-validator-pro için ssoProtection kapatılıyor ===
+[2026-04-21 15:21:57]   ✅ email-validator-pro — ssoProtection: None
+[2026-04-21 15:21:58] === timestamp-converter için ssoProtection kapatılıyor ===
+[2026-04-21 15:22:03]   ✅ timestamp-converter — ssoProtection: None
+[2026-04-21 16:02:29] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-21 16:02:35]   ✅ diffmaster — ssoProtection: None
+[2026-04-21 17:00:10] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-21 17:00:16]   ✅ diffmaster — ssoProtection: None
+[2026-04-21 18:48:49] === timestamp-converter için ssoProtection kapatılıyor ===
+[2026-04-21 18:48:54]   ✅ timestamp-converter — ssoProtection: None
+[2026-04-21 18:53:07] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-21 18:53:12]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-21 18:53:26] === email-validator-pro için ssoProtection kapatılıyor ===
+[2026-04-21 18:53:32]   ✅ email-validator-pro — ssoProtection: None
+[2026-04-22 03:53:14] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 03:53:20]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 04:11:42] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 04:11:48]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 04:31:13] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 04:31:19]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 04:42:55] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 04:43:01]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 05:08:34] === css-gradient-studio için ssoProtection kapatılıyor ===
+[2026-04-22 05:08:40]   ✅ css-gradient-studio — ssoProtection: None
+[2026-04-22 05:09:40] === pdf-forge için ssoProtection kapatılıyor ===
+[2026-04-22 05:09:46]   ✅ pdf-forge — ssoProtection: None
+[2026-04-22 05:12:22] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 05:12:28]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 05:12:29] === pdf-forge için ssoProtection kapatılıyor ===
+[2026-04-22 05:12:35]   ✅ pdf-forge — ssoProtection: None
+[2026-04-22 05:41:43] === nanoid-generator için ssoProtection kapatılıyor ===
+[2026-04-22 05:41:49]   ✅ nanoid-generator — ssoProtection: None
+[2026-04-22 08:23:49] === yaml-json-converter için ssoProtection kapatılıyor ===
+[2026-04-22 08:23:55]   ✅ yaml-json-converter — ssoProtection: None
+[2026-04-22 09:22:53] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 09:22:59]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 09:44:08] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 09:44:14]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 09:44:14] === pdf-forge için ssoProtection kapatılıyor ===
+[2026-04-22 09:44:19]   ✅ pdf-forge — ssoProtection: None
+[2026-04-22 10:30:19] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 10:30:25]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 11:40:39] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 11:40:45]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 12:04:19] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 12:04:25]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 12:28:29] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 12:28:35]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 13:14:59] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 13:15:05]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 13:26:24] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 13:26:30]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 13:26:30] === jwt-generator için ssoProtection kapatılıyor ===
+[2026-04-22 13:26:36]   ✅ jwt-generator — ssoProtection: None
+[2026-04-22 13:26:36] === pdf-forge için ssoProtection kapatılıyor ===
+[2026-04-22 13:26:42]   ✅ pdf-forge — ssoProtection: None
+[2026-04-22 13:26:42] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 13:26:48]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-22 13:38:34] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 13:38:40]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 13:50:46] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 13:50:52]   ❌ diffmaster — ERROR: Project not found.
+[2026-04-22 14:03:07] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 14:03:13]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 14:03:13] === jwt-generator için ssoProtection kapatılıyor ===
+[2026-04-22 14:03:19]   ✅ jwt-generator — ssoProtection: None
+[2026-04-22 14:03:19] === pdf-forge için ssoProtection kapatılıyor ===
+[2026-04-22 14:03:25]   ✅ pdf-forge — ssoProtection: None
+[2026-04-22 14:15:18] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 14:15:24]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 15:42:34] === browser-use-studio için ssoProtection kapatılıyor ===
+[2026-04-22 15:42:40]   ✅ browser-use-studio — ssoProtection: None
+[2026-04-22 15:44:46] === agent-prompt-engineer için ssoProtection kapatılıyor ===
+[2026-04-22 15:44:52]   ✅ agent-prompt-engineer — ssoProtection: None
+[2026-04-22 17:42:02] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 17:42:08]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-22 17:57:23] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 17:57:29]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-22 18:20:21] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 18:20:27]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-22 18:42:49] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 18:42:55]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-22 18:45:19] === cron-master için ssoProtection kapatılıyor ===
+[2026-04-22 18:45:25]   ✅ cron-master — ssoProtection: None
+[2026-04-22 18:45:58] === mcp-validator için ssoProtection kapatılıyor ===
+[2026-04-22 18:46:04]   ✅ mcp-validator — ssoProtection: None
+[2026-04-22 18:46:24] === toml-parser için ssoProtection kapatılıyor ===
+[2026-04-22 18:46:30]   ✅ toml-parser — ssoProtection: None
+[2026-04-22 18:46:47] === html2markdown için ssoProtection kapatılıyor ===
+[2026-04-22 18:46:53]   ✅ html2markdown — ssoProtection: None
+[2026-04-22 18:47:27] === color-contrast-pro için ssoProtection kapatılıyor ===
+[2026-04-22 18:47:33]   ✅ color-contrast-pro — ssoProtection: None
+[2026-04-22 18:48:49] === markdown-to-pdf için ssoProtection kapatılıyor ===
+[2026-04-22 18:48:55]   ✅ markdown-to-pdf — ssoProtection: None
+[2026-04-22 18:49:04] === favicon-generator-pro için ssoProtection kapatılıyor ===
+[2026-04-22 18:49:10]   ✅ favicon-generator-pro — ssoProtection: None
+[2026-04-22 18:49:19] === cron-express için ssoProtection kapatılıyor ===
+[2026-04-22 18:49:25]   ✅ cron-express — ssoProtection: None
+[2026-04-22 18:49:33] === text-diff-pro için ssoProtection kapatılıyor ===
+[2026-04-22 18:49:39]   ✅ text-diff-pro — ssoProtection: None
+[2026-04-22 18:49:48] === lorem-ipsum-pro için ssoProtection kapatılıyor ===
+[2026-04-22 18:49:54]   ✅ lorem-ipsum-pro — ssoProtection: None
+[2026-04-22 18:50:03] === color-palette-extractor için ssoProtection kapatılıyor ===
+[2026-04-22 18:50:09]   ✅ color-palette-extractor — ssoProtection: None
+[2026-04-22 19:09:40] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 19:09:46]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-22 21:00:10] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 21:00:16]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 21:26:03] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 21:26:09]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 22:21:46] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 22:21:52]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 22:46:07] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-22 22:46:13]   ✅ diffmaster — ssoProtection: None
+[2026-04-22 22:46:13] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-22 22:46:19]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-24 05:15:39] === cron-master için ssoProtection kapatılıyor ===
+[2026-04-24 05:15:45]   ✅ cron-master — ssoProtection: None
+[2026-04-24 05:16:45] === color-contrast-pro için ssoProtection kapatılıyor ===
+[2026-04-24 05:16:50]   ✅ color-contrast-pro — ssoProtection: None
+[2026-04-24 05:17:35] === markdown-to-pdf için ssoProtection kapatılıyor ===
+[2026-04-24 05:17:40]   ✅ markdown-to-pdf — ssoProtection: None
+[2026-04-24 05:18:41] === cron-express için ssoProtection kapatılıyor ===
+[2026-04-24 05:18:47]   ✅ cron-express — ssoProtection: None
+[2026-04-24 05:19:43] === lorem-ipsum-pro için ssoProtection kapatılıyor ===
+[2026-04-24 05:19:49]   ✅ lorem-ipsum-pro — ssoProtection: None
+[2026-04-24 05:20:37] === color-palette-extractor için ssoProtection kapatılıyor ===
+[2026-04-24 05:20:43]   ✅ color-palette-extractor — ssoProtection: None
+[2026-04-24 05:52:45] === chmod-calculator için ssoProtection kapatılıyor ===
+[2026-04-24 05:52:51]   ✅ chmod-calculator — ssoProtection: None
+[2026-04-24 05:54:08] === jwt-debugger-pro için ssoProtection kapatılıyor ===
+[2026-04-24 05:54:14]   ✅ jwt-debugger-pro — ssoProtection: None
+[2026-04-24 05:56:34] === ssl-config-generator için ssoProtection kapatılıyor ===
+[2026-04-24 05:56:40]   ✅ ssl-config-generator — ssoProtection: None
+[2026-04-24 06:41:33] === cron-master için ssoProtection kapatılıyor ===
+[2026-04-24 06:41:39]   ✅ cron-master — ssoProtection: None
+[2026-04-24 08:06:11] === code-screenshot-beautifier için ssoProtection kapatılıyor ===
+[2026-04-24 08:06:18]   ✅ code-screenshot-beautifier — ssoProtection: None
+[2026-04-24 08:08:23] === docker-command-builder için ssoProtection kapatılıyor ===
+[2026-04-24 08:08:29]   ✅ docker-command-builder — ssoProtection: None
+[2026-04-24 08:18:49] === security-headers-checker için ssoProtection kapatılıyor ===
+[2026-04-24 08:18:55]   ✅ security-headers-checker — ssoProtection: None
+[2026-04-24 11:15:46] === sql-query-builder için ssoProtection kapatılıyor ===
+[2026-04-24 11:15:51]   ✅ sql-query-builder — ssoProtection: None
+[2026-04-24 11:23:34] === graphql-schema-validator için ssoProtection kapatılıyor ===
+[2026-04-24 11:23:40]   ✅ graphql-schema-validator — ssoProtection: None
+[2026-04-24 11:23:40] === code-complexity-analyzer için ssoProtection kapatılıyor ===
+[2026-04-24 11:23:46]   ✅ code-complexity-analyzer — ssoProtection: None
+[2026-04-24 11:23:46] === jwt-decoder-pro için ssoProtection kapatılıyor ===
+[2026-04-24 11:23:52]   ✅ jwt-decoder-pro — ssoProtection: None
+[2026-04-24 11:23:52] === regex-visualizer-pro için ssoProtection kapatılıyor ===
+[2026-04-24 11:23:58]   ✅ regex-visualizer-pro — ssoProtection: None
+[2026-04-24 11:23:58] === base64-encoder-pro için ssoProtection kapatılıyor ===
+[2026-04-24 11:24:04]   ✅ base64-encoder-pro — ssoProtection: None
+[2026-04-24 12:01:44] === json-schema-to-ts için ssoProtection kapatılıyor ===
+[2026-04-24 12:01:50]   ✅ json-schema-to-ts — ssoProtection: None
+[2026-04-24 15:22:58] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:04]   ✅ diffmaster — ssoProtection: None
+[2026-04-24 15:23:18] === jwt-generator için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:24]   ✅ jwt-generator — ssoProtection: None
+[2026-04-24 15:23:25] === webhook-tester için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:31]   ✅ webhook-tester — ssoProtection: None
+[2026-04-24 15:23:32] === email-validator-pro için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:38]   ✅ email-validator-pro — ssoProtection: None
+[2026-04-24 15:23:39] === html-entity-encoder için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:45]   ✅ html-entity-encoder — ssoProtection: None
+[2026-04-24 15:23:46] === code-formatter-universal için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:52]   ✅ code-formatter-universal — ssoProtection: None
+[2026-04-24 15:23:53] === pdf-forge için ssoProtection kapatılıyor ===
+[2026-04-24 15:23:59]   ✅ pdf-forge — ssoProtection: None
+[2026-04-24 20:57:47] === diffmaster için ssoProtection kapatılıyor ===
+[2026-04-24 20:57:53]   ✅ diffmaster — ssoProtection: None
+[2026-04-24 20:59:50] === api-mock-generator için ssoProtection kapatılıyor ===
+[2026-04-24 20:59:56]   ✅ api-mock-generator — ssoProtection: None
+[2026-04-24 22:35:26] === ascii-art-generator için ssoProtection kapatılıyor ===
+[2026-04-24 22:35:32]   ✅ ascii-art-generator — ssoProtection: None
+[2026-04-25 04:41:23] === api-to-mcp için ssoProtection kapatılıyor ===
+[2026-04-25 04:41:29]   ✅ api-to-mcp — ssoProtection: None
+[2026-04-25 06:50:32] === cron-expression-tester için ssoProtection kapatılıyor ===
+[2026-04-25 06:50:38]   ✅ cron-expression-tester — ssoProtection: None
+[2026-04-25 06:51:53] === csv-to-markdown için ssoProtection kapatılıyor ===
+[2026-04-25 06:51:59]   ✅ csv-to-markdown — ssoProtection: None
+[2026-04-25 06:53:40] === json-compare-pro için ssoProtection kapatılıyor ===
+[2026-04-25 06:53:45]   ✅ json-compare-pro — ssoProtection: None
+[2026-04-25 08:18:44] === csv-converter-pro için ssoProtection kapatılıyor ===
+[2026-04-25 08:18:50]   ✅ csv-converter-pro — ssoProtection: None
+[2026-04-25 09:40:26] === html-entity-pro için ssoProtection kapatılıyor ===
+[2026-04-25 09:40:32]   ✅ html-entity-pro — ssoProtection: None
+[2026-04-25 10:00:56] === csv-to-markdown için ssoProtection kapatılıyor ===
+[2026-04-25 10:01:02]   ✅ csv-to-markdown — ssoProtection: None
+[2026-04-25 10:24:25] === cron-expression-tester için ssoProtection kapatılıyor ===
+[2026-04-25 10:24:31]   ✅ cron-expression-tester — ssoProtection: None
+[2026-04-25 10:39:02] === docker-compose-builder için ssoProtection kapatılıyor ===
+[2026-04-25 10:39:08]   ✅ docker-compose-builder — ssoProtection: None
+[2026-04-25 11:10:45] === nginx-config için ssoProtection kapatılıyor ===
+[2026-04-25 11:10:52]   ✅ nginx-config — ssoProtection: None

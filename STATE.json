@@ -1,7 +1,7 @@
 {
   "status": "ACTIVE",
   "timestamp": "2026-04-26T10:26:00Z",
-  "cycle": 1206,
+  "cycle": 1207,
   "message": "Cycle 1206. Kimi cycle 1206: checkout 0 gaps verified (sync-links 0 candidates), system 169/169 healthy, canonical drift 5 live + 7 accepted, codex offline until Apr 28, vercel auth invalid, orphan dirs 0, $0 revenue, GLM active: test coverage expansion. Report: analysis/kimi_rapor_20260426_1026.md, telegram sent.",
   "balance": 0.0,
   "mode": "OPTIMIZE",
@@ -14,11 +14,11 @@
   "vercel_blocked": 0,
   "deploy_missing_or_bad_url": 0,
   "canonical_url_drift": 0,
-  "next_action": "Vercel auth refresh gerekli, Codex Apr 28 dönüşü bekleniyor, canonical drift için Pro plan değerlendir",
+  "next_action": "Vercel auth refresh gerekli, Codex Apr 28 donus bekleniyor, canonical drift icin Pro plan degerlendir",
   "canonical_url_drift_products": [],
   "vercel_auth_blocked_products": [],
   "notes": "Cycle 1206. Kimi cycle 1206: checkout 0 gaps verified (sync-links 0 candidates), system 169/169 healthy, canonical drift 5 live + 7 accepted, codex offline until Apr 28, vercel auth invalid, orphan dirs 0, $0 revenue, GLM active: test coverage expansion. Report: analysis/kimi_rapor_20260426_1026.md, telegram sent.",
-  "last_updated": "2026-04-26T07:35:10.059264Z",
+  "last_updated": "2026-04-26T07:40:00Z",
   "products": {
     "active": [
       {

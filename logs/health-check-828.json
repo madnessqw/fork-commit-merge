@@ -1,0 +1,175 @@
+{
+  "cycle": 828,
+  "healthy": 28,
+  "manual": 3,
+  "results": [
+    {
+      "slug": "carbonlite",
+      "url": "https://carbonlite-gamma.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "codesnap",
+      "url": "https://codesnap-ai.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "secretguard",
+      "url": "https://secretguard-kappa.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "mockforge",
+      "url": "https://mockforge-livid.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "rateguard",
+      "url": "https://rateguard-seven.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "ai-cost-dashboard",
+      "url": "https://ai-cost-dashboard-jade.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "colormine",
+      "url": "https://colormine-three.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "dataflip",
+      "url": "https://dataflip.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "geoip-lite",
+      "url": "https://geoip-lite-alpha.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "http-pulse",
+      "url": "https://http-pulse.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "json-formatter-pro",
+      "url": "https://json-formatter-pro-tau.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "jwtinspector",
+      "url": "https://jwtinspector.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "meta-fetch",
+      "url": "https://meta-fetch-seven.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "og-forge",
+      "url": "https://og-forge.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "qr-forge",
+      "url": "https://qr-forge-pied.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "regex-tester-pro",
+      "url": "https://regex-tester-pro-phi.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "statusbeacon",
+      "url": "https://statusbeacon.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "techstack",
+      "url": "https://techstack-i8t967bla-madnessqws-projects.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "function-call-debugger",
+      "url": "https://function-call-debugger.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "webhook-tester",
+      "url": "https://webhook-tester-beryl.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "pdf-forge",
+      "url": "https://pdf-forge-five.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "json-schema-validator",
+      "url": "https://json-schema-validator.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "curl2code",
+      "url": "https://curl2code.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "url-forge",
+      "url": "https://url-forge.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "universe-hub",
+      "url": "https://universe-hub.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "llm-token-lens",
+      "url": "https://llm-token-lens.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "base64-pro",
+      "url": "https://base64-pro.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    },
+    {
+      "slug": "sql-query-formatter",
+      "url": "https://sql-query-formatter-two.vercel.app",
+      "checkout": true,
+      "health": "healthy"
+    }
+  ]
+}

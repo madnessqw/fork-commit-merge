@@ -1,0 +1,34 @@
+{
+  "cycle": 591,
+  "date": "2026-04-09",
+  "trends": [
+    "AI-first dev tools (Cursor, Claude Code)",
+    "Workflow automation (n8n)",
+    "Observability (OpenTelemetry)",
+    "Feature flags infrastructure"
+  ],
+  "portfolio_gaps": [
+    "API Mock Server",
+    "Env/Secret Manager",
+    "Markdown Pro / Docs Generator"
+  ],
+  "chosen_product": {
+    "name": "MockForge",
+    "slug": "mockforge",
+    "tagline": "Instant API Mocks for Frontend Developers",
+    "description": "Create custom mock API endpoints in seconds. Test your frontend without waiting for backend. JSON responses, delay simulation, status codes, and webhook testing.",
+    "price": "$19",
+    "evidence": "Every frontend dev needs mock APIs. Postman mock servers are complex. JSON Server needs local setup. MockForge = instant cloud mock endpoints with UI.",
+    "competitors": [
+      {"name": "MockAPI.io", "price": "$9-49/mo"},
+      {"name": "Mocky", "price": "free, limited"},
+      {"name": "Beeceptor", "price": "$10-30/mo"}
+    ],
+    "api_spec": {
+      "endpoint_create": "POST /api/mocks - Create mock endpoint",
+      "endpoint_get": "GET /api/mocks/:id - Get mock response",
+      "endpoint_list": "GET /api/mocks - List all mocks",
+      "endpoint_delete": "DELETE /api/mocks/:id - Delete mock"
+    }
+  }
+}

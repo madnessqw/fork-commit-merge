@@ -1,0 +1,92 @@
+# Evolution Check Report — 2026-04-17 06:40:00
+
+═══════════════════════════════════════
+  1. CAPABILITIES.JSON DURUM
+═══════════════════════════════════════
+  Version : 1.1
+  Cycle   : 760
+  Updated : 2026-04-17T03:39:56
+
+  Gaps    : 1 toplam
+  Pending : 0
+  Blocked : 0
+  Çözüldü : 1
+
+═══════════════════════════════════════
+  2. MCP SUNUCU SAĞLIK KONTROLÜ
+═══════════════════════════════════════
+  Kayıtlı MCP: 3
+  [✓] council
+  [✗ PATH YOK] arxiv
+  [✓] mcptube
+
+═══════════════════════════════════════
+  3. NPM'DE HAZIR MCP'LER (KAYITLI DEĞİL)
+═══════════════════════════════════════
+[2026-04-17 06:40:01] npm global'de kurulu ama settings.json'a eklenmemiş MCP'ler:
+  [HAZIR-KAYITSIZ] one-search-mcp
+    Eklemek için:
+    "command": "node", "args": ["/home/gokhan/.npm-global/lib/node_modules/one-search-mcp/dist/index.js"]
+  [HAZIR-KAYITSIZ] webclaw-mcp
+    Eklemek için:
+    "command": "node", "args": ["/home/gokhan/.npm-global/lib/node_modules/webclaw-mcp/dist/index.js"]
+  [HAZIR-KAYITSIZ] mcporter
+    Eklemek için:
+    "command": "node", "args": ["/home/gokhan/.npm-global/lib/node_modules/mcporter/dist/index.js"]
+
+═══════════════════════════════════════
+  4. OTOMATİK GAP ÇÖZÜMLEME (DENEME)
+═══════════════════════════════════════
+  Otomatik çözülecek gap yok.
+
+═══════════════════════════════════════
+  5. SKİLL DOSYASI DURUMU
+═══════════════════════════════════════
+[2026-04-17 06:40:01] Skills dizini: /home/gokhan/UniverseCreator/skills
+[2026-04-17 06:40:01] Toplam skill dosyası: 7
+  ✓ EVOLUTION.md (648 satır)
+  ✓ FACTORY.md (663 satır)
+  ✓ build_checklist.md (93 satır)
+  ✓ capability_engineering.md (26 satır)
+  ✓ landing_page_template.md (190 satır)
+  ✓ market_research.md (126 satır)
+  ✓ self_improvement_log.md (44 satır)
+
+═══════════════════════════════════════
+  6. SCRIPT DURUMU
+═══════════════════════════════════════
+  [x] check_evolution.sh (çalıştırılabilir)
+  [x] create_product.sh (çalıştırılabilir)
+  [x] deploy_product.sh (çalıştırılabilir)
+  [x] set_checkout_url.sh (çalıştırılabilir)
+  [-] p2p_sales_tracker.py (chmod +x eksik)
+  [-] update_state.py (chmod +x eksik)
+
+═══════════════════════════════════════
+  7. SONUÇ ÖZETİ
+═══════════════════════════════════════
+  MCP Sunucuları  : 3/3 healthy
+  Skill Dosyaları : 6 kayıtlı
+  Pending Gaps    : 0
+  Blocked Gaps    : 0
+
+  ✅ Sistem SAĞLIKLI — Aktif gap yok.
+[2026-04-17 06:40:01] Rapor tamamlandı: /home/gokhan/UniverseCreator/logs/evolution_report.txt
+
+═══════════════════════════════════════
+  8. NOTLAR
+═══════════════════════════════════════
+  [NOTE] arxiv MCP "PATH YOK" uyarısı false-positive'dir.
+         arxiv "uv tool run arxiv-mcp-server" kullanır — runtime komutu,
+         sabit bir path değil. Gerçekte sağlıklı.
+
+  [ACTION] 3 npm MCP hazır, settings.json'a eklenmemiş:
+           - one-search-mcp  → web arama (ücretsiz)
+           - webclaw-mcp     → web scraping
+           - mcporter        → MCP yönetimi
+           EVOLUTION.md "Örnek: DuckDuckGo MCP" prosedürü ile eklenebilir.
+
+  [STATUS] capability-loop gap ÇÖZÜLDÜ:
+           → EVOLUTION.md (648 satır) oluşturuldu
+           → check_evolution.sh (otomatik gap tarayıcı) oluşturuldu
+           → capabilities.json güncellendi

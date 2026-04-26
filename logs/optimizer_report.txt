@@ -1,0 +1,43 @@
+# UniverseCreator Loop Optimizer Report
+Date: 2026-04-17 06:39:33
+
+## Issues Found & Fixed
+
+### 1. main_pane_has_manual_menu() — Missing Patterns
+BEFORE: Pattern list lacked 4 required patterns
+AFTER:  Added all missing patterns to the grep -qiE expression
+
+  + otonom fabrika     (was only matching "Tam otonom fabrika mı?" — too specific)
+  + Şimdi ne           (was only matching "Şimdi ne yap" — too specific)
+  + devam edelim mi    (missing; only had "devam edeyim mi?")
+  + nasıl devam        (completely absent)
+
+### 2. bypass_manual_menu() — Wrong Bypass Command
+BEFORE: "Otonom fabrika modunda çalış. STATE.json oku, bir sonraki görevi bul..."
+AFTER:  "otonom modda devam et, STATE.json oku ve bir sonraki işi yap"
+
+### 3. STALE_COUNTER — Not Implemented
+BEFORE: No stale counter existed
+AFTER:  STALE_COUNTER=0 added as global variable (line 38)
+
+### 4. Watchdog Mid-Cycle Stale / Menu Detection — Not Implemented
+BEFORE: Watchdog only handled session_dead / main_crashed / ok — no mid-cycle idle checks
+AFTER:  Added "Mid-cycle Stale / Menu Detection" block after write_signal "status" "RUNNING":
+        • main_pane_has_manual_menu()  → bypass_manual_menu; STALE_COUNTER=0
+        • main_pane_waiting_for_input() → STALE_COUNTER++
+          - if STALE_COUNTER >= 2 (4+ min idle) → send_prompt + STALE_COUNTER=0
+        • else (processing)            → STALE_COUNTER=0
+        • STALE_COUNTER also reset at each CYCLE_INTERVAL boundary
+
+### 5. PROMPT.txt NO MENU Banner
+STATUS: STRONG ✅
+  - "KRİTİK OTONOM ÇALIŞMA KURALI" box present at top
+  - "ASLA MENÜ GÖSTERME. ASLA SORU SORMA. ASLA ONAY İSTEME." present
+  - "ASLA 'Ne yapmak istersin?' deme." present
+
+## Validation
+  bash -n /home/gokhan/universe_loop.sh → SYNTAX OK ✅
+  Loop PID 31718 still running — NOT restarted (fixes active on next iteration) ✅
+
+## Backup
+  /home/gokhan/universe_loop.sh.bak_optimizer

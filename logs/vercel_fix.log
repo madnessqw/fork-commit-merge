@@ -1,0 +1,385 @@
+[2026-04-19 22:28:44] ==================================================
+[2026-04-19 22:28:44] vercel_fix.py başladı
+[2026-04-19 22:28:44] === Adım 1: Hash URL Normalizasyonu ===
+[2026-04-19 22:28:44] Hash URL bulunamadı veya production URL'ler çalışmıyor.
+[2026-04-19 22:28:44] === Adım 2: 404 Proje Deploy ===
+[2026-04-19 22:31:22] ==================================================
+[2026-04-19 22:31:22] vercel_fix.py başladı
+[2026-04-19 22:31:22] === Adım 1: Hash URL Normalizasyonu ===
+[2026-04-19 22:31:23]   ✅ techstack: hash URL → https://techstack.vercel.app (200)
+[2026-04-19 22:31:23]   ✅ base64-pro: hash URL → https://base64-pro.vercel.app (200)
+[2026-04-19 22:31:23]   ✅ sql-query-formatter: hash URL → https://sql-query-formatter.vercel.app (200)
+[2026-04-19 22:31:24]   ✅ css-to-tailwind: hash URL → https://css-to-tailwind.vercel.app (200)
+[2026-04-19 22:31:24]   ✅ api-compare: hash URL → https://api-compare.vercel.app (200)
+[2026-04-19 22:31:24]   ✅ password-generator-pro: hash URL → https://password-generator-pro.vercel.app (200)
+[2026-04-19 22:31:24]   ✅ text-case-converter: hash URL → https://text-case-converter.vercel.app (200)
+[2026-04-19 22:31:24] STATE.json güncellendi: 7 URL düzeltildi.
+[2026-04-19 22:31:24] === Adım 2: 404 Proje Deploy ===
+[2026-04-19 22:31:24] Deploy edilecek: ['docker-compose-validator', 'hmac-generator-pro', 'jsonpath-tester']
+[2026-04-19 22:31:24]   🚀 docker-compose-validator: vercel --prod çalıştırılıyor...
+[2026-04-19 22:31:50]   ✅ docker-compose-validator: deploy OK → https://docker-compose-validator.vercel.app (200)
+[2026-04-19 22:31:50]   🚀 hmac-generator-pro: vercel --prod çalıştırılıyor...
+[2026-04-19 22:32:14]   ✅ hmac-generator-pro: deploy OK → https://hmac-generator-pro.vercel.app (200)
+[2026-04-19 22:32:14]   🚀 jsonpath-tester: vercel --prod çalıştırılıyor...
+[2026-04-19 22:32:39]   ✅ jsonpath-tester: deploy OK → https://jsonpath-tester.vercel.app (200)
+[2026-04-19 22:32:39] STATE.json deploy sonuçları güncellendi.
+[2026-04-19 22:32:39] === Adım 3: Audit ===
+[2026-04-19 22:32:41] Audit çıktı:
+STATE_SUMMARY.json updated: 53 products, cycle 926, 53 live, 0 protected, 0 bad deploy URLs, 21 checkout gaps
+Audit written: analysis/vercel_audit_cycle_926.json
+HTTP buckets: {200: 53}
+Non-200 products:
+
+[2026-04-19 22:34:00] ==================================================
+[2026-04-19 22:34:00] vercel_fix.py basladi
+[2026-04-19 22:34:00] === Adim 1: Hash URL Normalizasyonu ===
+[2026-04-19 22:34:00] Duzeltilecek hash URL bulunamadi.
+[2026-04-19 22:34:00] === Adim 2: 404 Proje Deploy ===
+[2026-04-19 22:34:00] Deploy edilecek 404 urun yok.
+[2026-04-19 22:34:00] === Adim 3: Audit ===
+[2026-04-19 22:34:02] Audit cikti:
+STATE_SUMMARY.json updated: 53 products, cycle 926, 53 live, 0 protected, 0 bad deploy URLs, 21 checkout gaps
+Audit written: analysis/vercel_audit_cycle_926.json
+HTTP buckets: {200: 53}
+Non-200 products:
+
+[2026-04-19 22:34:07] Telegram bildirimi gonderildi.
+[2026-04-19 22:34:07] vercel_fix.py bitti.
+[2026-04-20 03:00:01] ==================================================
+[2026-04-20 03:00:01] vercel_fix.py basladi
+[2026-04-20 03:00:01] === Adim 1: Canonical Vercel URL Normalizasyonu ===
+[2026-04-20 03:00:01]   WARN secretguard: production URL https://secretguard.vercel.app -> 401, degistirilmedi
+[2026-04-20 03:00:01]   WARN ai-cost-dashboard: production URL https://ai-cost-dashboard.vercel.app -> 404, degistirilmedi
+[2026-04-20 03:00:01]   WARN webhook-tester: production URL https://webhook-tester.vercel.app -> 404, degistirilmedi
+[2026-04-20 03:00:03]   WARN pdf-forge: production URL https://pdf-forge.vercel.app -> 500, degistirilmedi
+[2026-04-20 03:00:04]   WARN diffmaster: production URL https://diffmaster.vercel.app -> 401, degistirilmedi
+[2026-04-20 03:00:04] Duzeltilecek non-canonical URL bulunamadi.
+[2026-04-20 03:00:04] === Adim 2: 404 Proje Deploy ===
+[2026-04-20 03:00:04] Deploy edilecek: ['graphql-query-builder']
+[2026-04-20 03:00:04]   DEPLOY graphql-query-builder: vercel --prod calistiriliyor...
+[2026-04-20 03:00:01] ==================================================
+[2026-04-20 03:00:01] vercel_fix.py basladi
+[2026-04-20 03:00:01] === Adim 1: Canonical Vercel URL Normalizasyonu ===
+[2026-04-20 03:00:01]   WARN secretguard: production URL https://secretguard.vercel.app -> 401, degistirilmedi
+[2026-04-20 03:00:01]   WARN ai-cost-dashboard: production URL https://ai-cost-dashboard.vercel.app -> 404, degistirilmedi
+[2026-04-20 03:00:01]   WARN webhook-tester: production URL https://webhook-tester.vercel.app -> 404, degistirilmedi
+[2026-04-20 03:00:03]   WARN pdf-forge: production URL https://pdf-forge.vercel.app -> 500, degistirilmedi
+[2026-04-20 03:00:04]   WARN diffmaster: production URL https://diffmaster.vercel.app -> 401, degistirilmedi
+[2026-04-20 03:00:04] Duzeltilecek non-canonical URL bulunamadi.
+[2026-04-20 03:00:04] === Adim 2: 404 Proje Deploy ===
+[2026-04-20 03:00:04] Deploy edilecek: ['graphql-query-builder']
+[2026-04-20 03:00:04]   DEPLOY graphql-query-builder: vercel --prod calistiriliyor...
+Traceback (most recent call last):
+  File "/home/gokhan/UniverseCreator/scripts/vercel_fix.py", line 197, in <module>
+    main()
+  File "/home/gokhan/UniverseCreator/scripts/vercel_fix.py", line 176, in main
+    deployed   = deploy_missing_projects()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gokhan/UniverseCreator/scripts/vercel_fix.py", line 136, in deploy_missing_projects
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'vercel'
+[2026-04-20 04:31:36] ==================================================
+[2026-04-20 04:31:36] vercel_fix.py basladi
+[2026-04-20 04:31:36] === Adim 1: Canonical Vercel URL Normalizasyonu ===
+[2026-04-20 04:31:36]   WARN secretguard: production URL https://secretguard.vercel.app -> 401, degistirilmedi
+[2026-04-20 04:31:37]   WARN ai-cost-dashboard: production URL https://ai-cost-dashboard.vercel.app -> 404, degistirilmedi
+[2026-04-20 04:31:37]   WARN webhook-tester: production URL https://webhook-tester.vercel.app -> 404, degistirilmedi
+[2026-04-20 04:31:38]   WARN pdf-forge: production URL https://pdf-forge.vercel.app -> 500, degistirilmedi
+[2026-04-20 04:31:39]   WARN diffmaster: production URL https://diffmaster.vercel.app -> 401, degistirilmedi
+[2026-04-20 04:31:39] Duzeltilecek non-canonical URL bulunamadi.
+[2026-04-20 04:31:39] === Adim 2: 404 Proje Deploy ===
+[2026-04-20 04:31:39] Deploy edilecek: ['graphql-query-builder', 'html-to-markdown-pro', 'table-to-csv', 'csv-to-json-pro']
+[2026-04-20 04:31:39]   DEPLOY graphql-query-builder: vercel --prod calistiriliyor...
+[2026-04-20 04:31:45]   ERR graphql-query-builder: deploy HATA -> uAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/graphql-query-builder --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:31:45]   DEPLOY html-to-markdown-pro: vercel --prod calistiriliyor...
+[2026-04-20 04:31:51]   ERR html-to-markdown-pro: deploy HATA -> DuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/html-to-markdown-pro --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:31:51]   DEPLOY table-to-csv: vercel --prod calistiriliyor...
+[2026-04-20 04:31:58]   ERR table-to-csv: deploy HATA -> 92BEBEcaDuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/table-to-csv --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:31:58]   DEPLOY csv-to-json-pro: vercel --prod calistiriliyor...
+[2026-04-20 04:32:04]   ERR csv-to-json-pro: deploy HATA -> EBEcaDuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/csv-to-json-pro --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:32:04] === Adim 3: Audit ===
+[2026-04-20 04:32:08] Audit cikti:
+ 58 products, cycle 942, 54 live, 0 protected, 4 bad deploy URLs, 5 canonical drifts, 25 checkout gaps
+DEPLOYED catalog updated: products/DEPLOYED.md (58 products)
+Audit written: analysis/vercel_audit_cycle_942.json
+Markdown report written: analysis/vercel_blocked_audit.md
+HTTP buckets: {200: 54, 404: 4}
+Non-200 products:
+- csv-to-json-pro: HTTP 404 — https://csv-to-json-pro.vercel.app
+- graphql-query-builder: HTTP 404 — https://graphql-query-builder.vercel.app
+- html-to-markdown-pro: HTTP 404 — https://html-to-markdown-pro.vercel.app
+- table-to-csv: HTTP 404 — https://table-to-csv.vercel.app
+
+[2026-04-20 04:32:13] Telegram bildirimi gonderildi.
+[2026-04-20 04:32:13] vercel_fix.py bitti.
+[2026-04-20 04:41:18] ==================================================
+[2026-04-20 04:41:18] vercel_fix.py basladi
+[2026-04-20 04:41:18] === Adim 1: Canonical Vercel URL Normalizasyonu ===
+[2026-04-20 04:41:18]   WARN secretguard: production URL https://secretguard.vercel.app -> 401, degistirilmedi
+[2026-04-20 04:41:18]   WARN ai-cost-dashboard: production URL https://ai-cost-dashboard.vercel.app -> 404, degistirilmedi
+[2026-04-20 04:41:18]   WARN webhook-tester: production URL https://webhook-tester.vercel.app -> 404, degistirilmedi
+[2026-04-20 04:41:20]   WARN pdf-forge: production URL https://pdf-forge.vercel.app -> 500, degistirilmedi
+[2026-04-20 04:41:20]   WARN diffmaster: production URL https://diffmaster.vercel.app -> 401, degistirilmedi
+[2026-04-20 04:41:20] Duzeltilecek non-canonical URL bulunamadi.
+[2026-04-20 04:41:20] === Adim 2: 404 Proje Deploy ===
+[2026-04-20 04:41:20] Deploy edilecek: ['graphql-query-builder', 'html-to-markdown-pro', 'table-to-csv', 'csv-to-json-pro']
+[2026-04-20 04:41:20]   DEPLOY graphql-query-builder: vercel --prod calistiriliyor...
+[2026-04-20 04:41:27]   ERR graphql-query-builder: deploy HATA -> uAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/graphql-query-builder --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:41:27]   DEPLOY html-to-markdown-pro: vercel --prod calistiriliyor...
+[2026-04-20 04:41:33]   ERR html-to-markdown-pro: deploy HATA -> DuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/html-to-markdown-pro --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:41:33]   DEPLOY table-to-csv: vercel --prod calistiriliyor...
+[2026-04-20 04:41:39]   ERR table-to-csv: deploy HATA -> 92BEBEcaDuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/table-to-csv --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:41:39]   DEPLOY csv-to-json-pro: vercel --prod calistiriliyor...
+[2026-04-20 04:41:45]   ERR csv-to-json-pro: deploy HATA -> EBEcaDuAoOgCVMLWsW5ifjcMefXGbWFBMGIbUmlLbH72uKAbg --cwd /home/gokhan/UniverseCreator/products/csv-to-json-pro --scope madnessqws-projects",
+      "when": "Run this command with scope (no link)"
+    }
+  ],
+  "hint": "Run one of the commands in next[] to complete without prompting."
+}
+Loading scopes…
+
+[2026-04-20 04:41:45] === Adim 3: Audit ===
+[2026-04-20 04:41:48] Audit cikti:
+ 58 products, cycle 942, 54 live, 0 protected, 4 bad deploy URLs, 5 canonical drifts, 25 checkout gaps
+DEPLOYED catalog updated: products/DEPLOYED.md (58 products)
+Audit written: analysis/vercel_audit_cycle_942.json
+Markdown report written: analysis/vercel_blocked_audit.md
+HTTP buckets: {200: 54, 404: 4}
+Non-200 products:
+- csv-to-json-pro: HTTP 404 — https://csv-to-json-pro.vercel.app
+- graphql-query-builder: HTTP 404 — https://graphql-query-builder.vercel.app
+- html-to-markdown-pro: HTTP 404 — https://html-to-markdown-pro.vercel.app
+- table-to-csv: HTTP 404 — https://table-to-csv.vercel.app
+
+[2026-04-20 04:41:54] Telegram bildirimi gonderildi.
+[2026-04-20 04:41:54] vercel_fix.py bitti.
+[2026-04-20 04:42:55] ==================================================
+[2026-04-20 04:42:55] vercel_fix.py started
+[2026-04-20 04:42:55] Canonical repair targets: ['secretguard', 'ai-cost-dashboard', 'webhook-tester', 'pdf-forge', 'diffmaster']
+[2026-04-20 04:42:56] Deploy repair targets: ['graphql-query-builder', 'html-to-markdown-pro', 'table-to-csv', 'csv-to-json-pro']
+[2026-04-20 04:42:56] Dry run active; audit skipped
+[2026-04-20 04:42:56] Report written: analysis/vercel_fix_report.md
+[2026-04-20 04:42:56] vercel_fix.py finished
+[2026-04-20 04:53:18] ==================================================
+[2026-04-20 04:53:18] vercel_fix.py started
+[2026-04-20 04:53:18] Canonical repair targets: ['secretguard', 'ai-cost-dashboard', 'webhook-tester', 'pdf-forge', 'diffmaster']
+[2026-04-20 04:53:21] Deploy repair targets: ['graphql-query-builder', 'html-to-markdown-pro', 'table-to-csv', 'csv-to-json-pro']
+[2026-04-20 04:57:45] STATE.json saved after Vercel repair pass
+[2026-04-20 04:57:45] # Canonical Vercel URL Sync
+
+- No metadata files needed updates.
+[2026-04-20 04:57:48] Post-fix audit exit=0
+[2026-04-20 04:57:48] audit> STATE_SUMMARY.json updated: 58 products, cycle 943, 57 live, 0 protected, 1 bad deploy URLs, 5 canonical drifts, 25 checkout gaps
+[2026-04-20 04:57:48] audit> DEPLOYED catalog updated: products/DEPLOYED.md (58 products)
+[2026-04-20 04:57:48] audit> Audit written: analysis/vercel_audit_cycle_943.json
+[2026-04-20 04:57:48] audit> Markdown report written: analysis/vercel_blocked_audit.md
+[2026-04-20 04:57:48] audit> HTTP buckets: {200: 57, 404: 1}
+[2026-04-20 04:57:48] audit> Non-200 products:
+[2026-04-20 04:57:48] audit> - html-to-markdown-pro: HTTP 404 — https://html-to-markdown-pro.vercel.app
+[2026-04-20 04:57:48] Report written: analysis/vercel_fix_report.md
+[2026-04-20 04:57:48] vercel_fix.py finished
+[2026-04-20 05:06:07] ==================================================
+[2026-04-20 05:06:07] vercel_fix.py started
+[2026-04-20 05:06:07] Canonical repair targets: ['secretguard', 'ai-cost-dashboard', 'webhook-tester', 'pdf-forge', 'diffmaster']
+[2026-04-20 05:06:09] Deploy repair targets: ['html-to-markdown-pro']
+[2026-04-20 05:06:09] Dry run active; audit skipped
+[2026-04-20 05:06:09] Report written: analysis/vercel_fix_report.md
+[2026-04-20 05:06:09] vercel_fix.py finished
+[2026-04-20 05:36:55] ==================================================
+[2026-04-20 05:36:55] vercel_fix.py started
+[2026-04-20 05:36:55] Canonical repair targets: ['secretguard', 'ai-cost-dashboard', 'webhook-tester', 'pdf-forge', 'diffmaster']
+[2026-04-20 05:36:58] Deploy repair targets: ['html-to-markdown-pro']
+[2026-04-20 05:36:58] Dry run active; audit skipped
+[2026-04-20 05:36:58] Report written: analysis/vercel_fix_report.md
+[2026-04-20 05:36:58] vercel_fix.py finished
+[2026-04-20 05:38:52] ==================================================
+[2026-04-20 05:38:52] vercel_fix.py started
+[2026-04-20 05:38:52] Canonical repair targets: ['secretguard', 'ai-cost-dashboard', 'webhook-tester', 'pdf-forge', 'diffmaster']
+[2026-04-20 05:38:53] Deploy repair targets: ['html-to-markdown-pro']
+[2026-04-20 05:39:59] STATE.json saved after Vercel repair pass
+[2026-04-20 05:39:59] # Canonical Vercel URL Sync
+
+- No metadata files needed updates.
+[2026-04-20 05:40:02] Post-fix audit exit=0
+[2026-04-20 05:40:02] audit> STATE_SUMMARY.json updated: 58 products, cycle 945, 58 live, 0 protected, 0 bad deploy URLs, 5 canonical drifts, 0 checkout gaps
+[2026-04-20 05:40:02] audit> DEPLOYED catalog updated: products/DEPLOYED.md (58 products)
+[2026-04-20 05:40:02] audit> Audit written: analysis/vercel_audit_cycle_945.json
+[2026-04-20 05:40:02] audit> Markdown report written: analysis/vercel_blocked_audit.md
+[2026-04-20 05:40:02] audit> HTTP buckets: {200: 58}
+[2026-04-20 05:40:02] audit> Non-200 products:
+[2026-04-20 05:40:02] Report written: analysis/vercel_fix_report.md
+[2026-04-20 05:40:02] vercel_fix.py finished
+[2026-04-20 05:43:11] ==================================================
+[2026-04-20 05:43:11] vercel_fix.py started
+[2026-04-20 05:43:11] Canonical repair targets: ['secretguard', 'ai-cost-dashboard', 'webhook-tester', 'pdf-forge', 'diffmaster']
+[2026-04-20 05:43:13] Deploy repair targets: none
+[2026-04-20 05:43:13] Dry run active; audit skipped
+[2026-04-20 05:43:13] Report written: analysis/vercel_fix_report.md
+[2026-04-20 05:43:13] analysis/vercel_url_sync.md
+analysis/sorun_analizi.md
+analysis/cozum_planlama.md
+analysis/kullanici_gereksinim.md
+[2026-04-20 05:43:13] vercel_fix.py finished
+Hash URL found: uuid-generator-pro -> https://uuid-generator-l98xk4dvq-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: cron-expression-builder -> https://cron-expression-builder-fy1s0opw0-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: html-entities -> https://html-entities-fk0an3v78-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: css-gradient-studio -> https://css-gradient-studio-qchdd3taj-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: password-strength-checker -> https://password-strength-checker-o6lhayyk7-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: yaml-json-converter -> https://yaml-json-converter-gd3kqth3d-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: id-generator-pro -> https://id-generator-g8gr7daxc-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: uuid-generator -> https://uuid-generator-b3c67q2rr-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: nanoid-generator -> https://nanoid-generator-75cvenpcm-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: keyforge -> https://keyforge-3lj8zc033-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: pdf-forge -> https://pdf-forge-918pffn0y-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: xml-formatter -> https://xml-formatter-4xqfur0tg-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: markdown-previewer -> https://markdown-previewer-mf4qdegye-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: dockerfile-generator -> https://dockerfile-generator-46dilmiq1-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: markdown-previewer-pro -> https://markdown-previewer-awc1vufpu-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: http-load-tester-pro -> https://http-load-tester-64aggndyi-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: image-compressor-pro -> https://image-compressor-e1z29y4g0-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: html2jsx -> https://html2jsx-mmlaaomvd-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: email-validator-pro -> https://email-validator-lzumj1qer-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: mcp-validator -> https://mcp-validator-76hr64079-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: toml-parser -> https://toml-parser-4nke04v24-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: html2markdown -> https://html2markdown-1lr65oypb-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: color-contrast-pro -> https://color-contrast-d8xl589m2-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: markdown-to-pdf -> https://markdown-to-1d2epze3o-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: markdown-table-generator -> https://markdown-table-generator-hmp70qdla-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: terminal-theme-studio -> https://terminal-theme-studio-klvuuadqp-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: ip-network-tools -> https://ip-network-tools-arwxq9u1a-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: chart-studio -> https://chart-studio-5tag4enn2-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: diffmaster -> https://diffmaster-a4ozt18az-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: favicon-generator-pro -> https://favicon-generator-q8xcpv963-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: cron-express -> https://cron-express-1vzejgb5v-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: text-diff-pro -> https://text-diff-c07ahqu10-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: css-shadow-studio -> https://css-shadow-studio-pcz90wrrx-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: lorem-ipsum-pro -> https://lorem-ipsum-bc8xzansf-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: color-palette-extractor -> https://color-palette-extractor-dbzb0zz9u-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: timestamp-converter -> https://timestamp-converter-k2cqva0od-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix
+Hash URL found: jwt-generator -> https://jwt-generator-8wfm19h9w-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: html-entity-encoder -> https://html-entity-encoder-rigo3b8oy-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: timestamp-converter -> https://timestamp-converter-oql54ya5f-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix
+Hash URL found: html-entity-encoder -> https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix
+Hash URL found: html-entity-encoder -> https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix
+Hash URL found: croncraft -> https://croncraft-37cz7b6yo-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: html-entity-encoder -> https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: chmod-calculator -> https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix
+Hash URL found: html-entity-encoder -> https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: chmod-calculator -> https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: nginx-config -> https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix

@@ -1,43 +1,35 @@
-# Kullanıcı Gereksinim Analizi — 2026-04-20 09:50 UTC
+# Kullanici Gereksinim Analizi — 2026-04-26 04:51 UTC
 
-## Manuel Yapılması Gerekenler (Otomate Edilemeyen)
-- **LemonSqueezy identity verification** — Gökhan'ın LemonSqueezy dashboard'da kimlik belgesi yükleyerek identity verification'ı tamamlaması gerekiyor. Bu olmadan:
-  - 65 ürün checkout URL alamaz
-  - Hiçbir ödeme alınamaz
-  - Toplam potansiyel gelir kaybı: 43 live ürün × ortalama $14 = ~$602/ay
-- **Vercel token yenileme** — Mevcut token invalid/expire olmuş. Dashboard'dan yeni Personal Access Token oluşturulmalı ve `VERCEL_TOKEN` env variable olarak güncellenmeli. Bu olmadan:
-  - CLI deploy yapılamıyor
-  - 65 building ürün deploy edilemez
-  - Canonical URL drift düzeltilemez
+## Manuel Yapilmasi Gerekenler (Otomate Edilemeyen)
+
+### Vercel Alias Fix — KRITIK
+- 12 urunun Vercel alias'ini dashboard'dan duzeltmek
+- Device code: MJFC-THWB
+- Active drift (5): croncraft, chmod-calculator, terminal-os, terraink, nginx-config
+- Accepted drift (7): jwt-generator, pdf-forge, webhook-tester, email-validator-pro, diffmaster, html-entity-encoder, timestamp-converter
+
+### Vercel Token Yenileme
+- `vercel_auth_issue=True` durumu duzeltmek icin yeniden auth olunmasi gerekiyor
+- Deploy ve alias islemleri bloke
+
+### Orphan Dizin Karari
+- 117 dizin icinden hangilerinin entegre edileceğine karar verilmeli
+- 15 has_code + 50 has_spec = 65 potansiyel entegre edilebilir
+- 13 dead = silme/adandirma adayi
 
 ## Acil (Gelir Engelliyor)
-1. **LemonSqueezy verification** → Kritik bloker. Kimlik doğrulaması olmadan sıfır gelir.
-2. **Vercel token** → 65 ürün deploy edilemiyor. Deploy olmayan ürün = erişilemez = sıfır trafik.
+1. **Vercel alias fix** — 12 urunun dogru URL'ye yonlenmesi gerekiyor
+2. **$0 revenue** — aktif checkout var ama satış yok. Landing page, pricing, trafik mi?
 
-## Düşük Öncelik (Gelir Etkilemiyor)
-- Checkout URL field standardizasyonu — teknik borç, fonksiyonelliği etkilemiyor
-- 86 boş klasör temizliği — gürültü ama gelir etkisi yok
-- Kategori atama — SEO iyileştirmesi, uzun vadeli
-- webhook-tester canonical URL — HTTP 200 dönüyor, functional sorun yok
+## Dusuk Oncelik (Gelir Etkilemiyor)
+- Orphan dizin archive — 11.5MB waste ama sistemi etkilemiyor
+- spec_ready_count mismatch — 4 urunun STATE'e yansimasi
 
-## Otomasyon Planı (Sonraki Adım)
-
-### Hemen Yapılabilir (Script/Codex ile)
-| Görev | Sorumlu | Dosya |
+## Otomasyon Plani (Sonraki Adim)
+| Gorev | Sorumlu | Durum |
 |-------|---------|-------|
-| STATE.json healthy_count BUG fix | toolsmith | `scripts/audit_portfolio_health.py` |
-| Log rotation scripti | toolsmith | `scripts/log_rotation.sh` |
-| Kategori atama otomasyonu | codex_task | `scripts/auto_categorize.py` |
-| Boş klasör arşivleme | toolsmith | `scripts/archive_empty_products.sh` |
-| Checkout URL field standardizasyonu | codex_task | `scripts/standardize_checkout_fields.py` |
-
-### Kullanıcı Bekleyen (Otomate Edilemeyen)
-| Görev | Etki | Beklenen Süre |
-|-------|------|---------------|
-| LemonSqueezy identity verification | 65 ürün checkout aktif | ~5 dk (belge yükleme) |
-| Vercel token yenileme | 65 ürün deploy aktif | ~2 dk (token oluşturma) |
-
-### codex_task.md'ye Eklenecekler
-1. `auto_categorize.py` — Ürün adı + README'den kategori çıkarımı
-2. `standardize_checkout_fields.py` — Tüm product.json'larda checkout_url standardizasyonu
-3. `batch_update_prices.py` — Kategori bazlı otomatik fiyat önerisi
+| STATE cycle sync | kimi loop | STATE 2 cycle gecersiz, guncelleme mekanizmasi lazim |
+| orphan dedupe | GLM | 117 dizin temizlik plani mevcut |
+| spec_ready_state sync | GLM | disk=4, STATE=0, duzeltilmeli |
+| Vercel alias fix | Gokhan Manuel | device code MJFC-THWB ile dashboard'dan |
+| Vercel token | Gokhan Manuel | yeniden auth gerekli |

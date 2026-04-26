@@ -1,4 +1,4 @@
-# Sorun Analizi — Cycle 1205 | 2026-04-26 07:02 UTC
+# Sorun Analizi — Cycle 1206 | 2026-04-26 07:35 UTC
 
 ## Ana Darboğaz
 - **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
@@ -32,9 +32,8 @@
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **vercel_auth_invalid** [high/blocked] — Vercel CLI auth geçersiz, deployment ve canonical drift fix'leri engelleniyor. Manuel token refresh gerekli.
-- **codex_offline** [medium/waiting] — Codex quota limiti nedeniyle offline (Apr 28 dönüşü bekleniyor). Büyük build/deploy batch'ler ertelendi.
-- **revenue_zero** [critical/stagnant] — 169 live ürün, tam checkout entegrasyonu, ancak 0$ satış. Trafik/CRO analizi gerekli.
+- **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
+- **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.

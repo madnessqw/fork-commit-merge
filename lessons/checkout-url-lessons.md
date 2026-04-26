@@ -290,3 +290,43 @@ git commit -m "lessons: cycle NNNN update — <özet>"
 | API Spec Validator | 168cb04e-7088-496d-89c1-cc0864146c86 | $19 | smoke test |
 | Code Minifier Pro | b5a8b0ea-a19e-44d6-bd28-ad1e5ee36554 | $9 | smoke test |
 | deneme-test | 63d64f8b-2acc-4326-b9d9-467df790f9dd | $1 | smoke test - sil |
+
+---
+
+## 8. Cycle 1201 Güncelleme: Split Shared Checkout URLs
+
+**Tarih:** 2026-04-26
+
+**Buluntu:** 4 ürün çifti aynı Polar checkout linki ve polar_product_id'yi paylaşıyordu (revenue-critical).
+
+| Çift | Base Fiyat | Pro Fiyat | Sorun |
+|---|---|---|---|
+| uuid-generator + uuid-generator-pro | $19 + $9 | Aynı PPID | Fiyat tutarsızlığı |
+| timestamp-converter + timestamp-converter-pro | $19 + $19 | Aynı PPID | Fiyat tutarsızlığı |
+| toml-parser + toml-parser-pro | $9 + $19 | Aynı PPID | Fiyat tutarsızlığı |
+| markdown-previewer + markdown-previewer-pro | $19 + $9 | Aynı PPID | Fiyat tutarsızlığı |
+
+**Çözüm:**
+- Her pro ürün için YENİ Polar product oluşturuldu (ayrı polar_product_id)
+- Her yeni ürün için ayrı checkout link üretildi
+- product.json güncellendi: `polar_product_id` + `checkout_url`
+- Script: `scripts/split_shared_checkouts.py`
+
+**Yeni Polar Product ID'leri:**
+- uuid-generator-pro: `9a1aa62c-b994-4f31-9371-be5240cdda7a` (checkout: `polar_cl_xuPaEIMkM9JdGsEw...`)
+- timestamp-converter-pro: `b933c595-0038-4559-8a50-6073f447e7d5` (checkout: `polar_cl_cUBEBaKkf0gDxq...`)
+- toml-parser-pro: `003034f5-0f0c-420b-ab66-7239f219e1c5` (checkout: `polar_cl_lLbJzJP9xUrqm...`)
+- markdown-previewer-pro: `b7e84dd1-3ece-4d11-999b-2605cdeabf94` (checkout: `polar_cl_xYUTJxl02tqDi...`)
+
+**Price Inversion Düzeltmeleri:**
+- uuid-generator-pro: $9 → $29 (pro artık base'den pahalı)
+- markdown-previewer-pro: $9 → $29 (pro artık base'den pahalı)
+- toml-parser-pro: $19 > $9 ✓ (zaten doğru)
+- timestamp-converter-pro: $19 = $19 ✓ (eşit, kabul edilebilir)
+
+**Polar API Limitasyonu:**
+- OAT ile mevcut Polar ürünün fiyatını PATCH yapılamıyor (404 Not Found endpoint'ler)
+- Yeni fiyat: Polar Dashboard'dan manuel olarak ayarlanmalı (uuid-generator-pro + markdown-previewer-pro → $29)
+- `POST /products/{id}/prices` → 404 (OAT'ta bu endpoint kapalı)
+- `PATCH /prices/{id}` → 404 (OAT'ta bu endpoint kapalı)
+- Çözüm: Fiyatı dashboard'dan değiştir veya yeni product oluştur
