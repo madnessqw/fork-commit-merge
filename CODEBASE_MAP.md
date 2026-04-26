@@ -1,7 +1,7 @@
 # CODEBASE_MAP.md — UniverseCreator
 
 **Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
-Cycle 1209 itibarıyla: 171 aktif, 170 canlı, 170 sağlıklı (%100).
+Cycle 1215 itibarıyla: 177 aktif, 177 canlı, 177 sağlıklı (%100).
 Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
@@ -78,6 +78,7 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `portfolio_report.py` | Portföy rapor üretici |
 | `health_trend.py` | Sağlık trend analizi |
 | `retry_probe.py` | Başarısız health probe'ları yeniden dener |
+| `product_status_timeline.py` | Cycle bazlı ürün durum degisim trendi ve category/status matrix analizi |
 | `vercel_fix.py` | Vercel deploy düzeltme yardımcısı |
 | `bulk_seo_optimize.py` | Toplu SEO optimizasyonu |
 | `optimize_seo.py` | Tekil ürün SEO optimizasyonu |
@@ -172,17 +173,17 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
 
-## 📊 Mevcut Durum (Cycle 1183)
+## 📊 Mevcut Durum (Cycle 1215)
 
 | Metrik | Değer |
 |---|---|
-| Toplam ürün | 169 aktif |
-| Canlı (live) | 169 |
-| Sağlıklı | 169 (%100) |
+| Toplam ürün | 177 aktif |
+| Canlı (live) | 177 |
+| Sağlıklı | 177 (%100) |
 | Unhealthy | 0 |
 | Canonical drift | 0 |
 | Deploy gap | 0 |
 | Spec hazır | 0 |
 | Checkout gap | 0 |
-| Mod | `OPTIMIZE` |
+| Mod | `INNOVATE` |
 | Codex auth | Her iki hesap usage limitinde (Apr 28'e kadar) |
