@@ -220,3 +220,54 @@ def test_compute_forecast_all_sellable():
     assert fc["sellable_count"] == 10
     assert fc["sellable_revenue"] == 190
     assert fc["max_revenue"] == 190
+
+
+def test_compute_forecast_health_status_field():
+    prods = [
+        {"slug": "real-a", "status": "live", "price": 19,
+         "health_status": "healthy",
+         "checkout_url": "https://checkout.polar.sh/real-a"},
+        {"slug": "real-b", "status": "live", "price": 29,
+         "health_status": "healthy",
+         "checkout_url": "https://checkout.polar.sh/real-b"},
+        {"slug": "real-c", "status": "live", "price": 9,
+         "health_status": "unhealthy",
+         "checkout_url": "https://checkout.polar.sh/real-c"},
+    ]
+    fc = compute_forecast(prods)
+    assert fc["live_with_price"] == 3
+    assert fc["healthy_count"] == 2
+    assert fc["sellable_count"] == 2
+    assert fc["sellable_revenue"] == 19 + 29
+
+
+def test_compute_forecast_mixed_health_fields():
+    prods = [
+        {"slug": "legacy", "status": "live", "price": 19,
+         "health": "healthy",
+         "checkout_url": "https://co.sh/legacy"},
+        {"slug": "modern", "status": "live", "price": 29,
+         "health_status": "healthy",
+         "checkout_url": "https://co.sh/modern"},
+    ]
+    fc = compute_forecast(prods)
+    assert fc["sellable_count"] == 2
+    assert fc["sellable_revenue"] == 19 + 29
+
+
+def test_compute_forecast_sellable_with_real_state_format():
+    prods = [
+        {"name": "UUID Generator Pro", "slug": "uuid-generator-pro",
+         "status": "live", "price": "9", "health_status": "healthy",
+         "checkout_url": "https://buy.polar.sh/polar_cl_xxx",
+         "last_health_code": 200, "checkout_status": "active"},
+        {"name": "ColorMine", "slug": "colormine",
+         "status": "live", "price": "29", "health_status": "healthy",
+         "checkout_url": "https://buy.polar.sh/polar_cl_yyy",
+         "last_health_code": 200, "checkout_status": "active"},
+    ]
+    fc = compute_forecast(prods, conversion=0.02)
+    assert fc["sellable_count"] == 2
+    assert fc["sellable_revenue"] == 9 + 29
+    assert fc["estimated_monthly"] == round(38 * 0.02, 2)
+    assert fc["healthy_count"] == 2

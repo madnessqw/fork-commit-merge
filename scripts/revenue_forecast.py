@@ -63,11 +63,11 @@ def compute_forecast(
         if p.get("checkout_url", "").startswith("http")
     ]
 
-    healthy = [p for p in live_with_price if p.get("health") == "healthy"]
+    healthy = [p for p in live_with_price if p.get("health_status") == "healthy" or p.get("health") == "healthy"]
 
     sellable = [
         p for p in checkout_ready
-        if p.get("health") == "healthy" and p.get("checkout_url", "").startswith("http")
+        if (p.get("health_status") == "healthy" or p.get("health") == "healthy") and p.get("checkout_url", "").startswith("http")
     ]
 
     prices = [p["_parsed_price"] for p in live_with_price]
