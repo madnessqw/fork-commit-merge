@@ -1,7 +1,7 @@
 # CODEBASE_MAP.md — UniverseCreator
 
 **Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
-Cycle 1215 itibarıyla: 177 aktif, 177 canlı, 177 sağlıklı (%100).
+Cycle 1226 itibarıyla: 179 aktif, 178 canlı, 178 sağlıklı (%100).
 Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
@@ -95,7 +95,10 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | `ledger_summary.sh` | Run ledger özet raporu |
 | `fix_product_state_gaps.py` | Ürün STATE.json boşluklarını tamir eder |
 | `fix_vercel_protection.sh` | Vercel SSO protection sorunlarını düzeltir |
-| `polar_checkout_sync.py` | Polar checkout URL senkronizasyonu |
+| `vercel_response_monitor.py` | Vercel URL concurrent probe + response analizi |
+| `vercel_auth_monitor.py` | Vercel/Codex auth diagnostic aracı |
+| `codex_cycle_efficiency.py` | Codex cycle summary/repeated/failures/daily analiz |
+| `portfolio_revenue_tracker.py` | Revenue readiness: checkout coverage, price stats, revenue potential |
 
 ---
 
@@ -173,13 +176,13 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 
 ---
 
-## 📊 Mevcut Durum (Cycle 1215)
+## 📊 Mevcut Durum (Cycle 1226)
 
 | Metrik | Değer |
 |---|---|
-| Toplam ürün | 177 aktif |
-| Canlı (live) | 177 |
-| Sağlıklı | 177 (%100) |
+| Toplam ürün | 179 aktif |
+| Canlı (live) | 178 |
+| Sağlıklı | 178 (%100) |
 | Unhealthy | 0 |
 | Canonical drift | 0 |
 | Deploy gap | 0 |
@@ -187,3 +190,4 @@ Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
 | Checkout gap | 0 |
 | Mod | `INNOVATE` |
 | Codex auth | Her iki hesap usage limitinde (Apr 28'e kadar) |
+| Vercel auth issue | true — 6 canonical drift ürün alias eklenmeli |
