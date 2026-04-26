@@ -284,7 +284,7 @@ def main() -> int:
 
         if report["top_tags"]:
             print("\nTop Tags:")
-            for tag, cnt in report["top_tags"]:
+            for tag, cnt in report["top_tags"].items():
                 print(f"  {tag:20s}: {cnt}")
 
         ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)
