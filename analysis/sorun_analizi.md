@@ -1,22 +1,20 @@
-# Sorun Analizi — Cycle 1216 | 2026-04-26 13:36 UTC
+# Sorun Analizi — Cycle 1218 | 2026-04-26 16:55 UTC
 
 ## Ana Darboğaz
-- **checkout_gap** — 1 live/ready_for_payment ürün checkout URL'siz.
+- **canonical_url_drift** — 6 live ürün canonical URL'den sapmış (toplam 13: 6 live + 7 accepted). Vercel auth invalid olduğu için alias/redirect düzeltilemiyor.
+- **STATE.json inconsistency** — canonical_url_drift alanı 0 gösteriyordu, gerçek değer 13. Kimi tarafından düzeltildi.
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 177/177
 - Canonical healthy: 177/177
 - Health pending: 0
 - Fallback healthy: 0
-- Checkout gap: 1
+- Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 6
+- Canonical drift: 13 (6 live + 7 accepted)
 - Spec-ready backlog: 0
 - Accepted canonical drift: 7
-
-## Checkout Eksikleri
-- cli-pipe-viz
 
 ## Canonical Drift Ürünleri
 - `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
