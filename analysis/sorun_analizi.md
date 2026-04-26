@@ -1,38 +1,45 @@
-# Sorun Analizi — Cycle 1191 | 2026-04-26 01:05 UTC
+# Sorun Analizi — Cycle 1192 | 2026-04-26 04:51 UTC
 
-## Ana Bulgular
-- **checkout_gap**: 0 — Polar plan 0 candidates, tüm ürünler checkout'a sahip
-- **canonical_drift**: 12 accepted (Vercel alias düzeltilemiyor — auth invalid)
-- **codex_offline**: Apr 28'e kadar devre dışı
-- **vercel_auth_invalid**: Alias fix için auth gerekiyor
-- **$0 revenue**: Satış henüz başlamadı
+## Ana Darboğaz
+- **vercel_auth_invalid** — Vercel CLI token expired. Alias fix, yeni deploy ve drift düzeltme bloklu.
+- **codex_offline** — Codex account Apr 28'e kadar offline. Major build/deploy yok.
 
-## Canonical Drift Durumu (12 Ürün — Tümü Accepted)
-Vercel auth invalid olduğu için ideal URL'ye alias atanamıyor.
-Bu ürünler canlı çalışıyor, sadece URL ideal formda değil.
+## Summary'den Gelen Gerçekler
+- Healthy live: 169/169
+- Canonical healthy: 169/169
+- Health pending: 0
+- Fallback healthy: 0
+- Checkout gap: 0
+- Deploy readiness gap: 0
+- Deploy/url gap: 0
+- Canonical drift (live): 5
+- Accepted canonical drift: 7
+- Spec-ready backlog: 0
 
-| # | Slug | Mevcut URL | İdeal URL | Durum |
-|---|------|-----------|-----------|-------|
-| 1 | jwt-generator | jwt-generator-rho.vercel.app | jwt-generator.vercel.app | accepted |
-| 2 | pdf-forge | pdf-forge-five.vercel.app | pdf-forge.vercel.app | accepted |
-| 3 | croncraft | quickcron.vercel.app | croncraft.vercel.app | accepted |
-| 4 | webhook-tester | webhook-tester-beryl.vercel.app | webhook-tester.vercel.app | accepted |
-| 5 | email-validator-pro | email-validator-pro-smoky.vercel.app | email-validator-pro.vercel.app | accepted |
-| 6 | diffmaster | diffmaster-coral.vercel.app | diffmaster.vercel.app | accepted |
-| 7 | html-entity-encoder | html-entity-encoder-1p2e2xs77...vercel.app | html-entity-encoder.vercel.app | accepted |
-| 8 | timestamp-converter | timestamp-converter-pro.vercel.app | timestamp-converter.vercel.app | accepted |
-| 9 | chmod-calculator | chmod-calculator-azjwwgvl6...vercel.app | chmod-calculator.vercel.app | accepted |
-| 10 | terminal-os | terminal-os-green.vercel.app | terminal-os.vercel.app | accepted |
-| 11 | terraink | terraink-flax.vercel.app | terraink.vercel.app | accepted |
-| 12 | nginx-config | nginx-config-egj3ho5tp...vercel.app | nginx-config.vercel.app | accepted |
+## Canonical Drift Ürünleri (Live)
+- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
+- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
+- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
+- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
+- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app
+
+## Kabul Edilmiş Canonical Drift
+- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
+- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
+- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
+- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
+- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
+- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
+- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **vercel_auth_invalid** [high/pending] — Alias fix için Vercel CLI auth yenileme gerekiyor
-- **codex_offline** [medium/known] — Apr 28'e kadar devre dışı, GLM/Kimi build modunda
-- **$0_revenue** [high/ongoing] — Checkout tamam, satış/pazarlama stratejisi eksik
+- **vercel_auth_invalid** [high/blocked] — Vercel CLI auth expired. Manuel token refresh gerekli. Bloklayıcı.
+- **codex_offline** [medium/scheduled] — Codex account Apr 28'e kadar pasif. Build/deploy pipeline daralması.
+- **agent_missing** [low/pending] — Toolsmith agent henüz spawn edilmedi. Şu an bloklayıcı değil.
 
 ## Not
-- STATE.json cycle 1191'e güncellendi.
-- Canonical drift önceki raporda 5+7 olarak ayrılmıştı; gerçek durum 12 accepted drift.
-- Drift'lerin tümü `v == ideal_vercel_url` ama `canonical_probe_url != v` şeklinde — probe ideal URL'yi hedefliyor, Vercel deploy farklı URL üretmiş.
+- `state_drift` (eski cycle 759 kaydı) temizlendi — STATE.json şu an cycle 1192 ile senkron.
+- Checkout rollout tamamlandı (0 gap, 165 polar-ok).
+- Gelir $0 — 169 canlı ürün satışa hazır ancak trafik/dönüşüm eksik.
+- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
 - Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
