@@ -1,7 +1,7 @@
-# Sorun Analizi — Cycle 1203 | 2026-04-26 09:03 UTC
+# Sorun Analizi — Cycle 1205 | 2026-04-26 06:52 UTC
 
 ## Ana Darboğaz
-- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; Vercel auth invalid olduğu için alias fix yapılamıyor.
+- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -32,9 +32,14 @@
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **vercel_auth_invalid** [high/blocked] — Token geçersiz, yeni deployment ve alias düzeltme yapılamıyor. Device code: MJFC-THWB
-- **codex_offline** [high/blocked] — Her iki hesap usage limit doldu, Apr 28'e kadar bekleniyor.
+- **vercel_auth_invalid** [high/persistent] — Vercel CLI auth geçersiz, deploy ve alias işlemleri bloke. 3+ döngüde tekrar ediyor.
+- **codex_offline** [medium/waiting] — Rate limit / auth limit nedeniyle Codex offline, Apr 28 dönüşü bekleniyor.
+- **zero_revenue** [high/persistent] — 169 live ürün, Polar checkout aktif, fakat hiç satış yok. Trafik/marketing eksikliği.
+
+## Çözülen / Temizlenen Issues
+- ~~state_drift~~ [resolved] — STATE.json cycle sync düzgün çalışıyor, son 10+ cycle'da drift yok.
+- ~~agent_missing~~ [resolved] — Toolsmith agent kaydı stale, mevcut sistemde aktif ihtiyaç yok.
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
-- Stale issue'lar (state_drift, agent_missing) temizlendi — eski cycle'lardan kalmıştı.
+- Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
