@@ -1,39 +1,39 @@
 # UniverseCreator Analiz Raporu
-**Tarih:** 2026-04-25 21:30 | **Cycle:** 1182
+**Tarih:** 2026-04-26 05:21 | **Cycle:** 1192
 
 ## Codex Durumu
 - Son mode: OPTIMIZE
-- codex_task.md: fresh (27dk önce güncellendi)
-- Codex auth: HER İKİ HESAP usage limitinde (Account 1: blocked until Apr 28, Account 2: also limit)
-- Codex cycle 31'den beri boş — early-skip mekanizması aktif
-- Run ledger: Son 20 cycle 0 fail
+- codex_task.md: fresh (1180s)
+- Son run: basarisiz — her iki hesap usage limitinde (blocked until Apr 28)
+- Auth state: auth_switch_failure, switch_count=89
 
 ## QA Durumu
-- Son QA: YOK (qa_result.md mevcut değil)
+- Son QA: YOK (qa_result.md mevcut degil)
 - Tekrar eden FAIL: yok
 
-## Portföy Özeti
+## Portfoy Ozeti
 - Toplam: 169 | Live: 169 | Healthy: 169 (%100)
 - Deploy gap: 0
-- Checkout gap: 0
-- Canonical drift: 5 aktif + 7 kabul edilmiş
+- Checkout eksik: 0
+- Canonical drift: 5 (+ 7 accepted)
+- Checkout coverage: %100
 
-## GLM Kod Sonucu
-- Commit: f2ae47e — CODEBASE_MAP.md cycle 1182 güncelleme
-- Tüm testler: 857 passed
+## Kritik Oncelikler
+1. **Codex her iki hesap usage limitinde** — Account 1 blocked until Apr 28, Account 2 also blocked. Pro upgrade veya yeni hesap gerekli — insan karari bekleniyor.
+2. **Canonical URL drift:** 5 urunun Vercel URL'si ideal canonical'dan farkli (croncraft, chmod-calculator, terminal-os, terraink, nginx-config) — Vercel deploy fix gerekli
+3. **Researcher sinyal gonderildi** — research_stale reason ile
 
-## Kritik Öncelikler
-1. Codex Pro upgrade gerekli — her iki hesap usage limitinde, Apr 28'e kadar beklemek zorunda
-2. Canonical drift (5 ürün) — Vercel erişimi gerektiriyor, Codex gelince düzeltilecek
+## Arastirma Durumu
+- Son researcher: stale (>3 saat)
+- Researcher sinyali gonderildi: evet (reason=research_stale)
 
-## Araştırma Durumu
-- Researcher sinyali gönderildi (reason: research_stale — 3+ saat)
-- Son araştırma: #30 Ticari İstihbarat & HS Codes (Apr 21)
-- Yeni araştırma fırsatları: Lead Generation (#29), GTIP Tariff (#30)
+## GLM Bu Cycle
+- **Commit:** e9904ab — checkout_url_health.py (Polar checkout URL reachability checker, 15 tests)
+- **Test:** 1098 passed (0 failed)
+- **Script:** `python3 scripts/checkout_url_health.py` ile tum urunlerin checkout sagligi kontrol edilebilir
 
-## Öneriler
-1. Codex Pro upgrade — Apr 28'e kadar bekle veya Pro plana geç
-2. Researcher tetiklendi — yeni ürün fırsatları için araştırma yapılacak
-3. Canonical drift ürünler için Vercel deploy — Codex hesapları yenilendiğinde
-4. Mevcut 169 ürün satış stratejisi — Polar checkout aktif, marketing kanalları açılmalı
-5. Kimi loop aktif ve stabil — OPTIMIZE/EXECUTION modlarında başarıyla çalışıyor
+## Oneriler
+1. Codex Pro upgrade bekleniyor — Apr 28'e kadar GLM/Kimi devam edecek
+2. `checkout_url_health.py --quick` ile periyodik Polar URL saglik kontrolu yapilabilir
+3. 5 canonical drift urunu icin Vercel'de deployment fix — Codex online olunca ilk is
+4. 169 urun %100 saglikli, checkout gap yok — sistem stabil

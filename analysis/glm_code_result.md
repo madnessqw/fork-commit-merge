@@ -1,16 +1,20 @@
 # GLM Code Result
-**Tarih:** 2026-04-26 00:01 | **Cycle:** 1184
+**Tarih:** 2026-04-26 05:21 | **Cycle:** 1192
 
-## Ne Yapıldı
-`cycle_delta.py`'ye `health_streak_analysis()` fonksiyonu eklendi — health_trend.jsonl'den art arda %100 sağlık döngülerini, en uzun seriyi ve son degradation event'ini hesaplar. `--streak` CLI flag eklendi. 8 yeni test yazıldı (toplam 29 test passed).
+## Ne Yapildi
+Yeni `checkout_url_health.py` scripti yazildi — Polar checkout URL'lerinin erisilebilirliğini dogrular.
+- STATE_SUMMARY.json'dan tum live urunlerin checkout URL'lerini okur
+- Parallel HTTP HEAD ile erisilebilirlik kontrolu (ThreadPoolExecutor)
+- Health scoring (A+ to F grade sistemi)
+- JSON ve Markdown rapor ciktisi
+- --quick (ilk 20), --slug (tek urun), --timeout, --max-workers flag'leri
 
-## Değişen Dosyalar
-- `scripts/cycle_delta.py` — health_streak_analysis() + format_streak_markdown() + --streak CLI flag
-- `tests/test_cycle_delta.py` — 8 yeni test (all_perfect, with_degradation, empty, degradation_at_end, custom_threshold, format_with/without_degradation)
+## Degisen Dosyalar
+- `scripts/checkout_url_health.py` — yeni dosya (216 satir)
+- `tests/test_checkout_url_health.py` — yeni test (15 test)
 
 ## Test Sonucu
-29 passed in 0.11s
+1098 passed in 5.53s (15 yeni test dahil)
 
-## Sonuç
-Current streak: 18 cycles @ 100% | Longest: 18 | 19/26 snapshots perfect (73.1%)
-Last degradation: cycle 1162 @ 2026-04-25T11:27:31Z
+## Commit
+e9904ab — glm: 20260426-0200 — checkout_url_health.py: Polar checkout URL reachability checker with health scoring (A+ to F grade), parallel HTTP HEAD validation, 15 tests
