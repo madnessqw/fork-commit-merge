@@ -1,8 +1,7 @@
-# Sorun Analizi — Cycle 1192 | 2026-04-26 04:51 UTC
+# Sorun Analizi — Cycle 1192 | 2026-04-26 02:00 UTC
 
 ## Ana Darboğaz
-- **vercel_auth_invalid** — Vercel CLI token expired. Alias fix, yeni deploy ve drift düzeltme bloklu.
-- **codex_offline** — Codex account Apr 28'e kadar offline. Major build/deploy yok.
+- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -12,11 +11,11 @@
 - Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift (live): 5
-- Accepted canonical drift: 7
+- Canonical drift: 5
 - Spec-ready backlog: 0
+- Accepted canonical drift: 7
 
-## Canonical Drift Ürünleri (Live)
+## Canonical Drift Ürünleri
 - `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
 - `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
 - `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
@@ -33,13 +32,9 @@
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **vercel_auth_invalid** [high/blocked] — Vercel CLI auth expired. Manuel token refresh gerekli. Bloklayıcı.
-- **codex_offline** [medium/scheduled] — Codex account Apr 28'e kadar pasif. Build/deploy pipeline daralması.
-- **agent_missing** [low/pending] — Toolsmith agent henüz spawn edilmedi. Şu an bloklayıcı değil.
+- *Geçmiş cycle'lardan kalma stale issue'lar temizlendi (cycle 1192).* Mevcut açık issue yok.
 
 ## Not
-- `state_drift` (eski cycle 759 kaydı) temizlendi — STATE.json şu an cycle 1192 ile senkron.
-- Checkout rollout tamamlandı (0 gap, 165 polar-ok).
-- Gelir $0 — 169 canlı ürün satışa hazır ancak trafik/dönüşüm eksik.
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
 - Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
+- Canonical drift 12 ürün (5 live + 7 accepted) Vercel alias fix ile çözülecek — auth invalid nedeniyle bloklu.
