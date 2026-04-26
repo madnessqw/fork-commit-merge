@@ -1,7 +1,7 @@
-# Sorun Analizi — Cycle 1201 | 2026-04-26 05:35 UTC
+# Sorun Analizi — Cycle 1203 | 2026-04-26 09:03 UTC
 
 ## Ana Darboğaz
-- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
+- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; Vercel auth invalid olduğu için alias fix yapılamıyor.
 
 ## Summary'den Gelen Gerçekler
 - Healthy live: 169/169
@@ -32,12 +32,9 @@
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **codex_offline** [high/blocked] — Her iki Codex hesabı usage limit doldu, Apr 28'e kadar offline. Canonical drift fix ve yeni deploy bloklu.
-- **vercel_auth_invalid** [high/blocked] — Token geçersiz, device code: MJFC-THWB. Yeni deployment ve alias düzeltme yapılamıyor.
-- **orphan_dirs_98** [medium/open] — 98 orphan product dizini, disk alanı ve organizasyon sorunu.
-- **108_uncategorized** [medium/open] — 108 ürün kategorisiz, category_normalizer ile çözülebilir.
+- **vercel_auth_invalid** [high/blocked] — Token geçersiz, yeni deployment ve alias düzeltme yapılamıyor. Device code: MJFC-THWB
+- **codex_offline** [high/blocked] — Her iki hesap usage limit doldu, Apr 28'e kadar bekleniyor.
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
-- Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
-- Stale issues temizlendi: state_drift (eski cycle verisi), agent_missing (güncel değil).
+- Stale issue'lar (state_drift, agent_missing) temizlendi — eski cycle'lardan kalmıştı.
