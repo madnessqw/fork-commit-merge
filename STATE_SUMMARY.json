@@ -1,5 +1,5 @@
 {
-  "cycle": 1184,
+  "cycle": 1194,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 169,
@@ -12,7 +12,7 @@
   "ready_for_payment_unhealthy_count": 0,
   "checkout_gap_count": 0,
   "deploy_missing_or_bad_url": 0,
-  "canonical_url_drift": 12,
+  "canonical_url_drift": 0,
   "spec_ready_count": 0,
   "deploy_readiness_count": 0,
   "deploy_readiness_manifest_gap_count": 0,
@@ -21,7 +21,7 @@
   "needs_fix_count": 0,
   "next_action": "Codex offline: GLM/Kimi build moduna geçebilir; STATE sync devam",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-25T21:54:12Z",
+  "last_updated": "2026-04-26T02:51:00.000000Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1212,12 +1212,12 @@
     "unhealthy_live": [],
     "pending_health": [],
     "missing_checkout": [],
-    "canonical_url_drift": [{"slug":"jwt-generator","url":"https://jwt-generator-rho.vercel.app"},{"slug":"pdf-forge","url":"https://pdf-forge-five.vercel.app"},{"slug":"croncraft","url":"https://quickcron.vercel.app"},{"slug":"webhook-tester","url":"https://webhook-tester-beryl.vercel.app"},{"slug":"email-validator-pro","url":"https://email-validator-pro-smoky.vercel.app"},{"slug":"diffmaster","url":"https://diffmaster-coral.vercel.app"},{"slug":"html-entity-encoder","url":"https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app"},{"slug":"timestamp-converter","url":"https://timestamp-converter-pro.vercel.app"},{"slug":"chmod-calculator","url":"https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app"},{"slug":"terminal-os","url":"https://terminal-os-green.vercel.app"},{"slug":"terraink","url":"https://terraink-flax.vercel.app"},{"slug":"nginx-config","url":"https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app"}],
+    "canonical_url_drift": [],
     "fallback_healthy": [],
     "ready_for_payment_health": [],
     "deploy_readiness": []
   },
-  "canonical_url_drift_products": [{"slug":"jwt-generator","url":"https://jwt-generator-rho.vercel.app"},{"slug":"pdf-forge","url":"https://pdf-forge-five.vercel.app"},{"slug":"croncraft","url":"https://quickcron.vercel.app"},{"slug":"webhook-tester","url":"https://webhook-tester-beryl.vercel.app"},{"slug":"email-validator-pro","url":"https://email-validator-pro-smoky.vercel.app"},{"slug":"diffmaster","url":"https://diffmaster-coral.vercel.app"},{"slug":"html-entity-encoder","url":"https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app"},{"slug":"timestamp-converter","url":"https://timestamp-converter-pro.vercel.app"},{"slug":"chmod-calculator","url":"https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app"},{"slug":"terminal-os","url":"https://terminal-os-green.vercel.app"},{"slug":"terraink","url":"https://terraink-flax.vercel.app"},{"slug":"nginx-config","url":"https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app"}],
+  "canonical_url_drift_products": [],
   "fallback_healthy_products": [],
   "ready_for_payment_unhealthy_products": []
 }
