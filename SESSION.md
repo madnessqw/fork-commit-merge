@@ -1,28 +1,26 @@
-# SESSION CHECKPOINT — Cycle 1160
-timestamp: 2026-04-25T07:40:00Z
+# SESSION CHECKPOINT — Cycle 1202
+timestamp: 2026-04-26T08:32:00Z
 mode: OPTIMIZE
 products_active: 169
 
-## Sistem Durumu: SAĞLIKLI ✅
-- Live: 168/169
-- Healthy: 168/168 (100%)
-- Checkout gap: 0
-- Canonical drift: 0 (11 ürün alternate_healthy → HTTP 200, preview alias)
+## Durum: SAĞLIKLI SİSTEM
+- checkout_gap_count: 0 (tüm live ürünlerde Polar checkout var)
+- canonical_url_drift: 0 (drift yok)
+- unhealthy_count: 0
+- POLAR_OAT: mevcut
+- VERCEL_TOKEN: mevcut
 
-## Bu Cycle'da Yapılan:
-1. 36 ready_to_deploy ürün deploy edildi (batch deployment)
-2. Yeni ürünler: json-diff-pro, mcp-server-scaffolder, api-mock-server
-3. STATE.json, STATE_SUMMARY.json güncellendi
-4. Commit: 6f26eb0 - "cycle: deploy batch (36 products), canonical health sync, state updates"
+## Shared Checkout Link Sorunu — CYCLE 1201'de ÇÖZÜLDÜ
+4 ürün çifti (uuid-generator/timestamp-converter/toml-parser/markdown-previewer) 
+ayrı Polar checkout link ve polar_product_id aldı. polar_checkout_link_id'ler artık benzersiz.
 
-## Sonraki Cycle Öncelikleri:
-1. 11 alternate_healthy ürünün canonical alias migration (preview→production URL)
-2. cron-expression-tester retry (Vercel rate limit)
-3. 14 ready_for_payment ürün deploy
+## Canonical Drift — ALIAS=MISSING (Non-Critical)
+5 üründe alias=MISSING: croncraft, chmod-calculator, terminal-os, terraink, nginx-config
+canonical_drift_report.py → "0 drift products" döndü — ürünler healthy, drift yok
+Alias missing = ideal URL atanmamış ama sistem çalışıyor
 
-## Son Commit:
-6f26eb0 - cycle: deploy batch (36 products), canonical health sync, state updates
+## Gap Count: 0 — EVOLUTION kurulumu YOK
 
-## Bilinen Sorunlar:
-- Vercel API rate limit: 100 deploy/gün (free tier)
-- 11 ürün alternate_healthy: preview alias kullanıyor, production alias bekliyor
+## NEXT:
+1. Devam eden work yok — sistem sağlıklı
+2. Telegram rapor

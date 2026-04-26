@@ -1,5 +1,5 @@
 {
-  "cycle": 1199,
+  "cycle": 1202,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 169,
@@ -13,22 +13,22 @@
   "checkout_gap_count": 0,
   "deploy_missing_or_bad_url": 0,
   "canonical_url_drift": 0,
-  "spec_ready_count": 4,
+  "spec_ready_count": 0,
   "deploy_readiness_count": 0,
   "deploy_readiness_manifest_gap_count": 0,
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
   "needs_fix_count": 0,
-  "next_action": "Codex offline: GLM/Kimi build moduna geçebilir; STATE sync devam",
+  "next_action": "Codex offline: GLM/Kimi build moduna ge\u00e7ebilir; STATE sync devam",
   "vercel_auth_issue": true,
-  "last_updated": "2026-04-26T04:43:16.507410Z",
+  "last_updated": "2026-04-26T08:32:00.000000Z",
   "products": [
     {
       "n": "UUID Generator Pro",
       "s": "uuid-generator-pro",
       "st": "live",
       "v": "https://uuid-generator-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_LITjFT1XdMD9kD9nw1Gbxr4YV5la5dYdbKY5x1TPXq2"
+      "c": "https://buy.polar.sh/polar_cl_xuPaEIMkM9JdGsEw26I7KURaUTU1JwAM9hDRQ2zFc64"
     },
     {
       "n": "URL Forge",
@@ -49,7 +49,7 @@
       "s": "timestamp-converter-pro",
       "st": "live",
       "v": "https://timestamp-converter-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
+      "c": "https://buy.polar.sh/polar_cl_cUBEBaKkf0gDxqcIfpSCT0Kh1PBFpTPhqhc0p4eRovi"
     },
     {
       "n": "CSS to Tailwind",
@@ -217,7 +217,7 @@
       "s": "toml-parser-pro",
       "st": "live",
       "v": "https://toml-parser-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_LaOVl4Xtiho03vdc1rDVOH30N0lYheGO5iKdc0pqbXR"
+      "c": "https://buy.polar.sh/polar_cl_lLbJzJP9xUrqmpi7tRRzF5Ruht6a1Jj9rrdDn1pfkvs"
     },
     {
       "n": "Nginx Config Generator",
@@ -385,7 +385,7 @@
       "s": "markdown-previewer-pro",
       "st": "live",
       "v": "https://markdown-previewer-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_vYVvtenG7kUyXc68mp0TM9S19GqXsjcXx10XC0hxiFU"
+      "c": "https://buy.polar.sh/polar_cl_xYUTJxl02tqDiyf18bg4yYBsdhKbTBM3jKKJT4ei6ir"
     },
     {
       "n": "HTTP Load Tester Pro",
