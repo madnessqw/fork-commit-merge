@@ -14,7 +14,7 @@
   "vercel_blocked": 0,
   "deploy_missing_or_bad_url": 0,
   "canonical_url_drift": 1,
-  "next_action": "1 canonical URL drift'ini d\u00fczelt; fallback alias'\u0131 ezme",
+  "next_action": "1 canonical URL drift'ini düzelt; fallback alias'ı ezme",
   "canonical_url_drift_products": [
     "commit-message-generator"
   ],
@@ -6794,7 +6794,8 @@
         "health_probe_url": "https://commit-message-generator-gamma.vercel.app",
         "effective_health_url": "https://commit-message-generator-gamma.vercel.app",
         "last_health_url": "https://commit-message-generator-gamma.vercel.app",
-        "last_health_code": 200
+        "last_health_code": 200,
+        "canonical_url_override": "https://commit-message-generator-gamma.vercel.app"
       }
     ],
     "active_count": 170,
@@ -12712,9 +12713,9 @@
   "vercel_auth_issue": false,
   "vercel_auth_error": "Token invalid - vercel login required",
   "hash_url_products": [
-    "pdf-forge",
-    "diffmaster",
-    "secretguard"
+    "html-entity-encoder",
+    "chmod-calculator",
+    "nginx-config"
   ],
   "vercel_auth_device_codes": {
     "pdf_forge": "CKVM-LSSK",
