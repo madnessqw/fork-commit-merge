@@ -1,224 +1,284 @@
+"""Tests for product_field_auditor.py"""
+
+from __future__ import annotations
+
 import json
-import os
-import tempfile
+import pytest
 from pathlib import Path
 from unittest.mock import patch
 
-import pytest
-
 from scripts.product_field_auditor import (
-    REQUIRED_FIELDS,
-    RECOMMENDED_FIELDS,
-    audit_products,
-    fix_products,
-    generate_report,
-    get_all_slugs,
+    audit_slug,
+    find_all_slugs,
     load_product,
-    save_product,
+    run_audit,
+    format_markdown,
+    REQUIRED_FIELDS,
+    URL_FIELDS,
+    VALID_STATUSES,
 )
 
+PRODUCTS_DIR = Path(__file__).resolve().parents[1] / "products"
 
-@pytest.fixture
-def temp_products(tmp_path):
-    products_dir = tmp_path / "products"
-    products_dir.mkdir()
 
-    full_product = {
-        "name": "Full Product",
-        "slug": "full-product",
-        "tagline": "A complete product",
-        "description": "Full description",
-        "price": "9",
-        "features": ["feat1", "feat2"],
+def _make_product(slug: str = "test-product", **overrides) -> dict:
+    base = {
+        "name": "Test Product",
+        "slug": slug,
+        "tagline": "A test product",
+        "description": "Test description",
+        "price": "$29",
+        "features": ["feature1", "feature2"],
         "tech_stack": "Vercel",
         "status": "live",
-        "vercel_url": "https://full-product.vercel.app",
+        "vercel_url": "https://test-product.vercel.app",
+        "github_url": "https://github.com/test/test-product",
         "checkout_url": "https://buy.polar.sh/test",
-        "github_url": "https://github.com/test/full-product",
-        "created_cycle": 100,
-        "deployed_cycle": 110,
-        "seo_optimized": True,
-        "spec_version": "1.0",
-        "payment_provider": "polar",
     }
-
-    minimal_product = {
-        "name": "Minimal",
-        "slug": "minimal-product",
-        "status": "live",
-    }
-
-    empty_fields_product = {
-        "name": "Empty Fields",
-        "slug": "empty-fields",
-        "tagline": "",
-        "description": "",
-        "features": [],
-        "status": "active",
-    }
-
-    for slug, data in [
-        ("full-product", full_product),
-        ("minimal-product", minimal_product),
-        ("empty-fields", empty_fields_product),
-    ]:
-        pdir = products_dir / slug
-        pdir.mkdir()
-        (pdir / "product.json").write_text(json.dumps(data, indent=2))
-
-    return products_dir
+    base.update(overrides)
+    return base
 
 
 class TestLoadProduct:
-    def test_load_existing(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            result = load_product("full-product")
+    def test_load_existing(self, tmp_path):
+        p = tmp_path / "my-prod" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps({"name": "My Prod", "slug": "my-prod"}))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = load_product("my-prod")
         assert result is not None
-        assert result["name"] == "Full Product"
+        assert result["slug"] == "my-prod"
 
-    def test_load_missing(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
+    def test_load_missing(self, tmp_path):
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
             result = load_product("nonexistent")
         assert result is None
 
-    def test_load_invalid_json(self, temp_products):
-        bad_dir = temp_products / "bad-json"
-        bad_dir.mkdir()
-        (bad_dir / "product.json").write_text("{invalid}")
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            result = load_product("bad-json")
+    def test_load_invalid_json(self, tmp_path):
+        p = tmp_path / "bad-prod" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text("{invalid json")
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = load_product("bad-prod")
         assert result is None
 
 
-class TestGetAllSlugs:
-    def test_returns_slugs(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            slugs = get_all_slugs()
-        assert "full-product" in slugs
-        assert "minimal-product" in slugs
-        assert "empty-fields" in slugs
+class TestFindAllSlugs:
+    def test_empty_dir(self, tmp_path):
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            slugs = find_all_slugs()
+        assert slugs == []
 
-    def test_excludes_dirs_without_product_json(self, temp_products):
-        nodir = temp_products / "no-product"
-        nodir.mkdir()
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            slugs = get_all_slugs()
-        assert "no-product" not in slugs
+    def test_finds_products(self, tmp_path):
+        for slug in ["alpha", "beta", "gamma"]:
+            p = tmp_path / slug / "product.json"
+            p.parent.mkdir(parents=True)
+            p.write_text("{}")
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            slugs = find_all_slugs()
+        assert slugs == ["alpha", "beta", "gamma"]
 
-
-class TestAuditProducts:
-    def test_full_product_high_score(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products(["full-product"])
-        score_info = results["product_scores"]["full-product"]
-        assert score_info["score"] >= 90
-        assert len(score_info["missing"]) == 0
-
-    def test_minimal_product_low_score(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products(["minimal-product"])
-        score_info = results["product_scores"]["minimal-product"]
-        assert score_info["score"] < 50
-        assert "tagline" in score_info["missing"]
-        assert "description" in score_info["missing"]
-
-    def test_empty_fields_detected(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products(["empty-fields"])
-        score_info = results["product_scores"]["empty-fields"]
-        assert "tagline" in score_info["empty"]
-        assert "features" in score_info["empty"]
-
-    def test_field_gaps_populated(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products()
-        assert "tagline" in results["field_gaps"]
-        assert "minimal-product" in results["field_gaps"]["tagline"]
-
-    def test_total_count(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products()
-        assert results["total"] == 3
+    def test_ignores_dirs_without_product_json(self, tmp_path):
+        (tmp_path / "nope").mkdir()
+        p = tmp_path / "yes" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text("{}")
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            slugs = find_all_slugs()
+        assert slugs == ["yes"]
 
 
-class TestFixProducts:
-    def test_fix_slug_from_dir(self, temp_products):
-        data = {"name": "Test"}
-        slug_dir = temp_products / "test-slug"
-        slug_dir.mkdir(exist_ok=True)
-        (slug_dir / "product.json").write_text(json.dumps(data))
+class TestAuditSlug:
+    def test_perfect_product(self, tmp_path):
+        data = _make_product()
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert result["score"] == 100
+        assert result["issues"] == []
 
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            result = fix_products(["test-slug"], dry_run=True)
-        assert result["fixed"] == 1
-        assert "test-slug" in result["products"]
+    def test_missing_product_json(self, tmp_path):
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("nonexistent")
+        assert result["score"] == 0
+        assert any(i["problem"] == "missing_or_unreadable" for i in result["issues"])
 
-    def test_fix_status_live_when_vercel_url(self, temp_products):
-        data = {"name": "Test", "vercel_url": "https://test.vercel.app"}
-        slug_dir = temp_products / "auto-status"
-        slug_dir.mkdir(exist_ok=True)
-        (slug_dir / "product.json").write_text(json.dumps(data))
+    def test_missing_required_field(self, tmp_path):
+        data = _make_product()
+        del data["tagline"]
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert result["score"] < 100
+        assert any(i["field"] == "tagline" and i["problem"] == "missing" for i in result["issues"])
 
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            fix_products(["auto-status"], dry_run=False)
-            product = json.loads((slug_dir / "product.json").read_text())
-        assert product["status"] == "live"
+    def test_empty_string_field(self, tmp_path):
+        data = _make_product(description="")
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert any(i["field"] == "description" and i["problem"] == "empty" for i in result["issues"])
 
-    def test_fix_polar_provider(self, temp_products):
-        data = {"name": "Test", "checkout_url": "https://buy.polar.sh/test"}
-        slug_dir = temp_products / "auto-polar"
-        slug_dir.mkdir(exist_ok=True)
-        (slug_dir / "product.json").write_text(json.dumps(data))
+    def test_empty_features_list(self, tmp_path):
+        data = _make_product(features=[])
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert any(i["field"] == "features" and i["problem"] == "empty_list" for i in result["issues"])
 
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            fix_products(["auto-polar"], dry_run=False)
-            product = json.loads((slug_dir / "product.json").read_text())
-        assert product["payment_provider"] == "polar"
+    def test_invalid_url(self, tmp_path):
+        data = _make_product(vercel_url="not-a-url")
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert any(i["field"] == "vercel_url" and i["problem"] == "invalid_url" for i in result["issues"])
 
-    def test_dry_run_no_write(self, temp_products):
-        original = {"name": "Test"}
-        slug_dir = temp_products / "dry-test"
-        slug_dir.mkdir(exist_ok=True)
-        (slug_dir / "product.json").write_text(json.dumps(original))
+    def test_slug_mismatch(self, tmp_path):
+        data = _make_product(slug="wrong-slug")
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert any(i["field"] == "slug" and i["problem"] == "mismatch" for i in result["issues"])
 
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            fix_products(["dry-test"], dry_run=True)
-            product = json.loads((slug_dir / "product.json").read_text())
-        assert "slug" not in product
+    def test_invalid_status(self, tmp_path):
+        data = _make_product(status="bogus")
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert any(i["field"] == "status" and i["problem"] == "invalid_status" for i in result["issues"])
 
-    def test_fix_name_from_slug(self, temp_products):
-        data = {"status": "live"}
-        slug_dir = temp_products / "my-cool-tool"
-        slug_dir.mkdir(exist_ok=True)
-        (slug_dir / "product.json").write_text(json.dumps(data))
+    def test_price_no_digits(self, tmp_path):
+        data = _make_product(price="FREE")
+        p = tmp_path / "test-product" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("test-product")
+        assert any(i["field"] == "price" and i["problem"] == "no_numeric_value" for i in result["issues"])
 
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            fix_products(["my-cool-tool"], dry_run=False)
-            product = json.loads((slug_dir / "product.json").read_text())
-        assert product["name"] == "My Cool Tool"
+    def test_valid_statuses(self, tmp_path):
+        for status in VALID_STATUSES:
+            data = _make_product(status=status)
+            p = tmp_path / f"prod-{status}" / "product.json"
+            p.parent.mkdir(parents=True)
+            p.write_text(json.dumps(data))
+            with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+                result = audit_slug(f"prod-{status}")
+            assert not any(i["field"] == "status" for i in result["issues"]), f"status={status} flagged"
+
+    def test_score_never_negative(self, tmp_path):
+        data = {"slug": "empty"}
+        p = tmp_path / "empty" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            result = audit_slug("empty")
+        assert result["score"] >= 0
 
 
-class TestGenerateReport:
-    def test_report_includes_summary(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products()
-        report = generate_report(results)
-        assert "Product Field Coverage Report" in report
-        assert "Summary" in report
-        assert "Average coverage" in report
+class TestRunAudit:
+    def test_full_portfolio(self, tmp_path):
+        for slug in ["aaa", "bbb"]:
+            data = _make_product(slug=slug)
+            p = tmp_path / slug / "product.json"
+            p.parent.mkdir(parents=True)
+            p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            report = run_audit()
+        assert report["total_products"] == 2
+        assert report["perfect_count"] == 2
+        assert report["average_score"] == 100.0
 
-    def test_report_shows_field_gaps(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products()
-        report = generate_report(results)
-        assert "tagline" in report
+    def test_single_slug(self, tmp_path):
+        data = _make_product(slug="target")
+        p = tmp_path / "target" / "product.json"
+        p.parent.mkdir(parents=True)
+        p.write_text(json.dumps(data))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            report = run_audit("target")
+        assert report["total_products"] == 1
+        assert report["perfect_count"] == 1
 
-    def test_report_shows_lowest_products(self, temp_products):
-        with patch("scripts.product_field_auditor.PRODUCTS_DIR", temp_products):
-            results = audit_products()
-        report = generate_report(results)
-        assert "Lowest Coverage" in report
+    def test_empty_portfolio(self, tmp_path):
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            report = run_audit()
+        assert report["total_products"] == 0
+        assert report["average_score"] == 0
 
-    def test_empty_products(self):
-        report = generate_report({"total": 0, "field_gaps": {}, "product_scores": {}, "empty_fields": {}})
-        assert "No products found" in report
+    def test_mixed_quality(self, tmp_path):
+        good = _make_product(slug="good")
+        bad_data = {"name": "Bad"}
+        for slug, d in [("good", good), ("bad", bad_data)]:
+            p = tmp_path / slug / "product.json"
+            p.parent.mkdir(parents=True)
+            p.write_text(json.dumps(d))
+        with patch("scripts.product_field_auditor.PRODUCTS_DIR", tmp_path):
+            report = run_audit()
+        assert report["perfect_count"] == 1
+        assert len(report["products_with_issues"]) == 1
+        assert report["average_score"] < 100
+
+
+class TestFormatMarkdown:
+    def test_basic_format(self):
+        report = {
+            "timestamp": "2026-04-26T16:00:00Z",
+            "total_products": 5,
+            "perfect_count": 3,
+            "average_score": 85.0,
+            "issue_summary": {"missing": 2},
+            "field_issues": {"tagline": 2},
+            "products_with_issues": [
+                {"slug": "bad-prod", "score": 60, "issues": [{"field": "tagline", "problem": "missing"}]}
+            ],
+        }
+        md = format_markdown(report)
+        assert "# Product Field Audit" in md
+        assert "5" in md
+        assert "bad-prod" in md
+
+    def test_no_issues(self):
+        report = {
+            "timestamp": "2026-04-26T16:00:00Z",
+            "total_products": 3,
+            "perfect_count": 3,
+            "average_score": 100.0,
+            "issue_summary": {},
+            "field_issues": {},
+            "products_with_issues": [],
+        }
+        md = format_markdown(report)
+        assert "3" in md
+        assert "100.0" in md
+
+
+class TestRealPortfolio:
+    def test_audit_all_products(self):
+        if not PRODUCTS_DIR.exists():
+            pytest.skip("No products directory")
+        report = run_audit()
+        assert report["total_products"] > 0
+        assert report["average_score"] >= 0
+
+    def test_audit_specific_slug(self):
+        first_slug = "uuid-generator-pro"
+        p = PRODUCTS_DIR / first_slug / "product.json"
+        if not p.exists():
+            pytest.skip("uuid-generator-pro not found")
+        report = run_audit(first_slug)
+        assert report["total_products"] == 1
+        assert report["products_with_issues"] == [] or report["average_score"] > 50

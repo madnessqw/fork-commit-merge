@@ -1,248 +1,201 @@
 #!/usr/bin/env python3
-"""Product field coverage auditor for UniverseCreator portfolio.
+"""Audit product.json fields across the entire portfolio.
 
-Analyzes product.json files across all products, identifies missing
-or empty required fields, and generates actionable reports.
+Scans all products for missing, empty, or malformed fields.
+Produces a structured JSON report + optional markdown summary.
 
-Modes:
-  audit   — report field coverage gaps (default)
-  fix     — auto-fill fields where possible (slug from dir, status from state)
-  report  — full coverage summary with per-field breakdown
+Usage:
+    python3 scripts/product_field_auditor.py
+    python3 scripts/product_field_auditor.py --markdown
+    python3 scripts/product_field_auditor.py --slug uuid-generator-pro
 """
 
-import argparse
+from __future__ import annotations
+
 import json
-import os
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+PRODUCTS_DIR = ROOT / "products"
+OUTPUT_FILE = ROOT / "analysis" / "product_field_audit.json"
 
 REQUIRED_FIELDS = [
-    "name",
-    "slug",
-    "tagline",
-    "description",
-    "price",
-    "features",
-    "tech_stack",
-    "status",
-    "vercel_url",
-    "checkout_url",
+    "name", "slug", "tagline", "description", "price", "features",
+    "tech_stack", "status", "vercel_url", "github_url", "checkout_url",
 ]
 
-RECOMMENDED_FIELDS = [
-    "github_url",
-    "created_cycle",
-    "deployed_cycle",
-    "seo_optimized",
-    "spec_version",
-    "payment_provider",
+URL_FIELDS = ["vercel_url", "github_url", "checkout_url"]
+
+OPTIONAL_FIELDS = [
+    "seo_optimized", "seo_optimized_at", "spec_version",
+    "payment_provider", "polar_product_id", "polar_product_price_id",
+    "polar_checkout_link_id", "created_cycle", "deployed_cycle",
 ]
 
-PRODUCTS_DIR = Path(__file__).resolve().parent.parent / "products"
+VALID_STATUSES = {"live", "building", "pending", "archived", "draft"}
 
 
-def load_product(slug: str) -> dict | None:
-    path = PRODUCTS_DIR / slug / "product.json"
-    if not path.is_file():
+def load_product(slug: str) -> dict[str, Any] | None:
+    p = PRODUCTS_DIR / slug / "product.json"
+    if not p.exists():
         return None
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError):
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError):
         return None
 
 
-def save_product(slug: str, data: dict) -> None:
-    path = PRODUCTS_DIR / slug / "product.json"
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-
-def get_all_slugs() -> list[str]:
-    if not PRODUCTS_DIR.is_dir():
+def find_all_slugs() -> list[str]:
+    if not PRODUCTS_DIR.exists():
         return []
     return sorted(
-        d
-        for d in os.listdir(PRODUCTS_DIR)
-        if (PRODUCTS_DIR / d).is_dir() and (PRODUCTS_DIR / d / "product.json").is_file()
+        d.name for d in PRODUCTS_DIR.iterdir()
+        if d.is_dir() and (d / "product.json").exists()
     )
 
 
-def audit_products(slugs: list[str] | None = None) -> dict:
-    target = slugs or get_all_slugs()
-    results = {
-        "total": len(target),
-        "field_gaps": {},
-        "product_scores": {},
-        "empty_fields": {},
+def audit_slug(slug: str) -> dict[str, Any]:
+    result: dict[str, Any] = {"slug": slug, "issues": [], "score": 100}
+    data = load_product(slug)
+
+    if data is None:
+        result["issues"].append({"field": "product.json", "problem": "missing_or_unreadable"})
+        result["score"] = 0
+        return result
+
+    for field in REQUIRED_FIELDS:
+        val = data.get(field)
+        if val is None:
+            result["issues"].append({"field": field, "problem": "missing"})
+            result["score"] -= 8
+        elif isinstance(val, str) and not val.strip():
+            result["issues"].append({"field": field, "problem": "empty"})
+            result["score"] -= 5
+        elif field == "features" and isinstance(val, list) and len(val) == 0:
+            result["issues"].append({"field": field, "problem": "empty_list"})
+            result["score"] -= 5
+
+    for field in URL_FIELDS:
+        val = data.get(field, "")
+        if isinstance(val, str) and val and not val.startswith("http"):
+            result["issues"].append({"field": field, "problem": "invalid_url", "value": val})
+            result["score"] -= 5
+
+    status = data.get("status", "")
+    if status and status not in VALID_STATUSES:
+        result["issues"].append({"field": "status", "problem": "invalid_status", "value": status})
+        result["score"] -= 5
+
+    slug_match = data.get("slug", "")
+    if slug_match != slug:
+        result["issues"].append({"field": "slug", "problem": "mismatch", "expected": slug, "actual": slug_match})
+        result["score"] -= 10
+
+    price = data.get("price", "")
+    if isinstance(price, str) and price and not any(c.isdigit() for c in price):
+        result["issues"].append({"field": "price", "problem": "no_numeric_value", "value": price})
+        result["score"] -= 3
+
+    result["score"] = max(result["score"], 0)
+    return result
+
+
+def run_audit(target_slug: str | None = None) -> dict[str, Any]:
+    slugs = [target_slug] if target_slug else find_all_slugs()
+    results = []
+    for slug in slugs:
+        results.append(audit_slug(slug))
+
+    total = len(results)
+    issue_counts = Counter()
+    field_issue_counts: dict[str, int] = Counter()
+    scores = []
+
+    for r in results:
+        scores.append(r["score"])
+        for issue in r["issues"]:
+            issue_counts[issue["problem"]] += 1
+            field_issue_counts[issue["field"]] += 1
+
+    perfect = sum(1 for s in scores if s == 100)
+    avg_score = round(sum(scores) / total, 1) if total else 0
+
+    report = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "total_products": total,
+        "perfect_count": perfect,
+        "average_score": avg_score,
+        "issue_summary": dict(issue_counts.most_common(10)),
+        "field_issues": dict(field_issue_counts.most_common(10)),
+        "products_with_issues": [r for r in results if r["issues"]],
+        "all_results": results if total <= 20 else [r for r in results if r["issues"]],
     }
-
-    for slug in target:
-        product = load_product(slug)
-        if product is None:
-            results["product_scores"][slug] = {"score": 0, "missing": REQUIRED_FIELDS + RECOMMENDED_FIELDS}
-            continue
-
-        missing_required = []
-        missing_recommended = []
-        empty_values = []
-
-        all_fields = REQUIRED_FIELDS + RECOMMENDED_FIELDS
-        for field in all_fields:
-            val = product.get(field)
-            if val is None:
-                if field in REQUIRED_FIELDS:
-                    missing_required.append(field)
-                else:
-                    missing_recommended.append(field)
-                results["field_gaps"].setdefault(field, []).append(slug)
-            elif isinstance(val, str) and not val.strip():
-                empty_values.append(field)
-                results["empty_fields"].setdefault(field, []).append(slug)
-            elif isinstance(val, list) and len(val) == 0:
-                empty_values.append(field)
-                results["empty_fields"].setdefault(field, []).append(slug)
-
-        total = len(all_fields)
-        filled = total - len(missing_required) - len(missing_recommended) - len(empty_values)
-        score = round(filled / total * 100, 1) if total > 0 else 0
-
-        results["product_scores"][slug] = {
-            "score": score,
-            "missing": missing_required + missing_recommended,
-            "empty": empty_values,
-        }
-
-    return results
+    return report
 
 
-def fix_products(slugs: list[str] | None = None, dry_run: bool = False) -> dict:
-    target = slugs or get_all_slugs()
-    fixes_applied = {}
+def format_markdown(report: dict[str, Any]) -> str:
+    lines = [
+        f"# Product Field Audit",
+        f"**Date:** {report['timestamp'][:16]}",
+        f"**Products:** {report['total_products']} | **Perfect:** {report['perfect_count']} | **Avg Score:** {report['average_score']}",
+        "",
+    ]
 
-    for slug in target:
-        product = load_product(slug)
-        if product is None:
-            continue
-
-        changed = False
-
-        if not product.get("slug"):
-            product["slug"] = slug
-            changed = True
-
-        if not product.get("status"):
-            if product.get("vercel_url"):
-                product["status"] = "live"
-                changed = True
-            else:
-                product["status"] = "active"
-                changed = True
-
-        if not product.get("spec_version"):
-            product["spec_version"] = "1.0"
-            changed = True
-
-        if not product.get("payment_provider"):
-            if product.get("checkout_url", "").startswith("https://buy.polar.sh"):
-                product["payment_provider"] = "polar"
-                changed = True
-
-        if not product.get("name"):
-            product["name"] = slug.replace("-", " ").title()
-            changed = True
-
-        if changed:
-            fixes_applied[slug] = list(set(
-                k for k, v in product.items()
-                if k in {"slug", "status", "spec_version", "payment_provider", "name"} and v
-            ))
-            if not dry_run:
-                save_product(slug, product)
-
-    return {"fixed": len(fixes_applied), "dry_run": dry_run, "products": fixes_applied}
-
-
-def generate_report(results: dict) -> str:
-    lines = []
-    lines.append(f"# Product Field Coverage Report")
-    lines.append(f"**Generated:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    lines.append(f"**Products:** {results['total']}")
-    lines.append("")
-
-    scores = results["product_scores"]
-    if not scores:
-        return "\n".join(lines) + "\n_No products found._\n"
-
-    avg_score = sum(s["score"] for s in scores.values()) / len(scores) if scores else 0
-    low_score = {k: v for k, v in scores.items() if v["score"] < 50}
-    high_score = {k: v for k, v in scores.items() if v["score"] >= 90}
-
-    lines.append(f"## Summary")
-    lines.append(f"- Average coverage: **{avg_score:.1f}%**")
-    lines.append(f"- High coverage (>=90%): **{len(high_score)}** products")
-    lines.append(f"- Low coverage (<50%): **{len(low_score)}** products")
-    lines.append("")
-
-    lines.append("## Field Gaps (Missing)")
-    for field, slugs in sorted(results["field_gaps"].items(), key=lambda x: -len(x[1])):
-        pct = len(slugs) / results["total"] * 100
-        marker = "🔴" if pct > 40 else "🟡" if pct > 15 else "🟢"
-        lines.append(f"- {marker} `{field}`: {len(slugs)}/{results['total']} ({pct:.0f}%)")
-        if len(slugs) <= 5:
-            for s in slugs:
-                lines.append(f"  - {s}")
-    lines.append("")
-
-    if results["empty_fields"]:
-        lines.append("## Empty Fields (Present but empty)")
-        for field, slugs in sorted(results["empty_fields"].items(), key=lambda x: -len(x[1])):
-            lines.append(f"- `{field}`: {len(slugs)} products")
+    if report["issue_summary"]:
+        lines.append("## Issue Summary")
+        for problem, count in report["issue_summary"].items():
+            lines.append(f"- `{problem}`: {count} products")
         lines.append("")
 
-    lines.append("## Lowest Coverage Products")
-    for slug, info in sorted(scores.items(), key=lambda x: x[1]["score"])[:10]:
-        lines.append(f"- `{slug}`: {info['score']}% — missing: {', '.join(info['missing'][:5])}")
-    lines.append("")
+    if report["field_issues"]:
+        lines.append("## Field Issues")
+        for field, count in report["field_issues"].items():
+            lines.append(f"- `{field}`: {count} issues")
+        lines.append("")
+
+    if report["products_with_issues"]:
+        lines.append("## Products with Issues")
+        for r in report["products_with_issues"][:30]:
+            issues_str = ", ".join(f"{i['field']}:{i['problem']}" for i in r["issues"])
+            lines.append(f"- **{r['slug']}** (score {r['score']}): {issues_str}")
 
     return "\n".join(lines)
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Product field coverage auditor")
-    parser.add_argument("mode", nargs="?", default="audit", choices=["audit", "fix", "report"])
-    parser.add_argument("--slug", action="append", help="Specific product slug(s)")
-    parser.add_argument("--dry-run", action="store_true", help="Preview fixes without writing")
-    parser.add_argument("--json", action="store_true", help="Output as JSON")
-    args = parser.parse_args()
+def main() -> None:
+    args = sys.argv[1:]
+    target_slug = None
+    markdown_mode = False
 
-    slugs = args.slug or None
-
-    if args.mode == "audit":
-        results = audit_products(slugs)
-        if args.json:
-            print(json.dumps(results, indent=2))
+    i = 0
+    while i < len(args):
+        if args[i] == "--slug" and i + 1 < len(args):
+            target_slug = args[i + 1]
+            i += 2
+        elif args[i] == "--markdown":
+            markdown_mode = True
+            i += 1
         else:
-            print(generate_report(results))
+            i += 1
 
-    elif args.mode == "fix":
-        results = fix_products(slugs, dry_run=args.dry_run)
-        if args.json:
-            print(json.dumps(results, indent=2))
-        else:
-            dr = " (dry-run)" if args.dry_run else ""
-            print(f"Fixed {results['fixed']} products{dr}")
-            for slug, fields in results["products"].items():
-                print(f"  {slug}: {', '.join(fields)}")
+    report = run_audit(target_slug)
 
-    elif args.mode == "report":
-        results = audit_products(slugs)
-        report = generate_report(results)
-        report_path = Path(__file__).resolve().parent.parent / "analysis" / "field_coverage_report.md"
-        report_path.parent.mkdir(parents=True, exist_ok=True)
-        report_path.write_text(report, encoding="utf-8")
-        print(f"Report written to {report_path}")
-        if args.json:
-            print(json.dumps(results, indent=2))
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_FILE.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    if markdown_mode:
+        print(format_markdown(report))
+    else:
+        perfect = report["perfect_count"]
+        total = report["total_products"]
+        avg = report["average_score"]
+        issues = len(report["products_with_issues"])
+        print(f"Audit: {perfect}/{total} perfect | avg score: {avg} | {issues} with issues")
+        print(f"Report: {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
