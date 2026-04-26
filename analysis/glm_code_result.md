@@ -1,16 +1,18 @@
 # GLM Code Result
-**Tarih:** 2026-04-26 17:00 | **Cycle:** 1209
+**Tarih:** 2026-04-26 16:27 | **Cycle:** 1215
 
 ## Ne Yapildi
-product_tag_analyzer.py report modunda ValueError hatasi fix edildi — top_tags dict uzerinde .items() eksikti.
-CODEBASE_MAP.md sayilari guncellendi (169 → 171 aktif, 170 live, 170 healthy).
+- product_status_timeline.py: cycle bazli urun durum degisim trendi ve category/status matrix analiz scripti
+- test_product_status_timeline.py: 18 test (status snapshot, category matrix, checkout readiness, ledger summary, recent cycles, format output, edge cases)
+- CODEBASE_MAP.md guncellendi: 177 urun, cycle 1215, INNOVATE modu
 
 ## Degisen Dosyalar
-- `scripts/product_tag_analyzer.py` — report["top_tags"] iterasyonuna .items() eklendi (satir 287)
-- `CODEBASE_MAP.md` — cycle 1183 → 1209, urun sayilari guncellendi
+- scripts/product_status_timeline.py — yeni script (cycle bazli trend, category matrix, checkout readiness)
+- tests/test_product_status_timeline.py — 18 test
+- CODEBASE_MAP.md — urun sayisi ve durum tablosu guncellendi
 
 ## Test Sonucu
-33 passed (test_product_tag_analyzer.py)
+18/18 passed (0.12s) — tum testler basarili
 
 ## Commit
-glm: 20260426-1700 — fix product_tag_analyzer report ValueError + update CODEBASE_MAP counts
+911d1325 — glm: 20260426-2230 — add product_status_timeline.py + 18 tests, update CODEBASE_MAP

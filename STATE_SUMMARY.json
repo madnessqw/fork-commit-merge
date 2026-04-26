@@ -1,16 +1,16 @@
 {
-  "cycle": 1212,
-  "mode": "OPTIMIZE",
+  "cycle": 1216,
+  "mode": "INNOVATE",
   "balance": 0.0,
-  "active_count": 171,
-  "live_count": 171,
-  "healthy_count": 171,
-  "canonical_healthy_count": 171,
+  "active_count": 181,
+  "live_count": 177,
+  "healthy_count": 177,
+  "canonical_healthy_count": 177,
   "fallback_healthy_count": 0,
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 0,
-  "checkout_gap_count": 0,
+  "checkout_gap_count": 1,
   "deploy_missing_or_bad_url": 0,
   "canonical_url_drift": 0,
   "spec_ready_count": 0,
@@ -21,7 +21,7 @@
   "needs_fix_count": 0,
   "next_action": "1 canonical URL drift'ini düzelt; fallback alias'ı ezme",
   "vercel_auth_issue": false,
-  "last_updated": "2026-04-26T11:30:36.322246Z",
+  "last_updated": "2026-04-26T13:36:42.715101Z",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1219,13 +1219,85 @@
       "st": "live",
       "v": "https://pr-review-agent.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_j8yBGNWv6pwqxXXfiS5Tswtck2A8JnzUO3psX4Uj1o4"
+    },
+    {
+      "n": "HTML Validator Pro",
+      "s": "html-validator-pro",
+      "st": "live",
+      "v": "https://html-validator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_JZ2C5xSutNPqibg6HGiPkeYoxnm8tHMF12j5N00YXoD"
+    },
+    {
+      "n": "Regex Library Pro",
+      "s": "regex-library-pro",
+      "st": "live",
+      "v": "https://regex-library-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_yPucVWXGMfS2AHO49eBMncwauvBpBhYvm4Qzk39w4tI"
+    },
+    {
+      "n": "JSON Schema Generator",
+      "s": "json-schema-generator",
+      "st": "live",
+      "v": "https://json-schema-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_9eJ89VFYV1ZJUUquwzgP8a4s1GqT01gFXy1Zd0KmTrG"
+    },
+    {
+      "n": "DNS Lookup Pro",
+      "s": "dns-lookup-pro",
+      "st": "live",
+      "v": "https://dns-lookup-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_ZhKLL5D01MS5fpJCeMOv9oSFww5gHCTW57v1i219OAI"
+    },
+    {
+      "n": "Workflow Chain Builder",
+      "s": "workflow-chain-builder",
+      "st": "live",
+      "v": "https://workflow-chain-builder.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_v84QNSXDphSdozspwP2dP9rKTmLAOC67A2q6D3Re640"
+    },
+    {
+      "n": "MCP Marketplace",
+      "s": "mcp-marketplace",
+      "st": "live",
+      "v": "https://mcp-marketplace.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_SwvVyQD7WIAwL3NS4oyQiHSARBa6DAcZJUj4I0B91TZ"
+    },
+    {
+      "n": "CLI Pipe Viz",
+      "s": "cli-pipe-viz",
+      "st": "ready_for_payment",
+      "v": "https://cli-pipe-viz.vercel.app",
+      "c": null
+    },
+    {
+      "n": "Cron Health Checker",
+      "s": "cron-health-checker",
+      "st": "building",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Process Monitor CLI",
+      "s": "process-monitor-cli",
+      "st": "building",
+      "v": null,
+      "c": null
+    },
+    {
+      "n": "Secret Rotator",
+      "s": "secret-rotator",
+      "st": "building",
+      "v": null,
+      "c": null
     }
   ],
   "gaps": {
     "missing_url": [],
     "unhealthy_live": [],
     "pending_health": [],
-    "missing_checkout": [],
+    "missing_checkout": [
+      "cli-pipe-viz"
+    ],
     "canonical_url_drift": [],
     "fallback_healthy": [],
     "ready_for_payment_health": [],

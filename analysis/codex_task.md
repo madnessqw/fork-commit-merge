@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-26 13:00 UTC
+# Codex Task — Generated 2026-04-26 13:36 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -6,17 +6,17 @@ Bu görev dosyası live `STATE.json` → `STATE_SUMMARY.json` üzerinden üretil
 stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyileştirmesi seçilir.
 
 ## Aktif Görev
-**Canonical URL drift düzeltmesi**
+**Checkout alan standardizasyonu**
 
-Live ürünlerin public URL'si ile ideal canonical URL'sini aynı tut. Önce health pipeline'ını ve summary sync'ini doğrula; alias/redirect farkını manuel Vercel fix gibi saklamaya çalışma.
+Checkout metadata okumayı tek kanala indir. `checkout_url`, eski legacy alias'ları güvenli biçimde normalize eden utility/script yaz veya mevcut akışı düzelt. Production checkout URL'lerini uydurma.
 
 ## Canlı State Özeti
-- Cycle: 1215
+- Cycle: 1216
 - Live sağlık: 177/177 (%100.0)
 - Canonical healthy: 177/177 (%100.0)
 - Health pending: 0
 - Fallback healthy: 0
-- Checkout gap: 0
+- Checkout gap: 1
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
 - Canonical drift: 6
