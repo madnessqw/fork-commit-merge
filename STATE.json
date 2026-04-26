@@ -1,19 +1,19 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-26T14:10:31.881672+00:00",
-  "cycle": 1219,
-  "message": "kimi cycle 1219: checkout 1 gap closed (pr-review-agent product.json aligned with Polar checkout), system 177/177 healthy, canonical drift 13 (6 live + 7 accepted), codex offline until Apr 28, vercel auth invalid, $0 revenue",
+  "timestamp": "2026-04-26T14:21:46.325687+00:00",
+  "cycle": 1220,
+  "message": "kimi cycle 1220: STATE drift fix (live_count 349->177, healthy_count 351->177, vercel_auth_issue true, canonical drift 6 accepted 6), checkout 0 gaps, system 177/177 healthy, codex offline until Apr 28, vercel auth invalid, $0 revenue",
   "balance": 0.0,
   "mode": "INNOVATE",
   "active_count": 181,
-  "live_count": 349,
-  "healthy_count": 351,
+  "live_count": 177,
+  "healthy_count": 177,
   "needs_fix_count": 0,
   "unhealthy_count": 0,
   "missing_checkout": 0,
   "vercel_blocked": 0,
   "deploy_missing_or_bad_url": 0,
-  "canonical_url_drift": 13,
+  "canonical_url_drift": 6,
   "next_action": "Vercel auth düzeltildiğinde 6 live canonical drift için alias ekle; drift ürünler: croncraft, chmod-calculator, terminal-os, terraink, nginx-config, commit-message-generator",
   "canonical_url_drift_products": [
     "croncraft",
@@ -25,7 +25,7 @@
   ],
   "vercel_auth_blocked_products": [],
   "notes": "Cycle 1218. Kimi cycle 1218: checkout 0 gaps verified (sync=0 changed=0), system 177/177 healthy, canonical drift 13 (6 live + 7 accepted), codex offline until Apr 28, vercel auth invalid, orphan dirs 0, $0 revenue, GLM active: test coverage expansion.",
-  "last_updated": "2026-04-26T14:10:31.881672+00:00",
+  "last_updated": "2026-04-26T14:21:46.325687+00:00",
   "products": {
     "active": [
       {
@@ -13211,7 +13211,7 @@
     "ready_to_deploy": []
   },
   "last_sync": "2026-04-25T05:30:00Z",
-  "vercel_auth_issue": false,
+  "vercel_auth_issue": true,
   "vercel_auth_error": "Token invalid - vercel login required",
   "hash_url_products": [
     "html-entity-encoder",
@@ -13273,9 +13273,11 @@
   "last_cycle": "2026-04-26T17:00:00Z",
   "accepted_canonical_drift": [
     "chmod-calculator",
+    "commit-message-generator",
+    "croncraft",
+    "nginx-config",
     "terminal-os",
-    "terraink",
-    "nginx-config"
+    "terraink"
   ],
   "canonical_drift": 0,
   "accepted_drift": 12,
