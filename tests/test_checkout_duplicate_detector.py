@@ -1,203 +1,209 @@
-"""Tests for scripts.checkout_duplicate_detector"""
-
 import json
-import sys
-from pathlib import Path
-
 import pytest
-
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
+from pathlib import Path
+from unittest.mock import patch
 from scripts.checkout_duplicate_detector import (
-    cleanup_suggestions,
     detect_duplicates,
     duplicate_summary,
+    cleanup_suggestions,
     _slug_of,
     _checkout_of,
     _status_of,
+    _url_of,
     _is_better_candidate,
 )
 
 
-def _make_summary(products):
-    return {"products": products}
+def _make_product(slug="test-slug", checkout="https://buy.polar.sh/abc",
+                  status="live", url="https://test-slug.vercel.app",
+                  **extra):
+    p = {"s": slug, "c": checkout, "st": status, "v": url}
+    p.update(extra)
+    return p
 
 
-def _make_product(slug, checkout="https://buy.polar.sh/abc123", status="live", url=""):
-    if not url:
-        url = f"https://{slug}.vercel.app"
-    return {"s": slug, "c": checkout, "st": status, "v": url}
+def _write_summary(tmp_path, products):
+    summary = {"products": products}
+    p = tmp_path / "STATE_SUMMARY.json"
+    p.write_text(json.dumps(summary), encoding="utf-8")
+    return p
 
 
-@pytest.fixture
-def tmp_summary(tmp_path):
-    def _write(products):
-        p = tmp_path / "summary.json"
-        p.write_text(json.dumps(_make_summary(products)), encoding="utf-8")
-        return p
-    return _write
+class TestHelperFunctions:
+    def test_slug_of_prefers_s(self):
+        assert _slug_of({"s": "a", "slug": "b"}) == "a"
 
+    def test_slug_of_fallback_slug(self):
+        assert _slug_of({"slug": "b"}) == "b"
 
-class TestSlugOf:
-    def test_prefers_s_key(self):
-        assert _slug_of({"s": "my-slug", "slug": "other", "n": "Name"}) == "my-slug"
+    def test_slug_of_fallback_name(self):
+        assert _slug_of({"n": "My Product"}) == "My Product"
 
-    def test_falls_back_to_slug(self):
-        assert _slug_of({"slug": "other", "n": "Name"}) == "other"
-
-    def test_falls_back_to_n(self):
-        assert _slug_of({"n": "Name"}) == "Name"
-
-    def test_unknown_when_empty(self):
+    def test_slug_of_unknown(self):
         assert _slug_of({}) == "unknown"
 
+    def test_checkout_of_prefers_c(self):
+        assert _checkout_of({"c": "https://a", "checkout_url": "https://b"}) == "https://a"
 
-class TestCheckoutOf:
-    def test_prefers_c_key(self):
-        assert _checkout_of({"c": "https://buy.polar.sh/abc", "checkout_url": "other"}) == "https://buy.polar.sh/abc"
-
-    def test_returns_empty_for_missing(self):
+    def test_checkout_of_empty(self):
         assert _checkout_of({}) == ""
 
+    def test_status_of_prefers_st(self):
+        assert _status_of({"st": "live", "status": "pending"}) == "live"
 
-class TestStatusOf:
-    def test_prefers_st_key(self):
-        assert _status_of({"st": "live", "status": "building"}) == "live"
+    def test_status_of_empty(self):
+        assert _status_of({}) == ""
+
+    def test_url_of_prefers_v(self):
+        assert _url_of({"v": "https://a", "vercel_url": "https://b"}) == "https://a"
+
+    def test_url_of_empty(self):
+        assert _url_of({}) == ""
 
 
 class TestDetectDuplicates:
-    def test_no_duplicates(self, tmp_summary):
-        p = tmp_summary([
-            _make_product("slug-a", checkout="https://buy.polar.sh/a"),
-            _make_product("slug-b", checkout="https://buy.polar.sh/b"),
+    def test_no_duplicates(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout="https://buy.polar.sh/1"),
+            _make_product(slug="b", checkout="https://buy.polar.sh/2"),
         ])
-        result = detect_duplicates(p)
-        assert result == []
+        assert detect_duplicates(p) == []
 
-    def test_single_duplicate_pair(self, tmp_summary):
-        checkout = "https://buy.polar.sh/shared"
-        p = tmp_summary([
-            _make_product("slug-a", checkout=checkout),
-            _make_product("slug-b", checkout=checkout),
+    def test_single_duplicate_group(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout="https://buy.polar.sh/shared"),
+            _make_product(slug="b", checkout="https://buy.polar.sh/shared"),
         ])
-        result = detect_duplicates(p)
-        assert len(result) == 1
-        assert result[0]["count"] == 2
-        slugs = {e["slug"] for e in result[0]["products"]}
-        assert slugs == {"slug-a", "slug-b"}
+        dupes = detect_duplicates(p)
+        assert len(dupes) == 1
+        assert dupes[0]["count"] == 2
+        slugs = {e["slug"] for e in dupes[0]["products"]}
+        assert slugs == {"a", "b"}
 
-    def test_multiple_groups(self, tmp_summary):
-        co1 = "https://buy.polar.sh/group1"
-        co2 = "https://buy.polar.sh/group2"
-        p = tmp_summary([
-            _make_product("a1", checkout=co1),
-            _make_product("a2", checkout=co1),
-            _make_product("b1", checkout=co2),
-            _make_product("b2", checkout=co2),
-            _make_product("b3", checkout=co2),
-            _make_product("c1", checkout="https://buy.polar.sh/unique"),
+    def test_multiple_groups_sorted_by_count(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a1", checkout="https://buy.polar.sh/g1"),
+            _make_product(slug="a2", checkout="https://buy.polar.sh/g1"),
+            _make_product(slug="b1", checkout="https://buy.polar.sh/g2"),
+            _make_product(slug="b2", checkout="https://buy.polar.sh/g2"),
+            _make_product(slug="b3", checkout="https://buy.polar.sh/g2"),
         ])
-        result = detect_duplicates(p)
-        assert len(result) == 2
-        counts = sorted(g["count"] for g in result)
-        assert counts == [2, 3]
+        dupes = detect_duplicates(p)
+        assert len(dupes) == 2
+        assert dupes[0]["count"] == 3
+        assert dupes[1]["count"] == 2
 
-    def test_skips_non_http_checkout(self, tmp_summary):
-        p = tmp_summary([
-            {"s": "no-co", "c": "", "st": "live"},
-            {"s": "bad-co", "c": "not-a-url", "st": "live"},
+    def test_skips_non_http_checkout(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout=""),
+            _make_product(slug="b", checkout="not-a-url"),
         ])
-        result = detect_duplicates(p)
-        assert result == []
+        assert detect_duplicates(p) == []
 
-    def test_handles_missing_file(self, tmp_path):
-        result = detect_duplicates(tmp_path / "nonexistent.json")
-        assert result == []
+    def test_skips_non_dict_products(self, tmp_path):
+        p = _write_summary(tmp_path, ["not_a_dict", 42])
+        assert detect_duplicates(p) == []
 
-    def test_handles_invalid_json(self, tmp_path):
-        bad = tmp_path / "bad.json"
-        bad.write_text("not json", encoding="utf-8")
-        result = detect_duplicates(bad)
-        assert result == []
+    def test_missing_file(self, tmp_path):
+        assert detect_duplicates(tmp_path / "nonexistent.json") == []
 
-    def test_handles_non_list_products(self, tmp_summary):
-        p = tmp_summary([])
-        raw = json.loads(p.read_text())
-        raw["products"] = "not a list"
-        p.write_text(json.dumps(raw), encoding="utf-8")
-        result = detect_duplicates(p)
-        assert result == []
+    def test_invalid_json(self, tmp_path):
+        bad = tmp_path / "STATE_SUMMARY.json"
+        bad.write_text("NOT JSON", encoding="utf-8")
+        assert detect_duplicates(bad) == []
+
+    def test_no_products_key(self, tmp_path):
+        p = tmp_path / "STATE_SUMMARY.json"
+        p.write_text(json.dumps({"other": "data"}), encoding="utf-8")
+        assert detect_duplicates(p) == []
+
+    def test_products_not_list(self, tmp_path):
+        p = tmp_path / "STATE_SUMMARY.json"
+        p.write_text(json.dumps({"products": "not_list"}), encoding="utf-8")
+        assert detect_duplicates(p) == []
 
 
 class TestDuplicateSummary:
-    def test_summary_fields(self, tmp_summary):
-        co = "https://buy.polar.sh/shared"
-        p = tmp_summary([
-            _make_product("a", checkout=co),
-            _make_product("b", checkout=co),
-            _make_product("c", checkout="https://buy.polar.sh/unique"),
+    def test_summary_structure(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout="https://buy.polar.sh/s"),
+            _make_product(slug="b", checkout="https://buy.polar.sh/s"),
+            _make_product(slug="c", checkout="https://buy.polar.sh/other"),
         ])
-        result = duplicate_summary(p)
-        assert result["duplicate_groups"] == 1
-        assert result["total_affected_products"] == 2
-        assert result["redundant_products"] == 1
-        assert "a" in result["slugs"]
-        assert "b" in result["slugs"]
+        s = duplicate_summary(p)
+        assert s["duplicate_groups"] == 1
+        assert s["total_affected_products"] == 2
+        assert s["redundant_products"] == 1
+        assert "a" in s["slugs"]
+        assert "b" in s["slugs"]
 
-    def test_no_duplicates_summary(self, tmp_summary):
-        p = tmp_summary([
-            _make_product("a", checkout="https://buy.polar.sh/a"),
-            _make_product("b", checkout="https://buy.polar.sh/b"),
+    def test_no_duplicates_summary(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout="https://buy.polar.sh/1"),
         ])
-        result = duplicate_summary(p)
-        assert result["duplicate_groups"] == 0
-        assert result["total_affected_products"] == 0
-        assert result["redundant_products"] == 0
-
-
-class TestIsBetterCandidate:
-    def test_canonical_url_beats_non_canonical(self):
-        c = {"slug": "my-tool", "url": "https://my-tool.vercel.app", "status": "building"}
-        cur = {"slug": "my-tool-alt", "url": "https://my-tool-alt-git.vercel.app", "status": "live"}
-        assert _is_better_candidate(c, cur) is True
-
-    def test_live_beats_non_live(self):
-        c = {"slug": "a", "url": "https://a-suffix.vercel.app", "status": "live"}
-        cur = {"slug": "b", "url": "https://b-suffix.vercel.app", "status": "building"}
-        assert _is_better_candidate(c, cur) is True
-
-    def test_alphabetical_tiebreak(self):
-        c = {"slug": "alpha", "url": "https://alpha-suffix.vercel.app", "status": "live"}
-        cur = {"slug": "beta", "url": "https://beta-suffix.vercel.app", "status": "live"}
-        assert _is_better_candidate(c, cur) is True
+        s = duplicate_summary(p)
+        assert s["duplicate_groups"] == 0
+        assert s["total_affected_products"] == 0
+        assert s["redundant_products"] == 0
 
 
 class TestCleanupSuggestions:
-    def test_suggests_canonical_slug(self, tmp_summary):
-        co = "https://buy.polar.sh/shared"
-        p = tmp_summary([
-            _make_product("uuid-generator-pro", checkout=co, url="https://uuid-generator-pro.vercel.app"),
-            _make_product("uuid-generator", checkout=co, url="https://uuid-generator-git.vercel.app"),
+    def test_keep_canonical_url(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="foo", checkout="https://buy.polar.sh/s",
+                          url="https://foo.vercel.app"),
+            _make_product(slug="foo-alt", checkout="https://buy.polar.sh/s",
+                          url="https://foo-alt-random.vercel.app"),
         ])
-        result = cleanup_suggestions(p)
-        assert len(result) == 1
-        assert result[0]["keep_slug"] == "uuid-generator-pro"
-        assert "uuid-generator" in result[0]["remove_slugs"]
+        suggestions = cleanup_suggestions(p)
+        assert len(suggestions) == 1
+        assert suggestions[0]["keep_slug"] == "foo"
+        assert "foo-alt" in suggestions[0]["remove_slugs"]
 
-    def test_live_preferred_when_no_canonical(self, tmp_summary):
-        co = "https://buy.polar.sh/shared"
-        p = tmp_summary([
-            _make_product("tool-a", checkout=co, status="building", url="https://tool-a-git.vercel.app"),
-            _make_product("tool-b", checkout=co, status="live", url="https://tool-b-git.vercel.app"),
+    def test_keep_live_status(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout="https://buy.polar.sh/s",
+                          url="https://a-random.vercel.app", status="pending"),
+            _make_product(slug="b", checkout="https://buy.polar.sh/s",
+                          url="https://b-random.vercel.app", status="live"),
         ])
-        result = cleanup_suggestions(p)
-        assert result[0]["keep_slug"] == "tool-b"
+        suggestions = cleanup_suggestions(p)
+        assert suggestions[0]["keep_slug"] == "b"
 
-    def test_no_suggestions_when_no_duplicates(self, tmp_summary):
-        p = tmp_summary([
-            _make_product("a", checkout="https://buy.polar.sh/a"),
+    def test_tiebreak_alphabetical(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="zebra", checkout="https://buy.polar.sh/s",
+                          url="https://z-random.vercel.app", status="live"),
+            _make_product(slug="alpha", checkout="https://buy.polar.sh/s",
+                          url="https://a-random.vercel.app", status="live"),
         ])
-        result = cleanup_suggestions(p)
-        assert result == []
+        suggestions = cleanup_suggestions(p)
+        assert suggestions[0]["keep_slug"] == "alpha"
+
+    def test_no_suggestions_for_singletons(self, tmp_path):
+        p = _write_summary(tmp_path, [
+            _make_product(slug="a", checkout="https://buy.polar.sh/1"),
+        ])
+        assert cleanup_suggestions(p) == []
+
+
+class TestIsBetterCandidate:
+    def test_canonical_beats_noncanonical(self):
+        c = {"slug": "x", "url": "https://x.vercel.app", "status": "live"}
+        cu = {"slug": "y", "url": "https://y-other.vercel.app", "status": "live"}
+        assert _is_better_candidate(c, cu) is True
+
+    def test_noncanonical_loses_to_canonical(self):
+        c = {"slug": "x", "url": "https://x-other.vercel.app", "status": "live"}
+        cu = {"slug": "y", "url": "https://y.vercel.app", "status": "live"}
+        assert _is_better_candidate(c, cu) is False
+
+    def test_live_beats_nonlive(self):
+        c = {"slug": "x", "url": "https://x-other.vercel.app", "status": "live"}
+        cu = {"slug": "y", "url": "https://y-other.vercel.app", "status": "pending"}
+        assert _is_better_candidate(c, cu) is True
+
+    def test_alphabetical_tiebreak(self):
+        c = {"slug": "aaa", "url": "https://aaa-other.vercel.app", "status": "live"}
+        cu = {"slug": "zzz", "url": "https://zzz-other.vercel.app", "status": "live"}
+        assert _is_better_candidate(c, cu) is True
