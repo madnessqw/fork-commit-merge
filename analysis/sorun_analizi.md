@@ -1,28 +1,30 @@
-# Sorun Analizi — Cycle 1208 | 2026-04-26 08:02 UTC
+# Sorun Analizi — Cycle 1216 | 2026-04-26 13:36 UTC
 
 ## Ana Darboğaz
-- **vercel_auth_invalid** — 10+ cycle'dır tekrarlanıyor. Deploy yapılamıyor, canonical drift düzeltilemiyor.
-- **codex_offline** — Her iki account da limit aşımında. Apr 28'e kadar offline.
+- **checkout_gap** — 1 live/ready_for_payment ürün checkout URL'siz.
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 169/169
-- Canonical healthy: 169/169
+- Healthy live: 177/177
+- Canonical healthy: 177/177
 - Health pending: 0
 - Fallback healthy: 0
-- Checkout gap: 0
+- Checkout gap: 1
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 5 live + 7 accepted
+- Canonical drift: 6
 - Spec-ready backlog: 0
-- Orphan dirs: 0
-- Revenue: $0
+- Accepted canonical drift: 7
 
-## Canonical Drift Ürünleri (Live — Düzeltilmesi Gereken)
+## Checkout Eksikleri
+- cli-pipe-viz
+
+## Canonical Drift Ürünleri
 - `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
 - `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
 - `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
 - `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
 - `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app
+- `commit-message-generator` — current=https://commit-message-generator-gamma.vercel.app ideal=https://commit-message-generator.vercel.app
 
 ## Kabul Edilmiş Canonical Drift
 - `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
@@ -34,13 +36,8 @@
 - `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
 
 ## Açık Issue Kayıtları
-- **vercel_auth_invalid** [critical/open] — Vercel token expired/invalid. Deploy ve alias fix engelleniyor. Manuel token refresh gerekiyor.
-- **codex_offline** [high/open] — Both accounts rate limited until Apr 28. No builder available.
-- **zero_revenue** [medium/open] — Checkout infrastructure complete (169/169 Polar) but $0 sales. Traffic/conversion issue suspected.
-
-## Çözülen Issue'lar (Eski Kayıtlar Temizlendi)
-- ~~state_drift~~ — STATE.json cycle 1208'e sync edildi. Eski cycle 759 kaydı artık geçerli değil.
-- ~~agent_missing~~ — Toolsmith agent kaydı eski, mevcut sistemde bu agent rolü Claude subagent'ları tarafından karşılanıyor.
+- **state_drift** [high/in_progress] — STATE.json cycle 759, loop log cycle 28, capture files only cycle 9 - critical state sync drift
+- **agent_missing** [high/in_progress] — Toolsmith agent not spawned despite capability gap identified
 
 ## Not
 - Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
