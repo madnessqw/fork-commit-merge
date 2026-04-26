@@ -1,43 +1,38 @@
-# Sorun Analizi — Cycle 1190 | 2026-04-26 02:55 UTC
+# Sorun Analizi — Cycle 1191 | 2026-04-26 01:05 UTC
 
-## Ana Darboğaz
-- **canonical_url_drift** — 5 live ürün canonical URL'den sapmış; ilk örnek `croncraft` (https://quickcron.vercel.app → https://croncraft.vercel.app).
-- **$0 revenue** — 169 live ürün, aktif checkout, ama satış yok.
+## Ana Bulgular
+- **checkout_gap**: 0 — Polar plan 0 candidates, tüm ürünler checkout'a sahip
+- **canonical_drift**: 12 accepted (Vercel alias düzeltilemiyor — auth invalid)
+- **codex_offline**: Apr 28'e kadar devre dışı
+- **vercel_auth_invalid**: Alias fix için auth gerekiyor
+- **$0 revenue**: Satış henüz başlamadı
 
-## Summary'den Gelen Gerçekler
-- Healthy live: 169/169
-- Canonical healthy: 169/169
-- Health pending: 0
-- Fallback healthy: 0
-- Checkout gap: 0
-- Deploy readiness gap: 0
-- Deploy/url gap: 0
-- Canonical drift: 5 live + 7 accepted
-- Spec-ready backlog: 0
+## Canonical Drift Durumu (12 Ürün — Tümü Accepted)
+Vercel auth invalid olduğu için ideal URL'ye alias atanamıyor.
+Bu ürünler canlı çalışıyor, sadece URL ideal formda değil.
 
-## Canonical Drift Ürünleri (Live)
-- `croncraft` — current=https://quickcron.vercel.app ideal=https://croncraft.vercel.app
-- `chmod-calculator` — current=https://chmod-calculator-azjwwgvl6-madnessqws-projects.vercel.app ideal=https://chmod-calculator.vercel.app
-- `terminal-os` — current=https://terminal-os-green.vercel.app ideal=https://terminal-os.vercel.app
-- `terraink` — current=https://terraink-flax.vercel.app ideal=https://terraink.vercel.app
-- `nginx-config` — current=https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app ideal=https://nginx-config.vercel.app
-
-## Kabul Edilmiş Canonical Drift
-- `jwt-generator` — current=https://jwt-generator-rho.vercel.app ideal=https://jwt-generator.vercel.app
-- `pdf-forge` — current=https://pdf-forge-five.vercel.app ideal=https://pdf-forge.vercel.app
-- `webhook-tester` — current=https://webhook-tester-beryl.vercel.app ideal=https://webhook-tester.vercel.app
-- `email-validator-pro` — current=https://email-validator-pro-smoky.vercel.app ideal=https://email-validator-pro.vercel.app
-- `diffmaster` — current=https://diffmaster-coral.vercel.app ideal=https://diffmaster.vercel.app
-- `html-entity-encoder` — current=https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app ideal=https://html-entity-encoder.vercel.app
-- `timestamp-converter` — current=https://timestamp-converter-pro.vercel.app ideal=https://timestamp-converter.vercel.app
+| # | Slug | Mevcut URL | İdeal URL | Durum |
+|---|------|-----------|-----------|-------|
+| 1 | jwt-generator | jwt-generator-rho.vercel.app | jwt-generator.vercel.app | accepted |
+| 2 | pdf-forge | pdf-forge-five.vercel.app | pdf-forge.vercel.app | accepted |
+| 3 | croncraft | quickcron.vercel.app | croncraft.vercel.app | accepted |
+| 4 | webhook-tester | webhook-tester-beryl.vercel.app | webhook-tester.vercel.app | accepted |
+| 5 | email-validator-pro | email-validator-pro-smoky.vercel.app | email-validator-pro.vercel.app | accepted |
+| 6 | diffmaster | diffmaster-coral.vercel.app | diffmaster.vercel.app | accepted |
+| 7 | html-entity-encoder | html-entity-encoder-1p2e2xs77...vercel.app | html-entity-encoder.vercel.app | accepted |
+| 8 | timestamp-converter | timestamp-converter-pro.vercel.app | timestamp-converter.vercel.app | accepted |
+| 9 | chmod-calculator | chmod-calculator-azjwwgvl6...vercel.app | chmod-calculator.vercel.app | accepted |
+| 10 | terminal-os | terminal-os-green.vercel.app | terminal-os.vercel.app | accepted |
+| 11 | terraink | terraink-flax.vercel.app | terraink.vercel.app | accepted |
+| 12 | nginx-config | nginx-config-egj3ho5tp...vercel.app | nginx-config.vercel.app | accepted |
 
 ## Açık Issue Kayıtları
-- **codex_offline** [high/waiting] — Both accounts usage limit hit, Apr 28'e kadar offline. Yeni büyük build'ler bloklu.
-- **vercel_auth_invalid** [high/waiting] — Auth token geçersiz, yeni deploy ve alias fix yapılamıyor. Manuel intervention gerekli.
-- **revenue_zero** [critical/ongoing] — 169 live ürün + aktif checkout var ama satış yok. SEO/trafik kanalları aktive edilmeli.
-- **researcher_signal** [medium/stale] — `.signals/researcher_needed` hâlâ işlenmemiş. deploy_gap=0, spec_ready=0.
-- **orphan_folders** [low/identified] — GLM slug_consistency_checker.py taramasıyla 98 orphan folder tespit edildi.
+- **vercel_auth_invalid** [high/pending] — Alias fix için Vercel CLI auth yenileme gerekiyor
+- **codex_offline** [medium/known] — Apr 28'e kadar devre dışı, GLM/Kimi build modunda
+- **$0_revenue** [high/ongoing] — Checkout tamam, satış/pazarlama stratejisi eksik
 
 ## Not
-- Bu dosya live `STATE.json` → `STATE_SUMMARY.json` ve unresolved issue kayıtlarından üretildi.
+- STATE.json cycle 1191'e güncellendi.
+- Canonical drift önceki raporda 5+7 olarak ayrılmıştı; gerçek durum 12 accepted drift.
+- Drift'lerin tümü `v == ideal_vercel_url` ama `canonical_probe_url != v` şeklinde — probe ideal URL'yi hedefliyor, Vercel deploy farklı URL üretmiş.
 - Manuel ödeme/auth gerektiren adımlar rapora kodla çözülmüş gibi yazılmamalı.
