@@ -1,12 +1,12 @@
 {
-  "cycle": 1207,
+  "cycle": 1209,
   "mode": "OPTIMIZE",
   "balance": 0.0,
-  "active_count": 169,
-  "live_count": 169,
-  "healthy_count": 169,
+  "active_count": 170,
+  "live_count": 170,
+  "healthy_count": 170,
   "canonical_healthy_count": 169,
-  "fallback_healthy_count": 0,
+  "fallback_healthy_count": 1,
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 0,
@@ -18,10 +18,10 @@
   "deploy_readiness_manifest_gap_count": 0,
   "deploy_readiness_url_gap_count": 0,
   "deploy_readiness_state_gap_count": 0,
-  "needs_fix_count": 0,
-  "next_action": "Vercel auth refresh gerekli, Codex Apr 28 donus bekleniyor, canonical drift icin Pro plan degerlendir",
-  "vercel_auth_issue": true,
-  "last_updated": "2026-04-26T08:00:14.252198Z",
+  "needs_fix_count": 1,
+  "next_action": "1 canonical URL drift'ini d\u00fczelt; fallback alias'\u0131 ezme",
+  "vercel_auth_issue": false,
+  "last_updated": "2026-04-26T09:03:26.310541+00:00",
   "products": [
     {
       "n": "UUID Generator Pro",
@@ -1205,6 +1205,13 @@
       "st": "live",
       "v": "https://docker-compose-builder.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg"
+    },
+    {
+      "n": "commit-message-generator",
+      "s": "commit-message-generator",
+      "st": "live",
+      "v": "https://commit-message-generator-gamma.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_LdNF3aL3BbYGULiwADFDyrlxd9jUk84LowzYE023zdx"
     }
   ],
   "gaps": {
@@ -1212,12 +1219,38 @@
     "unhealthy_live": [],
     "pending_health": [],
     "missing_checkout": [],
-    "canonical_url_drift": [],
-    "fallback_healthy": [],
+    "canonical_url_drift": [
+      {
+        "slug": "commit-message-generator",
+        "url": "https://commit-message-generator-gamma.vercel.app",
+        "ideal_url": "https://commit-message-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://commit-message-generator-gamma.vercel.app",
+        "canonical_url": "https://commit-message-generator.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      }
+    ],
+    "fallback_healthy": [
+      {
+        "slug": "commit-message-generator",
+        "url": "https://commit-message-generator-gamma.vercel.app",
+        "ideal_url": "https://commit-message-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://commit-message-generator-gamma.vercel.app",
+        "canonical_url": "https://commit-message-generator.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      }
+    ],
     "ready_for_payment_health": [],
     "deploy_readiness": []
   },
   "canonical_url_drift_products": [],
-  "fallback_healthy_products": [],
+  "fallback_healthy_products": [
+    "commit-message-generator"
+  ],
   "ready_for_payment_unhealthy_products": []
 }
