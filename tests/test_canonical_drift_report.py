@@ -493,3 +493,97 @@ def test_generate_fix_script_has_header():
     script = generate_fix_script(MOCK_DRIFT_PRODUCTS)
     assert "Canonical Drift Auto-Fix Script" in script
     assert "Groups:" in script
+
+
+MOCK_DELTA_TREND = (
+    '{"ts":"2026-04-26T08:00:00Z","cycle":1188,"canonical_drift":0,"fallback_healthy":0,"drift_slugs":[]}\n'
+    '{"ts":"2026-04-26T09:00:00Z","cycle":1189,"canonical_drift":0,"fallback_healthy":0,"drift_slugs":[]}\n'
+    '{"ts":"2026-04-26T10:00:00Z","cycle":1190,"canonical_drift":3,"fallback_healthy":3,"drift_slugs":["terraink","terminal-os","nginx-config"]}\n'
+    '{"ts":"2026-04-26T11:00:00Z","cycle":1191,"canonical_drift":5,"fallback_healthy":5,"drift_slugs":["terraink","terminal-os","nginx-config","chmod-calculator","croncraft"]}\n'
+)
+
+
+def test_drift_delta_computes_direction(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_DELTA_TREND)
+    from scripts.canonical_drift_report import drift_delta
+    result = drift_delta(trend_file=trend_file, window=2)
+    assert result["direction"] == "worsening"
+    assert result["drift_delta"] == 2
+    assert result["drift_now"] == 5
+    assert result["drift_prev"] == 3
+
+
+def test_drift_delta_newly_drifted_and_resolved(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_DELTA_TREND)
+    from scripts.canonical_drift_report import drift_delta
+    result = drift_delta(trend_file=trend_file, window=2)
+    assert "chmod-calculator" in result["newly_drifted"]
+    assert "croncraft" in result["newly_drifted"]
+    assert result["newly_resolved"] == []
+
+
+def test_drift_delta_improving(tmp_path):
+    trend = (
+        '{"ts":"2026-04-26T08:00:00Z","cycle":1188,"canonical_drift":3,"fallback_healthy":3,"drift_slugs":["a","b","c"]}\n'
+        '{"ts":"2026-04-26T09:00:00Z","cycle":1189,"canonical_drift":1,"fallback_healthy":1,"drift_slugs":["a"]}\n'
+    )
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(trend)
+    from scripts.canonical_drift_report import drift_delta
+    result = drift_delta(trend_file=trend_file, window=2)
+    assert result["direction"] == "improving"
+    assert result["drift_delta"] == -2
+    assert "b" in result["newly_resolved"]
+    assert "c" in result["newly_resolved"]
+
+
+def test_drift_delta_stable(tmp_path):
+    trend = (
+        '{"ts":"2026-04-26T08:00:00Z","cycle":1188,"canonical_drift":2,"fallback_healthy":2,"drift_slugs":["a","b"]}\n'
+        '{"ts":"2026-04-26T09:00:00Z","cycle":1189,"canonical_drift":2,"fallback_healthy":2,"drift_slugs":["a","b"]}\n'
+    )
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(trend)
+    from scripts.canonical_drift_report import drift_delta
+    result = drift_delta(trend_file=trend_file, window=2)
+    assert result["direction"] == "stable"
+    assert result["drift_delta"] == 0
+    assert result["persistent_slugs"] == ["a", "b"]
+
+
+def test_drift_delta_insufficient_data(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text('{"ts":"2026-04-26T08:00:00Z","cycle":1188,"canonical_drift":1}\n')
+    from scripts.canonical_drift_report import drift_delta
+    result = drift_delta(trend_file=trend_file, window=2)
+    assert "error" in result
+
+
+def test_drift_delta_text_format(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_DELTA_TREND)
+    from scripts.canonical_drift_report import drift_delta_text
+    text = drift_delta_text(trend_file=trend_file, window=2)
+    assert "worsening" in text
+    assert "↑" in text
+    assert "New drift" in text
+
+
+def test_drift_delta_text_error(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text("")
+    from scripts.canonical_drift_report import drift_delta_text
+    text = drift_delta_text(trend_file=trend_file, window=2)
+    assert "error" in text.lower() or "Need" in text
+
+
+def test_drift_delta_wider_window(tmp_path):
+    trend_file = tmp_path / "health_trend.jsonl"
+    trend_file.write_text(MOCK_DELTA_TREND)
+    from scripts.canonical_drift_report import drift_delta
+    result = drift_delta(trend_file=trend_file, window=4)
+    assert result["drift_prev"] == 0
+    assert result["drift_now"] == 5
+    assert result["drift_delta"] == 5

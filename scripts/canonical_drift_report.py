@@ -318,6 +318,64 @@ def drift_persistence_text(trend_file: Path = TREND_FILE, limit: int = 100) -> s
     return "\n".join(lines)
 
 
+def drift_delta(trend_file: Path = TREND_FILE, window: int = 2) -> dict:
+    entries = drift_history_data(trend_file, limit=50)
+    if len(entries) < window:
+        return {"error": f"Need at least {window} snapshots, got {len(entries)}"}
+
+    newest = entries[-1]
+    oldest = entries[-window]
+
+    new_drift = newest.get("canonical_drift", 0)
+    old_drift = oldest.get("canonical_drift", 0)
+    delta = new_drift - old_drift
+
+    new_fb = newest.get("fallback_healthy", 0)
+    old_fb = oldest.get("fallback_healthy", 0)
+
+    new_slugs = set(newest.get("drift_slugs", []))
+    old_slugs = set(oldest.get("drift_slugs", []))
+
+    return {
+        "newest_cycle": newest.get("cycle", 0),
+        "oldest_cycle": oldest.get("cycle", 0),
+        "window": window,
+        "drift_delta": delta,
+        "drift_now": new_drift,
+        "drift_prev": old_drift,
+        "fallback_now": new_fb,
+        "fallback_prev": old_fb,
+        "newly_drifted": sorted(new_slugs - old_slugs),
+        "newly_resolved": sorted(old_slugs - new_slugs),
+        "persistent_slugs": sorted(new_slugs & old_slugs),
+        "direction": "improving" if delta < 0 else ("worsening" if delta > 0 else "stable"),
+    }
+
+
+def drift_delta_text(trend_file: Path = TREND_FILE, window: int = 2) -> str:
+    data = drift_delta(trend_file, window)
+    if "error" in data:
+        return data["error"]
+
+    direction = data["direction"]
+    emoji = {"improving": "↓", "worsening": "↑", "stable": "→"}[direction]
+
+    lines = [
+        f"Drift Delta (cycle {data['oldest_cycle']}→{data['newest_cycle']})",
+        f"  {emoji} {direction}: {data['drift_prev']} → {data['drift_now']} (Δ {data['drift_delta']:+d})",
+        f"  Fallback healthy: {data['fallback_prev']} → {data['fallback_now']}",
+    ]
+
+    if data["newly_drifted"]:
+        lines.append(f"  New drift: {', '.join(data['newly_drifted'])}")
+    if data["newly_resolved"]:
+        lines.append(f"  Resolved: {', '.join(data['newly_resolved'])}")
+    if data["persistent_slugs"]:
+        lines.append(f"  Persistent ({len(data['persistent_slugs'])}): {', '.join(data['persistent_slugs'])}")
+
+    return "\n".join(lines)
+
+
 RESOLUTION_GROUPS: dict[str, dict] = {
     "redeploy": {
         "codes": {404, 500, 502},
@@ -463,6 +521,8 @@ def main() -> int:
                         help="Export drift trend data as JSON array")
     parser.add_argument("--persistence", action="store_true",
                         help="Show per-slug drift persistence from health_trend.jsonl")
+    parser.add_argument("--delta", type=int, nargs="?", const=2, default=None,
+                        help="Show drift delta between snapshots (default window=2)")
     parser.add_argument("--strategy", action="store_true",
                         help="Group drift products by resolution strategy")
     parser.add_argument("--fix-script", action="store_true", dest="fix_script",
@@ -485,6 +545,13 @@ def main() -> int:
 
     if args.persistence:
         print(drift_persistence_text())
+        return 0
+
+    if args.delta is not None:
+        if args.delta == 0 or args.delta < 1:
+            print("Window must be >= 1")
+            return 1
+        print(drift_delta_text(window=args.delta))
         return 0
 
     if args.strategy:
