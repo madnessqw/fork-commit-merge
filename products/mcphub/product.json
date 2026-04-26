@@ -16,7 +16,7 @@
   ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
-  "category": "developer_tools",
+  "category": "developer-tools",
   "spec_version": "1.0",
   "created_cycle": 1140,
   "mvp_complexity": "2 cycles",

@@ -5,7 +5,7 @@
   "description": "Visual SQL query builder with drag-and-drop interface. Build complex queries without writing SQL.",
   "price": "$19",
   "status": "live",
-  "category": "developer_tools",
+  "category": "developer-tools",
   "features": [
     "Visual drag-and-drop query builder",
     "Support for SELECT, INSERT, UPDATE, DELETE",

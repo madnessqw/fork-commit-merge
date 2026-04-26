@@ -4,7 +4,7 @@
   "tagline": "Compare text, code, or JSON side-by-side with highlighted differences",
   "description": "Compare text, code, or JSON side-by-side with highlighted differences",
   "price": "9",
-  "category": "Developer Tools",
+  "category": "developer-tools",
   "features": [],
   "tech_stack": "Vercel + Node.js",
   "status": "live",

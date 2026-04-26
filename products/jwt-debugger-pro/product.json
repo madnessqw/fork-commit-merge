@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
-  "category": "security_tools",
+  "category": "security",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_KUhyl3Zz0Q4mDk6OuD9CcslOg517Pz4NcIuWP3m4fWU",
   "vercel_url": "https://jwt-debugger-pro.vercel.app",

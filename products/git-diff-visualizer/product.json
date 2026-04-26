@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + Vanilla JS",
   "status": "live",
-  "category": "developer_tools",
+  "category": "developer-tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_tJujKpPKzDfFiifrDzi4VFfwPd6BO4KA423UY3JZK39",
   "vercel_url": "https://git-diff-visualizer.vercel.app",

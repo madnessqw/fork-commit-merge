@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + Vanilla JS",
   "status": "live",
-  "category": "devops_tools",
+  "category": "devops",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_646g7VZQRCw0tiA72dQ9mwqXKsQJmEHR6olVP4Joamz",
   "vercel_url": "https://docker-command-builder.vercel.app",

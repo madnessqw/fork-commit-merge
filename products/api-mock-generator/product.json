@@ -5,7 +5,7 @@
   "price": 19,
   "status": "live",
   "tagline": "Generate realistic mock API responses for testing REST and GraphQL endpoints",
-  "category": "Developer Tools",
+  "category": "developer-tools",
   "features": [
     "REST API mock generation",
     "GraphQL mock support",

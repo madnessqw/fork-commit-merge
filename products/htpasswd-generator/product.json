@@ -5,7 +5,7 @@
   "price": "$19",
   "status": "live",
   "tagline": "Generate secure Apache/Nginx .htpasswd files with bcrypt and bulk user support",
-  "category": "Developer Tools",
+  "category": "developer-tools",
   "features": [
     "MD5, SHA1, Bcrypt hashing",
     "Apache & Nginx compatible",

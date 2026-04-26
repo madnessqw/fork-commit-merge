@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
-  "category": "ai_tools",
+  "category": "ai-tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_TJnoSgktY09ZuCoai0vIMdX4HkFkMhc5GzxKS0OLYgB",
   "vercel_url": "https://agent-prompt-engineer.vercel.app",

@@ -4,7 +4,7 @@
   "description": "Universal code formatter supporting 50+ languages. Auto-format your code with customizable rules.",
   "price": 19,
   "status": "live",
-  "category": "developer_tools",
+  "category": "developer-tools",
   "features": [
     "Support for 50+ programming languages",
     "Customizable formatting rules",

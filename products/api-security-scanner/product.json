@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
-  "category": "security_tools",
+  "category": "security",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_0gYWdHmAc5bx0rnESOwmN33A5WoBZFUttdbdc2Ph7Up",
   "vercel_url": "https://api-security-scanner.vercel.app",

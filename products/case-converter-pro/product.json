@@ -4,7 +4,7 @@
   "tagline": "Convert text between camelCase, PascalCase, snake_case, kebab-case, and more instantly",
   "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case, and more instantly",
   "price": "9",
-  "category": "Developer Tools",
+  "category": "developer-tools",
   "features": [],
   "tech_stack": "Vercel + Node.js",
   "status": "live",

@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + React",
   "status": "live",
-  "category": "devops_tools",
+  "category": "devops",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_N5Y37atytnOWaR6kU3gyU0xH2koxDzslhNlYI1zWVbg",
   "vercel_url": "https://docker-compose-builder.vercel.app",

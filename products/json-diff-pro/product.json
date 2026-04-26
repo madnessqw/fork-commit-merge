@@ -5,7 +5,7 @@
   "description": "Compare JSON files side-by-side and visualize differences instantly",
   "price": 19,
   "status": "live",
-  "category": "Developer Tools",
+  "category": "developer-tools",
   "tech_stack": [
     "Vanilla JS",
     "Vercel"

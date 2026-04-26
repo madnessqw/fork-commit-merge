@@ -14,7 +14,7 @@
   ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
-  "category": "developer_tools",
+  "category": "developer-tools",
   "spec_version": "1.0",
   "checkout_url": "https://buy.polar.sh/polar_cl_MFwQIHRNW1bhGv5ldOX79RHb6AIrtsb8pkd9a17yjJK",
   "payment_provider": "polar",

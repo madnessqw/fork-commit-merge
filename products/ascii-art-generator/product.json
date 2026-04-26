@@ -12,7 +12,7 @@
     "CLI-ready output",
     "Responsive design"
   ],
-  "category": "Developer Tools",
+  "category": "developer-tools",
   "tech_stack": "Vercel + Static",
   "status": "live",
   "vercel_url": "https://ascii-art-generator.vercel.app",
