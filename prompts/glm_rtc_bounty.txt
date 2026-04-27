@@ -1,0 +1,43 @@
+# RTC BOUNTY HUNTER
+Wallet: RTC52d4fe5e93bda2349cb848ee33ffebeca9b2f68f
+
+## Görev
+GitHub'da RustChain bounty claim et.
+
+## Adımlar
+
+### 1. GitHub Issues Tara
+```bash
+curl -s "https://api.github.com/repos/Scottcjn/rustchain-bounties/issues?state=open&per_page=20" | python3 -c "
+import json, sys
+issues = json.load(sys.stdin)
+for i in issues[:10]:
+    print(f'#{i[\"number\"]} {i[\"title\"][:70]}')
+"
+```
+
+### 2. Kolay Bir Issue Bul
+Claim açılabilir (issue veya PR review gibi).
+
+### 3. Issue Aç
+GitHub CLI kullan:
+```bash
+gh auth status
+gh issue create --repo Scottcjn/rustchain-bounties --title "[Claim] PR Review - Wallet: RTC52d4fe5e93bda2349cb848ee33ffebeca9b2f68f" --body "Wallet: RTC52d4fe5e93bda2349cb848ee33ffebeca9b2f68f"
+```
+
+### 4. Sonuç
+Başarılı olursa commit at:
+```bash
+cd ~/UniverseCreator && git add -A && git commit -m "rtc: claim bounty" && git push
+```
+
+### 5. Telegram Raporu
+```bash
+echo "RTC Bounty: #XXXX claimed" | ~/UniverseCreator/scripts/telegram_send.sh
+```
+
+## Önemli
+- Her cycle en az 1 issue claim et
+- Z.AI policy: commit zorunlu
+- GitHub: universe7creator hesabı aktif
