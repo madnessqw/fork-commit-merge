@@ -1,5 +1,5 @@
 {
-  "cycle": 180,
+  "cycle": 191,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 183,
@@ -21,7 +21,7 @@
   "needs_fix_count": 14,
   "next_action": "14 canonical URL drift'ini düzelt; fallback alias'ı ezme",
   "vercel_auth_issue": null,
-  "last_updated": "2026-04-26T21:35:11.518199Z",
+  "last_updated": "2026-04-27T04:35:12.365119Z",
   "products": [
     {
       "n": "Agent Prompt Engineer",
@@ -157,13 +157,6 @@
       "c": "https://buy.polar.sh/polar_cl_HK36ti0BiK3toadzPrn0X3J9A1PYB5dHuIZlR0tXFIx"
     },
     {
-      "n": "Chmod Calculator Pro",
-      "s": "chmod-calculator",
-      "st": "live",
-      "v": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC"
-    },
-    {
       "n": "CLI Pipe Viz",
       "s": "cli-pipe-viz",
       "st": "live",
@@ -232,13 +225,6 @@
       "st": "live",
       "v": "https://colormine.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_jfo6xWTEQy62mcdQELYklg39834jtMOZkmWzl4ZJjfi"
-    },
-    {
-      "n": "commit-message-generator",
-      "s": "commit-message-generator",
-      "st": "live",
-      "v": "https://commit-message-generator-gamma.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_SFbYCADXhhcP2JAgzVIuMmR895C6wPrgOM67d4Yeyzb"
     },
     {
       "n": "Cron Express",
@@ -456,13 +442,6 @@
       "st": "live",
       "v": "https://email-signature-pro.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_ijtr72KOTZT7Cz9nlBm4vAtyeCGVZLT04ASRX3EmK8P"
-    },
-    {
-      "n": "Email Validator Pro",
-      "s": "email-validator-pro",
-      "st": "live",
-      "v": "https://email-validator-pro-smoky.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_g3zhBLpxH7Ot16hgAxsZX5vmvXLqiuI9cd1rU1PaYPy"
     },
     {
       "n": "ENV File Manager",
@@ -759,13 +738,6 @@
       "c": "https://buy.polar.sh/polar_cl_kFuZ2FESbeQqeKMXmzYoFG4SRyhgw7lImbRIT0GeYPJ"
     },
     {
-      "n": "JWT Generator Pro",
-      "s": "jwt-generator-pro",
-      "st": "live",
-      "v": "https://jwt-generator-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_iWQFhxbiGyHJNj0F6bWKOwlTaNCAAixhuw4tI3h4NQy"
-    },
-    {
       "n": "JWT Inspector",
       "s": "jwtinspector",
       "st": "live",
@@ -890,13 +862,6 @@
       "st": "live",
       "v": "https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_6DGGBb0E3e2kLR2m6FRBxifviI8rxD9UDJrdZ3pb75K"
-    },
-    {
-      "n": "Nginx Config Generator",
-      "s": "nginx-config-generator",
-      "st": "live",
-      "v": "https://nginx-config-generator.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_NWgCKtCN0pn73PJX4bRGZP8LAkbeOfl5pmOAd14heRt"
     },
     {
       "n": "Nginx Config Tester",
@@ -1074,25 +1039,11 @@
       "c": "https://buy.polar.sh/polar_cl_qfvyvsuFB3VvffEuMXzy4Z9H2E0XWqA3sFau61Azwoe"
     },
     {
-      "n": "Terminal OS",
-      "s": "terminal-os",
-      "st": "live",
-      "v": "https://terminal-os-green.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_MXuCns4iGWe1EKy90rjTRrjdI9iuZnAsKCoPe1J3QjN"
-    },
-    {
       "n": "Terminal Theme Studio",
       "s": "terminal-theme-studio",
       "st": "live",
       "v": "https://terminal-theme-studio.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_jvKKEgjBrwRJ4SHuankRdmUV0nnvyPDCKv3ED0Ovcno"
-    },
-    {
-      "n": "Terraink - Cartographic Poster Engine",
-      "s": "terraink",
-      "st": "live",
-      "v": "https://terraink-flax.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_TWlkpiChuf0Vyi8GYm7b4v7pBMj7PGu8wHs9Q078sYg"
     },
     {
       "n": "Text Case Converter Pro",
@@ -1114,20 +1065,6 @@
       "st": "live",
       "v": "https://text-transformer-pro.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_aoQt6kQ3BPJi6wd9I1imsQ57dbwxx5rt5VqsG07xBRd"
-    },
-    {
-      "n": "Timestamp Converter Pro",
-      "s": "timestamp-converter",
-      "st": "live",
-      "v": "https://timestamp-converter-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
-    },
-    {
-      "n": "Timestamp Converter Pro",
-      "s": "timestamp-converter-pro",
-      "st": "live",
-      "v": "https://timestamp-converter-pro.vercel.app",
-      "c": "https://buy.polar.sh/polar_cl_hrJJX8663cpPwRLA3EYi8a3bjbl6Y0dr1hs97448JWw"
     },
     {
       "n": "Timestamp Master",
@@ -1298,11 +1235,74 @@
       "c": "https://buy.polar.sh/polar_cl_PngBLZ9OKHYun4EAWwphEaRfSX2V9vmjTNlaM0AkL0R"
     },
     {
+      "n": "Timestamp Converter Pro",
+      "s": "timestamp-converter",
+      "st": "live",
+      "v": "https://timestamp-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_jBmAhMljK2igMDJg1dFkrDXMtXXrWCSFBiyYl13d8hH"
+    },
+    {
+      "n": "Chmod Calculator Pro",
+      "s": "chmod-calculator",
+      "st": "live",
+      "v": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_auBtY242MFt2lsX7fOlpJp5uc1ofQU3HLeXD71jO2VC"
+    },
+    {
+      "n": "Nginx Config Generator",
+      "s": "nginx-config-generator",
+      "st": "live",
+      "v": "https://nginx-config-generator.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_NWgCKtCN0pn73PJX4bRGZP8LAkbeOfl5pmOAd14heRt"
+    },
+    {
+      "n": "commit-message-generator",
+      "s": "commit-message-generator",
+      "st": "live",
+      "v": "https://commit-message-generator-gamma.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_SFbYCADXhhcP2JAgzVIuMmR895C6wPrgOM67d4Yeyzb"
+    },
+    {
+      "n": "Terminal OS",
+      "s": "terminal-os",
+      "st": "live",
+      "v": "https://terminal-os-green.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_MXuCns4iGWe1EKy90rjTRrjdI9iuZnAsKCoPe1J3QjN"
+    },
+    {
+      "n": "JWT Generator Pro",
+      "s": "jwt-generator-pro",
+      "st": "live",
+      "v": "https://jwt-generator-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_iWQFhxbiGyHJNj0F6bWKOwlTaNCAAixhuw4tI3h4NQy"
+    },
+    {
+      "n": "Email Validator Pro",
+      "s": "email-validator-pro",
+      "st": "live",
+      "v": "https://email-validator-pro-smoky.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_g3zhBLpxH7Ot16hgAxsZX5vmvXLqiuI9cd1rU1PaYPy"
+    },
+    {
       "n": "Lyra",
       "s": "lyra",
       "st": "live",
       "v": "https://lyra-inky.vercel.app",
       "c": "https://buy.polar.sh/polar_cl_usRLIqUGVmNoFwv4IRPPZs7lIHmSGyHqaT9gE1aumhw"
+    },
+    {
+      "n": "Terraink - Cartographic Poster Engine",
+      "s": "terraink",
+      "st": "live",
+      "v": "https://terraink-flax.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_TWlkpiChuf0Vyi8GYm7b4v7pBMj7PGu8wHs9Q078sYg"
+    },
+    {
+      "n": "Timestamp Converter Pro",
+      "s": "timestamp-converter-pro",
+      "st": "live",
+      "v": "https://timestamp-converter-pro.vercel.app",
+      "c": "https://buy.polar.sh/polar_cl_hrJJX8663cpPwRLA3EYi8a3bjbl6Y0dr1hs97448JWw"
     }
   ],
   "gaps": {
@@ -1312,28 +1312,6 @@
     "missing_checkout": [],
     "canonical_url_drift": [
       {
-        "slug": "chmod-calculator",
-        "url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
-        "ideal_url": "https://chmod-calculator.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
-        "canonical_url": "https://chmod-calculator.vercel.app",
-        "canonical_code": 307,
-        "canonical_status": "error_307"
-      },
-      {
-        "slug": "commit-message-generator",
-        "url": "https://commit-message-generator-gamma.vercel.app",
-        "ideal_url": "https://commit-message-generator.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://commit-message-generator-gamma.vercel.app",
-        "canonical_url": "https://commit-message-generator.vercel.app",
-        "canonical_code": 404,
-        "canonical_status": "not_found"
-      },
-      {
         "slug": "croncraft",
         "url": "https://quickcron.vercel.app",
         "ideal_url": "https://croncraft.vercel.app",
@@ -1355,17 +1333,6 @@
         "canonical_url": "https://diffmaster.vercel.app",
         "canonical_code": 401,
         "canonical_status": "unauthorized"
-      },
-      {
-        "slug": "email-validator-pro",
-        "url": "https://email-validator-pro-smoky.vercel.app",
-        "ideal_url": "https://email-validator-pro.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://email-validator-pro-smoky.vercel.app",
-        "canonical_url": "https://email-validator-pro.vercel.app",
-        "canonical_code": 404,
-        "canonical_status": "not_found"
       },
       {
         "slug": "html-entity-encoder",
@@ -1412,24 +1379,13 @@
         "canonical_status": "error_500"
       },
       {
-        "slug": "terminal-os",
-        "url": "https://terminal-os-green.vercel.app",
-        "ideal_url": "https://terminal-os.vercel.app",
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_url": "https://webhook-tester.vercel.app",
         "health_code": 200,
         "health_status": "alternate_healthy",
-        "probe_url": "https://terminal-os-green.vercel.app",
-        "canonical_url": "https://terminal-os.vercel.app",
-        "canonical_code": 500,
-        "canonical_status": "error_500"
-      },
-      {
-        "slug": "terraink",
-        "url": "https://terraink-flax.vercel.app",
-        "ideal_url": "https://terraink.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://terraink-flax.vercel.app",
-        "canonical_url": "https://terraink.vercel.app",
+        "probe_url": "https://webhook-tester-beryl.vercel.app",
+        "canonical_url": "https://webhook-tester.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
       },
@@ -1445,13 +1401,46 @@
         "canonical_status": "error_451"
       },
       {
-        "slug": "webhook-tester",
-        "url": "https://webhook-tester-beryl.vercel.app",
-        "ideal_url": "https://webhook-tester.vercel.app",
+        "slug": "chmod-calculator",
+        "url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "ideal_url": "https://chmod-calculator.vercel.app",
         "health_code": 200,
         "health_status": "alternate_healthy",
-        "probe_url": "https://webhook-tester-beryl.vercel.app",
-        "canonical_url": "https://webhook-tester.vercel.app",
+        "probe_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "canonical_url": "https://chmod-calculator.vercel.app",
+        "canonical_code": 307,
+        "canonical_status": "error_307"
+      },
+      {
+        "slug": "commit-message-generator",
+        "url": "https://commit-message-generator-gamma.vercel.app",
+        "ideal_url": "https://commit-message-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://commit-message-generator-gamma.vercel.app",
+        "canonical_url": "https://commit-message-generator.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "terminal-os",
+        "url": "https://terminal-os-green.vercel.app",
+        "ideal_url": "https://terminal-os.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terminal-os-green.vercel.app",
+        "canonical_url": "https://terminal-os.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "email-validator-pro",
+        "url": "https://email-validator-pro-smoky.vercel.app",
+        "ideal_url": "https://email-validator-pro.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://email-validator-pro-smoky.vercel.app",
+        "canonical_url": "https://email-validator-pro.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
       },
@@ -1463,34 +1452,23 @@
         "health_status": "alternate_healthy",
         "probe_url": "https://lyra-inky.vercel.app",
         "canonical_url": "https://lyra.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "terraink",
+        "url": "https://terraink-flax.vercel.app",
+        "ideal_url": "https://terraink.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terraink-flax.vercel.app",
+        "canonical_url": "https://terraink.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
       }
     ],
     "fallback_healthy": [
       {
-        "slug": "chmod-calculator",
-        "url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
-        "ideal_url": "https://chmod-calculator.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
-        "canonical_url": "https://chmod-calculator.vercel.app",
-        "canonical_code": 307,
-        "canonical_status": "error_307"
-      },
-      {
-        "slug": "commit-message-generator",
-        "url": "https://commit-message-generator-gamma.vercel.app",
-        "ideal_url": "https://commit-message-generator.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://commit-message-generator-gamma.vercel.app",
-        "canonical_url": "https://commit-message-generator.vercel.app",
-        "canonical_code": 404,
-        "canonical_status": "not_found"
-      },
-      {
         "slug": "croncraft",
         "url": "https://quickcron.vercel.app",
         "ideal_url": "https://croncraft.vercel.app",
@@ -1512,17 +1490,6 @@
         "canonical_url": "https://diffmaster.vercel.app",
         "canonical_code": 401,
         "canonical_status": "unauthorized"
-      },
-      {
-        "slug": "email-validator-pro",
-        "url": "https://email-validator-pro-smoky.vercel.app",
-        "ideal_url": "https://email-validator-pro.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://email-validator-pro-smoky.vercel.app",
-        "canonical_url": "https://email-validator-pro.vercel.app",
-        "canonical_code": 404,
-        "canonical_status": "not_found"
       },
       {
         "slug": "html-entity-encoder",
@@ -1569,24 +1536,13 @@
         "canonical_status": "error_500"
       },
       {
-        "slug": "terminal-os",
-        "url": "https://terminal-os-green.vercel.app",
-        "ideal_url": "https://terminal-os.vercel.app",
+        "slug": "webhook-tester",
+        "url": "https://webhook-tester-beryl.vercel.app",
+        "ideal_url": "https://webhook-tester.vercel.app",
         "health_code": 200,
         "health_status": "alternate_healthy",
-        "probe_url": "https://terminal-os-green.vercel.app",
-        "canonical_url": "https://terminal-os.vercel.app",
-        "canonical_code": 500,
-        "canonical_status": "error_500"
-      },
-      {
-        "slug": "terraink",
-        "url": "https://terraink-flax.vercel.app",
-        "ideal_url": "https://terraink.vercel.app",
-        "health_code": 200,
-        "health_status": "alternate_healthy",
-        "probe_url": "https://terraink-flax.vercel.app",
-        "canonical_url": "https://terraink.vercel.app",
+        "probe_url": "https://webhook-tester-beryl.vercel.app",
+        "canonical_url": "https://webhook-tester.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
       },
@@ -1602,13 +1558,46 @@
         "canonical_status": "error_451"
       },
       {
-        "slug": "webhook-tester",
-        "url": "https://webhook-tester-beryl.vercel.app",
-        "ideal_url": "https://webhook-tester.vercel.app",
+        "slug": "chmod-calculator",
+        "url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "ideal_url": "https://chmod-calculator.vercel.app",
         "health_code": 200,
         "health_status": "alternate_healthy",
-        "probe_url": "https://webhook-tester-beryl.vercel.app",
-        "canonical_url": "https://webhook-tester.vercel.app",
+        "probe_url": "https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app",
+        "canonical_url": "https://chmod-calculator.vercel.app",
+        "canonical_code": 307,
+        "canonical_status": "error_307"
+      },
+      {
+        "slug": "commit-message-generator",
+        "url": "https://commit-message-generator-gamma.vercel.app",
+        "ideal_url": "https://commit-message-generator.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://commit-message-generator-gamma.vercel.app",
+        "canonical_url": "https://commit-message-generator.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "terminal-os",
+        "url": "https://terminal-os-green.vercel.app",
+        "ideal_url": "https://terminal-os.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terminal-os-green.vercel.app",
+        "canonical_url": "https://terminal-os.vercel.app",
+        "canonical_code": 500,
+        "canonical_status": "error_500"
+      },
+      {
+        "slug": "email-validator-pro",
+        "url": "https://email-validator-pro-smoky.vercel.app",
+        "ideal_url": "https://email-validator-pro.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://email-validator-pro-smoky.vercel.app",
+        "canonical_url": "https://email-validator-pro.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
       },
@@ -1620,6 +1609,17 @@
         "health_status": "alternate_healthy",
         "probe_url": "https://lyra-inky.vercel.app",
         "canonical_url": "https://lyra.vercel.app",
+        "canonical_code": 404,
+        "canonical_status": "not_found"
+      },
+      {
+        "slug": "terraink",
+        "url": "https://terraink-flax.vercel.app",
+        "ideal_url": "https://terraink.vercel.app",
+        "health_code": 200,
+        "health_status": "alternate_healthy",
+        "probe_url": "https://terraink-flax.vercel.app",
+        "canonical_url": "https://terraink.vercel.app",
         "canonical_code": 404,
         "canonical_status": "not_found"
       }
@@ -1628,36 +1628,36 @@
     "deploy_readiness": []
   },
   "canonical_url_drift_products": [
-    "chmod-calculator",
-    "commit-message-generator",
     "croncraft",
     "diffmaster",
-    "email-validator-pro",
     "html-entity-encoder",
     "jwt-generator",
     "nginx-config",
     "pdf-forge",
-    "terminal-os",
-    "terraink",
-    "timestamp-converter",
     "webhook-tester",
-    "lyra"
+    "timestamp-converter",
+    "chmod-calculator",
+    "commit-message-generator",
+    "terminal-os",
+    "email-validator-pro",
+    "lyra",
+    "terraink"
   ],
   "fallback_healthy_products": [
-    "chmod-calculator",
-    "commit-message-generator",
     "croncraft",
     "diffmaster",
-    "email-validator-pro",
     "html-entity-encoder",
     "jwt-generator",
     "nginx-config",
     "pdf-forge",
-    "terminal-os",
-    "terraink",
-    "timestamp-converter",
     "webhook-tester",
-    "lyra"
+    "timestamp-converter",
+    "chmod-calculator",
+    "commit-message-generator",
+    "terminal-os",
+    "email-validator-pro",
+    "lyra",
+    "terraink"
   ],
   "ready_for_payment_unhealthy_products": []
 }
