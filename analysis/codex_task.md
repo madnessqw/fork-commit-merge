@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-26 13:36 UTC
+# Codex Task — Generated 2026-04-27 08:35 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -6,26 +6,24 @@ Bu görev dosyası live `STATE.json` → `STATE_SUMMARY.json` üzerinden üretil
 stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyileştirmesi seçilir.
 
 ## Aktif Görev
-**Checkout alan standardizasyonu**
+**Ready-for-payment health düzeltmesi**
 
-Checkout metadata okumayı tek kanala indir. `checkout_url`, eski legacy alias'ları güvenli biçimde normalize eden utility/script yaz veya mevcut akışı düzelt. Production checkout URL'lerini uydurma.
+Live sağlık metriğini şişirmeden ready_for_payment ürünlerin health sorunlarını da görünür tut. Bu ürünleri ayrı takip et; live outage diye sayma ama 404/401 gibi sonuçları context'e kaybetme.
 
 ## Canlı State Özeti
-- Cycle: 1216
-- Live sağlık: 177/177 (%100.0)
-- Canonical healthy: 177/177 (%100.0)
+- Cycle: 231
+- Live sağlık: 183/183 (%100.0)
+- Canonical healthy: 169/183 (%92.3)
 - Health pending: 0
-- Fallback healthy: 0
-- Checkout gap: 1
+- Fallback healthy: 14
+- Checkout gap: 0
 - Deploy readiness gap: 0
 - Deploy/url gap: 0
-- Canonical drift: 6
-- Canonical drift slugs: `croncraft`, `chmod-calculator`, `terminal-os`, `terraink`, `nginx-config`, `commit-message-generator`
-- Accepted canonical drift: 7
-- Accepted canonical drift slugs: `jwt-generator`, `pdf-forge`, `webhook-tester`, `email-validator-pro`, `diffmaster`, `html-entity-encoder`, `timestamp-converter`
-- Fallback healthy slugs: `croncraft`, `chmod-calculator`, `terminal-os`, `terraink`, `nginx-config`, `commit-message-generator`
+- Canonical drift: 14
+- Canonical drift slugs: `croncraft`, `diffmaster`, `html-entity-encoder`, `jwt-generator`, `nginx-config`, `pdf-forge`, `webhook-tester`, `chmod-calculator`
+- Fallback healthy slugs: `croncraft`, `diffmaster`, `html-entity-encoder`, `jwt-generator`, `nginx-config`, `pdf-forge`, `webhook-tester`, `chmod-calculator`, ...
 - Spec-ready count: 0
-- Next action: 6 canonical URL drift'ini düzelt; fallback alias'ı ezme
+- Next action: 14 canonical URL drift'ini düzelt; fallback alias'ı ezme
 
 ## Guardrails
 - Dosyaları okumadan edit yapma.
