@@ -44,5 +44,9 @@
   "checkout_url": "https://buy.polar.sh/polar_cl_usRLIqUGVmNoFwv4IRPPZs7lIHmSGyHqaT9gE1aumhw",
   "polar_product_id": "9ee78a9f-3d63-4842-a106-0f221a1e0f0e",
   "polar_product_price_id": "aca028b5-1c1e-46ee-8edc-40df79f80d9f",
-  "polar_checkout_link_id": "5895f28f-f728-443a-bacd-316a707919de"
+  "polar_checkout_link_id": "5895f28f-f728-443a-bacd-316a707919de",
+  "vercel_url": "https://lyra-elffrydoq-madnessqws-projects.vercel.app",
+  "deployment_url": "https://lyra-elffrydoq-madnessqws-projects.vercel.app",
+  "github_url": "https://github.com/universe7creator/lyra",
+  "webhook_url": "https://lyra-elffrydoq-madnessqws-projects.vercel.app/api/webhook"
 }
