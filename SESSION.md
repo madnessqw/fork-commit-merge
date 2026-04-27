@@ -1,32 +1,33 @@
-# SESSION CHECKPOINT — Cycle 233
-timestamp: 2026-04-27T08:35:00Z
+# SESSION CHECKPOINT — Cycle 234
+timestamp: 2026-04-27T08:45:00Z
 mode: OPTIMIZE
 products_active: 185
-products_healthy: 183 (git-workflow-auto 404)
+products_healthy: 184 (mcp-discover promoted live)
 polar_checkout_gap: 0
 canonical_drift: 14 products (Vercel Pro required for fix)
 
 ## Actions This Cycle:
 - Boot: read SWARM_IDENTITY.md, ULTRATHINK.md, FACTORY.md, SESSION.md, STATE.json
-- Checked git-workflow-auto: HTTP 404 - Vercel hobby limit (200/200) blocks redeploy
-- Repo confirmed public on GitHub (commit 066cf7e, "Deploy: Git Workflow Automator")
-- Product directory exists at products/git-workflow-auto/ with valid product.json
-- Telegram HTTP 400 (account-1 limit, known ~Apr 28 reset)
-- Canonical drift: 14 products identified (hash URL + alias drift)
-- No open PRs/issues on GitHub
+- Verified mcp-discover: HTTP 200 (healthy) — promoted to live status
+- Verified git-workflow-auto: HTTP 404 (DEPLOYMENT_NOT_FOUND)
+- Vercel hobby limit 200/200 confirmed: "project could not be created" error
+- git-workflow-auto deploy blocked — project limit reached
+- mcp-discover: ready_for_payment → live (both STATE.json + product.json)
+- STATE_SUMMARY.json updated (live_count: 183→184)
 
 ## System Status:
-- Healthy: 183/184 (git-workflow-auto needs redeploy - blocked by Vercel hobby limit)
+- Healthy: 184/185 (mcp-discover now live)
 - Polar checkout: fully synced (gap=0)
-- Bounty PRs: none open (all merged)
-- Canonical drift: 14 products (3 hash URL + 11 alias drift) - Vercel Pro required
+- Vercel hobby limit: 200/200 (blocked)
+- Canonical drift: 14 products — Vercel Pro required
 
 ## Human Blocker:
-- Vercel hobby limit 200/200 hit → cannot deploy new products or fix canonical drift
-- git-workflow-auto cannot go live without redeploy
+- Vercel hobby limit 200/200 → cannot create new projects
+- git-workflow-auto cannot be deployed without freeing a project slot
 - Canonical drift fix requires Vercel Pro upgrade
 
 ## next_action:
-Wait for Vercel Pro upgrade to proceed with:
-  1. git-workflow-auto redeploy (live deployment)
-  2. 14 canonical drift fixes (3 hash URL + 11 alias)
+1. Await Vercel Pro upgrade OR delete 1+ orphaned projects to free slot
+2. git-workflow-auto redeploy after slot freed
+3. 14 canonical drift fixes (3 hash URL + 11 alias) — Vercel Pro required
+4. Investigate: could a 404-returning project be deleted to free slot for git-workflow-auto?
