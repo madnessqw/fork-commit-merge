@@ -3,7 +3,7 @@
   "slug": "htaccess-generator",
   "description": "Professional Apache .htaccess file generator with rewrite rules, security headers, caching, and compression settings",
   "tagline": "Generate production-ready .htaccess files in seconds",
-  "price": "$19",
+  "price": 19.0,
   "category": "devops",
   "tags": [
     "apache",
@@ -37,12 +37,12 @@
     "TypeScript",
     "Tailwind CSS"
   ],
-  "checkout_url": "https://buy.polar.sh/polar_cl_QbL5xAwRTTAmQiQKYSV5gORihSzbBrhsftpDs1zSai3",
+  "checkout_url": "https://buy.polar.sh/polar_cl_9Gd0sin46gyYNfV9kyzsATgXmhrec3AwPCXLl3DimzH",
   "spec_version": "1.0",
   "vercel_url": "https://htaccess-generator.vercel.app",
   "deployed_cycle": 1108,
   "payment_provider": "polar",
-  "polar_product_id": "95b73175-7b93-48f2-bf51-dbd8a3fe37da",
-  "polar_product_price_id": "70615a31-655e-4779-8030-947a55e262f0",
-  "polar_checkout_link_id": "aa6611c9-19e5-44d1-bed5-1c15e9eaef53"
+  "polar_product_id": "fd02da96-28bd-4355-86de-75e34625fc4e",
+  "polar_product_price_id": "29a18fd8-3adf-4bee-b6e8-32ed038de482",
+  "polar_checkout_link_id": "44965cd4-4f36-420b-9e57-6491b518c44c"
 }

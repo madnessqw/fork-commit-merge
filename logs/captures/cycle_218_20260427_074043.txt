@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 218 at 20260427_074043 ===
+--- PANE 0 (⠐ Claude Code) ---
+  │ Alternatifler │ Bounty PR'ları takip et → $67+ pending gelir C) Mevcut   │
+  │               │ ürünleri pazarla/SEO                                     │
+  ├───────────────┼──────────────────────────────────────────────────────────┤
+  │ Kalite        │ Sistem %100 sağlıklı — yeni ürün fırsatı                 │
+  │               │ değerlendirilmeli. xterm-web [***] öncelikli konsept.    │
+  └───────────────┴──────────────────────────────────────────────────────────┘
+
+  Seçim: B (bounty takip) + A (xterm-web araştırma) — paralel çalış.
+
+● Searching for 2 patterns, reading 3 files, listing 1 directory, running 31
+  bash commands…
+  ⎿  Check if there are any products with fake/placeholder checkout URLs
+     (polar_cl_XXXX pattern)
+
+* Puzzling… (10m 14s · ↑ 14.0k tokens · thought for 10s)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle) · esc to interrupt
+

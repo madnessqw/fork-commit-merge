@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 220 at 20260427_080306 ===
+--- PANE 0 (✳ Claude Code) ---
+  Blokaj:
+  - Deploy BAŞARISIZ — Vercel Hobby 200 proje limiti
+  - Aynı root cause: croncraft, diffmaster, ve 12 diğer ürün gibi
+  - Çözüm: Vercel Pro planı (~$20/ay) — 5000 proje limiti
+
+  Portföy durumu:
+  - 183/183 healthy ✓
+  - 0 checkout gap ✓
+  - 14 canonical drift (altyapı limiti, kabul edilmiş)
+
+  Sıradaki görev (manuel):
+  - Vercel Pro planına yükselt → tüm 15 ürün deploy edilebilir
+  - Polar checkout URL üretimi (polar_oat env gerekli)
+
+✻ Cooked for 7m 14s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

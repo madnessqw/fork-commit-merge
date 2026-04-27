@@ -3,7 +3,7 @@
   "slug": "sql-query-builder",
   "tagline": "Visual SQL query builder with drag-and-drop interface",
   "description": "Visual SQL query builder with drag-and-drop interface. Build complex queries without writing SQL.",
-  "price": "$19",
+  "price": 19.0,
   "status": "live",
   "category": "developer-tools",
   "features": [

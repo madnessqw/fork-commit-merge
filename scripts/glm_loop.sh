@@ -6,7 +6,7 @@
 set -euo pipefail
 
 WORK_DIR="/home/gokhan/UniverseCreator"
-PROMPT_FILE="$WORK_DIR/prompts/glm_prompt.txt"
+PROMPT_FILE="$WORK_DIR/prompts/glm_rtc_bounty.txt"
 LOCK_FILE="/tmp/glm_loop.lock"
 LOG_FILE="$WORK_DIR/logs/glm_loop.log"
 SESSION="UniverseGLM"
@@ -53,7 +53,10 @@ if [[ -n "$PANE_PID" ]]; then
     [[ -n "$CHILDREN" ]] && sleep 2
 fi
 
-# Temp script — quoting sorununu tamamen çözer, prompt içeriği komut satırına hiç girmez
+# Temp script — prompt'u temp dosyaya yaz, opencode file olarak çalıştır
+PROMPT_CONTENT=$(cat "$PROMPT_FILE")
+echo "$PROMPT_CONTENT" > /tmp/glm_prompt.txt
+
 cat > "$RUN_SCRIPT" << 'RUNEOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -62,11 +65,10 @@ LOG_FILE="$WORK_DIR/logs/glm_loop.log"
 OPENCODE_BIN="/home/gokhan/.opencode/bin/opencode"
 
 cd "$WORK_DIR"
-PROMPT_CONTENT=$(cat prompts/glm_prompt.txt)
 
 echo "--- opencode run START $(date '+%Y-%m-%d %H:%M:%S') ---" | tee -a "$LOG_FILE"
 set +e
-"$OPENCODE_BIN" run --model zai-coding-plan/glm-5.1 "$PROMPT_CONTENT" 2>&1 | tee -a "$LOG_FILE"
+"$OPENCODE_BIN" run --model zai-coding-plan/glm-5.1 -f /tmp/glm_prompt.txt 2>&1 | tee -a "$LOG_FILE"
 GLM_EXIT=${PIPESTATUS[0]}
 set -e
 echo "--- opencode run END $(date '+%Y-%m-%d %H:%M:%S') exit=$GLM_EXIT ---" | tee -a "$LOG_FILE"

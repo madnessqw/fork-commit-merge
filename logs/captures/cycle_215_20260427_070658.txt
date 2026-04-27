@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 215 at 20260427_070658 ===
+--- PANE 0 (✳ Claude Code) ---
+      30 +## telegram_sent: true
+      31   No newline at end of file
+
+● ★ Insight ─────────────────────────────────────
+  - Durum yönetimi: Sistem %100 sağlıklı olduğunda (183/183 live, 0 checkout
+  gap), yapılacak en doğru şey koruma modunda kalmak ve sahip için net bir rapor
+   sunmaktır.
+  - Mod seçimi: OPTIMIZE modunda "building boş, active ürün var" durumunda amaç
+  yeni inşa değil, mevcut ürünleri korumaktır — bu cycle'da tam olarak yapıldı.
+  - Cycle kapanışı: Her otonom cycle'ın kapanışı SESSION.md güncellemesi +
+  Telegram raporudur. Telegram başarısı kritik — rapor gönderilmediğinde sahip
+  sistemin çalıştığını bilemez.
+  ─────────────────────────────────────────────────
+
+✻ Churned for 2m 32s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

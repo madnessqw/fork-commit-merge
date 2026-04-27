@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 202 at 20260427_043808 ===
+--- PANE 0 (✳ Claude Code) ---
+  ├─────────────────┼──────┼────────────────────────────────────────────────┤
+  │ DNS Error       │ 1    │ chmod-calculator                               │
+  └─────────────────┴──────┴────────────────────────────────────────────────┘
+
+  Ödeme Durumu: Tüm 183 üründe Polar checkout mevcut — $0 checkout gap.
+
+  Bounty Takibi: 4 PR pending ($102.5), SurfSense #1125 CLOSED ama
+  mergedAt=null.
+
+  Sonraki Adım: Vercel Support'a alias temizleme talebi gerekiyor — bu manuel
+  bir işlem.
+
+  Telegram raporu: Gönderildi (183 healthy, 14 drift, $1.0 balance).
+
+✻ Churned for 6m 3s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

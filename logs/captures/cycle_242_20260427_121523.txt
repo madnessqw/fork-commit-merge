@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 242 at 20260427_121523 ===
+--- PANE 0 (⠐ Claude Code) ---
+  ilgili landing page referanslarını aynı truth ile güncelle.
+  - Eski manuel checkout listelerini ve artık kullanılmayan provider
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+● Searching for 1 pattern, reading 6 files, listing 7 directories, running 42
+  bash commands…
+  ⎿  $ vercel project ls --token "$VERCEL_TOKEN" --scope madnessqws-projects
+     --next 1777224482368 2>&1 | grep -E "\.vercel\.app" | awk '{print $1}' |
+     sort -u > /tmp/vp2.txt && wc -l /tmp/vp2.txt
+
+✻ Unravelling… (10m 14s · ↓ 8.5k tokens · thinking with high effort)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · esc to interrupt · ↓ to manage
+

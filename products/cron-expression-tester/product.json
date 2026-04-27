@@ -18,11 +18,11 @@
   "webhook_url": "https://cron-expression-tester-b8wtjofmi-madnessqws-projects.vercel.app/api/webhook",
   "created_cycle": 1116,
   "deployed_cycle": null,
-  "checkout_url": "https://buy.polar.sh/polar_cl_m5BWb5w92NzgU16ZDkgNphGVnBUVgRB4GlEwG3YKxLS",
+  "checkout_url": "https://buy.polar.sh/polar_cl_5X8WLGY49gsJRu8hVh3v2nH014OrzhBi9ux3f1TJ8CR",
   "spec_version": "1.0",
   "payment_provider": "polar",
-  "polar_product_id": "248d7093-205b-4ed7-91f4-ca23e54e4306",
-  "polar_product_price_id": "7cd8e23c-9ccd-4398-b897-a0c8a4a82483",
-  "polar_checkout_link_id": "56dd22b1-0a90-4206-96c4-cb621ad420a4",
+  "polar_product_id": "5942513a-5acf-4ec1-bb08-c72093b4a8c7",
+  "polar_product_price_id": "4cc3f8a1-a530-4cdd-a5c8-12a0fb7dd99c",
+  "polar_checkout_link_id": "0415b0cf-01da-4526-819f-7e6c70df1e48",
   "deployment_url": "https://cron-expression-tester-b8wtjofmi-madnessqws-projects.vercel.app"
 }

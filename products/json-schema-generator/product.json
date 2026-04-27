@@ -18,11 +18,11 @@
   "status": "live",
   "created_cycle": 1052,
   "seo_optimized": false,
-  "checkout_url": "https://buy.polar.sh/polar_cl_mmXpuqaoAKoagbutVdHLTSxk2PfGbplWbMmZc3rMon5",
+  "checkout_url": "https://buy.polar.sh/polar_cl_db0xjLSBrIab38hKi4VVZ4XNfGygQjTep0dqT13f7lv",
   "spec_version": "1.0",
   "payment_provider": "polar",
-  "polar_product_id": "c6489c82-79a7-4520-bf4e-e71f569395f7",
-  "polar_product_price_id": "fb9222cc-01c5-4bfb-be45-8031a7bfe935",
-  "polar_checkout_link_id": "6c81c0af-69b2-423b-81ba-40adb1726dba",
+  "polar_product_id": "95b91bf2-b324-43eb-a6a8-a78508611eeb",
+  "polar_product_price_id": "1bb86ae2-0dc3-4bcf-a20f-8a26d04121a5",
+  "polar_checkout_link_id": "a1853910-2d5a-404a-b1ed-6b14551869c0",
   "vercel_url": "https://json-schema-generator-824w87j5v-madnessqws-projects.vercel.app"
 }

@@ -1,4 +1,4 @@
-# Codex Task — Generated 2026-04-27 08:35 UTC
+# Codex Task — Generated 2026-04-27 12:00 UTC
 
 ## MOD: PRODUCTION SAFE INFRA
 
@@ -11,9 +11,9 @@ stale sayılır; doğrudan insan kod+commit istediğinde güvenli altyapı iyile
 Live sağlık metriğini şişirmeden ready_for_payment ürünlerin health sorunlarını da görünür tut. Bu ürünleri ayrı takip et; live outage diye sayma ama 404/401 gibi sonuçları context'e kaybetme.
 
 ## Canlı State Özeti
-- Cycle: 231
-- Live sağlık: 183/183 (%100.0)
-- Canonical healthy: 169/183 (%92.3)
+- Cycle: 237
+- Live sağlık: 184/184 (%100.0)
+- Canonical healthy: 170/184 (%92.4)
 - Health pending: 0
 - Fallback healthy: 14
 - Checkout gap: 0

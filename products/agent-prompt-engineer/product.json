@@ -16,12 +16,12 @@
   "status": "live",
   "category": "ai-tools",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_BN8YbP77BJGRzEC8APWJRoNaiw1F0ZI9QRfTh0Fma0g",
+  "checkout_url": "https://buy.polar.sh/polar_cl_NVowaKaVZCsOi9qCm97E3sHVB8hw5CHCFtKUC0tRs5Z",
   "vercel_url": "https://agent-prompt-engineer.vercel.app",
   "payment_provider": "polar",
-  "polar_product_id": "97e9c91c-a7ad-4518-a602-7d51f1ba69c8",
-  "polar_product_price_id": "c37c128c-2d2e-484e-9b0c-9cc6567f9568",
-  "polar_checkout_link_id": "32ae4b65-64f1-43b8-9ad4-d2f011ef0c5c",
+  "polar_product_id": "f46e3eab-7fc2-43da-9f6b-d0bbfe58d482",
+  "polar_product_price_id": "064e1a70-e3ad-4f23-b28b-2e932f091138",
+  "polar_checkout_link_id": "71038b6e-cd8c-48d6-90da-880574babf0a",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

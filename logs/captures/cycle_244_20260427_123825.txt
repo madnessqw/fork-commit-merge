@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 244 at 20260427_123825 ===
+--- PANE 0 (⠂ Claude Code) ---
+
+● Durum analizi tamam. Cycle 234 devam ediyor. Ana sorunlar:
+  - polar_checkout_gap: 0 ✓ (temiz)
+  - Vercel hobby limit 200/200 → blokeli
+  - 14 canonical drift → Vercel Pro gerekli
+  - git-workflow-auto → 404 + slot yok
+
+  Şimdi EVOLUTION_SCAN çalıştır ve devam eden işleri kontrol et:
+
+● Searching for 2 patterns, reading 2 files, listing 8 directories, running 38
+  bash commands…
+  ⎿  $ vercel deploy --yes --prod --token $VERCEL_TOKEN 2>&1 | head -40 (3s)
+     (ctrl+b ctrl+b (twice) to run in background)
+
+✢ Actioning… (10m 17s · ↓ 11.0k tokens · thought for 4s)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · esc to interrupt · ↓ to manage
+

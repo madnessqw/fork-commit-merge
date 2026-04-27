@@ -3,7 +3,7 @@
   "name": "Base64 Encoder/Decoder Pro",
   "tagline": "Encode and decode Base64 strings with advanced features",
   "description": "Professional Base64 encoding/decoding tool with file support, URL-safe encoding, multiple output formats, and batch processing capabilities.",
-  "price": "$19",
+  "price": 19.0,
   "category": "developer-tools",
   "features": [
     "Text to Base64 encoding",

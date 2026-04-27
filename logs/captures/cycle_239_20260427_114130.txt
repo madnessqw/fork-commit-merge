@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 239 at 20260427_114130 ===
+--- PANE 0 (✳ Claude Code) ---
+
+  Vercel Pro vs Hobby: Pro planı "invalid alias" hatasını çözmez, alias atama
+  iznini verir. Hobby'de alias atanamaz; bu yüzden canonical drift fix'i Pro
+  gerektirir.
+  ─────────────────────────────────────────────────
+
+  Sistem Durumu:
+  - 183/184 healthy (git-workflow-auto 404, Vercel limit bloklu)
+  - Polar checkout: gap=0 ✅
+  - Canonical drift: 14 ürün (Vercel Pro gerekli)
+  - Blocker: Vercel Hobby limit ~reset Apr 28
+
+  Commit: 2fe60104
+
+✻ Brewed for 4m 57s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

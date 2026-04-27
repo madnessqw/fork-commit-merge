@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 227 at 20260427_092314 ===
+--- PANE 0 (⠐ Claude Code) ---
+● Telegram çalışıyor. Şimdi tam raporu gönder.
+
+  Running 1 bash command…
+  ⎿  $ /home/gokhan/UniverseCreator/scripts/telegram_send.sh --msg "🟢
+     UniverseCreator Cycle 226 | OPTIMIZE
+     📊 SISTEM DURUMU:
+     ✅ 183/183 ürün sağlıklı (%100 OK)
+     ✅ Polar checkout: 186/186 TAMAMLANDI
+     ✅ Checkout gap: 0
+     ⚠️ Canonical drift: 14 ürün (Vercel infra)
+     💰 Balance: \$1.0
+     🔍 CANONICAL DRIFT ANALİZİ:
+     …
+
+✶ Simmering… (10m 19s · ↑ 5.5k tokens)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 1 shell · esc to interrupt · ↓ to manage
+

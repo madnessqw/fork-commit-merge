@@ -9,7 +9,7 @@
   "category": "developer-tools",
   "status": "live",
   "payment_provider": "polar",
-  "checkout_url": "https://buy.polar.sh/polar_cl_jqcUpXZgWac3tEQDRce920JcHUeOxuozCTW0M38DZQ9",
+  "checkout_url": "https://buy.polar.sh/polar_cl_9aRFGqUJp4glGbpbbxLaGBtlUm5anZAhWpESL0vYjTQ",
   "vercel_url": "https://csv-converter-pro.vercel.app",
   "deployment_url": "https://csv-converter-m8h0zs1o3-madnessqws-projects.vercel.app",
   "github_url": "https://github.com/universe7creator/csv-converter-pro",
@@ -28,5 +28,5 @@
   "spec_version": "1.0",
   "polar_product_id": "ae2b075f-6516-494b-998b-3711e446e29c",
   "polar_product_price_id": "00a65e14-ad83-4a6b-84f2-31c305597533",
-  "polar_checkout_link_id": "a23a6138-446c-46c2-9764-2dd3d6e4ee5d"
+  "polar_checkout_link_id": "f3c0985a-346b-453b-94af-6832fdb1ffa0"
 }

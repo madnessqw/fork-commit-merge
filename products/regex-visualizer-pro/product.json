@@ -3,10 +3,10 @@
   "name": "Regex Visualizer Pro",
   "tagline": "Visualize, test, and debug regular expressions with ease",
   "description": "Interactive regex visualizer with real-time matching, explanation builder, cheat sheet, and pattern tester. Perfect for learning and debugging complex regular expressions.",
-  "price": "$19",
+  "price": 19.0,
   "payment_provider": "polar",
   "category": "developer-tools",
-  "checkout_url": "https://buy.polar.sh/polar_cl_9yKVQljJIxruJKaNhMocdmR3eC4v6VC5RsM694ZMytk",
+  "checkout_url": "https://buy.polar.sh/polar_cl_A7Spxg8ihfiaqQzv4Zu4lOkI8XL2HBAGxK3zM0JvoXh",
   "features": [
     "Real-time regex pattern matching",
     "Visual match highlighting with color-coded capture groups",
@@ -37,9 +37,9 @@
   "github_url": "https://github.com/universe7creator/regex-visualizer-pro",
   "deployment_url": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app",
   "webhook_url": "https://regex-visualizer-lhx2lq6xn-madnessqws-projects.vercel.app/api/webhook",
-  "polar_product_id": "258c092a-7417-4e84-8a25-30ca64c7922e",
-  "polar_product_price_id": "61e04dc9-4679-4ae9-896b-9a02a62b40b3",
-  "polar_checkout_link_id": "9f66b0e0-7e65-4f37-a71d-0b5565deba91",
+  "polar_product_id": "df1d325d-6d6c-4564-a3fb-6ba1b4ca848d",
+  "polar_product_price_id": "16ed447e-bc3e-49c5-b062-9b34b0fc9e05",
+  "polar_checkout_link_id": "5f0a4e4c-cbc5-4823-a4d1-306ea651ee72",
   "created_cycle": 988,
   "deployed_cycle": 1108
 }

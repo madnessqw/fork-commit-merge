@@ -1,0 +1,39 @@
+🚀 Deploying: Email Validator Pro (email-validator-pro)
+==================================
+
+📦 Step 1: GitHub Push...
+  Repo exists. Pushing updates...
+[main faff576] Deploy: Email Validator Pro
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+branch 'main' set up to track 'origin/main'.
+  ✅ GitHub: https://github.com/universe7creator/email-validator-pro
+
+🌐 Step 2: Vercel Deploy...
+  ⚠️  Production URL henüz hazır değil, deployment URL kullanılıyor (geçici)
+  ✅ Deployment URL: https://email-validator-4kv68fc93-madnessqws-projects.vercel.app
+  ✅ Public URL: https://email-validator-4kv68fc93-madnessqws-projects.vercel.app
+
+🏥 Step 3: Health Check...
+  Health: {"status":"ok","product":"email-validator-pro","version":"1.0.0","timestamp":"2026-04-27T02:06:14.150Z"}
+
+🔓 Step 3.5: Disabling SSO Protection...
+[2026-04-27 05:06:17] === email-validator-pro için ssoProtection kapatılıyor ===
+[2026-04-27 05:06:23]   ✅ email-validator-pro — ssoProtection: None
+  ✅ Protection disabled
+
+📝 Step 4: Updating product.json...
+  ✅ product.json updated
+
+📱 Step 5: Telegram notification...
+  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify
+
+📊 Step 6: Updating STATE.json...
+  ✅ STATE.json updated
+
+==================================
+✅ DEPLOYMENT COMPLETE!
+  🌐 https://email-validator-4kv68fc93-madnessqws-projects.vercel.app
+  📂 https://github.com/universe7creator/email-validator-pro
+  🔗 Webhook: https://email-validator-4kv68fc93-madnessqws-projects.vercel.app/api/webhook
+
+⏳ Waiting for Polar checkout sync...

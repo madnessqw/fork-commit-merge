@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 236 at 20260427_110635 ===
+--- PANE 0 (⠐ Claude Code) ---
+● Şimdi temiz bir sağlık tespiti yapayım — 10 dakika az, hızlı hareket
+  etmeliyim.
+
+● Searching for 3 patterns, reading 2 files, listing 2 directories, running 13
+  bash commands…
+  ⎿  $ python3 -c "
+     import json
+     d=json.load(open('STATE.json'))
+     active = d.get('products', {}).get('active', [])
+     # Find any products with status != 'live' but that are deployed
+     non_live = [p for p in active if p.get('st') != 'live' and p.get('v')]
+     print(f'Non-live but deployed: {len(non_live)}')
+     for p i…
+
+✻ Forming… (10m 13s · ↓ 14.1k tokens · thought for 2s)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · esc to interrupt · ↓ to manage
+

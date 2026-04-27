@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 235 at 20260427_105534 ===
+--- PANE 0 (✳ Claude Code) ---
+  ─────────────────────────────────────────────────
+
+  Cycle 232 tamamlandı.
+
+  ✅ Sağlık: 183/184 (git-workflow-auto 404, Vercel limit bloklu)
+  ✅ Polar checkout: gap=0 — tam senkron
+  ⚠️  Canonical drift: 14 ürün (Vercel Pro gerekli)
+  ⚠️  Telegram: account-1 limit bloke (~Apr 28)
+  💰 Bakiye: $1.00
+  ⏳ Bounty PRs: 3 pending, hepsi mergeable
+
+  🛑 Tek blokaj: Vercel Pro upgrade → sonra git-workflow-auto redeploy + 14
+  drift fix
+
+✻ Churned for 8m 41s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

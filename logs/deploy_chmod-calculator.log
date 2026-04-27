@@ -1,0 +1,38 @@
+🚀 Deploying: Chmod Calculator Pro (chmod-calculator)
+==================================
+
+📦 Step 1: GitHub Push...
+  Repo exists. Pushing updates...
+[main f0c02cf] Deploy: Chmod Calculator Pro
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+branch 'main' set up to track 'origin/main'.
+  ✅ GitHub: https://github.com/universe7creator/chmod-calculator
+
+🌐 Step 2: Vercel Deploy...
+  ✅ Deployment URL: https://chmod-calculator-mjxhguuwg-madnessqws-projects.vercel.app
+  ✅ Public URL: https://chmod-calculator.vercel.app
+
+🏥 Step 3: Health Check...
+  Health: {"status":"healthy","service":"chmod-calculator","timestamp":"2026-04-27T02:05:26.911Z","version":"1.0.0"}
+
+🔓 Step 3.5: Disabling SSO Protection...
+[2026-04-27 05:05:30] === chmod-calculator için ssoProtection kapatılıyor ===
+[2026-04-27 05:05:36]   ✅ chmod-calculator — ssoProtection: None
+  ✅ Protection disabled
+
+📝 Step 4: Updating product.json...
+  ✅ product.json updated
+
+📱 Step 5: Telegram notification...
+  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify
+
+📊 Step 6: Updating STATE.json...
+  ✅ STATE.json updated
+
+==================================
+✅ DEPLOYMENT COMPLETE!
+  🌐 https://chmod-calculator.vercel.app
+  📂 https://github.com/universe7creator/chmod-calculator
+  🔗 Webhook: https://chmod-calculator.vercel.app/api/webhook
+
+⏳ Waiting for Polar checkout sync...

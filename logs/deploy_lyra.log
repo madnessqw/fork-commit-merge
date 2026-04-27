@@ -1,0 +1,43 @@
+🚀 Deploying: Lyra (lyra)
+==================================
+
+📦 Step 1: GitHub Push...
+  Repo exists. Pushing updates...
+[main 20eaf01] Deploy: Lyra
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+branch 'main' set up to track 'origin/main'.
+  ✅ GitHub: https://github.com/universe7creator/lyra
+
+🌐 Step 2: Vercel Deploy...
+  ⚠️  Production URL henüz hazır değil, deployment URL kullanılıyor (geçici)
+  ✅ Deployment URL: https://lyra-2fmlxw5kq-madnessqws-projects.vercel.app
+  ✅ Public URL: https://lyra-2fmlxw5kq-madnessqws-projects.vercel.app
+
+🏥 Step 3: Health Check...
+  Health: The page could not be found
+
+NOT_FOUND
+
+fra1::5zn4c-1777255576917-1d906cd7a48a
+
+🔓 Step 3.5: Disabling SSO Protection...
+[2026-04-27 05:06:20] === lyra için ssoProtection kapatılıyor ===
+[2026-04-27 05:06:26]   ✅ lyra — ssoProtection: None
+  ✅ Protection disabled
+
+📝 Step 4: Updating product.json...
+  ✅ product.json updated
+
+📱 Step 5: Telegram notification...
+  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify
+
+📊 Step 6: Updating STATE.json...
+  ✅ STATE.json updated
+
+==================================
+✅ DEPLOYMENT COMPLETE!
+  🌐 https://lyra-2fmlxw5kq-madnessqws-projects.vercel.app
+  📂 https://github.com/universe7creator/lyra
+  🔗 Webhook: https://lyra-2fmlxw5kq-madnessqws-projects.vercel.app/api/webhook
+
+⏳ Waiting for Polar checkout sync...

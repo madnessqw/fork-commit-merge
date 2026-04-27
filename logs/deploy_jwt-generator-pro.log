@@ -1,0 +1,41 @@
+🚀 Deploying: JWT Generator Pro (jwt-generator-pro)
+==================================
+
+📦 Step 1: GitHub Push...
+  Repo exists. Pushing updates...
+[main a6448cd] Deploy: JWT Generator Pro
+ 6 files changed, 24 insertions(+), 9 deletions(-)
+ mode change 100644 => 100755 api/health.js
+ mode change 100644 => 100755 api/process.js
+ mode change 100644 => 100755 api/webhook.js
+branch 'main' set up to track 'origin/main'.
+  ✅ GitHub: https://github.com/universe7creator/jwt-generator-pro
+
+🌐 Step 2: Vercel Deploy...
+  ✅ Deployment URL: https://jwt-generator-en9tauxak-madnessqws-projects.vercel.app
+  ✅ Public URL: https://jwt-generator-pro.vercel.app
+
+🏥 Step 3: Health Check...
+  Health: {"status":"ok","product":"jwt-generator-pro","version":"1.0.0","timestamp":"2026-04-27T02:06:02.534Z"}
+
+🔓 Step 3.5: Disabling SSO Protection...
+[2026-04-27 05:06:05] === jwt-generator-pro için ssoProtection kapatılıyor ===
+[2026-04-27 05:06:11]   ✅ jwt-generator-pro — ssoProtection: None
+  ✅ Protection disabled
+
+📝 Step 4: Updating product.json...
+  ✅ product.json updated
+
+📱 Step 5: Telegram notification...
+  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify
+
+📊 Step 6: Updating STATE.json...
+  ✅ STATE.json updated
+
+==================================
+✅ DEPLOYMENT COMPLETE!
+  🌐 https://jwt-generator-pro.vercel.app
+  📂 https://github.com/universe7creator/jwt-generator-pro
+  🔗 Webhook: https://jwt-generator-pro.vercel.app/api/webhook
+
+⏳ Waiting for Polar checkout sync...

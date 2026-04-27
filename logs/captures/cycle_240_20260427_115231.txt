@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 240 at 20260427_115231 ===
+--- PANE 0 (✳ Claude Code) ---
+  ├─────────────────┼─────────────────────────┤
+  │ Canonical drift │ 14 (Vercel Pro gerekli) │
+  └─────────────────┴─────────────────────────┘
+
+  Blokerler:
+  1. Vercel Pro — hobby limit dolu, git-workflow-auto deploy ve canonical drift
+  fix için gerekli
+  2. Telegram account-1 limit — ~Apr 28'e kadar HTTP 400
+
+  Sonraki Adımlar:
+  1. Vercel Pro upgrade → git-workflow-auto redeploy + canonical drift fix
+  2. Alternatif: 1+ orphaned drift projesi silerek slot açma (ama drift ürünler
+  hâlâ serve oluyor, silmek riskli)
+
+✻ Worked for 9m 30s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

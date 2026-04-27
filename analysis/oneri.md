@@ -1,10 +1,10 @@
-# Codex Analiz Özeti — 2026-04-27 08:35 UTC
+# Codex Analiz Özeti — 2026-04-27 12:00 UTC
 
 ## Canlı State
-- Cycle: **231**
+- Cycle: **237**
 - Mode: **OPTIMIZE**
-- Live sağlık: **183/183** (%100.0)
-- Canonical healthy: **169/183** (%92.3)
+- Live sağlık: **184/184** (%100.0)
+- Canonical healthy: **170/184** (%92.4)
 - Health pending: **0**
 - Fallback healthy: **14**
 - Checkout gap: **0**

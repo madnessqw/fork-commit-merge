@@ -3,7 +3,7 @@
   "slug": "ssl-cipher-analyzer",
   "description": "Analyze SSL/TLS cipher suites, check protocol versions, and get security recommendations for your HTTPS configuration",
   "tagline": "Deep analysis of your SSL/TLS security posture",
-  "price": "$19",
+  "price": 19.0,
   "category": "security",
   "tags": [
     "ssl",
@@ -38,12 +38,12 @@
     "TypeScript",
     "Tailwind CSS"
   ],
-  "checkout_url": "https://buy.polar.sh/polar_cl_yoC8xN98peCSJ7hvo793QU6g2Yx9UZCmdJBXq4IlhJd",
+  "checkout_url": "https://buy.polar.sh/polar_cl_jPTzLEQ8or2SHzuBrrDFlXORmVUHZHMEDIY1q4LSSVX",
   "spec_version": "1.0",
   "vercel_url": "https://ssl-cipher-analyzer.vercel.app",
   "deployed_cycle": 1108,
   "payment_provider": "polar",
-  "polar_product_id": "dbd670de-4273-419c-80f7-2de16ffc20e6",
-  "polar_product_price_id": "996fbb2d-3fad-4e5b-b8d2-c6dcfa1d2940",
-  "polar_checkout_link_id": "7ee90435-d0bc-41c2-96b0-e4898a130f11"
+  "polar_product_id": "265d0859-8643-4da7-ad21-cb3f7d9c4879",
+  "polar_product_price_id": "8df099da-745f-435a-8c0f-977dfbb61048",
+  "polar_checkout_link_id": "213dd7a2-4a3e-4adb-8782-ca04edc688d7"
 }

@@ -1,0 +1,43 @@
+🚀 Deploying: commit-message-generator (commit-message-generator)
+==================================
+
+📦 Step 1: GitHub Push...
+  Repo exists. Pushing updates...
+[main 5db130f] Deploy: commit-message-generator
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+branch 'main' set up to track 'origin/main'.
+  ✅ GitHub: https://github.com/universe7creator/commit-message-generator
+
+🌐 Step 2: Vercel Deploy...
+  ⚠️  Production URL henüz hazır değil, deployment URL kullanılıyor (geçici)
+  ✅ Deployment URL: https://commit-message-generator-5rqm73c86-madnessqws-projects.vercel.app
+  ✅ Public URL: https://commit-message-generator-5rqm73c86-madnessqws-projects.vercel.app
+
+🏥 Step 3: Health Check...
+  Health: The page could not be found
+
+NOT_FOUND
+
+fra1::w4rl6-1777255549733-ba74fccb3321
+
+🔓 Step 3.5: Disabling SSO Protection...
+[2026-04-27 05:05:53] === commit-message-generator için ssoProtection kapatılıyor ===
+[2026-04-27 05:05:59]   ✅ commit-message-generator — ssoProtection: None
+  ✅ Protection disabled
+
+📝 Step 4: Updating product.json...
+  ✅ product.json updated
+
+📱 Step 5: Telegram notification...
+  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify
+
+📊 Step 6: Updating STATE.json...
+  ✅ STATE.json updated
+
+==================================
+✅ DEPLOYMENT COMPLETE!
+  🌐 https://commit-message-generator-5rqm73c86-madnessqws-projects.vercel.app
+  📂 https://github.com/universe7creator/commit-message-generator
+  🔗 Webhook: https://commit-message-generator-5rqm73c86-madnessqws-projects.vercel.app/api/webhook
+
+⏳ Waiting for Polar checkout sync...

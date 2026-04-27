@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 254 at 20260427_143558 ===
+--- PANE 0 (⠐ Claude Code) ---
+  ilgili landing page referanslarını aynı truth ile güncelle.
+  - Eski manuel checkout listelerini ve artık kullanılmayan provider
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+● Searching for 1 pattern, reading 11 files, listing 3 directories, running 39
+  bash commands…
+  ⎿  Check HTTP status of the 5 not-in-scope products (19s · 4 lines)
+     (ctrl+b ctrl+b (twice) to run in background)
+
+* Forging… (10m 13s · ↓ 11.3k tokens)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle) · esc to interrupt
+

@@ -3,7 +3,7 @@
   "slug": "nginx-config-tester",
   "description": "Validate and test Nginx configuration files with syntax checking, best practice analysis, and security recommendations",
   "tagline": "Validate Nginx configs before they break production",
-  "price": "$19",
+  "price": 19.0,
   "category": "devops",
   "tags": [
     "nginx",
@@ -37,12 +37,12 @@
     "TypeScript",
     "Tailwind CSS"
   ],
-  "checkout_url": "https://buy.polar.sh/polar_cl_Bzq04ZfLEKyBBKrDh2ZhryXTIcfO338S1vZSA1JF316",
+  "checkout_url": "https://buy.polar.sh/polar_cl_uRM4paXUxLoobevXE4eQwi8RdWwCPWC2ZCiiO2Rx8jm",
   "spec_version": "1.0",
   "vercel_url": "https://nginx-config-tester.vercel.app",
   "deployed_cycle": 1108,
   "payment_provider": "polar",
-  "polar_product_id": "79e80c85-3dab-4020-a87e-17d3f28a99a2",
-  "polar_product_price_id": "fce4808d-15fc-4b97-a2ba-2554c72577c6",
-  "polar_checkout_link_id": "b9f4d433-8b46-4a42-8475-8b2acf16fddb"
+  "polar_product_id": "9817bb04-0ef8-4f0d-95d3-acdc60c1ee0d",
+  "polar_product_price_id": "ad094407-d4b1-459f-a259-c4b71661b3fc",
+  "polar_checkout_link_id": "890374e2-5499-46fc-9239-3edcba972b51"
 }

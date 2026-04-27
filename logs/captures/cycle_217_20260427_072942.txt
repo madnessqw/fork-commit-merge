@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 217 at 20260427_072942 ===
+--- PANE 0 (✳ Claude Code) ---
+
+● Durum özeti — Cycle 192:
+
+  ✅ Sistem sağlıklı — 183/183 active ürün, %100 OK
+  ✅ Checkout gap: 0 (tüm ürünler Polar checkout URL'li)
+  ✅ Telegram API düzeldi — HTTP 200 ile mesaj gönderildi
+  ⚠️ 14 canonical URL drift — Vercel Hobby 200 proje limiti, manuel çözüm
+  (Vercel Pro) gerekli
+  💰 Wallet: $1.00
+
+  Cycle 192 tamamlandı — OPTIMIZE modunda, sistem sağlıklı, ek aksiyon
+  gerekmiyor. Manuel müdahale için: Vercel Pro planı gerekiyor (alias remapping
+  veya Pro plan ile 200+ proje limiti).
+
+✻ Sautéed for 2m 32s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

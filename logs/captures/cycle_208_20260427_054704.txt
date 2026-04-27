@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 208 at 20260427_054704 ===
+--- PANE 0 (✳ Claude Code) ---
+  ürünün site/kod dosyalarından fiyat keşfet.
+  - Checkout URL oluşunca `product.json` içindeki `checkout_url` alanını ve
+  ilgili landing page referanslarını aynı truth ile güncelle.
+  - Eski manuel checkout listelerini ve artık kullanılmayan provider
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+● cat /home/gokhan/UniverseCreator/skills/SWARM_IDENTITY.md && cat
+  /home/gokhan/UniverseCreator/skills/ULTRATHINK.md && cat
+  /home/gokhan/UniverseCreator/skills/FACTORY.md && cat
+  /home/gokhan/UniverseCreator/STATE.json
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

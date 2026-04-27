@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 252 at 20260427_140920 ===
+--- PANE 0 (✳ Claude Code) ---
+  │ Polar checkout gap │ 0 ✓              │
+  ├────────────────────┼──────────────────┤
+  │ Canonical drift    │ 0 ✓              │
+  ├────────────────────┼──────────────────┤
+  │ Vercel limit       │ 200/200 (bloklu) │
+  ├────────────────────┼──────────────────┤
+  │ Balance            │ $0               │
+  └────────────────────┴──────────────────┘
+
+  Ana bulgu: git-workflow-auto checkout URL'si ($12) mevcut ama Vercel limit
+  hatası deploy'u bloke ediyor. 4 pending bounty PR ($97.5) — bunlar cash
+  convert edilebilir. Telegram raporu 400 hatası verdi — bot token kontrol
+  edilmeli.
+
+✻ Churned for 4m 52s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

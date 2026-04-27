@@ -3,7 +3,7 @@
   "name": "URL Parser Pro",
   "tagline": "Parse and analyze any URL with detailed component breakdown",
   "description": "Extract every component from any URL including protocol, host, pathname, query parameters, hash fragments, and more. Generate ready-to-use code snippets in multiple languages.",
-  "price": "$19",
+  "price": 19.0,
   "status": "live",
   "category": "developer-tools",
   "features": [
@@ -42,7 +42,7 @@
     "freeformatter.com"
   ],
   "differentiation": "Code snippet generation, component-by-component copy, URL comparison feature",
-  "checkout_url": "https://buy.polar.sh/polar_cl_kOs9YUIcq2WTdJTnvW3S1vXW2vpXHuLGwolsc1nLtUi",
+  "checkout_url": "https://buy.polar.sh/polar_cl_3O5NdTqFfbkdE0iCFxG1mtZhVhObK6VGkiKqy4I05xO",
   "spec_version": "1.0",
   "vercel_url": "https://url-parser-pro.vercel.app",
   "deployment_url": "https://url-parser-plo90j0k2-madnessqws-projects.vercel.app",
@@ -51,7 +51,7 @@
   "payment_provider": "polar",
   "polar_product_id": "b41d7455-7207-43cf-833c-94c263c3ae5c",
   "polar_product_price_id": "1e65832c-ce3d-488b-bbe0-8dc76056e3ea",
-  "polar_checkout_link_id": "b2e5b1ac-13ab-41a9-8c0f-16c347758fbe",
+  "polar_checkout_link_id": "18d8dae1-ae60-4e30-bfe7-401e904e607e",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

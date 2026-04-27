@@ -1,11 +1,11 @@
-# Sorun Analizi — Cycle 231 | 2026-04-27 08:35 UTC
+# Sorun Analizi — Cycle 237 | 2026-04-27 12:00 UTC
 
 ## Ana Darboğaz
 - **ready_for_payment_health** — 1 ready_for_payment ürün health-check'te sorunlu; ilk örnek `git-workflow-auto` (HTTP 404, not_found).
 
 ## Summary'den Gelen Gerçekler
-- Healthy live: 183/183
-- Canonical healthy: 169/183
+- Healthy live: 184/184
+- Canonical healthy: 170/184
 - Health pending: 0
 - Fallback healthy: 14
 - Checkout gap: 0

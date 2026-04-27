@@ -3,7 +3,7 @@
   "slug": "html-entity-pro",
   "tagline": "Convert special characters to HTML entities and back. Perfect for web developers and content creators.",
   "description": "Convert special characters to HTML entities and back. Perfect for web developers and content creators.",
-  "price": "$19",
+  "price": 19.0,
   "features": [
     "Professional-grade features",
     "No signup required",
@@ -17,11 +17,11 @@
   "webhook_url": "https://html-entity-pro.vercel.app/api/webhook",
   "created_cycle": 1116,
   "deployed_cycle": null,
-  "checkout_url": "https://buy.polar.sh/polar_cl_5V800ICvYc5I9wCRBDscZs7Rn3ILWqVokWvOF0o75T1",
+  "checkout_url": "https://buy.polar.sh/polar_cl_RD3sdol5NFVSXsJdAFXoHrRm3XR94S88WEzZx3HOILR",
   "spec_version": "1.0",
   "payment_provider": "polar",
-  "polar_product_id": "19aa7ec0-63a0-4076-8e72-cf754d961a3f",
-  "polar_product_price_id": "d39542a4-ccc3-4972-b548-3211b40ded16",
-  "polar_checkout_link_id": "ca07ccf4-1c81-4791-99c8-f4e5426f822e",
+  "polar_product_id": "7064c3e3-c0d2-42be-a86c-0413c09f9ac0",
+  "polar_product_price_id": "71cc330a-8a75-4932-bf5f-375eeaae6ef6",
+  "polar_checkout_link_id": "5d33e0b3-601d-4699-91f6-6292ce07059c",
   "deployment_url": "https://html-entity-htsvsii4l-madnessqws-projects.vercel.app"
 }

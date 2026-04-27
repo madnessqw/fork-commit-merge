@@ -16,12 +16,12 @@
   "status": "live",
   "category": "security",
   "spec_version": "1.0",
-  "checkout_url": "https://buy.polar.sh/polar_cl_klIWWF14AP2kH88wuAJAKKi29oOsuOaLzJLbF0lfDdV",
+  "checkout_url": "https://buy.polar.sh/polar_cl_fIpoLEnBfo7exQtogAr5DImvQSt1wNNLMlhe20XmqvM",
   "vercel_url": "https://api-security-scanner.vercel.app",
   "payment_provider": "polar",
-  "polar_product_id": "1a7e40f0-0178-454b-b134-2bddaa28f163",
-  "polar_product_price_id": "c548815d-4525-4ef3-86ef-cbc2d6d26b5e",
-  "polar_checkout_link_id": "4e8cd44d-eceb-48f1-86f1-e37fb1f95533",
+  "polar_product_id": "31981041-4d27-4c61-ab72-621a02f8c16e",
+  "polar_product_price_id": "0c6df9d9-17a7-4470-acd0-14399d4166b3",
+  "polar_checkout_link_id": "477835e2-fe0d-4fbc-907e-37c81613da58",
   "created_cycle": 1116,
   "deployed_cycle": 1108
 }

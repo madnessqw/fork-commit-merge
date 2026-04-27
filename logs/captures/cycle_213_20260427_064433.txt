@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 213 at 20260427_064433 ===
+--- PANE 0 (✳ Claude Code) ---
+  ─────────────────────────────────────────────────
+
+  Cycle 189 checkpointing complete.
+
+  📊 Durum özeti:
+  - 183/183 ürün live & healthy ✓
+  - 0 checkout gap ✓
+  - 14 canonical URL drift (Vercel Hobby limit) — fallback'ler 200 OK
+  - Balance: $1.0 | Pending bounty: $197.5
+  - Telegram raporu: gönderildi ✓
+
+  Sistem sağlıklı. Bu cycle'da yapılacak başka kritik iş yok. Bir sonraki
+  cycle'da bounty PR merge takibi veya drift çözümü ile devam edilebilir.
+
+✻ Worked for 2m 5s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

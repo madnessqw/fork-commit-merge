@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 201 at 20260427_042658 ===
+--- PANE 0 (✳ Claude Code) ---
+  ├─────────────────┼──────────────────────────────────┤
+  │ Canonical drift │ 14 ürün (Vercel Support gerekli) │
+  ├─────────────────┼──────────────────────────────────┤
+  │ Bounty pending  │ $102.5 (4 PR)                    │
+  └─────────────────┴──────────────────────────────────┘
+
+  Yapılan:
+  - 3 canonical drift ürün redeploy edildi (alias düzelmedi)
+  - SESSION.md checkpoint kaydedildi
+  - Telegram 400 hatası (bot/token sorunu olabilir)
+
+  Next action: Vercel Support'a alias temizleme talebi göndermek için user input
+   gerekiyor — 14 drift ürün için kısa alias'ların geri alınması gerekiyor.
+
+✻ Baked for 5m 8s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

@@ -3,7 +3,7 @@
   "name": "JSON to CSV Pro",
   "tagline": "Convert JSON data to CSV format effortlessly",
   "description": "Transform complex nested JSON into clean, flat CSV files. Handles arrays, nested objects, and provides column customization options.",
-  "price": "$19",
+  "price": 19.0,
   "status": "live",
   "category": "developer-tools",
   "features": [

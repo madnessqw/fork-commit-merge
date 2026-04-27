@@ -383,3 +383,11 @@ Hash URL found: nginx-config -> https://nginx-config-egj3ho5tp-madnessqws-projec
   ❌ Error: [Errno 2] No such file or directory: 'vercel'
 
 No hash URLs to fix
+Hash URL found: html-entity-encoder -> https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: nginx-config -> https://nginx-config-egj3ho5tp-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+Hash URL found: chmod-calculator -> https://chmod-calculator-5atogp6t7-madnessqws-projects.vercel.app
+  ❌ Error: [Errno 2] No such file or directory: 'vercel'
+
+No hash URLs to fix

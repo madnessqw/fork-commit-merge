@@ -9,8 +9,8 @@
   "category": "developer-tools",
   "status": "live",
   "payment_provider": "polar",
-  "checkout_url": "https://buy.polar.sh/polar_cl_E9HOVkR48QWhNdZUcV6er7lxcryRHc77iJ1lc2pVubA",
-  "polar_product_id": "7e02e660-3ca0-48d9-9aa0-383f38f23b0c",
+  "checkout_url": "https://buy.polar.sh/polar_cl_Vhrkx4rJiJh1UwQwS7JSVAr65wvykZJGrBUCw1r4gBa",
+  "polar_product_id": "305875a6-aa1f-4c42-a7cd-87394eae69b6",
   "spec_version": "1.0",
   "features": [
     "Smart SVG compression",
@@ -23,7 +23,7 @@
     "ViewBox optimization"
   ],
   "tech_stack": "Vanilla HTML + Tailwind CDN",
-  "polar_product_price_id": "9a24c8a3-e05d-492a-b626-8d2f85b3464e",
-  "polar_checkout_link_id": "6f528bc7-135a-453f-aabd-83e931100100",
+  "polar_product_price_id": "991359c1-f385-4d47-a5f1-f20883f58e0f",
+  "polar_checkout_link_id": "521b9fef-a32b-4f7a-9b5c-a6aeed25aae8",
   "vercel_url": "https://svg-optimizer-pro-madnessqws-projects.vercel.app"
 }

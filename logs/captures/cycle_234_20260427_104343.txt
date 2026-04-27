@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 234 at 20260427_104343 ===
+--- PANE 0 (✳ Claude Code) ---
+  hobby plan kısıtlamasından kaynaklanıyor. Redeploy yapılamıyor çünkü limit
+  dolu. Pro upgrade tek çözüm.
+  ─────────────────────────────────────────────────
+
+  Cycle 231 Özet:
+
+  - git-workflow-auto → STATE.json active'e eklendi (ready_for_payment)
+  - Polar checkout: gap=0, tüm ürünler senkronize
+  - 185 aktif ürün, 183 sağlıklı
+  - 14 canonical drift ürün — Vercel Pro gerektirir, insan aksiyonu bekleniyor
+  - Telegram raporu gönderildi
+
+  ⏰ Cycle 231 tamamlandı.
+
+✻ Baked for 3m 9s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

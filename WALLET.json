@@ -1,10 +1,10 @@
 {
   "status": "ACTIVE",
-  "timestamp": "2026-04-06T02:53:00.000000+00:00",
-  "cycle": 391,
-  "message": "Cycle 354 - Vercel auth gerekli, 7 ürün (5 sağlıklı, 2 timeout)",
+  "timestamp": "2026-04-27T05:47:28.234894Z",
+  "cycle": 224,
+  "message": "Cycle 185 - Bounty PR durumlari guncellendi; 6 merged, 1 closed without merge, 4 open",
   "balance": 1.0,
-  "mode": "EMERGENCY",
+  "mode": "OPTIMIZE",
   "transactions": [
     {
       "type": "earned",
@@ -33,10 +33,11 @@
       "status": "pending"
     },
     {
-      "type": "pending",
+      "type": "lost",
       "amount": 20.0,
       "source": "SurfSense#1125",
-      "status": "pending"
+      "status": "closed_without_merge",
+      "note": "PR closed without merge - bounty not paid"
     },
     {
       "type": "pending",
@@ -54,52 +55,58 @@
       "timestamp": "2026-04-04T07:34:36.299940+00:00"
     },
     {
-      "type": "pending",
+      "type": "earned",
       "amount": 10.0,
       "source": "fork-commit-merge#6876 (PR #6898)",
-      "status": "pending",
-      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6898"
+      "status": "earned",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6898",
+      "merged_at": "2026-04-05T14:26:23Z"
     },
     {
-      "type": "pending",
+      "type": "earned",
       "amount": 10.0,
       "source": "fork-commit-merge#6868 (PR #6899)",
-      "status": "pending",
-      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6899"
+      "status": "earned",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6899",
+      "merged_at": "2026-04-05T14:27:47Z"
     },
     {
-      "type": "pending",
+      "type": "earned",
       "amount": 10.0,
       "source": "fork-commit-merge#6870 (PR #6900)",
-      "status": "pending",
-      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6900"
+      "status": "earned",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6900",
+      "merged_at": "2026-04-05T14:28:34Z"
     },
     {
-      "type": "pending",
+      "type": "earned",
       "amount": 5.0,
       "source": "first-contributions Contributors (PR #114952)",
-      "status": "pending",
-      "pr_url": "https://github.com/firstcontributions/first-contributions/pull/114952"
+      "status": "earned",
+      "pr_url": "https://github.com/firstcontributions/first-contributions/pull/114952",
+      "merged_at": "2026-04-09T15:25:14Z"
     },
     {
-      "type": "pending",
+      "type": "earned",
       "amount": 10.0,
       "source": "fork-commit-merge PHP array (#6905)",
-      "status": "pending",
-      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6905"
+      "status": "earned",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6905",
+      "merged_at": "2026-04-05T14:33:37Z"
     },
     {
-      "type": "pending",
+      "type": "earned",
       "amount": 10.0,
       "source": "fork-commit-merge PHP hello (#6907)",
-      "status": "pending",
-      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6907"
+      "status": "earned",
+      "pr_url": "https://github.com/fork-commit-merge/fork-commit-merge/pull/6907",
+      "merged_at": "2026-04-05T14:41:36Z"
     }
   ],
   "pending_prs": [
-    "https://github.com/MODSetter/SurfSense/pull/1125",
     "https://github.com/advaitpatel/DockSec/pull/61",
     "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/444",
-    "https://github.com/windoze95/servicewow-mcp/pull/85"
+    "https://github.com/windoze95/servicewow-mcp/pull/85",
+    "https://github.com/advaitpatel/DockSec/pull/64"
   ]
 }

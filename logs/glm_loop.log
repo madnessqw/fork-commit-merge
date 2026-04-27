@@ -450078,3 +450078,670 @@ warning: adding embedded git repository: work/cycle291_typos/gitHub-assistant-ag
 error: 'work/foremetric-pob/' does not have a commit checked out
 fatal: adding files failed
 [0m
+[GLM 2026-04-26 19:40:01] === GLM Cycle START ===
+[GLM 2026-04-26 19:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-26 19:40:01] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 19:40:01] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 19:40:01] === GLM Cycle END ===
+--- opencode run START 2026-04-26 19:40:01 ---
+[GLM 2026-04-26 20:00:01] === GLM Cycle START ===
+[GLM 2026-04-26 20:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-26 20:00:01] Killing stale pane child PID 14135 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 20:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 20:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-26 20:00:04 ---
+[GLM 2026-04-26 20:00:04] === GLM Cycle END ===
+[GLM 2026-04-26 20:20:01] === GLM Cycle START ===
+[GLM 2026-04-26 20:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-26 20:20:01] Killing stale pane child PID 22634 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 20:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 20:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 20:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-26 20:20:03 ---
+[GLM 2026-04-26 20:40:01] === GLM Cycle START ===
+[GLM 2026-04-26 20:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-26 20:40:01] Killing stale pane child PID 32627 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 20:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 20:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 20:40:03] === GLM Cycle END ===
+--- opencode run START 2026-04-26 20:40:03 ---
+[GLM 2026-04-26 21:00:01] === GLM Cycle START ===
+[GLM 2026-04-26 21:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-26 21:00:01] Killing stale pane child PID 9672 (bash /tmp/glm_run.sh)
+--- opencode run START 2026-04-26 21:00:03 ---
+[GLM 2026-04-26 21:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 21:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 21:00:03] === GLM Cycle END ===
+[GLM 2026-04-26 21:20:01] === GLM Cycle START ===
+[GLM 2026-04-26 21:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-26 21:20:01] Killing stale pane child PID 15477 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 21:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 21:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 21:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-26 21:20:03 ---
+[GLM 2026-04-26 21:40:01] === GLM Cycle START ===
+[GLM 2026-04-26 21:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-26 21:40:02] Killing stale pane child PID 24904 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 21:40:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 21:40:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-26 21:40:04 ---
+[GLM 2026-04-26 21:40:04] === GLM Cycle END ===
+[GLM 2026-04-26 22:00:01] === GLM Cycle START ===
+[GLM 2026-04-26 22:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-26 22:00:02] Killing stale pane child PID 1177 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 22:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 22:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 22:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-26 22:00:04 ---
+[GLM 2026-04-26 22:20:01] === GLM Cycle START ===
+[GLM 2026-04-26 22:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-26 22:20:01] Killing stale pane child PID 7274 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 22:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 22:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 22:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-26 22:20:03 ---
+[GLM 2026-04-26 22:40:01] === GLM Cycle START ===
+[GLM 2026-04-26 22:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-26 22:40:02] Killing stale pane child PID 15633 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 22:40:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 22:40:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 22:40:04] === GLM Cycle END ===
+--- opencode run START 2026-04-26 22:40:04 ---
+[GLM 2026-04-26 23:00:01] === GLM Cycle START ===
+[GLM 2026-04-26 23:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-26 23:00:01] Killing stale pane child PID 23670 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 23:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 23:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 23:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-26 23:00:04 ---
+[GLM 2026-04-26 23:20:01] === GLM Cycle START ===
+[GLM 2026-04-26 23:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-26 23:20:01] Killing stale pane child PID 29438 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 23:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 23:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 23:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-26 23:20:03 ---
+[GLM 2026-04-26 23:40:01] === GLM Cycle START ===
+[GLM 2026-04-26 23:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-26 23:40:01] Killing stale pane child PID 4967 (bash /tmp/glm_run.sh)
+[GLM 2026-04-26 23:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-26 23:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-26 23:40:03] === GLM Cycle END ===
+--- opencode run START 2026-04-26 23:40:03 ---
+[GLM 2026-04-27 00:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 00:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 00:00:02] Killing stale pane child PID 13464 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 00:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 00:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 00:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 00:00:04 ---
+[GLM 2026-04-27 00:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 00:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 00:20:02] Killing stale pane child PID 20718 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 00:20:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 00:20:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 00:20:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 00:20:04 ---
+[GLM 2026-04-27 00:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 00:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 00:40:02] Killing stale pane child PID 27830 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 00:40:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+--- opencode run START 2026-04-27 00:40:04 ---
+[GLM 2026-04-27 00:40:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 00:40:04] === GLM Cycle END ===
+[GLM 2026-04-27 01:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 01:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 01:00:02] Killing stale pane child PID 3935 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 01:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 01:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 01:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 01:00:04 ---
+[GLM 2026-04-27 01:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 01:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 01:20:01] Killing stale pane child PID 12534 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 01:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 01:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 01:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 01:20:03 ---
+[GLM 2026-04-27 01:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 01:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 01:40:01] Killing stale pane child PID 20468 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 01:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 01:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 01:40:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 01:40:03 ---
+[GLM 2026-04-27 02:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 02:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 02:00:02] Killing stale pane child PID 29157 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 02:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 02:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 02:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 02:00:04 ---
+[GLM 2026-04-27 02:20:02] === GLM Cycle START ===
+[GLM 2026-04-27 02:20:02] Last oneri.md: 19min ago
+[GLM 2026-04-27 02:20:02] Killing stale pane child PID 2401 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 02:20:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 02:20:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 02:20:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 02:20:04 ---
+[GLM 2026-04-27 02:40:02] === GLM Cycle START ===
+[GLM 2026-04-27 02:40:02] Last oneri.md: 4min ago
+[GLM 2026-04-27 02:40:02] Killing stale pane child PID 10592 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 02:40:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 02:40:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 02:40:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 02:40:04 ---
+[GLM 2026-04-27 03:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 03:00:03] Last oneri.md: 24min ago
+[GLM 2026-04-27 03:00:03] Killing stale pane child PID 19973 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 03:00:05] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 03:00:05] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 03:00:05] === GLM Cycle END ===
+--- opencode run START 2026-04-27 03:00:05 ---
+[GLM 2026-04-27 03:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 03:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 03:20:01] Killing stale pane child PID 24888 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 03:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 03:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 03:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 03:20:03 ---
+[GLM 2026-04-27 03:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 03:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 03:40:01] Killing stale pane child PID 965 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 03:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 03:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 03:40:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 03:40:03 ---
+[GLM 2026-04-27 04:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 04:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 04:00:01] Killing stale pane child PID 9655 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 04:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 04:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 04:00:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 04:00:03 ---
+[GLM 2026-04-27 04:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 04:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 04:20:01] Killing stale pane child PID 16626 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 04:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 04:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 04:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 04:20:03 ---
+[GLM 2026-04-27 04:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 04:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 04:40:01] Killing stale pane child PID 24408 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 04:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 04:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 04:40:03 ---
+[GLM 2026-04-27 04:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 05:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 05:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 05:00:01] Killing stale pane child PID 32152 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 05:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 05:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 05:00:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 05:00:03 ---
+[GLM 2026-04-27 05:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 05:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 05:20:01] Killing stale pane child PID 5612 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 05:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 05:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 05:20:03 ---
+[GLM 2026-04-27 05:20:03] === GLM Cycle END ===
+[GLM 2026-04-27 05:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 05:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 05:40:01] Killing stale pane child PID 18359 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 05:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 05:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 05:40:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 05:40:03 ---
+[GLM 2026-04-27 06:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 06:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 06:00:01] Killing stale pane child PID 26227 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 06:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+--- opencode run START 2026-04-27 06:00:03 ---
+[GLM 2026-04-27 06:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 06:00:03] === GLM Cycle END ===
+[GLM 2026-04-27 06:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 06:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 06:20:01] Killing stale pane child PID 31552 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 06:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 06:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 06:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 06:20:03 ---
+[GLM 2026-04-27 06:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 06:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 06:40:01] Killing stale pane child PID 5770 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 06:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+--- opencode run START 2026-04-27 06:40:03 ---
+[GLM 2026-04-27 06:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 06:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 07:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 07:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 07:00:01] Killing stale pane child PID 15039 (bash /tmp/glm_run.sh)
+--- opencode run START 2026-04-27 07:00:03 ---
+[GLM 2026-04-27 07:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 07:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 07:00:03] === GLM Cycle END ===
+[GLM 2026-04-27 07:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 07:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 07:20:02] Killing stale pane child PID 19856 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 07:20:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 07:20:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 07:20:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 07:20:04 ---
+[GLM 2026-04-27 07:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 07:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 07:40:01] Killing stale pane child PID 27396 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 07:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 07:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 07:40:03 ---
+[GLM 2026-04-27 07:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 08:00:02] === GLM Cycle START ===
+[GLM 2026-04-27 08:00:02] Last oneri.md: 24min ago
+[GLM 2026-04-27 08:00:02] Killing stale pane child PID 2089 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 08:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 08:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 08:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 08:00:04 ---
+[GLM 2026-04-27 08:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 08:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 08:20:02] Killing stale pane child PID 7864 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 08:20:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 08:20:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 08:20:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 08:20:04 ---
+[GLM 2026-04-27 08:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 08:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 08:40:02] Killing stale pane child PID 16617 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 08:40:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+--- opencode run START 2026-04-27 08:40:04 ---
+[GLM 2026-04-27 08:40:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 08:40:04] === GLM Cycle END ===
+[GLM 2026-04-27 09:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 09:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 09:00:02] Killing stale pane child PID 24316 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 09:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 09:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 09:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 09:00:04 ---
+[GLM 2026-04-27 09:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 09:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 09:20:01] Killing stale pane child PID 29589 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 09:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 09:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 09:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 09:20:03 ---
+[GLM 2026-04-27 09:40:02] === GLM Cycle START ===
+[GLM 2026-04-27 09:40:02] Last oneri.md: 4min ago
+[GLM 2026-04-27 09:40:02] Killing stale pane child PID 4755 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 09:40:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 09:40:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 09:40:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 09:40:04 ---
+[GLM 2026-04-27 10:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 10:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 10:00:02] Killing stale pane child PID 14234 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 10:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 10:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 10:00:04 ---
+[GLM 2026-04-27 10:00:04] === GLM Cycle END ===
+[GLM 2026-04-27 10:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 10:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 10:20:01] Killing stale pane child PID 20052 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 10:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 10:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 10:20:03 ---
+[GLM 2026-04-27 10:20:03] === GLM Cycle END ===
+[GLM 2026-04-27 10:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 10:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 10:40:01] Killing stale pane child PID 26904 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 10:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 10:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 10:40:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 10:40:03 ---
+[GLM 2026-04-27 11:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 11:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 11:00:01] Killing stale pane child PID 2597 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 11:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 11:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 11:00:03 ---
+[GLM 2026-04-27 11:00:03] === GLM Cycle END ===
+[GLM 2026-04-27 11:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 11:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 11:20:01] Killing stale pane child PID 7814 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 11:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 11:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 11:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 11:20:03 ---
+[GLM 2026-04-27 11:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 11:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 11:40:01] Killing stale pane child PID 18117 (bash /tmp/glm_run.sh)
+--- opencode run START 2026-04-27 11:40:03 ---
+[GLM 2026-04-27 11:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 11:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 11:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 12:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 12:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 12:00:01] Killing stale pane child PID 25052 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 12:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 12:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 12:00:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 12:00:03 ---
+[GLM 2026-04-27 12:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 12:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 12:20:02] Killing stale pane child PID 31087 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 12:20:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 12:20:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 12:20:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 12:20:04 ---
+[GLM 2026-04-27 12:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 12:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 12:40:01] Killing stale pane child PID 8120 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 12:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 12:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 12:40:03 ---
+[GLM 2026-04-27 12:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 13:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 13:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 13:00:01] Killing stale pane child PID 16352 (bash /tmp/glm_run.sh)
+--- opencode run START 2026-04-27 13:00:03 ---
+[GLM 2026-04-27 13:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 13:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 13:00:03] === GLM Cycle END ===
+[GLM 2026-04-27 13:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 13:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 13:20:01] Killing stale pane child PID 22466 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 13:20:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 13:20:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 13:20:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 13:20:03 ---
+[GLM 2026-04-27 13:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 13:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 13:40:01] Killing stale pane child PID 29695 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 13:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+--- opencode run START 2026-04-27 13:40:03 ---
+[GLM 2026-04-27 13:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 13:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 14:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 14:00:01] Last oneri.md: 24min ago
+[GLM 2026-04-27 14:00:01] Killing stale pane child PID 5665 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 14:00:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 14:00:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 14:00:03] === GLM Cycle END ===
+--- opencode run START 2026-04-27 14:00:03 ---
+--- opencode run END 2026-04-27 14:11:11 exit=137 ---
+[GLM 2026-04-27 14:20:01] === GLM Cycle START ===
+[GLM 2026-04-27 14:20:01] Last oneri.md: 19min ago
+[GLM 2026-04-27 14:20:01] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 14:20:01] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 14:20:01 ---
+[GLM 2026-04-27 14:20:01] === GLM Cycle END ===
+[GLM 2026-04-27 14:40:01] === GLM Cycle START ===
+[GLM 2026-04-27 14:40:01] Last oneri.md: 4min ago
+[GLM 2026-04-27 14:40:01] Killing stale pane child PID 17401 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 14:40:03] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 14:40:03] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+--- opencode run START 2026-04-27 14:40:03 ---
+[GLM 2026-04-27 14:40:03] === GLM Cycle END ===
+[GLM 2026-04-27 15:00:01] === GLM Cycle START ===
+[GLM 2026-04-27 15:00:02] Last oneri.md: 24min ago
+[GLM 2026-04-27 15:00:02] Killing stale pane child PID 24978 (bash /tmp/glm_run.sh)
+[GLM 2026-04-27 15:00:04] Dispatched: bash /tmp/glm_run.sh → tmux UniverseGLM:0
+[GLM 2026-04-27 15:00:04] Monitor: tmux attach -t UniverseGLM | Logs: /home/gokhan/UniverseCreator/logs/glm_loop.log
+[GLM 2026-04-27 15:00:04] === GLM Cycle END ===
+--- opencode run START 2026-04-27 15:00:04 ---
+--- opencode run START 2026-04-27 18:55:08 ---
+[0m
+> build · glm-5.1
+[0m
+[0m→ [0mRead skills/glm_analyst.md
+[0m→ [0mRead skills/SWARM_IDENTITY.md
+[0m→ [0mRead skills/ULTRATHINK.md
+[0m→ [0mRead logic/glm.logic.md
+[0m
+[0m# [0mTodos
+[ ] Adım 0b: Hızlı Telegram ping — STATE_SUMMARY oku, gönder
+[ ] Adım 1: AKTİF KOD GÖREVİ — glm_fix_brief.md veya quick win, commit at
+[ ] Adım 1d: Repo/release sağlık kontrolü
+[ ] Adım 2: Kritik sorun tespiti + handoff üret
+[ ] Adım 2b: Subagent kararı — opencode_subagent_guide.md oku
+[ ] Adım 3-3f: Yeni dosyalar oku, özet çıkar, QA/ledger/signals kontrol
+[ ] Adım 4: oneri.md güncelle
+[ ] Adım 5: Tam Telegram raporu gönder
+[0m
+Kimlik yüklendi. GLM Micro-Coder + Analist modunda çalışıyorum. Adım 0b başlıyor.
+[0m→ [0mRead STATE_SUMMARY.json
+[0m
+[0m$ [0mcat /home/gokhan/UniverseCreator/analysis/glm_fix_brief.md 2>/dev/null | head -80
+## GLM Fix Brief
+**Tarih:** 2026-04-26 11:00
+
+### Tamamlanan (Bu cycle)
+- 9 canonical URL drift ürünlerinin STATE.json url alanları dolduruldu ✅ (commit 46409a0)
+
+### GLM Scope (küçük, güvenli)
+Yok — portföy temiz, 170/170 healthy.
+
+### Codex Scope (Vercel erişimi gerekli)
+- **commit-message-generator** canonical URL 404 → Vercel'de deployment fix gerekli (alias → canonical)
+- **Codex auth:** Her iki hesap usage limitinde. Account 1 blocked until Apr 28, Account 2 also limit. Pro upgrade veya 28 Nisan beklenmeli.
+
+### İnsan Kararı Gerekli
+- Codex Pro upgrade — her iki hesap usage limit doldu, cycle 31'den beri üretken değil
+[0m
+[0m$ [0mgit log --oneline -10
+64fd3287 cycle 235: checkpoint — drift 14 HTTP 200, vercel limit 200/200 blokeli
+4742f11b cycle 234: promote mcp-discover to live, update summary
+2fe60104 chore: cycle 233 checkpoint — git-workflow-auto 404 confirmed, Vercel Pro awaited
+d10fb78d chore: cycle 229 checkpoint — mcp-discover healthy, polar gap=0 verified
+9db731aa chore: cycle 228 checkpoint - add mcp-discover to portfolio
+e20f7226 cycle 193 checkpoint: research AI agent memory tools, 183 healthy, 0 checkout gap
+e119c111 cycle 186 checkpoint: 183 healthy, 0 checkout gap, 14 canonical drift (Vercel infra)
+4f4cd13b cycle 184: OPTIMIZE checkpoint - 183/183 healthy, 0 checkout gap, 14 canonical drift (Vercel Support needed)
+f3e9eb88 chore: cycle 181 checkpoint - checkout migration complete, canonical drift accepted
+4ed3c5d6 fix: migrate all HTML checkout URLs from LemonSqueezy to Polar + wire up buy buttons
+[0m
+[0m$ [0mLIVE=$(python3 -c "import json; s=json.load(open('/home/gokhan/UniverseCreator/STATE_SUMMARY.json')); print(f'{s[\"healthy_count\"]}/{s[\"live_count\"]}')" 2>/dev/null || echo "?/?")
+DGAP=$(python3 -c "import json; print(json.load(open('/home/gokhan/UniverseCreator/STATE_SUMMARY.json')).get('deploy_missing_or_bad_url',0))" 2>/dev/null || echo "?")
+CYCLE=$(python3 -c "import json; print(json.load(open('/home/gokhan/UniverseCreator/STATE_SUMMARY.json')).get('cycle',0))" 2>/dev/null || echo "?")
+ONERI_AGE=$(python3 -c "import os,time; f='/home/gokhan/UniverseCreator/analysis/oneri.md'; print(f'{(time.time()-os.stat(f).st_mtime)/60:.0f}dk önce' if os.path.exists(f) else 'yok')" 2>/dev/null)
+
+printf '📊 <b>GLM CYCLE — %s</b>\n🕐 %s\n\n📦 Sağlık: %s | Deploy gap: %s\n🔄 Son oneri.md: %s\n\n⏳ Analiz devam ediyor...' \
+    "$CYCLE" "$(date '+%d.%m %H:%M')" "$LIVE" "$DGAP" "$ONERI_AGE" \
+    | /home/gokhan/UniverseCreator/scripts/telegram_send.sh
+OK
+[0m
+[0m# [0mTodos
+[x] Adım 0b: Hızlı Telegram ping — STATE_SUMMARY oku, gönder
+[ ] Adım 1: AKTİF KOD GÖREVİ — glm_fix_brief.md veya quick win, commit at
+[ ] Adım 1d: Repo/release sağlık kontrolü
+[ ] Adım 2: Kritik sorun tespiti + handoff üret
+[ ] Adım 2b: Subagent kararı — opencode_subagent_guide.md oku
+[ ] Adım 3-3f: Yeni dosyalar oku, özet çıkar, QA/ledger/signals kontrol
+[ ] Adım 4: oneri.md güncelle
+[ ] Adım 5: Tam Telegram raporu gönder
+[0m
+Brief'te GLM scope görev yok. Quick win arıyorum — scripts/ altında iyileştirme veya eksik kod bulacağım.
+[0m$ [0mcat /home/gokhan/UniverseCreator/CODEBASE_MAP.md 2>/dev/null | head -60 || echo "CODEBASE_MAP.md yok"
+# CODEBASE_MAP.md — UniverseCreator
+
+**Otonom dijital ürün fabrikası.** Her cycle: araştır → inşa et → Vercel'e deploy et → Polar'da sat.
+Cycle 1226 itibarıyla: 179 aktif, 178 canlı, 178 sağlıklı (%100).
+Codex ve subagentler bu dosyadan context alır — tam repo scan yapmadan.
+
+---
+
+## 📁 Klasör Yapısı
+
+| Klasör | Ne İşe Yarar |
+|---|---|
+| `products/<slug>/` | Her ürün kendi klasöründe. `product.json` + kaynak kod + `spec.json` |
+| `scripts/` | Bash/Python otomasyon scriptleri (loop, deploy, SEO) |
+| `skills/` | Skill tanımları + subagent rolleri |
+| `skills/agents/` | Agent rol kartları (analyst, builder, optimizer, researcher, toolsmith) |
+| `analysis/` | Codex task dosyaları, sorun analizleri, Vercel audit JSON'ları |
+| `research/` | Cycle bazlı fırsat araştırma dosyaları |
+| `logs/` | Loop logları, hata logları, agent notları |
+| `.signals/` | Loop PID, status, health.json, universe_loop.lock |
+| `memory/` | Günlük hafıza notları (`YYYY-MM-DD.md`) |
+| `plans/` / `tasks/` / `issues/` | Planlama ve takip dosyaları |
+| `config/` | `capabilities.json` — MCP/skill durumu |
+| `prompts/` | `codex_prompt.txt` — codex_loop'un çalıştırdığı prompt |
+
+---
+
+## 🗂 Kritik Dosyalar
+
+| Dosya | Ne İşe Yarar | Okuyan | Yazan |
+|---|---|---|---|
+| `STATE.json` | Ana durum: cycle no, tüm ürünler, mod, bakiye | Her agent (ilk okuma) | `scripts/update_state.py`, deploy scriptleri |
+| `STATE_SUMMARY.json` | Özet istatistikler (live count, spec_ready vb.) | Codex, analyst | `scripts/update_summary.py` |
+| `WALLET.json` | Gelir/gider bakiyesi | Ana loop, FACTORY | `update_wallet.py` |
+| `SESSION.md` | Önceki cycle durumu, devam noktası | Her session başında | Ana agent, sonunda günceller |
+| `SOUL.md` | Kim olduğu, misyon, kurallar | İlk boot'ta okunur | Manuel |
+| `MEMORY.md` | Uzun vadeli kurumsal hafıza | Ana session | Ana agent (heartbeat'te) |
+| `HEARTBEAT.md` | Heartbeat checklist ve reminders | Heartbeat trigger'da | Ana agent |
+| `skills/FACTORY.md` | **Ana çalışma talimatları** — her cycle'ın kutsal kitabı | Her session başı | Manuel |
+| `skills/EVOLUTION.md` | Capability engineering, yeni skill ekleme protokolü | toolsmith agent | toolsmith |
+| `products/CATALOG.md` | Ürün kataloğu özeti | Analyst, codex | Deploy scriptleri |
+| `prompts/codex_prompt.txt` | Codex loop'a gönderilen prompt | `codex_loop.sh` | Manuel / toolsmith |
+| `logs/codex_loop.log` | Codex cycle çıktıları | Debug için | `codex_loop.sh` |
+| `logs/structured.jsonl` | Yapılandırılmış event log | Analytics | Tüm scriptler |
+
+---
+
+## ⚙️ scripts/ Özeti
+
+| Script | Ne Yapar |
+|---|---|
+| `codex_loop.sh` | Her 35 dakikada cron çalışır. Codex'i `codex_prompt.txt` ile başlatır. Singleton lock. |
+| `glm_loop.sh` | GLM tabanlı alternatif loop (parallel çalışır) |
+| `create_product.sh` | `<slug>` alır, `products/<slug>/` klasörü oluşturur, şablondan `product.json` + `api/` + `public/` yaratır |
+| `deploy_product.sh` | `<slug>` alır: git push → Vercel deploy → Telegram bildirim → STATE.json günceller |
+| `health_check.py` | Canlı ürünleri kontrol eder, `STATE_SUMMARY.json` günceller |
+| `update_state.py` | STATE.json'u güvenli şekilde günceller |
+| `update_summary.py` | STATE_SUMMARY.json'u STATE.json'dan hesaplar |
+| `seo_optimize_auto.py` | Canlı ürünlerin meta/SEO'sunu otomatik optimize eder |
+| `batch_seo_update.py` | Toplu SEO güncellemesi |
+[0m
+[0m$ [0mls /home/gokhan/UniverseCreator/tests/ 2>/dev/null || echo "tests/ yok"
+__pycache__
+conftest.py
+test_agent_cycle_reporter.py
+test_analysis_archive.py
+test_audit_portfolio_health.py
+test_batch_seo_update.py
+test_bulk_seo_optimize.py
+test_canonical_drift_report.py
+test_canonical_override.py
+test_category_normalizer.py
+test_checkout_duplicate_detector.py
+test_checkout_link_validator.py
+test_checkout_metadata.py
+test_checkout_sales_readiness.py
+test_checkout_url_health.py
+test_codex_auth_manager.py
+test_codex_cycle_efficiency.py
+test_commit_activity_tracker.py
+test_cycle_delta.py
+test_deploy_readiness.py
+test_duplicate_product_detector.py
+test_fill_spec_version.py
+test_fix_dead_checkout_buttons.py
+test_fix_product_state_gaps.py
+test_generate_og_images.py
+test_health_check.py
+test_health_dashboard.py
+test_health_trend.py
+test_optimize_seo.py
+test_orphan_cleanup_planner.py
+test_orphan_detector.py
+test_p2p_sales_tracker.py
+test_polar_checkout_sync.py
+test_portfolio_dashboard.py
+test_portfolio_naming_audit.py
+test_portfolio_orphan_scanner.py
+test_portfolio_overlap_analyzer.py
+test_portfolio_report.py
+test_portfolio_revenue_estimator.py
+test_portfolio_revenue_tracker.py
+test_portfolio_snapshot.py
+test_portfolio_summary_reporter.py
+test_price_audit.py
+test_product_category_map.py
+test_product_field_auditor.py
+test_product_field_gap_analyzer.py
+test_product_json_tag_sync.py
+test_product_json_validator.py
+test_product_lifecycle_analyzer.py
+test_product_meta_seo_auditor.py
+test_product_overlap_analyzer.py
+test_product_readiness_scorer.py
+test_product_release_changelog.py
+test_product_search_indexer.py
+test_product_size_analyzer.py
+test_product_slug_consistency_checker.py
+test_product_state_sync.py
+test_product_status_timeline.py
+test_product_tag_analyzer.py
+test_product_waste_cleaner.py
+test_qa_dispatch.py
+test_refresh_codex_context.py
+test_retry_probe.py
+test_revenue_forecast.py
+test_run_ledger_analyzer.py
+test_seo_fix_batch.py
+test_seo_mass_optimize.py
+test_seo_optimize_auto.py
+test_seo_optimize_batch.py
+test_slug_consistency_checker.py
+test_split_shared_checkouts.py
+test_standardize_checkout_fields.py
+test_summary_visibility.py
+test_sync_from_vercel.py
+test_unhealthy_triage.py
+test_update_state.py
+test_update_summary.py
+test_vercel_auth_monitor.py
+test_vercel_autofix.py
+test_vercel_fix.py
+test_vercel_response_monitor.py
+[0m
+[0m$ [0mls /home/gokhan/UniverseCreator/scripts/*.py /home/gokhan/UniverseCreator/scripts/*.sh 2>/dev/null | head -30
+/home/gokhan/UniverseCreator/scripts/__init__.py
+/home/gokhan/UniverseCreator/scripts/agent_cycle_reporter.py
+/home/gokhan/UniverseCreator/scripts/analysis_archive.py
+/home/gokhan/UniverseCreator/scripts/audit_portfolio_health.py
+/home/gokhan/UniverseCreator/scripts/batch_seo_update.py
+/home/gokhan/UniverseCreator/scripts/bulk_seo_optimize.py
+/home/gokhan/UniverseCreator/scripts/canonical_drift_report.py
+/home/gokhan/UniverseCreator/scripts/category_normalizer.py
+/home/gokhan/UniverseCreator/scripts/check_evolution.sh
+/home/gokhan/UniverseCreator/scripts/checkout_duplicate_detector.py
+/home/gokhan/UniverseCreator/scripts/checkout_link_validator.py
+/home/gokhan/UniverseCreator/scripts/checkout_metadata.py
+/home/gokhan/UniverseCreator/scripts/checkout_sales_readiness.py
+/home/gokhan/UniverseCreator/scripts/checkout_url_health.py
+/home/gokhan/UniverseCreator/scripts/codex_auth_manager.py
+/home/gokhan/UniverseCreator/scripts/codex_cycle_efficiency.py
+/home/gokhan/UniverseCreator/scripts/codex_loop.sh
+/home/gokhan/UniverseCreator/scripts/commit_activity_tracker.py
+/home/gokhan/UniverseCreator/scripts/create_product.sh
+/home/gokhan/UniverseCreator/scripts/cycle_delta.py
+/home/gokhan/UniverseCreator/scripts/deploy_product.sh
+/home/gokhan/UniverseCreator/scripts/deploy_readiness.py
+/home/gokhan/UniverseCreator/scripts/duplicate_product_detector.py
+/home/gokhan/UniverseCreator/scripts/fill_spec_version.py
+/home/gokhan/UniverseCreator/scripts/fix_dead_checkout_buttons.py
+/home/gokhan/UniverseCreator/scripts/fix_hash_urls.sh
+/home/gokhan/UniverseCreator/scripts/fix_product_state_gaps.py
+/home/gokhan/UniverseCreator/scripts/fix_vercel_protection.sh
+/home/gokhan/UniverseCreator/scripts/generate_og_images.py
+/home/gokhan/UniverseCreator/scripts/glm_loop.sh
+[0m
+--- opencode run START 2026-04-27 19:17:38 ---
+[91m[1mError: [0mYou must provide a message or a command
+--- opencode run END 2026-04-27 19:17:39 exit=1 ---
+--- opencode run START 2026-04-27 19:19:05 ---
+[91m[1mError: [0mYou must provide a message or a command
+--- opencode run END 2026-04-27 19:19:06 exit=1 ---

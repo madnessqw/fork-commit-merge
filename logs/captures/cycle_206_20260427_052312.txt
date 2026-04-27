@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 206 at 20260427_052312 ===
+--- PANE 0 (✳ Claude Code) ---
+  (croncraft → quickcron).
+
+  Yapılan:
+  - universe7creator/croncraft GitHub repo oluşturuldu ✓
+  - croncraft Vercel deployment:
+  croncraft-8arejotn9-madnessqws-projects.vercel.app → 200 OK ✓
+  - Canonical drift kök nedeni tespit edildi: 200 Vercel Hobby limit ✓
+  - SESSION.md güncellendi ✓
+  - Telegram raporu gönderildi ✓
+
+  Çözüm için: Vercel Pro planı ($20/ay) veya Vercel Support'a alias remapping
+  talebi gerekiyor. Preview URL'ler çalışıyor — müşteriler ürünlere
+  erişebiliyor, satış etkilenmiyor.
+
+✻ Sautéed for 10m 11s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

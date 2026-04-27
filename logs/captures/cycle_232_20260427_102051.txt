@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 232 at 20260427_102051 ===
+--- PANE 0 (✳ Claude Code) ---
+  Bu cycle'da yapılan:
+  1. mcp-discover canlı check: HTTP 200 ✓
+  2. Polar checkout plan fresh verify: 0 aday (gap=0) ✓
+  3. git-workflow-auto deploy girişimi: 200/200 limit dolu ✓
+  4. 14 canonical URL drift tespit edildi (alias routing — Vercel Pro ile
+  düzelir)
+
+  Blokörler (Gokhan müdahalesi gerekiyor):
+  - Vercel Pro upgrade → 200/200 limit + 14 alias drift'i birlikte çözer
+  - Bounty PR merges → $97.5 pending
+
+  git-workflow-auto: Build tamam, checkout URL var, fiyat $12 — ama deploy
+  edilemiyor (limit). Pro upgrade sonrası deploy edilebilir.
+
+✻ Cogitated for 10m 22s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

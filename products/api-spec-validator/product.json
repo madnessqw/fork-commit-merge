@@ -3,7 +3,7 @@
   "slug": "api-spec-validator",
   "tagline": "Validate OpenAPI specs instantly. Find errors before they hit production.",
   "description": "Upload your OpenAPI/Swagger spec and get instant validation, linting, and best practice suggestions. Perfect for API-first development teams.",
-  "price": "$19",
+  "price": 19.0,
   "category": "developer-tools",
   "features": [
     "OpenAPI 3.0/3.1 validation",
@@ -16,7 +16,7 @@
   "target_audience": "API developers, backend engineers, DevOps teams",
   "problem": "OpenAPI specs often have subtle errors that break client generation and documentation",
   "solution": "Instant validation with clear error messages and actionable fixes",
-  "checkout_url": "https://buy.polar.sh/polar_cl_bvYb3x9LMXUIo16NSgPS146awvqOnse0rmPgz2p1thf",
+  "checkout_url": "https://buy.polar.sh/polar_cl_H6XJSaDQse2Ht9CFbhKhdxIz3ZxRXKZUqAYnl1Xl86B",
   "checkout_status": "pending_lemonsqueezy_creation",
   "vercel_url": "https://api-spec-validator.vercel.app",
   "status": "live",
@@ -26,7 +26,7 @@
   "spec_version": "1.0",
   "polar_product_id": "525ac3c5-b78d-487a-863f-3d607c2ec0ed",
   "polar_product_price_id": "1da31ac6-6e7c-439b-a2ce-a97051b5606f",
-  "polar_checkout_link_id": "0f9d53d8-304b-4382-b96a-5e82a61fa05d",
+  "polar_checkout_link_id": "daaed988-ac4c-4438-bada-16db0394dea3",
   "created_cycle": 990,
   "deployed_cycle": 1108
 }

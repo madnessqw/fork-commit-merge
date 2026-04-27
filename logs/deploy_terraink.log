@@ -1,0 +1,197 @@
+🚀 Deploying: Terraink - Cartographic Poster Engine (terraink)
+==================================
+
+📦 Step 1: GitHub Push...
+  Repo exists. Pushing updates...
+[main ad35666] Deploy: Terraink - Cartographic Poster Engine
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+branch 'main' set up to track 'origin/main'.
+  ✅ GitHub: https://github.com/universe7creator/terraink
+
+🌐 Step 2: Vercel Deploy...
+  ⚠️  Production URL henüz hazır değil, deployment URL kullanılıyor (geçici)
+  ✅ Deployment URL: https://terraink-q5zw0wqgs-madnessqws-projects.vercel.app
+  ✅ Public URL: https://terraink-q5zw0wqgs-madnessqws-projects.vercel.app
+
+🏥 Step 3: Health Check...
+  Health: <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <!-- SVG for modern browsers, sized PNGs for fallback, apple-touch-icon for iOS -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Terraink - Cartographic Poster Engine</title>
+
+    <!-- Primary SEO -->
+    <meta
+      name="description"
+      content="Free online map poster and wallpaper generator. Design custom, print-ready map art for any city or location — export as PNG, PDF, or SVG. No sign-up required."
+    />
+    <meta
+      name="keywords"
+      content="free map poster creator, free map poster generator, map wallpaper creator, map wallpaper generator, map poster maker, custom map art, map wall art, city map poster, print map poster, map art generator, OpenStreetMap poster, free map print, terraink"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="google-site-verification"
+      content="%VITE_GOOGLE_SITE_VERIFICATION%"
+    />
+    <meta name="author" content="Terraink™" />
+    <link rel="canonical" href="https://terraink-flax.vercel.app">
+    <meta name="copyright" content="Terraink™" />
+    <link rel="canonical" href="https://terraink.app" />
+
+    <!-- Theme colour -->
+    <meta name="theme-color" content="#0a1824" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Terraink" />
+    <meta name="msapplication-TileColor" content="#0a1824" />
+    <link rel="mask-icon" href="/assets/logo.svg" color="#0a1824" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Terraink" />
+    <meta
+      property="og:title"
+      content="Terraink: Free Map Poster & Wallpaper Creator"
+    />
+    <meta
+      property="og:description"
+      content="Free online map poster and wallpaper generator. Design custom, print-ready map art for any city or location — export as PNG, PDF, or SVG. No sign-up required."
+    />
+    <meta property="og:url" content="https://terraink.app" />
+    <meta
+      property="og:image"
+      content="https://terraink.app/assets/banner.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Terraink — free map poster and wallpaper creator" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Terraink: Free Map Poster & Wallpaper Creator"
+    />
+    <meta
+      name="twitter:description"
+      content="Free online map poster and wallpaper generator. Design custom, print-ready map art for any city or location — export as PNG, PDF, or SVG. No sign-up required."
+    />
+    <meta
+      name="twitter:image"
+      content="https://terraink.app/assets/banner.jpg"
+    />
+    <meta name="twitter:image:alt" content="Terraink — free map poster and wallpaper creator" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Terraink",
+        "alternateName": [
+          "Terraink Map Poster Creator",
+          "Terraink Map Wallpaper Generator"
+        ],
+        "url": "https://terraink.app",
+        "description": "Free online map poster and wallpaper generator. Design custom, print-ready map art for any city or location — export as PNG, PDF, or SVG. No sign-up required.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern web browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "screenshot": "https://terraink.app/assets/banner.jpg",
+        "featureList": [
+          "Free map poster creator for any city or location",
+          "Map wallpaper generator with custom styles",
+          "High-resolution PNG, PDF, and SVG export",
+          "Powered by OpenStreetMap data",
+          "Dozens of curated map themes",
+          "Custom colour palettes",
+          "Typography controls with Google Fonts",
+          "No sign-up or account required",
+          "Works entirely in your browser"
+        ],
+        "keywords": "free map poster creator, map wallpaper generator, map poster maker, custom map art, city map print",
+        "creator": {
+          "@type": "Organization",
+          "name": "Terraink",
+          "url": "https://terraink.app"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-De4jAi6m.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-mmojqmHp.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BQYMn3Rg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-maplibre-core-B9R3F3nV.js">
+    <link rel="stylesheet" crossorigin href="/assets/vendor-maplibre-core-BVVtf18c.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-Cuc0IlGX.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  
+<script>
+// Checkout URL - auto-wired by fix_dead_checkout_buttons.py
+const CHECKOUT_URL = "https://buy.polar.sh/polar_cl_TWlkpiChuf0Vyi8GYm7b4v7pBMj7PGu8wHs9Q078sYg";
+document.querySelectorAll('.buy-btn, [class*="buy"], [class*="checkout"]').forEach(btn => {
+    if (!btn.getAttribute('onclick') && !btn.href) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => window.open(CHECKOUT_URL, '_blank'));
+    }
+});
+</script>
+</body>
+</html>
+
+🔓 Step 3.5: Disabling SSO Protection...
+[2026-04-27 05:06:38] === terraink için ssoProtection kapatılıyor ===
+[2026-04-27 05:06:44]   ✅ terraink — ssoProtection: None
+  ✅ Protection disabled
+
+📝 Step 4: Updating product.json...
+  ✅ product.json updated
+
+📱 Step 5: Telegram notification...
+  ⏭️  Skipped: set SEND_TELEGRAM=1 with TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to notify
+
+📊 Step 6: Updating STATE.json...
+  ✅ STATE.json updated
+
+==================================
+✅ DEPLOYMENT COMPLETE!
+  🌐 https://terraink-q5zw0wqgs-madnessqws-projects.vercel.app
+  📂 https://github.com/universe7creator/terraink
+  🔗 Webhook: https://terraink-q5zw0wqgs-madnessqws-projects.vercel.app/api/webhook
+
+⏳ Waiting for Polar checkout sync...

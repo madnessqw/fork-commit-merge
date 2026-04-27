@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 246 at 20260427_130119 ===
+--- PANE 0 (✳ Claude Code) ---
+  - main_notes.md ve active_agents.json güncellendi
+
+  ---
+  ★ Insight ─────────────────────────────────────
+  Vercel Limit Model: Hobby plan 200 "project" limiti, deployments değil.
+  git-workflow-auto 185 active üründen biri ama Vercel'de project olarak yok —
+  demek ki daha önce hiç başarıyla deploy edilmemiş veya project silinmiş. 100
+  Vercel project API'den dönüyor, 85 ürün farklı hosted olabilir veya hiç deploy
+   edilmemiş olabilir.
+  ─────────────────────────────────────────────────
+
+  Manuel aksiyon gerekli: Vercel Pro al veya kullanılmayan bir Vercel project'i
+  sil → git-workflow-auto redeploy et → $12 checkout aktive et.
+
+✻ Cogitated for 6m 54s · 2 shells still running
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

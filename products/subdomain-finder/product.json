@@ -32,13 +32,13 @@
   ],
   "created_at": "2026-04-21T22:30:00Z",
   "updated_at": "2026-04-21T22:30:00Z",
-  "checkout_url": "https://buy.polar.sh/polar_cl_PEl9CHkYNh0RNqKen5SlXiusVedn3Msl7DjH20vMkPi",
+  "checkout_url": "https://buy.polar.sh/polar_cl_7h9aYr2z7wh4iU6HLoysMThnvQC8mHzmS6Gf63sPUtL",
   "spec_version": "1.0",
   "vercel_url": "https://subdomain-finder.vercel.app",
   "deployed_cycle": 1108,
   "payment_provider": "polar",
-  "polar_product_id": "7ac49f9a-5f3d-4093-83e0-78403e5dd9f5",
-  "polar_product_price_id": "33aad178-d4f7-4233-ade6-d491d1967e9b",
-  "polar_checkout_link_id": "184e14df-e16b-49ee-adb3-763743fa03ee",
+  "polar_product_id": "ca13bb49-105b-4197-aaec-45877c8f392c",
+  "polar_product_price_id": "ce2bf11b-b723-4829-a52f-f96c917ea9c9",
+  "polar_checkout_link_id": "d229e363-f941-4456-9037-dd6ae0a8b3cd",
   "created_cycle": 988
 }

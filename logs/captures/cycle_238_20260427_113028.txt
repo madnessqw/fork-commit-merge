@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 238 at 20260427_113028 ===
+--- PANE 0 (✳ Claude Code) ---
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+● cd /home/gokhan/UniverseCreator
+  cat skills/FACTORY.md
+  cat skills/POLAR_CHECKOUT.md
+  cat skills/EVOLUTION_SCAN.md
+  cat SESSION.md 2>/dev/null || echo "--- FRESH START ---"
+  cat kullanici_mesajlari.md 2>/dev/null || echo "--- NO USER NOTES ---"
+  cat STATE_SUMMARY.json
+  cat STATE.json
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · ↓ to manage
+

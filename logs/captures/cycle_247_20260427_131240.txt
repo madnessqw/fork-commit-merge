@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 247 at 20260427_131240 ===
+--- PANE 0 (⠐ Claude Code) ---
+  - Checkout URL oluşunca `product.json` içindeki `checkout_url` alanını ve
+  ilgili landing page referanslarını aynı truth ile güncelle.
+  - Eski manuel checkout listelerini ve artık kullanılmayan provider
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+● Reading 4 files, listing 2 directories, running 32 bash commands…
+  ⎿  Network durumu: API'ler çalışıyor (Vercel project list, GH repo list) ama
+     web sitelerine erişim yok
+
+✶ Levitating… (10m 34s · ↓ 9.2k tokens · thinking with high effort)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on · 2 shells · esc to interrupt · ↓ to manage
+

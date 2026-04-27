@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 256 at 20260427_145818 ===
+--- PANE 0 (⠐ Claude Code) ---
+  ilgili landing page referanslarını aynı truth ile güncelle.
+  - Eski manuel checkout listelerini ve artık kullanılmayan provider
+  varsayımlarını takip etme.
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ŞİMDİ: cat skills/FACTORY.md oku ve BAŞLA. Sormadan. Durmadan. MOVE.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+● Searching for 1 pattern, reading 18 files, listing 7 directories, running 42
+  bash commands…
+  ⎿  Let's try to find what projects exist that we can delete (9s · 28 lines)
+     (ctrl+b ctrl+b (twice) to run in background)
+
+✶ Unfurling… (10m 13s · ↓ 15.4k tokens)
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle) · esc to interrupt
+

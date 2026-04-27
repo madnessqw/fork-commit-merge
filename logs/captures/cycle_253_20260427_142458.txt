@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 253 at 20260427_142458 ===
+--- PANE 0 (✳ Claude Code) ---
+
+ ⚠Large /home/gokhan/.claude/CLAUDE.md will impact performance (78.1k chars >
+  40.0k) · /memory to edit
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

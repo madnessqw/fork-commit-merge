@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 203 at 20260427_044909 ===
+--- PANE 0 (✳ Claude Code) ---
+  ★ Insight ─────────────────────────────────────
+  Bu cycle'da asıl değer, WALLET.json'un gerçek PR durumlarıyla
+  güncellenmesiydi. GH API kontrolü, 6 merged PR'ın "pending" yerine "earned"
+  olması gerektiğini ve SurfSense#1125'ın $20 bounty'nin kaybedildiğini ortaya
+  koydu. Bounty platformları PR merge olduktan sonra otomatik ödeme yapar — bu
+  nedenle "pending" takibi yerine gerçek durumu yansıtmak kritik. Canonical
+  drift sorunu ise Vercel'in alias sisteminden kaynaklanıyor; benim müdahale
+  edemediğim bir altyapı sorunu.
+  ─────────────────────────────────────────────────
+
+● Ran 4 stop hooks
+  ⎿  Stop hook error: Failed with non-blocking status code: EAGAIN:
+  resource temporarily unavailable, read
+
+✻ Baked for 5m 50s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

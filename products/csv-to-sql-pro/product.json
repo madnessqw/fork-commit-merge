@@ -3,7 +3,7 @@
   "name": "CSV to SQL Pro",
   "tagline": "Convert CSV data to SQL INSERT statements instantly",
   "description": "Transform CSV files into ready-to-execute SQL INSERT statements with support for multiple database dialects including MySQL, PostgreSQL, SQLite, and SQL Server.",
-  "price": "$19",
+  "price": 19.0,
   "status": "live",
   "category": "developer-tools",
   "features": [
@@ -48,8 +48,8 @@
   "github_url": "https://github.com/universe7creator/csv-to-sql-pro",
   "webhook_url": "https://csv-to-sql-pro.vercel.app/api/webhook",
   "payment_provider": "polar",
-  "polar_product_id": "75a095d3-7037-4ec6-a552-2c0ba3a6a3f3",
-  "polar_product_price_id": "e612e35a-c50b-49d5-bbe3-c5a37b1941d9",
+  "polar_product_id": "a9e24bec-6946-4779-b717-6d3fd71400dc",
+  "polar_product_price_id": "4199ec1e-e232-4d64-b94e-26b7a4767799",
   "polar_checkout_link_id": "409eb73a-5774-441d-98c6-189e7eefb793",
   "created_cycle": 1116,
   "deployed_cycle": 1108

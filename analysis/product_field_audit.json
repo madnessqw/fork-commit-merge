@@ -1,0 +1,1677 @@
+{
+  "timestamp": "2026-04-26T16:26:44.143144+00:00",
+  "total_products": 180,
+  "perfect_count": 103,
+  "average_score": 96.0,
+  "issue_summary": {
+    "missing": 87,
+    "empty_list": 2,
+    "invalid_status": 1,
+    "empty": 1
+  },
+  "field_issues": {
+    "github_url": 65,
+    "tech_stack": 20,
+    "features": 4,
+    "vercel_url": 1,
+    "status": 1
+  },
+  "products_with_issues": [
+    {
+      "slug": "agent-prompt-engineer",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "ai-cost-dashboard",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-compare",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-doc-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-mock-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-mock-server",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-security-scanner",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-spec-validator",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "base64-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "browser-mock-studio",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "browser-use-studio",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "carbonlite",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "chart-studio",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "codesnap",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cron-expression-builder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cron-expression-parser",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cron-health-checker",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cronmaster",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "css-grid-gen",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "css-shadow-studio",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "css-to-tailwind",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "csv-to-json-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "csv-validator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "dataflip",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "diffmaster",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "docker-compose-validator",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "docker-run-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "dockerfile-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "email-signature-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "email-validator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "env-file-manager",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "favicon-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "geoip-lite",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "git-diff-visualizer",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "graphql-query-builder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "hash-generator",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "empty_list"
+        },
+        {
+          "field": "vercel_url",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        },
+        {
+          "field": "status",
+          "problem": "invalid_status",
+          "value": "ready_for_payment"
+        }
+      ],
+      "score": 74
+    },
+    {
+      "slug": "hmac-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "htaccess-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html-entity-encoder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html-minifier-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html-to-markdown-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html2markdown",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "http-pulse",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "image-compressor-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "ip-network-tools",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "json-formatter",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jsonpath-tester",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jwt-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jwt-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jwtinspector",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "llm-token-lens",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "markdown-previewer-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "mcp-inspector-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "mcp-marketplace",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "missing"
+        },
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "mcp-server-scaffolder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "nginx-config-tester",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "number-base-converter",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "openapi-validator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "password-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "pdf-forge",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "pr-review-agent",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "missing"
+        },
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "regex-tester-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "sql-query-formatter",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "ssl-cert-checker",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "ssl-cipher-analyzer",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "subdomain-finder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "svg-optimizer-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "svg-pattern-generator",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "techstack",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "timestamp-converter-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "timestamp-master",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "toml-parser",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "toml-parser-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "workflow-chain-builder",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "empty_list"
+        }
+      ],
+      "score": 95
+    },
+    {
+      "slug": "xml-formatter-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "empty"
+        }
+      ],
+      "score": 95
+    }
+  ],
+  "all_results": [
+    {
+      "slug": "agent-prompt-engineer",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "ai-cost-dashboard",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-compare",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-doc-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-mock-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-mock-server",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-security-scanner",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "api-spec-validator",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "base64-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "browser-mock-studio",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "browser-use-studio",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "carbonlite",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "chart-studio",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "codesnap",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cron-expression-builder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cron-expression-parser",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cron-health-checker",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "cronmaster",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "css-grid-gen",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "css-shadow-studio",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "css-to-tailwind",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "csv-to-json-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "csv-validator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "dataflip",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "diffmaster",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "docker-compose-validator",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "docker-run-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "dockerfile-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "email-signature-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "email-validator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "env-file-manager",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "favicon-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "geoip-lite",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "git-diff-visualizer",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "graphql-query-builder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "hash-generator",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "empty_list"
+        },
+        {
+          "field": "vercel_url",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        },
+        {
+          "field": "status",
+          "problem": "invalid_status",
+          "value": "ready_for_payment"
+        }
+      ],
+      "score": 74
+    },
+    {
+      "slug": "hmac-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "htaccess-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html-entity-encoder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html-minifier-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html-to-markdown-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "html2markdown",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "http-pulse",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "image-compressor-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "ip-network-tools",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "json-formatter",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jsonpath-tester",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jwt-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jwt-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "jwtinspector",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "llm-token-lens",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "markdown-previewer-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "mcp-inspector-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "mcp-marketplace",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "missing"
+        },
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "mcp-server-scaffolder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "nginx-config-tester",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "number-base-converter",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "openapi-validator",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "password-generator-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "pdf-forge",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "pr-review-agent",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "missing"
+        },
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "regex-tester-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "sql-query-formatter",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "ssl-cert-checker",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "ssl-cipher-analyzer",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "subdomain-finder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "svg-optimizer-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "svg-pattern-generator",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        },
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 84
+    },
+    {
+      "slug": "techstack",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "timestamp-converter-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "timestamp-master",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "toml-parser",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "toml-parser-pro",
+      "issues": [
+        {
+          "field": "tech_stack",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "missing"
+        }
+      ],
+      "score": 92
+    },
+    {
+      "slug": "workflow-chain-builder",
+      "issues": [
+        {
+          "field": "features",
+          "problem": "empty_list"
+        }
+      ],
+      "score": 95
+    },
+    {
+      "slug": "xml-formatter-pro",
+      "issues": [
+        {
+          "field": "github_url",
+          "problem": "empty"
+        }
+      ],
+      "score": 95
+    }
+  ]
+}

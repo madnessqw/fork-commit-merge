@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 205 at 20260427_051201 ===
+--- PANE 0 (✳ Claude Code) ---
+  ├─────────────────┼──────────────────────────────────────────────────┤
+  │ Healthy         │ 183/183 ✓                                        │
+  ├─────────────────┼──────────────────────────────────────────────────┤
+  │ Checkout gap    │ 0 ✓                                              │
+  ├─────────────────┼──────────────────────────────────────────────────┤
+  │ Canonical drift │ 14 (Vercel infra sorunu — çözüm: Support talebi) │
+  └─────────────────┴──────────────────────────────────────────────────┘
+
+  Bu cycle'da yapılan: 14 drift ürün paralel redeploy denendi — 9 başarılı,
+  canonical URL düzelmedi — Telegram raporu gönderildi.
+
+  Sonraki cycle action: Vercel Support'a 14 drift ürün için alias remapping
+  talebi veya ürünleri sıfırdan yeni Vercel project olarak deploy etme opsiyonu.
+
+✻ Baked for 8m 54s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

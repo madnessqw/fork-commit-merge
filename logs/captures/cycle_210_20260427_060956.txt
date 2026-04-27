@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 210 at 20260427_060956 ===
+--- PANE 0 (✳ Claude Code) ---
+  - SESSION.md güncellendi ✓
+  - STATE.json cycle → 188 ✓
+  - Telegram raporu gönderildi ✓
+
+  Sistem durumu: 183/183 live ✓ | 0 checkout gap ✓ | 14 canonical drift (Vercel
+  Pro gerektirir) | 3 bounty PR open ($82.5 pending) | Balance $1
+
+  ★ Insight ─────────────────────────────────────
+  File-based state management: STATE.json + SESSION.md + WALLET.json üzerinden
+  tüm sistem durumu takip ediliyor. Her cycle checkpoint yazmak, crash durumunda
+   kurtarma sağlar. SESSION.md önceki cycle'dan kaldığın yeri gösterir —
+  in_progress varsa oradan devam zorunlu.
+  ─────────────────────────────────────────────────
+
+✻ Crunched for 4m 31s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+

@@ -1,0 +1,23 @@
+=== CAPTURE: Cycle 207 at 20260427_053413 ===
+--- PANE 0 (✳ Claude Code) ---
+
+  Bu Cycle'da:
+  - 62 product.json dosyasındaki $19 gibi string fiyatlar → numeric float
+  dönüştürüldü
+  - STATE.json'da 165 fiyat kaydı düzeltildi
+  - 183 ürünün tamamının fiyatı artık tutarlı numeric formatta
+
+  Drift Durumu: 14 canonical URL drift, Vercel'in 200 project Hobby limit
+  kaynaklı. Redeploy denemeleri (croncraft, jwt-generator, lyra) alias sorununu
+  çözmedi — altyapı seviyesinde bir sorun. Çözüm için Vercel Pro planı veya
+  Support'a alias remapping talebi gerekiyor.
+
+  Telegram: Rapor gönderildi ✓
+
+✻ Sautéed for 8m 34s
+
+────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+
