@@ -1,16 +1,21 @@
 {
-  "cycle": 232,
+  "cycle": 235,
   "mode": "OPTIMIZE",
   "balance": 0.0,
   "active_count": 185,
   "live_count": 184,
-  "healthy_count": 170,
-  "canonical_healthy_count": 171,
-  "fallback_healthy_count": 13,
+  "healthy_count": 184,
+  "canonical_healthy_count": 170,
+  "fallback_healthy_count": 14,
   "unhealthy_count": 0,
   "pending_health_count": 0,
   "ready_for_payment_unhealthy_count": 1,
   "checkout_gap_count": 0,
-  "next_action": "git-workflow-auto blocked by Vercel hobby limit; mcp-discover promoted to live",
-  "last_updated": "2026-04-27T08:45:00Z"
+  "deploy_missing_or_bad_url": 0,
+  "canonical_url_drift": 14,
+  "spec_ready_count": 0,
+  "deploy_readiness_count": 0,
+  "next_action": "14 canonical URL drift Tümü HTTP 200 çalışıyor — Vercel Pro gerekli",
+  "vercel_auth_issue": null,
+  "last_updated": "2026-04-27T09:46:00Z"
 }
