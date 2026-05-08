@@ -1,57 +1,34 @@
-# SESSION CHECKPOINT — Cycle 244 | 2026-05-08T04:30:00Z
-mode: OPTIMIZE
-products_active: 185
-products_healthy: 184
-polar_checkout_gap: 0
-vercel_hobby_limit: 200/200 FULL — PRO upgrade required
+# SESSION CHECKPOINT — Cycle 247 | 2026-05-08T05:35:00Z
 
 ## System Status:
-- Healthy: 184/185 ✅
-- Polar checkout: gap=0 ✅ (all live products have checkout URLs)
-- Vercel Hobby limit: 200/200 DOLU → no new deployments possible
-- 14 canonical drift ürün: 404/500/401/402/451/307 HTTP codes
-
-## Canonical Drift Ürünler (14):
-| Slug | HTTP Status |
-|------|-------------|
-| croncraft | 307 |
-| diffmaster | 401 |
-| html-entity-encoder | 402 |
-| jwt-generator | 500 |
-| nginx-config | 404 |
-| pdf-forge | 500 |
-| webhook-tester | 404 |
-| chmod-calculator | 307 |
-| timestamp-converter | 451 |
-| commit-message-generator | 404 |
-| email-validator-pro | 404 |
-| terminal-os | 500 |
-| terraink | 404 |
-| lyra | 404 |
-
-+ git-workflow-auto: 404 (ready_for_payment state)
-
-## Bu cycle'da yapılan:
-- SWARM_IDENTITY, ULTRATHINK, FACTORY.md, POLAR_CHECKOUT.md okundu
-- SESSION.md, STATE_SUMMARY.json, capabilities.json okundu
-- Vercel Hobby limit kontrolü: 200/200 DOLU ✅
-- 14 canonical drift ürün tespit edildi (HTTP code check)
-- git-workflow-auto: 404 — Vercel project missing
-- Telegram raporu gönderildi: kritik blockerlar bildirildi
-- deploy_product.sh git-workflow-auto denendi → scope hatası
-- vercel --prod --scope madnessqws-projects denendi → "200 project Hobby limit" hatası
+- Live: 184/185 healthy ✅
+- Polar checkout: gap=0 ✅  
+- Vercel Hobby limit: 200/200 DOLU — PRO upgrade gerekli
+- Balance: $1.0 (yetersiz)
+- git-workflow-auto: HTTP 404 (Vercel project silinmiş, limit dolu olduğu için redeploy bloklu)
+- Canonical drift: 14 ürün (HTTP 200 via fallback alias)
+- Telegram: HTTP 401 Unauthorized (token değişmiş olabilir)
 
 ## Bloker:
-- Vercel Hobby limit dolu → PRO upgrade ($20/ay) gerekli
-- 14 canonical drift ürün redeploy edilemiyor
-- git-workflow-auto deployment Vercel'den silinmiş
+1. Vercel Hobby limit dolu → PRO upgrade gerekli (~$20/ay)
+2. Balance $1.0 → PRO satın alınamaz
+3. Telegram bot token 401 veriyor
 
-## next_action:
-1. Vercel Pro satın al (bloker'ı kaldır)
-2. 14 drift ürün + git-workflow-auto redeploy et
-3. Balance artır: $0 — bounty PR takip et
+## Bounty PR Durumu:
+- claude-builders-bounty#444: OPEN, MERGEABLE — merge izni yok (universe7creator lacks admin permission)
+- servicewow-mcp#85: OPEN, MERGEABLE — merge izni yok
+- DockSec#61: OPEN, CONFLICTING — atlanmalı
+- DockSec#64: CLOSED
 
-## Notlar:
-- Balance: $0 (WALLET.json eski, STATE.json'da 0.0)
-- checkout_gap: 0 — Polar checkout rollout tamamlandı
-- Gap count: 0 — capabilities.json healthy
+## Fırsatlar (projeler.txt):
+- [***] Terminal UI OS (xterm.js) — mevcut değil, fırsat
+- [***] tomcp — herhangi CLI'yi MCP'ye çevir
+- RustChain emoji reaction bounty: 1-5 RTC değerinde, kolay iş
+
+## Next Action:
+1. Gokhan müdahalesi: Vercel PRO satın al veya yeni Vercel hesabı aç
+2. Telegram bot token'ı yenile (401 Unauthorized)
+3. Bounty PR merge izinlerini hallet veya yeni bounty'lere yönel
+4. Alternatif: mevcut healthy ürünlerle devam et — başka blocker yok
+
+## Mode: OPTIMIZE (active'de 184 live ürün var, checkout gap=0)
