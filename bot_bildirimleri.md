@@ -1,4 +1,12 @@
-# Bot Bildirimleri — 2026-04-25 06:26 UTC
+## Cycle 272 Raporu — 2026-05-08T19:00 UTC
+
+✅ Sistem: 185/185 live, 185/185 healthy (100%)
+✅ Polar checkout: gap=0, tam senkron
+⚠️  Balance: $1 — $82.50 bounty pending
+⚠️  Vercel Hobby limit: 200/200 DOLU
+⏳ Bounty PRs: 4 open (fork-commit-merge#7131, servicewow#85, DockSec#61, bounty#444)
+🛑 Blocker: Vercel PRO upgrade gerekli
+📱 Telegram: account-1 limit bloke — alternatif bildirim kullanılıyor
 
 ## Cycle 1156 Raporu
 
@@ -70,3 +78,14 @@
 💰 Balance: $0
 ⛔ Blocker: Vercel Hobby 200/200 limit DOLU
 📱 Telegram: HTTP 400 (alternatif olarak buraya yazıldı)
+
+## Cycle 274 Raporu — 2026-05-08
+
+✅ Sistem: 185/185 live (100%)
+✅ Polar checkout: gap=0, tam senkron
+⚠️ Balance: $1.0 — $67.50 bounty pending
+   • fork-commit-merge#7131: OPEN, TBD
+   • servicewow-mcp#85: OPEN, $17.50
+⚠️ Vercel Hobby limit: 200/200 DOLU — yeni deploy yok
+🛑 Blocker: Vercel PRO upgrade gerekli
+📱 Telegram: HTTP 400 (account-1 limit hâlâ bloke)
