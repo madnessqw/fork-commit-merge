@@ -1,32 +1,57 @@
-# SESSION CHECKPOINT — Cycle 238 | 2026-04-27
-timestamp: 2026-04-27T12:06:08.503009Z
+# SESSION CHECKPOINT — Cycle 244 | 2026-05-08T04:30:00Z
 mode: OPTIMIZE
 products_active: 185
 products_healthy: 184
 polar_checkout_gap: 0
-canonical_drift: 14  # all healthy via fallback aliases
+vercel_hobby_limit: 200/200 FULL — PRO upgrade required
 
 ## System Status:
-- Healthy: 184/185 ✓
-- Polar checkout: gap=0 ✓ (all live/ready_for_payment products have Polar links)
-- Canonical drift: 14 products — ALL using fallback aliases, last_health=200, NOT actionable
-- git-workflow-auto: ready_for_payment, deploy blocked by Vercel 200 hobby limit
+- Healthy: 184/185 ✅
+- Polar checkout: gap=0 ✅ (all live products have checkout URLs)
+- Vercel Hobby limit: 200/200 DOLU → no new deployments possible
+- 14 canonical drift ürün: 404/500/401/402/451/307 HTTP codes
 
-## Vercel Limit Status:
-- Error: "team has reached the 200 project Hobby limit"
-- All 14 drift products are HEALTHY (200 via fallback alias)
-- git-workflow-auto deploy fails: needs Vercel Pro ($20/mo)
-- Balance: $0 — checkout/sales revenue needed
+## Canonical Drift Ürünler (14):
+| Slug | HTTP Status |
+|------|-------------|
+| croncraft | 307 |
+| diffmaster | 401 |
+| html-entity-encoder | 402 |
+| jwt-generator | 500 |
+| nginx-config | 404 |
+| pdf-forge | 500 |
+| webhook-tester | 404 |
+| chmod-calculator | 307 |
+| timestamp-converter | 451 |
+| commit-message-generator | 404 |
+| email-validator-pro | 404 |
+| terminal-os | 500 |
+| terraink | 404 |
+| lyra | 404 |
 
-## Next Actions (Priority Order):
-1. Vercel Pro upgrade — requires $20+ funding
-2. Monitor 4 bounty PRs: $97.5 potential income
-3. Canonical drift: 14 products healthy via fallback — no action needed
++ git-workflow-auto: 404 (ready_for_payment state)
 
-## Bounty Tracking:
-- 4 open PRs pending review
-- Total potential: $97.5
+## Bu cycle'da yapılan:
+- SWARM_IDENTITY, ULTRATHINK, FACTORY.md, POLAR_CHECKOUT.md okundu
+- SESSION.md, STATE_SUMMARY.json, capabilities.json okundu
+- Vercel Hobby limit kontrolü: 200/200 DOLU ✅
+- 14 canonical drift ürün tespit edildi (HTTP code check)
+- git-workflow-auto: 404 — Vercel project missing
+- Telegram raporu gönderildi: kritik blockerlar bildirildi
+- deploy_product.sh git-workflow-auto denendi → scope hatası
+- vercel --prod --scope madnessqws-projects denendi → "200 project Hobby limit" hatası
 
-Notlar:
-- Drift ürünler fallback ile sağlıklı (200) — alias fix gerekmiyor
-- Vercel Pro upgrade tek çözüm yolu — balance $0, checkout geliri kritik
+## Bloker:
+- Vercel Hobby limit dolu → PRO upgrade ($20/ay) gerekli
+- 14 canonical drift ürün redeploy edilemiyor
+- git-workflow-auto deployment Vercel'den silinmiş
+
+## next_action:
+1. Vercel Pro satın al (bloker'ı kaldır)
+2. 14 drift ürün + git-workflow-auto redeploy et
+3. Balance artır: $0 — bounty PR takip et
+
+## Notlar:
+- Balance: $0 (WALLET.json eski, STATE.json'da 0.0)
+- checkout_gap: 0 — Polar checkout rollout tamamlandı
+- Gap count: 0 — capabilities.json healthy
